@@ -1,0 +1,36 @@
+{
+  "experiment_id": "intervention_compare_v2",
+  "models": [
+    "ollama:qwen2.5-coder:7b"
+  ],
+  "tasks": "all",
+  "seeds": {
+    "start": 0,
+    "stop": 10
+  },
+  "temperature": 0.7,
+  "max_rounds": 3,
+  "conditions": [
+    {
+      "id": "baseline",
+      "intervention": "baseline"
+    },
+    {
+      "id": "self_refine_r3",
+      "intervention": "self_refine",
+      "max_rounds": 3
+    },
+    {
+      "id": "execution_feedback_r3",
+      "intervention": "execution_feedback",
+      "max_rounds": 3
+    },
+    {
+      "id": "self_debugging_r3",
+      "intervention": "self_debugging",
+      "max_rounds": 3
+    }
+  ],
+  "output_dir": "results/intervention_compare_v2",
+  "pricing": {}
+}

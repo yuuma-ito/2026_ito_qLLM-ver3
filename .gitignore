@@ -1,0 +1,12 @@
+.env
+.venv/
+# results/ は基本無視するが、共有する実験データ(jsonl)と集計/診断レポート(md)は追跡する。
+# mock 等の使い捨ては引き続き無視。
+results/*
+!results/*.jsonl
+!results/*.md
+results/mock*.jsonl
+__pycache__/
+*.pyc
+.pytest_cache/
+*:Zone.Identifier
