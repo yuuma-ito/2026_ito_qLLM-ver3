@@ -60,12 +60,9 @@ def _drop_api_error_pairs(rows):
     round 0 の paired design を壊すため、同じ (model, task, seed) の組を
     次回にまとめて再試行する。
     """
-    failed_pairs = {
-        _pair_key(rec)
-        for rec in rows
-        if rec.get("error_category") == "api_error"
-    }
-    return [rec for rec in rows if _pair_key(rec) not in failed_pairs], len(failed_pairs)
+    # A timeout is a completed, recorded outcome in this schema and must not be
+    # silently removed or retried by resume.
+    return rows, 0
 
 
 def main() -> int:
@@ -132,7 +129,7 @@ def main() -> int:
 
             for task in v["tasks"]:
                 for seed in v["seeds"]:
-                    # All conditions share exactly the same initial generation.
+                    # Correction conditions share round 0; preventive_spec generates independently.
                     baseline_rec = _find_baseline(
                         existing_rows, v["experiment_id"], model_spec, task.id, seed
                     )
@@ -142,14 +139,6 @@ def main() -> int:
                         initial = generate_initial(
                             client, task, seed, temperature=v["temperature"]
                         )
-                    if initial.generation.error:
-                        print(
-                            f"ERROR: initial generation failed for {model_spec} "
-                            f"{task.id} seed={seed}: {initial.generation.error}",
-                            file=sys.stderr,
-                        )
-                        return 1
-
                     conditions = sorted(v["conditions"], key=lambda c: 0 if c.intervention == "baseline" else 1)
                     for cond in conditions:
                         key = (

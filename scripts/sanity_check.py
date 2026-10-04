@@ -63,8 +63,9 @@ def check_results(config: dict[str, Any], path: str | Path) -> dict[str, Any]:
     missing_fields = []
     required = [
         "model_spec", "task_id", "base_seed", "condition_id", "intervention",
-        "L0", "L1", "L2", "L3", "error_category", "n_rounds",
+        "task_difficulty", "temperature", "L0", "L1", "L2", "structure_match", "L3", "error_category", "n_rounds",
         "first_success_round", "tokens_in", "tokens_out", "total_tokens", "rounds",
+        "code_lines", "gate_count", "circuit_depth", "final_success", "timeout_flag",
     ]
     cond_rounds = {c.id: c.max_rounds for c in v["conditions"]}
 
@@ -80,12 +81,21 @@ def check_results(config: dict[str, Any], path: str | Path) -> dict[str, Any]:
         max_corrections = cond_rounds.get(cid, 0)
         if len(rounds) > max_corrections + 1:
             bad_rounds.append(i)
-        successful_rounds = [int(x["round"]) for x in rounds if x.get("L2")]
+        successful_rounds = [int(x["round"]) for x in rounds if x.get("L3")]
         expected_first = min(successful_rounds) if successful_rounds else -1
         if int(r.get("first_success_round", -1)) != expected_first:
             bad_first.append(i)
         if r["intervention"] == "baseline" and len(rounds) != 1:
             bad_baseline.append(i)
+        if r["intervention"] == "preventive_spec" and len(rounds) != 1:
+            bad_baseline.append(i)
+        if bool(r["L3"]) != bool(r["L0"] and r["L1"] and r["L2"] and r["structure_match"]):
+            errors.append(f"L3 formula mismatch at row {i}")
+        if bool(r["final_success"]) != bool(r["L3"]):
+            errors.append(f"final_success mismatch at row {i}")
+        if r["timeout_flag"]:
+            if r["error_category"] != "api_timeout" or any(r[k] for k in ("L0", "L1", "L2", "structure_match", "L3")):
+                errors.append(f"timeout record inconsistency at row {i}")
         if int(r.get("total_tokens", 0)) != int(r.get("tokens_in", 0)) + int(r.get("tokens_out", 0)):
             warnings.append(f"token total mismatch at row {i}")
 
@@ -98,7 +108,7 @@ def check_results(config: dict[str, Any], path: str | Path) -> dict[str, Any]:
     if bad_baseline:
         errors.append(f"baseline records with correction rounds: {len(bad_baseline)}")
 
-    # Initial round equality across conditions: same seed/code/evaluation metadata.
+    # The preventive condition intentionally has its own pre-generation prompt.
     by_base: dict[tuple[str, str, int], list[dict]] = defaultdict(list)
     for r in rows:
         by_base[(r["model_spec"], r["task_id"], int(r["base_seed"]))].append(r)
@@ -106,6 +116,8 @@ def check_results(config: dict[str, Any], path: str | Path) -> dict[str, Any]:
     for _, group in by_base.items():
         sigs = set()
         for r in group:
+            if r.get("intervention") == "preventive_spec":
+                continue
             rr = r.get("rounds") or []
             if not rr:
                 continue

@@ -10,7 +10,7 @@ import os
 import platform
 import subprocess
 import sys
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from importlib import metadata
 from pathlib import Path
@@ -62,11 +62,11 @@ def parse_conditions(config: dict[str, Any]) -> list[Condition]:
         if isinstance(item, str):
             intervention = item
             cid = item
-            rounds = 0 if item == "baseline" else default_rounds
+            rounds = 0 if item in {"baseline", "preventive_spec"} else default_rounds
         else:
             intervention = item["intervention"]
             cid = item.get("id", intervention)
-            rounds = int(item.get("max_rounds", 0 if intervention == "baseline" else default_rounds))
+            rounds = int(item.get("max_rounds", 0 if intervention in {"baseline", "preventive_spec"} else default_rounds))
         if intervention not in INTERVENTIONS:
             raise ValueError(f"Unknown intervention in config: {intervention}")
         if rounds < 0:
@@ -77,6 +77,9 @@ def parse_conditions(config: dict[str, Any]) -> list[Condition]:
         raise ValueError("condition IDs must be unique")
     if not any(c.intervention == "baseline" for c in out):
         raise ValueError("conditions must include baseline so initial generations can be paired")
+    for cond in out:
+        if cond.intervention in {"baseline", "preventive_spec"} and cond.max_rounds != 0:
+            raise ValueError(f"{cond.intervention} must have max_rounds=0")
     return out
 
 
@@ -158,7 +161,7 @@ def build_manifest(config: dict[str, Any], repo_root: str | Path) -> dict[str, A
         "experiment_id": v["experiment_id"],
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "config_hash": config_hash(config),
-        "shared_initial_generation": True,
+        "shared_initial_generation": "shared by correction conditions; preventive_spec generates independently",
         "config": normalized_config(config),
         "planned": {
             "records": v["planned_records"],
@@ -219,7 +222,8 @@ def initial_from_baseline_record(rec: dict[str, Any], task) -> InitialAttempt:
         tokens_out=int(rec.get("tokens_out", 0)),
         elapsed_sec=float(rec.get("elapsed_sec", 0.0)),
         model_id=rec.get("model", ""),
-        error=rec.get("error_message", "") if rec.get("error_category") == "api_error" else "",
+        error=rec.get("error_message", "") if rec.get("error_category") in {"api_error", "api_timeout"} else "",
+        timeout_flag=bool(rec.get("timeout_flag", False)),
     )
     rounds = rec.get("rounds") or []
     r0 = rounds[0] if rounds else {}
@@ -231,9 +235,11 @@ def initial_from_baseline_record(rec: dict[str, Any], task) -> InitialAttempt:
             L0=bool(r0.get("L0", rec.get("L0", False))),
             L1=bool(r0.get("L1", rec.get("L1", False))),
             L2=bool(r0.get("L2", rec.get("L2", False))),
+            structure_match=bool(r0.get("structure_match", rec.get("structure_match", False))),
             L3=bool(r0.get("L3", rec.get("L3", False))),
             L2_distance=float(r0.get("L2_distance", rec.get("L2_distance", float("nan")))),
             gate_count=int(rec.get("gate_count", 0)),
+            circuit_depth=int(rec.get("circuit_depth", 0)),
             n_qubits_actual=int(rec.get("n_qubits_actual", 0)),
             error_category=str(r0.get("error_category", rec.get("error_category", ""))),
             error_message=str(r0.get("error_message", rec.get("error_message", ""))),

@@ -1,0 +1,11 @@
+{
+  "experiment_id": "full_qwen14b",
+  "models": ["ollama:qwen2.5-coder:14b"],
+  "tasks": ["T1_Bell", "T2_GHZ", "T3a_DJ_constant", "T3b_DJ_balanced", "T4_BV_011", "T5_Grover_11", "T6_QFT_001", "T7_IQFT_001", "T8_QPE_001", "T9_Ansatz_001"],
+  "seeds": {"start": 0, "stop": 10},
+  "temperature": 0.7,
+  "max_rounds": 3,
+  "conditions": ["baseline", "self_refine", "execution_feedback", "self_debugging", "preventive_spec"],
+  "output_dir": "results/full_qwen14b",
+  "pricing": {}
+}

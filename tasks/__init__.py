@@ -27,9 +27,13 @@ class Task:
     expected_distribution: Optional[dict[str, float]] = None
     expected_statevector: Optional[tuple[complex, ...]] = None
     threshold: float = 0.05
-    expected_gate_count_range: Optional[tuple[int, int]] = None  # L3 用 (min, max)
+    expected_gate_count_range: Optional[tuple[int, int]] = None  # structure_match oracle (min, max)
     mock_correct_code: str = ""
     mock_wrong_code: str = ""
+    task_difficulty: str = "medium"
+    measurement_required: Optional[bool] = None
+    expected_measurement_count: Optional[int] = None
+    expected_classical_bits: Optional[int] = None
 
 
 def all_tasks() -> list[Task]:
@@ -47,7 +51,7 @@ def all_tasks() -> list[Task]:
         t9_ansatz,
     )
 
-    return [
+    tasks = [
         t1_bell.TASK,
         t2_ghz.TASK,
         t3_dj_constant.TASK,
@@ -59,6 +63,15 @@ def all_tasks() -> list[Task]:
         t8_qpe.TASK,
         t9_ansatz.TASK,
     ]
+    difficulty = {
+        "T1_Bell": "easy", "T2_GHZ": "easy",
+        "T3a_DJ_constant": "medium", "T3b_DJ_balanced": "medium",
+        "T4_BV_011": "medium", "T5_Grover_11": "medium",
+        "T6_QFT_001": "hard", "T7_IQFT_001": "hard",
+        "T8_QPE_001": "hard", "T9_Ansatz_001": "hard",
+    }
+    from dataclasses import replace
+    return [replace(task, task_difficulty=difficulty[task.id]) for task in tasks]
 
 
 def get_task(task_id: str) -> Task:

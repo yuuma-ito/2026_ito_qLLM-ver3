@@ -5,6 +5,7 @@
 - self_refine: 外部評価情報を与えず、前回コードを自己批評して修正
 - execution_feedback: evaluator の診断情報を与えて修正
 - self_debugging: evaluator の診断情報に加え、説明→原因分析→修正を明示要求
+- preventive_spec: 生成前に共通の注意事項を与え、1回のみ生成
 """
 from __future__ import annotations
 
@@ -17,7 +18,24 @@ INTERVENTIONS = (
     "self_refine",
     "execution_feedback",
     "self_debugging",
+    "preventive_spec",
 )
+
+PREVENTIVE_SPEC = """量子コード生成では以下の点に注意してください。
+
+1. 指定された関数名と戻り値形式を必ず守ること。
+2. Qiskitに存在しないAPIを使用しないこと。
+3. 量子ビット数と古典ビット数を一致させること。
+4. 測定結果のビット順序に注意すること。
+5. 期待される測定分布または状態ベクトルと一致する回路を作ること。
+6. 不要なゲートを追加しないこと。
+7. 指定されたインターフェースを必ず実装すること。"""
+
+
+def build_initial_prompt(intervention: str, task: Task) -> str:
+    if intervention == "preventive_spec":
+        return f"{task.prompt_text}\n\n{PREVENTIVE_SPEC}"
+    return task.prompt_text
 
 
 def intervention_feedback_type(intervention: str) -> str:
@@ -26,6 +44,7 @@ def intervention_feedback_type(intervention: str) -> str:
         "self_refine": "self_critique",
         "execution_feedback": "execution_feedback",
         "self_debugging": "self_debugging",
+        "preventive_spec": "preventive_spec",
     }
     if intervention not in mapping:
         raise ValueError(f"Unknown intervention: {intervention}")
