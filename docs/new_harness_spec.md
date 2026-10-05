@@ -1,38 +1,40 @@
-# New Harness Specification
+# 新ハーネス仕様
 
-## Scope
+## 1. 目的と対象範囲
 
-This document defines the model-comparison harness for Qiskit code generation. It does not include API-hint ablation or the exp4 H0–H3 experiment.
+本仕様は、Qiskit による量子回路コード生成実験で、モデル・タスク難度・失敗類型・介入条件ごとの生成品質、介入効果、実行コストを比較するハーネスを定義します。APIヒント ablation、H0〜H3、exp4 は本実装の対象外です。
 
-## Models, tasks, difficulty, and seeds
+## 2. 対象モデル・タスク・難度・seed
 
-Model specs use the `ollama:` provider prefix; the prefix is removed before the model name is sent to Ollama.
+config の `model_spec` では provider prefix の `ollama:` を含む形式を使います。Ollama API に渡す際には prefix を外します。
 
-- `ollama:qwen2.5-coder:3b`
-- `ollama:qwen2.5-coder:7b`
-- `ollama:qwen2.5-coder:14b`
+- `ollama:qwen2.5-coder:3b` → `qwen2.5-coder:3b`
+- `ollama:qwen2.5-coder:7b` → `qwen2.5-coder:7b`
+- `ollama:qwen2.5-coder:14b` → `qwen2.5-coder:14b`
 
-Use the existing ten T1–T9 tasks with the following metadata:
+既存の T1〜T9 を使用します。T3 は T3a と T3b に分かれるため、合計10タスクです。
 
-| Difficulty | Task IDs |
+| `task_difficulty` | `task_id` |
 | --- | --- |
-| easy | `T1_Bell`, `T2_GHZ` |
-| medium | `T3a_DJ_constant`, `T3b_DJ_balanced`, `T4_BV_011`, `T5_Grover_11` |
-| hard | `T6_QFT_001`, `T7_IQFT_001`, `T8_QPE_001`, `T9_Ansatz_001` |
+| `easy`（易） | `T1_Bell`，`T2_GHZ` |
+| `medium`（中） | `T3a_DJ_constant`，`T3b_DJ_balanced`，`T4_BV_011`，`T5_Grover_11` |
+| `hard`（難） | `T6_QFT_001`，`T7_IQFT_001`，`T8_QPE_001`，`T9_Ansatz_001` |
 
-Full configs run seeds 0–9, inclusive.
+Full experiments の seed は両端を含む0〜9です。
 
-## Conditions
+## 3. 介入条件
 
-The harness compares `baseline`, `self_refine`, `execution_feedback`, `self_debugging`, and `preventive_spec`.
+5条件を比較します。
 
-- `baseline`: one generation and evaluation.
-- `self_refine`: initial generation followed by up to `max_rounds` self-review corrections.
-- `execution_feedback`: initial generation followed by up to `max_rounds` corrections using evaluator feedback.
-- `self_debugging`: initial generation followed by up to `max_rounds` explain/diagnose/repair corrections.
-- `preventive_spec`: add the common preventive notice below before generation and generate/evaluate once. It is a generation-time intervention, not a correction-round intervention.
+- `baseline`（介入なし）：初回生成と評価を1回行います。
+- `self_refine`（自己修正）：初回生成後、モデル自身の見直しに基づいて最大 `max_rounds` 回修正します。
+- `execution_feedback`（実行結果フィードバック）：初回生成後、評価器のエラー・実行結果を提示して最大 `max_rounds` 回修正します。
+- `self_debugging`（自己デバッグ）：説明・原因分析・修正の手順を使って最大 `max_rounds` 回修正します。
+- `preventive_spec`（予防的仕様プロンプト）：共通注意事項を初期 prompt に加えて1回だけ生成します。修正 round はありません。
 
-Preventive notice:
+`preventive_spec` は生成前介入で、生成後に修正する3条件とは性質が異なります。baseline と初期 prompt が異なるため、同一の初期コードを共有しません。一方、`baseline_regression` の paired 比較には含めます。修正型3条件は共通初期生成を使い、paired 比較を行います。
+
+`preventive_spec` に追加する共通 prompt:
 
 > 量子コード生成では以下の点に注意してください。
 >
@@ -44,94 +46,146 @@ Preventive notice:
 > 6. 不要なゲートを追加しないこと。
 > 7. 指定されたインターフェースを必ず実装すること。
 
-Correction conditions share their initial generation for paired comparisons. `preventive_spec` uses a separate initial generation because its prompt differs from baseline.
+## 4. 評価指標と structure_match
 
-## Evaluation
+評価段階を個別に保存します。
 
-Keep L0 (valid code/interface), L1 (evaluable circuit), and L2 (expected distribution/statevector within the task threshold) as separate indicators. `structure_match` independently checks structural plausibility, at minimum expected qubit count and existing task gate-count bounds. Classical-bit and in-circuit measurement requirements are checked only when explicitly stated in task metadata (`expected_classical_bits`, `expected_measurement_count`, or `measurement_required`); absent metadata means no such constraint is imposed. For distribution evaluation, add measurements to a copy only if the generated circuit has no measurement operations, so explicit measurements are preserved without duplication. Circuit depth and gate count are recorded for analysis.
+- `L0`：生成コードの構文と必須インターフェースが有効です。
+- `L1`：回路を構築し、タスクの評価処理を実行できます。
+- `L2`：測定分布または状態ベクトルがタスク期待値としきい値内で一致します。
+- `structure_match`（回路構造の妥当性）：L2とは独立した構造妥当性指標です。
+- `L3`：すべての前段階を満たす総合成功指標です。
 
-The current tasks do not provide a complete structural oracle for alternative equivalent decompositions. Therefore, preserve the existing per-task qubit-count and gate-count-range oracle and avoid exact gate-sequence matching. Extend with gate-family or depth bounds only when a task-specific oracle is available. Any stricter additions must accept equivalent circuits.
+必ず次式で `L3` を計算します。
 
-Always compute:
+```text
+L3 = L0 and L1 and L2 and structure_match
+```
 
-`L3 = L0 and L1 and L2 and structure_match`
+したがって、`L2=False` かつ `L3=True` となる記録は許しません。
 
-## Failure categories and priority
+`structure_match` は、可能な範囲で以下を確認します。
 
-Each final record has one primary `error_category`. Apply this precedence:
+1. 量子ビット数がタスク期待値と一致する。
+2. 古典ビット数または測定数が、明示されたタスク要件と一致する。
+3. 主要ゲート種が期待範囲に含まれる（タスク固有 oracle がある場合）。
+4. ゲート数または回路深さがタスク許容範囲内である（oracle がある場合）。
+5. 測定が必要なタスクでは、測定が適切に含まれる。
 
-1. `api_timeout`
-2. `syntax`
-3. `import_error`
-4. `interface_mismatch`
-5. `build_error`
-6. `qubit_count_mismatch`
-7. `bit_order_error`
-8. `wrong_output`
-9. `unknown_error`
+現行タスク定義では測定要否、期待測定数、期待古典ビット数が未指定の場合があります。その場合、測定数や古典ビット数に制約を推定して加えず、一律に古典ビット数0を要求しません。タスクに明示がある場合のみ、その要件に反しないことを検査します。分布評価は、生成回路に測定がないときだけ評価用コピーへ測定を追加します。生成回路に測定がある場合は既存の測定を保ち、二重追加しません。
 
-Missing/invalid required function, signature, or return form is `interface_mismatch`. Circuit construction exceptions are `build_error`. Clear qubit or classical-bit mismatch is `qubit_count_mismatch`. Use `bit_order_error` only when reversing measured bit strings makes the observed distribution match within threshold; otherwise use `wrong_output`. API timeout is an execution-stability outcome, not a code-quality failure.
+既存 task oracle のゲート数範囲は回路ゲートを対象とし、測定操作を数えません。生成コードの測定を含む総操作数は、分析指標 `gate_count` として別途記録します。タスク固有 oracle がないゲート種・深さについては、一律の制限を作りません。等価な回路を不当に失敗させないよう、厳密なゲート列の完全一致は要求しません。
 
-## Timeout behavior
+## 5. 失敗類型と優先順位
 
-Detect timeout per LLM generation call using the existing client request timeout. Save one record for every condition. On a correction-round timeout, retain all previous round entries and append the timeout round as the final entry. The final record and timeout round must set `L0`, `L1`, `L2`, `structure_match`, and `L3` false; set `error_category` to `api_timeout` and `timeout_flag` true. Do not add a total experiment time limit or silently discard timeout records on resume.
+各最終 record に主因の `error_category` を1つ保存します。複数の失敗が重なった場合は次の優先順位を使います。
 
-## JSONL records
+1. `api_timeout`（APIタイムアウト）
+2. `syntax`（構文エラー）
+3. `import_error`（import エラー）
+4. `interface_mismatch`（関数名・引数・戻り値形式等の不一致）
+5. `build_error`（Qiskit 回路構築中の例外）
+6. `qubit_count_mismatch`（量子ビット数、または明確な古典ビット数・測定数の不一致）
+7. `bit_order_error`（ビット順序誤り）
+8. `wrong_output`（実行可能だが出力分布・状態が期待と不一致）
+9. `unknown_error`（上記に分類できないエラー）
 
-Each record stores:
+関数名、戻り値形式、必須関数未定義などは `interface_mismatch` とします。Qiskit 回路生成中の例外は `build_error` です。ビット列を反転すると期待分布としきい値内で一致する場合に限り `bit_order_error` とします。自動判定が難しい出力不一致はまず `wrong_output` にします。
 
-`experiment_id`, `model_spec`, `task_id`, `task_difficulty`, `seed`, `temperature`, `condition_id`, `intervention`, `rounds`, `L0`, `L1`, `L2`, `structure_match`, `L3`, `L2_distance`, `error_category`, `error_message`, `tokens_in`, `tokens_out`, `total_tokens`, `elapsed_sec`, `code_lines`, `gate_count`, `circuit_depth`, `first_success_round`, `final_success`, and `timeout_flag`.
+## 6. API timeout
 
-Keep generated code and evaluation metrics in each round. Add `code_diff_round0_final` as a unified diff and `metric_diff_round0_final` with from/to/delta values where numeric. Metric differences cover L0/L1/L2/structure_match/L3, error category, L2 distance, code lines, gate count, and depth. `final_success` means L3 success; `first_success_round` is the first round that reaches L3.
+timeout は実験全体ではなく、LLM 生成呼び出し単位で既存 API request timeout を使って判定します。API timeout はコード品質の失敗でなく実行安定性の失敗です。timeout が起きた条件も必ず record に保存します。
 
-When no model pricing is configured, estimated cost is JSON `null`; analysis must not present it as zero.
+修正 round 中に timeout が起きた場合、そこまでの round 履歴を残し、timeout round を最終 round として追加します。最終評価では次を記録します。
 
-## Paired outcomes
+- `L0 = false`
+- `L1 = false`
+- `L2 = false`
+- `structure_match = false`
+- `L3 = false`
+- `error_category = api_timeout`
+- `timeout_flag = true`
 
-- `rescued`: the matched baseline final result has L2 false and the intervention final result has L2 true. `rescue_rates_by_error.csv` groups by the baseline error category.
-- `degradation_in_rounds`: final `stage_score` is lower than initial `stage_score`. Apply only to `self_refine`, `execution_feedback`, and `self_debugging`.
-- `baseline_regression`: matched baseline final L2 is true and intervention final L2 is false. Apply to the three correction interventions and `preventive_spec`.
+実験全体を打ち切る上限時間は設けません。timeout record を resume 時に黙って破棄しません。`timeout_summary.csv` で timeout を別集計します。
 
-Stage scores:
+## 7. JSONL record と round 差分
 
-| Score | Condition |
+各 record に次の項目を保存します。
+
+`experiment_id`，`model_spec`，`task_id`，`task_difficulty`，`seed`，`temperature`，`condition_id`，`intervention`，`rounds`，`L0`，`L1`，`L2`，`structure_match`，`L3`，`L2_distance`，`error_category`，`error_message`，`tokens_in`，`tokens_out`，`total_tokens`，`elapsed_sec`，`code_lines`，`gate_count`，`circuit_depth`，`first_success_round`，`final_success`，`timeout_flag`。
+
+各 round に生成コードと評価指標を保持します。さらに次を保存します。
+
+- `code_diff_round0_final`：round 0 と最終 round の unified diff 文字列。
+- `metric_diff_round0_final`：可能な限り、各指標の `from`，`to`，数値指標の `delta`。
+
+metric diff には `L0`，`L1`，`L2`，`structure_match`，`L3`，`error_category`，`L2_distance`，`code_lines`，`gate_count`，`circuit_depth` の変化を含めます。`final_success` は最終 `L3` 成功、`first_success_round` は初めて `L3` 成功した round です。
+
+価格設定がない場合の cost は数値0ではなく JSON `null` です。分析でも pricing が設定されない cost は空欄または `null` とし、0とは扱いません。
+
+## 8. paired 効果：救出・修正過程の悪化・baseline 退行
+
+3種類を別の概念・CSVで集計します。
+
+- `rescued`（救出）：対応する baseline の最終 `L2=False`、介入条件の最終 `L2=True`。
+- `degradation_in_rounds`（修正過程での悪化）：同じ介入条件内で最終 round の `stage_score` が初期 round より低いこと。対象は `self_refine`，`execution_feedback`，`self_debugging` のみです。`baseline` と `preventive_spec` は修正 round がないため対象外です。
+- `baseline_regression`（baseline 成功から介入失敗への退行）：同じ `model_spec`，`task_id`，`seed` の baseline 最終 `L2=True` かつ介入最終 `L2=False`。対象は `self_refine`，`execution_feedback`，`self_debugging`，`preventive_spec` です。
+
+`preventive_spec` は baseline と初期 prompt が異なりますが、介入によって baseline 成功ケースを失敗にしたかを見るため `baseline_regression` の paired 比較に含めます。これは生成前介入であり、修正型介入とは性質が異なることを README と CSV の説明に明記します。
+
+`degradation_in_rounds` の段階点 `stage_score` は次のとおりです。
+
+| score | 評価状態 |
 | --- | --- |
-| 0 | L0 false |
-| 1 | L0 true, L1 false |
-| 2 | L0/L1 true, L2 false |
-| 3 | L0/L1/L2 true, structure_match false |
-| 4 | L0/L1/L2/structure_match true |
+| 0 | `L0=False` |
+| 1 | `L0=True`，`L1=False` |
+| 2 | `L0=True`，`L1=True`，`L2=False` |
+| 3 | `L0=True`，`L1=True`，`L2=True`，`structure_match=False` |
+| 4 | `L0=True`，`L1=True`，`L2=True`，`structure_match=True` |
 
-Never use the ambiguous field/name `regressed`. `preventive_spec` is a pre-generation intervention and must be described separately from correction interventions in CSV documentation and README.
+`final_stage_score < initial_stage_score` のときだけ `degradation_in_rounds` と判定します。曖昧な名前 `regressed` は使いません。
 
-## Analysis CSVs
+## 9. 分析CSV
 
-Write these outputs under the experiment output directory:
+実験の出力ディレクトリに次の CSV を書き出します。
 
-- `summary_by_condition.csv`
-- `summary_by_model.csv`
-- `summary_by_task.csv`
-- `summary_by_difficulty.csv`
-- `rescue_rates_by_error.csv`
-- `degradation_cases.csv`
-- `baseline_regressions.csv`
-- `timeout_summary.csv`
-- `cost_runtime_summary.csv`
+- `summary_by_condition.csv`：条件別。
+- `summary_by_model.csv`：モデル別。
+- `summary_by_task.csv`：タスク別。
+- `summary_by_difficulty.csv`：難度別。
+- `rescue_rates_by_error.csv`：baseline の失敗類型別 rescue 率。
+- `degradation_cases.csv`：修正過程での悪化ケース。
+- `baseline_regressions.csv`：baseline 退行ケース。
+- `timeout_summary.csv`：API timeout の別集計。
+- `cost_runtime_summary.csv`：token 数、経過秒、コード行数、ゲート数、回路深さ、および利用可能なら cost。
 
-The cost/runtime file always summarizes token counts, elapsed seconds, code lines, gate counts, and circuit depth. Cost remains null unless pricing is configured.
+pricing の有無にかかわらず `tokens_in`，`tokens_out`，`total_tokens`，`elapsed_sec`，`code_lines`，`gate_count`，`circuit_depth` を集計します。pricing がないとき cost は `null` です。
 
-## Configs and quick debug
+## 10. config と quick_debug
 
-Full configs: `configs/full_qwen3b.json`, `configs/full_qwen7b.json`, `configs/full_qwen14b.json`, and `configs/full_all_models.json`.
+Full config:
 
-`configs/quick_debug.json` uses model `ollama:qwen2.5-coder:3b`, tasks `T1_Bell` and `T3a_DJ_constant`, seeds 0 and 1, temperature 0.7, max rounds 3, all five conditions, and output directory `results/quick_debug`. It plans 20 records.
+- `configs/full_qwen3b.json`
+- `configs/full_qwen7b.json`
+- `configs/full_qwen14b.json`
+- `configs/full_all_models.json`
 
-Quick debug is the only experiment to run during implementation verification. Do not run the full configs as part of implementation.
+`configs/quick_debug.json` は小規模確認専用で、次の20条件組み合わせを計画します。
 
-## GitHub publication
+- model: `ollama:qwen2.5-coder:3b`
+- tasks: `T1_Bell`，`T3a_DJ_constant`
+- seeds: 0，1
+- conditions: `baseline`，`self_refine`，`execution_feedback`，`self_debugging`，`preventive_spec`
+- temperature: 0.7
+- max rounds: 3
+- output: `results/quick_debug`
 
-Keep the README aligned with this specification. Ignore `.env`, `.venv/`, `__pycache__/`, `*.pyc`, `results/**/raw.jsonl`, `logs/`, and `.cache/`. Never include API keys or local environment files.
+実装時の動作確認では quick_debug のみを使い、Full experiments は実行しません。
 
-## Known structural-oracle limitation
+## 11. GitHub 公開時の注意
 
-Existing task definitions have qubit-count and gate-count-range constraints but no complete gate-family, classical-register, or circuit-depth oracle. Classical-bit and measurement requirements are not inferred when task metadata is absent. `bit_order_error` is a heuristic classification based on bit-reversed distribution comparison. Do not claim exact structure validation beyond those checks.
+`.env`，`.venv/`，`__pycache__/`，`*.pyc`，`results/**/raw.jsonl`，`logs/`，`.cache/` を Git から除外します。API キーや個人の実験データを含むファイルを commit/push しません。
+
+## 12. 現行 oracle の制約
+
+現行タスク定義には量子ビット数とゲート数範囲がありますが、全タスクに対するゲート種、古典レジスタ、測定数、回路深さの完全な oracle はありません。未指定要件を推測で制約にせず、利用可能な oracle の範囲だけを確認します。`bit_order_error` はビット反転後の分布比較によるヒューリスティックです。これらの制約を超える完全な構造検証を行うとは主張しません。

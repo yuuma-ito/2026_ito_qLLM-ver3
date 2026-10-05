@@ -410,8 +410,14 @@ def _normalize_base_url(url: str) -> str:
 
 def _make_local_client(provider: str, model_id: str) -> OpenAICompatClient:
     cfg = _LOCAL_DEFAULTS[provider]
+    # OLLAMA_BASE_URL is the harness-specific override. Also accept Ollama's
+    # standard OLLAMA_HOST variable so shared/local Ollama setup instructions
+    # route generation to the same server selected by the user.
+    base_url = os.environ.get(cfg["base_url_env"])
+    if provider == "ollama" and not base_url:
+        base_url = os.environ.get("OLLAMA_HOST")
     base_url = _normalize_base_url(
-        os.environ.get(cfg["base_url_env"], cfg["base_url_default"])
+        base_url or cfg["base_url_default"]
     )
     api_key = os.environ.get(cfg["api_key_env"], cfg["api_key_default"])
     return OpenAICompatClient(model_id, base_url=base_url, api_key=api_key)
