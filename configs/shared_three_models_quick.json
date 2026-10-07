@@ -1,12 +1,12 @@
 {
-  "experiment_id": "shared_three_models_full",
+  "experiment_id": "shared_three_models_quick",
   "models": ["ollama:qwen3.5:4b", "ollama:gemma4:e4b-it-qat", "ollama:qwen3.5:9b"],
-  "tasks": ["T1_Bell", "T2_GHZ", "T3a_DJ_constant", "T3b_DJ_balanced", "T4_BV_011", "T5_Grover_11", "T6_QFT_001", "T7_IQFT_001", "T8_QPE_001", "T9_Ansatz_001"],
-  "seeds": {"start": 0, "stop": 10},
+  "tasks": ["T1_Bell", "T3a_DJ_constant"],
+  "seeds": [0, 1],
   "temperature": 0.7,
   "max_rounds": 3,
   "conditions": ["baseline", "self_refine", "execution_feedback", "self_debugging", "preventive_spec"],
-  "output_dir": "results/shared_three_models_full",
+  "output_dir": "results/shared_three_models_quick",
   "generation_settings": {"reasoning_effort": "none", "max_tokens": 1024, "timeout_sec": 600, "parallel_requests": 1},
   "pricing": {}
 }

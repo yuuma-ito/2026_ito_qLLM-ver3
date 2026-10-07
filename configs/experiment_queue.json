@@ -1,8 +1,8 @@
 {
-  "queue_id": "shared_qwen35_queue",
+  "queue_id": "shared_three_models_queue",
   "notify": "email",
   "jobs": [
-    {"id": "quick_first", "config": "configs/shared_qwen35_quick.json", "new_run": true},
-    {"id": "quick_repeat", "config": "configs/shared_qwen35_quick.json", "new_run": true}
+    {"id": "quick_first", "config": "configs/shared_three_models_quick.json", "new_run": true},
+    {"id": "quick_repeat", "config": "configs/shared_three_models_quick.json", "new_run": true}
   ]
 }

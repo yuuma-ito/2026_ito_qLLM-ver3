@@ -10,9 +10,9 @@
 
 **モデル**（config上は `model_spec`、Ollamaに渡す際は `ollama:` を外した名前を使用）:
 
-- `ollama:qwen2.5-coder:3b`
-- `ollama:qwen2.5-coder:7b`
-- `ollama:qwen2.5-coder:14b`
+- `ollama:qwen3.5:4b`
+- `ollama:gemma4:e4b-it-qat`
+- `ollama:qwen3.5:9b`
 
 **タスク**：T1，T2，T3a，T3b，T4，T5，T6，T7，T8，T9 の計10タスクです。難度は次のように分類します。
 
@@ -104,10 +104,10 @@ Invoke-RestMethod http://127.0.0.1:11435/api/tags
 
 ## Quick debug
 
-共用サーバの実験を、テスト・生成・評価・集計・検証・コミット・プッシュまで1コマンドで実行できます（Linux / s3）。接続先は `http://127.0.0.1:11435` に固定し、外部APIは使用しません。
+共用サーバの実験を、テスト・生成・評価・集計・検証・コミット・プッシュまで1コマンドで実行できます（Linux / s3）。現在の比較対象は `qwen3.5:4b`、`gemma4:e4b-it-qat`、`qwen3.5:9b` です。3モデルに同じ2タスク・2 seed・5条件を使い、1回60レコードを計画します。接続先は `http://127.0.0.1:11435` に固定し、外部APIは使用しません。
 
 ```bash
-.venv/bin/python -m scripts.automate_experiment --config configs/shared_qwen35_quick.json --new-run
+.venv/bin/python -m scripts.automate_experiment --config configs/shared_three_models_quick.json --new-run
 ```
 
 `--new-run` は時刻付きの実験IDと出力先を作り、前回の結果を残して追試します。省略した場合は設定の出力先を使い、保存済みの記録をスキップして再開します。時刻付きの追試を再開する場合は、`--config results/<実験ID>/experiment_config.json` を指定し、`--new-run` を付けずに実行してください。実行計画だけを見るには `--dry-run`、コミット・プッシュを省くには `--no-publish` を付けてください。実行にはセットアップ済みの仮想環境と、origin への Git 認証が必要です。
@@ -141,7 +141,7 @@ Gmailを使う場合は、Googleアカウントの2段階認証を有効にし�
 通知内容を確認:
 
 ```bash
-.venv/bin/python -m scripts.notify_progress --config configs/shared_qwen35_quick.json --latest --transport email --dry-run
+.venv/bin/python -m scripts.notify_progress --config configs/shared_three_models_quick.json --latest --transport email --dry-run
 ```
 
 `--dry-run` は表示だけで、SMTP接続を行いません。省略すると1回送信します。SMTPサーバが受理したこととSlackへの到着は別なので、初回はSlackbotのDMで到着を確認してください。`--latest` は同じ実験IDまたは時刻付き追試の最新の保存設定を選びます。特定の実験だけを通知する場合はその `experiment_config.json` を指定し、`--latest` を省いてください。通知処理はモデルへの生成要求を行いません。
@@ -149,7 +149,7 @@ Gmailを使う場合は、Googleアカウントの2段階認証を有効にし�
 定時処理のログは `logs/slack_progress.log` に記録します。登録確認は `crontab -l` で行います。既存のcronを保ち、この通知行だけを追加・変更してください。cronはサーバのシステム時刻（現在はAsia/Tokyo）に従い、`--timezone` は通知内の表示時刻の設定です。サーバが停止している間は通知できません。
 
 ```bash
-cd /home/23tc011/2026_ito_qLLM-ver3 && .venv/bin/python -m scripts.notify_progress --config configs/shared_qwen35_quick.json --latest --timezone Asia/Tokyo --transport email
+cd /home/23tc011/2026_ito_qLLM-ver3 && .venv/bin/python -m scripts.notify_progress --config configs/shared_three_models_quick.json --latest --timezone Asia/Tokyo --transport email
 ```
 
 通知には記録件数・残り件数・L2成功／失敗・API障害等を含む記録件数・重複・最終更新時刻を含めます。生成コードやエラー本文は送信しません。未完了の記録だけでは実行中か中断かを区別できないため、その旨を表示します。記録完了や自動検証成功はプッシュ成功を保証しません。書き込み途中の最終行は読み飛ばし、壊れた確定行や送信失敗では非ゼロで終了します。重複送信を避けるため自動再送は行いません。
@@ -158,7 +158,7 @@ Slack API・Incoming Webhook方式も、`--transport slack` で利用可能で�
 
 ### 実験キュー・異常監視・即時通知
 
-`configs/experiment_queue.json` に実行順の設定を登録し、キューを起動できます。付属の例は20件のquick実験を2回、合計40件です。共用サーバへの生成要求は逐次実行します。
+`configs/experiment_queue.json` に実行順の設定を登録し、キューを起動できます。付属の例は3モデル・60レコードのquick実験を2回、合計120レコードです。共用サーバへの生成要求は逐次実行します。新しい `shared_three_models_queue` を使うため、過去の4b単独キューと結果は保持されます。
 
 ```bash
 .venv/bin/python -m scripts.run_queue --queue configs/experiment_queue.json --dry-run
@@ -233,23 +233,13 @@ head -n 1 results/quick_debug/raw.jsonl | python -m json.tool
 
 ## Full experiments
 
-以下は大規模実験です。Quick debug と設定・出力先を確認した後、必要な場合だけ各コマンドを個別に実行してください。
+`configs/full_all_models.json` は現在の3モデル × 10タスク × 10 seed × 5条件、計1,500レコードです。Quick debug の結果と出力先を確認した後、必要な場合に実行してください。現在のquickキューには含めていません。
 
 ```bash
-python -m scripts.run_experiment --config configs/full_qwen3b.json
+.venv/bin/python -m scripts.automate_experiment --config configs/full_all_models.json --new-run
 ```
 
-```bash
-python -m scripts.run_experiment --config configs/full_qwen7b.json
-```
-
-```bash
-python -m scripts.run_experiment --config configs/full_qwen14b.json
-```
-
-```bash
-python -m scripts.run_experiment --config configs/full_all_models.json
-```
+旧Qwen2.5の単独設定 `full_qwen3b.json`・`full_qwen7b.json`・`full_qwen14b.json` は過去の実験用に残しています。
 
 ## 評価指標
 
