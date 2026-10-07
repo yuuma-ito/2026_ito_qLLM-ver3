@@ -67,6 +67,7 @@ class RunRecord:
             "task_id": self.task_id,
             "task_difficulty": self.task_difficulty,
             "seed": self.seed,
+            "base_seed": self.seed,
             "temperature": self.temperature,
             "condition_id": self.condition_id,
             "intervention": self.intervention,

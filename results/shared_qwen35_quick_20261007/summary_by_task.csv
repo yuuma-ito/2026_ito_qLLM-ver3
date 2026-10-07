@@ -1,0 +1,11 @@
+﻿task_id,task_difficulty,model_spec,condition_id,intervention,n,L0_rate,L1_rate,L2_rate,structure_match_rate,L3_rate,final_success_rate,timeout_flag_rate,avg_first_success_round,avg_tokens_in,avg_tokens_out,avg_total_tokens,avg_elapsed_sec,avg_code_lines,avg_gate_count,avg_circuit_depth,avg_L2_distance,avg_estimated_cost_usd
+T1_Bell,easy,ollama:qwen3.5:4b,baseline,baseline,2,0.5,0.0,0.0,0.0,0.0,0.0,0.0,,245.0,92.0,337.0,19.27847993373871,10.5,0.0,0.0,,null
+T1_Bell,easy,ollama:qwen3.5:4b,execution_feedback,execution_feedback,2,1.0,1.0,1.0,1.0,1.0,1.0,0.0,1.0,694.5,187.5,882.0,38.000463247299194,12.0,2.0,2.0,0.00274658203125,null
+T1_Bell,easy,ollama:qwen3.5:4b,preventive_spec,preventive_spec,2,0.5,0.0,0.0,0.0,0.0,0.0,0.0,,363.0,92.5,455.5,14.085004210472107,13.0,0.0,0.0,,null
+T1_Bell,easy,ollama:qwen3.5:4b,self_debugging,self_debugging,2,1.0,1.0,1.0,1.0,1.0,1.0,0.0,1.0,763.5,490.5,1254.0,72.40908241271973,17.0,2.0,2.0,0.00323486328125,null
+T1_Bell,easy,ollama:qwen3.5:4b,self_refine,self_refine,2,0.5,0.5,0.5,0.5,0.5,0.5,0.0,1.0,1115.0,331.5,1446.5,57.806965351104736,15.5,1.0,1.0,0.0052490234375,null
+T3a_DJ_constant,medium,ollama:qwen3.5:4b,baseline,baseline,2,1.0,0.5,0.5,0.5,0.5,0.5,0.0,0.0,320.0,201.5,521.5,28.43647336959839,23.0,3.0,1.0,0.0018310546875,null
+T3a_DJ_constant,medium,ollama:qwen3.5:4b,execution_feedback,execution_feedback,2,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.5,654.5,289.5,944.0,45.4780136346817,22.0,6.0,2.0,0.00439453125,null
+T3a_DJ_constant,medium,ollama:qwen3.5:4b,preventive_spec,preventive_spec,2,0.5,0.0,0.0,0.0,0.0,0.0,0.0,,438.0,301.0,739.0,37.821956396102905,29.0,0.0,0.0,,null
+T3a_DJ_constant,medium,ollama:qwen3.5:4b,self_debugging,self_debugging,2,1.0,1.0,1.0,1.0,1.0,1.0,0.0,0.5,689.0,346.0,1035.0,52.593204379081726,23.0,6.0,2.0,0.00482177734375,null
+T3a_DJ_constant,medium,ollama:qwen3.5:4b,self_refine,self_refine,2,0.5,0.5,0.5,0.5,0.5,0.5,0.0,0.0,1255.5,522.0,1777.5,83.15432155132294,21.5,3.0,1.0,0.0018310546875,null

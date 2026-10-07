@@ -1,0 +1,2 @@
+﻿model_spec,task_id,task_difficulty,seed,intervention,baseline_error_category,intervention_error_category,baseline_L2,intervention_L2,code_diff_round0_final
+ollama:qwen3.5:4b,T3a_DJ_constant,medium,0,preventive_spec,ok,import_error,True,False,

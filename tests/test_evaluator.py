@@ -78,4 +78,4 @@ def test_no_function_caught():
 
     res = evaluate("x = 1", T1)
     assert not res.L0
-    assert res.error_category == "no_function"
+    assert res.error_category == "interface_mismatch"

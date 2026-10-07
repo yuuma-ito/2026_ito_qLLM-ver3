@@ -344,12 +344,13 @@ class OpenAICompatClient:
       サーバが seed を受け付けない場合は seed なしで一度だけリトライする。
     """
 
-    def __init__(self, model_id: str, base_url: str, api_key: str):
+    def __init__(self, model_id: str, base_url: str, api_key: str, *, ollama: bool = False):
         from openai import OpenAI
 
-        self._client = OpenAI(base_url=base_url, api_key=api_key)
+        self._client = OpenAI(base_url=base_url, api_key=api_key, timeout=600, max_retries=0)
         self.model_id = model_id
         self.base_url = base_url
+        self.ollama = ollama
 
     def _create(self, user_prompt: str, temperature: float, seed: Optional[int]):
         kwargs = dict(
@@ -362,6 +363,9 @@ class OpenAICompatClient:
         )
         if seed is not None:
             kwargs["seed"] = seed
+        if self.ollama:
+            kwargs["reasoning_effort"] = "none"
+            kwargs["max_tokens"] = 1024
         return self._client.chat.completions.create(**kwargs)
 
     def generate(
@@ -420,7 +424,7 @@ def _make_local_client(provider: str, model_id: str) -> OpenAICompatClient:
         base_url or cfg["base_url_default"]
     )
     api_key = os.environ.get(cfg["api_key_env"], cfg["api_key_default"])
-    return OpenAICompatClient(model_id, base_url=base_url, api_key=api_key)
+    return OpenAICompatClient(model_id, base_url=base_url, api_key=api_key, ollama=provider == "ollama")
 
 
 # ---------- Factory ----------

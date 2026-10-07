@@ -84,6 +84,14 @@ curl http://127.0.0.1:11435/api/tags
 
 このハーネスは `OLLAMA_BASE_URL` が設定されていればそれを優先し、未設定なら `OLLAMA_HOST` を接続先として使います。どちらも未設定なら既定の `http://127.0.0.1:11434` です。Ollama の REST 確認は `/api/tags`、ハーネスの生成要求は OpenAI 互換の `/v1` endpoint を利用します。
 
+Ollama への生成要求には `reasoning_effort="none"` と `max_tokens=1024` を付けます。API timeout は600秒、SDKの自動再送は無効です。実験は1件ずつ逐次実行します。共用サーバではモデルの pull・rm・stop、`keep_alive=0`、文脈長の拡大を行わないでください。
+
+共用の推奨モデル `qwen3.5:4b` で20件の動作確認をする場合（上記の接続先設定後）:
+
+```bash
+python -m scripts.run_experiment --config configs/shared_qwen35_quick.json
+```
+
 Windows PowerShell では次のように設定・確認できます。
 
 ```powershell

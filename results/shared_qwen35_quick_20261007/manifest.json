@@ -1,0 +1,76 @@
+{
+  "schema_version": "2.0",
+  "experiment_id": "shared_qwen35_quick_20261007",
+  "created_at_utc": "2026-10-07T02:56:20.962309+00:00",
+  "config_hash": "f2940c34b9771d19",
+  "shared_initial_generation": "shared by correction conditions; preventive_spec generates independently",
+  "config": {
+    "conditions": [
+      "baseline",
+      "self_refine",
+      "execution_feedback",
+      "self_debugging",
+      "preventive_spec"
+    ],
+    "experiment_id": "shared_qwen35_quick_20261007",
+    "generation_settings": {
+      "max_tokens": 1024,
+      "parallel_requests": 1,
+      "reasoning_effort": "none",
+      "timeout_sec": 600
+    },
+    "max_rounds": 3,
+    "models": [
+      "ollama:qwen3.5:4b"
+    ],
+    "output_dir": "results/shared_qwen35_quick_20261007",
+    "pricing": {},
+    "seeds": [
+      0,
+      1
+    ],
+    "tasks": [
+      "T1_Bell",
+      "T3a_DJ_constant"
+    ],
+    "temperature": 0.7
+  },
+  "planned": {
+    "records": 20,
+    "unique_initial_generations": 4,
+    "models": 1,
+    "tasks": 2,
+    "seeds": 2,
+    "conditions": 5
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "qiskit": "2.5.2",
+    "qiskit_aer": "0.17.2",
+    "openai": "3.26.0",
+    "anthropic": null,
+    "google_generativeai": null
+  },
+  "git_commit": "1ee079f61c6196f162afaf7b450e839f3c59169d",
+  "prompt_fingerprints": {
+    "system_txt_sha256": "b76e82b93808aff180580db3647711efa0a3a56cc39301cff4a7a44f108e9f9d",
+    "interventions_py_sha256": "ea630da1c7051c0b9cd36163d19cf8d56746dad074408a7d8bd7e2002e6b4ec4"
+  },
+  "completed_at_utc": "2026-10-07T03:06:59.315827+00:00",
+  "elapsed_sec": 638.353518,
+  "sanity_passed": true,
+  "records_written_this_run": 20,
+  "shared_server": {
+    "base_url": "http://127.0.0.1:11435/v1",
+    "ollama_version": "0.35.1",
+    "model": "qwen3.5:4b",
+    "model_digest": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd",
+    "context_length_observed": 8192,
+    "reasoning_effort": "none",
+    "max_tokens": 1024,
+    "parallel_requests": 1,
+    "sdk_max_retries": 0
+  },
+  "postprocessing": "補助項目 base_seed を既存 seed から補完。生成コード・評価値は変更せず、LLM再呼び出しなし。"
+}

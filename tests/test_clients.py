@@ -33,11 +33,30 @@ def test_make_client_unknown_provider():
 
 def test_ollama_uses_default_base_url(monkeypatch):
     monkeypatch.delenv("OLLAMA_BASE_URL", raising=False)
+    monkeypatch.delenv("OLLAMA_HOST", raising=False)
     c = make_client("ollama:llama3.1:8b")
     assert isinstance(c, OpenAICompatClient)
     # モデル名中のコロンが保持される（split は maxsplit=1）
     assert c.model_id == "llama3.1:8b"
-    assert c.base_url == "http://localhost:11434/v1"
+    assert c.base_url == "http://127.0.0.1:11434/v1"
+
+
+def test_shared_ollama_disables_thinking_and_bounds_output(monkeypatch):
+    from types import SimpleNamespace
+
+    monkeypatch.delenv("OLLAMA_BASE_URL", raising=False)
+    monkeypatch.setenv("OLLAMA_HOST", "http://127.0.0.1:11435")
+    client = make_client("ollama:qwen3.5:4b")
+    requests = []
+    client._client = SimpleNamespace(chat=SimpleNamespace(completions=SimpleNamespace(
+        create=lambda **kwargs: requests.append(kwargs)
+    )))
+    client._create("test", 0.7, 0)
+    client._create("test", 0.7, None)
+    assert client.base_url == "http://127.0.0.1:11435/v1"
+    assert all(r["reasoning_effort"] == "none" and r["max_tokens"] == 1024 for r in requests)
+    assert requests[0]["seed"] == 0
+    assert "seed" not in requests[1]
 
 
 def test_ollama_base_url_normalized_to_v1(monkeypatch):

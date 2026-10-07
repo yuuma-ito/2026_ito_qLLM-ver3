@@ -1,0 +1,6 @@
+﻿intervention,model_spec,n,avg_tokens_in,avg_tokens_out,avg_total_tokens,avg_elapsed_sec,avg_code_lines,avg_gate_count,avg_circuit_depth,total_estimated_cost_usd
+baseline,ollama:qwen3.5:4b,4,282.5,146.75,429.25,23.85747665166855,16.75,1.5,0.5,null
+execution_feedback,ollama:qwen3.5:4b,4,674.5,238.5,913.0,41.73923844099045,17.0,4.0,2.0,null
+preventive_spec,ollama:qwen3.5:4b,4,400.5,196.75,597.25,25.953480303287506,21.0,0.0,0.0,null
+self_debugging,ollama:qwen3.5:4b,4,726.25,418.25,1144.5,62.501143395900726,20.0,4.0,2.0,null
+self_refine,ollama:qwen3.5:4b,4,1185.25,426.75,1612.0,70.48064345121384,18.5,2.0,1.0,null

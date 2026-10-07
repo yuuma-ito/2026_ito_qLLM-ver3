@@ -1,0 +1,18 @@
+共用 Ollama 動作確認（2026-10-07）
+モデル: qwen3.5:4b
+対象: T1_Bell / T3a_DJ_constant、seed 0・1、5条件、20 records
+接続: http://127.0.0.1:11435/v1
+設定: reasoning_effort=none、max_tokens=1024、temperature=0.7、修正は最大3回、逐次実行
+所要時間: 638.4秒（最終集計を含む）
+
+baseline: L2 1/4, L3 1/4
+self_refine: L2 2/4, L3 2/4
+execution_feedback: L2 4/4, L3 4/4
+self_debugging: L2 4/4, L3 4/4
+preventive_spec: L2 0/4, L3 0/4
+
+整合性確認: True
+失敗内訳: {'import_error': 6, 'build_error': 3}
+初回成功の修正条件は追加生成なし。各条件4例であり、一般的な効果の推定には不足する。
+初期生成は baseline と修正3条件で共有。preventive_spec は独立生成。条件の token・時間には共有初期生成を含むため、単純合算は実消費量と異なる。
+base_seed は既存 seed から補完した。生成・評価結果は変更していない。
