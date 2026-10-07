@@ -1,0 +1,9 @@
+﻿model_spec,task_id,task_difficulty,seed,intervention,baseline_error_category,intervention_error_category,baseline_L2,intervention_L2,code_diff_round0_final
+ollama:qwen3.5:4b,T3a_DJ_constant,medium,0,preventive_spec,ok,import_error,True,False,
+ollama:gemma4:e4b-it-qat,T1_Bell,easy,0,preventive_spec,ok,wrong_output,True,False,
+ollama:gemma4:e4b-it-qat,T1_Bell,easy,1,preventive_spec,ok,wrong_output,True,False,
+ollama:gemma4:e4b-it-qat,T3a_DJ_constant,medium,0,preventive_spec,ok,syntax,True,False,
+ollama:gemma4:e4b-it-qat,T3a_DJ_constant,medium,1,preventive_spec,ok,wrong_output,True,False,
+ollama:qwen3.5:9b,T1_Bell,easy,0,preventive_spec,ok,wrong_output,True,False,
+ollama:qwen3.5:9b,T1_Bell,easy,1,preventive_spec,ok,wrong_output,True,False,
+ollama:qwen3.5:9b,T3a_DJ_constant,medium,0,preventive_spec,ok,wrong_output,True,False,

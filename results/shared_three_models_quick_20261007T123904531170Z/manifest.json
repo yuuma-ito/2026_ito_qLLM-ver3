@@ -1,0 +1,73 @@
+{
+  "schema_version": "2.0",
+  "experiment_id": "shared_three_models_quick_20261007T123904531170Z",
+  "created_at_utc": "2026-10-07T12:42:39.776632+00:00",
+  "config_hash": "0b6726519ba907f7",
+  "shared_initial_generation": "shared by correction conditions; preventive_spec generates independently",
+  "config": {
+    "conditions": [
+      "baseline",
+      "self_refine",
+      "execution_feedback",
+      "self_debugging",
+      "preventive_spec"
+    ],
+    "experiment_id": "shared_three_models_quick_20261007T123904531170Z",
+    "generation_settings": {
+      "max_tokens": 1024,
+      "parallel_requests": 1,
+      "reasoning_effort": "none",
+      "timeout_sec": 600
+    },
+    "max_rounds": 3,
+    "models": [
+      "ollama:qwen3.5:4b",
+      "ollama:gemma4:e4b-it-qat",
+      "ollama:qwen3.5:9b"
+    ],
+    "output_dir": "results/shared_three_models_quick_20261007T123904531170Z",
+    "pricing": {},
+    "seeds": [
+      0,
+      1
+    ],
+    "tasks": [
+      "T1_Bell",
+      "T3a_DJ_constant"
+    ],
+    "temperature": 0.7
+  },
+  "planned": {
+    "records": 60,
+    "unique_initial_generations": 12,
+    "models": 3,
+    "tasks": 2,
+    "seeds": 2,
+    "conditions": 5
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "qiskit": "2.5.2",
+    "qiskit_aer": "0.17.2",
+    "openai": "3.26.0",
+    "anthropic": null,
+    "google_generativeai": null
+  },
+  "git_commit": "46981434dbace846711c83aa115ddf5f723cbdbd",
+  "prompt_fingerprints": {
+    "system_txt_sha256": "b76e82b93808aff180580db3647711efa0a3a56cc39301cff4a7a44f108e9f9d",
+    "interventions_py_sha256": "ea630da1c7051c0b9cd36163d19cf8d56746dad074408a7d8bd7e2002e6b4ec4"
+  },
+  "completed_at_utc": "2026-10-07T13:22:15.682968+00:00",
+  "elapsed_sec": 2375.8946981430054,
+  "sanity_passed": true,
+  "records_written_this_run": 60,
+  "runs": [
+    {
+      "completed_at_utc": "2026-10-07T13:22:15.682968+00:00",
+      "elapsed_sec": 2375.8946981430054,
+      "records_written": 60
+    }
+  ]
+}
