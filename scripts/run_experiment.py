@@ -17,6 +17,7 @@ from dotenv import load_dotenv
 from harness.experiment import (
     apply_cost,
     build_manifest,
+    config_hash,
     initial_from_baseline_record,
     load_config,
     load_existing,
@@ -113,7 +114,12 @@ def main() -> int:
         return 0
 
     output_root.mkdir(parents=True, exist_ok=True)
-    manifest = build_manifest(config, repo_root)
+    if manifest_path.exists():
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if manifest.get("config_hash") != config_hash(config):
+            raise ValueError("Existing manifest has a different config; use a new output_dir.")
+    else:
+        manifest = build_manifest(config, repo_root)
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
 
     n_written = 0
@@ -129,6 +135,9 @@ def main() -> int:
 
             for task in v["tasks"]:
                 for seed in v["seeds"]:
+                    if all((v["experiment_id"], c.id, model_spec, task.id, seed) in existing_keys
+                           for c in v["conditions"]):
+                        continue
                     # Correction conditions share round 0; preventive_spec generates independently.
                     baseline_rec = _find_baseline(
                         existing_rows, v["experiment_id"], model_spec, task.id, seed
@@ -192,9 +201,15 @@ def main() -> int:
     manifest["completed_at_utc"] = __import__("datetime").datetime.now(
         __import__("datetime").timezone.utc
     ).isoformat()
-    manifest["elapsed_sec"] = time.time() - started
+    elapsed = time.time() - started
+    manifest["elapsed_sec"] = float(manifest.get("elapsed_sec", 0)) + elapsed
     manifest["sanity_passed"] = bool(report["passed"])
     manifest["records_written_this_run"] = n_written
+    manifest.setdefault("runs", []).append({
+        "completed_at_utc": manifest["completed_at_utc"],
+        "elapsed_sec": elapsed,
+        "records_written": n_written,
+    })
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"\nDone. wrote={n_written}, sanity={'PASS' if report['passed'] else 'FAIL'}")

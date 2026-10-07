@@ -15,4 +15,4 @@
 
 Git の投稿者情報が未設定の場合、今回の作業ではこのリポジトリの既存の投稿者情報（yuuma-ito / 23tc011@tc.nanzan-u.ac.jp）をコミット単位で使用できる。グローバル設定は変更しない。
 
-この指示はエージェントによる実験作業の運用方針であり、実験ランナー単体に Git 操作を追加するものではない。
+1コマンドで自動実行する場合は `python -m scripts.automate_experiment --config configs/shared_qwen35_quick.json` を使う。新しい追試には `--new-run` を付ける。通常の `scripts.run_experiment` は Git 操作を行わず、自動化用のラッパーが検証後のコミット・プッシュを担当する。
