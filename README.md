@@ -114,6 +114,93 @@ Invoke-RestMethod http://127.0.0.1:11435/api/tags
 
 自動公開は無関係な変更がなく、ステージが空の状態で開始してください（再開対象の集計ファイルの変更は許容します）。起動の重複をロックで防ぎ、テスト・記録の整合性確認・API障害の確認を通過した場合だけ、設定と公開用の集計ファイルを現在のブランチにコミットして origin にプッシュします。生成コードの不正解は通常の実験結果として扱います。生データ・秘密情報・無関係な変更は追加しません。途中で失敗した場合は非ゼロの終了コードを返し、既存の記録を残します。プッシュ拒否時もローカルのコミットを保持し、強制プッシュはしません。
 
+### Slackへの定時進捗通知
+
+このサーバでは毎日 **9時・18時（日本時間）** に、メール経由でSlackbotとのDMへ進捗を送る設定を `configs/slack_progress.cron` に用意しています。実験停止中・完了後も最新の記録を送ります。無料プランに対応し、Slackアプリ・Botトークンは不要です。送信先はSlackの転送先メールアドレスで決まり、チャンネルIDは指定しません。[Slack公式手順](https://slack.com/help/articles/206819278-Send-emails-to-Slack)
+
+Slackとメール送信の準備:
+
+1. Slackのプロフィールアイコンから **環境設定 → メッセージ＆メディア → Slackにメールを転送する** を開き、転送先メールアドレスを取得します。
+2. 取得したアドレスを、このリポジトリの `.env` に `SLACK_EMAIL_TO` として保存します。
+3. 送信元メールサービスのSMTP設定を、同じ `.env` に保存します。実アドレスやパスワードはGit・チャットに掲載しないでください。
+
+```dotenv
+SLACK_EMAIL_TO=Slackで取得した転送先アドレス
+EMAIL_FROM=送信元メールアドレス
+SMTP_HOST=送信元メールサービスのSMTPサーバ
+SMTP_PORT=587
+SMTP_SECURITY=starttls
+SMTP_USERNAME=SMTPログイン名
+SMTP_PASSWORD=SMTP送信用パスワード
+```
+
+暗黙TLSを使うサービスでは `SMTP_SECURITY=ssl`、通常は `SMTP_PORT=465` を指定します。STARTTLS/SSLの両方式で証明書を検証し、平文での認証は行いません。組織の許可済みSMTPリレーを使う場合のみ、`SMTP_USERNAME` と `SMTP_PASSWORD` の両方を空にできます。サービスが指定する送信用パスワードやアプリパスワードを使ってください。
+
+Gmailを使う場合は、Googleアカウントの2段階認証を有効にし、[アプリパスワード](https://myaccount.google.com/apppasswords) を作成してください。`SMTP_HOST=smtp.gmail.com`、`SMTP_PORT=587`、`SMTP_SECURITY=starttls`、`EMAIL_FROM` と `SMTP_USERNAME` に同じGmailアドレス、`SMTP_PASSWORD` に発行された16文字のアプリパスワードを空白なしで保存します。通常のGoogleログインパスワードは使用しません。アプリパスワードが表示されないアカウントでは [Google公式手順](https://support.google.com/accounts/answer/185833?hl=ja) を確認してください。
+
+通知内容を確認:
+
+```bash
+.venv/bin/python -m scripts.notify_progress --config configs/shared_qwen35_quick.json --latest --transport email --dry-run
+```
+
+`--dry-run` は表示だけで、SMTP接続を行いません。省略すると1回送信します。SMTPサーバが受理したこととSlackへの到着は別なので、初回はSlackbotのDMで到着を確認してください。`--latest` は同じ実験IDまたは時刻付き追試の最新の保存設定を選びます。特定の実験だけを通知する場合はその `experiment_config.json` を指定し、`--latest` を省いてください。通知処理はモデルへの生成要求を行いません。
+
+定時処理のログは `logs/slack_progress.log` に記録します。登録確認は `crontab -l` で行います。既存のcronを保ち、この通知行だけを追加・変更してください。cronはサーバのシステム時刻（現在はAsia/Tokyo）に従い、`--timezone` は通知内の表示時刻の設定です。サーバが停止している間は通知できません。
+
+```bash
+cd /home/23tc011/2026_ito_qLLM-ver3 && .venv/bin/python -m scripts.notify_progress --config configs/shared_qwen35_quick.json --latest --timezone Asia/Tokyo --transport email
+```
+
+通知には記録件数・残り件数・L2成功／失敗・API障害等を含む記録件数・重複・最終更新時刻を含めます。生成コードやエラー本文は送信しません。未完了の記録だけでは実行中か中断かを区別できないため、その旨を表示します。記録完了や自動検証成功はプッシュ成功を保証しません。書き込み途中の最終行は読み飛ばし、壊れた確定行や送信失敗では非ゼロで終了します。重複送信を避けるため自動再送は行いません。
+
+Slack API・Incoming Webhook方式も、`--transport slack` で利用可能です。API方式は `--channel` と `SLACK_BOT_TOKEN`、Webhook方式は `SLACK_WEBHOOK_URL` を使います。メール方式ではこれらの設定を参照しません。
+
+### 実験キュー・異常監視・即時通知
+
+`configs/experiment_queue.json` に実行順の設定を登録し、キューを起動できます。付属の例は20件のquick実験を2回、合計40件です。共用サーバへの生成要求は逐次実行します。
+
+```bash
+.venv/bin/python -m scripts.run_queue --queue configs/experiment_queue.json --dry-run
+.venv/bin/python -m scripts.run_queue --queue configs/experiment_queue.json
+```
+
+正常実行・検証・コミット・プッシュが完了した場合のみ次へ進みます。実行・検証・公開の失敗では停止し、後続の実験を開始しません。進捗は `.cache/queues/<queue_id>/state.json` に保存され、同じコマンドで完了済みジョブをスキップします。`new_run: true` の時刻付きIDも初回に確定して再開時に保持します。キューまたは参照設定を変更して実行する場合や、全件を新たに追試する場合は新しい `queue_id` を指定してください。
+
+失敗したジョブの再開には明示的に `--retry-failed` を付けます。このフラグは元のAPI障害記録を削除・置換しません。記録済みAPI障害の追試は下記の別実験として準備します。公開を省く動作確認には `--no-publish` が使えますが、公開方針を変更して同じキューを再開することはできません。
+
+実行状態・現在の段階・進捗・5秒ごとのハートビートを `.cache/run_states/` に記録します。定時のSlack通知もこの状態を読み、実行中・中断・失敗・完了・プッシュ成功を表示します。新しい状態記録がない過去の結果では、従来どおり記録だけから実行中と中断を判別できません。
+
+```bash
+.venv/bin/python -m scripts.monitor_experiments --dry-run
+.venv/bin/python -m scripts.monitor_experiments --transport email --stalled-after 3600
+```
+
+`configs/slack_progress.cron` には9時・18時の進捗通知に加え、5分ごとの監視を含めます。プロセス消失・45秒以上のハートビート停滞・1時間以上の進捗停止を判定し、異常を通知します。モデル応答が遅い場合もあるため、監視はプロセスを強制終了しません。`--stalled-after` で進捗停止の判定秒数を変更できます。
+
+`automate_experiment` は完了・API障害・実行失敗・コミット／プッシュ失敗をメールで即時通知します。API障害の速報は最初の該当記録が書かれた時点で送ります。`--notify none` で即時通知とその実験の監視通知を無効にでき、`--notify slack` でSlack API／Webhook方式を指定できます。通常の `run_experiment` は状態を記録しますが、単体では即時通知を有効にしません。
+
+通知障害が起きても実験結果は保持し、通知の失敗をログと `.cache/notification_events/` に記録します。同じ実行の同じイベントは1回だけ送信を試み、ネットワーク障害時の重複投稿を避けます。キューの途中で監督プロセスが終了しても、実行中の子プロセスに共有サーバのロックが保持されるため、重複実行を防ぎます。`.cache` を削除すると再開・通知重複防止の情報が失われるため、運用中は残してください。
+
+### API障害の追試と実験比較
+
+API接続エラー・タイムアウトを含む `(model, task, seed)` の組だけを、新しい実験IDと出力先で追試する設定を作成できます。全条件を含めて共有round 0を新たに生成し、元の `raw.jsonl` は変更しません。`import_error`・`wrong_output` など生成コードの評価失敗だけの組は対象外です。単独の原因不明エラーは、API障害の根拠がない限り対象にしません。
+
+```bash
+.venv/bin/python -m scripts.prepare_retry --config results/<元の実験ID>/experiment_config.json --out .cache/retries/retry.json
+.venv/bin/python -m scripts.automate_experiment --config .cache/retries/retry.json
+```
+
+対象がなければ設定を作らず非ゼロで終了します。追試設定の `pairs` が対象の組を明示するため、taskやseedの直積により不要な組が増えることはありません。元の実験ID・設定hash・生データSHA-256を `retry_of` に記録します。追試設定作成だけではモデル呼び出しや実験実行を行いません。
+
+正常に集計された実験には `comparison_by_condition.csv` と `comparison_report.md` を生成し、自動公開の対象に含めます。モデル・条件ごとの成功率・救済率・実行時間・トークン数を比較できます。差分は対象task/seed、条件・round数、温度、生成設定、prompt、評価環境、記録されたモデルdigestが一致し、自動検証を通過した実験の間だけ計算します。検証未完了・失敗の実験には差分を付けません。記録されていない設定の一致は保証できず、少数seedから有意差を断定するものではありません。
+
+```bash
+.venv/bin/python -m scripts.compare_experiments --out-dir results/comparisons
+```
+
+任意の出力ディレクトリを位置引数で指定すると、その実験群だけを比較します。生データや生成コードは比較レポートに含めません。
+
 小規模確認には `configs/quick_debug.json` を使います。1モデル × 2タスク × 2 seed × 5条件で、合計20 records を計画します。
 
 ```bash

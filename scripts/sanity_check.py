@@ -7,7 +7,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
-from harness.experiment import load_config, parse_conditions, record_key, resolve_seeds, resolve_tasks, validate_config
+from harness.experiment import expected_keys, load_config, parse_conditions, record_key, resolve_seeds, resolve_tasks, validate_config
 
 
 def _load_rows(path: str | Path) -> list[dict[str, Any]]:
@@ -26,13 +26,7 @@ def check_results(config: dict[str, Any], path: str | Path) -> dict[str, Any]:
     errors: list[str] = []
     warnings: list[str] = []
 
-    expected = {
-        (v["experiment_id"], c.id, m, t.id, s)
-        for c in v["conditions"]
-        for m in v["models"]
-        for t in v["tasks"]
-        for s in v["seeds"]
-    }
+    expected = expected_keys(v)
     keys = [record_key(r) for r in rows]
     counts = Counter(keys)
     duplicates = [k for k, n in counts.items() if n > 1]

@@ -18,6 +18,7 @@ from harness.experiment import (
     apply_cost,
     build_manifest,
     config_hash,
+    has_api_failure,
     initial_from_baseline_record,
     load_config,
     load_existing,
@@ -29,7 +30,11 @@ from harness.llm_clients import make_client
 from harness.runner import generate_initial, run_intervention, run_one
 from scripts.sanity_check import check_results, write_sanity_report
 from scripts.analyze_interventions import write_analysis_outputs
+from harness.run_state import RunTracker, file_lock, state_path
+from scripts.compare_experiments import write_comparison
+from scripts.experiment_events import emit_event
 
+ROOT = Path(__file__).resolve().parent.parent
 
 def _find_baseline(existing_rows, experiment_id, model_spec, task_id, seed):
     for rec in existing_rows:
@@ -66,18 +71,18 @@ def _drop_api_error_pairs(rows):
     return rows, 0
 
 
-def main() -> int:
+def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description="Qiskit LLM intervention experiment runner v2")
     parser.add_argument("--config", required=True, help="JSON/YAML experiment config")
     parser.add_argument("--dry-run", action="store_true", help="Validate and show plan only")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     load_dotenv()
     config_path = Path(args.config).resolve()
     config = load_config(config_path)
     v = validate_config(config)
 
-    repo_root = Path(__file__).resolve().parent.parent
+    repo_root = ROOT
     output_root = Path(config.get("output_dir", f"results/{v['experiment_id']}"))
     if not output_root.is_absolute():
         output_root = repo_root / output_root
@@ -113,6 +118,20 @@ def main() -> int:
         print("\nDry-run OK. No model calls were made.")
         return 0
 
+    with file_lock(state_path(output_root, repo_root).with_suffix(".generation.lock"), nonblocking=True), \
+            RunTracker(output_root, v["experiment_id"], root=repo_root,
+                       borrowed_token=os.environ.get("QLLM_RUN_TOKEN")) as tracker:
+        if not tracker.borrowed:
+            tracker.update(notification_transport="none")
+        # Refresh under the generation lock: another run may have finished
+        # between the initial progress display and acquiring ownership.
+        existing_rows, existing_keys = load_existing(raw_path)
+        return _execute(config, v, repo_root, output_root, raw_path, manifest_path,
+                        sanity_path, existing_rows, existing_keys, tracker)
+
+
+def _execute(config, v, repo_root, output_root, raw_path, manifest_path,
+             sanity_path, existing_rows, existing_keys, tracker):
     output_root.mkdir(parents=True, exist_ok=True)
     if manifest_path.exists():
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -121,9 +140,15 @@ def main() -> int:
     else:
         manifest = build_manifest(config, repo_root)
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    saved_config = output_root / "experiment_config.json"
+    if saved_config.exists() and load_config(saved_config) != config:
+        raise ValueError("Saved experiment config differs; use a new output_dir.")
+    saved_config.write_text(json.dumps(config, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     n_written = 0
     started = time.time()
+    tracker.update(phase="generating", recorded=len(existing_keys))
+    api_notified = False
     with raw_path.open("a", encoding="utf-8") as f:
         for model_spec in v["models"]:
             try:
@@ -135,6 +160,8 @@ def main() -> int:
 
             for task in v["tasks"]:
                 for seed in v["seeds"]:
+                    if (model_spec, task.id, seed) not in v["pair_keys"]:
+                        continue
                     if all((v["experiment_id"], c.id, model_spec, task.id, seed) in existing_keys
                            for c in v["conditions"]):
                         continue
@@ -145,6 +172,7 @@ def main() -> int:
                     if baseline_rec is not None:
                         initial = initial_from_baseline_record(baseline_rec, task)
                     else:
+                        tracker.update(phase="initial_generation", model=model_spec, task=task.id, seed=seed)
                         initial = generate_initial(
                             client, task, seed, temperature=v["temperature"]
                         )
@@ -156,6 +184,8 @@ def main() -> int:
                         if key in existing_keys:
                             continue
 
+                        tracker.update(phase="generating", model=model_spec, task=task.id,
+                                       seed=seed, condition=cond.id)
                         if cond.intervention == "baseline":
                             rec = run_one(
                                 client,
@@ -187,6 +217,11 @@ def main() -> int:
                         existing_rows.append(row)
                         existing_keys.add(record_key(row))
                         n_written += 1
+                        tracker.update(recorded=len(existing_keys))
+                        if has_api_failure(row) and not api_notified:
+                            api_notified = True
+                            tracker.update(api_failure_seen=True)
+                            emit_event(output_root, "api_failure", os.environ.get("QLLM_EVENT_TRANSPORT", "none"), root=repo_root)
                         flag = "OK" if rec.L2 else f"FAIL[{rec.error_category}]"
                         print(
                             f"[{n_written}] {model_spec} {task.id} seed={seed} "
@@ -194,6 +229,7 @@ def main() -> int:
                             f"tokens={rec.total_tokens} {flag}"
                         )
 
+    tracker.update(phase="analyzing")
     report = check_results(config, raw_path)
     write_sanity_report(report, sanity_path)
     write_analysis_outputs(raw_path, output_root)
@@ -211,6 +247,12 @@ def main() -> int:
         "records_written": n_written,
     })
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    history = [p for p in (repo_root / "results").glob("*") if p.is_dir() and (p / "manifest.json").exists()]
+    write_comparison([*history, output_root], output_root)
+    tracker.update(phase="records_complete")
+    if not tracker.borrowed:
+        tracker.finish("completed" if report["passed"] and not any(has_api_failure(r) for r in existing_rows) else "failed",
+                       published=False)
 
     print(f"\nDone. wrote={n_written}, sanity={'PASS' if report['passed'] else 'FAIL'}")
     print(f"Manifest: {manifest_path}")

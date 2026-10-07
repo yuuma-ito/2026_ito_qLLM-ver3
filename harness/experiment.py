@@ -114,6 +114,21 @@ def validate_config(config: dict[str, Any]) -> dict[str, Any]:
     conditions = parse_conditions(config)
     tasks = resolve_tasks(config)
     seeds = resolve_seeds(config)
+    if not tasks or not seeds:
+        raise ValueError("At least one task and seed are required")
+    if (len(models) != len(set(models)) or len(tasks) != len({t.id for t in tasks})
+            or len(seeds) != len(set(seeds))):
+        raise ValueError("models, tasks and seeds must not contain duplicates")
+    grid = {(m, t.id, s) for m in models for t in tasks for s in seeds}
+    pairs = grid
+    if "pairs" in config:
+        raw_pairs = config["pairs"]
+        if not isinstance(raw_pairs, list) or not raw_pairs:
+            raise ValueError("pairs must be a non-empty list")
+        requested = [(p["model"], p["task"], int(p["seed"])) for p in raw_pairs]
+        pairs = set(requested)
+        if len(pairs) != len(requested) or not pairs.issubset(grid):
+            raise ValueError("pairs must be unique members of the configured model/task/seed grid")
     temperature = float(config.get("temperature", 0.7))
     if temperature < 0:
         raise ValueError("temperature must be >= 0")
@@ -124,8 +139,9 @@ def validate_config(config: dict[str, Any]) -> dict[str, Any]:
         "tasks": tasks,
         "seeds": seeds,
         "temperature": temperature,
-        "planned_records": len(models) * len(tasks) * len(seeds) * len(conditions),
-        "planned_initial_generations": len(models) * len(tasks) * len(seeds),
+        "pair_keys": pairs,
+        "planned_records": len(pairs) * len(conditions),
+        "planned_initial_generations": len(pairs),
     }
 
 
@@ -196,6 +212,18 @@ def record_key(rec: dict[str, Any]) -> tuple[str, str, str, str, int]:
         rec["task_id"],
         int(rec.get("base_seed", rec.get("seed", 0))),
     )
+
+
+def expected_keys(plan: dict) -> set[tuple]:
+    return {(plan["experiment_id"], c.id, m, t, s)
+            for c in plan["conditions"] for m, t, s in plan["pair_keys"]}
+
+
+def has_api_failure(row: dict, *, include_unknown=True) -> bool:
+    categories = {"api_error", "api_timeout"} | ({"unknown_error"} if include_unknown else set())
+    return any(attempt.get("generation_error") or attempt.get("timeout_flag") or
+               attempt.get("error_category") in categories
+               for attempt in [row, *row.get("rounds", [])])
 
 
 def load_existing(path: str | Path) -> tuple[list[dict[str, Any]], set[tuple[str, str, str, str, int]]]:
