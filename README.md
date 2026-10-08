@@ -14,6 +14,8 @@
 - `ollama:gemma4:e4b-it-qat`
 - `ollama:qwen3.5:9b`
 
+ユーザー提示の5モデルのサイズ・量子化・参考生成速度は、[実験レポートのモデル一覧](docs/experiment_report_draft.md)と[保存記録](docs/model_inventory_20261008.json)に整理しています。上記3モデルが現在の本実験対象です。`qwen2.5-coder:7b` と `gemma3:4b` は中間発表の予備実験との対応を記録しています。
+
 **タスク**：T1，T2，T3a，T3b，T4，T5，T6，T7，T8，T9 の計10タスクです。難度は次のように分類します。
 
 | 難度 | タスク |

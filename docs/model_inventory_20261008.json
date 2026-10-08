@@ -1,0 +1,61 @@
+{
+  "source": "User-provided model inventory in this conversation",
+  "recorded_date": "2026-10-08",
+  "independently_verified": false,
+  "speed_measurement_conditions": null,
+  "notes": [
+    "Parameter count, quantization, size and generation speed are user-reported.",
+    "Gemma3 quantization is unspecified. Gemma4 speed is unmeasured.",
+    "Installation labels are preserved verbatim; no installation timestamp is inferred.",
+    "The current full experiment remains three models, 1500 records."
+  ],
+  "current_full_config": "configs/full_all_models.json",
+  "current_full_config_sha256": "44096c0ecfebcbcbfd80d2b59d6785bc3abc99727d15faeec60fccf12e489d23",
+  "models": [
+    {
+      "model": "qwen2.5-coder:7b",
+      "parameters_and_quantization_reported": "7B・Q4_K_M",
+      "size_gb_reported": 4.7,
+      "generation_tokens_per_second_reported": 8.0,
+      "installation_label_reported": "今回",
+      "research_role": "中間発表の予備実験モデル",
+      "current_full_included": false
+    },
+    {
+      "model": "gemma3:4b",
+      "parameters_and_quantization_reported": "4B",
+      "size_gb_reported": 3.3,
+      "generation_tokens_per_second_reported": 12.2,
+      "installation_label_reported": "今回",
+      "research_role": "中間発表の予備実験モデル",
+      "current_full_included": false
+    },
+    {
+      "model": "qwen3.5:9b",
+      "parameters_and_quantization_reported": "9.7B・Q4_K_M",
+      "size_gb_reported": 6.6,
+      "generation_tokens_per_second_reported": 6.0,
+      "installation_label_reported": "10/4",
+      "research_role": "現在の本実験",
+      "current_full_included": true
+    },
+    {
+      "model": "qwen3.5:4b",
+      "parameters_and_quantization_reported": "4.7B・Q4_K_M",
+      "size_gb_reported": 3.4,
+      "generation_tokens_per_second_reported": 9.7,
+      "installation_label_reported": "10/4",
+      "research_role": "現在の本実験",
+      "current_full_included": true
+    },
+    {
+      "model": "gemma4:e4b-it-qat",
+      "parameters_and_quantization_reported": "7.5B・Q4_0（画像・音声入力つき）",
+      "size_gb_reported": 6.1,
+      "generation_tokens_per_second_reported": null,
+      "installation_label_reported": "10/4",
+      "research_role": "現在の本実験",
+      "current_full_included": true
+    }
+  ]
+}

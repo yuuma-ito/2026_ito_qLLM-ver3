@@ -1,5 +1,5 @@
 {
-  "captured_at": "2026-10-08T21:58:27.805452+09:00",
+  "captured_at": "2026-10-08T22:05:33.420892+09:00",
   "scope": "Two completed quick runs, the preserved failed full run, and the new full run with connection recovery; ongoing results are provisional.",
   "runs": [
     {
@@ -632,7 +632,7 @@
     {
       "experiment_id": "shared_three_models_full_20261008T103231611899Z",
       "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
-      "recorded": 168,
+      "recorded": 171,
       "config": {
         "experiment_id": "shared_three_models_full_20261008T103231611899Z",
         "models": [
@@ -674,31 +674,31 @@
         },
         "pricing": {}
       },
-      "raw_sha256_at_capture": "1840964d35d22be3c309a3aadf8e2ad8263778275ff177efa31a280ea796b727",
-      "raw_bytes_at_capture": 1029287,
-      "last_record_at": "2026-10-08T21:57:56.055211+09:00",
+      "raw_sha256_at_capture": "edfb71a2f61c2edf1ac90572aace30e38dad47471b58b8b1296d3d57422047e5",
+      "raw_bytes_at_capture": 1059627,
+      "last_record_at": "2026-10-08T22:04:09.427978+09:00",
       "planned": 1500,
       "L2_success": 70,
-      "L2_failure": 98,
+      "L2_failure": 101,
       "api_failure_records": 0,
       "duplicates": 0,
       "unexpected": 0,
-      "missing": 1332,
+      "missing": 1329,
       "pending_write": false,
       "automation_verified": false,
       "records_by_model": {
-        "ollama:qwen3.5:4b": 168
+        "ollama:qwen3.5:4b": 171
       },
       "records_by_task": {
         "T1_Bell": 50,
         "T2_GHZ": 50,
         "T3a_DJ_constant": 50,
-        "T3b_DJ_balanced": 18
+        "T3b_DJ_balanced": 21
       },
       "final_error_counts": {
-        "import_error": 74,
+        "import_error": 76,
         "ok": 70,
-        "build_error": 12,
+        "build_error": 13,
         "interface_mismatch": 4,
         "syntax": 3,
         "wrong_output": 5
@@ -707,7 +707,7 @@
         {
           "model": "ollama:qwen3.5:4b",
           "condition": "baseline",
-          "n": 34,
+          "n": 35,
           "L2_success": 4,
           "L3_success": 4,
           "api_failure_records": 0
@@ -731,7 +731,7 @@
         {
           "model": "ollama:qwen3.5:4b",
           "condition": "self_debugging",
-          "n": 33,
+          "n": 34,
           "L2_success": 27,
           "L3_success": 27,
           "api_failure_records": 0
@@ -739,7 +739,7 @@
         {
           "model": "ollama:qwen3.5:4b",
           "condition": "preventive_spec",
-          "n": 33,
+          "n": 34,
           "L2_success": 2,
           "L3_success": 2,
           "api_failure_records": 0
@@ -747,16 +747,16 @@
       ],
       "failure_classification_version": "stage-cause-v1",
       "original_final_error_counts": {
-        "import_error": 75,
+        "import_error": 77,
         "ok": 70,
-        "build_error": 11,
+        "build_error": 12,
         "unknown_error": 4,
         "syntax": 3,
         "wrong_output": 5
       },
       "failure_stage_counts": {
-        "import": 74,
-        "build": 12,
+        "import": 76,
+        "build": 13,
         "exec": 4,
         "parse": 3,
         "evaluate": 5
