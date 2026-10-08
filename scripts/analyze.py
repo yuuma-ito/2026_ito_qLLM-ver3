@@ -10,6 +10,8 @@ import argparse
 import json
 from collections import defaultdict
 
+from harness.failure_metadata import normalize_record
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Aggregate baseline JSONL results")
@@ -29,7 +31,7 @@ def main() -> int:
             line = line.strip()
             if not line:
                 continue
-            rec = json.loads(line)
+            rec = normalize_record(json.loads(line))
             mode = rec.get("mode", "baseline")
             if mode == "refine":
                 seen_refine = True

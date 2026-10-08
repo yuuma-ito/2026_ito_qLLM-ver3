@@ -7,6 +7,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from harness.code_extractor import extract_code
+from harness.failure_metadata import exception_name
 from harness.evaluator import EvalResult, evaluate
 from harness.interventions import build_initial_prompt, build_intervention_prompt, intervention_feedback_type
 from harness.llm_clients import Generation
@@ -43,6 +44,8 @@ class RunRecord:
     elapsed_sec: float
     tokens_in: int
     tokens_out: int
+    failure_stage: str = "unknown"
+    exception_type: str = ""
     mode: str = "baseline"
     intervention: str = "baseline"
     experiment_id: str = ""
@@ -80,6 +83,8 @@ class RunRecord:
             "L2_distance": self.L2_distance,
             "error_category": self.error_category,
             "error_message": self.error_message,
+            "failure_stage": self.failure_stage,
+            "exception_type": self.exception_type,
             "tokens_in": self.tokens_in,
             "tokens_out": self.tokens_out,
             "total_tokens": self.total_tokens or (self.tokens_in + self.tokens_out),
@@ -107,15 +112,15 @@ def _code_lines(code: str) -> int:
 def _metric_snapshot(ev: EvalResult | None, code: str) -> dict[str, Any]:
     if ev is None:
         return {"L0": False, "L1": False, "L2": False, "structure_match": False, "L3": False,
-                "error_category": "api_timeout", "L2_distance": float("nan"),
+                "failure_stage": "api_call", "exception_type": "", "error_category": "api_timeout", "L2_distance": float("nan"),
                 "code_lines": _code_lines(code), "gate_count": 0, "circuit_depth": 0}
     return {"L0": ev.L0, "L1": ev.L1, "L2": ev.L2, "structure_match": ev.structure_match,
-            "L3": ev.L3, "error_category": ev.error_category, "L2_distance": ev.L2_distance,
+            "L3": ev.L3, "failure_stage": ev.failure_stage, "exception_type": ev.exception_type, "error_category": ev.error_category, "L2_distance": ev.L2_distance,
             "code_lines": _code_lines(code), "gate_count": ev.gate_count, "circuit_depth": ev.circuit_depth}
 
 
 def _metric_diff(initial: dict[str, Any], final: dict[str, Any]) -> dict[str, Any]:
-    keys = ("L0", "L1", "L2", "structure_match", "L3", "error_category", "L2_distance",
+    keys = ("L0", "L1", "L2", "structure_match", "L3", "failure_stage", "exception_type", "error_category", "L2_distance",
             "code_lines", "gate_count", "circuit_depth")
     out = {}
     for key in keys:
@@ -148,6 +153,8 @@ def _round_meta(round_index: int, seed: int, gen: Generation, ev: EvalResult | N
     snap = _metric_snapshot(ev, code)
     if ev is None and not gen.timeout_flag:
         snap["error_category"] = "unknown_error"
+    if ev is None:
+        snap["exception_type"] = (gen.exception_type or exception_name(gen.error))
     return {"round": round_index, "round_seed": seed, "feedback_type": feedback_type,
             "code_sha256": hashlib.sha256(code.encode("utf-8")).hexdigest() if code else "",
             "extracted_code": code, "actual_distribution": ev.actual_distribution if ev else None,
@@ -166,10 +173,11 @@ def _record(client, task: Task, initial: InitialAttempt, *, model_spec: str, exp
     gen, code, ev = initial.generation, initial.code, initial.evaluation
     rows = round_rows or [_round_meta(0, initial.seed, gen, ev, "none", code)]
     if final_timeout:
-        final = EvalResult(error_category="api_timeout", error_message=gen.error)
+        final = EvalResult(failure_stage="api_call", exception_type=(gen.exception_type or exception_name(gen.error)), error_category="api_timeout", error_message=gen.error)
         code = ""
     elif ev is None:
-        final = EvalResult(error_category="api_timeout" if gen.timeout_flag else "unknown_error",
+        final = EvalResult(failure_stage="api_call", exception_type=(gen.exception_type or exception_name(gen.error)),
+                           error_category="api_timeout" if gen.timeout_flag else "unknown_error",
                            error_message=gen.error)
     else:
         final = ev
@@ -177,11 +185,12 @@ def _record(client, task: Task, initial: InitialAttempt, *, model_spec: str, exp
     if final_timeout:
         last = rows[-1]
         last.update({"L0": False, "L1": False, "L2": False, "structure_match": False, "L3": False,
+                     "failure_stage": "api_call", "exception_type": (gen.exception_type or exception_name(gen.error)),
                      "error_category": "api_timeout", "timeout_flag": True,
                      "L2_distance": float("nan"), "error_message": gen.error})
     initial_code = rows[0].get("extracted_code", "") if rows else code
     initial_meta = {key: rows[0].get(key) for key in (
-        "L0", "L1", "L2", "structure_match", "L3", "error_category",
+        "L0", "L1", "L2", "structure_match", "L3", "failure_stage", "exception_type", "error_category",
         "L2_distance", "code_lines", "gate_count", "circuit_depth")}
     final_meta = _metric_snapshot(final, code)
     all_tokens_in = gen.tokens_in if total_in is None else total_in
@@ -195,6 +204,7 @@ def _record(client, task: Task, initial: InitialAttempt, *, model_spec: str, exp
         structure_match=final.structure_match, L3=final.L3, L2_distance=final.L2_distance,
         n_qubits_actual=final.n_qubits_actual, gate_count=final.gate_count,
         circuit_depth=final.circuit_depth, code_lines=_code_lines(code), error_category=final.error_category,
+        failure_stage=final.failure_stage, exception_type=final.exception_type,
         error_message=final.error_message, elapsed_sec=total_elapsed, tokens_in=all_tokens_in,
         tokens_out=all_tokens_out, total_tokens=all_tokens_in + all_tokens_out, mode=intervention,
         intervention=intervention, experiment_id=experiment_id, condition_id=condition_id,

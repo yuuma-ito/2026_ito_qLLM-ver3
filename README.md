@@ -304,3 +304,19 @@ python -m scripts.analyze_interventions results/quick_debug/raw.jsonl
 ## 仕様書
 
 実験条件、record schema、失敗類型と優先順位、timeout、差分、CSV、config の詳細は [docs/new_harness_spec.md](docs/new_harness_spec.md) に記載しています。
+
+
+### 失敗した段階と原因の記録
+
+`failure_stage` は失敗した段階、`error_category` は失敗原因を表します。最終recordと各roundに両方を保存し、`exception_type`（例外型名）と `error_message`（例外メッセージ）も記録します。例外のない判定失敗では `exception_type` は空文字です。成功時は `error_category = ok`、`failure_stage = unknown`、`exception_type` は空文字とします。
+
+段階は `parse` / `import` / `exec` / `build` / `evaluate` / `api_call` / `unknown`。原因は `syntax` / `import_error` / `interface_mismatch` / `build_error` / `wrong_output` / `bit_order_error` / `qubit_count_mismatch` / `api_timeout` / `unknown_error` です。
+
+- 構文解析失敗は `parse` / `syntax`、トップレベルのimport失敗は `import` / `import_error`。
+- `exec()` 中の存在しない属性・メソッドへの `AttributeError` は `exec` / `interface_mismatch`。GHZ seed 6 self_debugging の `result.counts` はこの分類に該当し、接続障害・タイムアウトには含めません。
+- `build_circuit()` 内の例外は、トップレベルから呼び出された場合も `build` / `build_error`。戻り値が QuantumCircuit でない場合は `build` / `interface_mismatch`。
+- 出力・構造の不一致は `evaluate`。モデル呼び出し障害は `api_call` で、タイムアウトの原因は `api_timeout`、それ以外の未分類障害は `unknown_error` とし、`generation_error` も保持します。
+
+既存の原因別分析は `error_category` を使用します。追加の `failure_stage_summary.csv` は最終recordの失敗だけをモデル・条件・段階・原因・例外型別に数えます（roundは重複加算しません）。
+
+スキーマ2.1から新規生成記録にこれらのフィールドを保存します。旧JSONLは書き換えず、読み込み時に保存済みの原因・例外メッセージ・L0/L1情報から保守的に補います。補った記録には `failure_metadata_source = legacy_inference_v1` を付け、原因を変更した場合は `original_error_category` も保持します。保存情報で特定できない段階・例外型は `unknown`・空文字です。評価結果・生成コード・seedは変更せず、再生成・再評価は行いません。稼働中の旧プロセスは旧形式の保存を続けますが、レポート・通知・集計・再検証は補完後の分類を使用します。

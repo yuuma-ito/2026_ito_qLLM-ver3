@@ -78,7 +78,7 @@ L3 = L0 and L1 and L2 and structure_match
 
 ## 5. 失敗類型と優先順位
 
-各最終 record に主因の `error_category` を1つ保存します。複数の失敗が重なった場合は次の優先順位を使います。
+各最終 record に主因の `error_category` を1つ保存します。発生段階を優先し、`build_circuit()` 内の例外は型にかかわらず `build_error` とします。評価まで到達した場合、構造不一致、ビット順序誤り、出力不一致の順に主因を選びます。原因分類は次のとおりです。
 
 1. `api_timeout`（APIタイムアウト）
 2. `syntax`（構文エラー）
@@ -112,14 +112,14 @@ timeout は実験全体ではなく、LLM 生成呼び出し単位で既存 API 
 
 各 record に次の項目を保存します。
 
-`experiment_id`，`model_spec`，`task_id`，`task_difficulty`，`seed`，`temperature`，`condition_id`，`intervention`，`rounds`，`L0`，`L1`，`L2`，`structure_match`，`L3`，`L2_distance`，`error_category`，`error_message`，`tokens_in`，`tokens_out`，`total_tokens`，`elapsed_sec`，`code_lines`，`gate_count`，`circuit_depth`，`first_success_round`，`final_success`，`timeout_flag`。
+`experiment_id`，`model_spec`，`task_id`，`task_difficulty`，`seed`，`temperature`，`condition_id`，`intervention`，`rounds`，`L0`，`L1`，`L2`，`structure_match`，`L3`，`L2_distance`，`failure_stage`，`error_category`，`exception_type`，`error_message`，`tokens_in`，`tokens_out`，`total_tokens`，`elapsed_sec`，`code_lines`，`gate_count`，`circuit_depth`，`first_success_round`，`final_success`，`timeout_flag`。
 
 各 round に生成コードと評価指標を保持します。さらに次を保存します。
 
 - `code_diff_round0_final`：round 0 と最終 round の unified diff 文字列。
 - `metric_diff_round0_final`：可能な限り、各指標の `from`，`to`，数値指標の `delta`。
 
-metric diff には `L0`，`L1`，`L2`，`structure_match`，`L3`，`error_category`，`L2_distance`，`code_lines`，`gate_count`，`circuit_depth` の変化を含めます。`final_success` は最終 `L3` 成功、`first_success_round` は初めて `L3` 成功した round です。
+metric diff には `L0`，`L1`，`L2`，`structure_match`，`L3`，`failure_stage`，`error_category`，`exception_type`，`L2_distance`，`code_lines`，`gate_count`，`circuit_depth` の変化を含めます。`final_success` は最終 `L3` 成功、`first_success_round` は初めて `L3` 成功した round です。
 
 価格設定がない場合の cost は数値0ではなく JSON `null` です。分析でも pricing が設定されない cost は空欄または `null` とし、0とは扱いません。
 
@@ -189,3 +189,19 @@ Full config:
 ## 12. 現行 oracle の制約
 
 現行タスク定義には量子ビット数とゲート数範囲がありますが、全タスクに対するゲート種、古典レジスタ、測定数、回路深さの完全な oracle はありません。未指定要件を推測で制約にせず、利用可能な oracle の範囲だけを確認します。`bit_order_error` はビット反転後の分布比較によるヒューリスティックです。これらの制約を超える完全な構造検証を行うとは主張しません。
+
+
+### 失敗した段階と原因の記録
+
+`failure_stage` は失敗した段階、`error_category` は失敗原因を表します。最終recordと各roundに両方を保存し、`exception_type`（例外型名）と `error_message`（例外メッセージ）も記録します。例外のない判定失敗では `exception_type` は空文字です。成功時は `error_category = ok`、`failure_stage = unknown`、`exception_type` は空文字とします。
+
+段階は `parse` / `import` / `exec` / `build` / `evaluate` / `api_call` / `unknown`。原因は `syntax` / `import_error` / `interface_mismatch` / `build_error` / `wrong_output` / `bit_order_error` / `qubit_count_mismatch` / `api_timeout` / `unknown_error` です。
+
+- 構文解析失敗は `parse` / `syntax`、トップレベルのimport失敗は `import` / `import_error`。
+- `exec()` 中の存在しない属性・メソッドへの `AttributeError` は `exec` / `interface_mismatch`。GHZ seed 6 self_debugging の `result.counts` はこの分類に該当し、接続障害・タイムアウトには含めません。
+- `build_circuit()` 内の例外は、トップレベルから呼び出された場合も `build` / `build_error`。戻り値が QuantumCircuit でない場合は `build` / `interface_mismatch`。
+- 出力・構造の不一致は `evaluate`。モデル呼び出し障害は `api_call` で、タイムアウトの原因は `api_timeout`、それ以外の未分類障害は `unknown_error` とし、`generation_error` も保持します。
+
+既存の原因別分析は `error_category` を使用します。追加の `failure_stage_summary.csv` は最終recordの失敗だけをモデル・条件・段階・原因・例外型別に数えます（roundは重複加算しません）。
+
+スキーマ2.1から新規生成記録にこれらのフィールドを保存します。旧JSONLは書き換えず、読み込み時に保存済みの原因・例外メッセージ・L0/L1情報から保守的に補います。補った記録には `failure_metadata_source = legacy_inference_v1` を付け、原因を変更した場合は `original_error_category` も保持します。保存情報で特定できない段階・例外型は `unknown`・空文字です。評価結果・生成コード・seedは変更せず、再生成・再評価は行いません。稼働中の旧プロセスは旧形式の保存を続けますが、レポート・通知・集計・再検証は補完後の分類を使用します。

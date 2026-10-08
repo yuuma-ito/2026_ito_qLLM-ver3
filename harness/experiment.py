@@ -4,6 +4,8 @@
 """
 from __future__ import annotations
 
+from harness.failure_metadata import normalize_record
+
 import hashlib
 import json
 import os
@@ -173,7 +175,7 @@ def build_manifest(config: dict[str, Any], repo_root: str | Path) -> dict[str, A
     v = validate_config(config)
     repo_root = Path(repo_root)
     return {
-        "schema_version": "2.0",
+        "schema_version": "2.1",
         "experiment_id": v["experiment_id"],
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "config_hash": config_hash(config),
@@ -225,6 +227,7 @@ def expected_keys(plan: dict) -> set[tuple]:
 
 
 def has_api_failure(row: dict, *, include_unknown=True) -> bool:
+    row = normalize_record(row)
     categories = {"api_error", "api_timeout"} | ({"unknown_error"} if include_unknown else set())
     return any(attempt.get("generation_error") or attempt.get("timeout_flag") or
                attempt.get("error_category") in categories
@@ -241,7 +244,7 @@ def load_existing(path: str | Path) -> tuple[list[dict[str, Any]], set[tuple[str
         for line in f:
             if not line.strip():
                 continue
-            rec = json.loads(line)
+            rec = normalize_record(json.loads(line))
             rows.append(rec)
             keys.add(record_key(rec))
     return rows, keys
@@ -249,6 +252,7 @@ def load_existing(path: str | Path) -> tuple[list[dict[str, Any]], set[tuple[str
 
 def initial_from_baseline_record(rec: dict[str, Any], task) -> InitialAttempt:
     """resume 時に baseline JSONL から共有初期生成を復元する。"""
+    rec = normalize_record(rec)
     gen = Generation(
         raw_text=rec.get("raw_output", ""),
         tokens_in=int(rec.get("tokens_in", 0)),
@@ -261,6 +265,7 @@ def initial_from_baseline_record(rec: dict[str, Any], task) -> InitialAttempt:
     rounds = rec.get("rounds") or []
     r0 = rounds[0] if rounds else {}
     gen.connection_retries = int(r0.get("connection_retries", 0))
+    gen.exception_type = str(r0.get("exception_type", "")) if r0.get("failure_stage") == "api_call" else ""
     gen.error = r0.get("generation_error") or gen.error
     code = r0.get("extracted_code", rec.get("extracted_code", ""))
     if gen.error:
@@ -278,6 +283,8 @@ def initial_from_baseline_record(rec: dict[str, Any], task) -> InitialAttempt:
             n_qubits_actual=int(rec.get("n_qubits_actual", 0)),
             error_category=str(r0.get("error_category", rec.get("error_category", ""))),
             error_message=str(r0.get("error_message", rec.get("error_message", ""))),
+            failure_stage=str(r0.get("failure_stage", rec.get("failure_stage", "unknown"))),
+            exception_type=str(r0.get("exception_type", rec.get("exception_type", ""))),
             actual_distribution=r0.get("actual_distribution"),
         )
     return InitialAttempt(gen, code, ev, int(rec.get("base_seed", rec.get("seed", 0))))

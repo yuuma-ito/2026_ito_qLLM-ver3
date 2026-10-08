@@ -25,22 +25,47 @@ class EvalResult:
     n_clbits_actual: int = 0
     error_category: str = ""
     error_message: str = ""
+    failure_stage: str = "unknown"
+    exception_type: str = ""
     actual_distribution: Optional[dict[str, float]] = None
 
     def to_dict(self) -> dict[str, Any]:
         return dataclasses.asdict(self)
 
 
-def _exec_code(code: str) -> tuple[bool, dict, str, str]:
+def _inside_build(error: Exception, ns: dict) -> bool:
+    function_code = getattr(ns.get("build_circuit"), "__code__", None)
+    tb = error.__traceback__
+    while tb is not None:
+        if function_code is not None and tb.tb_frame.f_code is function_code:
+            return True
+        tb = tb.tb_next
+    return False
+
+
+def _exec_code(code: str, res: EvalResult) -> tuple[bool, dict, str, str]:
     ns: dict = {}
+    res.failure_stage = "parse"
     try:
-        exec(code, ns)
+        compiled = compile(code, "<generated>", "exec")
     except SyntaxError as e:
+        res.exception_type = type(e).__name__
         return False, ns, "syntax", str(e)
+    res.failure_stage = "exec"
+    try:
+        exec(compiled, ns)
     except ImportError as e:
-        return False, ns, "import_error", str(e)
+        res.failure_stage = "build" if _inside_build(e, ns) else "import"
+        res.exception_type = type(e).__name__
+        return False, ns, "build_error" if res.failure_stage == "build" else "import_error", str(e)
     except Exception as e:
-        return False, ns, "unknown_error", f"{type(e).__name__}: {e}"
+        res.exception_type = type(e).__name__
+        if _inside_build(e, ns):
+            res.failure_stage = "build"
+            cat = "build_error"
+        else:
+            cat = "interface_mismatch" if isinstance(e, AttributeError) else "unknown_error"
+        return False, ns, cat, f"{type(e).__name__}: {e}"
     if "build_circuit" not in ns or not callable(ns["build_circuit"]):
         return False, ns, "interface_mismatch", "build_circuit() is missing or not callable"
     try:
@@ -52,21 +77,16 @@ def _exec_code(code: str) -> tuple[bool, dict, str, str]:
     return True, ns, "", ""
 
 
-def _try_build(ns: dict) -> tuple[Optional[Any], str, str]:
+def _try_build(ns: dict, res: EvalResult) -> tuple[Optional[Any], str, str]:
+    res.failure_stage = "build"
     try:
         qc = ns["build_circuit"]()
-    except ImportError as e:
-        return None, "import_error", str(e)
     except Exception as e:
-        if isinstance(e, TypeError) and ("argument" in str(e) or "positional" in str(e)):
-            return None, "interface_mismatch", f"{type(e).__name__}: {e}"
+        res.exception_type = type(e).__name__
         return None, "build_error", f"{type(e).__name__}: {e}"
-    try:
-        from qiskit import QuantumCircuit
-        if not isinstance(qc, QuantumCircuit):
-            return None, "interface_mismatch", "build_circuit() must return QuantumCircuit"
-    except ImportError:
-        pass
+    from qiskit import QuantumCircuit
+    if not isinstance(qc, QuantumCircuit):
+        return None, "interface_mismatch", "build_circuit() must return QuantumCircuit"
     return qc, "", ""
 
 
@@ -111,12 +131,12 @@ def _bit_reversed_distribution(dist: dict[str, float]) -> dict[str, float]:
 
 def evaluate(code: str, task: Task) -> EvalResult:
     res = EvalResult()
-    ok, ns, cat, msg = _exec_code(code)
+    ok, ns, cat, msg = _exec_code(code, res)
     if not ok:
         res.error_category, res.error_message = cat, msg
         return res
     res.L0 = True
-    qc, cat, msg = _try_build(ns)
+    qc, cat, msg = _try_build(ns, res)
     if qc is None:
         res.error_category, res.error_message = cat, msg
         return res
@@ -127,9 +147,11 @@ def evaluate(code: str, task: Task) -> EvalResult:
         res.gate_count = len(qc.data)
         res.circuit_depth = int(qc.depth() or 0)
     except Exception as e:
+        res.exception_type = type(e).__name__
         res.error_category, res.error_message = "build_error", f"{type(e).__name__}: {e}"
         return res
 
+    res.failure_stage = "evaluate"
     measurement_count = sum(item.operation.name == "measure" for item in qc.data)
     structural_gate_count = sum(item.operation.name != "measure" for item in qc.data)
     structure_errors: list[str] = []
@@ -183,6 +205,7 @@ def evaluate(code: str, task: Task) -> EvalResult:
             res.error_category, res.error_message = "unknown_error", f"unknown expected_kind: {task.expected_kind}"
             return res
     except Exception as e:
+        res.exception_type = type(e).__name__
         res.error_category, res.error_message = "unknown_error", f"{type(e).__name__}: {e}"
         return res
 
@@ -197,4 +220,6 @@ def evaluate(code: str, task: Task) -> EvalResult:
             res.error_category, res.error_message = "unknown_error", "circuit structure is outside the accepted bounds"
         else:
             res.error_category = "ok"
+    if res.error_category == "ok":
+        res.failure_stage = "unknown"
     return res

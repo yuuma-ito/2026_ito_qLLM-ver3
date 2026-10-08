@@ -1,0 +1,55 @@
+{
+  "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+  "model_spec": "ollama:qwen3.5:4b",
+  "task_id": "T2_GHZ",
+  "base_seed": 6,
+  "condition_id": "self_debugging",
+  "source_record_sha256": "069518da27fd4e6e57d2aaf03b5fdf61e1cdccecc9664a4d0acc64fe6fc58242",
+  "final": {
+    "failure_stage": "exec",
+    "error_category": "interface_mismatch",
+    "original_error_category": "unknown_error",
+    "exception_type": "AttributeError",
+    "error_message": "AttributeError: 'AerJob' object has no attribute 'counts'",
+    "failure_metadata_source": "legacy_inference_v1"
+  },
+  "rounds": [
+    {
+      "round": 0,
+      "failure_stage": "import",
+      "error_category": "import_error",
+      "original_error_category": "",
+      "exception_type": "",
+      "error_message": "cannot import name 'CNOTGate' from 'qiskit.circuit.library' (/home/23tc011/2026_ito_qLLM-ver3/.venv/lib/python3.12/site-packages/qiskit/circuit/library/__init__.py)",
+      "failure_metadata_source": "legacy_inference_v1"
+    },
+    {
+      "round": 1,
+      "failure_stage": "exec",
+      "error_category": "interface_mismatch",
+      "original_error_category": "unknown_error",
+      "exception_type": "AttributeError",
+      "error_message": "AttributeError: Attribute counts is not defined",
+      "failure_metadata_source": "legacy_inference_v1"
+    },
+    {
+      "round": 2,
+      "failure_stage": "exec",
+      "error_category": "interface_mismatch",
+      "original_error_category": "unknown_error",
+      "exception_type": "AttributeError",
+      "error_message": "AttributeError: Attribute counts is not defined",
+      "failure_metadata_source": "legacy_inference_v1"
+    },
+    {
+      "round": 3,
+      "failure_stage": "exec",
+      "error_category": "interface_mismatch",
+      "original_error_category": "unknown_error",
+      "exception_type": "AttributeError",
+      "error_message": "AttributeError: 'AerJob' object has no attribute 'counts'",
+      "failure_metadata_source": "legacy_inference_v1"
+    }
+  ],
+  "api_failure": false
+}

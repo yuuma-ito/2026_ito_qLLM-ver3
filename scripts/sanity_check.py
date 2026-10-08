@@ -1,6 +1,8 @@
 """ver2 実験結果の sanity check。"""
 from __future__ import annotations
 
+from harness.failure_metadata import FAILURE_STAGES, normalize_record
+
 import argparse
 import json
 from collections import Counter, defaultdict
@@ -15,7 +17,7 @@ def _load_rows(path: str | Path) -> list[dict[str, Any]]:
     with Path(path).open(encoding="utf-8") as f:
         for line in f:
             if line.strip():
-                rows.append(json.loads(line))
+                rows.append(normalize_record(json.loads(line)))
     return rows
 
 
@@ -69,6 +71,14 @@ def check_results(config: dict[str, Any], path: str | Path) -> dict[str, Any]:
             missing_fields.append((i, miss))
             continue
         rounds = r.get("rounds", [])
+        for attempt in [r, *rounds]:
+            if attempt.get("failure_stage") not in FAILURE_STAGES:
+                errors.append(f"invalid failure_stage at row {i}")
+            if not isinstance(attempt.get("exception_type"), str) or not isinstance(attempt.get("error_message"), str):
+                errors.append(f"invalid exception metadata at row {i}")
+        if rounds and any(r.get(k) != rounds[-1].get(k) for k in ("failure_stage", "error_category", "exception_type")):
+            errors.append(f"final failure metadata mismatch at row {i}")
+
         if len(rounds) != int(r.get("n_rounds", -1)):
             bad_rounds.append(i)
         cid = r["condition_id"]

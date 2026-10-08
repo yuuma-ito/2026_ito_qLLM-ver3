@@ -1,5 +1,7 @@
-"""Generate the nine CSV analysis outputs for the new harness."""
+"""Generate the ten CSV analysis outputs for the new harness."""
 from __future__ import annotations
+
+from harness.failure_metadata import normalize_record
 
 import argparse
 import csv
@@ -14,7 +16,7 @@ COMPARE_INTERVENTIONS = ROUND_INTERVENTIONS | {"preventive_spec"}
 
 def _load(path: str | Path) -> list[dict[str, Any]]:
     with Path(path).open(encoding="utf-8") as f:
-        return [json.loads(line) for line in f if line.strip()]
+        return [normalize_record(json.loads(line)) for line in f if line.strip()]
 
 
 def _mean(values):
@@ -58,6 +60,7 @@ def _summary(rows: list[dict[str, Any]], keys: tuple[str, ...]) -> list[dict[str
 
 
 def analyze(rows: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
+    rows = [normalize_record(row) for row in rows]
     outputs: dict[str, list[dict[str, Any]]] = {
         "summary_by_condition": _summary(rows, ("condition_id", "intervention", "model_spec", "task_difficulty")),
         "summary_by_model": _summary(rows, ("model_spec", "condition_id", "intervention", "task_difficulty")),
@@ -129,6 +132,11 @@ def analyze(rows: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
         costs = [x["estimated_cost_usd"] for x in items if x.get("estimated_cost_usd") is not None]
         item["total_estimated_cost_usd"] = sum(costs) if costs else "null"
         outputs["cost_runtime_summary"].append(item)
+    counts = defaultdict(int)
+    for row in rows:
+        if row.get("error_category") not in {"ok", ""}:
+            counts[tuple(row.get(k, "") for k in ("model_spec", "condition_id", "failure_stage", "error_category", "exception_type"))] += 1
+    outputs["failure_stage_summary"] = [dict(zip(("model_spec", "condition_id", "failure_stage", "error_category", "exception_type"), key), n=n) for key, n in sorted(counts.items())]
     return outputs
 
 
@@ -137,6 +145,7 @@ def write_analysis_outputs(raw_path: str | Path, output_dir: str | Path) -> dict
     out.mkdir(parents=True, exist_ok=True)
     result = analyze(_load(raw_path))
     schemas = {
+        "failure_stage_summary": ["model_spec", "condition_id", "failure_stage", "error_category", "exception_type", "n"],
         "summary_by_condition": ["condition_id", "intervention", "model_spec", "task_difficulty", "n", "L0_rate", "L1_rate", "L2_rate", "structure_match_rate", "L3_rate", "final_success_rate", "timeout_flag_rate", "avg_first_success_round", "avg_tokens_in", "avg_tokens_out", "avg_total_tokens", "avg_elapsed_sec", "avg_code_lines", "avg_gate_count", "avg_circuit_depth", "avg_L2_distance", "avg_estimated_cost_usd"],
         "summary_by_model": ["model_spec", "condition_id", "intervention", "task_difficulty", "n", "L0_rate", "L1_rate", "L2_rate", "structure_match_rate", "L3_rate", "final_success_rate", "timeout_flag_rate", "avg_first_success_round", "avg_tokens_in", "avg_tokens_out", "avg_total_tokens", "avg_elapsed_sec", "avg_code_lines", "avg_gate_count", "avg_circuit_depth", "avg_L2_distance", "avg_estimated_cost_usd"],
         "summary_by_task": ["task_id", "task_difficulty", "model_spec", "condition_id", "intervention", "n", "L0_rate", "L1_rate", "L2_rate", "structure_match_rate", "L3_rate", "final_success_rate", "timeout_flag_rate", "avg_first_success_round", "avg_tokens_in", "avg_tokens_out", "avg_total_tokens", "avg_elapsed_sec", "avg_code_lines", "avg_gate_count", "avg_circuit_depth", "avg_L2_distance", "avg_estimated_cost_usd"],

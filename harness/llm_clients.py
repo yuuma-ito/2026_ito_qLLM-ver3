@@ -27,6 +27,7 @@ class Generation:
     error: str = ""
     timeout_flag: bool = False
     connection_retries: int = 0
+    exception_type: str = ""
 
 
 def _is_timeout_error(error: Exception | str) -> bool:
@@ -133,6 +134,7 @@ class OpenAIClient:
                 elapsed_sec=time.time() - t0,
                 model_id=self.model_id,
                 error=f"{type(e).__name__}: {e}",
+                exception_type=type(e).__name__,
                 timeout_flag=_is_timeout_error(e),
             )
 
@@ -180,6 +182,7 @@ class AnthropicClient:
                 elapsed_sec=time.time() - t0,
                 model_id=self.model_id,
                 error=f"{type(e).__name__}: {e}",
+                exception_type=type(e).__name__,
                 timeout_flag=_is_timeout_error(e),
             )
 
@@ -224,6 +227,7 @@ class GoogleClient:
                 elapsed_sec=time.time() - t0,
                 model_id=self.model_id,
                 error=f"{type(e).__name__}: {e}",
+                exception_type=type(e).__name__,
                 timeout_flag=_is_timeout_error(e),
             )
 
@@ -308,6 +312,7 @@ class ClaudeCLIClient:
                 elapsed_sec=time.time() - t0,
                 model_id=self.model_id,
                 error=f"{type(e).__name__}: {e}",
+                exception_type=type(e).__name__,
                 timeout_flag=_is_timeout_error(e),
             )
 
@@ -422,6 +427,7 @@ class OpenAICompatClient:
                 elapsed_sec=time.time() - t0,
                 model_id=self.model_id,
                 error=f"{type(e).__name__}: {e}",
+                exception_type=type(e).__name__,
                 timeout_flag=_is_timeout_error(e),
                 connection_retries=connection_retries,
             )

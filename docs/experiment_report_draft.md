@@ -7,7 +7,7 @@
 <!-- auto:status:end -->
 
 <!-- auto:capture:start -->
-集計時点：2026-10-08 19:35:03 JST。数値は最終更新時点の値であり、5分ごとに自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。
+集計時点：2026-10-08 21:10:02 JST。数値は最終更新時点の値であり、5分ごとに自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。
 <!-- auto:capture:end -->
 
 ## 1 目的と比較の観点
@@ -82,6 +82,8 @@ L2は出力の正しさ、L3は利用可能な構造要件を含む総合成功�
 
 ### 2.6 失敗と介入効果の集計
 
+`failure_stage` は失敗した段階、`error_category` は失敗原因を表す。例外型とメッセージも保存する。旧記録は生JSONLを保持したまま保存情報から分類を補い、元の原因分類を保持する。簡易実験2回では、それぞれbuild段階のimport失敗1件を `build_error` に整理したが、成功率・生成コード・評価値は変えていない。本実験のGHZ seed 6 self_debuggingの `result.counts` 誤用は `exec / interface_mismatch` であり、接続障害には含めない。[分類確認記録](ghz_seed6_failure_classification.json)に出典recordのハッシュとround別分類を保存した。
+
 失敗は `syntax`、`import_error`、`interface_mismatch`、`build_error`、`qubit_count_mismatch`、`bit_order_error`、`wrong_output`、`unknown_error`、`api_timeout` に分類する。API障害の有無は、最終失敗類型だけでなく各roundの生成エラーとtimeoutも確認する。
 
 介入の救出は、対応するbaselineがL2失敗、介入後がL2成功である場合とする。救出率の分母は対応するbaseline失敗例数とする。baseline退行は、baselineがL2成功、介入後がL2失敗である場合である。修正過程の悪化は、同じ修正条件内で最終段階点が初期段階点を下回る場合であり、baseline退行とは別に集計する。
@@ -125,13 +127,13 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 <!-- auto:full-results:start -->
 ## 4 本実験の記録状況と暫定結果
 
-2026-10-08 19:35:03（日本時間）時点で、予定1,500件のうち3件（0.2%）を記録した。残りは1,497件である。L2成功は2件、L2失敗は1件、API障害を含む記録は0件であった。重複は0件、予定外記録は0件であった。
+2026-10-08 21:10:02（日本時間）時点で、予定1,500件のうち132件（8.8%）を記録した。残りは1,368件である。L2成功は59件、L2失敗は73件、API障害を含む記録は0件であった。重複は0件、予定外記録は0件であった。
 
 本実験は未検証のため、以下の数値は暫定結果である。全件の記録とsanity check・API障害確認を終えるまで、最終結果として扱わない。
 
 | モデル | 記録件数 | 予定件数 |
 | --- | --- | --- |
-| qwen3.5:4b | 3 | 500 |
+| qwen3.5:4b | 132 | 500 |
 | gemma4:e4b-it-qat | 0 | 500 |
 | qwen3.5:9b | 0 | 500 |
 
@@ -139,9 +141,11 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 
 | モデル | 条件 | 記録件数 | L2成功 | L3成功 | API障害を含む記録 |
 | --- | --- | --- | --- | --- | --- |
-| qwen3.5:4b | baseline | 1 | 0 | 0 | 0 |
-| qwen3.5:4b | self_refine | 1 | 1 | 1 | 0 |
-| qwen3.5:4b | execution_feedback | 1 | 1 | 1 | 0 |
+| qwen3.5:4b | baseline | 27 | 3 | 3 | 0 |
+| qwen3.5:4b | self_refine | 27 | 13 | 13 | 0 |
+| qwen3.5:4b | execution_feedback | 26 | 19 | 19 | 0 |
+| qwen3.5:4b | self_debugging | 26 | 22 | 22 | 0 |
+| qwen3.5:4b | preventive_spec | 26 | 2 | 2 | 0 |
 
 未完了のモデル・タスク・条件には件数の偏りがある。途中データからモデル全体の優劣を判断しない。
 
@@ -149,9 +153,9 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 
 | タスク | 記録件数 |
 | --- | --- |
-| T1_Bell | 3 |
-| T2_GHZ | 0 |
-| T3a_DJ_constant | 0 |
+| T1_Bell | 50 |
+| T2_GHZ | 50 |
+| T3a_DJ_constant | 32 |
 | T3b_DJ_balanced | 0 |
 | T4_BV_011 | 0 |
 | T5_Grover_11 | 0 |
@@ -164,8 +168,12 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 
 | 類型 | 件数 |
 | --- | --- |
-| import_error | 1 |
-| ok | 2 |
+| build_error | 6 |
+| import_error | 62 |
+| interface_mismatch | 1 |
+| ok | 59 |
+| syntax | 1 |
+| wrong_output | 3 |
 
 API障害を含む記録件数はround履歴も確認した値であり、最終評価の失敗類型とは別の集計である。API障害がある場合は、元結果を保持し、対応条件をそろえた追試を別実験として報告する。
 <!-- auto:full-results:end -->

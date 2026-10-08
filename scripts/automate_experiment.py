@@ -1,6 +1,8 @@
 """Run, verify and publish a shared Ollama experiment in one command."""
 from __future__ import annotations
 
+from harness.failure_metadata import normalize_record
+
 import argparse
 from contextlib import contextmanager
 from datetime import datetime, timezone
@@ -26,7 +28,7 @@ ARTIFACTS = (
     "automation_report.json", "summary_by_condition.csv", "summary_by_model.csv",
     "summary_by_task.csv", "summary_by_difficulty.csv", "rescue_rates_by_error.csv",
     "degradation_cases.csv", "baseline_regressions.csv", "timeout_summary.csv",
-    "cost_runtime_summary.csv",
+    "cost_runtime_summary.csv", "failure_stage_summary.csv",
     "comparison_by_condition.csv", "comparison_report.md",
 )
 
@@ -118,7 +120,7 @@ def verify(config, output):
     report = check_results(config, output / "raw.jsonl")
     problems = list(report["errors"])
     problems.extend(report["warnings"])
-    rows = [json.loads(line) for line in (output / "raw.jsonl").read_text().splitlines() if line.strip()]
+    rows = [normalize_record(json.loads(line)) for line in (output / "raw.jsonl").read_text().splitlines() if line.strip()]
     if any(r.get("experiment_id") != config["experiment_id"] for r in rows):
         problems.append("Output contains records from another experiment.")
     for index, row in enumerate(rows):

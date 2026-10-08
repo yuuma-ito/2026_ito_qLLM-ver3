@@ -1,6 +1,8 @@
 """Read experiment progress and send one Slack notification (for cron/timers)."""
 from __future__ import annotations
 
+from harness.failure_metadata import normalize_record
+
 import argparse
 from collections import Counter
 from datetime import datetime
@@ -59,7 +61,7 @@ def snapshot(config: dict, root: Path = ROOT):
                     pending_write = True
                     break
                 if line.strip():
-                    rows.append(json.loads(line))
+                    rows.append(normalize_record(json.loads(line)))
     counts = Counter(record_key(row) for row in rows)
     unique = {}
     for row in rows:

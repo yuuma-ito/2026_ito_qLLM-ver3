@@ -1,6 +1,8 @@
 """Refresh report data from existing runs without generating code or sending messages."""
 from __future__ import annotations
 
+from harness.failure_metadata import normalize_record
+
 import argparse
 from collections import Counter
 from datetime import datetime
@@ -31,7 +33,7 @@ def collect_run(previous, root):
         # Record the timestamp of this read, rather than a later writer update.
         import os
         modified = os.fstat(handle.fileno()).st_mtime
-    rows = [json.loads(line) for line in data.splitlines(keepends=True)
+    rows = [normalize_record(json.loads(line)) for line in data.splitlines(keepends=True)
             if line.endswith(b'\n') and line.strip()]
     counts = Counter(record_key(row) for row in rows)
     unexpected = sum(n for key, n in counts.items() if key not in expected)
@@ -70,6 +72,9 @@ def collect_run(previous, root):
                 records_by_model=dict(Counter(row['model_spec'] for row in rows)),
                 records_by_task=dict(Counter(row['task_id'] for row in rows)),
                 final_error_counts=dict(Counter(row['error_category'] for row in rows)),
+                failure_classification_version='stage-cause-v1',
+                original_final_error_counts=dict(Counter(row.get('original_error_category', row['error_category']) for row in rows)),
+                failure_stage_counts=dict(Counter(row['failure_stage'] for row in rows if row['error_category'] not in {'ok', ''})),
                 conditions=conditions)
 
 
@@ -124,8 +129,17 @@ def render_report(original, previous, current):
     full = next(run for run in runs if (run['experiment_id'] == primary if primary else
                                        run['experiment_id'].startswith('shared_three_models_full')))
     quick = [run for run in runs if run['experiment_id'].startswith('shared_three_models_quick')]
+    classification_fields = {'failure_stage_counts', 'failure_classification_version', 'original_final_error_counts'}
     for before, after in zip(previous['runs'], runs):
-        if before['experiment_id'].startswith('shared_three_models_quick') and before != after:
+        if not before['experiment_id'].startswith('shared_three_models_quick'):
+            continue
+        # Permit only the deterministic first migration of cause counts; measured
+        # results, input hashes and all previously captured metadata remain fixed.
+        migrated_counts = (not before.get('failure_classification_version') and
+                           before.get('final_error_counts') == after.get('original_final_error_counts'))
+        changed = any(after.get(k) != value for k, value in before.items()
+                      if not (k == 'final_error_counts' and migrated_counts))
+        if changed or set(after) - set(before) - classification_fields:
             raise ValueError('Completed quick results changed; review prose before updating')
     intro = f"簡易実験は{len(quick)}回完了した。本実験は"
     intro += ('全件記録と自動検証が完了した。モデル間・難度間の比較の考察は、検証済み結果に基づいて追記する。'
