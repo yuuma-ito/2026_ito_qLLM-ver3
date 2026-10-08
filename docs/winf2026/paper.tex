@@ -1,0 +1,117 @@
+% extarticleではa4jが未使用になるため，標準のa4paperを指定する．
+\documentclass[a4paper,8pt,twocolumn]{extarticle}
+\usepackage{winf-paper}
+\usepackage{type1cm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{url}
+\renewcommand{\tablename}{表}
+\title{Qiskit量子回路コード生成における\\モデルと修正介入の予備比較}
+% 投稿前に著者名・共著者・正式所属を確定する．
+\author{著者名（要確認）}
+\affiliation{所属（要確認）}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section{はじめに}
+大規模言語モデル（LLM）によるコード生成では，初回の出力が実行できても，目的に合う結果が得られるとは限らない．量子回路コードでは，ライブラリの利用方法に加え，量子状態，測定分布，量子ビットの順序を確認する必要がある．Qiskitではビット0を整数表現の最下位ビットとして扱うなど，表示と数値表現の規約を区別する必要がある\cite{qiskit}．そのため，構文やimportの成否だけでは生成品質を評価できない．
+
+本研究では，3種類のローカルLLMによるQiskitコード生成を対象に，初回生成，生成後の修正，生成前の注意事項追加を比較する．実行可能性，出力の正しさ，回路構造を分ける評価ハーネスを構築し，同一の初期コードに対する修正を比較する．本稿では，検証済みの小規模実験2回を予備結果として報告する．10タスクを用いた本実験は進行中であり，途中記録からモデル全体の優劣を結論しない．
+
+\section{関連研究と比較の位置付け}
+Self-Refineは，同じLLMによるフィードバックと反復修正を用いる手法である\cite{selfrefine}．Self-Debuggingでは，コードの説明や実行結果を利用した自己デバッグが検討されている\cite{selfdebug}．本研究はこれらを比較の背景とし，Qiskitコードにおける出力と構造の評価，およびbaseline失敗例の救出に着目する．本稿の条件名はハーネス内の実装を指し，先行研究のプロンプトや実験設定を完全に再現したものではない．
+
+単なる最終成功率に加え，初回失敗から成功への変化と，初回成功から失敗への変化を区別する．生成前介入は初期プロンプトが変わるため，同一コードを修正する条件とは区別して解釈する．
+
+\section{実験方法}
+\subsection{モデル，タスク，生成設定}
+対象モデルはOllamaのタグで\texttt{qwen3.5:4b}，\texttt{gemma4:e4b-it-qat}，\texttt{qwen3.5:9b}である．以後，表ではそれぞれQ4，G4，Q9と略記する．タグの数値を厳密な総パラメータ数とはみなさず，保存したモデルdigestと量子化情報も同定に利用する．環境はPython 3.12.3，Qiskit 2.5.2，Qiskit Aer 0.17.2，OpenAI SDK 3.26.0である．共有OllamaのOpenAI互換APIへ生成要求を逐次送信した．
+
+予備実験の対象はBell状態とDeutsch--Jozsaのconstant oracleの2タスクである．seedは0，1とし，3モデル$\times$2タスク$\times$2 seed$\times$5条件で1回60レコードを記録した．同じ設定で2回実行した．両実験は同一seed集合を用いるため，独立した8 seedの標本として合算しない．1レコードはモデル・タスク・seed・条件ごとの最終評価と修正履歴であり，修正roundを別レコードとして数えない．
+
+temperatureは0.7，生成上限は1要求につき1,024 tokens，\texttt{reasoning\_effort}は\texttt{none}，API timeoutは600秒，最大修正回数は3である．SDKの自動再送は無効とした．ただしクライアントには，timeout以外の初回要求エラーに対してseedを外した再要求を1回行う処理があるため，全要求でseedが適用される保証はない．
+
+\subsection{比較条件と対応関係}
+以下の5条件を比較する．
+\begin{enumerate}
+\item baseline（B）：初回生成のみ．
+\item self\_refine（R）：モデル自身の見直しによる修正．
+\item execution\_feedback（F）：評価器のエラーや実行結果を提示した修正．
+\item self\_debugging（D）：説明・原因分析・修正の手順による自己デバッグ．
+\item preventive\_spec（P）：生成前に共通の注意事項を加え，1回のみ生成．
+\end{enumerate}
+baselineと修正型3条件は，同じモデル・タスク・base seedの初期コードと初期評価を共有する．初期評価または修正後評価が後述のL3成功となれば終了し，それ以外は最大3回修正する．修正roundのseedはbase seedにround番号を加えた値とする．初期L3成功例では修正要求を行わないため，修正条件の最終成功率には，修正を必要としなかった成功例も含まれる．
+
+Pは異なる初期プロンプトから独立に生成する．同じモデル・タスク・seedのbaselineと対応付けるが，その差を生成後の修正能力の差とはみなさない．
+
+\subsection{段階評価と失敗分類}
+生成コードには，引数なしで呼び出せる\texttt{build\_circuit}関数から\texttt{QuantumCircuit}を返すインターフェースを求める．L0はコードの実行・importと関数の存在・呼出形式，L1は回路構築後のシミュレーションまたは状態評価，L2は期待出力との一致を示す．さらに量子ビット数や指定されたゲート数などの構造要件を\texttt{structure\_match}で判定し，これらをすべて満たす場合をL3成功とする．修正終了の判定はL3，表に示す出力成功の指標はL2である．
+
+測定分布タスクは8,192 shotsで得た分布$p$と期待分布$q$の全変動距離
+\begin{equation}
+ d_{\mathrm{TV}}(p,q)=\frac{1}{2}\sum_x|p(x)-q(x)|
+\end{equation}
+を用いる．状態ベクトルタスクでは，大域位相を整合させたベクトル間の距離を用いる．距離が0.05未満の場合をL2成功とする．測定がない分布タスクでは，評価用コピーに測定を追加する．構造判定は各タスクで定義した要件の範囲に限られる．
+
+失敗は構文，import，インターフェース，回路構築，量子ビット数，ビット順序，出力不一致等に分類する．API障害は各roundの生成エラーとtimeoutも確認し，生成コードの不正解と区別する．baselineがL2失敗，介入後がL2成功なら救出とし，救出率の分母を対応するbaseline失敗例数とする．baselineがL2成功，介入後がL2失敗なら退行とする．
+
+\section{予備実験の結果}
+2回とも予定60件を記録した．欠落・重複・予定外記録は0件で，共有初期生成の対応関係を含むsanity checkと自動検証に成功した．API障害を含む記録は0件であった．表\ref{tab:result}の各セルは，各モデル・条件におけるL2成功件数／4件を表す．略号は前節の定義に従う．
+
+\begin{table}[t]
+\centering
+\caption{予備実験のL2成功件数（各セルの分母は4）}
+\label{tab:result}
+\begin{tabular}{cc|ccccc}
+\hline
+実験 & モデル & B & R & F & D & P \\
+\hline
+1 & Q4 & 1 & 2 & 4 & 4 & 0 \\
+1 & G4 & 4 & 4 & 4 & 4 & 0 \\
+1 & Q9 & 3 & 4 & 4 & 4 & 0 \\
+\hline
+2 & Q4 & 1 & 2 & 4 & 4 & 0 \\
+2 & G4 & 4 & 4 & 4 & 4 & 0 \\
+2 & Q9 & 3 & 4 & 3 & 4 & 0 \\
+\hline
+\end{tabular}
+\end{table}
+
+Q4では両実験ともbaseline成功が1/4件であった．Rは2/4件，FとDはそれぞれ4/4件となり，FとDによってbaseline失敗3件すべてが救出された．この対象集合では，実行結果の提示と自己デバッグによって期待出力へ到達する例を確認した．ただし，各条件4件の結果から一般的な有効性や統計的な有意差を主張しない．
+
+G4は両実験ともbaselineが4/4件で，修正型条件も4/4件であった．baseline失敗例がないため，この集合での救出率は評価できない．初期L3成功の場合は修正しないことから，最終成功件数の高さだけを修正能力の証拠とはしない．
+
+Q9は両実験ともbaselineが3/4件であった．Fは実験1で4/4件，実験2で3/4件となり，同一seed集合でも最終評価に差があった．生成と有限shotsによる評価の両方に変動要因があるため，原因を特定するにはコードとround履歴の確認が必要である．
+
+Pは両実験とも3モデル合計で0/12件となり，baseline成功から失敗への退行が各実験で8件あった．この結果は現在の注意事項プロンプト，2タスク，2 seedに限定される．生成前介入一般の無効性や，失敗原因を断定するものではない．
+
+\section{本実験の計画と途中経過}
+本実験は，易タスクのBellとGHZ，中タスクのDeutsch--Jozsa（constant，balanced），Bernstein--Vazirani，Grover，難タスクのQFT，IQFT，QPE，Ansatzの計10タスクを用いる．難度はハーネス内の分類であり，普遍的な難度尺度ではない．3モデル$\times$10タスク$\times$10 seed（0--9）$\times$5条件で1,500レコードを計画する．
+
+2026年10月8日11:38（日本時間）の固定スナップショットでは479/1,500件を記録し，L2成功158件，失敗321件，API障害を含む記録8件であった．記録はすべてQ4のものであり，他の2モデルは未記録である．逐次実行によりタスクごとの記録件数にも偏りがあるため，この途中集計を3モデルの比較結果として扱わない．全件のsanity checkも未完了である．
+
+完了後は，モデル・条件・難度別のL2とL3成功率，baseline失敗類型別の救出，退行，成功round，時間とトークン数を集計する．API障害の対象には必要に応じて比較条件をそろえた別実験を行い，元結果と追試を分けて記録する．
+
+\section{考察と限界}
+予備実験では，Q4の初回失敗例でFとDによる救出を確認した．一方，初期成功例では修正を行わないため，最終成功率とbaseline失敗例の救出率を併記する必要がある．Pで観測した成功率低下は，注意事項の長さ，出力形式，import，インターフェース，回路ロジックなどの失敗を分けた分析が必要である．
+
+予備実験には難タスクが含まれず，各モデル・条件の標本数は4件に限られる．反復実験は同じseed集合を用い，修正型条件は同じ初期コードを共有するため，すべての記録を独立標本として扱えない．構造評価はタスクに定義されたoracleの範囲に限られ，ゲート種や深さ等を完全には検証しない．
+
+現行評価器はシミュレータseedを固定しておらず，モデルへのseed指定だけでは再評価を含む完全な再現性を保証しない．1,024 tokensの生成上限や共有サーバの負荷の影響もある．条件別コストには共有初期生成の値を含むため，単純合計は初期生成を重複計上する．金銭単価は未設定であり，金銭コストは未算出である．
+
+\section{おわりに}
+Qiskit量子回路コード生成を，モデルと介入条件ごとに比較する評価ハーネスと予備結果を示した．限定された対象で，初回失敗コードの修正による救出と，生成前の注意事項追加による退行を観測した．今後は本実験の完了・整合性確認・API障害の切り分けを経て，タスク難度と追加生成コストを含む比較を行う．
+
+\begin{thebibliography}{9}
+\bibitem{selfrefine}
+A. Madaan et al.: Self-Refine: Iterative Refinement with Self-Feedback, arXiv:2303.17651 (2023).
+\bibitem{selfdebug}
+X. Chen, M. Lin, N. Sch\"arli, D. Zhou: Teaching Large Language Models to Self-Debug, arXiv:2304.05128 (2023).
+\bibitem{qiskit}
+IBM: Bit-ordering in the Qiskit SDK,\\
+\url{https://quantum.cloud.ibm.com/docs/en/guides/bit-ordering}（参照2026-10-08）．
+\end{thebibliography}
+\end{document}
