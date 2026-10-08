@@ -90,7 +90,7 @@ def test_publication_excludes_raw_and_pushes_to_local_remote(tmp_path, monkeypat
     subprocess.run(["git", "init", "--bare", str(remote)], check=True, capture_output=True)
     subprocess.run(["git", "init", "-b", "main", str(repo)], check=True, capture_output=True)
     monkeypatch.setattr(automation, "ROOT", repo)
-    (repo / ".gitignore").write_text("results/\n")
+    (repo / ".gitignore").write_text("results/\n.cache/\n")
     automation.git("add", ".gitignore")
     automation.git("-c", "user.name=test", "-c", "user.email=test@example.invalid", "commit", "-m", "initial")
     automation.git("remote", "add", "origin", str(remote))

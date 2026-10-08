@@ -1,5 +1,5 @@
 {
-  "captured_at": "2026-10-08T11:55:02.286877+09:00",
+  "captured_at": "2026-10-08T19:30:02.020224+09:00",
   "scope": "Two completed quick runs and the ongoing full run; no generated code or API error messages included.",
   "runs": [
     {
@@ -46,42 +46,43 @@
         },
         "pricing": {}
       },
-      "raw_sha256_at_capture": "3b328ebdf1edd7f7d12dc7186ac6fb658486f9ab11fcb1ba33a39bcb4e7a556e",
-      "raw_bytes_at_capture": 4191659,
-      "last_record_at": "2026-10-08T11:54:28.760619+09:00",
+      "raw_sha256_at_capture": "aa4bd83a2bea19c176abbf3039112938a4d468018037b0ea71cdce4b7742e674",
+      "raw_bytes_at_capture": 7427603,
+      "last_record_at": "2026-10-08T14:35:21.982061+09:00",
       "planned": 1500,
-      "recorded": 545,
-      "L2_success": 211,
-      "L2_failure": 334,
-      "api_failure_records": 8,
+      "recorded": 1500,
+      "L2_success": 376,
+      "L2_failure": 1124,
+      "api_failure_records": 746,
       "duplicates": 0,
       "unexpected": 0,
-      "missing": 955,
+      "missing": 0,
       "pending_write": false,
       "automation_verified": false,
       "records_by_model": {
         "ollama:qwen3.5:4b": 500,
-        "ollama:gemma4:e4b-it-qat": 45
+        "ollama:gemma4:e4b-it-qat": 500,
+        "ollama:qwen3.5:9b": 500
       },
       "records_by_task": {
-        "T1_Bell": 95,
-        "T2_GHZ": 50,
-        "T3a_DJ_constant": 50,
-        "T3b_DJ_balanced": 50,
-        "T4_BV_011": 50,
-        "T5_Grover_11": 50,
-        "T6_QFT_001": 50,
-        "T7_IQFT_001": 50,
-        "T8_QPE_001": 50,
-        "T9_Ansatz_001": 50
+        "T1_Bell": 150,
+        "T2_GHZ": 150,
+        "T3a_DJ_constant": 150,
+        "T3b_DJ_balanced": 150,
+        "T4_BV_011": 150,
+        "T5_Grover_11": 150,
+        "T6_QFT_001": 150,
+        "T7_IQFT_001": 150,
+        "T8_QPE_001": 150,
+        "T9_Ansatz_001": 150
       },
       "final_error_counts": {
         "import_error": 179,
-        "ok": 211,
+        "ok": 376,
         "build_error": 50,
-        "unknown_error": 7,
-        "syntax": 30,
-        "wrong_output": 30,
+        "unknown_error": 745,
+        "syntax": 40,
+        "wrong_output": 72,
         "interface_mismatch": 38
       },
       "conditions": [
@@ -128,42 +129,82 @@
         {
           "model": "ollama:gemma4:e4b-it-qat",
           "condition": "baseline",
-          "n": 9,
-          "L2_success": 9,
-          "L3_success": 9,
-          "api_failure_records": 0
+          "n": 100,
+          "L2_success": 44,
+          "L3_success": 44,
+          "api_failure_records": 47
         },
         {
           "model": "ollama:gemma4:e4b-it-qat",
           "condition": "self_refine",
-          "n": 9,
-          "L2_success": 9,
-          "L3_success": 9,
-          "api_failure_records": 0
+          "n": 100,
+          "L2_success": 49,
+          "L3_success": 49,
+          "api_failure_records": 47
         },
         {
           "model": "ollama:gemma4:e4b-it-qat",
           "condition": "execution_feedback",
-          "n": 9,
-          "L2_success": 9,
-          "L3_success": 9,
-          "api_failure_records": 0
+          "n": 100,
+          "L2_success": 50,
+          "L3_success": 50,
+          "api_failure_records": 48
         },
         {
           "model": "ollama:gemma4:e4b-it-qat",
           "condition": "self_debugging",
-          "n": 9,
-          "L2_success": 9,
-          "L3_success": 9,
-          "api_failure_records": 0
+          "n": 100,
+          "L2_success": 49,
+          "L3_success": 49,
+          "api_failure_records": 48
         },
         {
           "model": "ollama:gemma4:e4b-it-qat",
           "condition": "preventive_spec",
-          "n": 9,
-          "L2_success": 1,
-          "L3_success": 1,
-          "api_failure_records": 0
+          "n": 100,
+          "L2_success": 10,
+          "L3_success": 10,
+          "api_failure_records": 48
+        },
+        {
+          "model": "ollama:qwen3.5:9b",
+          "condition": "baseline",
+          "n": 100,
+          "L2_success": 0,
+          "L3_success": 0,
+          "api_failure_records": 100
+        },
+        {
+          "model": "ollama:qwen3.5:9b",
+          "condition": "self_refine",
+          "n": 100,
+          "L2_success": 0,
+          "L3_success": 0,
+          "api_failure_records": 100
+        },
+        {
+          "model": "ollama:qwen3.5:9b",
+          "condition": "execution_feedback",
+          "n": 100,
+          "L2_success": 0,
+          "L3_success": 0,
+          "api_failure_records": 100
+        },
+        {
+          "model": "ollama:qwen3.5:9b",
+          "condition": "self_debugging",
+          "n": 100,
+          "L2_success": 0,
+          "L3_success": 0,
+          "api_failure_records": 100
+        },
+        {
+          "model": "ollama:qwen3.5:9b",
+          "condition": "preventive_spec",
+          "n": 100,
+          "L2_success": 0,
+          "L3_success": 0,
+          "api_failure_records": 100
         }
       ]
     },

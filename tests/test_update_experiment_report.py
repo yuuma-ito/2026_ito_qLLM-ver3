@@ -70,6 +70,51 @@ def test_api_failure_prevents_verified_result(draft):
     assert 'private details' not in (root / report.REPORT).read_text()
 
 
+def test_explicit_primary_full_run_replaces_old_run_in_result_table(draft):
+    root, output, config = draft
+    write_rows(output, [row(config, 0)])
+    report.update_report(root)
+    new_output = root / 'results/new_full'
+    new_output.mkdir()
+    new = dict(config, experiment_id='shared_three_models_full_new', output_dir='results/new_full')
+    (new_output / 'experiment_config.json').write_text(json.dumps(new))
+    (new_output / 'raw.jsonl').write_text('')
+    snapshot = json.loads((root / report.SNAPSHOT).read_text())
+    snapshot['primary_full_experiment_id'] = new['experiment_id']
+    snapshot['runs'].append({'experiment_id': new['experiment_id'], 'source_dir': new['output_dir'], 'recorded': 0})
+    (root / report.SNAPSHOT).write_text(json.dumps(snapshot))
+    result = report.update_report(root)
+    assert result['runs'][0]['recorded'] == 1
+    assert result['runs'][1]['recorded'] == 0
+    assert '0件（0.0%）' in (root / report.REPORT).read_text()
+
+
+@pytest.mark.parametrize('tamper', [None, 'prose', 'snapshot', 'auto_block'])
+def test_publication_allows_only_recomputed_report_changes(draft, monkeypatch, tamper):
+    from scripts import automate_experiment as automation
+    root, output, config = draft
+    report.update_report(root)
+    head = {str(path): (root / path).read_text() for path in (report.REPORT, report.SNAPSHOT)}
+    monkeypatch.setattr(automation, 'ROOT', root)
+    monkeypatch.setattr(automation, 'git', lambda command, revision: head[revision.removeprefix('HEAD:')])
+    write_rows(output, [row(config, 0)])
+    report.update_report(root)
+    if tamper in {'prose', 'auto_block'}:
+        path = root / report.REPORT
+        text = path.read_text()
+        path.write_text(text + 'unrelated edit' if tamper == 'prose' else text.replace('50.0%', 'secret'))
+    elif tamper == 'snapshot':
+        path = root / report.SNAPSHOT
+        data = json.loads(path.read_text())
+        data['runs'][0]['L2_success'] = 'secret'
+        path.write_text(json.dumps(data))
+    if tamper:
+        with pytest.raises(RuntimeError, match='not generated'):
+            automation.report_artifacts()
+    else:
+        assert automation.report_artifacts() == [str(report.REPORT), str(report.SNAPSHOT)]
+
+
 @pytest.mark.parametrize('problem', ['duplicate', 'unexpected', 'corrupt', 'markers', 'decreased'])
 def test_invalid_input_preserves_both_files(draft, problem):
     root, output, config = draft

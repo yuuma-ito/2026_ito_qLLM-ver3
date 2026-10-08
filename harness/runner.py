@@ -154,7 +154,8 @@ def _round_meta(round_index: int, seed: int, gen: Generation, ev: EvalResult | N
             **snap, "error_message": gen.error if gen.timeout_flag else (ev.error_message if ev else gen.error),
             "tokens_in": gen.tokens_in, "tokens_out": gen.tokens_out,
             "total_tokens": gen.tokens_in + gen.tokens_out, "elapsed_sec": gen.elapsed_sec,
-            "timeout_flag": gen.timeout_flag, "generation_error": gen.error}
+            "timeout_flag": gen.timeout_flag, "generation_error": gen.error,
+            "connection_retries": gen.connection_retries}
 
 
 def _record(client, task: Task, initial: InitialAttempt, *, model_spec: str, experiment_id: str,

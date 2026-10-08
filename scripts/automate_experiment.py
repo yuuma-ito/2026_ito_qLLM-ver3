@@ -14,7 +14,7 @@ import sys
 import urllib.request
 
 from harness.experiment import has_api_failure, load_config, validate_config
-from harness.run_state import RunTracker
+from harness.run_state import RunTracker, file_lock
 from scripts.compare_experiments import write_comparison
 from scripts.experiment_events import emit_event
 from scripts.sanity_check import check_results
@@ -29,6 +29,21 @@ ARTIFACTS = (
     "cost_runtime_summary.csv",
     "comparison_by_condition.csv", "comparison_report.md",
 )
+
+
+def report_artifacts():
+    from scripts.update_experiment_report import REPORT, SNAPSHOT, collect_run, render_report
+    if not (ROOT / REPORT).exists() and not (ROOT / SNAPSHOT).exists():
+        return []
+    previous = json.loads(git("show", f"HEAD:{SNAPSHOT}"))
+    current = json.loads((ROOT / SNAPSHOT).read_text())
+    datetime.fromisoformat(current['captured_at'])
+    expected = dict(previous, captured_at=current['captured_at'],
+                    runs=[collect_run(run, ROOT) for run in previous['runs']])
+    original = git("show", f"HEAD:{REPORT}")
+    if current != expected or (ROOT / REPORT).read_text().strip() != render_report(original, previous, expected).strip():
+        raise RuntimeError("Report changes are not generated aggregates; publication stopped.")
+    return [str(REPORT), str(SNAPSHOT)]
 
 
 def run(command, *, env=None, capture=False, pass_fds=()):
@@ -117,6 +132,7 @@ def verify(config, output):
 
 def require_clean_checkout(output):
     allowed = {str((output / name).relative_to(ROOT)) for name in ARTIFACTS}
+    allowed.update(report_artifacts())
     if git("diff", "--cached", "--name-only"):
         raise RuntimeError("Commit or isolate staged changes before automatic publication.")
     changed = set(git("diff", "--name-only").splitlines())
@@ -131,8 +147,15 @@ def require_clean_checkout(output):
 
 
 def publish(output, experiment_id, branch):
+    # Keep the report updater from changing either file while Git stages the pair.
+    with file_lock(ROOT / '.cache' / 'experiment_report.lock'):
+        return _publish(output, experiment_id, branch)
+
+
+def _publish(output, experiment_id, branch):
     # Stage an explicit artifact list. Never stage raw outputs or other user files.
     paths = [str((output / name).relative_to(ROOT)) for name in ARTIFACTS]
+    paths += report_artifacts()
     if git("diff", "--cached", "--name-only"):
         raise RuntimeError("Unexpected staged changes; automatic commit stopped.")
     allowed = set(paths)
@@ -202,6 +225,9 @@ def main(argv=None):
                     write_comparison(history, output)
                     if not args.no_publish:
                         tracker.update(phase="publishing")
+                        from scripts.update_experiment_report import REPORT, SNAPSHOT, update_report
+                        if (ROOT / REPORT).exists() and (ROOT / SNAPSHOT).exists():
+                            update_report(ROOT)
                         publish(output, config["experiment_id"], branch)
                     tracker.finish("completed", phase="completed", published=not args.no_publish)
                     emit_event(output, "completed", args.notify, root=ROOT)

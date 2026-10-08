@@ -6,6 +6,7 @@ import urllib.error
 import pytest
 
 from scripts import notify_progress as notify
+from harness.run_state import RunTracker
 
 
 @pytest.fixture
@@ -261,3 +262,68 @@ def test_email_dry_run_does_not_send(experiment, monkeypatch):
     source.write_text(json.dumps(config))
     monkeypatch.setattr(notify, "send_email", lambda *_: pytest.fail("Dry run sent mail"))
     assert notify.main(["--config", str(source), "--transport", "email", "--dry-run"]) == 0
+
+
+def test_overview_includes_running_other_family_even_when_events_disabled(experiment):
+    config, output, root = experiment
+    write_rows(output, [row(0)])
+    (output / "experiment_config.json").write_text(json.dumps(config))
+    quick = dict(config, experiment_id="quick", output_dir="results/quick")
+    quick_output = root / quick["output_dir"]
+    quick_output.mkdir()
+    (quick_output / "experiment_config.json").write_text(json.dumps(quick))
+    write_rows(quick_output, [row(0, experiment_id="quick"), row(1, experiment_id="quick")])
+    (quick_output / "automation_report.json").write_text('{"passed": true}')
+    with RunTracker(output, config["experiment_id"], root=root) as tracker:
+        tracker.update(phase="generating", model="mock", task="T1_Bell", seed=0,
+                       condition="baseline", notification_transport="none")
+        text = notify.overview("Asia/Tokyo", root)
+    assert "実行中: 1件" in text
+    assert text.index("実験: progress_test") < text.index("実験: quick")
+    assert "記録: 1/2" in text
+    assert "現在の作業: モデル: mock・タスク: T1_Bell・seed: 0・条件: baseline" in text
+
+
+def test_overview_reports_verified_failure_after_all_records_written(experiment):
+    config, output, root = experiment
+    (output / "experiment_config.json").write_text(json.dumps(config))
+    write_rows(output, [row(0, rounds=[{"generation_error": "private"}]), row(1)])
+    with RunTracker(output, config["experiment_id"], root=root) as tracker:
+        tracker.finish("failed", phase="verifying", failure_type="RuntimeError")
+    text = notify.overview("Asia/Tokyo", root)
+    assert "実行中: 0件・未完了／要確認: 1件" in text
+    assert "失敗（verifying）" in text
+    assert "API接続・タイムアウト障害を含む記録: 1件" in text
+    assert "終了・停止時刻:" in text
+    assert "現在の作業:" not in text
+    assert "private" not in text
+
+
+def test_unknown_evaluation_error_is_not_counted_as_api_failure(experiment):
+    config, output, root = experiment
+    write_rows(output, [row(0, error_category="unknown_error", rounds=[
+        {"error_category": "unknown_error", "error_message": "AttributeError: counts"}
+    ])])
+    progress = notify.snapshot(config, root)
+    assert progress["api_failures"] == 0
+    assert progress["unknown_failures"] == 1
+    assert "要確認" in progress["state"]
+
+
+def test_overview_includes_starting_run_before_saved_config(experiment):
+    config, output, root = experiment
+    with RunTracker(output, config["experiment_id"], root=root):
+        text = notify.overview("Asia/Tokyo", root)
+    assert "実行中: 1件" in text
+    assert "progress_test" in text
+    assert "保存設定作成前" in text
+
+
+def test_overview_cli_dry_run_never_delivers(experiment, monkeypatch, capsys):
+    _, _, root = experiment
+    monkeypatch.setattr(notify, "ROOT", root)
+    overview = notify.overview
+    monkeypatch.setattr(notify, "overview", lambda timezone: overview(timezone, root))
+    monkeypatch.setattr(notify, "deliver", lambda *_: pytest.fail("Dry run delivered"))
+    assert notify.main(["--overview", "--transport", "email", "--dry-run"]) == 0
+    assert "保存済みの実験はありません" in capsys.readouterr().out

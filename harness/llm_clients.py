@@ -9,9 +9,12 @@ Provider:
 from __future__ import annotations
 
 import os
+import sys
 import time
 from dataclasses import dataclass
 from typing import Optional
+
+OLLAMA_CONNECTION_RETRY_DELAYS = (5, 10, 20, 30, 30)
 
 
 @dataclass
@@ -23,6 +26,7 @@ class Generation:
     model_id: str = ""
     error: str = ""
     timeout_flag: bool = False
+    connection_retries: int = 0
 
 
 def _is_timeout_error(error: Exception | str) -> bool:
@@ -341,7 +345,8 @@ class OpenAICompatClient:
 
     再現性:
     - ローカルサーバの多くは `seed` を尊重するため、まず seed 付きで要求する。
-      サーバが seed を受け付けない場合は seed なしで一度だけリトライする。
+      seed 非対応を明示した場合だけ seed なしで一度再送する。
+      Ollama の接続障害は同じ seed を維持して待機・再試行する。
     """
 
     def __init__(self, model_id: str, base_url: str, api_key: str, *, ollama: bool = False):
@@ -371,15 +376,36 @@ class OpenAICompatClient:
     def generate(
         self, user_prompt: str, seed: int, temperature: float = 0.7, task=None
     ) -> Generation:
+        from openai import APIConnectionError, APITimeoutError, BadRequestError
+
         t0 = time.time()
+        connection_retries = 0
+        request_seed = seed
+        seed_fallback = False
         try:
-            try:
-                resp = self._create(user_prompt, temperature, seed)
-            except Exception as first_error:
-                if _is_timeout_error(first_error):
+            while True:
+                try:
+                    resp = self._create(user_prompt, temperature, request_seed)
+                    break
+                except APITimeoutError:
+                    # A timed-out request may still be generating on the shared server.
                     raise
-                # seed 非対応サーバ向けに seed を外して 1 回だけリトライ
-                resp = self._create(user_prompt, temperature, None)
+                except APIConnectionError:
+                    if not self.ollama or connection_retries >= len(OLLAMA_CONNECTION_RETRY_DELAYS):
+                        raise
+                    delay = OLLAMA_CONNECTION_RETRY_DELAYS[connection_retries]
+                    connection_retries += 1
+                    print(f"Ollama connection unavailable; retry {connection_retries}/"
+                          f"{len(OLLAMA_CONNECTION_RETRY_DELAYS)} in {delay}s (seed preserved).",
+                          file=sys.stderr, flush=True)
+                    time.sleep(delay)
+                except BadRequestError as exc:
+                    detail = str(exc).lower()
+                    if (seed_fallback or "seed" not in detail or not any(
+                            marker in detail for marker in ("unsupported", "not supported", "unrecognized", "unknown parameter"))):
+                        raise
+                    request_seed = None
+                    seed_fallback = True
             text = resp.choices[0].message.content or ""
             usage = getattr(resp, "usage", None)
             return Generation(
@@ -388,6 +414,7 @@ class OpenAICompatClient:
                 tokens_out=getattr(usage, "completion_tokens", 0) if usage else 0,
                 elapsed_sec=time.time() - t0,
                 model_id=self.model_id,
+                connection_retries=connection_retries,
             )
         except Exception as e:
             return Generation(
@@ -396,6 +423,7 @@ class OpenAICompatClient:
                 model_id=self.model_id,
                 error=f"{type(e).__name__}: {e}",
                 timeout_flag=_is_timeout_error(e),
+                connection_retries=connection_retries,
             )
 
 

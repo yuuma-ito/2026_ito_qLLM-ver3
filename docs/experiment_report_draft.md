@@ -7,7 +7,7 @@
 <!-- auto:status:end -->
 
 <!-- auto:capture:start -->
-集計時点：2026-10-08 11:55:02 JST。数値は最終更新時点の値であり、5分ごとに自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。
+集計時点：2026-10-08 19:30:02 JST。数値は最終更新時点の値であり、5分ごとに自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。
 <!-- auto:capture:end -->
 
 ## 1 目的と比較の観点
@@ -64,7 +64,7 @@ preventive_specは異なる初期プロンプトから独立に生成するた�
 | 同時生成要求 | 1 |
 | pricing | 未設定 |
 
-SDKの自動再送は無効である。ただしクライアント実装では、timeout以外の初回要求エラーに対しseedを外した再要求を1回行う。したがって、全要求でseedが必ず適用されたとは仮定しない。
+SDKの自動再送は無効である。旧本実験ではtimeout以外の初回要求エラーに対しseedを外した再要求を1回行っていた。今回の本実験では、Ollamaの接続障害に対し5・10・20・30・30秒待って最大5回再送し、プロンプト・temperature・seedを維持する。seed非対応を明示された場合だけseedを外して再送する。回復しない接続障害やtimeoutは記録して停止する。再試行回数は各round、回復方針はmanifestに記録する。旧本実験と今回の本実験は接続回復方針が異なるため、結果を別実験として比較する。
 
 ### 2.5 評価指標
 
@@ -125,15 +125,15 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 <!-- auto:full-results:start -->
 ## 4 本実験の記録状況と暫定結果
 
-2026-10-08 11:55:02（日本時間）時点で、予定1,500件のうち545件（36.3%）を記録した。残りは955件である。L2成功は211件、L2失敗は334件、API障害を含む記録は8件であった。重複は0件、予定外記録は0件であった。
+2026-10-08 19:30:02（日本時間）時点で、予定1,500件のうち1,500件（100.0%）を記録した。残りは0件である。L2成功は376件、L2失敗は1124件、API障害を含む記録は746件であった。重複は0件、予定外記録は0件であった。
 
 本実験は未検証のため、以下の数値は暫定結果である。全件の記録とsanity check・API障害確認を終えるまで、最終結果として扱わない。
 
 | モデル | 記録件数 | 予定件数 |
 | --- | --- | --- |
 | qwen3.5:4b | 500 | 500 |
-| gemma4:e4b-it-qat | 45 | 500 |
-| qwen3.5:9b | 0 | 500 |
+| gemma4:e4b-it-qat | 500 | 500 |
+| qwen3.5:9b | 500 | 500 |
 
 ### 条件別のL2とL3成功件数
 
@@ -144,11 +144,16 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 | qwen3.5:4b | execution_feedback | 100 | 57 | 57 | 2 |
 | qwen3.5:4b | self_debugging | 100 | 58 | 58 | 3 |
 | qwen3.5:4b | preventive_spec | 100 | 11 | 11 | 0 |
-| gemma4:e4b-it-qat | baseline | 9 | 9 | 9 | 0 |
-| gemma4:e4b-it-qat | self_refine | 9 | 9 | 9 | 0 |
-| gemma4:e4b-it-qat | execution_feedback | 9 | 9 | 9 | 0 |
-| gemma4:e4b-it-qat | self_debugging | 9 | 9 | 9 | 0 |
-| gemma4:e4b-it-qat | preventive_spec | 9 | 1 | 1 | 0 |
+| gemma4:e4b-it-qat | baseline | 100 | 44 | 44 | 47 |
+| gemma4:e4b-it-qat | self_refine | 100 | 49 | 49 | 47 |
+| gemma4:e4b-it-qat | execution_feedback | 100 | 50 | 50 | 48 |
+| gemma4:e4b-it-qat | self_debugging | 100 | 49 | 49 | 48 |
+| gemma4:e4b-it-qat | preventive_spec | 100 | 10 | 10 | 48 |
+| qwen3.5:9b | baseline | 100 | 0 | 0 | 100 |
+| qwen3.5:9b | self_refine | 100 | 0 | 0 | 100 |
+| qwen3.5:9b | execution_feedback | 100 | 0 | 0 | 100 |
+| qwen3.5:9b | self_debugging | 100 | 0 | 0 | 100 |
+| qwen3.5:9b | preventive_spec | 100 | 0 | 0 | 100 |
 
 未完了のモデル・タスク・条件には件数の偏りがある。途中データからモデル全体の優劣を判断しない。
 
@@ -156,16 +161,16 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 
 | タスク | 記録件数 |
 | --- | --- |
-| T1_Bell | 95 |
-| T2_GHZ | 50 |
-| T3a_DJ_constant | 50 |
-| T3b_DJ_balanced | 50 |
-| T4_BV_011 | 50 |
-| T5_Grover_11 | 50 |
-| T6_QFT_001 | 50 |
-| T7_IQFT_001 | 50 |
-| T8_QPE_001 | 50 |
-| T9_Ansatz_001 | 50 |
+| T1_Bell | 150 |
+| T2_GHZ | 150 |
+| T3a_DJ_constant | 150 |
+| T3b_DJ_balanced | 150 |
+| T4_BV_011 | 150 |
+| T5_Grover_11 | 150 |
+| T6_QFT_001 | 150 |
+| T7_IQFT_001 | 150 |
+| T8_QPE_001 | 150 |
+| T9_Ansatz_001 | 150 |
 
 ### 最終評価の類型別件数
 
@@ -174,10 +179,10 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 | build_error | 50 |
 | import_error | 179 |
 | interface_mismatch | 38 |
-| ok | 211 |
-| syntax | 30 |
-| unknown_error | 7 |
-| wrong_output | 30 |
+| ok | 376 |
+| syntax | 40 |
+| unknown_error | 745 |
+| wrong_output | 72 |
 
 API障害を含む記録件数はround履歴も確認した値であり、最終評価の失敗類型とは別の集計である。API障害がある場合は、元結果を保持し、対応条件をそろえた追試を別実験として報告する。
 <!-- auto:full-results:end -->

@@ -18,7 +18,7 @@ from typing import Any
 
 from harness.evaluator import EvalResult
 from harness.interventions import INTERVENTIONS
-from harness.llm_clients import Generation
+from harness.llm_clients import Generation, OLLAMA_CONNECTION_RETRY_DELAYS
 from harness.runner import InitialAttempt, RunRecord
 from tasks import all_tasks, get_task
 
@@ -178,6 +178,11 @@ def build_manifest(config: dict[str, Any], repo_root: str | Path) -> dict[str, A
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "config_hash": config_hash(config),
         "shared_initial_generation": "shared by correction conditions; preventive_spec generates independently",
+        "transport_recovery": {
+            "ollama_connection_retry_delays_sec": list(OLLAMA_CONNECTION_RETRY_DELAYS),
+            "preserve_seed": True, "retry_timeouts": False,
+            "stop_after_unrecovered_transport_failure": True,
+        },
         "config": normalized_config(config),
         "planned": {
             "records": v["planned_records"],
@@ -255,6 +260,8 @@ def initial_from_baseline_record(rec: dict[str, Any], task) -> InitialAttempt:
     )
     rounds = rec.get("rounds") or []
     r0 = rounds[0] if rounds else {}
+    gen.connection_retries = int(r0.get("connection_retries", 0))
+    gen.error = r0.get("generation_error") or gen.error
     code = r0.get("extracted_code", rec.get("extracted_code", ""))
     if gen.error:
         ev = None

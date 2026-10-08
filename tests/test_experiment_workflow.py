@@ -21,6 +21,51 @@ def config(output="results/test", experiment_id="test"):
             "seeds": [0], "conditions": ["baseline"], "max_rounds": 0, "output_dir": str(output)}
 
 
+def test_transport_failure_stops_after_one_durable_record(tmp_path, monkeypatch):
+    from harness.llm_clients import Generation
+    monkeypatch.setattr(run_experiment, "ROOT", tmp_path)
+    monkeypatch.delenv("QLLM_RUN_TOKEN", raising=False)
+    monkeypatch.setenv("QLLM_EVENT_TRANSPORT", "none")
+    output = tmp_path / "results/test"
+    cfg = dict(config(output), seeds=[0, 1], conditions=["baseline", "self_refine"], max_rounds=1)
+    source = tmp_path / "config.json"
+    source.write_text(json.dumps(cfg))
+    calls = []
+    class Client:
+        model_id = "mock-correct"
+        def generate(self, **kwargs):
+            calls.append(kwargs["seed"])
+            return Generation(raw_text="", error="APIConnectionError: Connection error.", connection_retries=5)
+    monkeypatch.setattr(run_experiment, "make_client", lambda *_: Client())
+    with pytest.raises(RuntimeError, match="experiment stopped"):
+        run_experiment.main(["--config", str(source)])
+    rows = [json.loads(line) for line in (output / "raw.jsonl").read_text().splitlines()]
+    assert calls == [0]
+    assert len(rows) == 1
+    assert rows[0]["condition_id"] == "baseline"
+    assert rows[0]["rounds"][0]["connection_retries"] == 5
+    state = read_state(output, tmp_path)
+    assert state["status"] == "failed"
+    assert state["phase"] == "api_connection_failed"
+    assert state["recorded"] == 1
+    manifest = json.loads((output / "manifest.json").read_text())
+    assert manifest["transport_recovery"]["preserve_seed"]
+
+
+def test_resume_retains_shared_initial_connection_retry_count():
+    from harness.experiment import initial_from_baseline_record
+    from harness.runner import run_one
+    from harness.llm_clients import make_client
+    from tasks import get_task
+    task = get_task("T1_Bell")
+    record = run_one(make_client("mock-correct"), task, 0).to_dict()
+    record["rounds"][0]["connection_retries"] = 2
+    initial = initial_from_baseline_record(record, task)
+    assert initial.generation.connection_retries == 2
+    restored = run_one(make_client("mock-correct"), task, 0, initial=initial).to_dict()
+    assert restored["rounds"][0]["connection_retries"] == 2
+
+
 def test_runtime_tracks_borrowed_progress_and_terminal_status(tmp_path):
     output = tmp_path / "results/test"
     with RunTracker(output, "test", root=tmp_path, heartbeat_interval=.01) as owner:

@@ -2,7 +2,7 @@
 # Keep notifying when the experiment is stopped or completed.
 # This host's system timezone must stay Asia/Tokyo; --timezone only formats messages.
 # Credentials are loaded from the repository .env, never from this crontab.
-0 9,18 * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.notify_progress --config configs/shared_three_models_quick.json --latest --timezone Asia/Tokyo --transport email >> /home/23tc011/2026_ito_qLLM-ver3/logs/slack_progress.log 2>&1
+0 9,18 * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.notify_progress --overview --timezone Asia/Tokyo --transport email >> /home/23tc011/2026_ito_qLLM-ver3/logs/slack_progress.log 2>&1
 # Observe every 5 minutes; report running experiments once per 30-minute slot.
 # Alert once per completion/anomaly event; never stop the experiment automatically.
 */5 * * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.monitor_experiments --transport email --stalled-after 3600 --progress-interval 1800 >> /home/23tc011/2026_ito_qLLM-ver3/logs/experiment_monitor.log 2>&1

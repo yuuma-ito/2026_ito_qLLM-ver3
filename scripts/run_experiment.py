@@ -218,7 +218,8 @@ def _execute(config, v, repo_root, output_root, raw_path, manifest_path,
                         existing_keys.add(record_key(row))
                         n_written += 1
                         tracker.update(recorded=len(existing_keys))
-                        if has_api_failure(row) and not api_notified:
+                        transport_failed = has_api_failure(row, include_unknown=False)
+                        if transport_failed and not api_notified:
                             api_notified = True
                             tracker.update(api_failure_seen=True)
                             emit_event(output_root, "api_failure", os.environ.get("QLLM_EVENT_TRANSPORT", "none"), root=repo_root)
@@ -228,6 +229,10 @@ def _execute(config, v, repo_root, output_root, raw_path, manifest_path,
                             f"{cond.id} L2={int(rec.L2)} first={rec.first_success_round} "
                             f"tokens={rec.total_tokens} {flag}"
                         )
+                        if transport_failed:
+                            tracker.update(phase="api_connection_failed")
+                            raise RuntimeError("API transport failed after recovery attempts; experiment stopped. "
+                                               "Saved records are preserved; prepare a separate retry experiment.")
 
     tracker.update(phase="analyzing")
     report = check_results(config, raw_path)

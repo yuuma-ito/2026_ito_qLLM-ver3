@@ -84,7 +84,7 @@ curl http://127.0.0.1:11435/api/tags
 
 このハーネスは `OLLAMA_BASE_URL` が設定されていればそれを優先し、未設定なら `OLLAMA_HOST` を接続先として使います。どちらも未設定なら既定の `http://127.0.0.1:11434` です。Ollama の REST 確認は `/api/tags`、ハーネスの生成要求は OpenAI 互換の `/v1` endpoint を利用します。
 
-Ollama への生成要求には `reasoning_effort="none"` と `max_tokens=1024` を付けます。API timeout は600秒、SDKの自動再送は無効です。実験は1件ずつ逐次実行します。共用サーバではモデルの pull・rm・stop、`keep_alive=0`、文脈長の拡大を行わないでください。
+Ollama への生成要求には `reasoning_effort="none"` と `max_tokens=1024` を付けます。API timeout は600秒、SDKの自動再送は無効です。Ollamaの接続エラーにはハーネスが5・10・20・30・30秒待って最大5回再送し、プロンプト・temperature・seedを維持します。再試行回数は各roundの `connection_retries`、方針はmanifestの `transport_recovery` に記録します。回復しない接続障害は1件の結果として保存し、その時点で実験を停止します。タイムアウトはサーバ側で処理が続いている可能性があるため自動再送せず、記録して停止します。停止後は元の記録を保持した別実験で追試します。HTTP認証エラーやモデル指定の不備は接続再試行の対象にしません。実験は1件ずつ逐次実行します。共用サーバではモデルの pull・rm・stop、`keep_alive=0`、文脈長の拡大を行わないでください。
 
 共用の推奨モデル `qwen3.5:4b` で20件の動作確認をする場合（上記の接続先設定後）:
 
@@ -112,13 +112,13 @@ Invoke-RestMethod http://127.0.0.1:11435/api/tags
 
 `--new-run` は時刻付きの実験IDと出力先を作り、前回の結果を残して追試します。省略した場合は設定の出力先を使い、保存済みの記録をスキップして再開します。時刻付きの追試を再開する場合は、`--config results/<実験ID>/experiment_config.json` を指定し、`--new-run` を付けずに実行してください。実行計画だけを見るには `--dry-run`、コミット・プッシュを省くには `--no-publish` を付けてください。実行にはセットアップ済みの仮想環境と、origin への Git 認証が必要です。
 
-自動公開は無関係な変更がなく、ステージが空の状態で開始してください（再開対象の集計ファイルの変更は許容します）。起動の重複をロックで防ぎ、テスト・記録の整合性確認・API障害の確認を通過した場合だけ、設定と公開用の集計ファイルを現在のブランチにコミットして origin にプッシュします。生成コードの不正解は通常の実験結果として扱います。生データ・秘密情報・無関係な変更は追加しません。途中で失敗した場合は非ゼロの終了コードを返し、既存の記録を残します。プッシュ拒否時もローカルのコミットを保持し、強制プッシュはしません。
+自動公開は無関係な変更がなく、ステージが空の状態で開始してください（再開対象の集計ファイルの変更は許容します）。5分ごとに更新されるレポート本文とスナップショットは、コミット済みの出典から再計算した内容と一致する変更だけを許容し、完了時のコミットにも含めます。手書きの考察や出典指定の変更は事前にコミットしてください。起動の重複をロックで防ぎ、テスト・記録の整合性確認・API障害の確認を通過した場合だけ、設定と公開用の集計ファイルを現在のブランチにコミットして origin にプッシュします。生成コードの不正解は通常の実験結果として扱います。生データ・秘密情報・無関係な変更は追加しません。途中で失敗した場合は非ゼロの終了コードを返し、既存の記録を残します。プッシュ拒否時もローカルのコミットを保持し、強制プッシュはしません。
 
 ### Slackへの定時進捗通知
 
 実験レポートの[下書き](docs/experiment_report_draft.md)と[集計スナップショット](docs/experiment_report_snapshot.json)は、`configs/slack_progress.cron` のレポート更新行で5分ごとに更新します。手動更新は `.venv/bin/python -m scripts.update_experiment_report` です。対象はスナップショットに指定した実験で、時刻・本実験の件数・モデル別／条件別／タスク別／失敗類型別の表と検証状況を更新します。`<!-- auto:... -->` の範囲外に書いた考察は保持します。完了した簡易実験の結果が変わった場合や、重複・予定外・件数減少を検出した場合は更新を止めます。レポート更新はモデルへの生成要求・通知送信・Git操作を行いません。
 
-このサーバでは毎日 **9時・18時（日本時間）** に、メール経由でSlackbotとのDMへ進捗を送る設定を `configs/slack_progress.cron` に用意しています。実験停止中・完了後も最新の記録を送ります。無料プランに対応し、Slackアプリ・Botトークンは不要です。送信先はSlackの転送先メールアドレスで決まり、チャンネルIDは指定しません。[Slack公式手順](https://slack.com/help/articles/206819278-Send-emails-to-Slack)
+このサーバでは毎日 **9時・18時（日本時間）** に、メール経由でSlackbotとのDMへ進捗を送る設定を `configs/slack_progress.cron` に用意しています。`--overview` で全実験の保存設定と実行状態を読み、実行中の実験を先頭に、未完了・中断・検証失敗・API障害のある実験と直近の完了結果を送ります。実行中の実験がない場合も明記します。即時通知を `--notify none` で無効にした実験もこの定時レポートには含みます。無料プランに対応し、Slackアプリ・Botトークンは不要です。送信先はSlackの転送先メールアドレスで決まり、チャンネルIDは指定しません。[Slack公式手順](https://slack.com/help/articles/206819278-Send-emails-to-Slack)
 
 Slackとメール送信の準備:
 
@@ -143,7 +143,7 @@ Gmailを使う場合は、Googleアカウントの2段階認証を有効にし�
 通知内容を確認:
 
 ```bash
-.venv/bin/python -m scripts.notify_progress --config configs/shared_three_models_quick.json --latest --transport email --dry-run
+.venv/bin/python -m scripts.notify_progress --overview --transport email --dry-run
 ```
 
 `--dry-run` は表示だけで、SMTP接続を行いません。省略すると1回送信します。SMTPサーバが受理したこととSlackへの到着は別なので、初回はSlackbotのDMで到着を確認してください。`--latest` は同じ実験IDまたは時刻付き追試の最新の保存設定を選びます。特定の実験だけを通知する場合はその `experiment_config.json` を指定し、`--latest` を省いてください。通知処理はモデルへの生成要求を行いません。
@@ -151,10 +151,10 @@ Gmailを使う場合は、Googleアカウントの2段階認証を有効にし�
 定時処理のログは `logs/slack_progress.log` に記録します。登録確認は `crontab -l` で行います。既存のcronを保ち、この通知行だけを追加・変更してください。cronはサーバのシステム時刻（現在はAsia/Tokyo）に従い、`--timezone` は通知内の表示時刻の設定です。サーバが停止している間は通知できません。
 
 ```bash
-cd /home/23tc011/2026_ito_qLLM-ver3 && .venv/bin/python -m scripts.notify_progress --config configs/shared_three_models_quick.json --latest --timezone Asia/Tokyo --transport email
+cd /home/23tc011/2026_ito_qLLM-ver3 && .venv/bin/python -m scripts.notify_progress --overview --timezone Asia/Tokyo --transport email
 ```
 
-通知には記録件数・残り件数・L2成功／失敗・API障害等を含む記録件数・重複・最終更新時刻を含めます。生成コードやエラー本文は送信しません。未完了の記録だけでは実行中か中断かを区別できないため、その旨を表示します。記録完了や自動検証成功はプッシュ成功を保証しません。書き込み途中の最終行は読み飛ばし、壊れた確定行や送信失敗では非ゼロで終了します。重複送信を避けるため自動再送は行いません。
+通知には記録件数・残り件数・L2成功／失敗・API障害等を含む記録件数・重複・最終更新時刻を含めます。実行状態がある場合は段階・状態更新時刻・停止時刻も表示し、実行中はモデル・タスク・seed・条件を表示します。生成コードやエラー本文は送信しません。未完了の記録だけでは実行中か中断かを区別できないため、その旨を表示します。記録完了や自動検証成功はプッシュ成功を保証しません。書き込み途中の最終行は読み飛ばし、壊れた確定行や送信失敗では非ゼロで終了します。重複送信を避けるため自動再送は行いません。
 
 Slack API・Incoming Webhook方式も、`--transport slack` で利用可能です。API方式は `--channel` と `SLACK_BOT_TOKEN`、Webhook方式は `SLACK_WEBHOOK_URL` を使います。メール方式ではこれらの設定を参照しません。
 
