@@ -19,7 +19,8 @@
       "generation_tokens_per_second_reported": 8.0,
       "installation_label_reported": "今回",
       "research_role": "中間発表の予備実験モデル",
-      "current_full_included": false
+      "current_full_included": false,
+      "next_full_included": true
     },
     {
       "model": "gemma3:4b",
@@ -28,7 +29,8 @@
       "generation_tokens_per_second_reported": 12.2,
       "installation_label_reported": "今回",
       "research_role": "中間発表の予備実験モデル",
-      "current_full_included": false
+      "current_full_included": false,
+      "next_full_included": true
     },
     {
       "model": "qwen3.5:9b",
@@ -37,7 +39,8 @@
       "generation_tokens_per_second_reported": 6.0,
       "installation_label_reported": "10/4",
       "research_role": "現在の本実験",
-      "current_full_included": true
+      "current_full_included": true,
+      "next_full_included": true
     },
     {
       "model": "qwen3.5:4b",
@@ -46,7 +49,8 @@
       "generation_tokens_per_second_reported": 9.7,
       "installation_label_reported": "10/4",
       "research_role": "現在の本実験",
-      "current_full_included": true
+      "current_full_included": true,
+      "next_full_included": true
     },
     {
       "model": "gemma4:e4b-it-qat",
@@ -55,7 +59,11 @@
       "generation_tokens_per_second_reported": null,
       "installation_label_reported": "10/4",
       "research_role": "現在の本実験",
-      "current_full_included": true
+      "current_full_included": true,
+      "next_full_included": true
     }
-  ]
+  ],
+  "next_full_config": "configs/shared_five_models_full.json",
+  "next_quick_config": "configs/shared_five_models_quick.json",
+  "availability_verification": "sf3_model_inventory_20261008.json"
 }

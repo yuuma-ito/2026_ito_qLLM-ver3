@@ -179,7 +179,7 @@ def _publish(output, experiment_id, branch):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--config", default="configs/shared_three_models_quick.json")
+    parser.add_argument("--config", default="configs/shared_five_models_quick.json")
     parser.add_argument("--new-run", action="store_true", help="Use a fresh timestamped experiment/output directory")
     parser.add_argument("--dry-run", action="store_true", help="Show the plan without network, tests, writes or publication")
     parser.add_argument("--no-publish", action="store_true", help="Run and verify without committing or pushing")

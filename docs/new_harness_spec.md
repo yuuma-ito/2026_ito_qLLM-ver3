@@ -8,9 +8,15 @@
 
 config の `model_spec` では provider prefix の `ollama:` を含む形式を使います。Ollama API に渡す際には prefix を外します。
 
-- `ollama:qwen2.5-coder:3b` → `qwen2.5-coder:3b`
+次回以降はSF3で存在を確認した次の5モデルを対象とします。
+
+- `ollama:qwen3.5:4b` → `qwen3.5:4b`
+- `ollama:gemma4:e4b-it-qat` → `gemma4:e4b-it-qat`
+- `ollama:qwen3.5:9b` → `qwen3.5:9b`
 - `ollama:qwen2.5-coder:7b` → `qwen2.5-coder:7b`
-- `ollama:qwen2.5-coder:14b` → `qwen2.5-coder:14b`
+- `ollama:gemma3:4b` → `gemma3:4b`
+
+動作確認は `configs/shared_five_models_quick.json` の100件、本実験は `configs/shared_five_models_full.json` の2,500件です。稼働中の3モデル実験は保存済みの3モデル設定で完了・再検証し、新しい実験は `--new-run` で結果を分けます。SF3の確認記録は [モデル取得記録](sf3_model_inventory_20261008.json) に保存しています。
 
 既存の T1〜T9 を使用します。T3 は T3a と T3b に分かれるため、合計10タスクです。
 

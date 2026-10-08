@@ -15,7 +15,7 @@
 
 Git の投稿者情報が未設定の場合、今回の作業ではこのリポジトリの既存の投稿者情報（yuuma-ito / 23tc011@tc.nanzan-u.ac.jp）をコミット単位で使用できる。グローバル設定は変更しない。
 
-1コマンドで自動実行する場合は `python -m scripts.automate_experiment --config configs/shared_three_models_quick.json` を使う。使用モデルは `qwen3.5:4b`、`gemma4:e4b-it-qat`、`qwen3.5:9b`。新しい追試には `--new-run` を付ける。通常の `scripts.run_experiment` は Git 操作を行わず、自動化用のラッパーが検証後のコミット・プッシュを担当する。
+1コマンドで自動実行する場合は `python -m scripts.automate_experiment --config configs/shared_five_models_quick.json` を使う。次回以降の使用モデルは `qwen3.5:4b`、`gemma4:e4b-it-qat`、`qwen3.5:9b`、`qwen2.5-coder:7b`、`gemma3:4b`。本実験は `configs/shared_five_models_full.json`（2,500件）を使う。起動済みの3モデル実験は、その実験の保存設定で完了・再検証する。新しい追試には `--new-run` を付ける。通常の `scripts.run_experiment` は Git 操作を行わず、自動化用のラッパーが検証後のコミット・プッシュを担当する。
 
 # 実験レポートの継続更新
 
