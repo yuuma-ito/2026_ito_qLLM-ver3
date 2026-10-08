@@ -113,3 +113,61 @@ def test_publication_excludes_raw_and_pushes_to_local_remote(tmp_path, monkeypat
     # Existing reports may be updated by a resumed experiment.
     (output / "automation_report.json").write_text('{"resumed": true}\n')
     assert automation.require_clean_checkout(output) == "main"
+
+
+def test_finalizer_waits_for_original_process(completed, monkeypatch, tmp_path):
+    from scripts import finalize_completed_experiment as finalizer
+    config, output, _ = completed
+    monkeypatch.setattr(finalizer, 'read_state', lambda *args: dict(experiment_id=config['experiment_id'], pid=123, process_identity='original'))
+    monkeypatch.setattr(finalizer, 'process_identity', lambda pid: 'original')
+    assert finalizer.completion_gate(config, output, tmp_path)[0] == 'waiting'
+
+
+def test_finalizer_only_accepts_complete_healthy_records(completed, monkeypatch, tmp_path):
+    from scripts import finalize_completed_experiment as finalizer
+    config, original, _ = completed
+    output = tmp_path / 'output'
+    shutil.copytree(original, output)
+    monkeypatch.setattr(finalizer, 'read_state', lambda *args: dict(experiment_id=config['experiment_id'], pid=123, process_identity='original'))
+    monkeypatch.setattr(finalizer, 'process_identity', lambda pid: None)
+    assert finalizer.completion_gate(config, output, tmp_path)[0] == 'ready'
+    path = output / 'raw.jsonl'
+    rows = [json.loads(line) for line in path.read_text().splitlines()]
+    rows[0]['rounds'][0]['generation_error'] = 'Connection refused'
+    path.write_text(''.join(json.dumps(row) + '\n' for row in rows))
+    assert finalizer.completion_gate(config, output, tmp_path)[0] == 'blocked'
+    rows.pop()
+    path.write_text(''.join(json.dumps(row) + '\n' for row in rows))
+    assert finalizer.completion_gate(config, output, tmp_path)[0] == 'blocked'
+
+
+def test_finalizer_waits_for_child_holding_lock(completed, monkeypatch, tmp_path):
+    from scripts import finalize_completed_experiment as finalizer
+    config, output, _ = completed
+    monkeypatch.setattr(finalizer, 'read_state', lambda *args: dict(experiment_id=config['experiment_id'], pid=123, process_identity='original'))
+    monkeypatch.setattr(finalizer, 'process_identity', lambda pid: None)
+    with automation.experiment_lock(tmp_path):
+        assert finalizer.completion_gate(config, output, tmp_path)[0] == 'waiting'
+
+
+def test_finalizer_invokes_saved_resume_without_new_run(tmp_path, monkeypatch):
+    from scripts import finalize_completed_experiment as finalizer
+    output = tmp_path / 'results/existing'
+    output.mkdir(parents=True)
+    source = output / 'experiment_config.json'
+    source.write_text(json.dumps({'experiment_id': 'existing'}))
+    monkeypatch.setattr(finalizer, 'ROOT', tmp_path)
+    monkeypatch.setattr(finalizer, 'output_path', lambda config: output)
+    monkeypatch.setattr(finalizer, 'completion_gate', lambda *args: ('ready', 'checked'))
+    commands = []
+    def run(command, **kwargs):
+        commands.append(command)
+        return SimpleNamespace(returncode=0)
+    monkeypatch.setattr(finalizer.subprocess, 'run', run)
+    assert finalizer.main(['--config', str(source)]) == 0
+    assert len(commands) == 1
+    assert commands[0][commands[0].index('--config') + 1] == str(source)
+    assert '--new-run' not in commands[0]
+    assert commands[0][-2:] == ['--notify', 'none']
+    status = json.loads(next((tmp_path / '.cache/finalizers').glob('*.json')).read_text())
+    assert status['status'] == 'completed'
