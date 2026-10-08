@@ -1,6 +1,6 @@
 {
-  "captured_at": "2026-10-08T19:30:02.020224+09:00",
-  "scope": "Two completed quick runs and the ongoing full run; no generated code or API error messages included.",
+  "captured_at": "2026-10-08T19:35:03.020940+09:00",
+  "scope": "Two completed quick runs, the preserved failed full run, and the new full run with connection recovery; ongoing results are provisional.",
   "runs": [
     {
       "experiment_id": "shared_three_models_full_20261007T145103982885Z",
@@ -583,6 +583,101 @@
           "api_failure_records": 0
         }
       ]
+    },
+    {
+      "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "recorded": 3,
+      "config": {
+        "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+        "models": [
+          "ollama:qwen3.5:4b",
+          "ollama:gemma4:e4b-it-qat",
+          "ollama:qwen3.5:9b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 0,
+          "stop": 10
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256_at_capture": "6ffb9aaf6df544e38887d329c331e211b6f2a6ee03a3c28fc37b691e0a07d438",
+      "raw_bytes_at_capture": 12789,
+      "last_record_at": "2026-10-08T19:33:59.854791+09:00",
+      "planned": 1500,
+      "L2_success": 2,
+      "L2_failure": 1,
+      "api_failure_records": 0,
+      "duplicates": 0,
+      "unexpected": 0,
+      "missing": 1497,
+      "pending_write": false,
+      "automation_verified": false,
+      "records_by_model": {
+        "ollama:qwen3.5:4b": 3
+      },
+      "records_by_task": {
+        "T1_Bell": 3
+      },
+      "final_error_counts": {
+        "import_error": 1,
+        "ok": 2
+      },
+      "conditions": [
+        {
+          "model": "ollama:qwen3.5:4b",
+          "condition": "baseline",
+          "n": 1,
+          "L2_success": 0,
+          "L3_success": 0,
+          "api_failure_records": 0
+        },
+        {
+          "model": "ollama:qwen3.5:4b",
+          "condition": "self_refine",
+          "n": 1,
+          "L2_success": 1,
+          "L3_success": 1,
+          "api_failure_records": 0
+        },
+        {
+          "model": "ollama:qwen3.5:4b",
+          "condition": "execution_feedback",
+          "n": 1,
+          "L2_success": 1,
+          "L3_success": 1,
+          "api_failure_records": 0
+        }
+      ]
     }
-  ]
+  ],
+  "primary_full_experiment_id": "shared_three_models_full_20261008T103231611899Z"
 }
