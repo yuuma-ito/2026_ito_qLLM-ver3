@@ -7,7 +7,7 @@
 <!-- auto:status:end -->
 
 <!-- auto:capture:start -->
-集計時点：2026-10-08 11:50:40 JST。数値は最終更新時点の値であり、5分ごとに自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。
+集計時点：2026-10-08 11:55:02 JST。数値は最終更新時点の値であり、5分ごとに自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。
 <!-- auto:capture:end -->
 
 ## 1 目的と比較の観点
@@ -125,14 +125,14 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 <!-- auto:full-results:start -->
 ## 4 本実験の記録状況と暫定結果
 
-2026-10-08 11:50:40（日本時間）時点で、予定1,500件のうち524件（34.9%）を記録した。残りは976件である。L2成功は194件、L2失敗は330件、API障害を含む記録は8件であった。重複は0件、予定外記録は0件であった。
+2026-10-08 11:55:02（日本時間）時点で、予定1,500件のうち545件（36.3%）を記録した。残りは955件である。L2成功は211件、L2失敗は334件、API障害を含む記録は8件であった。重複は0件、予定外記録は0件であった。
 
 本実験は未検証のため、以下の数値は暫定結果である。全件の記録とsanity check・API障害確認を終えるまで、最終結果として扱わない。
 
 | モデル | 記録件数 | 予定件数 |
 | --- | --- | --- |
 | qwen3.5:4b | 500 | 500 |
-| gemma4:e4b-it-qat | 24 | 500 |
+| gemma4:e4b-it-qat | 45 | 500 |
 | qwen3.5:9b | 0 | 500 |
 
 ### 条件別のL2とL3成功件数
@@ -144,11 +144,11 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 | qwen3.5:4b | execution_feedback | 100 | 57 | 57 | 2 |
 | qwen3.5:4b | self_debugging | 100 | 58 | 58 | 3 |
 | qwen3.5:4b | preventive_spec | 100 | 11 | 11 | 0 |
-| gemma4:e4b-it-qat | baseline | 5 | 5 | 5 | 0 |
-| gemma4:e4b-it-qat | self_refine | 5 | 5 | 5 | 0 |
-| gemma4:e4b-it-qat | execution_feedback | 5 | 5 | 5 | 0 |
-| gemma4:e4b-it-qat | self_debugging | 5 | 5 | 5 | 0 |
-| gemma4:e4b-it-qat | preventive_spec | 4 | 0 | 0 | 0 |
+| gemma4:e4b-it-qat | baseline | 9 | 9 | 9 | 0 |
+| gemma4:e4b-it-qat | self_refine | 9 | 9 | 9 | 0 |
+| gemma4:e4b-it-qat | execution_feedback | 9 | 9 | 9 | 0 |
+| gemma4:e4b-it-qat | self_debugging | 9 | 9 | 9 | 0 |
+| gemma4:e4b-it-qat | preventive_spec | 9 | 1 | 1 | 0 |
 
 未完了のモデル・タスク・条件には件数の偏りがある。途中データからモデル全体の優劣を判断しない。
 
@@ -156,7 +156,7 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 
 | タスク | 記録件数 |
 | --- | --- |
-| T1_Bell | 74 |
+| T1_Bell | 95 |
 | T2_GHZ | 50 |
 | T3a_DJ_constant | 50 |
 | T3b_DJ_balanced | 50 |
@@ -174,10 +174,10 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 | build_error | 50 |
 | import_error | 179 |
 | interface_mismatch | 38 |
-| ok | 194 |
+| ok | 211 |
 | syntax | 30 |
 | unknown_error | 7 |
-| wrong_output | 26 |
+| wrong_output | 30 |
 
 API障害を含む記録件数はround履歴も確認した値であり、最終評価の失敗類型とは別の集計である。API障害がある場合は、元結果を保持し、対応条件をそろえた追試を別実験として報告する。
 <!-- auto:full-results:end -->

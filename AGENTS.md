@@ -16,3 +16,7 @@
 Git の投稿者情報が未設定の場合、今回の作業ではこのリポジトリの既存の投稿者情報（yuuma-ito / 23tc011@tc.nanzan-u.ac.jp）をコミット単位で使用できる。グローバル設定は変更しない。
 
 1コマンドで自動実行する場合は `python -m scripts.automate_experiment --config configs/shared_three_models_quick.json` を使う。使用モデルは `qwen3.5:4b`、`gemma4:e4b-it-qat`、`qwen3.5:9b`。新しい追試には `--new-run` を付ける。通常の `scripts.run_experiment` は Git 操作を行わず、自動化用のラッパーが検証後のコミット・プッシュを担当する。
+
+# 実験レポートの継続更新
+
+`docs/experiment_report_draft.md` と `docs/experiment_report_snapshot.json` は実験の進行に合わせて更新する。`python -m scripts.update_experiment_report` は5分ごとのcronで、指定済みの実験から件数・結果表・検証状況を更新する。手書きの考察は `<!-- auto:... -->` の範囲外に記載して保持する。新しい本実験や追試をレポートに追加する場合は、保存設定と出典を追加し、対応する本文・比較対象も見直す。未完了・API障害あり・未検証の結果は暫定と明記し、自動集計だけで考察や結論を確定しない。

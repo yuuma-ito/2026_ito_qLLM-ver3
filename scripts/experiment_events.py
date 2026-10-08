@@ -9,17 +9,21 @@ from dotenv import load_dotenv
 from harness.run_state import ROOT, atomic_json, file_lock, read_state
 
 LABELS = {"completed": "実験完了", "failed": "実験失敗", "interrupted": "実験中断",
+          "running": "実験進行中",
           "api_failure": "API障害を記録", "publish_failed": "コミット・プッシュ失敗",
           "stalled": "長時間進捗なし", "heartbeat_stale": "状態更新の停滞"}
 
 
-def emit_event(output: Path, event: str, transport: str, *, root: Path = ROOT):
+def emit_event(output: Path, event: str, transport: str, *, root: Path = ROOT, occurrence=None):
     if transport == "none":
         return True
     state = read_state(output, root)
     if not state:
         return False
-    key = hashlib.sha256((state["token"] + ":" + event).encode()).hexdigest()
+    identity = state["token"] + ":" + event
+    if occurrence is not None:
+        identity += ":" + str(occurrence)
+    key = hashlib.sha256(identity.encode()).hexdigest()
     path = root / ".cache" / "notification_events" / (key + ".json")
     with file_lock(path.with_suffix(".lock")):
         if path.exists():

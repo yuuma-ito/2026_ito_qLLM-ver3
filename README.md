@@ -116,6 +116,8 @@ Invoke-RestMethod http://127.0.0.1:11435/api/tags
 
 ### Slackへの定時進捗通知
 
+実験レポートの[下書き](docs/experiment_report_draft.md)と[集計スナップショット](docs/experiment_report_snapshot.json)は、`configs/slack_progress.cron` のレポート更新行で5分ごとに更新します。手動更新は `.venv/bin/python -m scripts.update_experiment_report` です。対象はスナップショットに指定した実験で、時刻・本実験の件数・モデル別／条件別／タスク別／失敗類型別の表と検証状況を更新します。`<!-- auto:... -->` の範囲外に書いた考察は保持します。完了した簡易実験の結果が変わった場合や、重複・予定外・件数減少を検出した場合は更新を止めます。レポート更新はモデルへの生成要求・通知送信・Git操作を行いません。
+
 このサーバでは毎日 **9時・18時（日本時間）** に、メール経由でSlackbotとのDMへ進捗を送る設定を `configs/slack_progress.cron` に用意しています。実験停止中・完了後も最新の記録を送ります。無料プランに対応し、Slackアプリ・Botトークンは不要です。送信先はSlackの転送先メールアドレスで決まり、チャンネルIDは指定しません。[Slack公式手順](https://slack.com/help/articles/206819278-Send-emails-to-Slack)
 
 Slackとメール送信の準備:
@@ -176,7 +178,7 @@ Slack API・Incoming Webhook方式も、`--transport slack` で利用可能で�
 .venv/bin/python -m scripts.monitor_experiments --transport email --stalled-after 3600
 ```
 
-`configs/slack_progress.cron` には9時・18時の進捗通知に加え、5分ごとの監視を含めます。プロセス消失・45秒以上のハートビート停滞・1時間以上の進捗停止を判定し、異常を通知します。モデル応答が遅い場合もあるため、監視はプロセスを強制終了しません。`--stalled-after` で進捗停止の判定秒数を変更できます。
+`configs/slack_progress.cron` には9時・18時の進捗通知に加え、5分ごとの監視を含めます。監視では完了・異常だけでなく、通知が有効なすべての実行中の実験について、現在の段階・記録件数・残り件数を30分ごとに報告します（保存設定がまだない開始直後は実験IDと段階を報告）。同じ30分枠内の通知は実験ごとに1回で、記録件数が増えていなくても次の枠で報告します。`--progress-interval` で報告間隔の秒数を変更できます。プロセス消失・45秒以上のハートビート停滞・1時間以上の進捗停止を判定し、異常を通知します。モデル応答が遅い場合もあるため、監視はプロセスを強制終了しません。`--stalled-after` で進捗停止の判定秒数を変更できます。
 
 `automate_experiment` は完了・API障害・実行失敗・コミット／プッシュ失敗をメールで即時通知します。API障害の速報は最初の該当記録が書かれた時点で送ります。`--notify none` で即時通知とその実験の監視通知を無効にでき、`--notify slack` でSlack API／Webhook方式を指定できます。通常の `run_experiment` は状態を記録しますが、単体では即時通知を有効にしません。
 

@@ -94,6 +94,56 @@ def test_notification_failure_does_not_fail_run_or_repeat(tmp_path, monkeypatch)
     assert "private SMTP details" not in ledgers[0].read_text()
 
 
+def test_monitor_reports_all_running_experiments_once_per_interval(tmp_path, monkeypatch):
+    sent = []
+    monkeypatch.setattr(notify_progress, "deliver", lambda *args: sent.append(args))
+    # Freeze the monitor's clock without changing runtime heartbeat/observation clocks.
+    from types import SimpleNamespace
+    now = [time.time()]
+    monkeypatch.setattr(monitor_experiments, "time", SimpleNamespace(time=lambda: now[0]))
+    first = tmp_path / "results/first"
+    second = tmp_path / "results/second"
+    for output in (first, second):
+        output.mkdir(parents=True)
+        cfg = config(output.relative_to(tmp_path), output.name)
+        (output / "experiment_config.json").write_text(json.dumps(cfg))
+    with RunTracker(first, "first", root=tmp_path) as a, RunTracker(second, "second", root=tmp_path) as b:
+        a.update(phase="generating", notification_transport="email")
+        b.update(phase="verifying", notification_transport="email")
+        assert len(monitor_experiments.inspect_runs(tmp_path, dry_run=True)) == 2
+        assert not sent
+        for _ in range(2):
+            assert all(report["status"] == "running" for report in monitor_experiments.inspect_runs(tmp_path))
+        assert len(sent) == 2
+        assert {args[1] for args in sent} == {"first", "second"}
+        for text, _, transport in sent:
+            assert "実験進行中" in text
+            assert "実行中（" in text
+            assert "記録: 0/1" in text
+            assert "残り 1件" in text
+            assert transport == "email"
+        now[0] += 1800
+        monitor_experiments.inspect_runs(tmp_path)
+        assert len(sent) == 4
+        a.finish(phase="completed")
+        b.finish(phase="completed")
+        for _ in range(2):
+            monitor_experiments.inspect_runs(tmp_path)
+        assert len(sent) == 6
+        assert all("実験完了" in args[0] for args in sent[-2:])
+
+
+def test_monitor_respects_disabled_notifications_and_validates_interval(tmp_path, monkeypatch):
+    monkeypatch.setattr(notify_progress, "deliver", lambda *_: pytest.fail("Disabled notification sent"))
+    with RunTracker(tmp_path / "results/test", "test", root=tmp_path):
+        assert monitor_experiments.inspect_runs(tmp_path)[0]["status"] == "running"
+    with pytest.raises(ValueError, match="progress_interval"):
+        monitor_experiments.inspect_runs(tmp_path, progress_interval=0)
+    with pytest.raises(SystemExit) as caught:
+        monitor_experiments.main(["--progress-interval", "0"])
+    assert caught.value.code == 2
+
+
 def test_sparse_api_retry_preserves_original_and_shared_condition_sets(tmp_path, monkeypatch):
     original = dict(config(), models=["mock-correct", "mock-wrong"], tasks=["T1_Bell", "T3a_DJ_constant"],
                     seeds=[0, 1], conditions=["baseline", "self_refine"], max_rounds=1)
