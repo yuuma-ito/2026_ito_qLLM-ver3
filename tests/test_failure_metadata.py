@@ -91,3 +91,39 @@ def test_legacy_interface_error_does_not_block_as_api_failure():
     assert not has_api_failure(row)
     row['rounds'] = [dict(generation_error='Connection refused')]
     assert has_api_failure(row)
+
+
+def test_counts_without_measurement_is_exec_interface_mismatch():
+    code = TASK.mock_correct_code + '''
+from qiskit_aer import AerSimulator
+qc = build_circuit()
+qc.remove_final_measurements(inplace=True)
+result = AerSimulator().run(qc, shots=16).result()
+counts = result.get_counts()
+'''
+    result = evaluate(code, TASK)
+    assert (result.failure_stage, result.error_category, result.exception_type) == ('exec', 'interface_mismatch', 'QiskitError')
+    assert 'No counts for experiment' in result.error_message
+    assert evaluate(TASK.mock_correct_code, TASK).L3
+    legacy = normalize_record(dict(L0=False, error_category='unknown_error', error_message=result.error_message, rounds=[]))
+    assert legacy['failure_stage'] == 'exec'
+    assert legacy['error_category'] == 'interface_mismatch'
+
+
+def test_other_qiskit_error_remains_unknown():
+    result = evaluate("from qiskit.exceptions import QiskitError\nraise QiskitError('unclassified failure')", TASK)
+    assert result.failure_stage == 'exec'
+    assert result.error_category == 'unknown_error'
+
+
+def test_no_counts_inside_build_remains_build_error():
+    code = '''
+from qiskit import QuantumCircuit
+from qiskit_aer import AerSimulator
+def build_circuit():
+    qc = QuantumCircuit(2)
+    AerSimulator().run(qc, shots=16).result().get_counts()
+    return qc
+'''
+    result = evaluate(code, TASK)
+    assert (result.failure_stage, result.error_category, result.exception_type) == ('build', 'build_error', 'QiskitError')

@@ -8,6 +8,7 @@ from typing import Any, Optional
 
 import numpy as np
 
+from harness.failure_metadata import missing_counts_result
 from tasks import Task
 
 
@@ -64,7 +65,7 @@ def _exec_code(code: str, res: EvalResult) -> tuple[bool, dict, str, str]:
             res.failure_stage = "build"
             cat = "build_error"
         else:
-            cat = "interface_mismatch" if isinstance(e, AttributeError) else "unknown_error"
+            cat = "interface_mismatch" if isinstance(e, AttributeError) or missing_counts_result(type(e).__name__, str(e)) else "unknown_error"
         return False, ns, cat, f"{type(e).__name__}: {e}"
     if "build_circuit" not in ns or not callable(ns["build_circuit"]):
         return False, ns, "interface_mismatch", "build_circuit() is missing or not callable"

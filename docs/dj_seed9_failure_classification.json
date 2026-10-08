@@ -1,0 +1,128 @@
+{
+  "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+  "model_spec": "ollama:qwen3.5:4b",
+  "task_id": "T3a_DJ_constant",
+  "base_seed": 9,
+  "failure_stage": "exec",
+  "error_category": "interface_mismatch",
+  "exception_type": "QiskitError",
+  "finding": "Baseline code calls Result.get_counts() on a simulator result with no measurements or saved statevector.",
+  "intervention_candidate": "Return build_circuit() without top-level simulation; let the harness add readout to an evaluation copy. If independently simulating, create the required measurement data before get_counts().",
+  "intervention_effect": "Not tested in an LLM rerun. Local regression tests verify the failure and canonical circuit evaluation.",
+  "classification_scope": "Exact QiskitError No counts for experiment message at exec only; exceptions inside build remain build_error.",
+  "qiskit_source": "qiskit/result/result.py:Result.get_counts",
+  "cases": [
+    {
+      "condition_id": "baseline",
+      "source_record_sha256": "115603b1c04620566437c727e930a538bca5bf46f591d5f7d74abf0b7d317661",
+      "rounds": [
+        {
+          "round": 0,
+          "failure_stage": "exec",
+          "error_category": "interface_mismatch",
+          "exception_type": "QiskitError",
+          "error_message": "QiskitError: 'No counts for experiment \"0\"'",
+          "original_error_category": "unknown_error"
+        }
+      ]
+    },
+    {
+      "condition_id": "self_refine",
+      "source_record_sha256": "4cea5aa580833fc6025838818105d7e293a8c1fcc54fd7b2026eff45413ef73d",
+      "rounds": [
+        {
+          "round": 0,
+          "failure_stage": "exec",
+          "error_category": "interface_mismatch",
+          "exception_type": "QiskitError",
+          "error_message": "QiskitError: 'No counts for experiment \"0\"'",
+          "original_error_category": "unknown_error"
+        },
+        {
+          "round": 1,
+          "failure_stage": "exec",
+          "error_category": "interface_mismatch",
+          "exception_type": "QiskitError",
+          "error_message": "QiskitError: 'No counts for experiment \"0\"'",
+          "original_error_category": "unknown_error"
+        },
+        {
+          "round": 2,
+          "failure_stage": "exec",
+          "error_category": "interface_mismatch",
+          "exception_type": "QiskitError",
+          "error_message": "QiskitError: 'No counts for experiment \"0\"'",
+          "original_error_category": "unknown_error"
+        },
+        {
+          "round": 3,
+          "failure_stage": "exec",
+          "error_category": "interface_mismatch",
+          "exception_type": "QiskitError",
+          "error_message": "QiskitError: 'No counts for experiment \"0\"'",
+          "original_error_category": "unknown_error"
+        }
+      ]
+    },
+    {
+      "condition_id": "execution_feedback",
+      "source_record_sha256": "e21b286f3ce5ab01786d8b6377fee3540829a96c8b171f030a2c22cbf396991d",
+      "rounds": [
+        {
+          "round": 0,
+          "failure_stage": "exec",
+          "error_category": "interface_mismatch",
+          "exception_type": "QiskitError",
+          "error_message": "QiskitError: 'No counts for experiment \"0\"'",
+          "original_error_category": "unknown_error"
+        },
+        {
+          "round": 1,
+          "failure_stage": "exec",
+          "error_category": "interface_mismatch",
+          "exception_type": "QiskitError",
+          "error_message": "QiskitError: 'No counts for experiment \"0\"'",
+          "original_error_category": "unknown_error"
+        },
+        {
+          "round": 2,
+          "failure_stage": "exec",
+          "error_category": "interface_mismatch",
+          "exception_type": "QiskitError",
+          "error_message": "QiskitError: 'No counts for experiment \"0\"'",
+          "original_error_category": "unknown_error"
+        },
+        {
+          "round": 3,
+          "failure_stage": "exec",
+          "error_category": "interface_mismatch",
+          "exception_type": "QiskitError",
+          "error_message": "QiskitError: 'No counts for experiment \"0\"'",
+          "original_error_category": "unknown_error"
+        }
+      ]
+    },
+    {
+      "condition_id": "self_debugging",
+      "source_record_sha256": "b36913f28b47366f6bc9a23dd7477402d43bf45babe361eafee29deb5d775083",
+      "rounds": [
+        {
+          "round": 0,
+          "failure_stage": "exec",
+          "error_category": "interface_mismatch",
+          "exception_type": "QiskitError",
+          "error_message": "QiskitError: 'No counts for experiment \"0\"'",
+          "original_error_category": "unknown_error"
+        },
+        {
+          "round": 1,
+          "failure_stage": "exec",
+          "error_category": "interface_mismatch",
+          "exception_type": "QiskitError",
+          "error_message": "QiskitError: 'No counts for experiment \"0\"'",
+          "original_error_category": "unknown_error"
+        }
+      ]
+    }
+  ]
+}

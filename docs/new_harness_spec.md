@@ -205,3 +205,5 @@ Full config:
 既存の原因別分析は `error_category` を使用します。追加の `failure_stage_summary.csv` は最終recordの失敗だけをモデル・条件・段階・原因・例外型別に数えます（roundは重複加算しません）。
 
 スキーマ2.1から新規生成記録にこれらのフィールドを保存します。旧JSONLは書き換えず、読み込み時に保存済みの原因・例外メッセージ・L0/L1情報から保守的に補います。補った記録には `failure_metadata_source = legacy_inference_v1` を付け、原因を変更した場合は `original_error_category` も保持します。保存情報で特定できない段階・例外型は `unknown`・空文字です。評価結果・生成コード・seedは変更せず、再生成・再評価は行いません。稼働中の旧プロセスは旧形式の保存を続けますが、レポート・通知・集計・再検証は補完後の分類を使用します。
+
+`exec` 段階の `QiskitError: No counts for experiment ...` は、countsも保存した状態ベクトルもないResultに `get_counts()` を呼んだインターフェース誤用として `interface_mismatch` に分類します。他のQiskitErrorを一律にこの分類へ移しません。`build_circuit()` 内で同じ例外が生じた場合は `build / build_error` です。DJ constant seed 9 の観測例と介入候補は [分類確認記録](dj_seed9_failure_classification.json) に保存しました。LLMへの介入効果は未検証です。

@@ -333,3 +333,5 @@ python -m scripts.analyze_interventions results/quick_debug/raw.jsonl
 夜間も動かす場合はこのコマンドをtmux等の独立セッションで実行します。60秒ごとに確認し、待機上限は既定で7日です。状態は `.cache/finalizers/`、標準出力は起動時に指定したログへ保存できます。
 
 保存済みの同じ実験設定を使い、全件記録・重複なし・sanity check成功・API障害なしを確認してから既存自動化ラッパーをresumeします。全条件が記録済みなので追加生成は行わず、現在の分類で集計を再生成し、テスト・検証後に関連成果物をコミット／プッシュします。未完了・API障害・未分類エラーがある場合は待機終了後に停止し、欠けた生成を自動で補いません。通知は既存cronに任せ、待機処理から新たなメールは送信しません。
+
+`exec` 段階の `QiskitError: No counts for experiment ...` は、countsも保存した状態ベクトルもないResultに `get_counts()` を呼んだインターフェース誤用として `interface_mismatch` に分類します。他のQiskitErrorを一律にこの分類へ移しません。`build_circuit()` 内で同じ例外が生じた場合は `build / build_error` です。DJ constant seed 9 の観測例と介入候補は [分類確認記録](docs/dj_seed9_failure_classification.json) に保存しました。LLMへの介入効果は未検証です。

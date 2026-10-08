@@ -7,7 +7,7 @@
 <!-- auto:status:end -->
 
 <!-- auto:capture:start -->
-集計時点：2026-10-08 21:10:02 JST。数値は最終更新時点の値であり、5分ごとに自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。
+集計時点：2026-10-08 21:58:27 JST。数値は最終更新時点の値であり、5分ごとに自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。
 <!-- auto:capture:end -->
 
 ## 1 目的と比較の観点
@@ -127,13 +127,13 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 <!-- auto:full-results:start -->
 ## 4 本実験の記録状況と暫定結果
 
-2026-10-08 21:10:02（日本時間）時点で、予定1,500件のうち132件（8.8%）を記録した。残りは1,368件である。L2成功は59件、L2失敗は73件、API障害を含む記録は0件であった。重複は0件、予定外記録は0件であった。
+2026-10-08 21:58:27（日本時間）時点で、予定1,500件のうち168件（11.2%）を記録した。残りは1,332件である。L2成功は70件、L2失敗は98件、API障害を含む記録は0件であった。重複は0件、予定外記録は0件であった。
 
 本実験は未検証のため、以下の数値は暫定結果である。全件の記録とsanity check・API障害確認を終えるまで、最終結果として扱わない。
 
 | モデル | 記録件数 | 予定件数 |
 | --- | --- | --- |
-| qwen3.5:4b | 132 | 500 |
+| qwen3.5:4b | 168 | 500 |
 | gemma4:e4b-it-qat | 0 | 500 |
 | qwen3.5:9b | 0 | 500 |
 
@@ -141,11 +141,11 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 
 | モデル | 条件 | 記録件数 | L2成功 | L3成功 | API障害を含む記録 |
 | --- | --- | --- | --- | --- | --- |
-| qwen3.5:4b | baseline | 27 | 3 | 3 | 0 |
-| qwen3.5:4b | self_refine | 27 | 13 | 13 | 0 |
-| qwen3.5:4b | execution_feedback | 26 | 19 | 19 | 0 |
-| qwen3.5:4b | self_debugging | 26 | 22 | 22 | 0 |
-| qwen3.5:4b | preventive_spec | 26 | 2 | 2 | 0 |
+| qwen3.5:4b | baseline | 34 | 4 | 4 | 0 |
+| qwen3.5:4b | self_refine | 34 | 14 | 14 | 0 |
+| qwen3.5:4b | execution_feedback | 34 | 23 | 23 | 0 |
+| qwen3.5:4b | self_debugging | 33 | 27 | 27 | 0 |
+| qwen3.5:4b | preventive_spec | 33 | 2 | 2 | 0 |
 
 未完了のモデル・タスク・条件には件数の偏りがある。途中データからモデル全体の優劣を判断しない。
 
@@ -155,8 +155,8 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 | --- | --- |
 | T1_Bell | 50 |
 | T2_GHZ | 50 |
-| T3a_DJ_constant | 32 |
-| T3b_DJ_balanced | 0 |
+| T3a_DJ_constant | 50 |
+| T3b_DJ_balanced | 18 |
 | T4_BV_011 | 0 |
 | T5_Grover_11 | 0 |
 | T6_QFT_001 | 0 |
@@ -168,12 +168,12 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 
 | 類型 | 件数 |
 | --- | --- |
-| build_error | 6 |
-| import_error | 62 |
-| interface_mismatch | 1 |
-| ok | 59 |
-| syntax | 1 |
-| wrong_output | 3 |
+| build_error | 12 |
+| import_error | 74 |
+| interface_mismatch | 4 |
+| ok | 70 |
+| syntax | 3 |
+| wrong_output | 5 |
 
 API障害を含む記録件数はround履歴も確認した値であり、最終評価の失敗類型とは別の集計である。API障害がある場合は、元結果を保持し、対応条件をそろえた追試を別実験として報告する。
 <!-- auto:full-results:end -->

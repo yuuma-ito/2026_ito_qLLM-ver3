@@ -11,6 +11,12 @@ def exception_name(message: str) -> str:
     return match.group(1) if match else ""
 
 
+def missing_counts_result(exception_type: str, message: str) -> bool:
+    """Qiskit Result.get_counts() was called without counts/statevector data."""
+    return exception_type == "QiskitError" and bool(
+        re.match(r"^(?:QiskitError: )?['\"]?No counts for experiment ", message or ""))
+
+
 def normalize_attempt(attempt: dict) -> dict:
     out = dict(attempt)
     if "failure_stage" in out:
@@ -36,6 +42,8 @@ def normalize_attempt(attempt: dict) -> dict:
     elif category == "unknown_error" and out.get("L0") is False:
         stage = "exec"
         if exception == "AttributeError" and ("has no attribute" in message or re.search(r"Attribute .+ is not defined", message)):
+            category = "interface_mismatch"
+        elif missing_counts_result(exception, message):
             category = "interface_mismatch"
     elif category == "unknown_error" and out.get("L0"):
         stage = "evaluate"
