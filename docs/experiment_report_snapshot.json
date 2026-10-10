@@ -1,6 +1,6 @@
 {
-  "captured_at": "2026-10-10T13:01:04.395153+09:00",
-  "scope": "Two completed quick runs, a failed full run retained as an excluded API-failure reference, and the reclassified and verified full run used for the main analysis.",
+  "captured_at": "2026-10-10T13:15:02.596276+09:00",
+  "scope": "Two completed quick runs, the excluded API-failure reference, the verified three-model seed 0-9 full run, and an additional five-model seed 10-19 full run; incomplete additional results are provisional.",
   "runs": [
     {
       "experiment_id": "shared_three_models_full_20261007T145103982885Z",
@@ -850,7 +850,74 @@
         "parse": 116,
         "evaluate": 183
       }
+    },
+    {
+      "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "recorded": 0,
+      "config": {
+        "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+        "models": [
+          "ollama:qwen3.5:4b",
+          "ollama:gemma4:e4b-it-qat",
+          "ollama:qwen3.5:9b",
+          "ollama:qwen2.5-coder:7b",
+          "ollama:gemma3:4b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 10,
+          "stop": 20
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256_at_capture": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes_at_capture": 0,
+      "last_record_at": "2026-10-10T13:10:19.864384+09:00",
+      "planned": 2500,
+      "L2_success": 0,
+      "L2_failure": 0,
+      "api_failure_records": 0,
+      "duplicates": 0,
+      "unexpected": 0,
+      "missing": 2500,
+      "pending_write": false,
+      "automation_verified": false,
+      "records_by_model": {},
+      "records_by_task": {},
+      "final_error_counts": {},
+      "failure_classification_version": "stage-cause-v1",
+      "original_final_error_counts": {},
+      "failure_stage_counts": {},
+      "conditions": []
     }
   ],
-  "primary_full_experiment_id": "shared_three_models_full_20261008T103231611899Z"
+  "primary_full_experiment_id": "shared_five_models_full_20261010T041019864060Z"
 }

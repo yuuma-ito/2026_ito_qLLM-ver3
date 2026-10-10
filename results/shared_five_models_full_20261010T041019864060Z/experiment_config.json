@@ -1,0 +1,43 @@
+{
+  "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+  "models": [
+    "ollama:qwen3.5:4b",
+    "ollama:gemma4:e4b-it-qat",
+    "ollama:qwen3.5:9b",
+    "ollama:qwen2.5-coder:7b",
+    "ollama:gemma3:4b"
+  ],
+  "tasks": [
+    "T1_Bell",
+    "T2_GHZ",
+    "T3a_DJ_constant",
+    "T3b_DJ_balanced",
+    "T4_BV_011",
+    "T5_Grover_11",
+    "T6_QFT_001",
+    "T7_IQFT_001",
+    "T8_QPE_001",
+    "T9_Ansatz_001"
+  ],
+  "seeds": {
+    "start": 10,
+    "stop": 20
+  },
+  "temperature": 0.7,
+  "max_rounds": 3,
+  "conditions": [
+    "baseline",
+    "self_refine",
+    "execution_feedback",
+    "self_debugging",
+    "preventive_spec"
+  ],
+  "output_dir": "results/shared_five_models_full_20261010T041019864060Z",
+  "generation_settings": {
+    "reasoning_effort": "none",
+    "max_tokens": 1024,
+    "timeout_sec": 600,
+    "parallel_requests": 1
+  },
+  "pricing": {}
+}
