@@ -42,6 +42,8 @@ Full experiments の seed は両端を含む0〜9です。
 
 `preventive_spec` に追加する共通 prompt:
 
+原文の閲覧用コピーは [prompts/preventive_spec.txt](../prompts/preventive_spec.txt)。実行時の定義は [PREVENTIVE_SPEC](../harness/interventions/prompts.py) であり、タスクのプロンプトに空行を挟んで追加する。
+
 > 量子コード生成では以下の点に注意してください。
 >
 > 1. 指定された関数名と戻り値形式を必ず守ること。
