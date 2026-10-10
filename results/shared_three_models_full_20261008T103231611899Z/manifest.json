@@ -1,0 +1,105 @@
+{
+  "schema_version": "2.0",
+  "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+  "created_at_utc": "2026-10-08T10:32:44.464549+00:00",
+  "config_hash": "1e4683075244e85c",
+  "shared_initial_generation": "shared by correction conditions; preventive_spec generates independently",
+  "transport_recovery": {
+    "ollama_connection_retry_delays_sec": [
+      5,
+      10,
+      20,
+      30,
+      30
+    ],
+    "preserve_seed": true,
+    "retry_timeouts": false,
+    "stop_after_unrecovered_transport_failure": true
+  },
+  "config": {
+    "conditions": [
+      "baseline",
+      "self_refine",
+      "execution_feedback",
+      "self_debugging",
+      "preventive_spec"
+    ],
+    "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+    "generation_settings": {
+      "max_tokens": 1024,
+      "parallel_requests": 1,
+      "reasoning_effort": "none",
+      "timeout_sec": 600
+    },
+    "max_rounds": 3,
+    "models": [
+      "ollama:qwen3.5:4b",
+      "ollama:gemma4:e4b-it-qat",
+      "ollama:qwen3.5:9b"
+    ],
+    "output_dir": "results/shared_three_models_full_20261008T103231611899Z",
+    "pricing": {},
+    "seeds": {
+      "start": 0,
+      "stop": 10
+    },
+    "tasks": [
+      "T1_Bell",
+      "T2_GHZ",
+      "T3a_DJ_constant",
+      "T3b_DJ_balanced",
+      "T4_BV_011",
+      "T5_Grover_11",
+      "T6_QFT_001",
+      "T7_IQFT_001",
+      "T8_QPE_001",
+      "T9_Ansatz_001"
+    ],
+    "temperature": 0.7
+  },
+  "planned": {
+    "records": 1500,
+    "unique_initial_generations": 300,
+    "models": 3,
+    "tasks": 10,
+    "seeds": 10,
+    "conditions": 5
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "qiskit": "2.5.2",
+    "qiskit_aer": "0.17.2",
+    "openai": "3.26.0",
+    "anthropic": null,
+    "google_generativeai": null
+  },
+  "git_commit": "9c6f952b41ac661bb42bb1ffe4d3f37282260658",
+  "prompt_fingerprints": {
+    "system_txt_sha256": "b76e82b93808aff180580db3647711efa0a3a56cc39301cff4a7a44f108e9f9d",
+    "interventions_py_sha256": "ea630da1c7051c0b9cd36163d19cf8d56746dad074408a7d8bd7e2002e6b4ec4"
+  },
+  "completed_at_utc": "2026-10-09T23:29:59.744264+00:00",
+  "elapsed_sec": 133035.2678489685,
+  "sanity_passed": true,
+  "records_written_this_run": 1500,
+  "runs": [
+    {
+      "completed_at_utc": "2026-10-09T23:29:59.744264+00:00",
+      "elapsed_sec": 133035.2678489685,
+      "records_written": 1500
+    }
+  ],
+  "reclassification": {
+    "report": "reclassification_report.json",
+    "backup": "raw.before_reclassify.jsonl",
+    "raw_sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515",
+    "revalidated_at_utc": "2026-10-10T04:00:33.464442+00:00",
+    "classification_only": true,
+    "no_generation": true,
+    "no_execution_or_reevaluation": true,
+    "automation_passed": true,
+    "main_analysis": true,
+    "excluded_reference_experiment_id": "shared_three_models_full_20261007T145103982885Z"
+  }
+}

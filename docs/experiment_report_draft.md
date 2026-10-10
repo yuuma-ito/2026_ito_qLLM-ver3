@@ -3,11 +3,11 @@
 本研究では、3種類のOllamaモデルによるQiskit量子回路コード生成を対象に、タスク難度と介入条件による生成品質の違いを調べる。構文・実行・出力・構造を分けて評価し、成功率だけでなく、失敗類型、修正による救出、退行、生成に要したトークン数と時間を比較する。
 
 <!-- auto:status:start -->
-簡易実験は2回完了した。本実験は未検証であり、モデル間・難度間の比較に関する結論は、全件記録と検証後に確定する。
+簡易実験は2回完了した。本実験は全件記録と自動検証が完了した。モデル間・難度間の比較の考察は、検証済み結果に基づいて追記する。
 <!-- auto:status:end -->
 
 <!-- auto:capture:start -->
-集計時点：2026-10-08 22:15:29 JST。数値は最終更新時点の値であり、5分ごとに自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。
+集計時点：2026-10-10 13:01:04 JST。数値は最終更新時点の値であり、5分ごとに自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。
 <!-- auto:capture:end -->
 
 ## 1 目的と比較の観点
@@ -141,27 +141,37 @@ qwen3.5:9bでは、baselineが両実験とも3/4件であった。execution_feed
 preventive_specは両実験とも0/12件で、baseline成功から失敗への退行がそれぞれ8件あった。ただし、これは2タスク・2 seed・現在の注意事項プロンプトに限定した結果であり、生成前介入一般の無効性を示すものではない。プロンプト変更を行う場合は別の実験条件として扱う。
 
 <!-- auto:full-results:start -->
-## 4 本実験の記録状況と暫定結果
+## 4 本実験の検証済み結果
 
-2026-10-08 22:15:29（日本時間）時点で、予定1,500件のうち176件（11.7%）を記録した。残りは1,324件である。L2成功は71件、L2失敗は105件、API障害を含む記録は0件であった。重複は0件、予定外記録は0件であった。
+2026-10-10 13:01:04（日本時間）時点で、予定1,500件のうち1,500件（100.0%）を記録した。残りは0件である。L2成功は839件、L2失敗は661件、API障害を含む記録は0件であった。重複は0件、予定外記録は0件であった。
 
-本実験は未検証のため、以下の数値は暫定結果である。全件の記録とsanity check・API障害確認を終えるまで、最終結果として扱わない。
+自動検証とsanity checkが成功し、API障害を含む記録はなかった。
 
 | モデル | 記録件数 | 予定件数 |
 | --- | --- | --- |
-| qwen3.5:4b | 176 | 500 |
-| gemma4:e4b-it-qat | 0 | 500 |
-| qwen3.5:9b | 0 | 500 |
+| qwen3.5:4b | 500 | 500 |
+| gemma4:e4b-it-qat | 500 | 500 |
+| qwen3.5:9b | 500 | 500 |
 
 ### 条件別のL2とL3成功件数
 
 | モデル | 条件 | 記録件数 | L2成功 | L3成功 | API障害を含む記録 |
 | --- | --- | --- | --- | --- | --- |
-| qwen3.5:4b | baseline | 36 | 4 | 4 | 0 |
-| qwen3.5:4b | self_refine | 35 | 14 | 14 | 0 |
-| qwen3.5:4b | execution_feedback | 35 | 24 | 24 | 0 |
-| qwen3.5:4b | self_debugging | 35 | 27 | 27 | 0 |
-| qwen3.5:4b | preventive_spec | 35 | 2 | 2 | 0 |
+| qwen3.5:4b | baseline | 100 | 15 | 15 | 0 |
+| qwen3.5:4b | self_refine | 100 | 33 | 33 | 0 |
+| qwen3.5:4b | execution_feedback | 100 | 56 | 56 | 0 |
+| qwen3.5:4b | self_debugging | 100 | 57 | 57 | 0 |
+| qwen3.5:4b | preventive_spec | 100 | 11 | 11 | 0 |
+| gemma4:e4b-it-qat | baseline | 100 | 65 | 65 | 0 |
+| gemma4:e4b-it-qat | self_refine | 100 | 82 | 82 | 0 |
+| gemma4:e4b-it-qat | execution_feedback | 100 | 87 | 87 | 0 |
+| gemma4:e4b-it-qat | self_debugging | 100 | 88 | 88 | 0 |
+| gemma4:e4b-it-qat | preventive_spec | 100 | 32 | 32 | 0 |
+| qwen3.5:9b | baseline | 100 | 59 | 59 | 0 |
+| qwen3.5:9b | self_refine | 100 | 73 | 73 | 0 |
+| qwen3.5:9b | execution_feedback | 100 | 76 | 76 | 0 |
+| qwen3.5:9b | self_debugging | 100 | 80 | 80 | 0 |
+| qwen3.5:9b | preventive_spec | 100 | 25 | 25 | 0 |
 
 未完了のモデル・タスク・条件には件数の偏りがある。途中データからモデル全体の優劣を判断しない。
 
@@ -169,30 +179,40 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 
 | タスク | 記録件数 |
 | --- | --- |
-| T1_Bell | 50 |
-| T2_GHZ | 50 |
-| T3a_DJ_constant | 50 |
-| T3b_DJ_balanced | 26 |
-| T4_BV_011 | 0 |
-| T5_Grover_11 | 0 |
-| T6_QFT_001 | 0 |
-| T7_IQFT_001 | 0 |
-| T8_QPE_001 | 0 |
-| T9_Ansatz_001 | 0 |
+| T1_Bell | 150 |
+| T2_GHZ | 150 |
+| T3a_DJ_constant | 150 |
+| T3b_DJ_balanced | 150 |
+| T4_BV_011 | 150 |
+| T5_Grover_11 | 150 |
+| T6_QFT_001 | 150 |
+| T7_IQFT_001 | 150 |
+| T8_QPE_001 | 150 |
+| T9_Ansatz_001 | 150 |
 
 ### 最終評価の類型別件数
 
 | 類型 | 件数 |
 | --- | --- |
-| build_error | 14 |
-| import_error | 79 |
-| interface_mismatch | 4 |
-| ok | 71 |
-| syntax | 3 |
-| wrong_output | 5 |
+| build_error | 98 |
+| import_error | 188 |
+| interface_mismatch | 76 |
+| ok | 839 |
+| syntax | 116 |
+| wrong_output | 183 |
 
 API障害を含む記録件数はround履歴も確認した値であり、最終評価の失敗類型とは別の集計である。API障害がある場合は、元結果を保持し、対応条件をそろえた追試を別実験として報告する。
 <!-- auto:full-results:end -->
+
+### 再分類・再検証と主分析の範囲
+
+主分析は `shared_three_models_full_20261008T103231611899Z` の1,500件とする。保存済み検証で停止対象だった8記録は、Qiskit APIの誤用による7件の最終失敗と、途中で失敗した後に成功した1件だった。最終結果7件とround履歴21件の `unknown_error` を `exec / interface_mismatch` に再分類し、例外型と元メッセージを保存した。既存の分類規則に合わせ、build内のimport失敗も最終結果7件・round履歴19件を `build / build_error` に整理した。
+
+元データは `raw.before_reclassify.jsonl` にバックアップした。追加生成・生成コードの再実行・再評価は行わず、分類情報以外の保存フィールドとエラーメッセージが一致することを照合した。L0/L1/L2/structure_match/L3は最終roundと一致し、L2成功839件（55.93%）を維持した。欠落・重複・予定外記録・API障害・最終結果とround履歴の未分類エラーはいずれも0件で、sanity checkと自動検証が成功した。preventive_specの300記録はすべて1回生成だった。
+
+救出237件、修正過程の悪化41件、baseline退行93件を別々のCSVとして集計した。これらは異なる定義の集計であり、互いに排他的な失敗分類ではない。検証は記録・分類・集計の整合性を確認したもので、保存済み評価値を新たに実行して確かめたものではない。タスクoracle、10 seed、生成長上限など既述の評価範囲は維持する。[再分類・再検証記録](../results/shared_three_models_full_20261008T103231611899Z/reclassification_report.json)に変更一覧、バックアップと再分類後データのSHA-256、CSVのSHA-256を保存した。
+
+旧本実験 `shared_three_models_full_20261007T145103982885Z` はAPI接続障害738件（gemma4 238件、qwen3.5:9b 500件）を含み、生成の可用性とコード品質を混同するため主分析から除外する。元データは変更せず、接続障害の参考記録として保持し、主分析への合算やモデル能力の直接比較には使わない。
 
 ## 5 考察
 
@@ -229,8 +249,8 @@ API障害を含む記録件数はround履歴も確認した値であり、最終
 
 - 簡易実験1：[保存設定](../results/shared_three_models_quick_20261007T123904531170Z/experiment_config.json)、[条件別集計](../results/shared_three_models_quick_20261007T123904531170Z/summary_by_condition.csv)、[救出率](../results/shared_three_models_quick_20261007T123904531170Z/rescue_rates_by_error.csv)、[baseline退行](../results/shared_three_models_quick_20261007T123904531170Z/baseline_regressions.csv)、[sanity report](../results/shared_three_models_quick_20261007T123904531170Z/sanity_report.json)、[自動検証](../results/shared_three_models_quick_20261007T123904531170Z/automation_report.json)、[manifest](../results/shared_three_models_quick_20261007T123904531170Z/manifest.json)。
 - 簡易実験2：[保存設定](../results/shared_three_models_quick_20261007T123904532290Z/experiment_config.json)、[条件別集計](../results/shared_three_models_quick_20261007T123904532290Z/summary_by_condition.csv)、[救出率](../results/shared_three_models_quick_20261007T123904532290Z/rescue_rates_by_error.csv)、[baseline退行](../results/shared_three_models_quick_20261007T123904532290Z/baseline_regressions.csv)、[sanity report](../results/shared_three_models_quick_20261007T123904532290Z/sanity_report.json)、[自動検証](../results/shared_three_models_quick_20261007T123904532290Z/automation_report.json)、[manifest](../results/shared_three_models_quick_20261007T123904532290Z/manifest.json)。
-- 旧本実験：[保存設定](../results/shared_three_models_full_20261007T145103982885Z/experiment_config.json)、[manifest](../results/shared_three_models_full_20261007T145103982885Z/manifest.json)。1,500件を記録したが、接続障害738件と未分類の評価エラー8件があり、検証で停止した。比較用の元結果として保持する。
-- 今回の本実験：[保存設定](../results/shared_three_models_full_20261008T103231611899Z/experiment_config.json)、[manifest](../results/shared_three_models_full_20261008T103231611899Z/manifest.json)。接続回復対策を適用し、同じ3モデル・10タスク・10 seed・5条件で全1,500件を新規生成する。本文の本実験結果表は今回の実験を対象とする。途中集計と旧本実験は[スナップショット](experiment_report_snapshot.json)を参照する。未完了・未検証の結果は暫定とし、元のraw.jsonlは公開対象に含めない。
+- 旧本実験：[保存設定](../results/shared_three_models_full_20261007T145103982885Z/experiment_config.json)、[manifest](../results/shared_three_models_full_20261007T145103982885Z/manifest.json)。1,500件を記録したが、接続障害738件とround履歴を含む未分類エラー8記録があり、保存済み検証で停止した。主分析から除外し、接続障害の参考記録として元結果を保持する。
+- 今回の本実験：[保存設定](../results/shared_three_models_full_20261008T103231611899Z/experiment_config.json)、[manifest](../results/shared_three_models_full_20261008T103231611899Z/manifest.json)。接続回復対策を適用し、同じ3モデル・10タスク・10 seed・5条件で全1,500件を記録済み。今回の再分類・再検証でsanity checkと自動検証が成功した。本文の本実験結果表は今回の実験を対象とする。途中集計と旧本実験は[スナップショット](experiment_report_snapshot.json)を参照する。未完了・未検証の結果は暫定とし、元のraw.jsonlは公開対象に含めない。
 
 新しい本実験を実行するコマンドは以下である。
 
