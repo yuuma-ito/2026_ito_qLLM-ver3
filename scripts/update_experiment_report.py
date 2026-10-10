@@ -145,7 +145,7 @@ def render_report(original, previous, current):
     intro += ('全件記録と自動検証が完了した。モデル間・難度間の比較の考察は、検証済み結果に基づいて追記する。'
               if full['automation_verified'] else
               '未検証であり、モデル間・難度間の比較に関する結論は、全件記録と検証後に確定する。')
-    capture_text = f"集計時点：{captured[:19].replace('T', ' ')} JST。数値は最終更新時点の値であり、5分ごとに自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。"
+    capture_text = f"集計時点：{captured[:19].replace('T', ' ')} JST。数値は最終更新時点の値であり、60分ごと（毎時0分）に自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。"
     updated = replace_block(original, 'status', intro)
     updated = replace_block(updated, 'capture', capture_text)
     return replace_block(updated, 'full-results', full_results(full, captured))

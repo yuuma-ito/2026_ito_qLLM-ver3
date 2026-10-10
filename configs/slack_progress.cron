@@ -6,5 +6,5 @@
 # Observe every 5 minutes; report running experiments once per 30-minute slot.
 # Alert once per completion/anomaly event; never stop the experiment automatically.
 */5 * * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.monitor_experiments --transport email --stalled-after 3600 --progress-interval 1800 >> /home/23tc011/2026_ito_qLLM-ver3/logs/experiment_monitor.log 2>&1
-# Refresh report counts and tables every 5 minutes, preserving manually written prose.
-*/5 * * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.update_experiment_report >> /home/23tc011/2026_ito_qLLM-ver3/logs/experiment_report_update.log 2>&1
+# Refresh report counts and tables hourly at minute 0, preserving manually written prose.
+0 * * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.update_experiment_report >> /home/23tc011/2026_ito_qLLM-ver3/logs/experiment_report_update.log 2>&1

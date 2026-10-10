@@ -1,5 +1,5 @@
 {
-  "captured_at": "2026-10-10T13:15:02.596276+09:00",
+  "captured_at": "2026-10-10T13:25:02.763845+09:00",
   "scope": "Two completed quick runs, the excluded API-failure reference, the verified three-model seed 0-9 full run, and an additional five-model seed 10-19 full run; incomplete additional results are provisional.",
   "runs": [
     {
@@ -854,7 +854,7 @@
     {
       "experiment_id": "shared_five_models_full_20261010T041019864060Z",
       "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
-      "recorded": 0,
+      "recorded": 18,
       "config": {
         "experiment_id": "shared_five_models_full_20261010T041019864060Z",
         "models": [
@@ -898,25 +898,81 @@
         },
         "pricing": {}
       },
-      "raw_sha256_at_capture": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "raw_bytes_at_capture": 0,
-      "last_record_at": "2026-10-10T13:10:19.864384+09:00",
+      "raw_sha256_at_capture": "367cae415c0fd9641155180165ce33a7b658bdef517f21c121f441845da71c20",
+      "raw_bytes_at_capture": 78768,
+      "last_record_at": "2026-10-10T13:24:43.224815+09:00",
       "planned": 2500,
-      "L2_success": 0,
-      "L2_failure": 0,
+      "L2_success": 13,
+      "L2_failure": 5,
       "api_failure_records": 0,
       "duplicates": 0,
       "unexpected": 0,
-      "missing": 2500,
+      "missing": 2482,
       "pending_write": false,
       "automation_verified": false,
-      "records_by_model": {},
-      "records_by_task": {},
-      "final_error_counts": {},
+      "records_by_model": {
+        "ollama:qwen3.5:4b": 18
+      },
+      "records_by_task": {
+        "T1_Bell": 18
+      },
+      "final_error_counts": {
+        "ok": 13,
+        "import_error": 4,
+        "wrong_output": 1
+      },
       "failure_classification_version": "stage-cause-v1",
-      "original_final_error_counts": {},
-      "failure_stage_counts": {},
-      "conditions": []
+      "original_final_error_counts": {
+        "ok": 13,
+        "import_error": 4,
+        "wrong_output": 1
+      },
+      "failure_stage_counts": {
+        "import": 4,
+        "evaluate": 1
+      },
+      "conditions": [
+        {
+          "model": "ollama:qwen3.5:4b",
+          "condition": "baseline",
+          "n": 4,
+          "L2_success": 2,
+          "L3_success": 2,
+          "api_failure_records": 0
+        },
+        {
+          "model": "ollama:qwen3.5:4b",
+          "condition": "self_refine",
+          "n": 4,
+          "L2_success": 2,
+          "L3_success": 2,
+          "api_failure_records": 0
+        },
+        {
+          "model": "ollama:qwen3.5:4b",
+          "condition": "execution_feedback",
+          "n": 4,
+          "L2_success": 4,
+          "L3_success": 4,
+          "api_failure_records": 0
+        },
+        {
+          "model": "ollama:qwen3.5:4b",
+          "condition": "self_debugging",
+          "n": 3,
+          "L2_success": 3,
+          "L3_success": 3,
+          "api_failure_records": 0
+        },
+        {
+          "model": "ollama:qwen3.5:4b",
+          "condition": "preventive_spec",
+          "n": 3,
+          "L2_success": 2,
+          "L3_success": 2,
+          "api_failure_records": 0
+        }
+      ]
     }
   ],
   "primary_full_experiment_id": "shared_five_models_full_20261010T041019864060Z"
