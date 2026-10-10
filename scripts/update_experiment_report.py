@@ -61,7 +61,7 @@ def collect_run(previous, root):
                                    'L2_success': sum(row['L2'] is True for row in selected),
                                    'L3_success': sum(row['L3'] is True for row in selected),
                                    'api_failure_records': sum(has_api_failure(row) for row in selected)})
-    return dict(previous, config=config, raw_sha256_at_capture=hashlib.sha256(data).hexdigest(),
+    result = dict(previous, config=config, raw_sha256_at_capture=hashlib.sha256(data).hexdigest(),
                 raw_bytes_at_capture=len(data), last_record_at=datetime.fromtimestamp(
                     modified, ZoneInfo('Asia/Tokyo')).isoformat(),
                 planned=len(expected), recorded=len(rows),
@@ -76,6 +76,9 @@ def collect_run(previous, root):
                 original_final_error_counts=dict(Counter(row.get('original_error_category', row['error_category']) for row in rows)),
                 failure_stage_counts=dict(Counter(row['failure_stage'] for row in rows if row['error_category'] not in {'ok', ''})),
                 conditions=conditions)
+    if config['experiment_id'].startswith('shared_five_models_full'):
+        result['api_failure_confirmed_records'] = sum(has_api_failure(row, include_unknown=False) for row in rows)
+    return result
 
 
 def replace_block(text, name, body):
@@ -92,7 +95,9 @@ def replace_block(text, name, body):
 
 def full_results(run, captured_at):
     verified = run['automation_verified']
-    text = [f"## 4 本実験の{'検証済み結果' if verified else '記録状況と暫定結果'}", '',
+    label = '3モデル本実験' if len(run['config']['models']) == 3 else '本実験'
+    text = [f"## 4 {label}の{'検証済み結果' if verified else '記録状況と暫定結果'}", '',
+            f"実験ID：`{run['experiment_id']}`。保存先：`{run['source_dir']}/`。", '',
             f"{captured_at[:19].replace('T', ' ')}（日本時間）時点で、予定{run['planned']:,}件のうち"
             f"{run['recorded']:,}件（{100 * run['recorded'] / run['planned']:.1f}%）を記録した。"
             f"残りは{run['missing']:,}件である。L2成功は{run['L2_success']}件、"
@@ -110,14 +115,37 @@ def full_results(run, captured_at):
              '| --- | --- | --- | --- | --- | --- |']
     for row in run['conditions']:
         text.append(f"| {row['model'].removeprefix('ollama:')} | {row['condition']} | {row['n']} | {row['L2_success']} | {row['L3_success']} | {row['api_failure_records']} |")
-    text += ['', '未完了のモデル・タスク・条件には件数の偏りがある。途中データからモデル全体の優劣を判断しない。', '',
-             '### タスク別の記録件数', '', '| タスク | 記録件数 |', '| --- | --- |']
+    if not verified:
+        text += ['', '未完了のモデル・タスク・条件には件数の偏りがある。途中データからモデル全体の優劣を判断しない。']
+    text += ['', '### タスク別の記録件数', '', '| タスク | 記録件数 |', '| --- | --- |']
     for task in run['config']['tasks']:
         text.append(f"| {task} | {run['records_by_task'].get(task, 0)} |")
     text += ['', '### 最終評価の類型別件数', '', '| 類型 | 件数 |', '| --- | --- |']
     for category, n in sorted(run['final_error_counts'].items()):
         text.append(f'| {category} | {n} |')
     text += ['', 'API障害を含む記録件数はround履歴も確認した値であり、最終評価の失敗類型とは別の集計である。API障害がある場合は、元結果を保持し、対応条件をそろえた追試を別実験として報告する。']
+    if run['pending_write']:
+        text += ['', '書き込み途中の末尾行は今回の集計から除外した。']
+    return '\n'.join(text)
+
+
+def additional_progress(run, captured_at):
+    verified = run['automation_verified']
+    status = '検証済み（主分析への採否は別途判断）' if verified else '収集中または未検証・暫定'
+    text = ['### 5モデル追加実験の記録状況', '',
+            f"集計時点：{captured_at[:19].replace('T', ' ')} JST。状態：{status}。", '',
+            '| 項目 | 状況 |', '| --- | --- |',
+            f"| 実験ID | `{run['experiment_id']}` |",
+            f"| 保存先 | `{run['source_dir']}/` |",
+            f"| 予定件数 | {run['planned']:,}件 |",
+            f"| 現在の記録件数 | {run['recorded']:,}件 |",
+            f"| 未記録件数 | {run['missing']:,}件（完了後の欠落判定は未確定） |",
+            f"| 重複・予定外記録 | {run['duplicates']}件・{run['unexpected']}件（集計時点の照合） |",
+            f"| API障害・timeoutを明示する記録 | {run['api_failure_confirmed_records']}件（途中roundを含む暫定確認） |",
+            f"| API障害または未分類エラーの保守的な確認対象 | {run['api_failure_records']}件 |",
+            f"| sanity check・自動検証 | {'成功' if verified else '未完了・未検証'} |", '',
+            '未分類エラーを含む保守的な確認対象は、API障害が確定した件数とは異なる。分類確認と最終検証を完了するまでAPI障害0件という最終結論は置かない。', '',
+            'L2成功率などの最終結果は未確定であり、3モデル本実験の結果表には混ぜない。主分析に含めるかどうかは、全件の収集・分類確認・sanity check・自動検証が完了した後に判断する。']
     if run['pending_write']:
         text += ['', '書き込み途中の末尾行は今回の集計から除外した。']
     return '\n'.join(text)
@@ -145,10 +173,20 @@ def render_report(original, previous, current):
     intro += ('全件記録と自動検証が完了した。モデル間・難度間の比較の考察は、検証済み結果に基づいて追記する。'
               if full['automation_verified'] else
               '未検証であり、モデル間・難度間の比較に関する結論は、全件記録と検証後に確定する。')
+    additional_ids = current.get('additional_full_experiment_ids', [])
+    additional = [next(run for run in runs if run['experiment_id'] == experiment_id)
+                  for experiment_id in additional_ids]
+    if additional:
+        intro = intro.replace('本実験は', '3モデル本実験は', 1)
+        intro += '3モデル本実験を検証済みの主分析として採用し、5モデル追加実験は別実験ID・別保存先で収集する。追加実験の主分析への採否は完了・検証後に判断する。'
     capture_text = f"集計時点：{captured[:19].replace('T', ' ')} JST。数値は最終更新時点の値であり、60分ごと（毎時0分）に自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。"
     updated = replace_block(original, 'status', intro)
     updated = replace_block(updated, 'capture', capture_text)
-    return replace_block(updated, 'full-results', full_results(full, captured))
+    updated = replace_block(updated, 'full-results', full_results(full, captured))
+    if additional:
+        updated = replace_block(updated, 'additional-results', '\n\n'.join(
+            additional_progress(run, captured) for run in additional))
+    return updated
 
 
 def update_report(root=ROOT):

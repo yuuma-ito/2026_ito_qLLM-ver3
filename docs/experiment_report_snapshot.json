@@ -1,5 +1,5 @@
 {
-  "captured_at": "2026-10-10T13:25:02.763845+09:00",
+  "captured_at": "2026-10-10T15:18:09.983545+09:00",
   "scope": "Two completed quick runs, the excluded API-failure reference, the verified three-model seed 0-9 full run, and an additional five-model seed 10-19 full run; incomplete additional results are provisional.",
   "runs": [
     {
@@ -854,7 +854,7 @@
     {
       "experiment_id": "shared_five_models_full_20261010T041019864060Z",
       "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
-      "recorded": 18,
+      "recorded": 153,
       "config": {
         "experiment_id": "shared_five_models_full_20261010T041019864060Z",
         "models": [
@@ -898,82 +898,100 @@
         },
         "pricing": {}
       },
-      "raw_sha256_at_capture": "367cae415c0fd9641155180165ce33a7b658bdef517f21c121f441845da71c20",
-      "raw_bytes_at_capture": 78768,
-      "last_record_at": "2026-10-10T13:24:43.224815+09:00",
+      "raw_sha256_at_capture": "059e56ee855a6885072829189ed5dc354990b71c3d4d77f127e2e660a5ad4f2a",
+      "raw_bytes_at_capture": 948670,
+      "last_record_at": "2026-10-10T15:18:05.803923+09:00",
       "planned": 2500,
-      "L2_success": 13,
-      "L2_failure": 5,
-      "api_failure_records": 0,
+      "L2_success": 78,
+      "L2_failure": 75,
+      "api_failure_records": 4,
       "duplicates": 0,
       "unexpected": 0,
-      "missing": 2482,
+      "missing": 2347,
       "pending_write": false,
       "automation_verified": false,
       "records_by_model": {
-        "ollama:qwen3.5:4b": 18
+        "ollama:qwen3.5:4b": 153
       },
       "records_by_task": {
-        "T1_Bell": 18
+        "T1_Bell": 50,
+        "T2_GHZ": 50,
+        "T3a_DJ_constant": 50,
+        "T3b_DJ_balanced": 3
       },
       "final_error_counts": {
-        "ok": 13,
-        "import_error": 4,
-        "wrong_output": 1
+        "ok": 78,
+        "import_error": 54,
+        "wrong_output": 12,
+        "build_error": 4,
+        "interface_mismatch": 1,
+        "syntax": 1,
+        "unknown_error": 3
       },
       "failure_classification_version": "stage-cause-v1",
       "original_final_error_counts": {
-        "ok": 13,
-        "import_error": 4,
-        "wrong_output": 1
+        "ok": 78,
+        "import_error": 54,
+        "wrong_output": 12,
+        "build_error": 4,
+        "interface_mismatch": 1,
+        "syntax": 1,
+        "unknown_error": 3
       },
       "failure_stage_counts": {
-        "import": 4,
-        "evaluate": 1
+        "import": 54,
+        "evaluate": 12,
+        "build": 4,
+        "exec": 4,
+        "parse": 1
       },
       "conditions": [
         {
           "model": "ollama:qwen3.5:4b",
           "condition": "baseline",
-          "n": 4,
-          "L2_success": 2,
-          "L3_success": 2,
-          "api_failure_records": 0
+          "n": 31,
+          "L2_success": 10,
+          "L3_success": 10,
+          "api_failure_records": 1
         },
         {
           "model": "ollama:qwen3.5:4b",
           "condition": "self_refine",
-          "n": 4,
-          "L2_success": 2,
-          "L3_success": 2,
-          "api_failure_records": 0
+          "n": 31,
+          "L2_success": 14,
+          "L3_success": 14,
+          "api_failure_records": 1
         },
         {
           "model": "ollama:qwen3.5:4b",
           "condition": "execution_feedback",
-          "n": 4,
-          "L2_success": 4,
-          "L3_success": 4,
-          "api_failure_records": 0
+          "n": 31,
+          "L2_success": 22,
+          "L3_success": 22,
+          "api_failure_records": 1
         },
         {
           "model": "ollama:qwen3.5:4b",
           "condition": "self_debugging",
-          "n": 3,
-          "L2_success": 3,
-          "L3_success": 3,
-          "api_failure_records": 0
+          "n": 30,
+          "L2_success": 25,
+          "L3_success": 25,
+          "api_failure_records": 1
         },
         {
           "model": "ollama:qwen3.5:4b",
           "condition": "preventive_spec",
-          "n": 3,
-          "L2_success": 2,
-          "L3_success": 2,
+          "n": 30,
+          "L2_success": 7,
+          "L3_success": 7,
           "api_failure_records": 0
         }
-      ]
+      ],
+      "api_failure_confirmed_records": 0
     }
   ],
-  "primary_full_experiment_id": "shared_five_models_full_20261010T041019864060Z"
+  "primary_full_experiment_id": "shared_three_models_full_20261008T103231611899Z",
+  "additional_full_experiment_ids": [
+    "shared_five_models_full_20261010T041019864060Z"
+  ]
 }

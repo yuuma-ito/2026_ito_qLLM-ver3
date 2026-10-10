@@ -89,6 +89,38 @@ def test_explicit_primary_full_run_replaces_old_run_in_result_table(draft):
     assert '0件（0.0%）' in (root / report.REPORT).read_text()
 
 
+def test_additional_run_stays_separate_from_verified_primary_on_repeated_refresh(draft):
+    root, output, config = draft
+    write_rows(output, [row(config, 0), row(config, 1)])
+    (output / 'automation_report.json').write_text('{"passed": true}')
+    (output / 'sanity_report.json').write_text(json.dumps({'passed': True, 'experiment_id': config['experiment_id']}))
+    report.update_report(root)
+    additional = root / 'results/additional'
+    additional.mkdir()
+    new = dict(config, experiment_id='shared_five_models_full_test', output_dir='results/additional')
+    (additional / 'experiment_config.json').write_text(json.dumps(new))
+    write_rows(additional, [row(new, 0, L2=False, L3=False, error_category='unknown_error')])
+    snapshot = json.loads((root / report.SNAPSHOT).read_text())
+    snapshot['primary_full_experiment_id'] = config['experiment_id']
+    snapshot['additional_full_experiment_ids'] = [new['experiment_id']]
+    snapshot['runs'].append({'experiment_id': new['experiment_id'], 'source_dir': new['output_dir'], 'recorded': 0})
+    (root / report.SNAPSHOT).write_text(json.dumps(snapshot))
+    path = root / report.REPORT
+    path.write_text(path.read_text() + '\n<!-- auto:additional-results:start -->\nold\n<!-- auto:additional-results:end -->\n')
+    for _ in range(2):
+        current = report.update_report(root)
+        text = path.read_text()
+        primary = text.split('<!-- auto:full-results:start -->')[1].split('<!-- auto:full-results:end -->')[0]
+        progress = text.split('<!-- auto:additional-results:start -->')[1].split('<!-- auto:additional-results:end -->')[0]
+        assert config['experiment_id'] in primary and new['experiment_id'] not in primary
+        assert '検証済み結果' in primary and '2件（100.0%）' in primary
+        assert new['experiment_id'] in progress and '未完了・未検証' in progress
+        assert '主分析に含めるかどうか' in progress and '完了した後に判断する' in progress
+        assert current['runs'][1]['api_failure_records'] == 1
+        assert current['runs'][1]['api_failure_confirmed_records'] == 0
+        assert '手書きの考察を保持する。' in text
+
+
 @pytest.mark.parametrize('tamper', [None, 'prose', 'snapshot', 'auto_block'])
 def test_publication_allows_only_recomputed_report_changes(draft, monkeypatch, tamper):
     from scripts import automate_experiment as automation
