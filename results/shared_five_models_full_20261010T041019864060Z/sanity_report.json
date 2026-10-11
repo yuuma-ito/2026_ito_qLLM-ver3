@@ -1,0 +1,91 @@
+{
+  "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+  "passed": false,
+  "expected_records": 2500,
+  "actual_records": 1404,
+  "unique_records": 1404,
+  "errors": [
+    "missing records: 1096",
+    "incomplete condition sets: 1"
+  ],
+  "warnings": [],
+  "details": {
+    "duplicate_count": 0,
+    "missing_count": 1096,
+    "unexpected_count": 0,
+    "incomplete_pair_count": 1,
+    "initial_mismatch_count": 0,
+    "missing_examples": [
+      [
+        "shared_five_models_full_20261010T041019864060Z",
+        "baseline",
+        "ollama:gemma3:4b",
+        "T1_Bell",
+        10
+      ],
+      [
+        "shared_five_models_full_20261010T041019864060Z",
+        "baseline",
+        "ollama:gemma3:4b",
+        "T1_Bell",
+        11
+      ],
+      [
+        "shared_five_models_full_20261010T041019864060Z",
+        "baseline",
+        "ollama:gemma3:4b",
+        "T1_Bell",
+        12
+      ],
+      [
+        "shared_five_models_full_20261010T041019864060Z",
+        "baseline",
+        "ollama:gemma3:4b",
+        "T1_Bell",
+        13
+      ],
+      [
+        "shared_five_models_full_20261010T041019864060Z",
+        "baseline",
+        "ollama:gemma3:4b",
+        "T1_Bell",
+        14
+      ],
+      [
+        "shared_five_models_full_20261010T041019864060Z",
+        "baseline",
+        "ollama:gemma3:4b",
+        "T1_Bell",
+        15
+      ],
+      [
+        "shared_five_models_full_20261010T041019864060Z",
+        "baseline",
+        "ollama:gemma3:4b",
+        "T1_Bell",
+        16
+      ],
+      [
+        "shared_five_models_full_20261010T041019864060Z",
+        "baseline",
+        "ollama:gemma3:4b",
+        "T1_Bell",
+        17
+      ],
+      [
+        "shared_five_models_full_20261010T041019864060Z",
+        "baseline",
+        "ollama:gemma3:4b",
+        "T1_Bell",
+        18
+      ],
+      [
+        "shared_five_models_full_20261010T041019864060Z",
+        "baseline",
+        "ollama:gemma3:4b",
+        "T1_Bell",
+        19
+      ]
+    ]
+  }
+}

@@ -7,7 +7,7 @@
 <!-- auto:status:end -->
 
 <!-- auto:capture:start -->
-集計時点：2026-10-10 15:18:09 JST。数値は最終更新時点の値であり、60分ごと（毎時0分）に自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。
+集計時点：2026-10-11 18:30:03 JST。数値は最終更新時点の値であり、60分ごと（毎時0分）に自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。
 <!-- auto:capture:end -->
 
 ## 1 目的と比較の観点
@@ -145,7 +145,7 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 
 実験ID：`shared_three_models_full_20261008T103231611899Z`。保存先：`results/shared_three_models_full_20261008T103231611899Z/`。
 
-2026-10-10 15:18:09（日本時間）時点で、予定1,500件のうち1,500件（100.0%）を記録した。残りは0件である。L2成功は839件、L2失敗は661件、API障害を含む記録は0件であった。重複は0件、予定外記録は0件であった。
+2026-10-11 18:30:03（日本時間）時点で、予定1,500件のうち1,500件（100.0%）を記録した。残りは0件である。L2成功は839件、L2失敗は661件、API障害を含む記録は0件であった。重複は0件、予定外記録は0件であった。
 
 自動検証とsanity checkが成功し、API障害を含む記録はなかった。
 
@@ -223,24 +223,30 @@ API障害を含む記録件数はround履歴も確認した値であり、最終
 <!-- auto:additional-results:start -->
 ### 5モデル追加実験の記録状況
 
-集計時点：2026-10-10 15:18:09 JST。状態：収集中または未検証・暫定。
+集計時点：2026-10-11 18:30:03 JST。状態：収集中または未検証・暫定。
 
 | 項目 | 状況 |
 | --- | --- |
 | 実験ID | `shared_five_models_full_20261010T041019864060Z` |
 | 保存先 | `results/shared_five_models_full_20261010T041019864060Z/` |
 | 予定件数 | 2,500件 |
-| 現在の記録件数 | 153件 |
-| 未記録件数 | 2,347件（完了後の欠落判定は未確定） |
+| 現在の記録件数 | 1,406件 |
+| 未記録件数 | 1,094件（完了後の欠落判定は未確定） |
 | 重複・予定外記録 | 0件・0件（集計時点の照合） |
 | API障害・timeoutを明示する記録 | 0件（途中roundを含む暫定確認） |
-| API障害または未分類エラーの保守的な確認対象 | 4件 |
+| API障害または未分類エラーの保守的な確認対象 | 0件 |
 | sanity check・自動検証 | 未完了・未検証 |
 
 未分類エラーを含む保守的な確認対象は、API障害が確定した件数とは異なる。分類確認と最終検証を完了するまでAPI障害0件という最終結論は置かない。
 
 L2成功率などの最終結果は未確定であり、3モデル本実験の結果表には混ぜない。主分析に含めるかどうかは、全件の収集・分類確認・sanity check・自動検証が完了した後に判断する。
 <!-- auto:additional-results:end -->
+
+追加実験のqwen3.5:4b／T3a_DJ_constant／seed 19のbaselineとself_refineは、`simulator` と定義した変数を `sim` と参照したため、コード実行段階で停止した。指定された2記録の最終結果と該当する全5 round評価を `exec / interface_mismatch / NameError` に再分類し、メッセージを `name 'sim' is not defined` に統一した。self_refineはbaselineと同じ初回生成から派生し、3回修正後も同じ変数名不一致が残ったケースである。API接続障害・timeoutには含めず、L0・L1・L2・structure_match・L3は再評価せず保持した。再分類前のraw.jsonlをバックアップし、[変更・検証記録](additional_nameerror_reclassification.json)に保存先とSHA-256を記録した。2026-10-11 18:09 JSTの再集計では、途中roundを含む保守的な確認対象は再分類前の5件から3件となった。その後、残る3記録も次段落のとおり再分類した。最新件数は上の自動更新表を参照する。
+
+追加の再分類では、T3a_DJ_constant／seed 19のexecution_feedbackのround 0とself_debuggingのround 0・1に残っていた同じNameErrorを `exec / interface_mismatch` に統一した。execution_feedbackのround 2・3と最終結果の `get_counts('')`、T3b_DJ_balanced／seed 16のself_debuggingのround 2・3と最終結果の `get_counts('0')` は、存在しない実験名によるQiskitErrorとして同じ分類に変更した。T3a_DJ_constantのself_debuggingの最終結果は古典ビット未確保による `build / build_error / CircuitError` を維持した。再分類前のraw.jsonlを別途バックアップし、生成コード・評価値・timeout_flagは変更せず、再実行・再評価も行っていない。[追加の変更・検証記録](additional_remaining_reclassification.json)にバックアップ、ハッシュ、更新一覧、検証・CSVの出典を保存した。
+
+2026-10-11 18:16 JSTの保存済み1,404件では、最終結果・round履歴ともunknown_errorは0件、API障害・timeoutの確認対象も0件だった。保存設定に基づくsanity checkを実施し、重複・予定外記録・共有round 0の不一致は0件、その他の記録整合性エラーもなかった。ただし収集中のため、未記録1,096件と条件未完備1組により全件sanity checkは不合格であり、実験完了・自動検証成功とは扱わない。通常の分析CSVは1,404件から再生成し、介入カタログCSVは5条件がそろった1,400件のみの暫定集計とした。未完備の4記録はカタログから除外し、失敗や救出0件として扱わない。集計後の進捗は上の自動更新表を参照する。
 
 ## 5 考察
 

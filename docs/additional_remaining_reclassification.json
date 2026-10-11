@@ -1,0 +1,300 @@
+{
+  "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+  "updated_at_utc": "20261011T091514569456Z",
+  "backup": "results/shared_five_models_full_20261010T041019864060Z/raw.before_remaining_reclassification_20261011T091514569456Z.jsonl",
+  "backup_sha256": "d991c3690ce73cc3479902b3deb0baa0ce2cd15cd91c87c21f79802118a334be",
+  "raw_sha256_after": "cb9a718853186256f92d106d3be2d711a9e26e7c3c467c6dd63e3aa2023dcafc",
+  "recorded": 1404,
+  "changes": [
+    {
+      "line": 148,
+      "task_id": "T3a_DJ_constant",
+      "seed": 19,
+      "condition_id": "execution_feedback",
+      "changes": [
+        {
+          "scope": "final",
+          "before": {
+            "failure_stage": "exec",
+            "error_category": "unknown_error",
+            "exception_type": "QiskitError",
+            "error_message": "QiskitError: 'Data for experiment \"\" could not be found.'"
+          },
+          "after": {
+            "failure_stage": "exec",
+            "error_category": "interface_mismatch",
+            "exception_type": "QiskitError",
+            "error_message": "Data for experiment \"\" could not be found."
+          }
+        },
+        {
+          "scope": "round 0",
+          "before": {
+            "failure_stage": "exec",
+            "error_category": "unknown_error",
+            "exception_type": "NameError",
+            "error_message": "NameError: name 'sim' is not defined"
+          },
+          "after": {
+            "failure_stage": "exec",
+            "error_category": "interface_mismatch",
+            "exception_type": "NameError",
+            "error_message": "name 'sim' is not defined"
+          }
+        },
+        {
+          "scope": "round 2",
+          "before": {
+            "failure_stage": "exec",
+            "error_category": "unknown_error",
+            "exception_type": "QiskitError",
+            "error_message": "QiskitError: 'Data for experiment \"\" could not be found.'"
+          },
+          "after": {
+            "failure_stage": "exec",
+            "error_category": "interface_mismatch",
+            "exception_type": "QiskitError",
+            "error_message": "Data for experiment \"\" could not be found."
+          }
+        },
+        {
+          "scope": "round 3",
+          "before": {
+            "failure_stage": "exec",
+            "error_category": "unknown_error",
+            "exception_type": "QiskitError",
+            "error_message": "QiskitError: 'Data for experiment \"\" could not be found.'"
+          },
+          "after": {
+            "failure_stage": "exec",
+            "error_category": "interface_mismatch",
+            "exception_type": "QiskitError",
+            "error_message": "Data for experiment \"\" could not be found."
+          }
+        }
+      ]
+    },
+    {
+      "line": 149,
+      "task_id": "T3a_DJ_constant",
+      "seed": 19,
+      "condition_id": "self_debugging",
+      "changes": [
+        {
+          "scope": "round 0",
+          "before": {
+            "failure_stage": "exec",
+            "error_category": "unknown_error",
+            "exception_type": "NameError",
+            "error_message": "NameError: name 'sim' is not defined"
+          },
+          "after": {
+            "failure_stage": "exec",
+            "error_category": "interface_mismatch",
+            "exception_type": "NameError",
+            "error_message": "name 'sim' is not defined"
+          }
+        },
+        {
+          "scope": "round 1",
+          "before": {
+            "failure_stage": "exec",
+            "error_category": "unknown_error",
+            "exception_type": "NameError",
+            "error_message": "NameError: name 'sim' is not defined"
+          },
+          "after": {
+            "failure_stage": "exec",
+            "error_category": "interface_mismatch",
+            "exception_type": "NameError",
+            "error_message": "name 'sim' is not defined"
+          }
+        }
+      ]
+    },
+    {
+      "line": 184,
+      "task_id": "T3b_DJ_balanced",
+      "seed": 16,
+      "condition_id": "self_debugging",
+      "changes": [
+        {
+          "scope": "final",
+          "before": {
+            "failure_stage": "exec",
+            "error_category": "unknown_error",
+            "exception_type": "QiskitError",
+            "error_message": "QiskitError: 'Data for experiment \"0\" could not be found.'"
+          },
+          "after": {
+            "failure_stage": "exec",
+            "error_category": "interface_mismatch",
+            "exception_type": "QiskitError",
+            "error_message": "Data for experiment \"0\" could not be found."
+          }
+        },
+        {
+          "scope": "round 2",
+          "before": {
+            "failure_stage": "exec",
+            "error_category": "unknown_error",
+            "exception_type": "QiskitError",
+            "error_message": "QiskitError: 'Data for experiment \"0\" could not be found.'"
+          },
+          "after": {
+            "failure_stage": "exec",
+            "error_category": "interface_mismatch",
+            "exception_type": "QiskitError",
+            "error_message": "Data for experiment \"0\" could not be found."
+          }
+        },
+        {
+          "scope": "round 3",
+          "before": {
+            "failure_stage": "exec",
+            "error_category": "unknown_error",
+            "exception_type": "QiskitError",
+            "error_message": "QiskitError: 'Data for experiment \"0\" could not be found.'"
+          },
+          "after": {
+            "failure_stage": "exec",
+            "error_category": "interface_mismatch",
+            "exception_type": "QiskitError",
+            "error_message": "Data for experiment \"0\" could not be found."
+          }
+        }
+      ]
+    }
+  ],
+  "unknown_error_counts": {
+    "final": 0,
+    "rounds": 0
+  },
+  "evaluation_rerun": false,
+  "evaluation_values_and_timeout_flags_unchanged": true,
+  "other_records_unchanged": true,
+  "validation": {
+    "captured_records": 1404,
+    "raw_sha256_at_validation": "cb9a718853186256f92d106d3be2d711a9e26e7c3c467c6dd63e3aa2023dcafc",
+    "sanity_report": "results/shared_five_models_full_20261010T041019864060Z/sanity_report.json",
+    "sanity_passed": false,
+    "errors": [
+      "missing records: 1096",
+      "incomplete condition sets: 1"
+    ],
+    "warnings": [],
+    "details": {
+      "duplicate_count": 0,
+      "missing_count": 1096,
+      "unexpected_count": 0,
+      "incomplete_pair_count": 1,
+      "initial_mismatch_count": 0,
+      "missing_examples": [
+        [
+          "shared_five_models_full_20261010T041019864060Z",
+          "baseline",
+          "ollama:gemma3:4b",
+          "T1_Bell",
+          10
+        ],
+        [
+          "shared_five_models_full_20261010T041019864060Z",
+          "baseline",
+          "ollama:gemma3:4b",
+          "T1_Bell",
+          11
+        ],
+        [
+          "shared_five_models_full_20261010T041019864060Z",
+          "baseline",
+          "ollama:gemma3:4b",
+          "T1_Bell",
+          12
+        ],
+        [
+          "shared_five_models_full_20261010T041019864060Z",
+          "baseline",
+          "ollama:gemma3:4b",
+          "T1_Bell",
+          13
+        ],
+        [
+          "shared_five_models_full_20261010T041019864060Z",
+          "baseline",
+          "ollama:gemma3:4b",
+          "T1_Bell",
+          14
+        ],
+        [
+          "shared_five_models_full_20261010T041019864060Z",
+          "baseline",
+          "ollama:gemma3:4b",
+          "T1_Bell",
+          15
+        ],
+        [
+          "shared_five_models_full_20261010T041019864060Z",
+          "baseline",
+          "ollama:gemma3:4b",
+          "T1_Bell",
+          16
+        ],
+        [
+          "shared_five_models_full_20261010T041019864060Z",
+          "baseline",
+          "ollama:gemma3:4b",
+          "T1_Bell",
+          17
+        ],
+        [
+          "shared_five_models_full_20261010T041019864060Z",
+          "baseline",
+          "ollama:gemma3:4b",
+          "T1_Bell",
+          18
+        ],
+        [
+          "shared_five_models_full_20261010T041019864060Z",
+          "baseline",
+          "ollama:gemma3:4b",
+          "T1_Bell",
+          19
+        ]
+      ]
+    },
+    "csv_sha256": {
+      "baseline_regressions.csv": "c61894edd7e8285fc2ec5a0b9416f27af4b5586e0d97bd3b3b1c630bc2904f1b",
+      "cost_runtime_summary.csv": "3e81e81b8a745f17071e91508e28f036dddcc9466ac0351560c5111243a0630c",
+      "degradation_cases.csv": "420cb46d8e010edd5d55e2605b19bc2dbeb35163308dd67e0e023ccfef4f20f4",
+      "failure_stage_summary.csv": "77665c1de158d7d8d7b927802e87cd7d182811447a12330fe48abc64f9862ee6",
+      "intervention_catalog_by_error.csv": "2c66ba0abfbc8cec17f3dd3049efce03dfc98a36d53295a37982824cf6640024",
+      "intervention_catalog_by_error_difficulty.csv": "0f84ddf1858d77b6adb7f90286f1baa4231004e7d28699e626d0f00ca6e4250d",
+      "intervention_catalog_by_error_model.csv": "99670714c6c187e0db98c619aa8c726089fe7c2c2d457f55d58ae5b5ff131df7",
+      "rescue_rates_by_error.csv": "59e76426f14840e85b97cba149dc35bcbff8d637a6bf31f0f290e927de688add",
+      "summary_by_condition.csv": "fd44404047e70dbd664b3d46e654da92c34ccbb99671fe816fd5153dc1f511d7",
+      "summary_by_difficulty.csv": "cfb03c54e1474dfb616baf7d902c57822120ba6e2b9e5a246217993c7cc7f5df",
+      "summary_by_model.csv": "42dac2d18b439a030f3d8cede264771b090897bf5bd3079ae1b0317a36e35d49",
+      "summary_by_task.csv": "325efcd0aa2626606a90c51b3cbd239b365a51f02052e85a97f5efc112094af8",
+      "timeout_summary.csv": "b0082a584977dac4c9041e0e66c86d0e5cedba7e063aeb3c6879b62b59ce2dab"
+    },
+    "analysis_status": "provisional: ongoing experiment, saved evaluations only",
+    "standard_analysis_records": 1404,
+    "catalog_complete_pair_records": 1400,
+    "catalog_excluded_incomplete_records": 4,
+    "catalog_note": "Only groups with all five conditions are included; excluded records are not treated as failed or zero rescue.",
+    "public_csv_redactions": [
+      {
+        "file": "degradation_cases.csv",
+        "cleared_columns": [
+          "code_diff_round0_final"
+        ]
+      },
+      {
+        "file": "baseline_regressions.csv",
+        "cleared_columns": [
+          "code_diff_round0_final"
+        ]
+      }
+    ]
+  }
+}

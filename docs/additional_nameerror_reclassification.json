@@ -1,0 +1,62 @@
+{
+  "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+  "updated_at_utc": "20261011T090920827541Z",
+  "source": "results/shared_five_models_full_20261010T041019864060Z/raw.jsonl",
+  "backup": "results/shared_five_models_full_20261010T041019864060Z/raw.before_nameerror_reclassification_20261011T090920827541Z.jsonl",
+  "backup_sha256": "890990b3ae9783bd5564e718c1770b54dc00f51323a17a0d01f213ea003ee420",
+  "raw_sha256_after": "65bb74b49c5ad398952a588de4e3db64ad20ffad5d2f6c30c855d5a14c854333",
+  "records_at_backup": 1403,
+  "changes": [
+    {
+      "line": 146,
+      "model_spec": "ollama:qwen3.5:4b",
+      "task_id": "T3a_DJ_constant",
+      "seed": 19,
+      "condition_id": "baseline",
+      "rounds_updated": [
+        0
+      ],
+      "before": {
+        "failure_stage": "exec",
+        "error_category": "unknown_error",
+        "exception_type": "NameError",
+        "error_message": "NameError: name 'sim' is not defined"
+      },
+      "after": {
+        "failure_stage": "exec",
+        "error_category": "interface_mismatch",
+        "exception_type": "NameError",
+        "error_message": "name 'sim' is not defined"
+      }
+    },
+    {
+      "line": 147,
+      "model_spec": "ollama:qwen3.5:4b",
+      "task_id": "T3a_DJ_constant",
+      "seed": 19,
+      "condition_id": "self_refine",
+      "rounds_updated": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "before": {
+        "failure_stage": "exec",
+        "error_category": "unknown_error",
+        "exception_type": "NameError",
+        "error_message": "NameError: name 'sim' is not defined"
+      },
+      "after": {
+        "failure_stage": "exec",
+        "error_category": "interface_mismatch",
+        "exception_type": "NameError",
+        "error_message": "name 'sim' is not defined"
+      }
+    }
+  ],
+  "evaluation_rerun": false,
+  "evaluation_values_unchanged": true,
+  "other_records_unchanged": true,
+  "notes": "self_refine shares baseline round 0; all three revisions retain the same variable-name mismatch. Only the two requested conditions were reclassified; other conditions remain pending review."
+}
