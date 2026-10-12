@@ -80,5 +80,16 @@
   "prompt_fingerprints": {
     "system_txt_sha256": "b76e82b93808aff180580db3647711efa0a3a56cc39301cff4a7a44f108e9f9d",
     "interventions_py_sha256": "ea630da1c7051c0b9cd36163d19cf8d56746dad074408a7d8bd7e2002e6b4ec4"
-  }
+  },
+  "completed_at_utc": "2026-10-12T08:24:02.862648+00:00",
+  "elapsed_sec": 187581.07512068748,
+  "sanity_passed": true,
+  "records_written_this_run": 2500,
+  "runs": [
+    {
+      "completed_at_utc": "2026-10-12T08:24:02.862648+00:00",
+      "elapsed_sec": 187581.07512068748,
+      "records_written": 2500
+    }
+  ]
 }

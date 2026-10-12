@@ -1,5 +1,9 @@
 # Qiskit LLM Code Generation Harness
 
+現在進行中の5モデル追加実験の終了後、`scripts.draft_after_experiment` がCodexを1回起動し、中間発表・学会原稿・進捗報告の更新版を `docs/completion_drafts/<保存先のhash>/` に作成します。`configs/slack_progress.cron` の専用行で5分ごとに確認し、元プロセスの終了・共有ロック解放・全件記録を待ちます。API障害や検証不備が残る場合は暫定資料として明記します。既存原稿は参考コピーとして保持し、固定スナップショットを出典にPDFを作成します。作成完了後は既存のSlackbot DMへのメール経路で進捗報告本文とローカル保存先を通知します。PDFの添付・学会投稿・Git操作はこの処理には含めません。
+
+起動にはログイン済みの `/home/23tc011/.local/bin/codex` を使用します（[Codexの非対話実行](https://developers.openai.com/codex/noninteractive)）。状態は `.cache/draft_jobs/`、起動ログは `logs/draft_after_experiment.log` と `logs/draft_codex_*.log` に保存します。AI失敗・中断や通知失敗の自動再試行はありません。状況を確認してから必要な場合のみ `--retry` で明示的に再実行してください。完了条件の手動確認には、同じ保存設定を指定した `--dry-run` を使用します。
+
 ## 概要
 
 量子回路コードの生成において、モデル・タスク難度・誤り種別・介入条件ごとに、生成品質と介入効果を比較する研究用ハーネスです。生成した Qiskit コードを実行・評価し、JSONL と分析 CSV に記録します。
@@ -122,7 +126,7 @@ Invoke-RestMethod http://127.0.0.1:11435/api/tags
 
 実験レポートの[下書き](docs/experiment_report_draft.md)と[集計スナップショット](docs/experiment_report_snapshot.json)は、`configs/slack_progress.cron` のレポート更新行で60分ごと（毎時0分）に更新します。手動更新は `.venv/bin/python -m scripts.update_experiment_report` です。対象はスナップショットに指定した実験で、時刻・本実験の件数・モデル別／条件別／タスク別／失敗類型別の表と検証状況を更新します。`<!-- auto:... -->` の範囲外に書いた考察は保持します。完了した簡易実験の結果が変わった場合や、重複・予定外・件数減少を検出した場合は更新を止めます。レポート更新はモデルへの生成要求・通知送信・Git操作を行いません。
 
-このサーバでは毎日 **9時・18時（日本時間）** に、メール経由でSlackbotとのDMへ進捗を送る設定を `configs/slack_progress.cron` に用意しています。`--overview` で全実験の保存設定と実行状態を読み、実行中の実験を先頭に、未完了・中断・検証失敗・API障害のある実験と直近の完了結果を送ります。実行中の実験がない場合も明記します。即時通知を `--notify none` で無効にした実験もこの定時レポートには含みます。無料プランに対応し、Slackアプリ・Botトークンは不要です。送信先はSlackの転送先メールアドレスで決まり、チャンネルIDは指定しません。[Slack公式手順](https://slack.com/help/articles/206819278-Send-emails-to-Slack)
+このサーバでは6時間ごと、**0時・6時・12時・18時（日本時間）** に、メール経由でSlackbotとのDMへ進捗を送る設定を `configs/slack_progress.cron` に用意しています。`--overview` で全実験の保存設定と実行状態を読み、実行中の実験を先頭に、未完了・中断・検証失敗・API障害のある実験と直近の完了結果を送ります。実行中の実験がない場合も明記します。即時通知を `--notify none` で無効にした実験もこの定時レポートには含みます。無料プランに対応し、Slackアプリ・Botトークンは不要です。送信先はSlackの転送先メールアドレスで決まり、チャンネルIDは指定しません。[Slack公式手順](https://slack.com/help/articles/206819278-Send-emails-to-Slack)
 
 Slackとメール送信の準備:
 
@@ -182,7 +186,7 @@ Slack API・Incoming Webhook方式も、`--transport slack` で利用可能で�
 .venv/bin/python -m scripts.monitor_experiments --transport email --stalled-after 3600
 ```
 
-`configs/slack_progress.cron` には9時・18時の進捗通知に加え、5分ごとの監視を含めます。監視では完了・異常だけでなく、通知が有効なすべての実行中の実験について、現在の段階・記録件数・残り件数を30分ごとに報告します（保存設定がまだない開始直後は実験IDと段階を報告）。同じ30分枠内の通知は実験ごとに1回で、記録件数が増えていなくても次の枠で報告します。`--progress-interval` で報告間隔の秒数を変更できます。プロセス消失・45秒以上のハートビート停滞・1時間以上の進捗停止を判定し、異常を通知します。モデル応答が遅い場合もあるため、監視はプロセスを強制終了しません。`--stalled-after` で進捗停止の判定秒数を変更できます。
+`configs/slack_progress.cron` には6時間ごとの定時進捗通知に加え、5分ごとの監視を含めます。監視では完了・異常だけでなく、通知が有効なすべての実行中の実験について、現在の段階・記録件数・残り件数を6時間ごとに報告します（保存設定がまだない開始直後は実験IDと段階を報告）。同じ6時間枠内の通知は実験ごとに1回で、記録件数が増えていなくても次の枠で報告します。`--progress-interval` で報告間隔の秒数を変更できます。プロセス消失・45秒以上のハートビート停滞・1時間以上の進捗停止を判定し、異常を通知します。モデル応答が遅い場合もあるため、監視はプロセスを強制終了しません。`--stalled-after` で進捗停止の判定秒数を変更できます。
 
 `automate_experiment` は完了・API障害・実行失敗・コミット／プッシュ失敗をメールで即時通知します。API障害の速報は最初の該当記録が書かれた時点で送ります。`--notify none` で即時通知とその実験の監視通知を無効にでき、`--notify slack` でSlack API／Webhook方式を指定できます。通常の `run_experiment` は状態を記録しますが、単体では即時通知を有効にしません。
 

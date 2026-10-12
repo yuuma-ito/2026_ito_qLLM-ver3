@@ -1,0 +1,45 @@
+{
+  "snapshot": "results_snapshot.json",
+  "snapshot_sha256": "44c24c1de9642c276027abeab437c2b13d54f9a32857a4c07d834f7cad0eab24",
+  "captured_at": "2026-10-12T08:25:03.817652+00:00",
+  "repository_source_root": "/home/23tc011/2026_ito_qLLM-ver3",
+  "checks": {
+    "shared_three_models_full_20261008T103231611899Z": {
+      "records": 1500,
+      "sanity_passed": true,
+      "automation_passed": true,
+      "condition_csv_matches_snapshot": true,
+      "timeouts": 0,
+      "catalog_baseline_failures": 161,
+      "snapshot_baseline_failures": 161,
+      "catalog_consistent": true
+    },
+    "shared_five_models_full_20261010T041019864060Z": {
+      "records": 2500,
+      "sanity_passed": true,
+      "automation_passed": true,
+      "condition_csv_matches_snapshot": true,
+      "timeouts": 0,
+      "catalog_baseline_failures": 137,
+      "snapshot_baseline_failures": 288,
+      "catalog_consistent": false
+    }
+  },
+  "source_sha256": {
+    "sources/shared_three_models_full_20261008T103231611899Z/experiment_config.json": "a4cd6ab1126e8927aa3a76c4fcf7392026007215d0388d8b6f73c3bba84691ec",
+    "sources/shared_three_models_full_20261008T103231611899Z/sanity_report.json": "57f3129aceb12bfe00b06ef88ff29917c850479c77a383c68235a38118e28c75",
+    "sources/shared_three_models_full_20261008T103231611899Z/automation_report.json": "0e43ad5829c4004341be6f7e720908e535b64b23c616fbf2897752afbf582efb",
+    "sources/shared_three_models_full_20261008T103231611899Z/summary_by_condition.csv": "28cd4a659896b1a2314a6c7a3d216590c7eae7740298633aded6762039465833",
+    "sources/shared_three_models_full_20261008T103231611899Z/rescue_rates_by_error.csv": "7bab72f42980fc51ab83c14440260879e1005d52dc4e7d0413a7f30a4eb901ff",
+    "sources/shared_three_models_full_20261008T103231611899Z/intervention_catalog_by_error.csv": "375087b35aad329d303e36f0907e8db8082cf3b1d6c9716e911e88c0e6cfd7b8",
+    "sources/shared_three_models_full_20261008T103231611899Z/timeout_summary.csv": "7103129d51225b15b77454ab61e4a1db996d891bfedfb58560cbfce52350d6ce",
+    "sources/shared_five_models_full_20261010T041019864060Z/experiment_config.json": "5c9232f76cc6758b52983fe90ec0757ba2ffe2c4972884a25736f09edd45f22a",
+    "sources/shared_five_models_full_20261010T041019864060Z/sanity_report.json": "a8d7f0f5c874e92639a709fce845e9f8611b80844b5ffe32321222638dca64c1",
+    "sources/shared_five_models_full_20261010T041019864060Z/automation_report.json": "feabc51ea2863cee820cebb6c2a389ec49fa35adfaeb86f1575b9eb466f95e0a",
+    "sources/shared_five_models_full_20261010T041019864060Z/summary_by_condition.csv": "2f401c014aba3e3aeb6cb943c1db5dbdc68ec28f62ed921898a3e4dd67166461",
+    "sources/shared_five_models_full_20261010T041019864060Z/rescue_rates_by_error.csv": "d5bdb904e0ed4cacf71fa7a3185b526a0b3d5b468f85dbf77ee66bb6fc9b8e39",
+    "sources/shared_five_models_full_20261010T041019864060Z/intervention_catalog_by_error.csv": "2c66ba0abfbc8cec17f3dd3049efce03dfc98a36d53295a37982824cf6640024",
+    "sources/shared_five_models_full_20261010T041019864060Z/timeout_summary.csv": "256b613955ebcd312be0df5c2665e9e9d01066dd3452422abe08c96dac3f5d00"
+  },
+  "additional_catalog_status": "not used for full-run effect claims: 137 baseline failures versus 288 in fixed snapshot"
+}

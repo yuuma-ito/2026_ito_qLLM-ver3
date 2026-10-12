@@ -299,6 +299,26 @@ def test_overview_reports_verified_failure_after_all_records_written(experiment)
     assert "private" not in text
 
 
+def test_overview_hides_reviewed_history_but_shows_resumed_run(experiment):
+    config, output, root = experiment
+    (output / "experiment_config.json").write_text(json.dumps(config))
+    write_rows(output, [row(0, rounds=[{"generation_error": "private"}])])
+    (root / "configs").mkdir()
+    (root / "configs" / "reviewed_experiments.json").write_text(
+        json.dumps({config["experiment_id"]: "Reviewed by user"}))
+    with RunTracker(output, config["experiment_id"], root=root) as tracker:
+        tracker.finish("failed", phase="verifying")
+    text = notify.overview("Asia/Tokyo", root)
+    assert "未完了／要確認: 0件" in text
+    assert "実験: progress_test" not in text
+    # Suppressing the notification must not change the underlying result.
+    assert notify.snapshot(config, root)["api_failures"] == 1
+    with RunTracker(output, config["experiment_id"], root=root):
+        text = notify.overview("Asia/Tokyo", root)
+    assert "実行中: 1件" in text
+    assert "実験: progress_test" in text
+
+
 def test_unknown_evaluation_error_is_not_counted_as_api_failure(experiment):
     config, output, root = experiment
     write_rows(output, [row(0, error_category="unknown_error", rounds=[

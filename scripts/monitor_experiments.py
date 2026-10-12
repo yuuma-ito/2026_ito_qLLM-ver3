@@ -8,7 +8,7 @@ from harness.run_state import ROOT, observation, update_state
 from scripts.experiment_events import emit_event
 
 
-def inspect_runs(root=ROOT, *, stalled_after=3600, progress_interval=1800,
+def inspect_runs(root=ROOT, *, stalled_after=3600, progress_interval=21600,
                  transport="email", dry_run=False):
     if progress_interval <= 0:
         raise ValueError("progress_interval must be positive")
@@ -38,8 +38,8 @@ def inspect_runs(root=ROOT, *, stalled_after=3600, progress_interval=1800,
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--stalled-after", type=int, default=3600)
-    parser.add_argument("--progress-interval", type=int, default=1800,
-                        help="Report running experiments once per interval in seconds (default: 1800)")
+    parser.add_argument("--progress-interval", type=int, default=21600,
+                        help="Report running experiments once per interval in seconds (default: 21600)")
     parser.add_argument("--transport", choices=("none", "email", "slack"), default="email")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)

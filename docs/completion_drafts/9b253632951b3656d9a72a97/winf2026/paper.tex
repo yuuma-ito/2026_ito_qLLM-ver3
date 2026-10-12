@@ -1,0 +1,128 @@
+% extarticleではa4jが未使用になるため，標準のa4paperを指定する．
+\documentclass[a4paper,8pt,twocolumn]{extarticle}
+\usepackage{winf-paper}
+\usepackage{type1cm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{url}
+\renewcommand{\tablename}{表}
+\title{Qiskit量子回路コード生成における\\失敗類型と修正介入の実証比較}
+% 投稿前に著者名・共著者・正式所属を確定する．
+\author{著者名（要確認）}
+\affiliation{所属（要確認）}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section{はじめに}
+大規模言語モデル（LLM）が生成する量子回路コードは，実行できても期待する量子状態や測定分布を返すとは限らない．Qiskitコードを対象に，実行ベース検証と自己修正を組み合わせ，どの失敗類型をどの介入が回復し，どこで退行が生じるかを調べる．目的は，適用条件と限界を明示した介入カタログの構築である．本稿では検証済み3モデル本実験を主分析とし，完了した5モデル追加実験を別のseed集合として報告する．
+
+\section{評価の枠組みと関連研究}
+Self-Refineは自己フィードバックによる反復修正\cite{selfrefine}，Self-Debuggingはコードの説明等を用いた自己デバッグ\cite{selfdebug}を検討している．本研究の条件はハーネス内の実装であり，先行研究の完全な再現ではない．量子コードの実行可否と出力・構造への適合を分けて評価する．
+
+現行L0はコードの実行・importと必須関数の存在・呼出形式，L1は回路構築後のシミュレーションまたは状態評価，L2は期待出力との一致とする．構造要件は\texttt{structure\_match}で判定し，総合成功は
+\begin{equation}
+L3=L0\land L1\land L2\land\mathrm{structure\_match}
+\end{equation}
+とする．旧中間発表の「L3＝構造」と区別する．引数なしの\texttt{build\_circuit}から\texttt{QuantumCircuit}を返す形式を求める．測定分布は8,192 shotsによる全変動距離，状態ベクトルは大域位相を整合した距離で評価し，0.05未満をL2成功とする．構造判定は量子ビット数や指定ゲート数等，タスクに定義した範囲に限る．
+
+baselineのL2失敗から介入後のL2成功への変化を救出，baseline成功から最終失敗への変化を退行とする．救出率の分母は対応するbaseline失敗数である．修正途中の評価段階低下は最終L2退行とは別に扱う．API接続・timeout障害は生成コードの評価失敗と区別する．
+
+\section{実験方法}
+主分析はQ4＝\texttt{qwen3.5:4b}，G4＝\texttt{gemma4:e4b-it-qat}，Q9＝\texttt{qwen3.5:9b}の3モデル，10タスク，seed 0--9，5条件で1,500件．追加分析はこの3モデルにC7とG3を加え，seed 10--19で2,500件とする．Ollamaのタグをモデル名として用い，タグの数値を厳密なパラメータ数とはみなさない．モデルdigest・量子化情報は保存済みautomation reportを参照する．
+
+タスクはBell，GHZ，Deutsch--Jozsaのconstantとbalanced，Bernstein--Vazirani，Grover，QFT，IQFT，QPE，Ansatzの10種類．ハーネスの易・中・難分類は普遍的な難度尺度ではない．SF3上のOllamaをSSHトンネル経由で利用し，temperature 0.7，生成上限1要求1,024 tokens，\texttt{reasoning\_effort=none}，timeout 600秒，逐次要求とする．修正上限は3回．接続障害時は設定とseedを維持して最大5回再送し，回復しない障害は記録して停止する．
+
+条件はbaseline（B：初回生成），\texttt{self\_refine}（R：自己見直し），\texttt{execution\_feedback}（F：エラーや実行結果を提示），\texttt{self\_debugging}（D：説明・原因分析・修正），\texttt{preventive\_spec}（P：生成前注意事項）の5種類．BとR・F・Dは同一モデル・タスク・base seedの初期コードと評価を共有する．初期または修正後のL3成功で停止し，修正roundのseedはbase seedにround番号を加える．Pは別プロンプトから1回独立生成する．1レコードはモデル・タスク・seed・条件の最終評価と履歴で，roundを別件数に数えない．
+\section{結果}
+\subsection{出典と全件検証}
+固定集計は2026年10月12日17:25:03 JST（08:25:03 UTC）の\path{results_snapshot.json}による．主分析は3モデル本実験（seed 0--9），追加分析は5モデル本実験（seed 10--19）とする．保存設定，実験ID，検証レポートの対応は末尾の出典\cite{data}とREADMEに記録した．両実験は設定・seed集合が異なるため合算しない．
+
+主分析は1,500/1,500件，追加分析は2,500/2,500件を記録した．両者とも欠落・重複・予定外記録，条件の対応欠落，共有初期評価の不一致は0件で，sanity checkとautomation reportは成功した．固定集計のAPI障害を含む記録，保存CSVのtimeoutは0件，最終失敗分類の未分類は0件である．コードの評価失敗は実験結果として含める．L2成功は主分析839件（55.9\%），追加分析1,242件（49.7\%）で，失敗はそれぞれ661件，1,258件である．モデル構成が違うため，総率の差を性能の増減とは解釈しない．
+
+\subsection{既報との区別}
+中間発表時の120件は2モデル・10タスク・seed 0--2・2条件で，L2達成時に修正を終了した既報である．Qwen2.5-CoderのL2成功はBで23/30，Rで24/30，Gemma3は両条件0/30だった．この既報は参照原稿による値で，今回生データから再検証していない．現行L3終了の本実験や追加分析と合算しない．各60件の簡易実験2回は予備検証，API障害738件を含む旧本実験は除外資料とし，途中値は全件集計で置き換えた．
+
+\subsection{主分析：3モデル・seed 0--9}
+表\ref{tab:primary}の各モデル・条件は100件であり，成功件数は百分率の数値とも一致する．表のL2とL3成功件数はすべて一致した．Q4はBの15件からFで56件，Dで57件へ増加し，G4は65件から87件，88件，Q9は59件から76件，80件となった．修正型条件の最終成功数には，初期L3成功により修正しなかった例を含む．
+\begin{table}[t]
+\centering
+\caption{主分析のL2成功件数（各セル100件）}
+\label{tab:primary}
+\begin{tabular}{l|rrrrr}
+\hline
+モデル & B & R & F & D & P \\
+\hline
+Q4 & 15 & 33 & 56 & 57 & 11 \\
+G4 & 65 & 82 & 87 & 88 & 32 \\
+Q9 & 59 & 73 & 76 & 80 & 25 \\
+\hline
+合計 & 139 & 188 & 219 & 225 & 68 \\
+\hline
+\end{tabular}
+\end{table}
+\subsection{追加分析：5モデル・seed 10--19}
+C7を\texttt{qwen2.5-coder:7b}，G3を\texttt{gemma3:4b}と略記する．表\ref{tab:additional}も各モデル・条件100件で，L2とL3件数が一致する．Q4ではDが61件，G4ではFが96件，Q9ではFが81件となった．観測最多の修正条件はモデルとseed集合によって変わる．C7はBの66件からFで78件，Dで77件，G3はBと修正型3条件が各1件だった．
+\begin{table}[t]
+\centering
+\caption{追加分析のL2成功件数（各セル100件）}
+\label{tab:additional}
+\begin{tabular}{l|rrrrr}
+\hline
+モデル & B & R & F & D & P \\
+\hline
+Q4 & 20 & 34 & 53 & 61 & 14 \\
+G4 & 68 & 85 & 96 & 88 & 31 \\
+Q9 & 57 & 71 & 81 & 78 & 33 \\
+C7 & 66 & 74 & 78 & 77 & 66 \\
+G3 & 1 & 1 & 1 & 1 & 7 \\
+\hline
+合計 & 212 & 265 & 309 & 305 & 151 \\
+\hline
+\end{tabular}
+\end{table}
+\subsection{失敗類型と介入効果}
+最終失敗は主分析ではimport 188件，構文116件，回路構築98件，インターフェース76件，出力不一致183件であった．追加分析はimport 580件，構文121件，回路構築202件，インターフェース49件，出力不一致304件，量子ビット数不一致2件である．これらは全条件の最終失敗分類であり，表\ref{tab:catalog}のbaseline失敗分類・分母とは異なる．失敗段階と原因も別の分類軸として扱う．
+
+主分析のbaseline失敗は161/300件．失敗類型別の救出件数を表\ref{tab:catalog}に示す．Rは49/161（30.4\%），Fは80/161（49.7\%），Dは86/161（53.4\%）を救出した．importと回路構築ではD，インターフェース不適合ではFで救出件数が観測最多だった．構文ではRとFが同数，出力不一致ではDが最多だった．モデル別・難度別の層別検討が必要で，この集計だけで最適介入や因果効果を確定しない．
+\begin{table}[t]
+\centering
+\caption{主分析のbaseline失敗類型別救出件数}
+\label{tab:catalog}
+\begin{tabular}{l|r|rrr}
+\hline
+失敗類型 & 分母 & R & F & D \\
+\hline
+import & 48 & 11 & 24 & 29 \\
+回路構築 & 28 & 4 & 16 & 17 \\
+インターフェース & 21 & 8 & 14 & 13 \\
+構文 & 33 & 12 & 12 & 10 \\
+出力不一致 & 31 & 14 & 14 & 17 \\
+\hline
+合計 & 161 & 49 & 80 & 86 \\
+\hline
+\end{tabular}
+\end{table}
+
+主分析のPはbaseline失敗から22/161件を救出した一方，baseline成功139件中93件が失敗に変わった．R・F・Dの最終L2退行は各0件であるが，修正過程の評価段階低下はカタログ定義でR 11件，F 15件，D 15件あり，最終成功率とは区別する．Pは別プロンプトの独立生成であり，同一コードの修正効果と解釈しない．
+
+追加分析の介入カタログCSVはbaseline失敗分母137件で，全件固定集計の288/500件と一致しない．全件を表すカタログとしては採用せず，追加分析の失敗類型別救出・退行は未確定とする．本実験の全件記録・条件別最終成功と，派生カタログの整合性を分けて報告する．今回の資料作成では元集計を変更していない．
+\section{考察と限界}
+実行結果を提示するFと原因分析を伴うDは，対象の初回失敗を回復する例を増やした．一方，修正型条件の初期コードは共有され，同じタスク・seedの条件は対応がある．1,500件や2,500件をすべて独立標本とはみなせず，統計的有意差は検定していない．3モデル主分析と5モデル追加分析ではseedとモデル構成が異なり，成功率の単純差をモデル変更の因果効果とはみなさない．
+
+評価は独自の10タスクと構造要件に限定され，Qiskit HumanEvalそのもののスコアではない．ビット順序などを独立した原因として確定するにはround履歴の確認が必要であり，出力不一致をすべて量子論理の誤りとは断定しない．シミュレータseedが固定されていないため，モデルseedのみで完全再現を保証できない．有限shots，1,024 tokens上限，共有サーバ負荷，モデルdigest・量子化の違いも限界である．
+
+時間・tokensは共有初期生成を各条件に含むので，条件間の単純合計は重複計上となる．金銭単価は未設定である．生成前の注意事項で成功が減る傾向は現在のプロンプトと対象タスクに限られ，生成前介入一般の無効性を示さない．追加実験の派生カタログ不整合を解決するまでは，その失敗類型別の推奨を公開用の確定結論にしない．
+
+\section{次回までのアクション}
+追加実験の保存設定を維持し，既存記録に基づく介入カタログの再集計・分母照合を次の作業として行う．その後，モデル・難度別の救出と退行，成功round，追加時間・tokensを整理し，失敗類型ごとの適用条件と限界をカタログ化する．測定乱数と短い生成上限の影響は，必要性と設定を検討したうえで別途追試を計画する．今回，追加生成や追試は行っていない．
+
+発表準備では，背景，対応付き比較，成功数と救出・退行，限界の順で説明資料を整える．WiNF原稿の著者・共著者・正式所属と投稿要領は投稿前に確認する．本資料は共有用下書きで，学会投稿は別途の指示で行う．
+\begin{thebibliography}{9}
+\bibitem{selfrefine} A. Madaan et al.: Self-Refine: Iterative Refinement with Self-Feedback, arXiv:2303.17651 (2023).
+\bibitem{selfdebug} X. Chen et al.: Teaching Large Language Models to Self-Debug, arXiv:2304.05128 (2023).
+\bibitem{data} 固定集計：\path{results_snapshot.json}（2026-10-12 08:25:03 UTC）．主分析：\path{shared_three_models_full_20261008T103231611899Z}．追加分析：\path{shared_five_models_full_20261010T041019864060Z}．設定・CSV・検証報告・hashはREADME参照．
+\end{thebibliography}
+\end{document}

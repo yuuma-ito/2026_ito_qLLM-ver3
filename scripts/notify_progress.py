@@ -145,6 +145,8 @@ def message(progress: dict, timezone: str):
 
 def overview(timezone: str, root: Path = ROOT):
     """Include live runs and unresolved results across all experiment families."""
+    reviewed_path = root / "configs" / "reviewed_experiments.json"
+    reviewed = json.loads(reviewed_path.read_text(encoding="utf-8")) if reviewed_path.exists() else {}
     candidates = {}
     results = (root / "results").resolve()
     for saved in results.glob("*/experiment_config.json"):
@@ -164,7 +166,10 @@ def overview(timezone: str, root: Path = ROOT):
         if status in ACTIVE:
             starting.append(f"実験: {html.escape(runtime['experiment_id'])}\n状態: {status}"
                             f"\n段階: {runtime.get('phase', 'unknown')}\n記録: 保存設定作成前")
-    progresses = list(candidates.values())
+    # Acknowledged historical runs stay in the results, but leave the overview.
+    # If one is resumed, show its live progress again.
+    progresses = [p for p in candidates.values()
+                  if p["experiment_id"] not in reviewed or p["runtime_status"] in ACTIVE]
     active = [p for p in progresses if p["runtime_status"] in ACTIVE]
     attention = [p for p in progresses if p not in active and (
         p["runtime_status"] in {"failed", "interrupted"} or p["recorded"] < p["planned"]

@@ -144,7 +144,7 @@ def test_monitor_reports_all_running_experiments_once_per_interval(tmp_path, mon
     monkeypatch.setattr(notify_progress, "deliver", lambda *args: sent.append(args))
     # Freeze the monitor's clock without changing runtime heartbeat/observation clocks.
     from types import SimpleNamespace
-    now = [time.time()]
+    now = [int(time.time() // 21600) * 21600]
     monkeypatch.setattr(monitor_experiments, "time", SimpleNamespace(time=lambda: now[0]))
     first = tmp_path / "results/first"
     second = tmp_path / "results/second"
@@ -168,6 +168,9 @@ def test_monitor_reports_all_running_experiments_once_per_interval(tmp_path, mon
             assert "残り 1件" in text
             assert transport == "email"
         now[0] += 1800
+        monitor_experiments.inspect_runs(tmp_path)
+        assert len(sent) == 2
+        now[0] += 19800
         monitor_experiments.inspect_runs(tmp_path)
         assert len(sent) == 4
         a.finish(phase="completed")

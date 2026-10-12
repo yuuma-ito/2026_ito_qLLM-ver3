@@ -1,0 +1,103 @@
+% 提示された中間発表原稿を基に，前回の結果とその後の進捗を分けて更新した．
+\documentclass[a4paper,8pt,twocolumn]{extarticle}
+\usepackage{winf-paper}
+\usepackage{type1cm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{url}
+\renewcommand{\tablename}{表}
+\title{量子LLM支援プログラミングにおける\\失敗類型と介入カタログの実証研究}
+\author{2023TC011 伊藤 悠真}
+\affiliation{指導教員：横山 哲郎}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section{はじめに}
+大規模言語モデル（Large Language Model: LLM）を中心とした生成AI技術が発展し\cite{brown}，コード生成でも実行テストによる機能的正しさの評価が進められている．HumanEval\cite{chen}やMBPP\cite{austin}は，生成コードをテストケースで検証するベンチマークである．一方，生成コードには構文誤り，実行時誤り，仕様への不適合，出力の誤りが生じ得る．
+
+量子プログラミングでは，コードが実行できても，期待する量子状態や測定分布が得られるとは限らない．本研究ではQiskitコードを対象に，実行ベース検証と自己修正を組み合わせ，失敗類型ごとの改善，限界，退行を分析する．指定APIや出力形式への適合と，量子計算として期待出力を返す成功を分け，有効な介入を整理したカタログの構築を目指す．本稿は中間発表時の予備結果を保持し，その後の実験環境整備と本実験の途中経過を報告する．
+
+\section{評価の枠組み}
+中間発表では，L0を構文，L1を実行可能性とインターフェース，L2を出力一致，L3を構造の妥当性として説明した．その後，評価ハーネスの実装に合わせて指標を整理した．現行L0は生成コードの実行・importと必須関数の存在・呼出形式，L1は回路構築後のシミュレーションまたは状態評価，L2は期待出力との一致を表す．構造の適合は独立した\texttt{structure\_match}で判定し，総合成功を
+\begin{equation}
+ L3=L0\land L1\land L2\land\mathrm{structure\_match}
+\end{equation}
+と定義する．現行L3は構造だけの指標ではなく，旧結果と各段階の通過率を直接合算しない．
+
+生成コードには，引数なしの\texttt{build\_circuit}から\texttt{QuantumCircuit}を返す形式を求める．測定分布は8,192 shotsで評価し，全変動距離，または大域位相を整合した状態ベクトル距離が0.05未満ならL2成功とする．構造判定は各タスクに定義した量子ビット数やゲート数等の要件に限る．
+
+失敗を構文，import，インターフェース不適合，回路構築，量子ビット数，ビット順序，出力不一致，未分類エラーに分ける．API接続・timeout障害は生成コードの不正解と区別する．baselineがL2失敗で介入後に成功した場合を救出，baseline成功から失敗への変化を退行として扱う．インターフェースへの適合による改善と回路出力の改善を切り分けるため，最終成功率だけでなくroundごとの失敗類型も確認する．
+
+\section{関連研究・準備}
+Self-Refineは，同じLLMがフィードバックと反復修正を行う手法である\cite{selfrefine}．一方，外部フィードバックを用いない推論の自己修正には，改善が得られない，または性能が低下する場合が報告されている\cite{huang}．後者は推論課題を対象としており，量子コードや実行結果を使う介入すべての無効性を示すものではない．
+
+Qiskitは量子回路の記述・実行を支援するフレームワークである\cite{qiskit}．GHZ状態のように，複数の量子ビットの相関が測定分布に現れる課題では，実行成功だけでなく期待する分布や状態との照合が必要となる．量子コード生成のベンチマークとしてQiskit HumanEvalも提案されている\cite{qhumaneval}．本研究は独自の10タスクと評価器を用い，同ベンチマークそのもののスコアは報告しない．
+
+前回からの準備として，SF3上にOllamaと3モデルを用意し，SSHトンネル経由のAPI利用を確認した．生成，評価，集計，sanity check，検証を自動化し，完了・検証成功時に設定と公開用集計をGitHubへ自動commit／pushする実験ハーネスを構築した．生データと秘密情報は公開せず，途中レポートを5分ごとに更新し，定期通知で現在のモデル・タスク・条件・件数を確認できる．また，スタイルファイルをAIで確認し，その形式で原稿を作成・更新した．
+
+\section{実験方法}
+\subsection{中間発表時の予備実験}
+中間発表原稿に記載した予備実験は，\texttt{qwen2.5-coder:7b}と\texttt{gemma3:4b}の2モデルを対象とする．Bell，GHZ，Deutsch--Jozsa，Bernstein--Vazirani，Grover，QFT，逆QFT，QPE，ansatz等の10タスクについて，seed 0--2でbaselineとSelf-Refineを比較し，計120件を収集した．当時の設定では最大3回修正し，L2達成時に停止した．以下の既報値は提示された中間発表原稿によるもので，現行ハーネスでの再評価値ではない．
+
+\subsection{その後の比較実験と本実験}
+対象を\texttt{qwen3.5:4b}（Q4），\texttt{gemma4:e4b-it-qat}（G4），\texttt{qwen3.5:9b}（Q9）へ変更した．介入はbaseline（B），自己見直し（R），実行結果フィードバック（F），自己デバッグ（D），生成前注意事項（P）の5条件に拡張した．Bと修正型3条件は，同じモデル・タスク・base seedの初期コードと評価を共有する．Pは異なる初期プロンプトから独立に生成するため，生成後の修正と区別する．修正は最大3回で，現行L3達成時に停止する．
+
+2タスク・2 seedで各60件の簡易実験を2回行った後，10タスク・10 seed（0--9）・5条件の本実験を開始した．3モデルを含め計1,500件を予定する．temperatureは0.7，生成上限は1要求1,024 tokens，\texttt{reasoning\_effort}は\texttt{none}，timeoutは600秒で，要求は逐次送信する．
+
+新しい本実験では，接続障害時に5，10，20，30，30秒待って最大5回再送し，プロンプト・temperature・seedを維持する．seedを外すのは非対応の明示時のみとする．回復しない接続障害とtimeoutは記録して停止し，障害が後続の大量の失敗記録へ波及することを防ぐ．再試行回数を各roundに保存し，回復方針が異なる旧結果と新結果は合算しない．
+
+\section{結果}
+\subsection{中間発表時の既報}
+表\ref{tab:legacy}に中間発表時のL2成功数を示す．Qwenでは23/30件から24/30件へ1件増加し，Gemmaでは両条件とも0/30件であった．当時の原稿ではQFTの成功率が67\%から100\%へ改善した一方，QPEでは修正後に構文・実行段階の通過率が低下する例を報告した．主な失敗はimport，回路構築，出力不一致であった．
+\begin{table}[t]
+\centering
+\caption{中間発表時のL2成功数（提示原稿の既報）}
+\label{tab:legacy}
+\begin{tabular}{lcc}
+\hline
+モデル & baseline & Self-Refine \\
+\hline
+\texttt{qwen2.5-coder:7b} & 23/30 & 24/30 \\
+\texttt{gemma3:4b} & 0/30 & 0/30 \\
+全体 & 23/60 & 24/60 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{5条件の簡易実験}
+その後の2回の簡易実験は，各60件の記録とsanity check・自動検証に成功し，API障害は0件であった．各モデル・条件の分母は4件である．両実験ともQ4のBは1/4件，Rは2/4件，FとDは4/4件で，FとDは初回失敗3件をすべて救出した．G4のBと修正型条件は4/4件で，初回失敗がなく救出率は評価できない．Q9のBは3/4件，Fは実験1で4/4件，実験2で3/4件であった．Pは両実験とも3モデル合計0/12件だった．少数標本かつ同一seed集合の反復であり，一般的なモデルの優劣は主張しない．
+
+\subsection{本実験の停止と再実行}
+旧本実験は1,500件を記録したが，接続障害を含む記録738件，未分類の評価エラーを含む記録8件があり，検証段階で停止した．L2成功376件，失敗1,124件には接続不能の影響があり，コード生成能力の比較にそのまま用いない．元の記録を保持し，接続回復対策を適用した新しい本実験を2026年10月8日19:32（日本時間）に開始した．
+
+同日19:42の固定集計では19/1,500件（1.3\%）を記録し，L2成功9件，失敗10件であった．接続・timeout障害，未分類エラー，重複・予定外記録は各0件であった．記録はすべてQ4で，他モデルは未記録である．残り1,481件と全件の検証があるため，この結果は暫定であり，モデル間の優劣や介入の効果を確定しない．
+
+\section{考察}
+既報ではSelf-Refineの総成功数の増加は1件にとどまったが，この差だけでは救出と退行の件数を分離できない．その後の簡易実験ではQ4のFとDによる救出を確認したものの，モデル，タスク，seed，評価定義が異なるため，中間発表時の改善率と直接比較しない．また，G4の初期成功例では修正を行わないため，最終成功率の高さを修正能力の証拠とはしない．
+
+import等のインターフェース・実行上の問題と，測定分布・状態の不一致を分け，どの失敗類型がどの介入で回復するかを調べる必要がある．実行結果の提示と出力形式への適合の効果を完全に分離した因果分析はまだ行っておらず，介入カタログは今後の分析成果として整理する．
+
+現時点では標本数が少なく，シミュレータseedも固定していないため，モデルseedだけで完全な再現性は保証できない．生成長の上限，共有サーバ負荷，接続障害も結果に影響する．新しい本実験の接続障害0件は記録済み19件の範囲の観測であり，障害を完全に解消した証拠ではない．条件ごとの時間・tokensには共有初期生成が含まれるため，単純合計は重複計上となる．
+
+\section{おわりに}
+中間発表で報告した2モデル・単一修正介入の予備検証から，SF3上の3モデル・5条件の比較と自動実験運用へ進んだ．接続障害を切り分け，対策後の本実験を実行している．今後は全件の検証後，モデル・難度・失敗類型別の成功，救出，退行と追加生成コストを分析し，適用条件と限界を明記した介入カタログを作成する．
+
+\begin{thebibliography}{9}
+\bibitem{brown}
+T. B. Brown et al.: Language Models are Few-Shot Learners, NeurIPS, Vol.~33 (2020).
+\bibitem{chen}
+M. Chen et al.: Evaluating Large Language Models Trained on Code, arXiv:2107.03374 (2021).
+\bibitem{austin}
+J. Austin et al.: Program Synthesis with Large Language Models, arXiv:2108.07732 (2021).
+\bibitem{selfrefine}
+A. Madaan et al.: Self-Refine: Iterative Refinement with Self-Feedback, NeurIPS, Vol.~36 (2023).
+\bibitem{huang}
+J. Huang et al.: Large Language Models Cannot Self-Correct Reasoning Yet, ICLR (2024).
+\bibitem{qiskit}
+A. Javadi-Abhari et al.: Quantum computing with Qiskit, arXiv:2405.08810 (2024).
+\bibitem{qhumaneval}
+S. Vishwakarma et al.: Qiskit HumanEval: An Evaluation Benchmark for Quantum Code Generative Models, IEEE QCE, Vol.~1, pp.~1169--1176 (2024).
+\end{thebibliography}
+\end{document}

@@ -1,10 +1,12 @@
-# Email experiment progress to Slackbot at 09:00 and 18:00 (Asia/Tokyo).
+# Email experiment progress to Slackbot every 6 hours at 00:00, 06:00, 12:00 and 18:00 (Asia/Tokyo).
 # Keep notifying when the experiment is stopped or completed.
 # This host's system timezone must stay Asia/Tokyo; --timezone only formats messages.
 # Credentials are loaded from the repository .env, never from this crontab.
-0 9,18 * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.notify_progress --overview --timezone Asia/Tokyo --transport email >> /home/23tc011/2026_ito_qLLM-ver3/logs/slack_progress.log 2>&1
-# Observe every 5 minutes; report running experiments once per 30-minute slot.
+0 */6 * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.notify_progress --overview --timezone Asia/Tokyo --transport email >> /home/23tc011/2026_ito_qLLM-ver3/logs/slack_progress.log 2>&1
+# Observe every 5 minutes; report running experiments once per 6-hour slot.
 # Alert once per completion/anomaly event; never stop the experiment automatically.
-*/5 * * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.monitor_experiments --transport email --stalled-after 3600 --progress-interval 1800 >> /home/23tc011/2026_ito_qLLM-ver3/logs/experiment_monitor.log 2>&1
+*/5 * * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.monitor_experiments --transport email --stalled-after 3600 --progress-interval 21600 >> /home/23tc011/2026_ito_qLLM-ver3/logs/experiment_monitor.log 2>&1
 # Refresh report counts and tables hourly at minute 0, preserving manually written prose.
 0 * * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.update_experiment_report >> /home/23tc011/2026_ito_qLLM-ver3/logs/experiment_report_update.log 2>&1
+# Start Codex once after this saved five-model run finishes; share its progress draft via email.
+*/5 * * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.draft_after_experiment --config results/shared_five_models_full_20261010T041019864060Z/experiment_config.json --codex /home/23tc011/.local/bin/codex --transport email >> /home/23tc011/2026_ito_qLLM-ver3/logs/draft_after_experiment.log 2>&1

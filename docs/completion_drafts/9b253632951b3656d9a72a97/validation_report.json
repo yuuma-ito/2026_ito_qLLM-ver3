@@ -1,0 +1,75 @@
+{
+  "status": "passed",
+  "snapshot_captured_at": "2026-10-12T08:25:03.817652+00:00",
+  "documents": {
+    "midterm2026": {
+      "pages": 2,
+      "bytes": 189024,
+      "format": "A4",
+      "platex_passes": 2,
+      "dvipdfmx": "success; ptex-ipaex.map",
+      "all_fonts_embedded": true,
+      "unresolved_citations_or_references": 0,
+      "missing_glyphs": 0,
+      "overfull_boxes": 0,
+      "underfull_boxes": 5,
+      "underfull_review": "Spacing warnings reviewed in rendered pages; no overlap or clipping.",
+      "visual_review": "All two pages rendered and inspected; tables and bibliography readable within margins.",
+      "model_condition_rows_matched_in_tex_and_pdf": 8,
+      "primary_catalog_rows_matched_in_tex": 5,
+      "sha256": "1e70c25c700527baf1ca67d873861b2e453239cae1c1f328811c14471d545641"
+    },
+    "winf2026": {
+      "pages": 2,
+      "bytes": 188387,
+      "format": "A4",
+      "platex_passes": 2,
+      "dvipdfmx": "success; ptex-ipaex.map",
+      "all_fonts_embedded": true,
+      "unresolved_citations_or_references": 0,
+      "missing_glyphs": 0,
+      "overfull_boxes": 0,
+      "underfull_boxes": 5,
+      "underfull_review": "Spacing warnings reviewed in rendered pages; no overlap or clipping.",
+      "visual_review": "All two pages rendered and inspected; tables and bibliography readable within margins.",
+      "model_condition_rows_matched_in_tex_and_pdf": 8,
+      "primary_catalog_rows_matched_in_tex": 5,
+      "sha256": "f1f469de33326da7fe3460ca7b53e6551ea54a811f259b5c7fcf323cda5c6c81"
+    }
+  },
+  "source_checks": {
+    "shared_three_models_full_20261008T103231611899Z": {
+      "records": 1500,
+      "sanity_passed": true,
+      "automation_passed": true,
+      "condition_csv_matches_snapshot": true,
+      "timeouts": 0,
+      "catalog_baseline_failures": 161,
+      "snapshot_baseline_failures": 161,
+      "catalog_consistent": true
+    },
+    "shared_five_models_full_20261010T041019864060Z": {
+      "records": 2500,
+      "sanity_passed": true,
+      "automation_passed": true,
+      "condition_csv_matches_snapshot": true,
+      "timeouts": 0,
+      "catalog_baseline_failures": 137,
+      "snapshot_baseline_failures": 288,
+      "catalog_consistent": false
+    }
+  },
+  "limitations": [
+    "Additional full-run intervention catalog excluded: denominator 137 versus 288; no full-run error-specific intervention conclusion.",
+    "WiNF author/coauthor and formal affiliation require confirmation before submission."
+  ],
+  "reference_files_changed": false,
+  "actions_not_performed": [
+    "generated code execution",
+    "additional experiments",
+    "submission",
+    "notifications",
+    "Git operations"
+  ],
+  "abstract_characters": 258
+}
