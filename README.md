@@ -4,6 +4,63 @@
 
 起動にはログイン済みの `/home/23tc011/.local/bin/codex` を使用します（[Codexの非対話実行](https://developers.openai.com/codex/noninteractive)）。状態は `.cache/draft_jobs/`、起動ログは `logs/draft_after_experiment.log` と `logs/draft_codex_*.log` に保存します。AI失敗・中断や通知失敗の自動再試行はありません。状況を確認してから必要な場合のみ `--retry` で明示的に再実行してください。完了条件の手動確認には、同じ保存設定を指定した `--dry-run` を使用します。
 
+## ファイルの役割案内
+
+初めて読む場合は、このREADMEで使い方を確認し、発表資料のPDF、実験レポート、集計CSVの順に見ると結果を把握できます。
+
+### 設定・実行・通知
+
+| ファイル | 役割 |
+| --- | --- |
+| [README.md](README.md) | 実験の実行方法、結果の読み方、通知・資料作成の使い方を説明する入口です。 |
+| [AGENTS.md](AGENTS.md) | AIが作業するときに守るルールです。実験後の検証・公開・資料作成の手順を定めています。 |
+| [configs/slack_progress.cron](configs/slack_progress.cron) | 進捗通知、実験監視、レポート更新、完了後の資料作成を定期実行する設定です。 |
+| [configs/reviewed_experiments.json](configs/reviewed_experiments.json) | 確認済みの過去実験を記録し、定期通知で繰り返し表示しないための設定です。再開した実験は表示します。 |
+| [scripts/draft_after_experiment.py](scripts/draft_after_experiment.py) | 実験の終了を確認し、AIによる発表資料の下書き作成と進捗通知を行います。 |
+| [scripts/monitor_experiments.py](scripts/monitor_experiments.py) | 実験が動いているか、停止・異常がないかを監視します。 |
+| [scripts/notify_progress.py](scripts/notify_progress.py) | 実験の件数や状態をまとめて通知します。 |
+| [tests/](tests/) | 実験・検証・通知・資料作成の処理が想定どおり動くかを確認するテストです。 |
+
+### 実験結果・集計
+
+[docs/experiment_report_draft.md](docs/experiment_report_draft.md)は、実験の進捗と結果を日本語でまとめたレポートです。[docs/experiment_report_snapshot.json](docs/experiment_report_snapshot.json)は、そのレポートと同じ集計時点の数値と出典を保存します。
+
+実験ごとの結果は `results/<実験ID>/` に保存します。今回完了した5モデル追加実験の保存先は [results/shared_five_models_full_20261010T041019864060Z/](results/shared_five_models_full_20261010T041019864060Z/) です。
+
+| ファイル | 内容 |
+| --- | --- |
+| `experiment_config.json` | 実際に使ったモデル、条件、タスク、seedなどの保存設定です。 |
+| `summary_by_*.csv` | モデル別・条件別・タスク別・難度別の成績表です。 |
+| `rescue_rates_by_error.csv` | baselineで失敗したコードが、介入によってどれだけ成功に変わったかを失敗原因別にまとめます。 |
+| `baseline_regressions.csv` | baselineでは成功していたのに、介入条件では失敗したケースを記録します。 |
+| `degradation_cases.csv` | 修正型の介入で、初期roundより最終roundの評価段階が低下したケースを記録します。 |
+| `failure_stage_summary.csv` | 最終結果について、どの段階で何が原因で失敗したかを集計します。 |
+| `cost_runtime_summary.csv` | トークン使用量、実行時間、コード行数、回路の規模などの集計です。 |
+| `timeout_summary.csv` | タイムアウトの件数・割合を集計します。 |
+| `intervention_catalog_by_error.csv` | baselineの失敗原因別に、各介入の効果を比較する集計です。分析前に他の集計との分母の一致を確認します。 |
+| `manifest.json` | 実験設定や実行環境、完了時刻など、再現性を確認するための記録です。 |
+| `sanity_report.json` | 記録に欠落・重複・整合性の問題がないかを確認した結果です。 |
+| `automation_report.json` | 自動公開に必要な検証を通過したかを記録します。プッシュ成功そのものを示すファイルではありません。 |
+
+### 発表資料・固定した出典
+
+今回の更新版は [docs/completion_drafts/9b253632951b3656d9a72a97/](docs/completion_drafts/9b253632951b3656d9a72a97/) に保存しています。`midterm2026/` は中間発表用、`winf2026/` は学会発表に向けた下書きです。
+
+| ファイル・フォルダ | 内容 |
+| --- | --- |
+| [midterm2026/paper.pdf](docs/completion_drafts/9b253632951b3656d9a72a97/midterm2026/paper.pdf) | 中間発表用の資料です。内容を読むときは、このPDFを開きます。 |
+| [winf2026/paper.pdf](docs/completion_drafts/9b253632951b3656d9a72a97/winf2026/paper.pdf) | 学会発表に向けた原稿の下書きです。 |
+| 各フォルダの `paper.tex` | PDFの元原稿です。本文や表を修正するときに使います。 |
+| 各フォルダの `winf-paper.sty` | PDFの文字や段組みなどの体裁を指定するLaTeX用の設定です。 |
+| 各フォルダの `progress_report_draft.txt` | 完了した作業、結果、残る課題を説明する進捗報告です。 |
+| 各フォルダの `README.md` | 資料の対象実験、出典、検証状況、PDFの作成方法などを説明します。 |
+| `winf2026/abstract.txt` | 学会原稿の内容を短くまとめた抄録です。 |
+| `results_snapshot.json` / `sources/` | 資料作成時点の数値と集計・設定・検証結果を固定して保存します。継続更新するレポートとは集計時点が異なる場合があります。 |
+| `validation_report.json` | PDFの体裁や、本文と集計数値の一致を確認した記録です。 |
+| `reference/` | 更新前の資料を参考用に保存しています。 |
+
+この固定資料では、5モデル追加実験の介入カタログの分母が137件、スナップショットのbaseline失敗数が288件と一致していません。そのため、追加実験の失敗原因別介入効果については、このカタログに基づく結論を保留しています。制約の詳細は各資料のREADMEと `validation_report.json` を参照してください。
+
 ## 概要
 
 量子回路コードの生成において、モデル・タスク難度・誤り種別・介入条件ごとに、生成品質と介入効果を比較する研究用ハーネスです。生成した Qiskit コードを実行・評価し、JSONL と分析 CSV に記録します。
