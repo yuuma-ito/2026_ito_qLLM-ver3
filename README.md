@@ -4,6 +4,20 @@
 
 起動にはログイン済みの `/home/23tc011/.local/bin/codex` を使用します（[Codexの非対話実行](https://developers.openai.com/codex/noninteractive)）。状態は `.cache/draft_jobs/`、起動ログは `logs/draft_after_experiment.log` と `logs/draft_codex_*.log` に保存します。AI失敗・中断や通知失敗の自動再試行はありません。状況を確認してから必要な場合のみ `--retry` で明示的に再実行してください。完了条件の手動確認には、同じ保存設定を指定した `--dry-run` を使用します。
 
+## seed 0〜19への実験補完と統合
+
+残り2モデル（`qwen2.5-coder:7b`・`gemma3:4b`）のseed 0〜9を、[configs/shared_two_models_seed0_9_full.json](configs/shared_two_models_seed0_9_full.json)で1,000件追加します。完了後は、既存3モデルのseed 0〜9（1,500件）と既存5モデルのseed 10〜19（2,500件）を合わせ、各モデル1,000件、合計5,000件の公開用集計を作成します。
+
+```bash
+.venv/bin/python -m scripts.automate_experiment --config configs/shared_two_models_seed0_9_full.json --new-run --pool-config configs/shared_five_models_pool.json
+```
+
+[configs/shared_five_models_pool.json](configs/shared_five_models_pool.json)は既存の出典と統合先を指定します。検証済みの生データから集計し直し、元実験の保存設定・記録を保持します。統合先は `results/shared_five_models_pooled_seed0_19/` です。出典別の内訳は `summary_by_source.csv`、記録の照合は `sanity_report.json`、設定・出典・制約は `manifest.json` と `pool_report.md` に保存します。統合先に生データや生成コードは公開しません。
+
+介入カタログは実験終了時に全件から再生成し、公開前に値を照合します。追加5モデル実験の古いカタログは途中集計で分母137件でしたが、全2,500件からの再生成によりbaselineのL2失敗288件と一致しました。固定した旧発表資料の出典は当時の状態として保持します。
+
+旧3モデル実験と追加実験ではエラー分類処理の版が異なり、実行結果を与える介入の診断文にも影響します。統合値は混合手順の記述的結果として扱い、実験別・seedブロック別の内訳を残します。詳細は[統合方針と処理差の確認](docs/seed0_19_integration.md)を参照してください。
+
 ## ファイルの役割案内
 
 初めて読む場合は、このREADMEで使い方を確認し、発表資料のPDF、実験レポート、集計CSVの順に見ると結果を把握できます。

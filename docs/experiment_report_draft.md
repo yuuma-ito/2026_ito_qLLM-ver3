@@ -3,11 +3,11 @@
 本研究では、検証済み3モデル本実験を主分析とし、現在収集中の5モデル追加実験を別実験として、OllamaモデルによるQiskit量子回路コード生成を対象に、タスク難度と介入条件による生成品質の違いを調べる。構文・実行・出力・構造を分けて評価し、成功率だけでなく、失敗類型、修正による救出、退行、生成に要したトークン数と時間を比較する。
 
 <!-- auto:status:start -->
-簡易実験は2回完了した。3モデル本実験は全件記録と自動検証が完了した。モデル間・難度間の比較の考察は、検証済み結果に基づいて追記する。3モデル本実験を検証済みの主分析として採用し、5モデル追加実験は別実験ID・別保存先で収集する。追加実験の主分析への採否は完了・検証後に判断する。
+簡易実験は2回完了した。3モデル本実験は全件記録と自動検証が完了した。モデル間・難度間の比較の考察は、検証済み結果に基づいて追記する。3モデル本実験を検証済みの主分析として保持し、追加・補完実験は別実験ID・別保存先で収集する。全件検証後にseed 0〜19の統合集計を作成し、元実験の内訳とフィードバック処理差を併記する。
 <!-- auto:status:end -->
 
 <!-- auto:capture:start -->
-集計時点：2026-10-12 18:00:04 JST。数値は最終更新時点の値であり、60分ごと（毎時0分）に自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。
+集計時点：2026-10-12 19:08:43 JST。数値は最終更新時点の値であり、60分ごと（毎時0分）に自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。
 <!-- auto:capture:end -->
 
 ## 1 目的と比較の観点
@@ -145,7 +145,7 @@ preventive_specは両実験とも0/12件で、baseline成功から失敗への�
 
 実験ID：`shared_three_models_full_20261008T103231611899Z`。保存先：`results/shared_three_models_full_20261008T103231611899Z/`。
 
-2026-10-12 18:00:04（日本時間）時点で、予定1,500件のうち1,500件（100.0%）を記録した。残りは0件である。L2成功は839件、L2失敗は661件、API障害を含む記録は0件であった。重複は0件、予定外記録は0件であった。
+2026-10-12 19:08:43（日本時間）時点で、予定1,500件のうち1,500件（100.0%）を記録した。残りは0件である。L2成功は839件、L2失敗は661件、API障害を含む記録は0件であった。重複は0件、予定外記録は0件であった。
 
 自動検証とsanity checkが成功し、API障害を含む記録はなかった。
 
@@ -223,7 +223,7 @@ API障害を含む記録件数はround履歴も確認した値であり、最終
 <!-- auto:additional-results:start -->
 ### 5モデル追加実験の記録状況
 
-集計時点：2026-10-12 18:00:04 JST。状態：検証済み（主分析への採否は別途判断）。
+集計時点：2026-10-12 19:08:43 JST。状態：検証済み（主分析への採否は別途判断）。
 
 | 項目 | 状況 |
 | --- | --- |
@@ -231,11 +231,58 @@ API障害を含む記録件数はround履歴も確認した値であり、最終
 | 保存先 | `results/shared_five_models_full_20261010T041019864060Z/` |
 | 予定件数 | 2,500件 |
 | 現在の記録件数 | 2,500件 |
-| 未記録件数 | 0件（完了後の欠落判定は未確定） |
+| 未記録件数 | 0件（全件照合済み） |
+| 重複・予定外記録 | 0件・0件（集計時点の照合） |
+| API障害・timeoutを明示する記録 | 0件（途中roundを含む検証済み） |
+| API障害または未分類エラーの保守的な確認対象 | 0件 |
+| sanity check・自動検証 | 成功 |
+
+
+全件記録と検証は完了した。元実験の内訳として保持し、補完実験の検証後に処理差を明記した統合集計へ反映する。
+
+| モデル | 条件 | 件数 | L2成功 | L3成功 |
+| --- | --- | ---: | ---: | ---: |
+| ollama:qwen3.5:4b | baseline | 100 | 20 | 20 |
+| ollama:qwen3.5:4b | self_refine | 100 | 34 | 34 |
+| ollama:qwen3.5:4b | execution_feedback | 100 | 53 | 53 |
+| ollama:qwen3.5:4b | self_debugging | 100 | 61 | 61 |
+| ollama:qwen3.5:4b | preventive_spec | 100 | 14 | 14 |
+| ollama:gemma4:e4b-it-qat | baseline | 100 | 68 | 68 |
+| ollama:gemma4:e4b-it-qat | self_refine | 100 | 85 | 85 |
+| ollama:gemma4:e4b-it-qat | execution_feedback | 100 | 96 | 96 |
+| ollama:gemma4:e4b-it-qat | self_debugging | 100 | 88 | 88 |
+| ollama:gemma4:e4b-it-qat | preventive_spec | 100 | 31 | 31 |
+| ollama:qwen3.5:9b | baseline | 100 | 57 | 57 |
+| ollama:qwen3.5:9b | self_refine | 100 | 71 | 71 |
+| ollama:qwen3.5:9b | execution_feedback | 100 | 81 | 81 |
+| ollama:qwen3.5:9b | self_debugging | 100 | 78 | 78 |
+| ollama:qwen3.5:9b | preventive_spec | 100 | 33 | 33 |
+| ollama:qwen2.5-coder:7b | baseline | 100 | 66 | 66 |
+| ollama:qwen2.5-coder:7b | self_refine | 100 | 74 | 74 |
+| ollama:qwen2.5-coder:7b | execution_feedback | 100 | 78 | 78 |
+| ollama:qwen2.5-coder:7b | self_debugging | 100 | 77 | 77 |
+| ollama:qwen2.5-coder:7b | preventive_spec | 100 | 66 | 66 |
+| ollama:gemma3:4b | baseline | 100 | 1 | 1 |
+| ollama:gemma3:4b | self_refine | 100 | 1 | 1 |
+| ollama:gemma3:4b | execution_feedback | 100 | 1 | 1 |
+| ollama:gemma3:4b | self_debugging | 100 | 1 | 1 |
+| ollama:gemma3:4b | preventive_spec | 100 | 7 | 7 |
+
+### 2モデル補完実験の記録状況
+
+集計時点：2026-10-12 19:08:43 JST。状態：収集中または未検証・暫定。
+
+| 項目 | 状況 |
+| --- | --- |
+| 実験ID | `shared_two_models_seed0_9_full_20261012T100658266051Z` |
+| 保存先 | `results/shared_two_models_seed0_9_full_20261012T100658266051Z/` |
+| 予定件数 | 1,000件 |
+| 現在の記録件数 | 0件 |
+| 未記録件数 | 1,000件（完了後の欠落判定は未確定） |
 | 重複・予定外記録 | 0件・0件（集計時点の照合） |
 | API障害・timeoutを明示する記録 | 0件（途中roundを含む暫定確認） |
 | API障害または未分類エラーの保守的な確認対象 | 0件 |
-| sanity check・自動検証 | 成功 |
+| sanity check・自動検証 | 未完了・未検証 |
 
 未分類エラーを含む保守的な確認対象は、API障害が確定した件数とは異なる。分類確認と最終検証を完了するまでAPI障害0件という最終結論は置かない。
 
@@ -247,6 +294,12 @@ L2成功率などの最終結果は未確定であり、3モデル本実験の�
 追加の再分類では、T3a_DJ_constant／seed 19のexecution_feedbackのround 0とself_debuggingのround 0・1に残っていた同じNameErrorを `exec / interface_mismatch` に統一した。execution_feedbackのround 2・3と最終結果の `get_counts('')`、T3b_DJ_balanced／seed 16のself_debuggingのround 2・3と最終結果の `get_counts('0')` は、存在しない実験名によるQiskitErrorとして同じ分類に変更した。T3a_DJ_constantのself_debuggingの最終結果は古典ビット未確保による `build / build_error / CircuitError` を維持した。再分類前のraw.jsonlを別途バックアップし、生成コード・評価値・timeout_flagは変更せず、再実行・再評価も行っていない。[追加の変更・検証記録](additional_remaining_reclassification.json)にバックアップ、ハッシュ、更新一覧、検証・CSVの出典を保存した。
 
 2026-10-11 18:16 JSTの保存済み1,404件では、最終結果・round履歴ともunknown_errorは0件、API障害・timeoutの確認対象も0件だった。保存設定に基づくsanity checkを実施し、重複・予定外記録・共有round 0の不一致は0件、その他の記録整合性エラーもなかった。ただし収集中のため、未記録1,096件と条件未完備1組により全件sanity checkは不合格であり、実験完了・自動検証成功とは扱わない。通常の分析CSVは1,404件から再生成し、介入カタログCSVは5条件がそろった1,400件のみの暫定集計とした。未完備の4記録はカタログから除外し、失敗や救出0件として扱わない。集計後の進捗は上の自動更新表を参照する。
+
+### seed 0〜19の補完・統合計画（2026年10月12日）
+
+ユーザー指示により、qwen2.5-coder:7b・gemma3:4bのseed 0〜9を1,000件追加する。実験IDは `shared_two_models_seed0_9_full_20261012T100658266051Z`、[保存設定](../results/shared_two_models_seed0_9_full_20261012T100658266051Z/experiment_config.json)を基準とする。完了・検証後は既存1,500件と2,500件を合わせ、5モデル各1,000件、計5,000件の統合集計を別保存先に作成する。
+
+追加5モデルの介入カタログは全2,500件から再生成し、分母がbaseline L2失敗288件と一致した。旧固定資料の分母137件は途中集計として保持し、最新結果の分析には使わない。旧3モデルと追加実験のエラー分類変更は診断文にも影響するため、統合値は混合手順の記述的結果として扱い、出典別の内訳を残す。[確認結果と統合方針](seed0_19_integration.md)を参照する。補完実験が未完了・未検証の間は5,000件の結果を確定しない。
 
 ## 5 考察
 

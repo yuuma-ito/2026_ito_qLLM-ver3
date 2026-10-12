@@ -99,15 +99,22 @@ def test_publication_excludes_raw_and_pushes_to_local_remote(tmp_path, monkeypat
     for name in automation.ARTIFACTS:
         (output / name).write_text("{}\n")
     (output / "raw.jsonl").write_text("private input\n")
-    branch = automation.require_clean_checkout(output)
+    pooled = repo / 'results/pooled'
+    pooled.mkdir()
+    (pooled / 'manifest.json').write_text('{"verified": true}\n')
+    (pooled / 'raw.jsonl').write_text('private pooled input\n')
+    extras = ['results/pooled/manifest.json']
+    branch = automation.require_clean_checkout(output, extras)
     (repo / "unrelated.txt").write_text("user work")
     with pytest.raises(RuntimeError, match="Unrelated"):
-        automation.publish(output, "test", branch)
+        automation.publish(output, "test", branch, extras)
     (repo / "unrelated.txt").unlink()
-    automation.publish(output, "test", branch)
+    automation.publish(output, "test", branch, extras)
     files = automation.git("ls-files").splitlines()
     assert "results/test/automation_report.json" in files
     assert "results/test/raw.jsonl" not in files
+    assert 'results/pooled/manifest.json' in files
+    assert 'results/pooled/raw.jsonl' not in files
     remote_head = subprocess.check_output(["git", "--git-dir", str(remote), "rev-parse", "main"], text=True).strip()
     assert automation.git("rev-parse", "HEAD") == remote_head
     # Existing reports may be updated by a resumed experiment.

@@ -76,8 +76,7 @@ def collect_run(previous, root):
                 original_final_error_counts=dict(Counter(row.get('original_error_category', row['error_category']) for row in rows)),
                 failure_stage_counts=dict(Counter(row['failure_stage'] for row in rows if row['error_category'] not in {'ok', ''})),
                 conditions=conditions)
-    if config['experiment_id'].startswith('shared_five_models_full'):
-        result['api_failure_confirmed_records'] = sum(has_api_failure(row, include_unknown=False) for row in rows)
+    result['api_failure_confirmed_records'] = sum(has_api_failure(row, include_unknown=False) for row in rows)
     return result
 
 
@@ -132,7 +131,8 @@ def full_results(run, captured_at):
 def additional_progress(run, captured_at):
     verified = run['automation_verified']
     status = '検証済み（主分析への採否は別途判断）' if verified else '収集中または未検証・暫定'
-    text = ['### 5モデル追加実験の記録状況', '',
+    label = '2モデル補完実験' if len(run['config']['models']) == 2 else '5モデル追加実験'
+    text = [f'### {label}の記録状況', '',
             f"集計時点：{captured_at[:19].replace('T', ' ')} JST。状態：{status}。", '',
             '| 項目 | 状況 |', '| --- | --- |',
             f"| 実験ID | `{run['experiment_id']}` |",
@@ -148,6 +148,15 @@ def additional_progress(run, captured_at):
             'L2成功率などの最終結果は未確定であり、3モデル本実験の結果表には混ぜない。主分析に含めるかどうかは、全件の収集・分類確認・sanity check・自動検証が完了した後に判断する。']
     if run['pending_write']:
         text += ['', '書き込み途中の末尾行は今回の集計から除外した。']
+    if verified:
+        text = [line.replace('（完了後の欠落判定は未確定）', '（全件照合済み）')
+                .replace('（途中roundを含む暫定確認）', '（途中roundを含む検証済み）') for line in text]
+        text = [line for line in text if not line.startswith(('未分類エラーを含む保守的な確認対象は、',
+                                                             'L2成功率などの最終結果は未確定であり、'))]
+        text += ['全件記録と検証は完了した。元実験の内訳として保持し、補完実験の検証後に処理差を明記した統合集計へ反映する。', '',
+                 '| モデル | 条件 | 件数 | L2成功 | L3成功 |', '| --- | --- | ---: | ---: | ---: |']
+        for row in run['conditions']:
+            text.append(f"| {row['model']} | {row['condition']} | {row['n']} | {row['L2_success']} | {row['L3_success']} |")
     return '\n'.join(text)
 
 
@@ -157,7 +166,8 @@ def render_report(original, previous, current):
     full = next(run for run in runs if (run['experiment_id'] == primary if primary else
                                        run['experiment_id'].startswith('shared_three_models_full')))
     quick = [run for run in runs if run['experiment_id'].startswith('shared_three_models_quick')]
-    classification_fields = {'failure_stage_counts', 'failure_classification_version', 'original_final_error_counts'}
+    classification_fields = {'failure_stage_counts', 'failure_classification_version', 'original_final_error_counts',
+                             'api_failure_confirmed_records'}
     for before, after in zip(previous['runs'], runs):
         if not before['experiment_id'].startswith('shared_three_models_quick'):
             continue
@@ -178,7 +188,7 @@ def render_report(original, previous, current):
                   for experiment_id in additional_ids]
     if additional:
         intro = intro.replace('本実験は', '3モデル本実験は', 1)
-        intro += '3モデル本実験を検証済みの主分析として採用し、5モデル追加実験は別実験ID・別保存先で収集する。追加実験の主分析への採否は完了・検証後に判断する。'
+        intro += '3モデル本実験を検証済みの主分析として保持し、追加・補完実験は別実験ID・別保存先で収集する。全件検証後にseed 0〜19の統合集計を作成し、元実験の内訳とフィードバック処理差を併記する。'
     capture_text = f"集計時点：{captured[:19].replace('T', ' ')} JST。数値は最終更新時点の値であり、60分ごと（毎時0分）に自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。"
     updated = replace_block(original, 'status', intro)
     updated = replace_block(updated, 'capture', capture_text)

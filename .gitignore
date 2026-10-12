@@ -13,3 +13,13 @@ __pycache__/
 *.pyc
 .pytest_cache/
 *:Zone.Identifier
+# 発表資料作成の中間ファイル。共有用PDF・原稿・検証結果は追跡する。
+docs/completion_drafts/**/paper.aux
+docs/completion_drafts/**/paper.dvi
+docs/completion_drafts/**/paper.log
+docs/completion_drafts/**/build_*.txt
+docs/completion_drafts/**/paper_extracted.txt
+docs/completion_drafts/**/pdffonts.txt
+docs/completion_drafts/**/pdfinfo.txt
+docs/completion_drafts/**/ai_response.json
+docs/completion_drafts/**/response_schema.json

@@ -3,7 +3,7 @@ import copy
 
 import pytest
 
-from scripts.analyze_intervention_catalog import INTERVENTIONS, analyze_catalog, write_catalog
+from scripts.analyze_intervention_catalog import INTERVENTIONS, analyze_catalog, write_catalog, verify_catalog
 
 
 def pair(seed, *, baseline_l2=False, category="wrong_output", model="model-a", difficulty="hard"):
@@ -95,3 +95,13 @@ def test_write_only_additional_csvs_without_touching_source(tmp_path):
     assert raw.read_bytes() == before
     assert existing.read_bytes() == b"existing CSV\n"
     assert len(list(tmp_path.glob("intervention_catalog_*.csv"))) == 3
+
+
+def test_verification_rejects_catalog_from_partial_run(tmp_path):
+    import json
+    raw = tmp_path / 'raw.jsonl'
+    raw.write_text('\n'.join(json.dumps(r) for r in pair(0)))
+    write_catalog(raw, tmp_path)
+    assert verify_catalog(pair(0), tmp_path)
+    with pytest.raises(ValueError, match='Stale'):
+        verify_catalog(pair(0) + pair(1), tmp_path)

@@ -30,6 +30,7 @@ from harness.llm_clients import make_client
 from harness.runner import generate_initial, run_intervention, run_one
 from scripts.sanity_check import check_results, write_sanity_report
 from scripts.analyze_interventions import write_analysis_outputs
+from scripts.analyze_intervention_catalog import write_catalog
 from harness.run_state import RunTracker, file_lock, state_path
 from scripts.compare_experiments import write_comparison
 from scripts.experiment_events import emit_event
@@ -238,6 +239,9 @@ def _execute(config, v, repo_root, output_root, raw_path, manifest_path,
     report = check_results(config, raw_path)
     write_sanity_report(report, sanity_path)
     write_analysis_outputs(raw_path, output_root)
+    if {c.intervention for c in v['conditions']} == {
+            'baseline', 'self_refine', 'execution_feedback', 'self_debugging', 'preventive_spec'}:
+        write_catalog(raw_path, output_root)
 
     manifest["completed_at_utc"] = __import__("datetime").datetime.now(
         __import__("datetime").timezone.utc

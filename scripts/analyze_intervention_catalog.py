@@ -110,6 +110,11 @@ def write_catalog(raw_path: str | Path, output_dir: str | Path) -> dict[str, lis
     with Path(raw_path).open(encoding="utf-8") as stream:
         records = [json.loads(line) for line in stream if line.strip()]
     outputs = analyze_catalog(records)
+    write_catalog_outputs(outputs, output_dir)
+    return outputs
+
+
+def write_catalog_outputs(outputs, output_dir):
     out = Path(output_dir)
     out.mkdir(parents=True, exist_ok=True)
     schemas = {"error": FIELDS + ["best_intervention_flag"],
@@ -118,7 +123,26 @@ def write_catalog(raw_path: str | Path, output_dir: str | Path) -> dict[str, lis
     for suffix, fields in schemas.items():
         name = f"intervention_catalog_by_{suffix}"
         _write(out / f"{name}.csv", outputs[name], fields)
-    return outputs
+
+
+def verify_catalog(records, output_dir):
+    """Reject stale or incomplete catalogs, including incorrect denominators."""
+    import csv
+    expected = analyze_catalog(records)
+    schemas = {'intervention_catalog_by_error': FIELDS + ['best_intervention_flag'],
+               'intervention_catalog_by_error_model': ['model_spec', *FIELDS],
+               'intervention_catalog_by_error_difficulty': ['task_difficulty', *FIELDS]}
+    for name, rows in expected.items():
+        with (Path(output_dir) / (name + '.csv')).open(encoding='utf-8-sig', newline='') as handle:
+            reader = csv.DictReader(handle)
+            actual = list(reader)
+            fields = reader.fieldnames
+        if fields != schemas[name]:
+            raise ValueError(f'Invalid intervention catalog columns: {name}')
+        wanted = [{k: str(row[k]) for k in fields} for row in rows]
+        if actual != wanted:
+            raise ValueError(f'Stale or inconsistent intervention catalog: {name}')
+    return True
 
 
 def main() -> int:

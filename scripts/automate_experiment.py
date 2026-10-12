@@ -30,6 +30,8 @@ ARTIFACTS = (
     "degradation_cases.csv", "baseline_regressions.csv", "timeout_summary.csv",
     "cost_runtime_summary.csv", "failure_stage_summary.csv",
     "comparison_by_condition.csv", "comparison_report.md",
+    "intervention_catalog_by_error.csv", "intervention_catalog_by_error_model.csv",
+    "intervention_catalog_by_error_difficulty.csv",
 )
 
 
@@ -126,15 +128,26 @@ def verify(config, output):
     for index, row in enumerate(rows):
         if has_api_failure(row):
             problems.append(f"Unresolved API/unknown failure in record {index}.")
+    full_catalog = {c.intervention for c in validate_config(config)['conditions']} == {
+        'baseline', 'self_refine', 'execution_feedback', 'self_debugging', 'preventive_spec'}
     for name in ARTIFACTS:
+        if name.startswith('intervention_catalog_') and not full_catalog:
+            continue
         if name not in {"automation_report.json", "experiment_config.json"} and not (output / name).is_file():
             problems.append(f"Missing artifact: {name}")
+    from scripts.analyze_intervention_catalog import verify_catalog
+    if full_catalog:
+        try:
+            verify_catalog(rows, output)
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            problems.append(f"Catalog verification failed: {exc}")
     return {"passed": not problems, "problems": problems, "sanity": report}
 
 
-def require_clean_checkout(output):
+def require_clean_checkout(output, extra_paths=()):
     allowed = {str((output / name).relative_to(ROOT)) for name in ARTIFACTS}
     allowed.update(report_artifacts())
+    allowed.update(extra_paths)
     if git("diff", "--cached", "--name-only"):
         raise RuntimeError("Commit or isolate staged changes before automatic publication.")
     changed = set(git("diff", "--name-only").splitlines())
@@ -148,16 +161,18 @@ def require_clean_checkout(output):
     return branch
 
 
-def publish(output, experiment_id, branch):
+def publish(output, experiment_id, branch, extra_paths=()):
     # Keep the report updater from changing either file while Git stages the pair.
     with file_lock(ROOT / '.cache' / 'experiment_report.lock'):
-        return _publish(output, experiment_id, branch)
+        return _publish(output, experiment_id, branch, extra_paths)
 
 
-def _publish(output, experiment_id, branch):
+def _publish(output, experiment_id, branch, extra_paths=()):
     # Stage an explicit artifact list. Never stage raw outputs or other user files.
-    paths = [str((output / name).relative_to(ROOT)) for name in ARTIFACTS]
+    paths = [str((output / name).relative_to(ROOT)) for name in ARTIFACTS
+             if not name.startswith('intervention_catalog_') or (output / name).exists()]
     paths += report_artifacts()
+    paths += list(extra_paths)
     if git("diff", "--cached", "--name-only"):
         raise RuntimeError("Unexpected staged changes; automatic commit stopped.")
     allowed = set(paths)
@@ -171,7 +186,10 @@ def _publish(output, experiment_id, branch):
         raise RuntimeError("Unexpected staged files; publication stopped.")
     if staged:
         git("-c", "user.name=yuuma-ito", "-c", "user.email=23tc011@tc.nanzan-u.ac.jp",
-            "commit", "-m", f"data: record verified experiment {experiment_id}")
+            "commit", "-m", "data: 検証済み実験結果を公開", "-m",
+            f"- 実験 {experiment_id} の全件記録と集計を保存\n"
+            "- sanity・API障害・介入カタログの整合性を検証\n"
+            "- 公開用レポートと比較結果を更新")
     # A failed push leaves the local commit intact. No force push or automatic merge.
     run(["git", "push", "origin", branch])
     print(f"Published {git('rev-parse', '--short', 'HEAD')} to origin/{branch}")
@@ -181,6 +199,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", default="configs/shared_five_models_quick.json")
     parser.add_argument("--new-run", action="store_true", help="Use a fresh timestamped experiment/output directory")
+    parser.add_argument("--pool-config", help="After verification, pool this run with the specified saved sources")
     parser.add_argument("--dry-run", action="store_true", help="Show the plan without network, tests, writes or publication")
     parser.add_argument("--no-publish", action="store_true", help="Run and verify without committing or pushing")
     parser.add_argument("--notify", choices=("none", "email", "slack"), default="email",
@@ -190,6 +209,12 @@ def main(argv=None):
         config = prepare_config(Path(args.config).resolve(), args.new_run, ROOT)
         output = output_path(config, ROOT)
         plan = validate_config(config)
+        pool_plan, pool_paths = None, []
+        if args.pool_config:
+            from scripts.pool_experiments import PUBLIC_FILES, pool_output
+            pool_plan = load_config(args.pool_config)
+            destination = pool_output(pool_plan)
+            pool_paths = [str((destination / name).relative_to(ROOT)) for name in PUBLIC_FILES]
         print(f"Experiment: {config['experiment_id']}\nRecords: {plan['planned_records']}\nOutput: {output}", flush=True)
         if args.dry_run:
             print(f"Sequential requests; shared endpoint {HOST}; publish={not args.no_publish}")
@@ -198,7 +223,8 @@ def main(argv=None):
             with RunTracker(output, config["experiment_id"], root=ROOT) as tracker:
                 tracker.update(phase="checkout", notification_transport=args.notify)
                 try:
-                    branch = require_clean_checkout(output) if not args.no_publish else ""
+                    branch = (require_clean_checkout(output, pool_paths) if pool_paths
+                              else require_clean_checkout(output)) if not args.no_publish else ""
                     tracker.update(phase="tests")
                     env = dict(os.environ, OLLAMA_HOST=HOST, OLLAMA_BASE_URL=HOST, OMP_NUM_THREADS="1",
                                QLLM_EVENT_TRANSPORT="none")
@@ -206,6 +232,9 @@ def main(argv=None):
                     run([sys.executable, "-m", "pytest", "tests/", "-q"], env=env)
                     tracker.update(phase="preflight")
                     server = preflight(config)
+                    if pool_plan:
+                        from scripts.pool_experiments import check_preflight
+                        check_preflight(pool_plan, config, server)
                     output.mkdir(parents=True, exist_ok=True)
                     saved_config = output / "experiment_config.json"
                     if saved_config.exists() and json.loads(saved_config.read_text()) != config:
@@ -223,6 +252,10 @@ def main(argv=None):
                     (output / "automation_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
                     if not report["passed"]:
                         raise RuntimeError("Verification failed: " + "; ".join(report["problems"]))
+                    if pool_plan:
+                        tracker.update(phase="pooling")
+                        from scripts.pool_experiments import write_pool
+                        write_pool(pool_plan, current_output=output)
                     history = [p for p in (ROOT / "results").glob("*") if p.is_dir() and (p / "manifest.json").exists()]
                     write_comparison(history, output)
                     if not args.no_publish:
@@ -230,7 +263,10 @@ def main(argv=None):
                         from scripts.update_experiment_report import REPORT, SNAPSHOT, update_report
                         if (ROOT / REPORT).exists() and (ROOT / SNAPSHOT).exists():
                             update_report(ROOT)
-                        publish(output, config["experiment_id"], branch)
+                        if pool_paths:
+                            publish(output, config["experiment_id"], branch, pool_paths)
+                        else:
+                            publish(output, config["experiment_id"], branch)
                     tracker.finish("completed", phase="completed", published=not args.no_publish)
                     emit_event(output, "completed", args.notify, root=ROOT)
                     print("Automation completed; verification PASS.")
