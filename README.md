@@ -4,6 +4,8 @@
 
 [モデル・難度・seed別の介入効果分析](docs/analysis/model_difficulty_seed_20261013/README.md)では、検証済み5,000件の救出・部分改善・段階低下を、統合と元実験別に比較できます。FとDの救出数は全体でともに191件ですが、共通149件、Fのみ42件、Dのみ42件であり、同じ救出数でも対象例は異なります。
 
+[FとDの片方だけで救出した例の比較](docs/analysis/feedback_debugging_discordant_20261013/findings.md)では、各42件を失敗類型・タスク・モデル・出典別に整理し、修正履歴と4例の保存コードを確認しました。import失敗と構文エラーで方向が異なり、出力表現への評価感度も記録しています。
+
 実験完了後の自動下書きは、`scripts.draft_after_experiment` がCodexを1回起動し、中間発表・学会原稿・進捗報告の更新版を `docs/completion_drafts/<保存先のhash>/` に作成します。`configs/slack_progress.cron` の専用行で5分ごとに確認し、元プロセスの終了・共有ロック解放・全件記録を待ちます。API障害や検証不備が残る場合は暫定資料として明記します。既存原稿は参考コピーとして保持し、固定スナップショットを出典にPDFを作成します。作成完了後は既存のSlackbot DMへのメール経路で進捗報告本文とローカル保存先を通知します。PDFの添付・学会投稿・Git操作はこの処理には含めません。
 
 起動にはログイン済みの `/home/23tc011/.local/bin/codex` を使用します（[Codexの非対話実行](https://developers.openai.com/codex/noninteractive)）。状態は `.cache/draft_jobs/`、起動ログは `logs/draft_after_experiment.log` と `logs/draft_codex_*.log` に保存します。AI失敗・中断や通知失敗の自動再試行はありません。状況を確認してから必要な場合のみ `--retry` で明示的に再実行してください。完了条件の手動確認には、同じ保存設定を指定した `--dry-run` を使用します。

@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "source_hashes_unchanged": true,
+  "sources_reverified": true,
+  "fixed_snapshot_matches": true,
+  "previous_overlap_matches": true,
+  "grouping_and_source_totals_match": true,
+  "discordant_case_count": 84,
+  "trajectories_match": true
+}

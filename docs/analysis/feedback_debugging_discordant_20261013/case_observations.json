@@ -1,0 +1,92 @@
+{
+  "checked_at_utc": "2026-10-13T07:26:02.501776+00:00",
+  "selection": "Four illustrative cases; not all 84 cases received manual code review.",
+  "generated_code_executed": false,
+  "original_evaluations_preserved": true,
+  "cases": [
+    {
+      "case_id": "1a8625f0c66ec4df",
+      "title": "構文エラーの修正",
+      "finding": "baselineは閉じていない三重引用符で構文解析に失敗した。Fのround 1は構文解析可能な回路生成コードとなり、保存評価でL3成功した。Dはround 1〜3も構文エラーだった。",
+      "evidence": {
+        "inspection": "Saved code parsed with ast; generated code not executed.",
+        "F_first_success_round": 1,
+        "D_final_category": "syntax"
+      },
+      "source_experiment_id": "shared_five_models_full_20261010T041019864060Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T5_Grover_11",
+      "base_seed": 19,
+      "winner": "F",
+      "baseline_record_sha256": "20d75280d88f8a31a6789520f23420723d0b5710918eb4a68f1ddea7218a0d51",
+      "feedback_record_sha256": "87fd4930444d2a6d68f6a87c1724fcddedf078b0e8fe6c19ccd277c54f1fb76f",
+      "debugging_record_sha256": "4a243b931e208176e5f07692096f21c3c5bd89941651cb051af7256ada85006f"
+    },
+    {
+      "case_id": "05bf2d436b25b19d",
+      "title": "importと回路APIの修正",
+      "finding": "baselineはCNOTGateのimportに失敗した。Dの最終roundではCNOTGateのimportを除き、回路操作をcxとし、Aerをqiskit_aerから取得した。保存評価はL3成功。Fは後続roundでもimport・回路APIの失敗を残した。途中で別の失敗を経てから成功しており、初回修正だけでは救出していない。",
+      "evidence": {
+        "inspection": "Saved import symbols and called method names inspected statically.",
+        "D_first_success_round": 3,
+        "F_final_category": "import_error"
+      },
+      "source_experiment_id": "shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:4b",
+      "task_id": "T3b_DJ_balanced",
+      "base_seed": 7,
+      "winner": "D",
+      "baseline_record_sha256": "7e4c42ae01199b007bba35b3710faa5f10c228ff3d6d13bee123949bfc07b054",
+      "feedback_record_sha256": "e22994ffd3ef496dc8a070d7f56ec25270759dea93946d4c2569f2f7680db3b1",
+      "debugging_record_sha256": "1db70f976bfc60c05a53ed692e5a01c69e21e84fac0b96c60852890ec30a36ca"
+    },
+    {
+      "case_id": "042375a50346c20c",
+      "title": "一つのAPI修正後に別の失敗が残る例",
+      "finding": "baselineはQuantumCircuitのcnot属性がなく回路構築に失敗した。Fのround 1ではcxを使用し、保存評価でL3成功した。Dもcxへ変更したが、後続でシミュレータのimport失敗を経て、最終roundはAerJobの結果取得手順の誤用で失敗した。最初のエラーを解消することと、最終評価の成功を区別する必要がある。",
+      "evidence": {
+        "inspection": "Saved method/import symbols and evaluation errors inspected statically.",
+        "F_first_success_round": 1,
+        "D_final_category": "interface_mismatch"
+      },
+      "source_experiment_id": "shared_five_models_full_20261010T041019864060Z",
+      "model_spec": "ollama:qwen3.5:4b",
+      "task_id": "T3b_DJ_balanced",
+      "base_seed": 19,
+      "winner": "F",
+      "baseline_record_sha256": "986f18d1b59d955985386e5898745966a87060c614e2039c09323847803e1cfc",
+      "feedback_record_sha256": "0dc9e3952c395c7bd5b923c7ebfc40702953fcd3789a3ebd41e7a2af55d11eb9",
+      "debugging_record_sha256": "f83b91bd1255ac1079b7e2dd3bdc906a4b3e5c19e26c1ef4a1c94f40717dcc5d"
+    },
+    {
+      "case_id": "2cf271244f2ea0cd",
+      "title": "出力不一致と古典ビットの表現",
+      "finding": "baselineとF round 1には未使用の古典ビット3個があり、保存された評価分布は1010000に確率1であった。F round 2は古典ビットを持たない回路へ変更し、評価分布は1010に確率1、L2距離は約4.44e-16でL3成功した。期待分布は1010である。Dは最終まで出力不一致を残した。この例のwrong_outputには、未使用古典ビットと評価用測定追加による出力表現の違いが関係していると考えられる。量子アルゴリズムの論理誤りだけとは解釈しない。原判定を保持し、評価器のreadout処理への感度は別の検討課題とする。",
+      "evidence": {
+        "inspection": "Saved circuit constructors, measurement path and distributions inspected; no reevaluation.",
+        "baseline_unused_classical_bits": 3,
+        "F_round2_classical_bits": 0,
+        "baseline_distribution": {
+          "1010000": 1.0
+        },
+        "F_round2_distribution": {
+          "1010": 1.0
+        },
+        "expected_distribution": {
+          "1010": 0.9999999999999991
+        },
+        "baseline_L2_distance": 0.9999999999999996,
+        "F_round2_L2_distance": 4.440892098500626e-16,
+        "classification_preserved": "wrong_output -> ok"
+      },
+      "source_experiment_id": "shared_five_models_full_20261010T041019864060Z",
+      "model_spec": "ollama:gemma4:e4b-it-qat",
+      "task_id": "T8_QPE_001",
+      "base_seed": 16,
+      "winner": "F",
+      "baseline_record_sha256": "068b41f7ebf8db935e8a3117385aea7a811d6eedec3fcb380c091b91bbe5958a",
+      "feedback_record_sha256": "8009c9adfbb4306a5f4dedafecff5d07de33c6e75a63a27617ab16693e3f217b",
+      "debugging_record_sha256": "dc31fae9cd26a089251744938f01a0a18a9ca005e2327f7f41e31bcdeba499df"
+    }
+  ]
+}

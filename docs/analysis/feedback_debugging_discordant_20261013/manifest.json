@@ -1,0 +1,199 @@
+{
+  "captured_at_utc": "2026-10-13T07:22:39.218410+00:00",
+  "analysis_version": "discordant_repairs_v1",
+  "previous_analysis_manifest": "docs/analysis/model_difficulty_seed_20261013/manifest.json",
+  "previous_manifest_sha256": "62fdf25af8e6f08a6afe72638470dcab6f60239320c9f67316605e971d3c2ec0",
+  "fixed_snapshot": "docs/presentation_sources/20261013T_pooled_verified/results_snapshot.json",
+  "snapshot_sha256": "cb7e9532a4dea52e763f43eb7d366707bcb37c67eb5e29d094a1e3fd872008f0",
+  "sources": [
+    {
+      "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "config": {
+        "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+        "models": [
+          "ollama:qwen3.5:4b",
+          "ollama:gemma4:e4b-it-qat",
+          "ollama:qwen3.5:9b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 0,
+          "stop": 10
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515",
+      "records": 1500,
+      "schema_version": "2.0",
+      "verified": true
+    },
+    {
+      "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "config": {
+        "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+        "models": [
+          "ollama:qwen3.5:4b",
+          "ollama:gemma4:e4b-it-qat",
+          "ollama:qwen3.5:9b",
+          "ollama:qwen2.5-coder:7b",
+          "ollama:gemma3:4b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 10,
+          "stop": 20
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256": "308d32d6b097a8628c0d90889e9f3a5dd5054443ef0e0c8f0c3c054aec7f2599",
+      "records": 2500,
+      "schema_version": "2.1",
+      "verified": true
+    },
+    {
+      "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "config": {
+        "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "models": [
+          "ollama:qwen2.5-coder:7b",
+          "ollama:gemma3:4b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 0,
+          "stop": 10
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256": "56b0859fdd09b522f542a0e45f0539b2e8102771d2ce6fe16b8ddf7c12d815e0",
+      "records": 1000,
+      "schema_version": "2.1",
+      "verified": true
+    }
+  ],
+  "analysis_code_sha256": "b0701fc57b20a369d0f9a33a90b4a6f2fcc3b766d87a8a863d3df3cc5bb7d1b9",
+  "records": 5000,
+  "overlap_counts": {
+    "baseline_L3_failure": 582,
+    "both_rescued": 149,
+    "feedback_only": 42,
+    "debugging_only": 42,
+    "neither_rescued": 349
+  },
+  "artifacts": [
+    {
+      "path": "comparisons.csv",
+      "rows": 291,
+      "sha256": "168d92d36b60b65000863e684c8fb92683f05f3871e9f228917c5f2a057e40f3"
+    },
+    {
+      "path": "discordant_cases.csv",
+      "rows": 84,
+      "sha256": "76142fc5fc0c6682093bad4fa8fdc5d8706f8bbb6a5cbeccfc681616102853d4"
+    },
+    {
+      "path": "round_trajectories.csv",
+      "rows": 560,
+      "sha256": "ce18e2b924c315b91e7291d1545557a9f4ca38a11978a1e3609fd0033e31e203"
+    },
+    {
+      "path": "README.md",
+      "sha256": "715142bf49db851b98d16d63b0b0cccd8771b9e43b0f237418031e9b2062570e"
+    },
+    {
+      "path": "findings.md",
+      "sha256": "c9397d0a7e2278cdca009b683ced1fcf1d37e004a4f6aebe59e4ae2883af0a64"
+    },
+    {
+      "path": "case_observations.json",
+      "sha256": "e23d17db8e78ebc7d9a69e34fc87d3944612c59e5e526fe75bfb16c815e3d213"
+    }
+  ],
+  "generated_new_code": false,
+  "reevaluated_generated_code": false,
+  "manual_code_review_cases": 4
+}

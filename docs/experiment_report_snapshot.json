@@ -1371,5 +1371,15 @@
     "captured_at_utc": "2026-10-13T07:00:52.148795+00:00",
     "records": 5000,
     "verified": true
+  },
+  "discordant_analysis": {
+    "analysis_manifest": "docs/analysis/feedback_debugging_discordant_20261013/manifest.json",
+    "captured_at_utc": "2026-10-13T07:22:39.218410+00:00",
+    "records": 5000,
+    "baseline_L3_failure": 582,
+    "feedback_only": 42,
+    "debugging_only": 42,
+    "manual_code_review_cases": 4,
+    "verified": true
   }
 }

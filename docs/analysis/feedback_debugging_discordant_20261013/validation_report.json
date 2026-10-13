@@ -1,0 +1,23 @@
+{
+  "checked_at_utc": "2026-10-13T07:28:27.787206+00:00",
+  "passed": true,
+  "records": 5000,
+  "baseline_L3_failure": 582,
+  "discordant_cases": 84,
+  "feedback_only": 42,
+  "debugging_only": 42,
+  "comparison_rows": 291,
+  "round_rows": 560,
+  "manually_inspected_code_cases": 4,
+  "source_hashes_unchanged": true,
+  "all_csv_values_recomputed_and_matched": true,
+  "case_record_hashes_match": true,
+  "case_code_hashes_match": true,
+  "observation_source_hashes_match": true,
+  "artifact_hashes_match": true,
+  "public_files_exclude_generated_code_and_raw_errors": true,
+  "tests": {
+    "passed": 210,
+    "warnings": 16
+  }
+}
