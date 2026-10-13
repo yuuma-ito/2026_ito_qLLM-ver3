@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "eligible_records": 831,
+  "late_rescue_records": 49,
+  "unique_late_pairs": 46,
+  "trace_rows": 196,
+  "public_artifact_hashes_match": true,
+  "source_record_and_code_hashes_match": true,
+  "source_raw_hashes_unchanged": true,
+  "snapshot_and_parent_hashes_match": true,
+  "third_round_costs_and_outcomes_match_raw": true,
+  "public_tables_exclude_code_and_raw_error_text": true,
+  "full_suite": {
+    "passed": 241,
+    "warnings": 16
+  },
+  "additional_test": "Parent artifact guard added during full-suite run; updated targeted suite: 7 passed (242 total distinct tests verified)."
+}

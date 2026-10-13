@@ -1,0 +1,8 @@
+{
+  "feedback_late": 25,
+  "debugging_late": 24,
+  "both_late": 3,
+  "feedback_late_only": 22,
+  "debugging_late_only": 21,
+  "unique_late_pairs": 46
+}

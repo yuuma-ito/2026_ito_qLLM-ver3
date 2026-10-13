@@ -1,5 +1,5 @@
 {
-  "captured_at": "2026-10-13T17:00:03.325612+09:00",
+  "captured_at": "2026-10-13T23:00:03.968336+09:00",
   "scope": "Verified original experiments and a two-model seed 0-9 completion run; pooled seed 0-19 results retain source and feedback-version differences.",
   "runs": [
     {
@@ -1401,6 +1401,15 @@
       3
     ],
     "observed_prefix_replay": true,
+    "verified": true
+  },
+  "third_round_analysis": {
+    "analysis_manifest": "docs/analysis/third_round_20261013/manifest.json",
+    "captured_at_utc": "2026-10-13T13:58:41.416085+00:00",
+    "records": 5000,
+    "feedback_late_rescues": 25,
+    "debugging_late_rescues": 24,
+    "unique_late_pairs": 46,
     "verified": true
   }
 }

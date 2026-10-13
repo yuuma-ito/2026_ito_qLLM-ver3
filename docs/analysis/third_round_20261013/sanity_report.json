@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "sources_reverified": true,
+  "source_hashes_unchanged": true,
+  "fixed_evaluations_match": true,
+  "parent_artifacts_match": true,
+  "third_round_matches_cap_analysis": true,
+  "source_and_grouping_totals_match": true,
+  "candidate_rules_partition_costs_and_outcomes": true
+}

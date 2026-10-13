@@ -1,0 +1,17 @@
+﻿scope,source_experiment_id,intervention,rule,eligible_count,stopped_count,continued_count,third_round_rescues,lost_rescues,retained_rescues,saved_tokens,saved_sec,kept_tokens,kept_sec
+pooled,,execution_feedback,continue_only_with_net_stage_improvement,416,364,52,25,19,6,454045,19760.32168340683,74803,4354.85326218605
+pooled,,execution_feedback,stop_on_repeated_category,416,349,67,25,18,7,422843,17524.059154987335,106005,6591.115790605545
+pooled,,self_debugging,continue_only_with_net_stage_improvement,415,362,53,24,21,3,528831,24097.290968179703,91150,5946.072486400604
+pooled,,self_debugging,stop_on_repeated_category,415,338,77,24,15,9,483971,21436.450313568115,136010,8606.913141012192
+source,shared_five_models_full_20261010T041019864060Z,execution_feedback,continue_only_with_net_stage_improvement,202,180,22,11,10,1,224034,9857.586655855179,31476,1781.374962091446
+source,shared_five_models_full_20261010T041019864060Z,execution_feedback,stop_on_repeated_category,202,167,35,11,7,4,199037,8105.040930747986,56473,3533.920687198639
+source,shared_five_models_full_20261010T041019864060Z,self_debugging,continue_only_with_net_stage_improvement,209,182,27,14,12,2,265330,12243.041950464249,47003,3170.6534786224365
+source,shared_five_models_full_20261010T041019864060Z,self_debugging,stop_on_repeated_category,209,171,38,14,9,5,244958,11052.960472345352,67375,4360.734956741333
+source,shared_three_models_full_20261008T103231611899Z,execution_feedback,continue_only_with_net_stage_improvement,93,72,21,12,8,4,105223,6174.204524040222,32758,2142.370618581772
+source,shared_three_models_full_20261008T103231611899Z,execution_feedback,stop_on_repeated_category,93,63,30,12,9,3,90928,5363.943408727646,47053,2952.631733894348
+source,shared_three_models_full_20261008T103231611899Z,self_debugging,continue_only_with_net_stage_improvement,83,62,21,8,7,1,110290,6592.06467628479,37359,2393.355167865753
+source,shared_three_models_full_20261008T103231611899Z,self_debugging,stop_on_repeated_category,83,49,34,8,4,4,87291,5174.126485347748,60358,3811.2933588027954
+source,shared_two_models_seed0_9_full_20261012T100658266051Z,execution_feedback,continue_only_with_net_stage_improvement,121,112,9,2,1,1,124788,3728.530503511429,10569,431.10768151283264
+source,shared_two_models_seed0_9_full_20261012T100658266051Z,execution_feedback,stop_on_repeated_category,121,119,2,2,2,0,132878,4055.0748155117035,2479,104.56336951255798
+source,shared_two_models_seed0_9_full_20261012T100658266051Z,self_debugging,continue_only_with_net_stage_improvement,123,118,5,2,2,0,153211,5262.184341430664,6788,382.06383991241455
+source,shared_two_models_seed0_9_full_20261012T100658266051Z,self_debugging,stop_on_repeated_category,123,118,5,2,2,0,151722,5209.363355875015,8277,434.88482546806335

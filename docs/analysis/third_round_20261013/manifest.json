@@ -1,0 +1,205 @@
+{
+  "captured_at_utc": "2026-10-13T13:58:41.416085+00:00",
+  "analysis_version": "third_round_v1",
+  "analysis_code_sha256": "be93ccc87577daae655668ffde08004c8b50014ed31c00d11030061833d2ee9f",
+  "limit_manifest": "docs/analysis/repair_limits_20261013/manifest.json",
+  "limit_manifest_sha256": "559917198c5725e4d605692efbf0143830971be0ce06dd7b26fb602591e05968",
+  "fixed_snapshot": "docs/presentation_sources/20261013T_pooled_verified/results_snapshot.json",
+  "snapshot_sha256": "cb7e9532a4dea52e763f43eb7d366707bcb37c67eb5e29d094a1e3fd872008f0",
+  "sources": [
+    {
+      "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "config": {
+        "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+        "models": [
+          "ollama:qwen3.5:4b",
+          "ollama:gemma4:e4b-it-qat",
+          "ollama:qwen3.5:9b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 0,
+          "stop": 10
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515",
+      "records": 1500,
+      "schema_version": "2.0",
+      "verified": true
+    },
+    {
+      "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "config": {
+        "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+        "models": [
+          "ollama:qwen3.5:4b",
+          "ollama:gemma4:e4b-it-qat",
+          "ollama:qwen3.5:9b",
+          "ollama:qwen2.5-coder:7b",
+          "ollama:gemma3:4b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 10,
+          "stop": 20
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256": "308d32d6b097a8628c0d90889e9f3a5dd5054443ef0e0c8f0c3c054aec7f2599",
+      "records": 2500,
+      "schema_version": "2.1",
+      "verified": true
+    },
+    {
+      "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "config": {
+        "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "models": [
+          "ollama:qwen2.5-coder:7b",
+          "ollama:gemma3:4b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 0,
+          "stop": 10
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256": "56b0859fdd09b522f542a0e45f0539b2e8102771d2ce6fe16b8ddf7c12d815e0",
+      "records": 1000,
+      "schema_version": "2.1",
+      "verified": true
+    }
+  ],
+  "records": 5000,
+  "overlap": {
+    "feedback_late": 25,
+    "debugging_late": 24,
+    "both_late": 3,
+    "feedback_late_only": 22,
+    "debugging_late_only": 21,
+    "unique_late_pairs": 46
+  },
+  "artifacts": [
+    {
+      "path": "third_round_summary.csv",
+      "sha256": "0c898f592935917f11b42e9ed893783179ff640e533a533a4cf1da1a471d9b83"
+    },
+    {
+      "path": "eligible_trials.csv",
+      "sha256": "0d8b09590fed762eaa14320cd0c97e9e912bbec32f7ae6aecc7f75c5edb6c912"
+    },
+    {
+      "path": "late_rescues.csv",
+      "sha256": "79668140769b91f085c01e3385f81f699323f26215b84178adec34e0b6ed8b93"
+    },
+    {
+      "path": "late_round_trajectories.csv",
+      "sha256": "d709e7cbeedb7a06f7fe61f069b4b7cacc0ca6677618315427450fc2c21191ad"
+    },
+    {
+      "path": "candidate_rule_checks.csv",
+      "sha256": "2ea55d870ee957c00e41ebbfc800f46eea81d36a33f26abacd17a64bbcbc0578"
+    },
+    {
+      "path": "overlap.json",
+      "sha256": "f2b65762d813d36407e5b8ca5c9e3cf44f32060af328fad7c662781abe72760e"
+    },
+    {
+      "path": "README.md",
+      "sha256": "ae0b83f588e1b97caf2fa7c36869fa41d710ae00b9939d71f77b93dabeee3dbd"
+    },
+    {
+      "path": "findings.md",
+      "sha256": "3ea7b3ded41b4d279a4cf4cd7efd8f989c6f3b14d7d532912585e29221915321"
+    }
+  ],
+  "generated_new_code": false,
+  "reevaluated_generated_code": false,
+  "interpretation": "Exploratory observed-history comparison; stopping candidates not prospectively validated."
+}
