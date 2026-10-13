@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "records": 5000,
+  "sources_verified": true,
+  "fixed_snapshot_matches": true,
+  "partition_counts_match": true,
+  "source_totals_match": true,
+  "paired_identities_match": true
+}

@@ -1,0 +1,253 @@
+{
+  "captured_at_utc": "2026-10-13T07:00:52.148795+00:00",
+  "fixed_snapshot": "docs/presentation_sources/20261013T_pooled_verified/results_snapshot.json",
+  "snapshot_sha256": "cb7e9532a4dea52e763f43eb7d366707bcb37c67eb5e29d094a1e3fd872008f0",
+  "records": 5000,
+  "sources": [
+    {
+      "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "config": {
+        "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+        "models": [
+          "ollama:qwen3.5:4b",
+          "ollama:gemma4:e4b-it-qat",
+          "ollama:qwen3.5:9b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 0,
+          "stop": 10
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515",
+      "records": 1500,
+      "schema_version": "2.0",
+      "verified": true
+    },
+    {
+      "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "config": {
+        "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+        "models": [
+          "ollama:qwen3.5:4b",
+          "ollama:gemma4:e4b-it-qat",
+          "ollama:qwen3.5:9b",
+          "ollama:qwen2.5-coder:7b",
+          "ollama:gemma3:4b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 10,
+          "stop": 20
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256": "308d32d6b097a8628c0d90889e9f3a5dd5054443ef0e0c8f0c3c054aec7f2599",
+      "records": 2500,
+      "schema_version": "2.1",
+      "verified": true
+    },
+    {
+      "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "config": {
+        "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "models": [
+          "ollama:qwen2.5-coder:7b",
+          "ollama:gemma3:4b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 0,
+          "stop": 10
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256": "56b0859fdd09b522f542a0e45f0539b2e8102771d2ce6fe16b8ddf7c12d815e0",
+      "records": 1000,
+      "schema_version": "2.1",
+      "verified": true
+    }
+  ],
+  "grouping_dimensions": {
+    "overall": [],
+    "model": [
+      "model_spec"
+    ],
+    "difficulty": [
+      "task_difficulty"
+    ],
+    "seed": [
+      "base_seed"
+    ],
+    "seed_block": [
+      "seed_block"
+    ],
+    "model_difficulty": [
+      "model_spec",
+      "task_difficulty"
+    ],
+    "model_seed_block": [
+      "model_spec",
+      "seed_block"
+    ],
+    "model_difficulty_seed_block": [
+      "model_spec",
+      "task_difficulty",
+      "seed_block"
+    ],
+    "model_seed": [
+      "model_spec",
+      "base_seed"
+    ],
+    "model_difficulty_seed": [
+      "model_spec",
+      "task_difficulty",
+      "base_seed"
+    ],
+    "model_difficulty_error": [
+      "model_spec",
+      "task_difficulty",
+      "baseline_error_category"
+    ]
+  },
+  "generated_new_code": false,
+  "reevaluated_generated_code": false,
+  "artifacts": [
+    {
+      "path": "effects.csv",
+      "sha256": "78fcd6687bcfecfbc3c2f557adcdcac203eb15a1ab426cce36c99e1b927545da",
+      "rows": 4736
+    },
+    {
+      "path": "final_error_counts.csv",
+      "sha256": "9626aaeb7804809bd6efa918f5316526c217e660600c893c67b74cb50c104850",
+      "rows": 1070
+    },
+    {
+      "path": "feedback_debug_overlap.csv",
+      "sha256": "41dbfd7e464a497e6591426818440e82a3157c8cb1e9291ac69757fc29835f76",
+      "rows": 1003
+    },
+    {
+      "path": "README.md",
+      "sha256": "40a924427b3761f0022706c077053a48cff9a3a19b674da7ee6f518242b99c7c"
+    },
+    {
+      "path": "by_difficulty.csv",
+      "sha256": "d191cdddb2095ee4ffd38b1349c5223eddd48216cbfd72d5561588afbed24628"
+    },
+    {
+      "path": "by_model.csv",
+      "sha256": "baa6211bced3451facf5d3fccecf52d4d70d7b456931f26cd76d57515ce61d1d"
+    },
+    {
+      "path": "by_model_difficulty.csv",
+      "sha256": "44108e59a715fb8d4b9420819a613392dced902922685dc062d469a0262dbb5b"
+    },
+    {
+      "path": "by_model_seed.csv",
+      "sha256": "c09eed9caa537bae250607b63feb4f9d866f23c0edb4db23fa3b6b227c07b121"
+    },
+    {
+      "path": "by_model_seed_block.csv",
+      "sha256": "d14db888e6d379ce90803bd981a06b78df7057adc4ac9d7ac021ad0c54a4338a"
+    },
+    {
+      "path": "by_source_model_difficulty.csv",
+      "sha256": "b7ead40d3ee35b032c4dbc5e983538b9228cac5ea2551cf31929564fe5224c33"
+    }
+  ],
+  "limitations": [
+    "Mixed schema 2.0/2.1 diagnostic handling; source and seed block are confounded.",
+    "Seeds are generation settings, not independent statistical replicates.",
+    "Small denominators are shown; zero-denominator rates are blank.",
+    "Preventive specification is independent generation, not code repair."
+  ],
+  "analysis_version": "stratified_effects_v1",
+  "analysis_code_sha256": "d2b46da60140251a9ca24630d05491776209f96ed75899fd47457e319438777b"
+}

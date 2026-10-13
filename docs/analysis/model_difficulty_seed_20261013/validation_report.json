@@ -1,0 +1,16 @@
+{
+  "checked_at_utc": "2026-10-13T07:03:07.308229+00:00",
+  "passed": true,
+  "records": 5000,
+  "effect_rows": 4736,
+  "overlap_rows": 1003,
+  "source_hashes_unchanged": true,
+  "all_csv_values_recomputed_and_matched": true,
+  "artifact_hashes_match": true,
+  "partition_and_source_counts_match": true,
+  "public_files_exclude_generated_code": true,
+  "tests": {
+    "passed": 200,
+    "warnings": 16
+  }
+}
