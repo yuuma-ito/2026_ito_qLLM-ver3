@@ -9,6 +9,7 @@ from typing import Any, Optional
 import numpy as np
 
 from harness.failure_metadata import missing_result_data
+from harness.readout import EVALUATOR_VERSION, ReadoutError, prepare_readout, project_counts
 from tasks import Task
 
 
@@ -94,16 +95,11 @@ def _try_build(ns: dict, res: EvalResult) -> tuple[Optional[Any], str, str]:
 def _run_distribution(qc, shots: int = 8192) -> dict[str, float]:
     from qiskit import transpile
     from qiskit_aer import AerSimulator
-    qc_meas = qc.copy()
-    # Preserve an explicitly measured circuit. Add measurements only when the
-    # generated circuit has none, so existing classical registers are not doubled.
-    if not any(item.operation.name == "measure" for item in qc_meas.data):
-        qc_meas.measure_all()
+    qc_meas, mapping = prepare_readout(qc)
     sim = AerSimulator()
     tqc = transpile(qc_meas, sim)
     counts = sim.run(tqc, shots=shots).result().get_counts()
-    total = sum(counts.values())
-    return {k.replace(" ", ""): v / total for k, v in counts.items()}
+    return project_counts(counts, mapping, qc_meas.num_clbits)
 
 
 def _run_statevector(qc) -> np.ndarray:
@@ -205,6 +201,10 @@ def evaluate(code: str, task: Task) -> EvalResult:
         else:
             res.error_category, res.error_message = "unknown_error", f"unknown expected_kind: {task.expected_kind}"
             return res
+    except ReadoutError as e:
+        res.exception_type = type(e).__name__
+        res.error_category, res.error_message = "interface_mismatch", str(e)
+        return res
     except Exception as e:
         res.exception_type = type(e).__name__
         res.error_category, res.error_message = "unknown_error", f"{type(e).__name__}: {e}"

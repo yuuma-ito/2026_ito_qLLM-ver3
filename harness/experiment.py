@@ -18,7 +18,7 @@ from importlib import metadata
 from pathlib import Path
 from typing import Any
 
-from harness.evaluator import EvalResult
+from harness.evaluator import EvalResult, EVALUATOR_VERSION
 from harness.interventions import INTERVENTIONS
 from harness.llm_clients import Generation, OLLAMA_CONNECTION_RETRY_DELAYS
 from harness.runner import InitialAttempt, RunRecord
@@ -176,6 +176,11 @@ def build_manifest(config: dict[str, Any], repo_root: str | Path) -> dict[str, A
     repo_root = Path(repo_root)
     return {
         "schema_version": "2.1",
+        "evaluator_version": EVALUATOR_VERSION,
+        "evaluator_fingerprints": {
+            "evaluator_py_sha256": _file_sha256(repo_root / "harness" / "evaluator.py"),
+            "readout_py_sha256": _file_sha256(repo_root / "harness" / "readout.py"),
+        },
         "experiment_id": v["experiment_id"],
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "config_hash": config_hash(config),

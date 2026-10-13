@@ -27,6 +27,7 @@ from harness.experiment import (
     validate_config,
 )
 from harness.llm_clients import make_client
+from harness.evaluator import EVALUATOR_VERSION
 from harness.runner import generate_initial, run_intervention, run_one
 from scripts.sanity_check import check_results, write_sanity_report
 from scripts.analyze_interventions import write_analysis_outputs
@@ -36,6 +37,13 @@ from scripts.compare_experiments import write_comparison
 from scripts.experiment_events import emit_event
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+def _check_evaluator_resume(manifest, v, existing_keys):
+    expected = {(v['experiment_id'], c.id, model, task, seed)
+                for model, task, seed in v['pair_keys'] for c in v['conditions']}
+    if existing_keys and expected - existing_keys and manifest.get('evaluator_version') != EVALUATOR_VERSION:
+        raise ValueError('Existing run uses a different evaluator; use --new-run through the automation wrapper or a new output_dir.')
 
 def _find_baseline(existing_rows, experiment_id, model_spec, task_id, seed):
     for rec in existing_rows:
@@ -92,6 +100,7 @@ def main(argv=None) -> int:
     sanity_path = output_root / "sanity_report.json"
 
     existing_rows, existing_keys = load_existing(raw_path)
+    _check_evaluator_resume(json.loads(manifest_path.read_text()) if manifest_path.exists() else {}, v, existing_keys)
     existing_rows, retried_pairs = _drop_api_error_pairs(existing_rows)
     if retried_pairs:
         raw_path.parent.mkdir(parents=True, exist_ok=True)
@@ -140,6 +149,7 @@ def _execute(config, v, repo_root, output_root, raw_path, manifest_path,
             raise ValueError("Existing manifest has a different config; use a new output_dir.")
     else:
         manifest = build_manifest(config, repo_root)
+    _check_evaluator_resume(manifest, v, existing_keys)
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     saved_config = output_root / "experiment_config.json"
     if saved_config.exists() and load_config(saved_config) != config:

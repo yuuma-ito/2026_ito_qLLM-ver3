@@ -1420,5 +1420,12 @@
     "evaluator_changed": false,
     "saved_scores_changed": false,
     "verified": true
+  },
+  "evaluator_policy": {
+    "version": "qubit_readout_v2",
+    "adopted_date": "2026-10-14",
+    "specification": "docs/evaluator_readout.md",
+    "applies_to": "new evaluations of distribution tasks",
+    "historical_scores_reevaluated": false
   }
 }

@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "evaluator_version": "qubit_readout_v2",
+  "full_tests_passed": 257,
+  "warnings": 28,
+  "new_manifest_version_and_hashes_checked": true,
+  "source_raw_hashes_unchanged": true,
+  "sources": [
+    {
+      "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+      "raw_sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515"
+    },
+    {
+      "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+      "raw_sha256": "308d32d6b097a8628c0d90889e9f3a5dd5054443ef0e0c8f0c3c054aec7f2599"
+    },
+    {
+      "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "raw_sha256": "56b0859fdd09b522f542a0e45f0539b2e8102771d2ce6fe16b8ddf7c12d815e0"
+    }
+  ],
+  "fixed_snapshot_sha256": "cb7e9532a4dea52e763f43eb7d366707bcb37c67eb5e29d094a1e3fd872008f0",
+  "historical_scores_reevaluated": false,
+  "generated_new_llm_code": false,
+  "files": [
+    {
+      "path": "harness/evaluator.py",
+      "sha256": "2f175b84fb5b6525b77ce811d84115bd1a4fc80f906ce979d3d27c9668e03514"
+    },
+    {
+      "path": "harness/readout.py",
+      "sha256": "16032f6890443a8ddcc8f3ea3861bd94613e3e71c8bcb5c68b912ae3edcc2b52"
+    },
+    {
+      "path": "harness/experiment.py",
+      "sha256": "f62665ec95a6cbdd7b779d9b51c5f530c51a60f3534dbc33281d7e58b9500655"
+    },
+    {
+      "path": "scripts/run_experiment.py",
+      "sha256": "bab80483aeb343aa7d522e70ad9ac3fb375d7d6e9229be7aaafd2992bf0091aa"
+    },
+    {
+      "path": "tests/test_canonical_readout.py",
+      "sha256": "47f7d189e9db4228ec1b8809dae70b1a2354f5e113e42e50598a9a3305f13cf8"
+    }
+  ]
+}
