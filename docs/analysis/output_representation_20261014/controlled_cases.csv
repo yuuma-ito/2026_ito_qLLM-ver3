@@ -1,0 +1,20 @@
+case,qubits,original_clbits,expected_distribution,legacy_distribution,legacy_tvd,legacy_L2,candidate_distribution,candidate_tvd,candidate_L2,candidate_rejection,expected_candidate
+basis_correct_unused0,2,0,"{""10"": 1.0}","{""10"": 1.0}",0.0,True,"{""10"": 1.0}",0.0,True,,True
+basis_correct_unused1,2,1,"{""10"": 1.0}","{""100"": 1.0}",1.0,False,"{""10"": 1.0}",0.0,True,,True
+basis_correct_unused3,2,3,"{""10"": 1.0}","{""10000"": 1.0}",1.0,False,"{""10"": 1.0}",0.0,True,,True
+basis_correct_unused7,2,7,"{""10"": 1.0}","{""100000000"": 1.0}",1.0,False,"{""10"": 1.0}",0.0,True,,True
+basis_wrong_unused0,2,0,"{""10"": 1.0}","{""01"": 1.0}",1.0,False,"{""01"": 1.0}",1.0,False,,False
+basis_wrong_unused1,2,1,"{""10"": 1.0}","{""010"": 1.0}",1.0,False,"{""01"": 1.0}",1.0,False,,False
+basis_wrong_unused3,2,3,"{""10"": 1.0}","{""01000"": 1.0}",1.0,False,"{""01"": 1.0}",1.0,False,,False
+basis_wrong_unused7,2,7,"{""10"": 1.0}","{""010000000"": 1.0}",1.0,False,"{""01"": 1.0}",1.0,False,,False
+basis_correct_identity,2,2,"{""10"": 1.0}","{""10"": 1.0}",0.0,True,"{""10"": 1.0}",0.0,True,,True
+basis_correct_reverse,2,2,"{""10"": 1.0}","{""01"": 1.0}",1.0,False,"{""10"": 1.0}",0.0,True,,True
+basis_correct_gapped,2,5,"{""10"": 1.0}","{""10000"": 1.0}",1.0,False,"{""10"": 1.0}",0.0,True,,True
+basis_correct_multiregister,2,4,"{""10"": 1.0}","{""1000"": 1.0}",1.0,False,"{""10"": 1.0}",0.0,True,,True
+ambiguous_partial,2,2,"{""10"": 1.0}","{""00"": 1.0}",1.0,False,,,,partial measurement,reject
+ambiguous_overwrite,2,2,"{""10"": 1.0}","{""01"": 1.0}",1.0,False,,,,repeated measurement or overwritten classical bit,reject
+ambiguous_midcircuit,2,2,"{""10"": 1.0}","{""00"": 1.0}",1.0,False,,,,nonterminal or classically controlled circuit,reject
+qpe_correct_unused0,4,0,"{""1010"": 0.9999999999999991}","{""1010"": 1.0}",4.440892098500626e-16,True,"{""1010"": 1.0}",4.440892098500626e-16,True,,True
+qpe_correct_unused3,4,3,"{""1010"": 0.9999999999999991}","{""1010000"": 1.0}",0.9999999999999996,False,"{""1010"": 1.0}",4.440892098500626e-16,True,,True
+qpe_wrong_unused0,4,0,"{""1010"": 0.9999999999999991}","{""1000"": 0.124755859375, ""1011"": 0.0758056640625, ""1100"": 0.1199951171875, ""1110"": 0.249755859375, ""1111"": 0.4296875}",0.9999999999999996,False,"{""1000"": 0.124755859375, ""1011"": 0.0758056640625, ""1100"": 0.1199951171875, ""1110"": 0.249755859375, ""1111"": 0.4296875}",0.9999999999999996,False,,False
+qpe_wrong_unused3,4,3,"{""1010"": 0.9999999999999991}","{""1000000"": 0.124755859375, ""1011000"": 0.0758056640625, ""1100000"": 0.1199951171875, ""1110000"": 0.249755859375, ""1111000"": 0.4296875}",0.9999999999999996,False,"{""1000"": 0.124755859375, ""1011"": 0.0758056640625, ""1100"": 0.1199951171875, ""1110"": 0.249755859375, ""1111"": 0.4296875}",0.9999999999999996,False,,False

@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "controlled_cases": 19,
+  "candidate_success": 10,
+  "candidate_rejections": 3,
+  "legacy_fail_candidate_pass": 7,
+  "stored_counts": {
+    "distribution_round_rows": 2880,
+    "width_mismatch_round_rows": 619
+  },
+  "evaluator_changed": false,
+  "saved_scores_changed": false,
+  "generated_code_executed": false,
+  "shots": 8192,
+  "seed_simulator": 42,
+  "seed_transpiler": 42
+}

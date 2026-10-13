@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "full_tests_passed": 251,
+  "warnings": 16,
+  "all_three_sources_reverified": true,
+  "artifact_hashes_match": true,
+  "evaluator_unchanged": true,
+  "controlled_cases_unique": true,
+  "raw_hashes_unchanged": true,
+  "no_api_generation": true,
+  "no_saved_generated_code_executed": true
+}

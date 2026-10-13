@@ -16,6 +16,8 @@
 
 起動にはログイン済みの `/home/23tc011/.local/bin/codex` を使用します（[Codexの非対話実行](https://developers.openai.com/codex/noninteractive)）。状態は `.cache/draft_jobs/`、起動ログは `logs/draft_after_experiment.log` と `logs/draft_codex_*.log` に保存します。AI失敗・中断や通知失敗の自動再試行はありません。状況を確認してから必要な場合のみ `--retry` で明示的に再実行してください。完了条件の手動確認には、同じ保存設定を指定した `--dry-run` を使用します。
 
+[評価器の出力表現への感度確認](docs/analysis/output_representation_20261014/README.md)では、確認用回路19例で未使用古典ビット・測定先の配置による判定差を調べました。既存の評価器・実験判定は保持しています。
+
 実験でLLMに渡す共通指示・全10タスク・条件別の追加指示は、[プロンプト一覧](docs/experiment_prompts.md)にまとめています。
 
 ## seed 0〜19への実験補完と統合
