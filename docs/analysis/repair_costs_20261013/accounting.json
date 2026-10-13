@@ -1,0 +1,27 @@
+{
+  "records": 5000,
+  "pairs": 1000,
+  "stored_round_rows": 9517,
+  "unique_recorded_generation_rounds": 6517,
+  "duplicated_initial_round_rows": 3000,
+  "stored_record_totals": {
+    "tokens_in": 5749429,
+    "tokens_out": 3516250,
+    "total_tokens": 9265679,
+    "elapsed_sec": 508956.71485710144
+  },
+  "unique_generation_totals": {
+    "tokens_in": 4777849,
+    "tokens_out": 2507839,
+    "total_tokens": 7285688,
+    "elapsed_sec": 377778.8324329853
+  },
+  "shared_initial_totals": {
+    "tokens_in": 323860,
+    "tokens_out": 336137,
+    "total_tokens": 659997,
+    "elapsed_sec": 43725.96080803871
+  },
+  "generation_rounds_with_recovery": 20,
+  "recorded_connection_retries": 40
+}

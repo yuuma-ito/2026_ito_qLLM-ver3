@@ -1,0 +1,19 @@
+{
+  "checked_at_utc": "2026-10-13T07:56:44.145821+00:00",
+  "passed": true,
+  "records": 5000,
+  "unique_recorded_generation_rounds": 6517,
+  "duplicated_initial_rows_removed": 3000,
+  "trial_cost_rows": 4000,
+  "source_hashes_unchanged": true,
+  "all_csv_values_recomputed_and_matched": true,
+  "workflow_totals_independently_match_original_records": true,
+  "shared_initial_costs_not_duplicated": true,
+  "outcome_stratum_and_source_costs_match": true,
+  "artifact_hashes_match": true,
+  "public_files_exclude_generated_code_and_raw_errors": true,
+  "tests": {
+    "passed": 225,
+    "warnings": 16
+  }
+}

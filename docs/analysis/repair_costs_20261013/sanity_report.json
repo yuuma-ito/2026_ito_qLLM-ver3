@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "source_hashes_unchanged": true,
+  "sources_reverified": true,
+  "fixed_evaluations_match": true,
+  "record_round_costs_match": true,
+  "shared_initial_costs_match": true,
+  "shared_initial_charged_once": true,
+  "source_and_stratum_totals_match": true,
+  "fd_cohorts_match": true
+}

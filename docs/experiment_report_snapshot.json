@@ -1381,5 +1381,13 @@
     "debugging_only": 42,
     "manual_code_review_cases": 4,
     "verified": true
+  },
+  "repair_cost_analysis": {
+    "analysis_manifest": "docs/analysis/repair_costs_20261013/manifest.json",
+    "captured_at_utc": "2026-10-13T07:51:42.570619+00:00",
+    "records": 5000,
+    "unique_recorded_generation_rounds": 6517,
+    "shared_initial_charged_once": true,
+    "verified": true
   }
 }

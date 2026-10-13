@@ -1,0 +1,202 @@
+{
+  "captured_at_utc": "2026-10-13T07:51:42.570619+00:00",
+  "analysis_version": "repair_costs_v1",
+  "analysis_code_sha256": "80621e3b4a2ba858eb07b93c1cea1496c88bc0b82b8124304c7136d7f53191fc",
+  "source_analysis_manifest": "docs/analysis/feedback_debugging_discordant_20261013/manifest.json",
+  "source_manifest_sha256": "c59890296ec20e81a2ee55eae4bc2774f045d3b6ce52566ef009a2c268e37216",
+  "fixed_snapshot": "docs/presentation_sources/20261013T_pooled_verified/results_snapshot.json",
+  "snapshot_sha256": "cb7e9532a4dea52e763f43eb7d366707bcb37c67eb5e29d094a1e3fd872008f0",
+  "sources": [
+    {
+      "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "config": {
+        "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+        "models": [
+          "ollama:qwen3.5:4b",
+          "ollama:gemma4:e4b-it-qat",
+          "ollama:qwen3.5:9b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 0,
+          "stop": 10
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515",
+      "records": 1500,
+      "schema_version": "2.0",
+      "verified": true
+    },
+    {
+      "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "config": {
+        "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+        "models": [
+          "ollama:qwen3.5:4b",
+          "ollama:gemma4:e4b-it-qat",
+          "ollama:qwen3.5:9b",
+          "ollama:qwen2.5-coder:7b",
+          "ollama:gemma3:4b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 10,
+          "stop": 20
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256": "308d32d6b097a8628c0d90889e9f3a5dd5054443ef0e0c8f0c3c054aec7f2599",
+      "records": 2500,
+      "schema_version": "2.1",
+      "verified": true
+    },
+    {
+      "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "config": {
+        "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "models": [
+          "ollama:qwen2.5-coder:7b",
+          "ollama:gemma3:4b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 0,
+          "stop": 10
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256": "56b0859fdd09b522f542a0e45f0539b2e8102771d2ce6fe16b8ddf7c12d815e0",
+      "records": 1000,
+      "schema_version": "2.1",
+      "verified": true
+    }
+  ],
+  "records": 5000,
+  "artifacts": [
+    {
+      "path": "cost_summary.csv",
+      "sha256": "47f219604c83b3928ac16d7b4e0f83dfa857e83a686e30c1c5a6bcd662329d9d"
+    },
+    {
+      "path": "trial_costs.csv",
+      "sha256": "86c454e23560ee0ff10b51f9ef4fe39baebb37bc1eb550089bb8d207e9ede5ee"
+    },
+    {
+      "path": "generation_ledger.csv",
+      "sha256": "df788c4e227381e6009835abf65c2aac1c6857ccc6b72f50b9991ccfa26c05d5"
+    },
+    {
+      "path": "fd_pair_costs.csv",
+      "sha256": "44c2d2e0c36e8df23cd41a14b024d079f60a29ab041439701a29f85622c9017e"
+    },
+    {
+      "path": "fd_cost_summary.csv",
+      "sha256": "d90410034088025d8a0cb8584ab22a98d1704523b461b5b2d05544db124a7d53"
+    },
+    {
+      "path": "workflow_summary.csv",
+      "sha256": "284f7144f60a382638e9b8c481122d4d310176ae18d0f7ac72b52ad95f4770ec"
+    },
+    {
+      "path": "accounting.json",
+      "sha256": "7dfba4977d88fbefdb577c17224135ee7146a911e9ad0427268b99f414e45131"
+    },
+    {
+      "path": "README.md",
+      "sha256": "6de706ae23624176a6dfdee8886df0cae6a841830f3c6792f9da94e86f530dc8"
+    },
+    {
+      "path": "findings.md",
+      "sha256": "5902da01c6be8d280061fbc1d87d2bd06b7309df79fe622745b7c68951a26256"
+    }
+  ],
+  "generated_new_code": false,
+  "reevaluated_generated_code": false,
+  "time_definition": "Generation request elapsed_sec; includes connection retry waits, excludes evaluator runtime.",
+  "pricing": "Not configured; no monetary cost conversion."
+}
