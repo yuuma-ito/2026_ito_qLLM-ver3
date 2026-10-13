@@ -167,3 +167,33 @@ def test_invalid_input_preserves_both_files(draft, problem):
     with pytest.raises(ValueError):
         report.update_report(root)
     assert all((root / p).read_bytes() == value for p, value in before.items())
+
+
+def test_completed_additional_run_removes_pending_status_and_preserves_fixed_pool(draft):
+    root, output, config = draft
+    write_rows(output, [row(config, 0), row(config, 1)])
+    (output / 'automation_report.json').write_text('{"passed": true}')
+    (output / 'sanity_report.json').write_text(json.dumps({'passed': True, 'experiment_id': config['experiment_id']}))
+    report.update_report(root)
+    additional = root / 'results/additional'
+    additional.mkdir()
+    new = dict(config, experiment_id='shared_two_models_full_test', output_dir='results/additional')
+    (additional / 'experiment_config.json').write_text(json.dumps(new))
+    write_rows(additional, [row(new, 0), row(new, 1)])
+    (additional / 'automation_report.json').write_text('{"passed": true}')
+    (additional / 'sanity_report.json').write_text(json.dumps({'passed': True, 'experiment_id': new['experiment_id']}))
+    snapshot = json.loads((root / report.SNAPSHOT).read_text())
+    snapshot['additional_full_experiment_ids'] = [new['experiment_id']]
+    snapshot['runs'].append(dict(experiment_id=new['experiment_id'], source_dir=new['output_dir'], recorded=0))
+    fixed = dict(captured_at='fixed time', records=4, fixed_snapshot='docs/fixed.json')
+    snapshot['pooled_result_fixed_snapshot'] = fixed
+    (root / report.SNAPSHOT).write_text(json.dumps(snapshot))
+    path = root / report.REPORT
+    path.write_text(path.read_text() + '\n<!-- auto:additional-results:start -->\nold\n<!-- auto:additional-results:end -->\n')
+    for _ in range(2):
+        current = report.update_report(root)
+        text = path.read_text()
+        assert '追加・補完実験も全件記録と検証が完了した' in text
+        assert '全件検証後にseed' not in text and '補完実験の検証後に' not in text
+        assert current['pooled_result_fixed_snapshot'] == fixed
+        assert '手書きの考察を保持する。' in text

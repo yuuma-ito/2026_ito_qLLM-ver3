@@ -1,0 +1,100 @@
+{
+  "schema_version": "2.1",
+  "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+  "created_at_utc": "2026-10-12T10:12:49.389079+00:00",
+  "config_hash": "b8300f5778945652",
+  "shared_initial_generation": "shared by correction conditions; preventive_spec generates independently",
+  "transport_recovery": {
+    "ollama_connection_retry_delays_sec": [
+      5,
+      10,
+      20,
+      30,
+      30
+    ],
+    "preserve_seed": true,
+    "retry_timeouts": false,
+    "stop_after_unrecovered_transport_failure": true
+  },
+  "config": {
+    "conditions": [
+      "baseline",
+      "self_refine",
+      "execution_feedback",
+      "self_debugging",
+      "preventive_spec"
+    ],
+    "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+    "generation_settings": {
+      "max_tokens": 1024,
+      "parallel_requests": 1,
+      "reasoning_effort": "none",
+      "timeout_sec": 600
+    },
+    "max_rounds": 3,
+    "models": [
+      "ollama:qwen2.5-coder:7b",
+      "ollama:gemma3:4b"
+    ],
+    "output_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+    "pricing": {},
+    "seeds": {
+      "start": 0,
+      "stop": 10
+    },
+    "tasks": [
+      "T1_Bell",
+      "T2_GHZ",
+      "T3a_DJ_constant",
+      "T3b_DJ_balanced",
+      "T4_BV_011",
+      "T5_Grover_11",
+      "T6_QFT_001",
+      "T7_IQFT_001",
+      "T8_QPE_001",
+      "T9_Ansatz_001"
+    ],
+    "temperature": 0.7
+  },
+  "planned": {
+    "records": 1000,
+    "unique_initial_generations": 200,
+    "models": 2,
+    "tasks": 10,
+    "seeds": 10,
+    "conditions": 5
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "qiskit": "2.5.2",
+    "qiskit_aer": "0.17.2",
+    "openai": "3.26.0",
+    "anthropic": null,
+    "google_generativeai": null
+  },
+  "git_commit": "7ccef09db9bff16785b08f2e7f1ff542cf64b849",
+  "prompt_fingerprints": {
+    "system_txt_sha256": "b76e82b93808aff180580db3647711efa0a3a56cc39301cff4a7a44f108e9f9d",
+    "interventions_py_sha256": "ea630da1c7051c0b9cd36163d19cf8d56746dad074408a7d8bd7e2002e6b4ec4"
+  },
+  "completed_at_utc": "2026-10-13T02:11:42.938540+00:00",
+  "elapsed_sec": 57533.53318834305,
+  "sanity_passed": true,
+  "records_written_this_run": 1000,
+  "runs": [
+    {
+      "completed_at_utc": "2026-10-13T02:11:42.938540+00:00",
+      "elapsed_sec": 57533.53318834305,
+      "records_written": 1000
+    }
+  ],
+  "failure_reclassification": {
+    "at": "2026-10-13T05:33:08.892252+00:00",
+    "audit": "docs/qpe_seed2_failure_classification.json",
+    "raw_sha256": "56b0859fdd09b522f542a0e45f0539b2e8102771d2ce6fe16b8ddf7c12d815e0",
+    "affected_records": 1,
+    "metrics_preserved": true,
+    "generated_new_code": false
+  }
+}

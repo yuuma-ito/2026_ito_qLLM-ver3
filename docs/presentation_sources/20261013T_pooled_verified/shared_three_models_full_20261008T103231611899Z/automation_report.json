@@ -1,0 +1,142 @@
+{
+  "passed": true,
+  "problems": [],
+  "sanity": {
+    "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+    "passed": true,
+    "expected_records": 1500,
+    "actual_records": 1500,
+    "unique_records": 1500,
+    "errors": [],
+    "warnings": [],
+    "details": {
+      "duplicate_count": 0,
+      "missing_count": 0,
+      "unexpected_count": 0,
+      "incomplete_pair_count": 0,
+      "initial_mismatch_count": 0,
+      "missing_examples": []
+    }
+  },
+  "shared_server": {
+    "base_url": "http://127.0.0.1:11435/v1",
+    "version": {
+      "version": "0.35.1"
+    },
+    "models": [
+      {
+        "name": "qwen3.5:9b",
+        "model": "qwen3.5:9b",
+        "modified_at": "2026-10-04T22:50:34.199928286+09:00",
+        "size": 6594474711,
+        "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen35",
+          "families": [
+            "qwen35"
+          ],
+          "parameter_size": "9.7B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 262144,
+          "embedding_length": 4096
+        },
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ]
+      },
+      {
+        "name": "gemma4:e4b-it-qat",
+        "model": "gemma4:e4b-it-qat",
+        "modified_at": "2026-10-04T22:43:27.152290441+09:00",
+        "size": 6146501801,
+        "digest": "ee665637121887cf3befff38abbb1be4ee117c7db867d97a67e29049ecd7e15f",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "gemma4",
+          "families": [
+            "gemma4"
+          ],
+          "parameter_size": "7.5B",
+          "quantization_level": "Q4_0",
+          "context_length": 131072,
+          "embedding_length": 2560
+        },
+        "capabilities": [
+          "completion",
+          "vision",
+          "audio",
+          "tools",
+          "thinking"
+        ]
+      },
+      {
+        "name": "qwen3.5:4b",
+        "model": "qwen3.5:4b",
+        "modified_at": "2026-10-04T22:37:19.35403691+09:00",
+        "size": 3389983735,
+        "digest": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen35",
+          "families": [
+            "qwen35"
+          ],
+          "parameter_size": "4.7B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 262144,
+          "embedding_length": 2560
+        },
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ]
+      }
+    ],
+    "reasoning_effort": "none",
+    "max_tokens": 1024,
+    "parallel_requests": 1
+  },
+  "shared_server_metadata_source": "Preserved original run metadata; no new API calls.",
+  "tests_passed": true,
+  "tests": {
+    "command": ".venv/bin/python -m pytest tests/ -q",
+    "passed": 135,
+    "warnings": 16
+  },
+  "revalidated_at_utc": "2026-10-10T04:00:33.464442+00:00",
+  "reclassification_report": "reclassification_report.json",
+  "raw_sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515",
+  "additional_checks": {
+    "final_metrics_match_last_round": true,
+    "classification_only_changes": true,
+    "L3_formula_all_records": true,
+    "preventive_spec_single_generation_records": 300,
+    "unknown_error_final": 0,
+    "unknown_error_rounds": 0,
+    "api_failure_records": 0,
+    "rescued": 237,
+    "degradation_in_rounds": 41,
+    "baseline_regression": 93,
+    "csv_rows": {
+      "summary_by_condition": 45,
+      "summary_by_model": 45,
+      "summary_by_task": 150,
+      "summary_by_difficulty": 45,
+      "rescue_rates_by_error": 224,
+      "degradation_cases": 41,
+      "baseline_regressions": 93,
+      "timeout_summary": 150,
+      "cost_runtime_summary": 15,
+      "failure_stage_summary": 89
+    }
+  }
+}

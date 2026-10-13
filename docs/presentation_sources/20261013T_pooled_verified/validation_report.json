@@ -1,0 +1,75 @@
+{
+  "checked_at_utc": "2026-10-13T05:53:01.636299+00:00",
+  "passed": true,
+  "source_checks": [
+    {
+      "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+      "records": 1500,
+      "raw_hash_unchanged": true,
+      "automation_reverified": true,
+      "derived_counts_match": true
+    },
+    {
+      "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+      "records": 2500,
+      "raw_hash_unchanged": true,
+      "automation_reverified": true,
+      "derived_counts_match": true
+    },
+    {
+      "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "records": 1000,
+      "raw_hash_unchanged": true,
+      "automation_reverified": true,
+      "derived_counts_match": true
+    }
+  ],
+  "pooled_records": 5000,
+  "records_by_model": {
+    "ollama:qwen3.5:4b": 1000,
+    "ollama:gemma4:e4b-it-qat": 1000,
+    "ollama:qwen3.5:9b": 1000,
+    "ollama:qwen2.5-coder:7b": 1000,
+    "ollama:gemma3:4b": 1000
+  },
+  "pooled_counts_match": true,
+  "artifacts": [
+    {
+      "path": "docs/midterm2026/paper.pdf",
+      "pages": 4,
+      "bytes": 226720,
+      "sha256": "be4f89bd6e15d045131c0935e3c389b7def25de722446c487fc5adc59c38756b",
+      "all_fonts_embedded": true,
+      "unresolved_references": 0,
+      "overfull_boxes": 0,
+      "missing_characters": 0,
+      "all_pages_visually_checked": true,
+      "table_rows_checked": 55,
+      "underfull_warnings": 5
+    },
+    {
+      "path": "docs/winf2026/paper.pdf",
+      "pages": 4,
+      "bytes": 225773,
+      "sha256": "63a9e93c80c7a0fcfe14175e860fb3e92ac76e6cc899928ad21a1e51af3c32a2",
+      "all_fonts_embedded": true,
+      "unresolved_references": 0,
+      "overfull_boxes": 0,
+      "missing_characters": 0,
+      "all_pages_visually_checked": true,
+      "table_rows_checked": 55,
+      "underfull_warnings": 5
+    }
+  ],
+  "abstract_characters": 247,
+  "style_sha256": "4dc0c47bdc9c61c7903734ad9068656f6cc11aa11391fe351713e3d23b73e86d",
+  "tests": {
+    "passed": 190,
+    "warnings": 16
+  },
+  "limitations": [
+    "Source schemas 2.0 and 2.1 use different diagnostic text handling; pooled results are descriptive.",
+    "Author/coauthor/affiliation confirmation and submission remain separate.",
+    "Latest WiNF guidelines could not be retrieved; README retains dated 2026-10-08 verification."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+  "passed": true,
+  "expected_records": 1000,
+  "actual_records": 1000,
+  "unique_records": 1000,
+  "errors": [],
+  "warnings": [],
+  "details": {
+    "duplicate_count": 0,
+    "missing_count": 0,
+    "unexpected_count": 0,
+    "incomplete_pair_count": 0,
+    "initial_mismatch_count": 0,
+    "missing_examples": []
+  }
+}

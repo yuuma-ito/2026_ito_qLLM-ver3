@@ -1,53 +1,53 @@
-# 中間発表原稿の進捗更新版
+# 中間発表原稿の共有版
 
-研究題目は「量子LLM支援プログラミングにおける失敗類型と介入カタログの実証研究」。2023TC011 伊藤 悠真、指導教員：横山 哲郎。ユーザーが提示した中間発表原稿の本文を基に、7章構成と既報の120件を残して、その後の進捗を追記した。
+研究題目は「量子LLM支援プログラミングにおける失敗類型と介入カタログの実証研究」。2023TC011 伊藤 悠真、指導教員：横山 哲郎。検証済みの本実験・追加実験に基づく2026-10-13更新版。過去の既報は区別して保持した。
 
-- [paper.tex](paper.tex)：更新したTeX原稿。
 - [paper.pdf](paper.pdf)：共有用PDF。
-- [progress_report_draft.txt](progress_report_draft.txt)：前回の中間発表からの進捗報告下書き。
-- [results_snapshot_20261008.json](results_snapshot_20261008.json)：原稿で使用した固定集計と出典区分。
-- `winf-paper.sty`：リポジトリ内の検証済みスタイルの未変更コピー。
+- [paper.tex](paper.tex)：編集用原稿。
+- [progress_report_draft.txt](progress_report_draft.txt)：前回からの変更、完了作業、課題、次のアクション。
 
-先に作成した `docs/winf2026/` の論文下書きと分けて保存している。今回の中間発表資料の共有には、このディレクトリのPDF・TeX・進捗報告を使用する。
+このディレクトリを中間発表の現行共有先とし、学会向けの[WiNF下書き](../winf2026/README.md)とは分けて管理する。
 
-## 更新内容
+## 固定出典と検証状態
 
-中間発表時の2モデル・baseline／Self-Refineの比較を既報として保持し、SF3上の3モデル、5条件の比較、実験と検証後の自動commit／push、定期進捗通知、接続回復処理を追記した。原稿の重複文とページ抽出時の改行・断片を整理した。
+固定集計時点は2026-10-13 14:45:33 JST。[スナップショット](../presentation_sources/20261013T_pooled_verified/results_snapshot.json)、[詳細表とCSV案内](../presentation_sources/20261013T_pooled_verified/README.md)、[元ファイルのhash](../presentation_sources/20261013T_pooled_verified/source_manifest.json)を共通の出典とする。[継続更新レポート](../experiment_report_draft.md)の後日の数値と、原稿の固定時点を区別する。
 
-旧説明の「L3＝構造」と現行実装の「L3＝L0・L1・L2・structure_matchの総合成功」を区別し、旧L2終了と現行L3終了の違いも記載した。指標・モデル・seedが異なる実験は合算しない。失敗類型別の介入カタログは今後の分析成果とし、完成したとは記載していない。
+| 分析 | 実験ID | モデル | seed | 件数 |
+| --- | --- | ---: | --- | ---: |
+| 主分析 | `shared_three_models_full_20261008T103231611899Z` | 3 | 0〜9 | 1,500 |
+| 追加分析 | `shared_five_models_full_20261010T041019864060Z` | 5 | 10〜19 | 2,500 |
+| 補完分析 | `shared_two_models_seed0_9_full_20261012T100658266051Z` | 2 | 0〜9 | 1,000 |
+| 記述的統合集計 | `shared_five_models_pooled_seed0_19` | 5 | 0〜19 | 5,000 |
 
-## 結果の出典と検証状態
+両実験とも全件記録、保存済みautomation成功、今回のsanity再検証成功を確認した。欠落・重複・予定外記録・条件対応欠落・共有初期不一致は0件、途中roundを含むAPI障害・timeout・未分類エラーも0件。介入カタログ3種類を全件から再計算した値と照合した。追加実験の旧分母137件は修正済みで、baseline L2失敗288件と一致する。旧固定資料は当時の状態を保持する。
 
-中間発表時の120件、Qwenの23/30から24/30、Gemmaの0/30は、今回提示された原稿による既報である。この作業では旧実験の生データによる再検証は行っていない。固定スナップショットの `legacy_presentation.revalidated_from_raw` は `false` として区別している。
+L2・L3達成は主分析839件、追加分析1,242件で、全モデル・条件の件数が一致する。累積達成の単調性、排他的な5区分の合計、対応付き5×5遷移の分母を確認した。初期成功で修正しなかった例を、介入による救出から分けた。Pは別プロンプトからの独立生成として扱う。
 
-その後の各60件の簡易実験2回は、次の保存済みCSV、sanity report、automation reportと照合した。これらの結果は検証済みである。
+補完実験の1,000件も再検証成功。statevector未保存での取得1件は生成コード側の `exec / interface_mismatch` へ再分類し、生データ・評価値は保持した。[分類確認記録](../qpe_seed2_failure_classification.json)を保存した。統合は各モデル1,000件、計5,000件、L2・L3成功2,457件。全件照合とカタログ照合は成功した。実行時ハーネス版とエラー分類が診断文に影響するため、統合値は混合手順の記述的結果であり、出典別内訳を保持する。
 
-- `results/shared_three_models_quick_20261007T123904531170Z/`
-- `results/shared_three_models_quick_20261007T123904532290Z/`
+## 過去資料との区別
 
-旧本実験は `results/shared_three_models_full_20261007T145103982885Z/`。1,500件記録、接続障害738件、未分類の評価エラー8件があり検証失敗。L2成功376件・失敗1,124件は障害を含む暫定値である。
+- [2026-10-08の固定集計](results_snapshot_20261008.json)は旧途中経過の記録として保持し、現行原稿の全件結果の出典には用いない。
+- 旧120件は2モデル・seed 0〜2・2条件・L2終了の既報。23/30→24/30と0/30は参照原稿による値で、今回は生データから再検証していない。
+- 各60件の簡易実験2回は予備検証。接続障害738件を含む旧1,500件は検証不合格の除外資料であり、主分析に混ぜない。
+- [完了後の初版下書き](../completion_drafts/9b253632951b3656d9a72a97/)とそのreference・出典は保持した。旧「カタログ不整合」の説明は当時の状態で、現行原稿では修正後の出典を用いる。
 
-新しい本実験は `results/shared_three_models_full_20261008T103231611899Z/`。2026-10-08 19:42 JSTの固定集計は19/1,500件、L2成功9件・失敗10件、接続障害0件、未分類エラー0件。実行中・未検証であり、最終的な比較結果として扱わない。以後の件数は変化するため、原稿の数値はこの固定時点に限る。
+## 評価の読み方
 
-公開用スナップショットには件数、設定、出典、読み取り時の生データhashを保存し、生成コード・エラー本文・認証情報を含めない。
+L0〜L3は独立した点数ではなく累積的な到達水準。各達成率は同じ評価対象の全件数を分母とする。未達／L0のみ／L1まで／L2まで／L3の5区分は排他的で、合計が全件数になる。段階上昇・維持・低下は順序カテゴリの比較であり、段階差を等間隔の点数として平均しない。部分改善は上昇したもののL3未達の例で、上昇件数の内数である。
 
-## 参考文献の整理
-
-HumanEvalには[Chenらの論文](https://arxiv.org/abs/2107.03374)、MBPPには別途[Austinらの論文](https://arxiv.org/abs/2108.07732)を対応させた。自己修正の限界に関する[Huangらの論文](https://arxiv.org/abs/2310.01798)は、外部フィードバックを用いない推論の自己修正を対象とするため、量子コードや実行フィードバック一般への断定には用いない。
-
-関連研究として[Self-Refine](https://arxiv.org/abs/2303.17651)、[Qiskit](https://arxiv.org/abs/2405.08810)、[Qiskit HumanEvalの公式リポジトリ](https://github.com/qiskit-community/qiskit-human-eval)も確認した。本実験の独自10タスクをQiskit HumanEvalそのものとして扱わない。参考文献番号は追加文献に合わせて更新している。
+構造検証は量子ビット数と測定操作を除いた回路命令数の範囲に限る。10タスクでは古典ビット数・測定数・測定の必須／禁止は未指定。全入力での正しさ、ゲート種、深さ、最適性を完全には検証しない。タスク定義は各実行時コミットと一致することを確認した。統計的有意差やモデルの一般的優劣は断定しない。
 
 ## ビルドと確認
 
-TeX LiveのpLaTeX、dvipdfmx、IPAexフォントを使用する。
+TeX LiveのpLaTeX、dvipdfmx、IPAexフォントを使用する。表の共通TeXは[../presentation_sources/20261013T_pooled_verified/reach_tables.tex](../presentation_sources/20261013T_pooled_verified/reach_tables.tex)に固定した。リポジトリの構造を保ってビルドする。
 
 ```bash
-cd docs/midterm2026
 platex -interaction=nonstopmode -halt-on-error paper.tex
 platex -interaction=nonstopmode -halt-on-error paper.tex
 dvipdfmx -p a4 -f ptex-ipaex.map -o paper.pdf paper.dvi
 ```
 
-更新PDFはA4・2ページ・187,190 bytes。全フォントを埋め込み、未解決の引用・参照と本文のはみ出しがないこと、両ページの画像表示による体裁を確認した。スタイルのSHA-256は `4dc0c47bdc9c61c7903734ad9068656f6cc11aa11391fe351713e3d23b73e86d` で、既存コピーと一致する。
+両原稿をA4・4ページでビルドした。フォント埋め込み、引用・参照、欠落文字、本文のはみ出し、全ページの体裁と表の数値を確認した。確認結果は[validation_report.json](../presentation_sources/20261013T_pooled_verified/validation_report.json)に保存する。スタイルは未変更で、SHA-256は `4dc0c47bdc9c61c7903734ad9068656f6cc11aa11391fe351713e3d23b73e86d`。
 
-今回の資料更新では追加のモデル生成を行わず、進行中の本実験を継続している。共有用資料をローカルに保存し、学会への投稿は行っていない。
+今回の作業は保存済み評価の集計と資料更新であり、モデルの追加生成・生成コードの再評価・投稿・通知は行っていない。

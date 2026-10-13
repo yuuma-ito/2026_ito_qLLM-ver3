@@ -1,0 +1,17 @@
+{
+  "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+  "passed": true,
+  "expected_records": 1500,
+  "actual_records": 1500,
+  "unique_records": 1500,
+  "errors": [],
+  "warnings": [],
+  "details": {
+    "duplicate_count": 0,
+    "missing_count": 0,
+    "unexpected_count": 0,
+    "incomplete_pair_count": 0,
+    "initial_mismatch_count": 0,
+    "missing_examples": []
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+  "saved_config": "results/shared_two_models_seed0_9_full_20261012T100658266051Z/experiment_config.json",
+  "reclassified_at": "2026-10-13T05:33:08.892252+00:00",
+  "source_raw_sha256": "56b0859fdd09b522f542a0e45f0539b2e8102771d2ce6fe16b8ddf7c12d815e0",
+  "source_record_sha256": "147ac65892e9e5c22c243a4adf41bf9d660ec4e6adcf9a48fdf47354969c2527",
+  "source_line": 414,
+  "model_spec": "ollama:qwen2.5-coder:7b",
+  "task_id": "T8_QPE_001",
+  "base_seed": 2,
+  "condition_id": "self_debugging",
+  "round": 3,
+  "failure_stage": "exec",
+  "exception_type": "QiskitError",
+  "error_message": "QiskitError: 'No statevector for experiment \"None\"'",
+  "original_error_category": "unknown_error",
+  "error_category": "interface_mismatch",
+  "finding": "Generated code calls Result.get_statevector() without saving statevector data in AerSimulator results.",
+  "classification_scope": "Known Qiskit missing-result-data messages at exec with L0 false, no generation_error and no timeout. Other unknown, build and evaluation failures remain unchanged.",
+  "raw_preserved": true,
+  "generated_new_code": false,
+  "reevaluated_generated_code": false,
+  "metrics_preserved": true,
+  "original_automation": {
+    "passed": false,
+    "problems": [
+      "Unresolved API/unknown failure in record 413."
+    ]
+  },
+  "tests": {
+    "command": ".venv/bin/python -m pytest tests/ -q",
+    "passed": 189,
+    "warnings": 16
+  },
+  "limitations": [
+    "Read-time classification only; prompts and diagnostics actually used during the original experiment remain unchanged.",
+    "The generated-code failure remains an L2/L3 failure; intervention effectiveness was not retested."
+  ],
+  "automation_verified": true
+}

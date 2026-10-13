@@ -1,0 +1,11 @@
+﻿model_spec,task_id,task_difficulty,seed,intervention,baseline_error_category,intervention_error_category,baseline_L2,intervention_L2
+ollama:qwen2.5-coder:7b,T3a_DJ_constant,medium,6,preventive_spec,ok,wrong_output,True,False
+ollama:qwen2.5-coder:7b,T3a_DJ_constant,medium,9,preventive_spec,ok,wrong_output,True,False
+ollama:qwen2.5-coder:7b,T4_BV_011,medium,9,preventive_spec,ok,wrong_output,True,False
+ollama:qwen2.5-coder:7b,T5_Grover_11,medium,2,preventive_spec,ok,wrong_output,True,False
+ollama:qwen2.5-coder:7b,T5_Grover_11,medium,6,preventive_spec,ok,wrong_output,True,False
+ollama:qwen2.5-coder:7b,T6_QFT_001,hard,0,preventive_spec,ok,build_error,True,False
+ollama:qwen2.5-coder:7b,T6_QFT_001,hard,4,preventive_spec,ok,build_error,True,False
+ollama:qwen2.5-coder:7b,T6_QFT_001,hard,6,preventive_spec,ok,build_error,True,False
+ollama:qwen2.5-coder:7b,T6_QFT_001,hard,8,preventive_spec,ok,build_error,True,False
+ollama:gemma3:4b,T9_Ansatz_001,hard,9,preventive_spec,ok,import_error,True,False

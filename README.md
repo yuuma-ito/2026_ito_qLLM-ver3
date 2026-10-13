@@ -1,12 +1,14 @@
 # Qiskit LLM Code Generation Harness
 
-現在進行中の5モデル追加実験の終了後、`scripts.draft_after_experiment` がCodexを1回起動し、中間発表・学会原稿・進捗報告の更新版を `docs/completion_drafts/<保存先のhash>/` に作成します。`configs/slack_progress.cron` の専用行で5分ごとに確認し、元プロセスの終了・共有ロック解放・全件記録を待ちます。API障害や検証不備が残る場合は暫定資料として明記します。既存原稿は参考コピーとして保持し、固定スナップショットを出典にPDFを作成します。作成完了後は既存のSlackbot DMへのメール経路で進捗報告本文とローカル保存先を通知します。PDFの添付・学会投稿・Git操作はこの処理には含めません。
+最新の共有原稿は[中間発表PDF](docs/midterm2026/paper.pdf)と[WiNF下書きPDF](docs/winf2026/paper.pdf)です。2026-10-13の更新で、検証済み3モデル1,500件、5モデル2,500件、2モデル補完1,000件と記述的統合集計5,000件を反映し、L0〜L3の累積達成、最終到達段階、介入前後の移動、初期成功と救出、構造検証の範囲を整理しました。[固定出典・詳細表](docs/presentation_sources/20261013T_pooled_verified/README.md)からCSV・スナップショット・検証状態を参照できます。補完実験は再分類と全件検証が完了しました。統合値は診断文の処理差を含む記述的結果として扱います。
+
+実験完了後の自動下書きは、`scripts.draft_after_experiment` がCodexを1回起動し、中間発表・学会原稿・進捗報告の更新版を `docs/completion_drafts/<保存先のhash>/` に作成します。`configs/slack_progress.cron` の専用行で5分ごとに確認し、元プロセスの終了・共有ロック解放・全件記録を待ちます。API障害や検証不備が残る場合は暫定資料として明記します。既存原稿は参考コピーとして保持し、固定スナップショットを出典にPDFを作成します。作成完了後は既存のSlackbot DMへのメール経路で進捗報告本文とローカル保存先を通知します。PDFの添付・学会投稿・Git操作はこの処理には含めません。
 
 起動にはログイン済みの `/home/23tc011/.local/bin/codex` を使用します（[Codexの非対話実行](https://developers.openai.com/codex/noninteractive)）。状態は `.cache/draft_jobs/`、起動ログは `logs/draft_after_experiment.log` と `logs/draft_codex_*.log` に保存します。AI失敗・中断や通知失敗の自動再試行はありません。状況を確認してから必要な場合のみ `--retry` で明示的に再実行してください。完了条件の手動確認には、同じ保存設定を指定した `--dry-run` を使用します。
 
 ## seed 0〜19への実験補完と統合
 
-残り2モデル（`qwen2.5-coder:7b`・`gemma3:4b`）のseed 0〜9を、[configs/shared_two_models_seed0_9_full.json](configs/shared_two_models_seed0_9_full.json)で1,000件追加します。完了後は、既存3モデルのseed 0〜9（1,500件）と既存5モデルのseed 10〜19（2,500件）を合わせ、各モデル1,000件、合計5,000件の公開用集計を作成します。
+残り2モデル（`qwen2.5-coder:7b`・`gemma3:4b`）のseed 0〜9を、[configs/shared_two_models_seed0_9_full.json](configs/shared_two_models_seed0_9_full.json)で1,000件の収集・検証を完了しました。既存3モデルのseed 0〜9（1,500件）と既存5モデルのseed 10〜19（2,500件）を合わせ、各モデル1,000件、合計5,000件の公開用集計を作成しました。
 
 ```bash
 .venv/bin/python -m scripts.automate_experiment --config configs/shared_two_models_seed0_9_full.json --new-run --pool-config configs/shared_five_models_pool.json
@@ -58,22 +60,23 @@
 
 ### 発表資料・固定した出典
 
-今回の更新版は [docs/completion_drafts/9b253632951b3656d9a72a97/](docs/completion_drafts/9b253632951b3656d9a72a97/) に保存しています。`midterm2026/` は中間発表用、`winf2026/` は学会発表に向けた下書きです。
+現行共有版は `docs/midterm2026/` と `docs/winf2026/` に保存しています。固定出典は [docs/presentation_sources/20261013T_pooled_verified/](docs/presentation_sources/20261013T_pooled_verified/README.md) です。[完了後の初版下書き](docs/completion_drafts/9b253632951b3656d9a72a97/)は当時の出典とともに保持しています。
 
 | ファイル・フォルダ | 内容 |
 | --- | --- |
-| [midterm2026/paper.pdf](docs/completion_drafts/9b253632951b3656d9a72a97/midterm2026/paper.pdf) | 中間発表用の資料です。内容を読むときは、このPDFを開きます。 |
-| [winf2026/paper.pdf](docs/completion_drafts/9b253632951b3656d9a72a97/winf2026/paper.pdf) | 学会発表に向けた原稿の下書きです。 |
+| [midterm2026/paper.pdf](docs/midterm2026/paper.pdf) | 中間発表用の現行共有資料です。 |
+| [winf2026/paper.pdf](docs/winf2026/paper.pdf) | 学会発表に向けた現行原稿の下書きです。 |
 | 各フォルダの `paper.tex` | PDFの元原稿です。本文や表を修正するときに使います。 |
 | 各フォルダの `winf-paper.sty` | PDFの文字や段組みなどの体裁を指定するLaTeX用の設定です。 |
 | 各フォルダの `progress_report_draft.txt` | 完了した作業、結果、残る課題を説明する進捗報告です。 |
 | 各フォルダの `README.md` | 資料の対象実験、出典、検証状況、PDFの作成方法などを説明します。 |
 | `winf2026/abstract.txt` | 学会原稿の内容を短くまとめた抄録です。 |
-| `results_snapshot.json` / `sources/` | 資料作成時点の数値と集計・設定・検証結果を固定して保存します。継続更新するレポートとは集計時点が異なる場合があります。 |
-| `validation_report.json` | PDFの体裁や、本文と集計数値の一致を確認した記録です。 |
-| `reference/` | 更新前の資料を参考用に保存しています。 |
+| 固定出典の [results_snapshot.json](docs/presentation_sources/20261013T_pooled_verified/results_snapshot.json) | 資料作成時点の数値と集計・設定・検証結果を保存します。継続更新するレポートと区別します。 |
+| 固定出典の [validation_report.json](docs/presentation_sources/20261013T_pooled_verified/validation_report.json) | PDFの体裁と結果表を集計数値と照合した記録です。 |
+| 固定出典の [source_manifest.json](docs/presentation_sources/20261013T_pooled_verified/source_manifest.json) | 元ファイルと公開用コピー・派生集計のhashを保存します。 |
+| 旧初版下書きの `reference/` | 旧資料を参考用に保存しています。 |
 
-この固定資料では、5モデル追加実験の介入カタログの分母が137件、スナップショットのbaseline失敗数が288件と一致していません。そのため、追加実験の失敗原因別介入効果については、このカタログに基づく結論を保留しています。制約の詳細は各資料のREADMEと `validation_report.json` を参照してください。
+現行共有版は、追加実験のカタログの分母288件が全件のbaseline失敗数と一致することを確認済みです。旧初版下書きの分母137件は途中集計として保持し、現行版の確定結果には用いません。実行時の処理差と構造検証の範囲などの限界は、各資料のREADMEと固定出典に記載しています。
 
 ## 概要
 
@@ -324,9 +327,11 @@ head -n 1 results/quick_debug/raw.jsonl | python -m json.tool
 
 ## 評価指標
 
+L0〜L3は独立した点数ではなく、段階的な到達水準として扱います。各水準の達成率は、同じ評価対象の全件数を分母とし、前段階の達成を含む累積的な割合です。
+
 - `L0`：生成コードが構文・必須インターフェースの条件を満たすか。
-- `L1`：回路を構築し、タスクに応じた評価処理を実行できるか。
-- `L2`：出力分布または状態ベクトルが期待値と許容距離内で一致するか。
+- `L1`：L0を満たしたうえで、回路を構築し、タスクに応じた評価処理を実行できるか。
+- `L2`：L0・L1を満たしたうえで、出力分布または状態ベクトルが期待値と許容距離内で一致するか。
 - `structure_match`：回路構造の妥当性。利用可能なタスク別構造条件に合うかを独立に記録します。
 - `L3`：`L0`，`L1`，`L2`，`structure_match` がすべて真の場合のみ真です。
 
@@ -414,3 +419,5 @@ python -m scripts.analyze_interventions results/quick_debug/raw.jsonl
 保存済みの同じ実験設定を使い、全件記録・重複なし・sanity check成功・API障害なしを確認してから既存自動化ラッパーをresumeします。全条件が記録済みなので追加生成は行わず、現在の分類で集計を再生成し、テスト・検証後に関連成果物をコミット／プッシュします。未完了・API障害・未分類エラーがある場合は待機終了後に停止し、欠けた生成を自動で補いません。通知は既存cronに任せ、待機処理から新たなメールは送信しません。
 
 `exec` 段階の `QiskitError: No counts for experiment ...` は、countsも保存した状態ベクトルもないResultに `get_counts()` を呼んだインターフェース誤用として `interface_mismatch` に分類します。他のQiskitErrorを一律にこの分類へ移しません。`build_circuit()` 内で同じ例外が生じた場合は `build / build_error` です。DJ constant seed 9 の観測例と介入候補は [分類確認記録](docs/dj_seed9_failure_classification.json) に保存しました。LLMへの介入効果は未検証です。
+
+`exec` 段階の `QiskitError: No statevector for experiment ...` は、statevector未保存での結果取得として `interface_mismatch` に分類します。保存済みの `unknown_error` は読み込み時に限定的に補正し、元分類・例外・生データ・評価値は保持します。[QPE seed 2の分類確認](docs/qpe_seed2_failure_classification.json)を参照してください。

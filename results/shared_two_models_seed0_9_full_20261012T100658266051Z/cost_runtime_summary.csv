@@ -1,0 +1,11 @@
+﻿intervention,model_spec,n,avg_tokens_in,avg_tokens_out,avg_total_tokens,avg_elapsed_sec,avg_code_lines,avg_gate_count,avg_circuit_depth,total_estimated_cost_usd
+baseline,ollama:gemma3:4b,100,325.8,335.42,661.22,31.452377090454103,39.59,0.63,0.39,null
+baseline,ollama:qwen2.5-coder:7b,100,312.5,142.77,455.27,19.871371309757233,13.44,4.44,2.89,null
+execution_feedback,ollama:gemma3:4b,100,2695.86,1348.18,4044.04,143.57739942312242,40.01,0.83,0.48,null
+execution_feedback,ollama:qwen2.5-coder:7b,100,912.4,316.59,1228.99,51.117970387935635,13.28,5.4,3.46,null
+preventive_spec,ollama:gemma3:4b,100,436.8,334.63,771.43,30.782466914653778,39.3,1.35,0.97,null
+preventive_spec,ollama:qwen2.5-coder:7b,100,441.5,140.6,582.1,22.785605292320252,13.76,4.99,3.18,null
+self_debugging,ollama:gemma3:4b,100,2979.25,1461.28,4440.53,160.29126685857773,42.34,0.57,0.35,null
+self_debugging,ollama:qwen2.5-coder:7b,100,1024.7,457.38,1482.08,75.17674844503402,14.45,4.96,3.17,null
+self_refine,ollama:gemma3:4b,100,2569.96,1354.64,3924.6,143.1831597852707,40.16,1.19,0.72,null
+self_refine,ollama:qwen2.5-coder:7b,100,908.22,325.4,1233.62,50.33473325252533,13.18,4.93,3.19,null

@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "problems": [],
+  "sanity": {
+    "experiment_id": "shared_five_models_pooled_seed0_19",
+    "passed": true,
+    "expected_records": 5000,
+    "actual_records": 5000,
+    "unique_records": 5000,
+    "errors": [],
+    "warnings": [],
+    "details": {
+      "duplicate_count": 0,
+      "missing_count": 0,
+      "unexpected_count": 0,
+      "incomplete_pair_count": 0,
+      "initial_mismatch_count": 0,
+      "missing_examples": []
+    }
+  },
+  "catalog_verified": true,
+  "source_automation_verified": true,
+  "limitations": [
+    "各条件は共有round 0を含むため、5,000件は独立した5,000回の初期生成ではありません。",
+    "seedブロック・実施時期の差を保持し、モデルの一般的優劣や統計的有意差は断定しません。",
+    "schema 2.0と2.1を含みます。エラー分類変更はexecution_feedbackとself_debuggingの診断文にも影響します。統合値は混合手順の記述的結果であり、単一手順の介入効果とは解釈しません。"
+  ]
+}

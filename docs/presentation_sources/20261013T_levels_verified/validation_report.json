@@ -1,0 +1,62 @@
+{
+  "checked_at_utc": "2026-10-12T15:58:24.432574+00:00",
+  "passed": true,
+  "source_checks": [
+    {
+      "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+      "records": 1500,
+      "raw_hash_unchanged": true,
+      "cumulative_exclusive_and_pair_counts_match": true,
+      "source_summary_matches": true
+    },
+    {
+      "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+      "records": 2500,
+      "raw_hash_unchanged": true,
+      "cumulative_exclusive_and_pair_counts_match": true,
+      "source_summary_matches": true
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/midterm2026/paper.pdf",
+      "pages": 3,
+      "bytes": 217099,
+      "sha256": "83623fc00197c7120e0d672fee1f51913ad2ccd0a90fc5943786ba83e129f055",
+      "all_fonts_embedded": true,
+      "unresolved_references": 0,
+      "overfull_boxes": 0,
+      "missing_characters": 0,
+      "table_rows_checked": 52,
+      "all_pages_visually_checked": true,
+      "underfull_warnings": 2
+    },
+    {
+      "path": "docs/winf2026/paper.pdf",
+      "pages": 3,
+      "bytes": 216173,
+      "sha256": "03622814866be225997d90036c3e31ddec0662697a29db7469b9b6d5988005f0",
+      "all_fonts_embedded": true,
+      "unresolved_references": 0,
+      "overfull_boxes": 0,
+      "missing_characters": 0,
+      "table_rows_checked": 52,
+      "all_pages_visually_checked": true,
+      "underfull_warnings": 2
+    }
+  ],
+  "abstract_characters": 276,
+  "tests": {
+    "command": ".venv/bin/python -m pytest -q tests/test_reach_levels.py tests/test_update_experiment_report.py tests/test_intervention_catalog.py",
+    "passed": 34
+  },
+  "reproducible_fixed_capture": true,
+  "no_generated_code_or_raw_in_public_sources": true,
+  "limits": [
+    "独自10タスクと限定的な構造要件",
+    "未固定のシミュレータseedと有限shots",
+    "異なる実行版・診断処理の出典別記述的比較",
+    "補完実験は未検証のため除外",
+    "著者情報と投稿要領の最終確認は未実施"
+  ]
+}

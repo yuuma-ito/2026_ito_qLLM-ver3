@@ -1,0 +1,16 @@
+﻿model_spec,intervention,n,unattained_only_count,L0_only_count,L1_only_count,L2_only_count,L3_only_count,L0_count,L0_rate,L1_count,L1_rate,L2_count,L2_rate,L3_count,L3_rate
+ollama:gemma4:e4b-it-qat,baseline,100,8,13,14,0,65,92,0.92,79,0.79,65,0.65,65,0.65
+ollama:gemma4:e4b-it-qat,execution_feedback,100,4,1,8,0,87,96,0.96,95,0.95,87,0.87,87,0.87
+ollama:gemma4:e4b-it-qat,preventive_spec,100,13,10,45,0,32,87,0.87,77,0.77,32,0.32,32,0.32
+ollama:gemma4:e4b-it-qat,self_debugging,100,5,0,7,0,88,95,0.95,95,0.95,88,0.88,88,0.88
+ollama:gemma4:e4b-it-qat,self_refine,100,5,4,9,0,82,95,0.95,91,0.91,82,0.82,82,0.82
+ollama:qwen3.5:4b,baseline,100,57,25,3,0,15,43,0.43,18,0.18,15,0.15,15,0.15
+ollama:qwen3.5:4b,execution_feedback,100,29,7,8,0,56,71,0.71,64,0.64,56,0.56,56,0.56
+ollama:qwen3.5:4b,preventive_spec,100,56,28,5,0,11,44,0.44,16,0.16,11,0.11,11,0.11
+ollama:qwen3.5:4b,self_debugging,100,23,14,6,0,57,77,0.77,63,0.63,57,0.57,57,0.57
+ollama:qwen3.5:4b,self_refine,100,48,17,2,0,33,52,0.52,35,0.35,33,0.33,33,0.33
+ollama:qwen3.5:9b,baseline,100,17,10,14,0,59,83,0.83,73,0.73,59,0.59,59,0.59
+ollama:qwen3.5:9b,execution_feedback,100,11,4,9,0,76,89,0.89,85,0.85,76,0.76,76,0.76
+ollama:qwen3.5:9b,preventive_spec,100,18,18,39,0,25,82,0.82,64,0.64,25,0.25,25,0.25
+ollama:qwen3.5:9b,self_debugging,100,10,4,6,0,80,90,0.9,86,0.86,80,0.8,80,0.8
+ollama:qwen3.5:9b,self_refine,100,8,11,8,0,73,92,0.92,81,0.81,73,0.73,73,0.73

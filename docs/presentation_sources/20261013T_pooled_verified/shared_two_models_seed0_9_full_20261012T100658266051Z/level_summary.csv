@@ -1,0 +1,11 @@
+﻿model_spec,intervention,n,unattained_only_count,L0_only_count,L1_only_count,L2_only_count,L3_only_count,L0_count,L0_rate,L1_count,L1_rate,L2_count,L2_rate,L3_count,L3_rate
+ollama:gemma3:4b,baseline,100,84,7,8,0,1,16,0.16,9,0.09,1,0.01,1,0.01
+ollama:gemma3:4b,execution_feedback,100,80,8,11,0,1,20,0.2,12,0.12,1,0.01,1,0.01
+ollama:gemma3:4b,preventive_spec,100,61,10,18,0,11,39,0.39,29,0.29,11,0.11,11,0.11
+ollama:gemma3:4b,self_debugging,100,84,8,7,0,1,16,0.16,8,0.08,1,0.01,1,0.01
+ollama:gemma3:4b,self_refine,100,77,7,15,0,1,23,0.23,16,0.16,1,0.01,1,0.01
+ollama:qwen2.5-coder:7b,baseline,100,9,15,10,0,66,91,0.91,76,0.76,66,0.66,66,0.66
+ollama:qwen2.5-coder:7b,execution_feedback,100,4,6,10,0,80,96,0.96,90,0.9,80,0.8,80,0.8
+ollama:qwen2.5-coder:7b,preventive_spec,100,5,14,18,0,63,95,0.95,81,0.81,63,0.63,63,0.63
+ollama:qwen2.5-coder:7b,self_debugging,100,8,5,9,0,78,92,0.92,87,0.87,78,0.78,78,0.78
+ollama:qwen2.5-coder:7b,self_refine,100,7,9,10,0,74,93,0.93,84,0.84,74,0.74,74,0.74

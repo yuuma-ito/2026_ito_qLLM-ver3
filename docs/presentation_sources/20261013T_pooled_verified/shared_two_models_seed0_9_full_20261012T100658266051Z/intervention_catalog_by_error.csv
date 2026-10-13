@@ -1,0 +1,25 @@
+﻿baseline_error_category,intervention,baseline_failure_count,rescued_count,rescue_rate,regression_count,degradation_count,timeout_count,best_intervention_flag
+build_error,execution_feedback,22,8,0.36363636363636365,0,0,0,観測最多（同率）
+build_error,preventive_spec,22,3,0.13636363636363635,0,0,0,参考（生成前介入）
+build_error,self_debugging,22,8,0.36363636363636365,0,2,0,観測最多（同率）
+build_error,self_refine,22,6,0.2727272727272727,0,0,0,最多以外
+import_error,execution_feedback,89,3,0.033707865168539325,0,0,0,観測最多（同率）
+import_error,preventive_spec,89,11,0.12359550561797752,0,0,0,参考（生成前介入）
+import_error,self_debugging,89,3,0.033707865168539325,0,0,0,観測最多（同率）
+import_error,self_refine,89,1,0.011235955056179775,0,0,0,最多以外
+interface_mismatch,execution_feedback,4,0,0.0,0,0,0,参考
+interface_mismatch,preventive_spec,4,0,0.0,0,0,0,参考（生成前介入）
+interface_mismatch,self_debugging,4,0,0.0,0,0,0,参考
+interface_mismatch,self_refine,4,0,0.0,0,0,0,参考
+ok,execution_feedback,0,0,,0,0,0,対象外（baseline L2成功）
+ok,preventive_spec,0,0,,10,0,0,対象外（baseline L2成功）
+ok,self_debugging,0,0,,0,0,0,対象外（baseline L2成功）
+ok,self_refine,0,0,,0,0,0,対象外（baseline L2成功）
+qubit_count_mismatch,execution_feedback,3,0,0.0,0,0,0,参考
+qubit_count_mismatch,preventive_spec,3,0,0.0,0,0,0,参考（生成前介入）
+qubit_count_mismatch,self_debugging,3,0,0.0,0,1,0,参考
+qubit_count_mismatch,self_refine,3,0,0.0,0,0,0,参考
+wrong_output,execution_feedback,15,3,0.2,0,1,0,観測最多
+wrong_output,preventive_spec,15,3,0.2,0,0,0,参考（生成前介入）
+wrong_output,self_debugging,15,1,0.06666666666666667,0,2,0,最多以外
+wrong_output,self_refine,15,1,0.06666666666666667,0,1,0,最多以外

@@ -1,0 +1,9 @@
+﻿model_spec,intervention,comparison_kind,n_pairs,baseline_L3_success,baseline_L3_failure,baseline_L2_failure,final_L3_success,L3_rescued,L2_rescued,L3_regressed,improved,unchanged,worsened,initial_L3_success_unmodified,repair_attempted,failure_improved,partial_improvement,L3_rescue_rate,L2_rescue_rate,failure_improvement_rate
+ollama:gemma3:4b,execution_feedback,repair,100,1,99,99,1,0,0,0,4,96,0,1,99,4,4,0.0,0.0,0.04040404040404041
+ollama:gemma3:4b,preventive_spec,pre_generation,100,1,99,99,11,11,11,1,34,58,8,0,0,34,23,0.1111111111111111,0.1111111111111111,0.3434343434343434
+ollama:gemma3:4b,self_debugging,repair,100,1,99,99,1,0,0,0,1,98,1,1,99,1,1,0.0,0.0,0.010101010101010102
+ollama:gemma3:4b,self_refine,repair,100,1,99,99,1,0,0,0,8,92,0,1,99,8,8,0.0,0.0,0.08080808080808081
+ollama:qwen2.5-coder:7b,execution_feedback,repair,100,66,34,34,80,14,14,0,19,80,1,66,34,19,5,0.4117647058823529,0.4117647058823529,0.5588235294117647
+ollama:qwen2.5-coder:7b,preventive_spec,pre_generation,100,66,34,34,63,6,6,9,13,77,10,0,0,13,7,0.17647058823529413,0.17647058823529413,0.38235294117647056
+ollama:qwen2.5-coder:7b,self_debugging,repair,100,66,34,34,78,12,12,0,15,81,4,66,34,15,3,0.35294117647058826,0.35294117647058826,0.4411764705882353
+ollama:qwen2.5-coder:7b,self_refine,repair,100,66,34,34,74,8,8,0,11,88,1,66,34,11,3,0.23529411764705882,0.23529411764705882,0.3235294117647059

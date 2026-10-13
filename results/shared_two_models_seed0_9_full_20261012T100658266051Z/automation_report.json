@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "problems": [],
+  "sanity": {
+    "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+    "passed": true,
+    "expected_records": 1000,
+    "actual_records": 1000,
+    "unique_records": 1000,
+    "errors": [],
+    "warnings": [],
+    "details": {
+      "duplicate_count": 0,
+      "missing_count": 0,
+      "unexpected_count": 0,
+      "incomplete_pair_count": 0,
+      "initial_mismatch_count": 0,
+      "missing_examples": []
+    }
+  },
+  "shared_server": {
+    "base_url": "http://127.0.0.1:11435/v1",
+    "version": {
+      "version": "0.35.1"
+    },
+    "models": [
+      {
+        "name": "gemma3:4b",
+        "model": "gemma3:4b",
+        "modified_at": "2026-10-07T11:48:45.151244069+09:00",
+        "size": 3338801804,
+        "digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "gemma3",
+          "families": [
+            "gemma3"
+          ],
+          "parameter_size": "4.3B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 131072,
+          "embedding_length": 2560
+        },
+        "capabilities": [
+          "completion",
+          "vision"
+        ]
+      },
+      {
+        "name": "qwen2.5-coder:7b",
+        "model": "qwen2.5-coder:7b",
+        "modified_at": "2026-10-07T11:46:02.626155809+09:00",
+        "size": 4683087561,
+        "digest": "dae161e27b0e90dd1856c8bb3209201fd6736d8eb66298e75ed87571486f4364",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "7.6B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 3584
+        },
+        "capabilities": [
+          "completion",
+          "tools",
+          "insert"
+        ]
+      }
+    ],
+    "reasoning_effort": "none",
+    "max_tokens": 1024,
+    "parallel_requests": 1
+  },
+  "tests_passed": true,
+  "revalidated_at": "2026-10-13T05:33:08.892252+00:00",
+  "classification_audit": "docs/qpe_seed2_failure_classification.json",
+  "raw_sha256": "56b0859fdd09b522f542a0e45f0539b2e8102771d2ce6fe16b8ddf7c12d815e0",
+  "previous_verification": {
+    "passed": false,
+    "problems": [
+      "Unresolved API/unknown failure in record 413."
+    ]
+  },
+  "generated_new_code": false
+}

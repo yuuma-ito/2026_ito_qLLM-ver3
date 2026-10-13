@@ -1,0 +1,292 @@
+{
+  "experiment_id": "shared_five_models_pooled_seed0_19",
+  "captured_at": "2026-10-13T05:43:00.209101+00:00",
+  "config": {
+    "experiment_id": "shared_five_models_pooled_seed0_19",
+    "models": [
+      "ollama:qwen3.5:4b",
+      "ollama:gemma4:e4b-it-qat",
+      "ollama:qwen3.5:9b",
+      "ollama:qwen2.5-coder:7b",
+      "ollama:gemma3:4b"
+    ],
+    "tasks": [
+      "T1_Bell",
+      "T2_GHZ",
+      "T3a_DJ_constant",
+      "T3b_DJ_balanced",
+      "T4_BV_011",
+      "T5_Grover_11",
+      "T6_QFT_001",
+      "T7_IQFT_001",
+      "T8_QPE_001",
+      "T9_Ansatz_001"
+    ],
+    "seeds": {
+      "start": 0,
+      "stop": 20
+    },
+    "temperature": 0.7,
+    "max_rounds": 3,
+    "conditions": [
+      "baseline",
+      "self_refine",
+      "execution_feedback",
+      "self_debugging",
+      "preventive_spec"
+    ],
+    "output_dir": "results/shared_five_models_pooled_seed0_19",
+    "generation_settings": {
+      "reasoning_effort": "none",
+      "max_tokens": 1024,
+      "timeout_sec": 600,
+      "parallel_requests": 1
+    },
+    "pricing": {}
+  },
+  "sources": [
+    {
+      "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "config": {
+        "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+        "models": [
+          "ollama:qwen3.5:4b",
+          "ollama:gemma4:e4b-it-qat",
+          "ollama:qwen3.5:9b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 0,
+          "stop": 10
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "records": 1500,
+      "schema_version": "2.0",
+      "git_commit": "9c6f952b41ac661bb42bb1ffe4d3f37282260658",
+      "raw_sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515",
+      "baseline_L2_failures": 161
+    },
+    {
+      "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "config": {
+        "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+        "models": [
+          "ollama:qwen3.5:4b",
+          "ollama:gemma4:e4b-it-qat",
+          "ollama:qwen3.5:9b",
+          "ollama:qwen2.5-coder:7b",
+          "ollama:gemma3:4b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 10,
+          "stop": 20
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "records": 2500,
+      "schema_version": "2.1",
+      "git_commit": "9c1833eba6020369247358c04e462e0dc1982705",
+      "raw_sha256": "308d32d6b097a8628c0d90889e9f3a5dd5054443ef0e0c8f0c3c054aec7f2599",
+      "baseline_L2_failures": 288
+    },
+    {
+      "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "config": {
+        "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "models": [
+          "ollama:qwen2.5-coder:7b",
+          "ollama:gemma3:4b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 0,
+          "stop": 10
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "records": 1000,
+      "schema_version": "2.1",
+      "git_commit": "7ccef09db9bff16785b08f2e7f1ff542cf64b849",
+      "raw_sha256": "56b0859fdd09b522f542a0e45f0539b2e8102771d2ce6fe16b8ddf7c12d815e0",
+      "baseline_L2_failures": 133
+    }
+  ],
+  "model_digests": {
+    "ollama:qwen3.5:4b": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd",
+    "ollama:gemma4:e4b-it-qat": "ee665637121887cf3befff38abbb1be4ee117c7db867d97a67e29049ecd7e15f",
+    "ollama:qwen3.5:9b": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+    "ollama:qwen2.5-coder:7b": "dae161e27b0e90dd1856c8bb3209201fd6736d8eb66298e75ed87571486f4364",
+    "ollama:gemma3:4b": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a"
+  },
+  "compatibility_signature": {
+    "tasks": [
+      "T1_Bell",
+      "T2_GHZ",
+      "T3a_DJ_constant",
+      "T3b_DJ_balanced",
+      "T4_BV_011",
+      "T5_Grover_11",
+      "T6_QFT_001",
+      "T7_IQFT_001",
+      "T8_QPE_001",
+      "T9_Ansatz_001"
+    ],
+    "temperature": 0.7,
+    "conditions": [
+      [
+        "baseline",
+        "baseline",
+        0
+      ],
+      [
+        "self_refine",
+        "self_refine",
+        3
+      ],
+      [
+        "execution_feedback",
+        "execution_feedback",
+        3
+      ],
+      [
+        "self_debugging",
+        "self_debugging",
+        3
+      ],
+      [
+        "preventive_spec",
+        "preventive_spec",
+        0
+      ]
+    ],
+    "generation_settings": {
+      "reasoning_effort": "none",
+      "max_tokens": 1024,
+      "timeout_sec": 600,
+      "parallel_requests": 1
+    },
+    "prompt_fingerprints": {
+      "system_txt_sha256": "b76e82b93808aff180580db3647711efa0a3a56cc39301cff4a7a44f108e9f9d",
+      "interventions_py_sha256": "ea630da1c7051c0b9cd36163d19cf8d56746dad074408a7d8bd7e2002e6b4ec4"
+    },
+    "environment": {
+      "python": "3.12.3",
+      "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+      "qiskit": "2.5.2",
+      "qiskit_aer": "0.17.2",
+      "openai": "3.26.0",
+      "anthropic": null,
+      "google_generativeai": null
+    },
+    "transport_recovery": {
+      "ollama_connection_retry_delays_sec": [
+        5,
+        10,
+        20,
+        30,
+        30
+      ],
+      "preserve_seed": true,
+      "retry_timeouts": false,
+      "stop_after_unrecovered_transport_failure": true
+    }
+  },
+  "schema_versions": [
+    "2.0",
+    "2.1"
+  ],
+  "limitations": [
+    "各条件は共有round 0を含むため、5,000件は独立した5,000回の初期生成ではありません。",
+    "seedブロック・実施時期の差を保持し、モデルの一般的優劣や統計的有意差は断定しません。",
+    "schema 2.0と2.1を含みます。エラー分類変更はexecution_feedbackとself_debuggingの診断文にも影響します。統合値は混合手順の記述的結果であり、単一手順の介入効果とは解釈しません。"
+  ],
+  "records": 5000,
+  "sanity_passed": true,
+  "generated_new_code": false
+}

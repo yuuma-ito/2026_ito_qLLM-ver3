@@ -127,3 +127,68 @@ def build_circuit():
 '''
     result = evaluate(code, TASK)
     assert (result.failure_stage, result.error_category, result.exception_type) == ('build', 'build_error', 'QiskitError')
+
+
+def test_unsaved_statevector_is_exec_interface_mismatch():
+    code = TASK.mock_correct_code + '''
+from qiskit_aer import AerSimulator
+qc = build_circuit()
+qc.remove_final_measurements(inplace=True)
+AerSimulator().run(qc).result().get_statevector()
+'''
+    result = evaluate(code, TASK)
+    assert (result.failure_stage, result.error_category, result.exception_type) == ('exec', 'interface_mismatch', 'QiskitError')
+    assert 'No statevector for experiment' in result.error_message
+    assert evaluate(TASK.mock_correct_code, TASK).L3
+
+
+@pytest.mark.parametrize('native', [False, True])
+def test_saved_statevector_failure_reclassification_preserves_raw(native):
+    from harness.experiment import has_api_failure
+    row = dict(L0=False, L1=False, L2=False, L3=False, error_category='unknown_error',
+               error_message='QiskitError: \'No statevector for experiment "None"\'',
+               timeout_flag=False, generation_error='')
+    if native:
+        row.update(failure_stage='exec', exception_type='QiskitError')
+    row['rounds'] = [dict(row)]
+    original = copy.deepcopy(row)
+    normalized = normalize_record(row)
+    assert row == original
+    assert normalize_record(normalized) == normalized
+    for attempt in [normalized, *normalized['rounds']]:
+        assert (attempt['failure_stage'], attempt['error_category'], attempt['exception_type']) == ('exec', 'interface_mismatch', 'QiskitError')
+        assert attempt['original_error_category'] == 'unknown_error'
+        assert not attempt['L2'] and not attempt['L3']
+    assert not has_api_failure(normalized)
+    row['rounds'][0]['generation_error'] = 'Connection refused'
+    assert has_api_failure(row)
+
+
+@pytest.mark.parametrize('changes', [
+    dict(failure_stage='build', error_category='build_error'),
+    dict(failure_stage='evaluate', L0=True),
+    dict(failure_stage='api_call'),
+    dict(timeout_flag=True),
+    dict(generation_error='Connection refused'),
+    dict(exception_type='RuntimeError'),
+    dict(error_message='QiskitError: unclassified failure'),
+])
+def test_statevector_migration_is_limited_to_known_exec_failure(changes):
+    row = dict(L0=False, failure_stage='exec', exception_type='QiskitError',
+               error_category='unknown_error', rounds=[],
+               error_message='QiskitError: \'No statevector for experiment "None"\'')
+    row.update(changes)
+    assert normalize_record(row) == row
+
+
+def test_unsaved_statevector_inside_build_remains_build_error():
+    code = '''
+from qiskit import QuantumCircuit
+from qiskit_aer import AerSimulator
+def build_circuit():
+    qc = QuantumCircuit(2)
+    AerSimulator().run(qc).result().get_statevector()
+    return qc
+'''
+    result = evaluate(code, TASK)
+    assert (result.failure_stage, result.error_category, result.exception_type) == ('build', 'build_error', 'QiskitError')

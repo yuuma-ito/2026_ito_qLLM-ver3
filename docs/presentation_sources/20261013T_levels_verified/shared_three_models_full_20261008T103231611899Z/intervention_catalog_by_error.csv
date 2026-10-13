@@ -1,0 +1,25 @@
+﻿baseline_error_category,intervention,baseline_failure_count,rescued_count,rescue_rate,regression_count,degradation_count,timeout_count,best_intervention_flag
+build_error,execution_feedback,28,16,0.5714285714285714,0,6,0,最多以外
+build_error,preventive_spec,28,4,0.14285714285714285,0,0,0,参考（生成前介入）
+build_error,self_debugging,28,17,0.6071428571428571,0,7,0,観測最多
+build_error,self_refine,28,4,0.14285714285714285,0,8,0,最多以外
+import_error,execution_feedback,48,24,0.5,0,0,0,最多以外
+import_error,preventive_spec,48,3,0.0625,0,0,0,参考（生成前介入）
+import_error,self_debugging,48,29,0.6041666666666666,0,0,0,観測最多
+import_error,self_refine,48,11,0.22916666666666666,0,0,0,最多以外
+interface_mismatch,execution_feedback,21,14,0.6666666666666666,0,2,0,観測最多
+interface_mismatch,preventive_spec,21,8,0.38095238095238093,0,0,0,参考（生成前介入）
+interface_mismatch,self_debugging,21,13,0.6190476190476191,0,2,0,最多以外
+interface_mismatch,self_refine,21,8,0.38095238095238093,0,0,0,最多以外
+ok,execution_feedback,0,0,,0,0,0,対象外（baseline L2成功）
+ok,preventive_spec,0,0,,93,0,0,対象外（baseline L2成功）
+ok,self_debugging,0,0,,0,0,0,対象外（baseline L2成功）
+ok,self_refine,0,0,,0,0,0,対象外（baseline L2成功）
+syntax,execution_feedback,33,12,0.36363636363636365,0,0,0,観測最多（同率）
+syntax,preventive_spec,33,2,0.06060606060606061,0,0,0,参考（生成前介入）
+syntax,self_debugging,33,10,0.30303030303030304,0,0,0,最多以外
+syntax,self_refine,33,12,0.36363636363636365,0,0,0,観測最多（同率）
+wrong_output,execution_feedback,31,14,0.45161290322580644,0,7,0,最多以外
+wrong_output,preventive_spec,31,5,0.16129032258064516,0,0,0,参考（生成前介入）
+wrong_output,self_debugging,31,17,0.5483870967741935,0,6,0,観測最多
+wrong_output,self_refine,31,14,0.45161290322580644,0,3,0,最多以外

@@ -1,0 +1,17 @@
+{
+  "experiment_id": "shared_five_models_pooled_seed0_19",
+  "passed": true,
+  "expected_records": 5000,
+  "actual_records": 5000,
+  "unique_records": 5000,
+  "errors": [],
+  "warnings": [],
+  "details": {
+    "duplicate_count": 0,
+    "missing_count": 0,
+    "unexpected_count": 0,
+    "incomplete_pair_count": 0,
+    "initial_mismatch_count": 0,
+    "missing_examples": []
+  }
+}

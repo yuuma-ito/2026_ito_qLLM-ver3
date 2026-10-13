@@ -1,0 +1,8 @@
+﻿model_spec,task_id,task_difficulty,seed,intervention,initial_stage_score,final_stage_score,initial_error_category,final_error_category
+ollama:qwen2.5-coder:7b,T3a_DJ_constant,medium,2,self_refine,2,1,wrong_output,build_error
+ollama:qwen2.5-coder:7b,T3b_DJ_balanced,medium,2,self_debugging,2,0,wrong_output,import_error
+ollama:qwen2.5-coder:7b,T4_BV_011,medium,1,execution_feedback,2,1,wrong_output,build_error
+ollama:qwen2.5-coder:7b,T8_QPE_001,hard,2,self_debugging,1,0,build_error,interface_mismatch
+ollama:qwen2.5-coder:7b,T8_QPE_001,hard,5,self_debugging,2,1,wrong_output,build_error
+ollama:qwen2.5-coder:7b,T8_QPE_001,hard,8,self_debugging,1,0,build_error,import_error
+ollama:gemma3:4b,T4_BV_011,medium,2,self_debugging,2,0,qubit_count_mismatch,syntax

@@ -1,0 +1,310 @@
+{
+  "captured_at_utc": "2026-10-13T05:45:33.216129+00:00",
+  "source_raw_hashes": [
+    {
+      "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+      "sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515"
+    },
+    {
+      "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+      "sha256": "308d32d6b097a8628c0d90889e9f3a5dd5054443ef0e0c8f0c3c054aec7f2599"
+    },
+    {
+      "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "sha256": "56b0859fdd09b522f542a0e45f0539b2e8102771d2ce6fe16b8ddf7c12d815e0"
+    }
+  ],
+  "files": [
+    {
+      "copy": "README.md",
+      "sha256": "d73649ebec9ef9154dd259ee7045a9ef07df5ad76dbde8e1eb8a2efc5e4105bc"
+    },
+    {
+      "copy": "reach_tables.tex",
+      "sha256": "e1d50e776c20cdc817519592d91fff49b25a7dc9fd02606cb5e46b8d85bf60f3"
+    },
+    {
+      "copy": "results_snapshot.json",
+      "sha256": "cb7e9532a4dea52e763f43eb7d366707bcb37c67eb5e29d094a1e3fd872008f0"
+    },
+    {
+      "copy": "pooled_tables.tex",
+      "sha256": "fd794d2e24ac2cf3b1f617fd844435e7f7c987be197f740b9f02b369dc0a0648"
+    },
+    {
+      "copy": "shared_two_models_seed0_9_full_20261012T100658266051Z/experiment_config.json",
+      "sha256": "dd6b694be0b0c03b3bc33ecc13c69872104a5dba2b66706389b8163a618b0a9b",
+      "source": "results/shared_two_models_seed0_9_full_20261012T100658266051Z/experiment_config.json"
+    },
+    {
+      "copy": "shared_two_models_seed0_9_full_20261012T100658266051Z/rechecked_sanity_report.json",
+      "sha256": "66461499b3301198d56bc559c871ef1f13b98145a619751297ebb501540aed18"
+    },
+    {
+      "copy": "shared_two_models_seed0_9_full_20261012T100658266051Z/manifest.json",
+      "sha256": "fbde58e71e01396ca8a89d33201e58799ff74e07d8547ebf93b8769d4685859d",
+      "source": "results/shared_two_models_seed0_9_full_20261012T100658266051Z/manifest.json"
+    },
+    {
+      "copy": "shared_two_models_seed0_9_full_20261012T100658266051Z/automation_report.json",
+      "sha256": "59a80e937796cc66835d68c1f5357224621b22a22e21d49993ddd540c4966b68",
+      "source": "results/shared_two_models_seed0_9_full_20261012T100658266051Z/automation_report.json"
+    },
+    {
+      "copy": "shared_two_models_seed0_9_full_20261012T100658266051Z/sanity_report.json",
+      "sha256": "66461499b3301198d56bc559c871ef1f13b98145a619751297ebb501540aed18",
+      "source": "results/shared_two_models_seed0_9_full_20261012T100658266051Z/sanity_report.json"
+    },
+    {
+      "copy": "shared_two_models_seed0_9_full_20261012T100658266051Z/summary_by_condition.csv",
+      "sha256": "71ff7c60398b9343f29048f3bbe7696e8ab3d7cf1cb921d2e9089f4cf1ba9e70",
+      "source": "results/shared_two_models_seed0_9_full_20261012T100658266051Z/summary_by_condition.csv"
+    },
+    {
+      "copy": "shared_two_models_seed0_9_full_20261012T100658266051Z/level_summary.csv",
+      "sha256": "6e2ff9a9072b5cd2b399a7c2620fa4b0677f90256bda946f84b34c325638c276"
+    },
+    {
+      "copy": "shared_two_models_seed0_9_full_20261012T100658266051Z/intervention_effects.csv",
+      "sha256": "dae3fdc143be4fae41058da938204fc6a6adae07c98e80a591b1be03d0b926dd"
+    },
+    {
+      "copy": "shared_two_models_seed0_9_full_20261012T100658266051Z/intervention_catalog_by_error_model.csv",
+      "sha256": "58698b458bd470e619f3b55b3a3bbe228297a40a6c37d7a8e93295e65c11a770",
+      "source": "results/shared_two_models_seed0_9_full_20261012T100658266051Z/intervention_catalog_by_error_model.csv"
+    },
+    {
+      "copy": "shared_two_models_seed0_9_full_20261012T100658266051Z/intervention_catalog_by_error.csv",
+      "sha256": "2faed109c2375050dc27cc3d3ff601d3a365d0ccb000600be14c4e590172e68f",
+      "source": "results/shared_two_models_seed0_9_full_20261012T100658266051Z/intervention_catalog_by_error.csv"
+    },
+    {
+      "copy": "shared_two_models_seed0_9_full_20261012T100658266051Z/level_transitions.csv",
+      "sha256": "8ee6a7f38b2e3cfb2333bb0c74e49d4929ca1c4ba9d93b3b6747a8fbc5f8c82c"
+    },
+    {
+      "copy": "shared_two_models_seed0_9_full_20261012T100658266051Z/intervention_catalog_by_error_difficulty.csv",
+      "sha256": "1d8c313a1a5e4b8290fba90c4b90fae2e76389cc867145e83960df62e413719d",
+      "source": "results/shared_two_models_seed0_9_full_20261012T100658266051Z/intervention_catalog_by_error_difficulty.csv"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/rescue_rates_by_error.csv",
+      "sha256": "1ad3c05ae0195ddfa216943917147b980d0ed894f3cf91236b567c8b6e90539e",
+      "source": "results/shared_five_models_pooled_seed0_19/rescue_rates_by_error.csv"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/failure_stage_summary.csv",
+      "sha256": "4b2f65322516ef356e97bea5204090f2dde65257daeee20a0053beeecb841170",
+      "source": "results/shared_five_models_pooled_seed0_19/failure_stage_summary.csv"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/timeout_summary.csv",
+      "sha256": "6e4dfbbd3b1af52a59f7cfdc6f9c344d37cee7a969662ea82913a175e59249f1",
+      "source": "results/shared_five_models_pooled_seed0_19/timeout_summary.csv"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/experiment_config.json",
+      "sha256": "f31f2a4550a608c937639367a0fe6386b0e80a40dd63d4a88d1765bcdcb657e8",
+      "source": "results/shared_five_models_pooled_seed0_19/experiment_config.json"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/manifest.json",
+      "sha256": "f3cd104452d5e605e6063a2cc2b26466db5e07d9dcac7d7b4c870dc35718d59e",
+      "source": "results/shared_five_models_pooled_seed0_19/manifest.json"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/summary_by_difficulty.csv",
+      "sha256": "ac47c7f7ae850310f73feef659deeb256e0b957c37437c7665b27253adec7f03",
+      "source": "results/shared_five_models_pooled_seed0_19/summary_by_difficulty.csv"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/summary_by_source.csv",
+      "sha256": "aa53988df6214e2d51a840bfca7c1e79c91ac7a198cfbe06e92db7dd22183931",
+      "source": "results/shared_five_models_pooled_seed0_19/summary_by_source.csv"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/automation_report.json",
+      "sha256": "4f2e1043401e4f3d9600eafd04d180305b8d84529720dd54fb09ccd8ba62257f",
+      "source": "results/shared_five_models_pooled_seed0_19/automation_report.json"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/sanity_report.json",
+      "sha256": "c0d533f3b490c124de14833e6babbfb3bba20beebf0e6222f7220baf4b562f9e",
+      "source": "results/shared_five_models_pooled_seed0_19/sanity_report.json"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/degradation_cases.csv",
+      "sha256": "d9a09ebad76d19738c9a800279e04c699b25914afb184193a18973480ed32c8e",
+      "source": "results/shared_five_models_pooled_seed0_19/degradation_cases.csv"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/summary_by_task.csv",
+      "sha256": "9641b992c020a8770b2c989d14a4d697e456944f49ff1f95cd340908ae34e849",
+      "source": "results/shared_five_models_pooled_seed0_19/summary_by_task.csv"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/summary_by_condition.csv",
+      "sha256": "8d6e5eed8acfc966bfc1e86d9f6fa7c3c6f6e952ed21a2bc389ea78ee39af9f4",
+      "source": "results/shared_five_models_pooled_seed0_19/summary_by_condition.csv"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/baseline_regressions.csv",
+      "sha256": "a4696d795c6c19bcea60ecb95ee0446151bb425610b45ecc66cab90f1aa7cb84",
+      "source": "results/shared_five_models_pooled_seed0_19/baseline_regressions.csv"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/level_summary.csv",
+      "sha256": "a06cf0c616a67725d8e6ba12c4fef3b6d0fc4fce66278ecbe361517576378f00"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/summary_by_model.csv",
+      "sha256": "8dbe86549ca25f88433230a590b33506ce687bfc5db740fcf4865bc7076ee2a5",
+      "source": "results/shared_five_models_pooled_seed0_19/summary_by_model.csv"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/intervention_effects.csv",
+      "sha256": "014598bb83a19478b64ce143d6720350185fdbf37e2999131afb4c378f8c0dd4"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/intervention_catalog_by_error_model.csv",
+      "sha256": "ca0359160fcdb6d783daaf0858dfcd0371ab7c562eb41483db33053e83ade2e1",
+      "source": "results/shared_five_models_pooled_seed0_19/intervention_catalog_by_error_model.csv"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/intervention_catalog_by_error.csv",
+      "sha256": "402787414536f8c7eb1d7fcfc0a92719bbe37ade099531771cb9981572d35c1e",
+      "source": "results/shared_five_models_pooled_seed0_19/intervention_catalog_by_error.csv"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/pool_report.md",
+      "sha256": "aa2ff55dd061cc2852ff7d6dd21ff3afba03eff020ff9d498435175b21bc85ec",
+      "source": "results/shared_five_models_pooled_seed0_19/pool_report.md"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/level_transitions.csv",
+      "sha256": "26f691fbb69b16fdbd507f12c72f8638335605519c801d2bb0e93204787af0bb"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/cost_runtime_summary.csv",
+      "sha256": "20128be391fe2cdb66a313c5672bd41e50cf15262ca04cd26b4a9bc27c61588e",
+      "source": "results/shared_five_models_pooled_seed0_19/cost_runtime_summary.csv"
+    },
+    {
+      "copy": "shared_five_models_pooled_seed0_19/intervention_catalog_by_error_difficulty.csv",
+      "sha256": "b437143a25e4133877299fe5703ad391a467c4bc93a333af83e6e08f1a416fef",
+      "source": "results/shared_five_models_pooled_seed0_19/intervention_catalog_by_error_difficulty.csv"
+    },
+    {
+      "copy": "shared_three_models_full_20261008T103231611899Z/experiment_config.json",
+      "sha256": "a4cd6ab1126e8927aa3a76c4fcf7392026007215d0388d8b6f73c3bba84691ec",
+      "source": "results/shared_three_models_full_20261008T103231611899Z/experiment_config.json"
+    },
+    {
+      "copy": "shared_three_models_full_20261008T103231611899Z/rechecked_sanity_report.json",
+      "sha256": "3a2face943c9a838505702f3b96cccd48b9c8ebc8adda18000a24173826d5f28"
+    },
+    {
+      "copy": "shared_three_models_full_20261008T103231611899Z/manifest.json",
+      "sha256": "6dd8534e1165c64c09f2f8f2993b5c6efcd7c9ba3d03f48ca167d655cf55e310",
+      "source": "results/shared_three_models_full_20261008T103231611899Z/manifest.json"
+    },
+    {
+      "copy": "shared_three_models_full_20261008T103231611899Z/automation_report.json",
+      "sha256": "0e43ad5829c4004341be6f7e720908e535b64b23c616fbf2897752afbf582efb",
+      "source": "results/shared_three_models_full_20261008T103231611899Z/automation_report.json"
+    },
+    {
+      "copy": "shared_three_models_full_20261008T103231611899Z/sanity_report.json",
+      "sha256": "57f3129aceb12bfe00b06ef88ff29917c850479c77a383c68235a38118e28c75",
+      "source": "results/shared_three_models_full_20261008T103231611899Z/sanity_report.json"
+    },
+    {
+      "copy": "shared_three_models_full_20261008T103231611899Z/summary_by_condition.csv",
+      "sha256": "28cd4a659896b1a2314a6c7a3d216590c7eae7740298633aded6762039465833",
+      "source": "results/shared_three_models_full_20261008T103231611899Z/summary_by_condition.csv"
+    },
+    {
+      "copy": "shared_three_models_full_20261008T103231611899Z/level_summary.csv",
+      "sha256": "e332261726e5b756c2c8dba217af1e3d061c87a89a42329b009466685c44cde1"
+    },
+    {
+      "copy": "shared_three_models_full_20261008T103231611899Z/intervention_effects.csv",
+      "sha256": "2d9277b10ef99bd87d07ab993e2a76dde6d8d961cb8cc7a2b6f9219c2a4657f6"
+    },
+    {
+      "copy": "shared_three_models_full_20261008T103231611899Z/intervention_catalog_by_error_model.csv",
+      "sha256": "6114dfd593f90293fe3bf1e17e4b3e3b4c45047f3f021fc98aacec0e32190ce5",
+      "source": "results/shared_three_models_full_20261008T103231611899Z/intervention_catalog_by_error_model.csv"
+    },
+    {
+      "copy": "shared_three_models_full_20261008T103231611899Z/intervention_catalog_by_error.csv",
+      "sha256": "375087b35aad329d303e36f0907e8db8082cf3b1d6c9716e911e88c0e6cfd7b8",
+      "source": "results/shared_three_models_full_20261008T103231611899Z/intervention_catalog_by_error.csv"
+    },
+    {
+      "copy": "shared_three_models_full_20261008T103231611899Z/level_transitions.csv",
+      "sha256": "337f7d1c0192f3cada50d63ff1e9019333cb0b1c1d2a1d54c597fb7d41f043e7"
+    },
+    {
+      "copy": "shared_three_models_full_20261008T103231611899Z/intervention_catalog_by_error_difficulty.csv",
+      "sha256": "60d4a6ec418be7ab8963661ac4593bfc484c0734905c0f990cd6f9de59a0631c",
+      "source": "results/shared_three_models_full_20261008T103231611899Z/intervention_catalog_by_error_difficulty.csv"
+    },
+    {
+      "copy": "shared_five_models_full_20261010T041019864060Z/experiment_config.json",
+      "sha256": "5c9232f76cc6758b52983fe90ec0757ba2ffe2c4972884a25736f09edd45f22a",
+      "source": "results/shared_five_models_full_20261010T041019864060Z/experiment_config.json"
+    },
+    {
+      "copy": "shared_five_models_full_20261010T041019864060Z/rechecked_sanity_report.json",
+      "sha256": "1b9c609c0b7f85e5e2b8b23299c987c9cfa6badce2eaba6c2433f7adbf49cb7a"
+    },
+    {
+      "copy": "shared_five_models_full_20261010T041019864060Z/manifest.json",
+      "sha256": "9d8aac5841a19a1664497c87acdcece34f1436fdd859798aa11a57d9228bb671",
+      "source": "results/shared_five_models_full_20261010T041019864060Z/manifest.json"
+    },
+    {
+      "copy": "shared_five_models_full_20261010T041019864060Z/automation_report.json",
+      "sha256": "feabc51ea2863cee820cebb6c2a389ec49fa35adfaeb86f1575b9eb466f95e0a",
+      "source": "results/shared_five_models_full_20261010T041019864060Z/automation_report.json"
+    },
+    {
+      "copy": "shared_five_models_full_20261010T041019864060Z/sanity_report.json",
+      "sha256": "a8d7f0f5c874e92639a709fce845e9f8611b80844b5ffe32321222638dca64c1",
+      "source": "results/shared_five_models_full_20261010T041019864060Z/sanity_report.json"
+    },
+    {
+      "copy": "shared_five_models_full_20261010T041019864060Z/summary_by_condition.csv",
+      "sha256": "2f401c014aba3e3aeb6cb943c1db5dbdc68ec28f62ed921898a3e4dd67166461",
+      "source": "results/shared_five_models_full_20261010T041019864060Z/summary_by_condition.csv"
+    },
+    {
+      "copy": "shared_five_models_full_20261010T041019864060Z/level_summary.csv",
+      "sha256": "3a5d955a6084343935fbc6c93df3ebcd6ee43ea3203c8ac46452bcd0e39bee13"
+    },
+    {
+      "copy": "shared_five_models_full_20261010T041019864060Z/intervention_effects.csv",
+      "sha256": "b47b4fc9d7713307c07ac56bd5f1fdf239e1d841adce9d24cf4a4eac7215b388"
+    },
+    {
+      "copy": "shared_five_models_full_20261010T041019864060Z/intervention_catalog_by_error_model.csv",
+      "sha256": "43370387982957d7daed816e03b83c8f2b53d10cc1c7978a83a4f3c5014788e5",
+      "source": "results/shared_five_models_full_20261010T041019864060Z/intervention_catalog_by_error_model.csv"
+    },
+    {
+      "copy": "shared_five_models_full_20261010T041019864060Z/intervention_catalog_by_error.csv",
+      "sha256": "c5a43ce2530296a3c15ddb400fa7d98904d2a5057cb0a323dbbe6ed08b68bcef",
+      "source": "results/shared_five_models_full_20261010T041019864060Z/intervention_catalog_by_error.csv"
+    },
+    {
+      "copy": "shared_five_models_full_20261010T041019864060Z/level_transitions.csv",
+      "sha256": "9b327cbd769ef3ddde6a5b53cf3c66ac937adebafcccdf363b44c8c52d2d1af6"
+    },
+    {
+      "copy": "shared_five_models_full_20261010T041019864060Z/intervention_catalog_by_error_difficulty.csv",
+      "sha256": "2155c2e30f2e6d10078c2ae9d8388f5be833fed6a9dca9f51f7f8409d0ff519f",
+      "source": "results/shared_five_models_full_20261010T041019864060Z/intervention_catalog_by_error_difficulty.csv"
+    }
+  ]
+}

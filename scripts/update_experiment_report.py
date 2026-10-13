@@ -153,7 +153,7 @@ def additional_progress(run, captured_at):
                 .replace('（途中roundを含む暫定確認）', '（途中roundを含む検証済み）') for line in text]
         text = [line for line in text if not line.startswith(('未分類エラーを含む保守的な確認対象は、',
                                                              'L2成功率などの最終結果は未確定であり、'))]
-        text += ['全件記録と検証は完了した。元実験の内訳として保持し、補完実験の検証後に処理差を明記した統合集計へ反映する。', '',
+        text += ['全件記録と検証は完了した。元実験の内訳として保持し、処理差を明記した固定時点の統合集計とは区別する。', '',
                  '| モデル | 条件 | 件数 | L2成功 | L3成功 |', '| --- | --- | ---: | ---: | ---: |']
         for row in run['conditions']:
             text.append(f"| {row['model']} | {row['condition']} | {row['n']} | {row['L2_success']} | {row['L3_success']} |")
@@ -188,7 +188,10 @@ def render_report(original, previous, current):
                   for experiment_id in additional_ids]
     if additional:
         intro = intro.replace('本実験は', '3モデル本実験は', 1)
-        intro += '3モデル本実験を検証済みの主分析として保持し、追加・補完実験は別実験ID・別保存先で収集する。全件検証後にseed 0〜19の統合集計を作成し、元実験の内訳とフィードバック処理差を併記する。'
+        if all(run['automation_verified'] for run in additional):
+            intro += '追加・補完実験も全件記録と検証が完了した。元実験の内訳を保持し、seed 0〜19の固定時点の統合集計にはフィードバック処理差を併記する。'
+        else:
+            intro += '3モデル本実験を検証済みの主分析として保持し、追加・補完実験は別実験ID・別保存先で収集する。全件検証後にseed 0〜19の統合集計を作成し、元実験の内訳とフィードバック処理差を併記する。'
     capture_text = f"集計時点：{captured[:19].replace('T', ' ')} JST。数値は最終更新時点の値であり、60分ごと（毎時0分）に自動更新する。[集計スナップショット](experiment_report_snapshot.json)に同じ時点の件数と出典を保存する。"
     updated = replace_block(original, 'status', intro)
     updated = replace_block(updated, 'capture', capture_text)
