@@ -16,6 +16,8 @@
 
 起動にはログイン済みの `/home/23tc011/.local/bin/codex` を使用します（[Codexの非対話実行](https://developers.openai.com/codex/noninteractive)）。状態は `.cache/draft_jobs/`、起動ログは `logs/draft_after_experiment.log` と `logs/draft_codex_*.log` に保存します。AI失敗・中断や通知失敗の自動再試行はありません。状況を確認してから必要な場合のみ `--retry` で明示的に再実行してください。完了条件の手動確認には、同じ保存設定を指定した `--dry-run` を使用します。
 
+実験でLLMに渡す共通指示・全10タスク・条件別の追加指示は、[プロンプト一覧](docs/experiment_prompts.md)にまとめています。
+
 ## seed 0〜19への実験補完と統合
 
 残り2モデル（`qwen2.5-coder:7b`・`gemma3:4b`）のseed 0〜9を、[configs/shared_two_models_seed0_9_full.json](configs/shared_two_models_seed0_9_full.json)で1,000件の収集・検証を完了しました。既存3モデルのseed 0〜9（1,500件）と既存5モデルのseed 10〜19（2,500件）を合わせ、各モデル1,000件、合計5,000件の公開用集計を作成しました。
