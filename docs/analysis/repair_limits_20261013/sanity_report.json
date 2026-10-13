@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "sources_reverified": true,
+  "source_hashes_unchanged": true,
+  "cost_artifacts_match": true,
+  "complete_repair_histories": true,
+  "marginal_costs_and_rescues_match": true,
+  "source_and_stratum_totals_match": true,
+  "cap3_matches_full_costs": true,
+  "workflow_endpoint_matches": true
+}

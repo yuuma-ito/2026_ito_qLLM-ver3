@@ -8,6 +8,8 @@
 
 [修正介入の救出と追加生成コスト](docs/analysis/repair_costs_20261013/findings.md)では、共有初期生成を除いた修正コスト、未救出例のコスト、F/Dの対応付き比較とPの独立生成を整理しています。記録全体ではFとDはともに191件を救出し、Fの追加tokensは約13.7%、要求時間は約19.1%少ない結果でした。
 
+[修正上限1・2・3回の比較](docs/analysis/repair_limits_20261013/findings.md)では、保存済み履歴を区切った救出数と追加コストを整理しています。Fは119→166→191件、Dは114→167→191件を救出し、3回目の追加救出と費用の交換関係をモデル・難度・出典別に確認できます。
+
 実験完了後の自動下書きは、`scripts.draft_after_experiment` がCodexを1回起動し、中間発表・学会原稿・進捗報告の更新版を `docs/completion_drafts/<保存先のhash>/` に作成します。`configs/slack_progress.cron` の専用行で5分ごとに確認し、元プロセスの終了・共有ロック解放・全件記録を待ちます。API障害や検証不備が残る場合は暫定資料として明記します。既存原稿は参考コピーとして保持し、固定スナップショットを出典にPDFを作成します。作成完了後は既存のSlackbot DMへのメール経路で進捗報告本文とローカル保存先を通知します。PDFの添付・学会投稿・Git操作はこの処理には含めません。
 
 起動にはログイン済みの `/home/23tc011/.local/bin/codex` を使用します（[Codexの非対話実行](https://developers.openai.com/codex/noninteractive)）。状態は `.cache/draft_jobs/`、起動ログは `logs/draft_after_experiment.log` と `logs/draft_codex_*.log` に保存します。AI失敗・中断や通知失敗の自動再試行はありません。状況を確認してから必要な場合のみ `--retry` で明示的に再実行してください。完了条件の手動確認には、同じ保存設定を指定した `--dry-run` を使用します。

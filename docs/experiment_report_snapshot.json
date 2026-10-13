@@ -1,5 +1,5 @@
 {
-  "captured_at": "2026-10-13T16:00:03.378533+09:00",
+  "captured_at": "2026-10-13T17:00:03.325612+09:00",
   "scope": "Verified original experiments and a two-model seed 0-9 completion run; pooled seed 0-19 results retain source and feedback-version differences.",
   "runs": [
     {
@@ -1388,6 +1388,19 @@
     "records": 5000,
     "unique_recorded_generation_rounds": 6517,
     "shared_initial_charged_once": true,
+    "verified": true
+  },
+  "repair_limit_analysis": {
+    "analysis_manifest": "docs/analysis/repair_limits_20261013/manifest.json",
+    "captured_at_utc": "2026-10-13T08:10:48.496064+00:00",
+    "records": 5000,
+    "caps": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "observed_prefix_replay": true,
     "verified": true
   }
 }

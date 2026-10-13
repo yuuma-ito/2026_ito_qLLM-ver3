@@ -1,0 +1,20 @@
+{
+  "checked_at_utc": "2026-10-13T08:17:19.192343+00:00",
+  "passed": true,
+  "records": 5000,
+  "cap_trial_rows": 12000,
+  "cap_summary_rows": 2232,
+  "rescued_condition_records": 492,
+  "source_hashes_unchanged": true,
+  "parent_manifest_and_artifacts_match": true,
+  "all_csv_values_recomputed_and_matched": true,
+  "every_truncated_endpoint_independently_matches_saved_evaluation": true,
+  "truncated_and_workflow_costs_independently_match_saved_rounds": true,
+  "marginal_cost_and_eligible_denominators_match": true,
+  "source_and_stratum_partitions_match": true,
+  "public_files_exclude_generated_code_and_raw_errors": true,
+  "tests": {
+    "passed": 235,
+    "warnings": 16
+  }
+}

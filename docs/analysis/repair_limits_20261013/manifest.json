@@ -1,0 +1,194 @@
+{
+  "captured_at_utc": "2026-10-13T08:10:48.496064+00:00",
+  "analysis_version": "repair_limits_v1",
+  "analysis_code_sha256": "989352116aec4213516d4f47043e456dd0e739490ad21ed3db15efc6f67a4473",
+  "cost_manifest": "docs/analysis/repair_costs_20261013/manifest.json",
+  "cost_manifest_sha256": "797f2c36227e0064f4ee90971e1c2009caae5bc11da2c32240946f0ab4b7cb1c",
+  "fixed_snapshot": "docs/presentation_sources/20261013T_pooled_verified/results_snapshot.json",
+  "snapshot_sha256": "cb7e9532a4dea52e763f43eb7d366707bcb37c67eb5e29d094a1e3fd872008f0",
+  "sources": [
+    {
+      "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "config": {
+        "experiment_id": "shared_three_models_full_20261008T103231611899Z",
+        "models": [
+          "ollama:qwen3.5:4b",
+          "ollama:gemma4:e4b-it-qat",
+          "ollama:qwen3.5:9b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 0,
+          "stop": 10
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515",
+      "records": 1500,
+      "schema_version": "2.0",
+      "verified": true
+    },
+    {
+      "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "config": {
+        "experiment_id": "shared_five_models_full_20261010T041019864060Z",
+        "models": [
+          "ollama:qwen3.5:4b",
+          "ollama:gemma4:e4b-it-qat",
+          "ollama:qwen3.5:9b",
+          "ollama:qwen2.5-coder:7b",
+          "ollama:gemma3:4b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 10,
+          "stop": 20
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256": "308d32d6b097a8628c0d90889e9f3a5dd5054443ef0e0c8f0c3c054aec7f2599",
+      "records": 2500,
+      "schema_version": "2.1",
+      "verified": true
+    },
+    {
+      "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "config": {
+        "experiment_id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "models": [
+          "ollama:qwen2.5-coder:7b",
+          "ollama:gemma3:4b"
+        ],
+        "tasks": [
+          "T1_Bell",
+          "T2_GHZ",
+          "T3a_DJ_constant",
+          "T3b_DJ_balanced",
+          "T4_BV_011",
+          "T5_Grover_11",
+          "T6_QFT_001",
+          "T7_IQFT_001",
+          "T8_QPE_001",
+          "T9_Ansatz_001"
+        ],
+        "seeds": {
+          "start": 0,
+          "stop": 10
+        },
+        "temperature": 0.7,
+        "max_rounds": 3,
+        "conditions": [
+          "baseline",
+          "self_refine",
+          "execution_feedback",
+          "self_debugging",
+          "preventive_spec"
+        ],
+        "output_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "generation_settings": {
+          "reasoning_effort": "none",
+          "max_tokens": 1024,
+          "timeout_sec": 600,
+          "parallel_requests": 1
+        },
+        "pricing": {}
+      },
+      "raw_sha256": "56b0859fdd09b522f542a0e45f0539b2e8102771d2ce6fe16b8ddf7c12d815e0",
+      "records": 1000,
+      "schema_version": "2.1",
+      "verified": true
+    }
+  ],
+  "records": 5000,
+  "caps": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "artifacts": [
+    {
+      "path": "cap_summary.csv",
+      "rows": 2232,
+      "sha256": "0dca3ff1b79cf83bc4fd1f2f184b1bca776ca863dbecdc40dcb782bad07ab83c"
+    },
+    {
+      "path": "cap_trials.csv",
+      "rows": 12000,
+      "sha256": "a1553557e0456410f7e2785f31dfe29d254fec6cf73a7159819de16b5e247a91"
+    },
+    {
+      "path": "rescued_at_round.csv",
+      "rows": 492,
+      "sha256": "fab7acaf05c9b7358255e5ed793dbb70cd91d633706697f3e0057de4d78f821a"
+    },
+    {
+      "path": "README.md",
+      "sha256": "fd7f9ffcead6f7faab914f3543061d6c1cd071f186d1a48f58dee70b74736daf"
+    },
+    {
+      "path": "findings.md",
+      "sha256": "edb4dfb762baa6c1ecb62f73e89f8ba8a471f9796e18853518b66d9aaea6fd56"
+    }
+  ],
+  "generated_new_code": false,
+  "reevaluated_generated_code": false,
+  "interpretation": "Observed prefix replay, not new experiments under different limits."
+}
