@@ -1,0 +1,33 @@
+{
+  "captured_at_utc": "2026-10-14T08:02:22.743182+00:00",
+  "evaluator_version": "evaluation_policy_v3",
+  "evaluator_sha256": "be1ccd52e6bb614611beb30676dfcf053f55e642b389ea6724b68c86e3227fc4",
+  "script_sha256": "e28086a514d31568c540655bc4aef1f4ff6d44badf5f7b46aacdb0aa107cea81",
+  "versions": {
+    "numpy": "2.5.3",
+    "qiskit": "2.5.2",
+    "qiskit-aer": "0.17.2"
+  },
+  "artifacts": [
+    {
+      "path": "sanity_report.json",
+      "sha256": "d1c29187ecfca6a06af46610b97ef6cad1d185e1c385c915850f5a3c061a7607"
+    },
+    {
+      "path": "sampling_threshold.csv",
+      "sha256": "dc81ea1a72e2eae62583af5792cf4133fcfa1513c15fb8d6efc15c41effbc5c4"
+    },
+    {
+      "path": "controlled_cases.csv",
+      "sha256": "4c19e71227678456c528ac29c45b1b00ca226d66f31d8f25ee70749e739cc380"
+    },
+    {
+      "path": "analytic_references.csv",
+      "sha256": "83444bb2b8e0a7527c2b0283546de57cbc4662d0b6c19d8d3a24d4e0a82cacf5"
+    },
+    {
+      "path": "README.md",
+      "sha256": "18cdf492ef51b444aa297598a358e8b45fdbeea5e2678159a27f15c88b0c3a32"
+    }
+  ]
+}

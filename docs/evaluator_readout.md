@@ -1,6 +1,6 @@
 # 分布評価の測定結果の扱い
 
-2026-10-14から、分布タスクの評価器を `qubit_readout_v2` とする。測定先の古典ビットから量子ビット順 `q[n-1]...q[0]` の分布を取り出し、未使用古典ビットの有無や測定先の配置だけで出力一致の判定が変わることを防ぐ。
+2026-10-14に採用した `qubit_readout_v2` の測定処理を保持し、評価器の最新版を `evaluation_policy_v3` とする。測定先の古典ビットから量子ビット順 `q[n-1]...q[0]` の分布を取り出し、未使用古典ビットの有無や測定先の配置だけで出力一致の判定が変わることを防ぐ。
 
 ## 採用した処理
 
@@ -30,3 +30,9 @@
 [出力表現への感度確認](analysis/output_representation_20261014/README.md)で、同じ正しいQPEが未使用古典ビット3個により `1010` から `1010000` へ変わり、旧比較では失敗することを再現した。新処理では `1010` として成功し、誤ったQPEは不合格を維持する。
 
 実装は [harness/readout.py](../harness/readout.py) と [harness/evaluator.py](../harness/evaluator.py)、版の記録は [harness/experiment.py](../harness/experiment.py)、旧実験への追加生成防止は [scripts/run_experiment.py](../scripts/run_experiment.py)。テストは [tests/test_canonical_readout.py](../tests/test_canonical_readout.py) にある。
+
+## 評価方法全体の点検による更新
+
+[評価方法の点検](analysis/evaluation_methods_20261014/README.md)により、状態ベクトルの全体位相補正の符号を修正した。シミュレータとtranspileのseedを42、shotsを8,192としてmanifestに記録する。構造判定のゲート数からbarrierを除き、未束縛パラメータ・状態ベクトル回路の測定・範囲外の構造をinterface_mismatchとして分類する。
+
+分布だけでは相対位相を検出できず、ゲート数範囲だけではアルゴリズムの手順を保証しない。再評価では主判定と補助検査を分けて記録する。今回の更新で既存5,000件を再評価したわけではない。

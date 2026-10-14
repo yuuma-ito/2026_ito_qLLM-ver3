@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "full_tests_passed": 264,
+  "warnings": 30,
+  "controlled_case_counts_match": true,
+  "same_controlled_code_before_after": true,
+  "phase_false_negatives_fixed": 6,
+  "no_unclassified_controlled_errors_after_fix": true,
+  "after_fix_artifacts_match_code": true,
+  "evaluator_version": "evaluation_policy_v3",
+  "new_manifest_sampling_checked": true,
+  "historical_raw_hashes_unchanged": true,
+  "historical_generated_code_executed": false,
+  "historical_scores_changed": false,
+  "full_reevaluation_started": false
+}

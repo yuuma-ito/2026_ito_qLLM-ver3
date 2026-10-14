@@ -1,0 +1,4 @@
+task_id,reference,distance
+T6_QFT_001,analytic Fourier column j=1,1.4901161193847656e-08
+T7_IQFT_001,analytic Fourier column j=1,1.4901161193847656e-08
+T9_Ansatz_001,independent amplitude updates,0.0

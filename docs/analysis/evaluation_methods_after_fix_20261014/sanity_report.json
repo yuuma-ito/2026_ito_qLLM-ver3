@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "controlled_cases": 38,
+  "canonical_correct": 10,
+  "canonical_wrong": 10,
+  "reproduced_global_phase_false_negatives": 0,
+  "analytic_reference_checks_passed": 3,
+  "historical_generated_code_executed": false,
+  "historical_scores_changed": false,
+  "production_evaluator_changed": false,
+  "evaluation_version": "evaluation_policy_v3",
+  "full_reevaluation_ready": false
+}

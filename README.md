@@ -16,7 +16,9 @@
 
 起動にはログイン済みの `/home/23tc011/.local/bin/codex` を使用します（[Codexの非対話実行](https://developers.openai.com/codex/noninteractive)）。状態は `.cache/draft_jobs/`、起動ログは `logs/draft_after_experiment.log` と `logs/draft_codex_*.log` に保存します。AI失敗・中断や通知失敗の自動再試行はありません。状況を確認してから必要な場合のみ `--retry` で明示的に再実行してください。完了条件の手動確認には、同じ保存設定を指定した `--dry-run` を使用します。
 
-分布評価には、測定先から量子ビット順へ戻す `qubit_readout_v2` を採用しました。[評価仕様と版の扱い](docs/evaluator_readout.md)を参照してください。旧結果は元の判定を保持し、新評価器による結果とは区別します。
+[5,000件再評価前の評価方法点検](docs/analysis/evaluation_methods_20261014/README.md)では、全体位相の補正不具合を修正し、分布・構造判定の限界と再評価時の補助検査を整理しています。
+
+分布評価には、測定先から量子ビット順へ戻す `evaluation_policy_v3` を採用しました。[評価仕様と版の扱い](docs/evaluator_readout.md)を参照してください。旧結果は元の判定を保持し、新評価器による結果とは区別します。
 
 [評価器の出力表現への感度確認](docs/analysis/output_representation_20261014/README.md)では、確認用回路19例で未使用古典ビット・測定先の配置による判定差を調べました。既存の評価器・実験判定は保持しています。
 

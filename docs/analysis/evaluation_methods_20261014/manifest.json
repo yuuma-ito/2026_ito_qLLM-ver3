@@ -1,0 +1,33 @@
+{
+  "captured_at_utc": "2026-10-14T07:59:15.237861+00:00",
+  "evaluator_version": "qubit_readout_v2",
+  "evaluator_sha256": "2f175b84fb5b6525b77ce811d84115bd1a4fc80f906ce979d3d27c9668e03514",
+  "script_sha256": "bdb65750e2ebaa53134d40601c5b5bdf78a14d247e1a6de1202863b6d840c944",
+  "versions": {
+    "numpy": "2.5.3",
+    "qiskit": "2.5.2",
+    "qiskit-aer": "0.17.2"
+  },
+  "artifacts": [
+    {
+      "path": "sanity_report.json",
+      "sha256": "e2974052ea28a7ab6f84e23263746a9962d7e4688e0b312b7aa8df2dd29eb885"
+    },
+    {
+      "path": "sampling_threshold.csv",
+      "sha256": "dc81ea1a72e2eae62583af5792cf4133fcfa1513c15fb8d6efc15c41effbc5c4"
+    },
+    {
+      "path": "controlled_cases.csv",
+      "sha256": "2830a449629865695c6ec85bbc78c02a35eee6cd7ac5e4d232635c04e476fa8e"
+    },
+    {
+      "path": "analytic_references.csv",
+      "sha256": "83444bb2b8e0a7527c2b0283546de57cbc4662d0b6c19d8d3a24d4e0a82cacf5"
+    },
+    {
+      "path": "README.md",
+      "sha256": "1e49026585b5d52d92e8fb3c9877ce73f806d95a9b416c09b75b4ef6d778f404"
+    }
+  ]
+}

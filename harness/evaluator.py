@@ -12,6 +12,10 @@ from harness.failure_metadata import missing_result_data
 from harness.readout import EVALUATOR_VERSION, ReadoutError, prepare_readout, project_counts
 from tasks import Task
 
+SIMULATOR_SEED = 42
+TRANSPILER_SEED = 42
+DISTRIBUTION_SHOTS = 8192
+
 
 @dataclass
 class EvalResult:
@@ -89,21 +93,25 @@ def _try_build(ns: dict, res: EvalResult) -> tuple[Optional[Any], str, str]:
     from qiskit import QuantumCircuit
     if not isinstance(qc, QuantumCircuit):
         return None, "interface_mismatch", "build_circuit() must return QuantumCircuit"
+    if qc.parameters:
+        return None, "interface_mismatch", "build_circuit() must return a circuit with bound parameters"
     return qc, "", ""
 
 
-def _run_distribution(qc, shots: int = 8192) -> dict[str, float]:
+def _run_distribution(qc, shots: int = DISTRIBUTION_SHOTS) -> dict[str, float]:
     from qiskit import transpile
     from qiskit_aer import AerSimulator
     qc_meas, mapping = prepare_readout(qc)
     sim = AerSimulator()
-    tqc = transpile(qc_meas, sim)
-    counts = sim.run(tqc, shots=shots).result().get_counts()
+    tqc = transpile(qc_meas, sim, seed_transpiler=TRANSPILER_SEED)
+    counts = sim.run(tqc, shots=shots, seed_simulator=SIMULATOR_SEED).result().get_counts()
     return project_counts(counts, mapping, qc_meas.num_clbits)
 
 
 def _run_statevector(qc) -> np.ndarray:
     from qiskit.quantum_info import Statevector
+    if any(item.operation.name == "measure" for item in qc.data):
+        raise ReadoutError("statevector evaluation does not support in-circuit measurements")
     return Statevector.from_instruction(qc).data
 
 
@@ -116,7 +124,7 @@ def _statevector_distance(actual: np.ndarray, expected: np.ndarray) -> float:
     inner = np.vdot(actual, expected)
     if abs(inner) < 1e-12:
         return float(np.linalg.norm(actual - expected))
-    return float(np.linalg.norm(np.exp(-1j * np.angle(inner)) * actual - expected))
+    return float(np.linalg.norm(np.exp(1j * np.angle(inner)) * actual - expected))
 
 
 def _bit_reversed_distribution(dist: dict[str, float]) -> dict[str, float]:
@@ -150,7 +158,7 @@ def evaluate(code: str, task: Task) -> EvalResult:
 
     res.failure_stage = "evaluate"
     measurement_count = sum(item.operation.name == "measure" for item in qc.data)
-    structural_gate_count = sum(item.operation.name != "measure" for item in qc.data)
+    structural_gate_count = sum(item.operation.name not in {"measure", "barrier"} for item in qc.data)
     structure_errors: list[str] = []
     if res.n_qubits_actual != task.n_qubits:
         res.error_category = "qubit_count_mismatch"
@@ -218,7 +226,7 @@ def evaluate(code: str, task: Task) -> EvalResult:
         elif not res.L2:
             res.error_category, res.error_message = "wrong_output", "output differs from expected result"
         elif not res.structure_match:
-            res.error_category, res.error_message = "unknown_error", "circuit structure is outside the accepted bounds"
+            res.error_category, res.error_message = "interface_mismatch", "circuit structure is outside the accepted bounds"
         else:
             res.error_category = "ok"
     if res.error_category == "ok":

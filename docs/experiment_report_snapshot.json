@@ -1,5 +1,5 @@
 {
-  "captured_at": "2026-10-14T11:00:03.791567+09:00",
+  "captured_at": "2026-10-14T20:00:03.210670+09:00",
   "scope": "Verified original experiments and a two-model seed 0-9 completion run; pooled seed 0-19 results retain source and feedback-version differences.",
   "runs": [
     {
@@ -1422,10 +1422,19 @@
     "verified": true
   },
   "evaluator_policy": {
-    "version": "qubit_readout_v2",
+    "version": "evaluation_policy_v3",
     "adopted_date": "2026-10-14",
     "specification": "docs/evaluator_readout.md",
     "applies_to": "new evaluations of distribution tasks",
     "historical_scores_reevaluated": false
+  },
+  "evaluation_methods_audit": {
+    "before_manifest": "docs/analysis/evaluation_methods_20261014/manifest.json",
+    "after_manifest": "docs/analysis/evaluation_methods_after_fix_20261014/manifest.json",
+    "controlled_cases": 38,
+    "analytic_reference_checks": 3,
+    "global_phase_false_negatives_fixed": 6,
+    "historical_scores_reevaluated": false,
+    "full_reevaluation_started": false
   }
 }
