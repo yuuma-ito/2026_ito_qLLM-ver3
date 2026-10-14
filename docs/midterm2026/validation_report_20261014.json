@@ -1,0 +1,49 @@
+{
+  "checked_at_utc": "2026-10-14T01:54:03.155739+00:00",
+  "passed": true,
+  "table_rows_matched": 39,
+  "source_manifest_artifacts_checked": 42,
+  "sources_hashes_match": true,
+  "source_raw_hashes_match": true,
+  "abstract_characters": 249,
+  "pdf_pages": 4,
+  "pdf_A4": true,
+  "pdf_bytes": 251041,
+  "all_fonts_embedded": true,
+  "undefined_references": false,
+  "overfull_boxes": false,
+  "missing_characters": false,
+  "visual_inspection": "全4ページの本文・表・余白・引用を確認。重なり・切れ・文字欠落なし。",
+  "official_style_unchanged": true,
+  "progress_reports_identical": true,
+  "new_llm_generation": false,
+  "historical_scores_reevaluated": false,
+  "midterm_paper_updated": true,
+  "artifacts": [
+    {
+      "path": "docs/midterm2026/paper.tex",
+      "sha256": "5e170f21714176865e81ce96956f90f8efb102fcc5846923b9d816e5b770ef2c"
+    },
+    {
+      "path": "docs/midterm2026/paper.pdf",
+      "sha256": "cdacd11c3b859bbc34ddf29f81c06bc70c2fcb35884c222a7ab801d2a634731c"
+    },
+    {
+      "path": "docs/midterm2026/README.md",
+      "sha256": "18522b4ab744a54ba2a27014ba53516ca1038896a654d08885970588028cf1e6"
+    },
+    {
+      "path": "docs/midterm2026/progress_report_draft.txt",
+      "sha256": "7b21e1dd4c29ba4e7b99091a9a4aece5412e5f72fd1b7f8f6cb605a34888f70f"
+    },
+    {
+      "path": "docs/winf2026/analysis_tables_20261014.tex",
+      "sha256": "51bec5876bb9f24c4169685e81dd91da304c88ca2ffcda094b6c5cc94dc963b5"
+    },
+    {
+      "path": "docs/winf2026/analysis_snapshot_20261014.json",
+      "sha256": "b6b5be8dada41b40029bfed2444df06f9aebd0d97d13471d1915bf236c45b86a"
+    }
+  ],
+  "numeric_sections_match_verified_winf": true
+}

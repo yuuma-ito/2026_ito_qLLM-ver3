@@ -1,10 +1,12 @@
 # 中間発表原稿の共有版
 
-研究題目は「量子LLM支援プログラミングにおける失敗類型と介入カタログの実証研究」。2023TC011 伊藤 悠真、指導教員：横山 哲郎。検証済みの本実験・追加実験に基づく2026-10-13更新版。過去の既報は区別して保持した。
+研究題目は「量子LLM支援プログラミングにおける失敗類型と介入カタログの実証研究」。2023TC011 伊藤 悠真、指導教員：横山 哲郎。検証済みの本実験・追加実験に基づく2026-10-14更新版。過去の既報は区別して保持した。
 
 - [paper.pdf](paper.pdf)：共有用PDF。
 - [paper.tex](paper.tex)：編集用原稿。
 - [progress_report_draft.txt](progress_report_draft.txt)：前回からの変更、完了作業、課題、次のアクション。
+
+本文・PDF・進捗報告を2026-10-14に更新し、層別分析・救出対象・追加コスト・停止候補・評価器改善を反映した。結果表は旧評価器による固定5,000件を保持し、新評価器qubit_readout_v2で再評価した数値とは区別する。追加分析と旧判定の区別は[WiNFの固定出典一覧](../winf2026/analysis_snapshot_20261014.json)を参照する。
 
 このディレクトリを中間発表の現行共有先とし、学会向けの[WiNF下書き](../winf2026/README.md)とは分けて管理する。
 
@@ -40,7 +42,7 @@ L0〜L3は独立した点数ではなく累積的な到達水準。各達成率�
 
 ## ビルドと確認
 
-TeX LiveのpLaTeX、dvipdfmx、IPAexフォントを使用する。表の共通TeXは[../presentation_sources/20261013T_pooled_verified/reach_tables.tex](../presentation_sources/20261013T_pooled_verified/reach_tables.tex)に固定した。リポジトリの構造を保ってビルドする。
+TeX LiveのpLaTeX、dvipdfmx、IPAexフォントを使用する。統合表は[固定集計のTeX](../presentation_sources/20261013T_pooled_verified/pooled_tables.tex)、最新分析の本文・表は[WiNFと共通のTeX](../winf2026/analysis_tables_20261014.tex)を使用する。層別分析・修正コスト・継続候補・評価器の出典は[WiNFの出典案内](../winf2026/README.md)を参照する。リポジトリの構造を保ってビルドする。
 
 ```bash
 platex -interaction=nonstopmode -halt-on-error paper.tex
@@ -48,6 +50,6 @@ platex -interaction=nonstopmode -halt-on-error paper.tex
 dvipdfmx -p a4 -f ptex-ipaex.map -o paper.pdf paper.dvi
 ```
 
-両原稿をA4・4ページでビルドした。フォント埋め込み、引用・参照、欠落文字、本文のはみ出し、全ページの体裁と表の数値を確認した。確認結果は[validation_report.json](../presentation_sources/20261013T_pooled_verified/validation_report.json)に保存する。スタイルは未変更で、SHA-256は `4dc0c47bdc9c61c7903734ad9068656f6cc11aa11391fe351713e3d23b73e86d`。
+今回の中間発表更新版をA4・4ページでビルドし、フォント埋め込み、引用・参照、欠落文字、本文のはみ出し、全ページの体裁と表の数値を確認した。[今回の検証記録](validation_report_20261014.json)と[10月13日版の検証記録](../presentation_sources/20261013T_pooled_verified/validation_report.json)を分けて保存する。スタイルは未変更で、SHA-256は `4dc0c47bdc9c61c7903734ad9068656f6cc11aa11391fe351713e3d23b73e86d`。
 
 今回の作業は保存済み評価の集計と資料更新であり、モデルの追加生成・生成コードの再評価・投稿・通知は行っていない。
