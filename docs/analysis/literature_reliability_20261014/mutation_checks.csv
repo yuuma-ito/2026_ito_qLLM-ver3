@@ -1,0 +1,7 @@
+task_id,mutation,semantic_non_equivalent,state_fidelity,primary_L2,primary_L3,primary_killed,supplementary_fidelity_killed,error_category
+T1_Bell,delete_entanglement,True,0.2499999999999999,False,False,True,True,wrong_output
+T1_Bell,relative_phase,True,0.0,True,True,False,True,ok
+T1_Bell,replace_gate,True,0.0,False,False,True,True,wrong_output
+T2_GHZ,delete_entanglement,True,0.2499999999999999,False,False,True,True,wrong_output
+T2_GHZ,relative_phase,True,0.0,True,True,False,True,ok
+T2_GHZ,replace_gate,True,0.0,False,False,True,True,wrong_output

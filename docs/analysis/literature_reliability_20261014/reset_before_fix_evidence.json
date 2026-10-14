@@ -1,0 +1,28 @@
+{
+  "evaluator_version_before": "evaluation_policy_v3",
+  "controlled_circuit": "H(q0), CX(q0,q1), reset(q0)",
+  "target": "00",
+  "independent_density_diagonal": [
+    0.5,
+    0,
+    0.5,
+    0
+  ],
+  "independent_fidelity": 0.5,
+  "observed_sampled_state_fidelities": [
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1
+  ],
+  "sample_count": 12,
+  "interpretation": "Diagnostic observation only; not a frequency estimate; no historical generated code executed."
+}

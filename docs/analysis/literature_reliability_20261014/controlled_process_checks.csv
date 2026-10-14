@@ -1,0 +1,5 @@
+case,returncode,timed_out,elapsed_sec,check_passed,production_sandbox
+normal,0,False,0.02557691466063261,True,False
+exception,1,False,0.02355119027197361,True,False
+exit,7,False,0.024343233555555344,True,False
+timeout,,True,0.2517402679659426,True,False

@@ -1,0 +1,59 @@
+{
+  "passed": true,
+  "full_tests_passed": 276,
+  "added_tests": 12,
+  "warnings": 30,
+  "reference_entries": 6,
+  "primary_text_or_spec_checked": 5,
+  "unconfirmed_reference": "R4",
+  "controlled_checks_passed": 82,
+  "mutation_cases": 6,
+  "process_checks_passed": 4,
+  "sampling_groups": 108,
+  "historical_metadata_records_checked": 5000,
+  "historical_paired_groups": 1000,
+  "historical_raw_hashes_unchanged": true,
+  "historical_generated_code_executed": false,
+  "historical_scores_changed": false,
+  "main_5000_reevaluation_started": false,
+  "go_no_go": "NO-GO",
+  "reasons": [
+    "Production execution sandbox/resource/timeout boundaries not verified",
+    "Dedicated atomic checkpoint, interruption/restart and idempotence not implemented",
+    "Supplementary state/structure oracle specification and executor not finalized"
+  ],
+  "files": [
+    {
+      "path": "harness/evaluator.py",
+      "sha256": "ef91a6c42f895b3e79576f66aff3c11bdbe26eb71f4745cc28934c08bd37d77f"
+    },
+    {
+      "path": "harness/readout.py",
+      "sha256": "ec7b447997600e0391abf9744a4fbeff0eed69d8b43b0567d519a45cdcff1a4e"
+    },
+    {
+      "path": "harness/experiment.py",
+      "sha256": "ce7ce8ab50ed38d0dd159bcabdb4efe881e865a8483af731a661dcba8915539e"
+    },
+    {
+      "path": "scripts/draft_after_experiment.py",
+      "sha256": "d9f1e01331be9acf7ce83be2e3f17cd63d7de0e6153ee981474a5392aa2cbcb6"
+    },
+    {
+      "path": "scripts/finalize_completed_experiment.py",
+      "sha256": "622a452b41cdfd9fc1a7262abe2aa75254579d4a8231a1503b5cfc722761d836"
+    },
+    {
+      "path": "scripts/pool_experiments.py",
+      "sha256": "a2aa14cbbbba07d3adba83b1e79f042954a6450d9bfa3a912e43742e63852fe3"
+    },
+    {
+      "path": "scripts/audit_literature_reliability.py",
+      "sha256": "3db07407cceba9d711d7dce6ef6708a94021dce78424a9771e2ba69309f8193f"
+    },
+    {
+      "path": "tests/test_literature_reliability.py",
+      "sha256": "a6af3bbbb649471b490173de7315469eb71282f95b5034e48b8c61803d7f2cde"
+    }
+  ]
+}

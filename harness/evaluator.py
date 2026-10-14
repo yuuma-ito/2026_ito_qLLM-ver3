@@ -109,10 +109,17 @@ def _run_distribution(qc, shots: int = DISTRIBUTION_SHOTS) -> dict[str, float]:
 
 
 def _run_statevector(qc) -> np.ndarray:
-    from qiskit.quantum_info import Statevector
-    if any(item.operation.name == "measure" for item in qc.data):
-        raise ReadoutError("statevector evaluation does not support in-circuit measurements")
-    return Statevector.from_instruction(qc).data
+    from qiskit.quantum_info import Operator
+    from qiskit.exceptions import QiskitError
+    # A reset/initialize can sample a trajectory in Statevector simulation.
+    # The primary pure-state oracle must never compare one sampled branch.
+    try:
+        operator = Operator(qc)
+    except QiskitError as error:
+        raise ReadoutError("statevector evaluation requires a unitary circuit; nonunitary or classical operations are unsupported") from error
+    if not operator.is_unitary():
+        raise ReadoutError("statevector evaluation requires a unitary circuit")
+    return np.asarray(operator.data[:, 0], dtype=complex)
 
 
 def _tvd(p: dict[str, float], q: dict[str, float]) -> float:

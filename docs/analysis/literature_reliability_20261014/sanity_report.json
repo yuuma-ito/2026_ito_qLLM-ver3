@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "controlled_checks": 82,
+  "mutation_cases": 6,
+  "primary_mutants_killed": 4,
+  "supplementary_mutants_killed": 6,
+  "controlled_process_checks": 4,
+  "sampling_sensitivity_groups": 108,
+  "controlled_wall_sec": 6.511839726008475,
+  "evaluator_version": "evaluation_policy_v4",
+  "historical_generated_code_executed": false,
+  "historical_scores_changed": false,
+  "main_5000_reevaluation_started": false,
+  "go_no_go": "NO-GO",
+  "production_sandbox_verified": false,
+  "production_reevaluation_resume_verified": false
+}

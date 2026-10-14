@@ -31,6 +31,8 @@ def completion_gate(config: dict, output: Path, root: Path = ROOT) -> tuple[str,
                 return 'blocked', 'Experiment is incomplete or sanity checks failed.'
             if any(row.get('experiment_id') != config['experiment_id'] or has_api_failure(row) for row in rows):
                 return 'blocked', 'Unresolved API/unknown error or mixed experiment records.'
+    except ValueError:
+        return 'blocked', 'Invalid or duplicate saved records; inspect before finalizing.'
     except RuntimeError as exc:
         if 'Another automated experiment' in str(exc):
             return 'waiting', 'Shared experiment lock is still held.'

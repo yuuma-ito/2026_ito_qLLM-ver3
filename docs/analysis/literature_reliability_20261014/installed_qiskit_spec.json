@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Statevector.reset",
+    "signature": "(self, qargs: 'list[int] | None' = None) -> 'Statevector'",
+    "module": "qiskit.quantum_info.states.statevector",
+    "line": 675,
+    "source_sha256": "ad925b5379105af411d00c5431a94362c538075ec1984e569d7b8637341c51aa"
+  },
+  {
+    "name": "Statevector.from_instruction",
+    "signature": "(instruction: 'Instruction | QuantumCircuit') -> 'Statevector'",
+    "module": "qiskit.quantum_info.states.statevector",
+    "line": 818,
+    "source_sha256": "c2ce87be9beea5098e3cf5369d48ec9dccaaad48133a25db1a5027dc1f98f55e"
+  },
+  {
+    "name": "Statevector._evolve_instruction",
+    "signature": "(statevec, obj, qargs=None)",
+    "module": "qiskit.quantum_info.states.statevector",
+    "line": 965,
+    "source_sha256": "c1a4abafde8555c4cf455d65315cc4241d4d2df42c3653b97d071422eaf00597"
+  },
+  {
+    "name": "DensityMatrix._evolve_instruction",
+    "signature": "(self, obj, qargs=None)",
+    "module": "qiskit.quantum_info.states.densitymatrix",
+    "line": 799,
+    "source_sha256": "041771b1bf52bff53ba45f8da25587d247a88755d162e3304224330b43f4c665"
+  },
+  {
+    "name": "state_fidelity",
+    "signature": "(state1: 'Statevector | DensityMatrix', state2: 'Statevector | DensityMatrix', validate: 'bool' = True) -> 'float'",
+    "module": "qiskit.quantum_info.states.measures",
+    "line": 29,
+    "source_sha256": "5da10d658173211f90bcf48d4ee1e0342103f393e429be7588bea65cbf2950d8"
+  },
+  {
+    "name": "Operator.__init__",
+    "signature": "(self, data: 'QuantumCircuit | Operation | BaseOperator | np.ndarray', input_dims: 'tuple | None' = None, output_dims: 'tuple | None' = None)",
+    "module": "qiskit.quantum_info.operators.operator",
+    "line": 86,
+    "source_sha256": "fc7ab96c56cd8622944c35a8c2e4e350963c1c28369982c5f7e9f4e1085d14a8"
+  },
+  {
+    "name": "QuantumCircuit.measure_all",
+    "signature": "(self, inplace: 'bool' = True, add_bits: 'bool' = True) -> 'QuantumCircuit | None'",
+    "module": "qiskit.circuit.quantumcircuit",
+    "line": 4617,
+    "source_sha256": "de9e7c969556c3156613b376674aa92e217b190ba6fdbd94ac59a3eae2f84456"
+  }
+]

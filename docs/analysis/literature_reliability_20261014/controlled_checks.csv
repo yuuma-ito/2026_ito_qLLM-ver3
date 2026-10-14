@@ -1,0 +1,83 @@
+case,kind,observed,expected,check_passed
+phase_metric_0,independent_fidelity,"{""distance"": 0.9293424417207872, ""fidelity"": 0.3228072775992272, ""qiskit_fidelity"": 0.32280727759922734}","{""distance_squared"": 0.8636773739835553}",True
+phase_metric_1,independent_fidelity,"{""distance"": 1.2039224756301659, ""fidelity"": 0.0757820164017713, ""qiskit_fidelity"": 0.0757820164017713}","{""distance_squared"": 1.4494293273274672}",True
+phase_metric_2,independent_fidelity,"{""distance"": 0.896398313716889, ""fidelity"": 0.3578851530128247, ""qiskit_fidelity"": 0.3578851530128248}","{""distance_squared"": 0.8035299368344819}",True
+phase_metric_3,independent_fidelity,"{""distance"": 1.166965405061916, ""fidelity"": 0.10182217533237006, ""qiskit_fidelity"": 0.10182217533237006}","{""distance_squared"": 1.3618082566113219}",True
+phase_metric_4,independent_fidelity,"{""distance"": 1.065554458492653, ""fidelity"": 0.18688056478486845, ""qiskit_fidelity"": 0.18688056478486845}","{""distance_squared"": 1.135406304013571}",True
+phase_metric_5,independent_fidelity,"{""distance"": 1.1169368759424223, ""fidelity"": 0.14154600877957943, ""qiskit_fidelity"": 0.14154600877957943}","{""distance_squared"": 1.247547984840018}",True
+phase_metric_6,independent_fidelity,"{""distance"": 0.9539881805836875, ""fidelity"": 0.2969740726452757, ""qiskit_fidelity"": 0.2969740726452757}","{""distance_squared"": 0.910093448693374}",True
+phase_metric_7,independent_fidelity,"{""distance"": 1.02679844798795, ""fidelity"": 0.2235800048446764, ""qiskit_fidelity"": 0.2235800048446764}","{""distance_squared"": 1.0543150527904626}",True
+phase_metric_8,independent_fidelity,"{""distance"": 1.17959306064889, ""fidelity"": 0.09258638268493767, ""qiskit_fidelity"": 0.0925863826849377}","{""distance_squared"": 1.3914397887310157}",True
+phase_metric_9,independent_fidelity,"{""distance"": 1.3190142311697912, ""fidelity"": 0.016926199682632, ""qiskit_fidelity"": 0.016926199682632}","{""distance_squared"": 1.7397985420284352}",True
+phase_metric_10,independent_fidelity,"{""distance"": 1.1013557926431932, ""fidelity"": 0.15484831704686886, ""qiskit_fidelity"": 0.15484831704686886}","{""distance_squared"": 1.2129845819887164}",True
+phase_metric_11,independent_fidelity,"{""distance"": 0.9728181960264075, ""fidelity"": 0.2775312823936582, ""qiskit_fidelity"": 0.2775312823936583}","{""distance_squared"": 0.946375242520074}",True
+T1_Bell_global_phase,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0087890625}","{""L2"": true}",True
+T1_Bell_gate_inverse,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0087890625}","{""L2"": true}",True
+T1_Bell_barrier,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0087890625}","{""L2"": true}",True
+T2_GHZ_global_phase,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0096435546875}","{""L2"": true}",True
+T2_GHZ_gate_inverse,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0096435546875}","{""L2"": true}",True
+T2_GHZ_barrier,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0096435546875}","{""L2"": true}",True
+T3a_DJ_constant_global_phase,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0054931640625}","{""L2"": true}",True
+T3a_DJ_constant_gate_inverse,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0054931640625}","{""L2"": true}",True
+T3a_DJ_constant_barrier,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0054931640625}","{""L2"": true}",True
+T3b_DJ_balanced_global_phase,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0054931640625}","{""L2"": true}",True
+T3b_DJ_balanced_gate_inverse,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0054931640625}","{""L2"": true}",True
+T3b_DJ_balanced_barrier,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0054931640625}","{""L2"": true}",True
+T4_BV_011_global_phase,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0054931640625}","{""L2"": true}",True
+T4_BV_011_gate_inverse,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0054931640625}","{""L2"": true}",True
+T4_BV_011_barrier,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0054931640625}","{""L2"": true}",True
+T5_Grover_11_global_phase,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0}","{""L2"": true}",True
+T5_Grover_11_gate_inverse,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0}","{""L2"": true}",True
+T5_Grover_11_barrier,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0}","{""L2"": true}",True
+T6_QFT_001_global_phase,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 4.978045620194183e-17}","{""L2"": true}",True
+T6_QFT_001_gate_inverse,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0}","{""L2"": true}",True
+T6_QFT_001_barrier,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0}","{""L2"": true}",True
+T7_IQFT_001_global_phase,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 9.653520949822701e-17}","{""L2"": true}",True
+T7_IQFT_001_gate_inverse,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0}","{""L2"": true}",True
+T7_IQFT_001_barrier,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 0.0}","{""L2"": true}",True
+T8_QPE_001_global_phase,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 4.440892098500626e-16}","{""L2"": true}",True
+T8_QPE_001_gate_inverse,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 4.440892098500626e-16}","{""L2"": true}",True
+T8_QPE_001_barrier,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 4.440892098500626e-16}","{""L2"": true}",True
+T9_Ansatz_001_global_phase,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 1.1857187100668868e-16}","{""L2"": true}",True
+T9_Ansatz_001_gate_inverse,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 1.1102230246251565e-16}","{""L2"": true}",True
+T9_Ansatz_001_barrier,metamorphic,"{""L2"": true, ""L3"": true, ""distance"": 1.1102230246251565e-16}","{""L2"": true}",True
+partial_reset_ensemble,nonunitary,"{""diagonal"": [0.4999999999999999, 0.0, 0.4999999999999999, 0.0], ""fidelity00"": 0.4999999999999999}","{""diagonal"": [0.5, 0, 0.5, 0], ""fidelity00"": 0.5}",True
+reset_primary_rejection,nonunitary_policy,"{""rejected"": true}","{""rejected"": true}",True
+initialize_primary_rejection,nonunitary_policy,"{""rejected"": true}","{""rejected"": true}",True
+unitary_state_preparation,nonunitary_policy,"{""fidelity"": 0.9999999999999991}","{""fidelity"": 1}",True
+T6_QFT_001_input0,multiple_input,"{""fidelity"": 0.9999999999999993}","{""fidelity"": 1}",True
+T6_QFT_001_input1,multiple_input,"{""fidelity"": 0.9999999999999991}","{""fidelity"": 1}",True
+T6_QFT_001_input2,multiple_input,"{""fidelity"": 0.9999999999999993}","{""fidelity"": 1}",True
+T6_QFT_001_input3,multiple_input,"{""fidelity"": 0.9999999999999991}","{""fidelity"": 1}",True
+T6_QFT_001_input4,multiple_input,"{""fidelity"": 0.9999999999999993}","{""fidelity"": 1}",True
+T6_QFT_001_input5,multiple_input,"{""fidelity"": 0.9999999999999993}","{""fidelity"": 1}",True
+T6_QFT_001_input6,multiple_input,"{""fidelity"": 0.9999999999999993}","{""fidelity"": 1}",True
+T6_QFT_001_input7,multiple_input,"{""fidelity"": 0.9999999999999991}","{""fidelity"": 1}",True
+T6_QFT_001_input8,multiple_input,"{""fidelity"": 0.9999999999999989}","{""fidelity"": 1}",True
+T6_QFT_001_input9,multiple_input,"{""fidelity"": 0.9999999999999989}","{""fidelity"": 1}",True
+T6_QFT_001_column_phase_mutant,multiple_input_counterexample,"{""basis_all_pass"": true, ""coherent_fidelity"": 9.629649721936181e-34}","{""basis_all_pass"": true, ""coherent_fidelity"": 0}",True
+T7_IQFT_001_input0,multiple_input,"{""fidelity"": 0.9999999999999993}","{""fidelity"": 1}",True
+T7_IQFT_001_input1,multiple_input,"{""fidelity"": 0.9999999999999991}","{""fidelity"": 1}",True
+T7_IQFT_001_input2,multiple_input,"{""fidelity"": 0.9999999999999993}","{""fidelity"": 1}",True
+T7_IQFT_001_input3,multiple_input,"{""fidelity"": 0.9999999999999993}","{""fidelity"": 1}",True
+T7_IQFT_001_input4,multiple_input,"{""fidelity"": 0.9999999999999993}","{""fidelity"": 1}",True
+T7_IQFT_001_input5,multiple_input,"{""fidelity"": 0.9999999999999993}","{""fidelity"": 1}",True
+T7_IQFT_001_input6,multiple_input,"{""fidelity"": 0.9999999999999993}","{""fidelity"": 1}",True
+T7_IQFT_001_input7,multiple_input,"{""fidelity"": 0.9999999999999991}","{""fidelity"": 1}",True
+T7_IQFT_001_input8,multiple_input,"{""fidelity"": 0.9999999999999989}","{""fidelity"": 1}",True
+T7_IQFT_001_input9,multiple_input,"{""fidelity"": 0.9999999999999989}","{""fidelity"": 1}",True
+T7_IQFT_001_column_phase_mutant,multiple_input_counterexample,"{""basis_all_pass"": true, ""coherent_fidelity"": 9.629649721936181e-34}","{""basis_all_pass"": true, ""coherent_fidelity"": 0}",True
+ry_parameter_0.0000,parameter_family,"{""fidelity"": 1.0}","{""fidelity"": 1}",True
+ry_parameter_0.4488,parameter_family,"{""fidelity"": 1.0}","{""fidelity"": 1}",True
+ry_parameter_1.5708,parameter_family,"{""fidelity"": 1.0}","{""fidelity"": 1}",True
+ry_parameter_3.1416,parameter_family,"{""fidelity"": 1.0}","{""fidelity"": 1}",True
+T1_Bell_oracle_validity,oracle_validation,"{""mass"": 1.0}","{""mass"": 1}",True
+T2_GHZ_oracle_validity,oracle_validation,"{""mass"": 1.0}","{""mass"": 1}",True
+T3a_DJ_constant_oracle_validity,oracle_validation,"{""mass"": 1.0}","{""mass"": 1}",True
+T3b_DJ_balanced_oracle_validity,oracle_validation,"{""mass"": 1.0}","{""mass"": 1}",True
+T4_BV_011_oracle_validity,oracle_validation,"{""mass"": 1.0}","{""mass"": 1}",True
+T5_Grover_11_oracle_validity,oracle_validation,"{""mass"": 1.0}","{""mass"": 1}",True
+T6_QFT_001_oracle_validity,oracle_validation,"{""mass"": 0.9999999999999996}","{""mass"": 1}",True
+T7_IQFT_001_oracle_validity,oracle_validation,"{""mass"": 0.9999999999999996}","{""mass"": 1}",True
+T8_QPE_001_oracle_validity,oracle_validation,"{""mass"": 0.9999999999999991}","{""mass"": 1}",True
+T9_Ansatz_001_oracle_validity,oracle_validation,"{""mass"": 1.0000000000000002}","{""mass"": 1}",True

@@ -1,7 +1,7 @@
 """Canonical quantum-bit readout for full terminal measurements."""
 from collections import Counter
 
-EVALUATOR_VERSION = "evaluation_policy_v3"
+EVALUATOR_VERSION = "evaluation_policy_v4"
 
 
 class ReadoutError(ValueError):

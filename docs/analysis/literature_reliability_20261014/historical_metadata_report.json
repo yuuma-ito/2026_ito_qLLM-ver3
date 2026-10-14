@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "records": 5000,
+  "paired_groups": 1000,
+  "stored_round_rows": 9517,
+  "shared_initial_verified": true,
+  "levels_and_first_final_success_verified": true,
+  "historical_generated_code_executed": false,
+  "historical_scores_changed": false,
+  "snapshot_sha256": "cb7e9532a4dea52e763f43eb7d366707bcb37c67eb5e29d094a1e3fd872008f0",
+  "available_isolation_tools": {
+    "bwrap": null,
+    "docker": null,
+    "podman": null
+  }
+}

@@ -1422,7 +1422,7 @@
     "verified": true
   },
   "evaluator_policy": {
-    "version": "evaluation_policy_v3",
+    "version": "evaluation_policy_v4",
     "adopted_date": "2026-10-14",
     "specification": "docs/evaluator_readout.md",
     "applies_to": "new evaluations of distribution tasks",
@@ -1436,5 +1436,18 @@
     "global_phase_false_negatives_fixed": 6,
     "historical_scores_reevaluated": false,
     "full_reevaluation_started": false
+  },
+  "literature_reliability_audit": {
+    "manifest": "docs/analysis/literature_reliability_20261014/manifest.json",
+    "references_requested": 6,
+    "primary_texts_checked": 5,
+    "unconfirmed_reference": "Abreu et al. (2022)",
+    "controlled_checks": 82,
+    "mutation_cases": 6,
+    "controlled_process_checks": 4,
+    "sampling_groups": 108,
+    "go_no_go": "NO-GO",
+    "historical_scores_reevaluated": false,
+    "main_5000_reevaluation_started": false
   }
 }

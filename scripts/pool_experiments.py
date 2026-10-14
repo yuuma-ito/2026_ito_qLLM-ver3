@@ -40,6 +40,9 @@ def signature(config, manifest):
                 generation_settings=config.get('generation_settings'),
                 prompt_fingerprints=manifest['prompt_fingerprints'],
                 environment=manifest['environment'],
+                evaluator_version=manifest.get('evaluator_version', 'legacy_unspecified'),
+                evaluation_sampling=manifest.get('evaluation_sampling'),
+                statevector_policy=manifest.get('statevector_policy'),
                 transport_recovery=manifest.get('transport_recovery'))
 
 

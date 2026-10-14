@@ -1,0 +1,89 @@
+[
+  {
+    "id": "R1",
+    "authors": "Paltenghi & Pradel",
+    "year": 2024,
+    "title": "A Survey on Testing and Analysis of Quantum Software",
+    "url": "https://arxiv.org/abs/2410.00650",
+    "full_text_url": "https://arxiv.org/html/2410.00650v1",
+    "status": "本文の該当箇所を確認",
+    "locations": [
+      "§4.1",
+      "§4.3.1–4.3.3",
+      "§7.2"
+    ],
+    "application": "入力・出力オラクル・距離・統計・mutationの分類を監査の枠組みに使用。特定閾値や本実験の正当性を保証する文献ではない。"
+  },
+  {
+    "id": "R2",
+    "authors": "IBM Quantum",
+    "year": null,
+    "title": "Qiskit quantum_info Documentation",
+    "url": "https://qiskit.qotlabs.org/docs/api/qiskit/quantum_info",
+    "status": "公式仕様の該当箇所とインストール済みソースを確認",
+    "locations": [
+      "state_fidelity",
+      "process_fidelity",
+      "Statevector.equiv/from_instruction/reset",
+      "DensityMatrix.from_instruction",
+      "Operator.is_unitary"
+    ],
+    "application": "全体位相・状態忠実度・部分reset・ユニタリ判定の仕様を照合。latest版をローカル2.5.2と同じ版だと仮定しない。"
+  },
+  {
+    "id": "R3",
+    "authors": "Barr et al.",
+    "year": 2015,
+    "title": "The Oracle Problem in Software Testing: A Survey",
+    "url": "https://discovery.ucl.ac.uk/id/eprint/1471263/",
+    "full_text_url": "https://discovery.ucl.ac.uk/id/eprint/1471263/1/06963470.pdf",
+    "status": "PDF本文の該当箇所を確認",
+    "locations": [
+      "§2",
+      "§4.3.1",
+      "§5.1",
+      "§5.2"
+    ],
+    "application": "soundness/completeness、抽象仕様の限界、派生・メタモルフィックオラクルを区別する。一般ソフトウェアの論点を量子の確率出力に適用する際は条件を明記。"
+  },
+  {
+    "id": "R4",
+    "authors": "Abreu et al.",
+    "year": 2022,
+    "title": "Metamorphic Testing of Oracle Quantum Programs",
+    "url": "https://doi.org/10.1145/3528230.3529189",
+    "attempted_pdf_url": "https://dl.acm.org/doi/pdf/10.1145/3528230.3529189",
+    "status": "本文未確認",
+    "locations": [],
+    "access_problem": "DOI先は取得失敗、ACM PDFは403。著者・会議ページと検索で本文の公開版を探したが取得できなかった。",
+    "application": "手法・結果を推測せず、本報告の実装根拠には使用しない。R1による紹介もR4原文確認の代わりにしない。"
+  },
+  {
+    "id": "R5",
+    "authors": "Chen et al.",
+    "year": 2021,
+    "title": "Evaluating Large Language Models Trained on Code",
+    "url": "https://arxiv.org/abs/2107.03374",
+    "full_text_url": "https://arxiv.org/pdf/2107.03374",
+    "status": "PDF本文の該当箇所を確認",
+    "locations": [
+      "§2.1 / Eq.1 / Figure 3",
+      "§2.2",
+      "§2.3（PDF pp.2–4）"
+    ],
+    "application": "実行による機能的評価とサンドボックスの必要性を参照。独立候補に対するpass@kを適応的な修正履歴へそのまま使わない。"
+  },
+  {
+    "id": "R6",
+    "authors": "Madaan et al.",
+    "year": 2023,
+    "title": "Self-Refine: Iterative Refinement with Self-Feedback",
+    "url": "https://arxiv.org/abs/2303.17651",
+    "full_text_url": "https://arxiv.org/html/2303.17651v2",
+    "status": "本文の該当箇所を確認",
+    "locations": [
+      "§2 / Algorithm 1 / Eq.1–4"
+    ],
+    "application": "同じモデルによる生成・feedback・refine、履歴と停止条件を参照。現在のRはfeedbackと修正を1要求にまとめる方式であり、原論文の忠実な再現とは扱わない。"
+  }
+]

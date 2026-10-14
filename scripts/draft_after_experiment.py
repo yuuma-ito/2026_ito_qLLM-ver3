@@ -52,6 +52,8 @@ def gate(config, root=ROOT):
                                    source_dir=str(output.relative_to(root)), recorded=0), root)
             verified = run['automation_verified'] and sanity['passed'] and not sanity['warnings']
             return ('ready' if verified else 'ready_provisional'), run
+    except ValueError:
+        return 'blocked', 'Invalid or duplicate saved records; inspect before drafting.'
     except RuntimeError as exc:
         if 'Another automated experiment' in str(exc):
             return 'waiting', 'Experiment lock is held.'

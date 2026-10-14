@@ -182,6 +182,7 @@ def build_manifest(config: dict[str, Any], repo_root: str | Path) -> dict[str, A
             "seed_simulator": SIMULATOR_SEED,
             "seed_transpiler": TRANSPILER_SEED,
         },
+        "statevector_policy": "unitary circuit on all-zero input; nonunitary operations rejected",
         "evaluator_fingerprints": {
             "evaluator_py_sha256": _file_sha256(repo_root / "harness" / "evaluator.py"),
             "readout_py_sha256": _file_sha256(repo_root / "harness" / "readout.py"),
@@ -251,12 +252,18 @@ def load_existing(path: str | Path) -> tuple[list[dict[str, Any]], set[tuple[str
     rows: list[dict[str, Any]] = []
     keys = set()
     with path.open(encoding="utf-8") as f:
-        for line in f:
+        for line_number, line in enumerate(f, 1):
             if not line.strip():
                 continue
-            rec = normalize_record(json.loads(line))
+            try:
+                rec = normalize_record(json.loads(line))
+            except json.JSONDecodeError as error:
+                raise ValueError(f"Invalid JSONL at line {line_number}; preserve the file and inspect before resuming") from error
+            key = record_key(rec)
+            if key in keys:
+                raise ValueError(f"Duplicate record at line {line_number}; inspect before resuming")
             rows.append(rec)
-            keys.add(record_key(rec))
+            keys.add(key)
     return rows, keys
 
 
