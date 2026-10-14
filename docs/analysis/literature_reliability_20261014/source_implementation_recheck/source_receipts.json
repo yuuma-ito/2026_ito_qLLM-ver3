@@ -1,0 +1,190 @@
+[
+  {
+    "id": "R1",
+    "requested_url": "https://arxiv.org/pdf/2410.00650v1",
+    "retrieved_at_utc": "2026-10-14T12:04:11.560977+00:00",
+    "http_status": 200,
+    "final_url": "https://arxiv.org/pdf/2410.00650v1",
+    "content_type": "application/pdf",
+    "bytes": 2278297,
+    "sha256": "6394250beaa149bf862231801d3d234a48852e68eb0ce8e2f4f15ec3a19c316f",
+    "status": "downloaded",
+    "private_local_file": ".cache/literature_sources/provenance_20261014/R1.pdf",
+    "pdf_pages": 36,
+    "extracted_text_sha256": "65134fa36845e3a52311d2d32b92a9064590964b674717751d870cb0ab1727f8",
+    "extracted_text_private_file": ".cache/literature_sources/provenance_20261014/R1.txt",
+    "verified_version": "arXiv:2410.00650v1",
+    "title_matched": true,
+    "checked_pdf_pages": [
+      {
+        "pdf_page": 8,
+        "section": "§4.1",
+        "page_text_sha256": "5291d9c438f20b4d836f10237c5b7258a14d50fca84a06adf02ea1c01e5b09b1"
+      },
+      {
+        "pdf_page": 12,
+        "section": "§4.3.2",
+        "page_text_sha256": "9ea145abe0d54e1241bf9cf85c209b6e93432139675308116e9363297c7ad5fc"
+      },
+      {
+        "pdf_page": 13,
+        "section": "§4.3.3",
+        "page_text_sha256": "adb6db6d5d5f1d3ee62ad01d95a68bbd29a3acab97058ddb5179568d0085c40e"
+      },
+      {
+        "pdf_page": 27,
+        "section": "§7.2",
+        "page_text_sha256": "c4825712e5aeaf8ab6a43f4c9ebd023a1c7f8f356e867d11b03a2e06b6209faa"
+      }
+    ],
+    "previous_audit_download_receipt_retained": false,
+    "four_stage_source_status": "原文確認済み"
+  },
+  {
+    "id": "R3",
+    "requested_url": "https://discovery.ucl.ac.uk/id/eprint/1471263/1/06963470.pdf",
+    "retrieved_at_utc": "2026-10-14T12:04:11.562109+00:00",
+    "http_status": 200,
+    "final_url": "https://discovery.ucl.ac.uk/id/eprint/1471263/1/06963470.pdf",
+    "content_type": "application/pdf",
+    "bytes": 1077490,
+    "sha256": "0572def3bfd4baaadb2041a098f12a0bac261427962e46cef084efff60fd3a36",
+    "status": "downloaded",
+    "private_local_file": ".cache/literature_sources/provenance_20261014/R3.pdf",
+    "pdf_pages": 19,
+    "extracted_text_sha256": "80543799d2a4531164e2b7e642dfa74aeecf42f2fe308cff2a32fb03cd9bf1d4",
+    "extracted_text_private_file": ".cache/literature_sources/provenance_20261014/R3.txt",
+    "verified_version": "UCL 06963470.pdf, IEEE TSE 41(5), 2015",
+    "title_matched": true,
+    "checked_pdf_pages": [
+      {
+        "pdf_page": 4,
+        "section": "§2.3",
+        "page_text_sha256": "7c269a73fe6eb0dbf65a6ba0c3e88a394deaf0024953fa03a0b470a6e5c522de"
+      },
+      {
+        "pdf_page": 8,
+        "section": "§4.3.1",
+        "page_text_sha256": "0f53b9f09562554818dd8f97bd6b860bafdc73ec0f2f4c934095ca4e6632e1ea"
+      },
+      {
+        "pdf_page": 9,
+        "section": "§5.1 / §5.2",
+        "page_text_sha256": "74589d1748e8ea3653b9dc16b1d0d2da110dfb376efcc849a772adaa366447d4"
+      }
+    ],
+    "previous_audit_download_receipt_retained": false,
+    "four_stage_source_status": "原文確認済み"
+  },
+  {
+    "id": "R5",
+    "requested_url": "https://arxiv.org/pdf/2107.03374",
+    "retrieved_at_utc": "2026-10-14T12:04:11.562892+00:00",
+    "http_status": 200,
+    "final_url": "https://arxiv.org/pdf/2107.03374",
+    "content_type": "application/pdf",
+    "bytes": 1885177,
+    "sha256": "ebae72ea0e8a5eb2ecbccdb985aec6cc1254a7c4d29e6d4de7866db1e66c4855",
+    "status": "downloaded",
+    "private_local_file": ".cache/literature_sources/provenance_20261014/R5.pdf",
+    "pdf_pages": 35,
+    "extracted_text_sha256": "f12f2f1a01e88f9060604b2996d75502172e0056f62d8c0c582628d5cb7003db",
+    "extracted_text_private_file": ".cache/literature_sources/provenance_20261014/R5.txt",
+    "verified_version": "arXiv:2107.03374v2",
+    "title_matched": true,
+    "checked_pdf_pages": [
+      {
+        "pdf_page": 2,
+        "section": "§2.1",
+        "page_text_sha256": "652bcb5f11342d13434f709ec704bf4909cde9dd06e69bbb6d8203732911f871"
+      },
+      {
+        "pdf_page": 3,
+        "section": "Eq.1 / Figure 3",
+        "page_text_sha256": "ae1aca571501d6a802b3666a255dbbe931340103d72044f0142f9cb6b0f2f18b"
+      },
+      {
+        "pdf_page": 4,
+        "section": "§2.3",
+        "page_text_sha256": "47ffa087ba608bb4cd5cd3af0d578d9644360a69d36b5c9e5e96741dd5c7e7d1"
+      }
+    ],
+    "previous_audit_download_receipt_retained": false,
+    "four_stage_source_status": "原文確認済み"
+  },
+  {
+    "id": "R6",
+    "requested_url": "https://arxiv.org/pdf/2303.17651v2",
+    "retrieved_at_utc": "2026-10-14T12:04:11.563728+00:00",
+    "http_status": 200,
+    "final_url": "https://arxiv.org/pdf/2303.17651v2",
+    "content_type": "application/pdf",
+    "bytes": 2014949,
+    "sha256": "81e44592314d80218ad108d3490cd0b84ba5962fefd5c84819987afd77a57087",
+    "status": "downloaded",
+    "private_local_file": ".cache/literature_sources/provenance_20261014/R6.pdf",
+    "pdf_pages": 54,
+    "extracted_text_sha256": "b553c54d1e7894570ce09c811a3025ba779fd2d0d76132b5678844006c0d2bcd",
+    "extracted_text_private_file": ".cache/literature_sources/provenance_20261014/R6.txt",
+    "verified_version": "arXiv:2303.17651v2",
+    "title_matched": true,
+    "checked_pdf_pages": [
+      {
+        "pdf_page": 2,
+        "section": "§2 / Eq.1",
+        "page_text_sha256": "61737de49cbe4e46f94a7b2b0d6506d965117f514ad4ffd09b41b10e6c9f6abd"
+      },
+      {
+        "pdf_page": 3,
+        "section": "Algorithm 1",
+        "page_text_sha256": "4b4755f358849d0a13414b7dccbe764e701ed3b5607eaebf0c08cd67dbcbcf07"
+      },
+      {
+        "pdf_page": 4,
+        "section": "Eq.4 / history / final output",
+        "page_text_sha256": "bd38c6231de8f2f9deb1111e8a4eea5e152e4e8962d4f71626c4a444310e3e1f"
+      }
+    ],
+    "previous_audit_download_receipt_retained": false,
+    "four_stage_source_status": "原文確認済み"
+  },
+  {
+    "id": "R4",
+    "requested_url": "https://dl.acm.org/doi/pdf/10.1145/3528230.3529189",
+    "retrieved_at_utc": "2026-10-14T12:04:11.565063+00:00",
+    "status": "unavailable",
+    "error": "HTTPError: HTTP Error 403: Forbidden",
+    "previous_audit_download_receipt_retained": false,
+    "four_stage_source_status": "未確認"
+  },
+  {
+    "id": "R2",
+    "requested_url": "https://qiskit.qotlabs.org/docs/api/qiskit/quantum_info",
+    "retrieved_at_utc": "2026-10-14T12:04:11.583560+00:00",
+    "http_status": 200,
+    "final_url": "https://qiskit.qotlabs.org/docs/api/qiskit/quantum_info",
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 1073965,
+    "sha256": "e82883e88d288f46e5497feb6aff4d3c991f0eb718d1ef000a494468a9eba429",
+    "status": "downloaded",
+    "private_local_file": ".cache/literature_sources/provenance_20261014/R2.html",
+    "previous_audit_download_receipt_retained": false,
+    "four_stage_source_status": "原文確認済み",
+    "source_scope": "User-specified IBM documentation mirror; local Qiskit source checked separately; not a pinned-version IBM-hosted receipt"
+  },
+  {
+    "id": "R2_statevector",
+    "requested_url": "https://qiskit.qotlabs.org/docs/api/qiskit/qiskit.quantum_info.Statevector",
+    "retrieved_at_utc": "2026-10-14T12:04:11.584450+00:00",
+    "http_status": 200,
+    "final_url": "https://qiskit.qotlabs.org/docs/api/qiskit/qiskit.quantum_info.Statevector",
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 605439,
+    "sha256": "b16b4aa04f398f8c8a73467b2e18681a48cf6185d674169a6b8313ad990b2bc7",
+    "status": "downloaded",
+    "private_local_file": ".cache/literature_sources/provenance_20261014/R2_statevector.html",
+    "previous_audit_download_receipt_retained": false,
+    "four_stage_source_status": "原文確認済み",
+    "source_scope": "User-specified IBM documentation mirror; local Qiskit source checked separately; not a pinned-version IBM-hosted receipt"
+  }
+]

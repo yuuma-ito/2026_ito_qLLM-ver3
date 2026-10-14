@@ -1,0 +1,672 @@
+[
+  {
+    "id": "M01",
+    "item": "全体位相を除く状態距離",
+    "status": "独立検証済み",
+    "deployment_scope": "production",
+    "source_support": [
+      "R2: Statevector.equiv / state_fidelity"
+    ],
+    "implementation": [
+      {
+        "file": "harness/evaluator.py",
+        "symbol": "_statevector_distance",
+        "line": 130,
+        "file_sha256": "ef91a6c42f895b3e79576f66aff3c11bdbe26eb71f4745cc28934c08bd37d77f",
+        "symbol_sha256": "6019ee6dfe46b5cc1303b570ee72adc2f74e26e3e765f070c6cd31964d2708b8"
+      }
+    ],
+    "tests": [
+      {
+        "file": "tests/test_evaluation_audit.py",
+        "symbol": "test_production_phase_alignment_matches_independent_formula",
+        "line": 23,
+        "file_sha256": "8e3e2b383ac2b12a43a9760f2fff3070434442cfcf1f0ff75f5333c0a5b9e769",
+        "symbol_sha256": "a1f0c3f79413a7bb375b792f67ce01a6da1909e51fa1e70a77dba0c11975c5bf"
+      }
+    ],
+    "theoretical_basis": "正規化純粋状態ではd²=2−2|a†b|=2−2√F。距離式はAPI忠実度からの独自の代数的導出であり、論文の実験閾値ではない。",
+    "application_conditions": "同じ次元・正規化・純粋状態。",
+    "limits": "検算した位相と12組の状態に限定。混合状態・任意チャネルは対象外。"
+  },
+  {
+    "id": "M02",
+    "item": "TVDの計算",
+    "status": "独立検証済み",
+    "deployment_scope": "production",
+    "source_support": [
+      "R1: §4.3.2, PDF p.12（距離の分類）"
+    ],
+    "implementation": [
+      {
+        "file": "harness/evaluator.py",
+        "symbol": "_tvd",
+        "line": 125,
+        "file_sha256": "ef91a6c42f895b3e79576f66aff3c11bdbe26eb71f4745cc28934c08bd37d77f",
+        "symbol_sha256": "0ae8f0150a19a68a309c63c1a453d40bf86a42cd8aa8b87891efbcf0aa0a44c1"
+      }
+    ],
+    "tests": [
+      {
+        "file": "tests/test_source_implementation_recheck.py",
+        "symbol": "test_tvd_agrees_with_hand_computed_distributions",
+        "line": 7,
+        "file_sha256": "8859eab9634b51a2a1743f6f341ffc330245fde768f037c0db5c1ad7b2177cc9",
+        "symbol_sha256": "35b3380c45a94a514fea0ea275bba1099df703aeb843f7c49f985469c68fa9fd"
+      }
+    ],
+    "theoretical_basis": "TVD=½Σ|p−q|を本実装の数学的定義として検算。R1の当該箇所は尺度を列挙し、この実装を指定しない。",
+    "application_conditions": "同じ出力空間の正規化分布。",
+    "limits": "3組の手計算との一致。相対位相・状態の等価性は検査しない。"
+  },
+  {
+    "id": "M03",
+    "item": "量子ビット順への測定結果復元",
+    "status": "独立検証済み",
+    "deployment_scope": "production",
+    "source_support": [
+      "R2: bit ordering / measure_all, installed API"
+    ],
+    "implementation": [
+      {
+        "file": "harness/readout.py",
+        "symbol": "prepare_readout",
+        "line": 11,
+        "file_sha256": "ec7b447997600e0391abf9744a4fbeff0eed69d8b43b0567d519a45cdcff1a4e",
+        "symbol_sha256": "e84d63d0ba5900ce8619a8418089ade006447a734791b86441f504bc72af476b"
+      },
+      {
+        "file": "harness/readout.py",
+        "symbol": "project_counts",
+        "line": 30,
+        "file_sha256": "ec7b447997600e0391abf9744a4fbeff0eed69d8b43b0567d519a45cdcff1a4e",
+        "symbol_sha256": "58695fc1cb8c1b90c39e277a031a27b6af84c1313741759b63229de61109af2f"
+      }
+    ],
+    "tests": [
+      {
+        "file": "tests/test_canonical_readout.py",
+        "symbol": "test_explicit_readout_mapping_and_structural_constraints",
+        "line": 32,
+        "file_sha256": "47f7d189e9db4228ec1b8809dae70b1a2354f5e113e42e50598a9a3305f13cf8",
+        "symbol_sha256": "3b1a474229d86bcec2cb85b440af0f87e5259872f469daa9ddf217ff226aaaba"
+      }
+    ],
+    "theoretical_basis": "各測定先c(q)からq[n−1]…q[0]へ投影し、未使用古典ビットを周辺化する。本番での正規化方針は独自設計。",
+    "application_conditions": "全量子ビットの一意な終端測定。",
+    "limits": "手作り基底例で独立確認。指定古典ビットへの配置要求は別の構造検査が必要。"
+  },
+  {
+    "id": "M04",
+    "item": "非ユニタリ回路の主状態ベクトル評価拒否",
+    "status": "独立検証済み",
+    "deployment_scope": "production",
+    "source_support": [
+      "R2: Statevector.reset / DensityMatrix / Operator"
+    ],
+    "implementation": [
+      {
+        "file": "harness/evaluator.py",
+        "symbol": "_run_statevector",
+        "line": 111,
+        "file_sha256": "ef91a6c42f895b3e79576f66aff3c11bdbe26eb71f4745cc28934c08bd37d77f",
+        "symbol_sha256": "4e267d3328412df0beb3122cefa9de7adaa2c04e39d8235bb37d05327c1dc0ab"
+      }
+    ],
+    "tests": [
+      {
+        "file": "tests/test_literature_reliability.py",
+        "symbol": "test_primary_does_not_compare_a_sampled_nonunitary_branch",
+        "line": 15,
+        "file_sha256": "a6af3bbbb649471b490173de7315469eb71282f95b5034e48b8c61803d7f2cde",
+        "symbol_sha256": "170579f9ba0da6ee83d38ad70d04cc2c50c965989900953c7bcc24fe37908a50"
+      },
+      {
+        "file": "tests/test_literature_reliability.py",
+        "symbol": "test_reset_ensemble_matches_independent_density_matrix",
+        "line": 24,
+        "file_sha256": "a6af3bbbb649471b490173de7315469eb71282f95b5034e48b8c61803d7f2cde",
+        "symbol_sha256": "020ee23e10d6581025528df85d49e04f5bf3be40ed494aeb5fdac7dd59cc126e"
+      }
+    ],
+    "theoretical_basis": "ユニタリUの列0は全ゼロ入力の純粋出力。部分resetは混合状態の分岐を返し得るため、拒否する保守的な独自方針。",
+    "application_conditions": "ユニタリ回路、固定全ゼロ入力、現在の小規模回路。",
+    "limits": "正しいinitialize等も除外する。Qiskitが非ユニタリを評価できないとの主張ではない。"
+  },
+  {
+    "id": "M05",
+    "item": "密度行列の補助オラクル",
+    "status": "独立検証済み",
+    "deployment_scope": "audit_only",
+    "source_support": [
+      "R2: DensityMatrix.from_instruction / state_fidelity"
+    ],
+    "implementation": [
+      {
+        "file": "scripts/audit_literature_reliability.py",
+        "symbol": "quantum_checks",
+        "line": 40,
+        "file_sha256": "3db07407cceba9d711d7dce6ef6708a94021dce78424a9771e2ba69309f8193f",
+        "symbol_sha256": "90140212b9deed8aa6b61705bb1481930b756805e43f667e79202ae11fe92e7d"
+      }
+    ],
+    "tests": [
+      {
+        "file": "tests/test_literature_reliability.py",
+        "symbol": "test_reset_ensemble_matches_independent_density_matrix",
+        "line": 24,
+        "file_sha256": "a6af3bbbb649471b490173de7315469eb71282f95b5034e48b8c61803d7f2cde",
+        "symbol_sha256": "020ee23e10d6581025528df85d49e04f5bf3be40ed494aeb5fdac7dd59cc126e"
+      }
+    ],
+    "theoretical_basis": "Bellの部分resetのensembleを独立なdiag(½,0,½,0)と比較。",
+    "application_conditions": "手作りreset例。",
+    "limits": "本番evaluateへ補助densityの記録を追加していない。単一基底のcountsだけからdensityを復元しない。"
+  },
+  {
+    "id": "M06",
+    "item": "状態忠実度による補助mutation検出",
+    "status": "独立検証済み",
+    "deployment_scope": "audit_only",
+    "source_support": [
+      "R2: state_fidelity",
+      "R1: §7.2, PDF p.27（mutationの背景）"
+    ],
+    "implementation": [
+      {
+        "file": "scripts/audit_literature_reliability.py",
+        "symbol": "overlap_fidelity",
+        "line": 14,
+        "file_sha256": "3db07407cceba9d711d7dce6ef6708a94021dce78424a9771e2ba69309f8193f",
+        "symbol_sha256": "141b4dc42f4f9f40e0a3502023861318a2847e271bef041dd8a5684a09ae2773"
+      },
+      {
+        "file": "scripts/audit_literature_reliability.py",
+        "symbol": "mutation_checks",
+        "line": 98,
+        "file_sha256": "3db07407cceba9d711d7dce6ef6708a94021dce78424a9771e2ba69309f8193f",
+        "symbol_sha256": "127d949c42f154053e30209bfd450fe64c9d21a606f9ee010a438e5eb543f8c0"
+      }
+    ],
+    "tests": [
+      {
+        "file": "tests/test_literature_reliability.py",
+        "symbol": "test_unitary_preparation_and_global_phase_are_supported",
+        "line": 29,
+        "file_sha256": "a6af3bbbb649471b490173de7315469eb71282f95b5034e48b8c61803d7f2cde",
+        "symbol_sha256": "762395fc25b7e058d15aed0f457f2842a6970f9923400485c0853beeb4de7b79"
+      }
+    ],
+    "theoretical_basis": "正規化純粋状態F=|a†b|²。Bell/GHZ期待値は解析的なベクトル。",
+    "application_conditions": "6種類の非等価な意味的変異。",
+    "limits": "6/6はこの集合だけ。本番の全件補助評価・アルゴリズム完全性は未実装。0.9975は独自の試行値。",
+    "previous_audit_artifact": {
+      "file": "../mutation_checks.csv",
+      "cases": 6
+    }
+  },
+  {
+    "id": "M07",
+    "item": "QFT/IQFTの複数入力",
+    "status": "独立検証済み",
+    "deployment_scope": "audit_only",
+    "source_support": [
+      "R1: §4.1, PDF p.8（入力空間の背景）"
+    ],
+    "implementation": [
+      {
+        "file": "scripts/audit_literature_reliability.py",
+        "symbol": "quantum_checks",
+        "line": 40,
+        "file_sha256": "3db07407cceba9d711d7dce6ef6708a94021dce78424a9771e2ba69309f8193f",
+        "symbol_sha256": "90140212b9deed8aa6b61705bb1481930b756805e43f667e79202ae11fe92e7d"
+      }
+    ],
+    "tests": [
+      {
+        "file": "tests/test_literature_reliability.py",
+        "symbol": "test_per_column_phase_passes_basis_but_fails_coherent_input",
+        "line": 35,
+        "file_sha256": "a6af3bbbb649471b490173de7315469eb71282f95b5034e48b8c61803d7f2cde",
+        "symbol_sha256": "6b6f99e51798b7ee6c766a16a47408b2f9ff5499aff3ac3435e92c5a27cc6e62"
+      },
+      {
+        "file": "tests/test_source_implementation_recheck.py",
+        "symbol": "test_current_qft_input_set_does_not_cover_other_column_phases",
+        "line": 25,
+        "file_sha256": "8859eab9634b51a2a1743f6f341ffc330245fde768f037c0db5c1ad7b2177cc9",
+        "symbol_sha256": "beda808a44ad29d5af2d8c1d352dd76b97c15d2f5fda174b2dc3289853a1dc18"
+      }
+    ],
+    "theoretical_basis": "DFTをNumPyの式から独立に構築。基底ごとの位相は重ね合わせ入力で識別できる。",
+    "application_conditions": "既知mockの最初のXを確認して除去した変換。8基底＋2重ね合わせ。",
+    "limits": "一般の生成コードから入力準備を自動で除去できない。本番は固定入力のまま。 2重ね合わせは基底0と1だけを含むため、列2の位相反転を見逃す追加反例を確認。",
+    "previous_audit_artifact": {
+      "file": "../controlled_checks.csv",
+      "kind": "multiple_input",
+      "cases": 20
+    }
+  },
+  {
+    "id": "M08",
+    "item": "パラメータ族",
+    "status": "独立検証済み",
+    "deployment_scope": "audit_only",
+    "source_support": [
+      "R1: §4.1, PDF p.8（動機のみ）"
+    ],
+    "implementation": [
+      {
+        "file": "scripts/audit_literature_reliability.py",
+        "symbol": "quantum_checks",
+        "line": 40,
+        "file_sha256": "3db07407cceba9d711d7dce6ef6708a94021dce78424a9771e2ba69309f8193f",
+        "symbol_sha256": "90140212b9deed8aa6b61705bb1481930b756805e43f667e79202ae11fe92e7d"
+      }
+    ],
+    "tests": [],
+    "theoretical_basis": "RY(θ)|0⟩=[cos(θ/2),sin(θ/2)]を独立な期待値として4角度で確認。",
+    "application_conditions": "手作り1量子ビットRYの4角度。",
+    "limits": "全Ansatz・QPEのパラメータ族ではない。原文がこの4角度を指定したわけではない。",
+    "previous_audit_artifact": {
+      "file": "../controlled_checks.csv",
+      "kind": "parameter_family",
+      "cases": 4
+    }
+  },
+  {
+    "id": "M09",
+    "item": "メタモルフィック変換",
+    "status": "独立検証済み",
+    "deployment_scope": "audit_only",
+    "source_support": [
+      "R1: §4.1, PDF p.8",
+      "R3: §5.2, PDF p.9"
+    ],
+    "implementation": [
+      {
+        "file": "scripts/audit_literature_reliability.py",
+        "symbol": "quantum_checks",
+        "line": 40,
+        "file_sha256": "3db07407cceba9d711d7dce6ef6708a94021dce78424a9771e2ba69309f8193f",
+        "symbol_sha256": "90140212b9deed8aa6b61705bb1481930b756805e43f667e79202ae11fe92e7d"
+      }
+    ],
+    "tests": [
+      {
+        "file": "tests/test_evaluation_audit.py",
+        "symbol": "test_barriers_do_not_violate_gate_count_bounds",
+        "line": 53,
+        "file_sha256": "8e3e2b383ac2b12a43a9760f2fff3070434442cfcf1f0ff75f5333c0a5b9e769",
+        "symbol_sha256": "ed24776f9283f93135f72e492d19c9c695ffee605c5fde42450b8e9ae5367749"
+      },
+      {
+        "file": "tests/test_evaluation_audit.py",
+        "symbol": "test_production_phase_alignment_matches_independent_formula",
+        "line": 23,
+        "file_sha256": "8e3e2b383ac2b12a43a9760f2fff3070434442cfcf1f0ff75f5333c0a5b9e769",
+        "symbol_sha256": "a1f0c3f79413a7bb375b792f67ce01a6da1909e51fa1e70a77dba0c11975c5bf"
+      }
+    ],
+    "theoretical_basis": "全体位相・XX=I・barrierは意味的出力を保存する独自の関係。",
+    "application_conditions": "既存mock10個に3変換、L2の維持を確認。",
+    "limits": "R4の手法ではない。R1のMorphQやR3の全手法を再現したものでもない。全L3や全変換は保証しない。",
+    "previous_audit_artifact": {
+      "file": "../controlled_checks.csv",
+      "kind": "metamorphic",
+      "cases": 30
+    }
+  },
+  {
+    "id": "M10",
+    "item": "プロセスのtimeout例",
+    "status": "実装確認済み",
+    "deployment_scope": "audit_only",
+    "source_support": [
+      "R5: §2.3, PDF p.4（隔離の動機）"
+    ],
+    "implementation": [
+      {
+        "file": "scripts/audit_literature_reliability.py",
+        "symbol": "controlled_process_checks",
+        "line": 118,
+        "file_sha256": "3db07407cceba9d711d7dce6ef6708a94021dce78424a9771e2ba69309f8193f",
+        "symbol_sha256": "a642a82bd67a44b68649838fde4a71005df8772bd6bde016be94ddbb71535fc6"
+      }
+    ],
+    "tests": [],
+    "theoretical_basis": "subprocessのtimeoutと終了値を信頼済みsnippetで確認。",
+    "application_conditions": "合成4例のみ。",
+    "limits": "セキュリティsandbox・孫プロセス停止・CPU/memory制限を実装したことにはならない。"
+  },
+  {
+    "id": "M11",
+    "item": "本番sandbox・再評価executor",
+    "status": "未確認",
+    "deployment_scope": "not_implemented",
+    "source_support": [
+      "R5: §2.3, PDF p.4"
+    ],
+    "implementation": [],
+    "tests": [],
+    "theoretical_basis": "ホスト・network保護の必要性を参考にする。",
+    "application_conditions": "実際の生成コードに到達制限・資源制限・時間制限を適用することが条件。",
+    "limits": "コードの本番境界と再評価のcheckpointは未検証。NO-GO。"
+  },
+  {
+    "id": "M12",
+    "item": "pass@k",
+    "status": "原文確認済み",
+    "deployment_scope": "not_implemented",
+    "source_support": [
+      "R5: §2.1 / Eq.1 / Figure 3, PDF pp.2–3"
+    ],
+    "implementation": [],
+    "tests": [],
+    "theoretical_basis": "n候補中c成功からk候補の成功指標を計算する原文の設定。",
+    "application_conditions": "原文と同じ候補生成・選択条件を満たす必要。",
+    "limits": "適応的な修正roundを独立候補と同一視できない。本実験でpass@kは実装・算出していない。"
+  },
+  {
+    "id": "M13",
+    "item": "Self Refine原論文との対応",
+    "status": "実装確認済み",
+    "deployment_scope": "production_variant",
+    "source_support": [
+      "R6: §2, PDF pp.2–4 / Algorithm 1 p.3 / Eq.4 p.4"
+    ],
+    "implementation": [
+      {
+        "file": "harness/interventions/prompts.py",
+        "symbol": "build_intervention_prompt",
+        "line": 54,
+        "file_sha256": "ea630da1c7051c0b9cd36163d19cf8d56746dad074408a7d8bd7e2002e6b4ec4",
+        "symbol_sha256": "dec38c19a332f8ea19a1ce117ad5e2a8ef87dab518ed570a44ea357662aa1bcb"
+      },
+      {
+        "file": "harness/runner.py",
+        "symbol": "run_intervention",
+        "line": 225,
+        "file_sha256": "af8a1d53838ae28d52b7fad14aae9f90b33a5a2d7f2a1ccd92da5c95a947355e",
+        "symbol_sha256": "df02acbdc7681f01dc86ba36d95ebccc874a5223a02f99497544695407f437f1"
+      }
+    ],
+    "tests": [
+      {
+        "file": "tests/test_interventions_v2.py",
+        "symbol": "test_self_refine_does_not_include_execution_diagnosis",
+        "line": 29,
+        "file_sha256": "c773368c6abbc3830368efa7ffa847f1d35ac099a9cef58e9026824861f1466b",
+        "symbol_sha256": "28f6531c041a2401ac38227720169bcf02685ca71a4b5ed244e6ed9ced970da4"
+      }
+    ],
+    "theoretical_basis": "原文はfeedbackとrefineの別要求・履歴・停止・最終出力。",
+    "application_conditions": "現Rは同一モデルの自己点検修正という派生条件。",
+    "limits": "現Rは1要求に統合、全履歴なし、外部L3停止。原論文の忠実な再現と独立な効果検証は未確認。"
+  },
+  {
+    "id": "M14",
+    "item": "段階・失敗分類",
+    "status": "実装確認済み",
+    "deployment_scope": "production",
+    "source_support": [
+      "R3: §2.3, PDF p.4（仕様の背景のみ）"
+    ],
+    "implementation": [
+      {
+        "file": "harness/evaluator.py",
+        "symbol": "evaluate",
+        "line": 144,
+        "file_sha256": "ef91a6c42f895b3e79576f66aff3c11bdbe26eb71f4745cc28934c08bd37d77f",
+        "symbol_sha256": "c66a9f341a32a85e709c73de671905e1fac06ccf64eef0e8c49cfe713d9c2fa7"
+      },
+      {
+        "file": "harness/evaluator.py",
+        "symbol": "_exec_code",
+        "line": 52,
+        "file_sha256": "ef91a6c42f895b3e79576f66aff3c11bdbe26eb71f4745cc28934c08bd37d77f",
+        "symbol_sha256": "b0e5a1eb1395fd9ca61e1a0b943e9e09a825a2522ed696b22141e702d14fe4e2"
+      },
+      {
+        "file": "harness/evaluator.py",
+        "symbol": "_try_build",
+        "line": 86,
+        "file_sha256": "ef91a6c42f895b3e79576f66aff3c11bdbe26eb71f4745cc28934c08bd37d77f",
+        "symbol_sha256": "c38371c280e0aa297a87890a564dc1e26d82993367d7ba7355178135de594cba"
+      }
+    ],
+    "tests": [
+      {
+        "file": "tests/test_failure_metadata.py",
+        "symbol": "test_stage_and_cause",
+        "line": 26,
+        "file_sha256": "720f3885010bbe01a89ea187a6685ed7478ae390b6b71a73847c90ac38c44411",
+        "symbol_sha256": "af871dda6ee8c06860d552479894db9c4fc13f491c05582ed4a8c49ec8859fb7"
+      },
+      {
+        "file": "tests/test_canonical_readout.py",
+        "symbol": "test_partial_readout_is_model_interface_failure",
+        "line": 41,
+        "file_sha256": "47f7d189e9db4228ec1b8809dae70b1a2354f5e113e42e50598a9a3305f13cf8",
+        "symbol_sha256": "064096cf475f6318165950083341443c6542df9edc936386a1658664a5747f3e"
+      }
+    ],
+    "theoretical_basis": "L0〜L3・taxonomyは本プロジェクトの独自契約。",
+    "application_conditions": "現在のエラーと段階定義。",
+    "limits": "論文がこのtaxonomyを指定していない。未分類例や実行基盤エラー全般を完全に識別する保証ではない。"
+  },
+  {
+    "id": "M15",
+    "item": "最初・途中・最後の成功",
+    "status": "実装確認済み",
+    "deployment_scope": "production_and_audit",
+    "source_support": [
+      "R6: §2, PDF p.4（last出力） / その他は独自設計"
+    ],
+    "implementation": [
+      {
+        "file": "harness/runner.py",
+        "symbol": "_record",
+        "line": 168,
+        "file_sha256": "af8a1d53838ae28d52b7fad14aae9f90b33a5a2d7f2a1ccd92da5c95a947355e",
+        "symbol_sha256": "2899b4818850a823a3214cf5d5cc883ce190deff360d9213c5d1eeac1d58a496"
+      },
+      {
+        "file": "scripts/audit_literature_reliability.py",
+        "symbol": "summarize_history",
+        "line": 26,
+        "file_sha256": "3db07407cceba9d711d7dce6ef6708a94021dce78424a9771e2ba69309f8193f",
+        "symbol_sha256": "9ae434e57b6ddd7cb4c5348cd0fbed737a978097934d0579cda6602a16848904"
+      }
+    ],
+    "tests": [
+      {
+        "file": "tests/test_literature_reliability.py",
+        "symbol": "test_history_distinguishes_first_ever_final_and_regression",
+        "line": 42,
+        "file_sha256": "a6af3bbbb649471b490173de7315469eb71282f95b5034e48b8c61803d7f2cde",
+        "symbol_sha256": "354f21130d5a59049144ca920ac3d10923dec0fd8bfdad76e7695b2715daf511"
+      }
+    ],
+    "theoretical_basis": "本番のfirst_success_roundとfinal_successを、監査のever・退行案と区別。",
+    "application_conditions": "保存された連続roundの履歴。",
+    "limits": "監査案の全列を再評価用本番集計へ追加してはいない。存在しない後続roundは不明。"
+  },
+  {
+    "id": "M16",
+    "item": "破損・重複の再開拒否",
+    "status": "実装確認済み",
+    "deployment_scope": "production",
+    "source_support": [
+      "指定6資料に直接の方式指定なし：独自運用設計"
+    ],
+    "implementation": [
+      {
+        "file": "harness/experiment.py",
+        "symbol": "load_existing",
+        "line": 248,
+        "file_sha256": "ce7ce8ab50ed38d0dd159bcabdb4efe881e865a8483af731a661dcba8915539e",
+        "symbol_sha256": "1b097e82af270ef259b146f38c3e98f4182a96edc083f68eacbe28fc793521f3"
+      }
+    ],
+    "tests": [
+      {
+        "file": "tests/test_literature_reliability.py",
+        "symbol": "test_resume_rejects_corrupt_file_without_rewriting",
+        "line": 57,
+        "file_sha256": "a6af3bbbb649471b490173de7315469eb71282f95b5034e48b8c61803d7f2cde",
+        "symbol_sha256": "36dbd3ae3ead5ca62ac4d3d74d77b1d782a6ebd8e74c50788d6f6a309671746f"
+      },
+      {
+        "file": "tests/test_literature_reliability.py",
+        "symbol": "test_valid_resume_preserves_existing_records",
+        "line": 65,
+        "file_sha256": "a6af3bbbb649471b490173de7315469eb71282f95b5034e48b8c61803d7f2cde",
+        "symbol_sha256": "223565d6a88936fdc894cb026151661d55da5dfe1a4f95d7a880536e4a59b75f"
+      }
+    ],
+    "theoretical_basis": "同じrecord keyと不正なJSONを拒否し、入力を保持する。",
+    "application_conditions": "通常実験JSONLの読込。",
+    "limits": "原子的checkpoint、二重worker排他、本番再評価のexactly-onceを保証しない。"
+  },
+  {
+    "id": "M17",
+    "item": "評価器版・sampling方針の統合防止",
+    "status": "実装確認済み",
+    "deployment_scope": "production",
+    "source_support": [
+      "指定6資料に直接の方式指定なし：独自運用設計"
+    ],
+    "implementation": [
+      {
+        "file": "scripts/pool_experiments.py",
+        "symbol": "signature",
+        "line": 36,
+        "file_sha256": "a2aa14cbbbba07d3adba83b1e79f042954a6450d9bfa3a912e43742e63852fe3",
+        "symbol_sha256": "5b57b6a637870a25a7dec28c6cdc91dc5f0e95179ecaea6cfb91f97e789f4910"
+      },
+      {
+        "file": "scripts/run_experiment.py",
+        "symbol": "_check_evaluator_resume",
+        "line": 42,
+        "file_sha256": "bab80483aeb343aa7d522e70ad9ac3fb375d7d6e9229be7aaafd2992bf0091aa",
+        "symbol_sha256": "fab52cfe48a6a50859d8d9fbd48f2648d5743a9e4f43cb5a95e8a89133faeb57"
+      }
+    ],
+    "tests": [
+      {
+        "file": "tests/test_literature_reliability.py",
+        "symbol": "test_pool_signature_separates_evaluator_versions_and_sampling",
+        "line": 73,
+        "file_sha256": "a6af3bbbb649471b490173de7315469eb71282f95b5034e48b8c61803d7f2cde",
+        "symbol_sha256": "2c9b3c93df5120aa41aa56d3c28cbff8c586f2037aafa2c8b4c8109fa3f548ba"
+      },
+      {
+        "file": "tests/test_canonical_readout.py",
+        "symbol": "test_resume_does_not_mix_evaluator_versions",
+        "line": 60,
+        "file_sha256": "47f7d189e9db4228ec1b8809dae70b1a2354f5e113e42e50598a9a3305f13cf8",
+        "symbol_sha256": "97cc9b0a600026bacc986ab716be3ff1ca1912611f27890c7026b504e276c04c"
+      }
+    ],
+    "theoretical_basis": "比較signatureに版・sampling・状態方針を含める。",
+    "application_conditions": "現在の比較・新規生成workflow。",
+    "limits": "コードhashやtask仕様の全差分を同じsignatureで自動検証することまでは確認していない。"
+  },
+  {
+    "id": "M18",
+    "item": "Wilson区間",
+    "status": "実装確認済み",
+    "deployment_scope": "audit_only",
+    "source_support": [
+      "指定6資料をWilson式の出典として使わない：独自採用"
+    ],
+    "implementation": [
+      {
+        "file": "scripts/audit_literature_reliability.py",
+        "symbol": "wilson_interval",
+        "line": 18,
+        "file_sha256": "3db07407cceba9d711d7dce6ef6708a94021dce78424a9771e2ba69309f8193f",
+        "symbol_sha256": "953da604ab55b0d6f732826671d107cc9e474c6b85f2f3e98ddad705be843d8b"
+      }
+    ],
+    "tests": [
+      {
+        "file": "tests/test_literature_reliability.py",
+        "symbol": "test_wilson_interval_handles_extremes_and_invalid_denominators",
+        "line": 50,
+        "file_sha256": "a6af3bbbb649471b490173de7315469eb71282f95b5034e48b8c61803d7f2cde",
+        "symbol_sha256": "25d0a0c9713cc67f81d82967f6472e464f8f6d7d6bfe27c850b860a7ba6aee0a"
+      }
+    ],
+    "theoretical_basis": "二項模型の比率区間を計算する監査用関数。",
+    "application_conditions": "独立な二項反復。95%水準は独自設定。",
+    "limits": "端点の検査だけでcoverageを検証したとは扱わない。5,000条件記録の本番CI・cluster設計は未実装。"
+  },
+  {
+    "id": "M19",
+    "item": "shots・seed・閾値の感度",
+    "status": "実装確認済み",
+    "deployment_scope": "production_parameters_and_audit_model",
+    "source_support": [
+      "R1: §4.3.2, PDF p.12（閾値・標本の背景）"
+    ],
+    "implementation": [
+      {
+        "file": "harness/evaluator.py",
+        "symbol": "_run_distribution",
+        "line": 101,
+        "file_sha256": "ef91a6c42f895b3e79576f66aff3c11bdbe26eb71f4745cc28934c08bd37d77f",
+        "symbol_sha256": "0cfb16c24df796a186e0d9f47e2566281dd73a08b28afe0a50a7e74933e256dc"
+      },
+      {
+        "file": "scripts/audit_literature_reliability.py",
+        "symbol": "sampling_sensitivity",
+        "line": 138,
+        "file_sha256": "3db07407cceba9d711d7dce6ef6708a94021dce78424a9771e2ba69309f8193f",
+        "symbol_sha256": "adef0a1dd288872be2dd41d40611bbf530394336c5c9fc0da88230ea99ee55c7"
+      }
+    ],
+    "tests": [
+      {
+        "file": "tests/test_evaluation_audit.py",
+        "symbol": "test_distribution_simulation_is_reproducible",
+        "line": 33,
+        "file_sha256": "8e3e2b383ac2b12a43a9760f2fff3070434442cfcf1f0ff75f5333c0a5b9e769",
+        "symbol_sha256": "5bdcc0c0f0772d5b07a75ef5ae150bd8f3ff08c21603642f6b1e80190d2a0387"
+      }
+    ],
+    "theoretical_basis": "seed固定で再現性を確認し、二項模型の108組を計算。数値は独自設定。",
+    "application_conditions": "固定環境の再現と二値分布の模型。",
+    "limits": "全タスクの誤判定率ではない。seed固定でも境界の不確かさは消えない。"
+  },
+  {
+    "id": "M20",
+    "item": "process fidelity・形式的同値性",
+    "status": "原文確認済み",
+    "deployment_scope": "not_implemented",
+    "source_support": [
+      "R2: process_fidelity",
+      "R1: §4.3.3, PDF p.13"
+    ],
+    "implementation": [],
+    "tests": [],
+    "theoretical_basis": "チャネルや変換の比較という別の評価対象を参照。",
+    "application_conditions": "変換・チャネル・入力interfaceを定義できる場合。",
+    "limits": "本番の全変換同値性、ZX/SATなどの形式検証は実装していない。Operatorの使用だけで再現したとはしない。"
+  },
+  {
+    "id": "M21",
+    "item": "Abreuらの手法",
+    "status": "未確認",
+    "deployment_scope": "not_implemented",
+    "source_support": [
+      "R4: 本文未取得、根拠から除外"
+    ],
+    "implementation": [],
+    "tests": [],
+    "theoretical_basis": "本文未確認。",
+    "application_conditions": "本文の取得・該当箇所確認が先。",
+    "limits": "他論文の引用・書誌情報から方法や結果を補わない。"
+  }
+]

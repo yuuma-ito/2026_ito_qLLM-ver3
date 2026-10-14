@@ -1,0 +1,39 @@
+{
+  "captured_at_utc": "2026-10-14T12:26:01.960944+00:00",
+  "scope": "Source acquisition and source/implementation/test correspondence; no main reevaluation",
+  "source_status_count": {
+    "requested_references": 6,
+    "original_pdf_or_spec_checked": 5,
+    "unconfirmed": "R4"
+  },
+  "independent_verification_scope": "Selected analytical/known-state cases; no full correctness proof",
+  "evaluator_version": "evaluation_policy_v4",
+  "production_code_changed": false,
+  "main_5000_reevaluation_started": false,
+  "artifacts": [
+    {
+      "path": "verification_results.json",
+      "sha256": "2e2f924a3705d98b291b5de07a1bdcc8902ac8133a2c58ad5bbbdfa9b80149dc"
+    },
+    {
+      "path": "stage_summary.json",
+      "sha256": "6b8bac7b7b1e6396604e3887c76a1da9f9def3b25f3b0690af825bd8eae2b7af"
+    },
+    {
+      "path": "README.md",
+      "sha256": "8c7fb35545b2bfe2e8769b075809c767c2b8bd79274832432f6022fd2da247be"
+    },
+    {
+      "path": "source_receipts.json",
+      "sha256": "a42e7bdb6317eaba733eca30fcd260d017a9c6b47b63a3506efe6302717a190a"
+    },
+    {
+      "path": "installed_api_recheck.json",
+      "sha256": "e6db744db4940d7e56a2878fe5cf56502441da156a1e0d0ff92a1fabde798204"
+    },
+    {
+      "path": "traceability.json",
+      "sha256": "fe624024d9d4e06f758336ec9b0f188e79d5863acb26d19024dc36e805d4c886"
+    }
+  ]
+}

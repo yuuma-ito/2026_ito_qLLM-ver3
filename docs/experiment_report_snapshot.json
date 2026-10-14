@@ -1,5 +1,5 @@
 {
-  "captured_at": "2026-10-14T20:00:03.210670+09:00",
+  "captured_at": "2026-10-14T21:00:03.869097+09:00",
   "scope": "Verified original experiments and a two-model seed 0-9 completion run; pooled seed 0-19 results retain source and feedback-version differences.",
   "runs": [
     {
@@ -1449,5 +1449,21 @@
     "go_no_go": "NO-GO",
     "historical_scores_reevaluated": false,
     "main_5000_reevaluation_started": false
+  },
+  "source_implementation_recheck": {
+    "manifest": "docs/analysis/literature_reliability_20261014/source_implementation_recheck/manifest.json",
+    "source_receipts": "docs/analysis/literature_reliability_20261014/source_implementation_recheck/source_receipts.json",
+    "items": 21,
+    "stages": {
+      "original_text": 2,
+      "implementation": 8,
+      "independent_checks": 9,
+      "unconfirmed": 2
+    },
+    "targeted_tests_passed": 80,
+    "new_tests": 3,
+    "production_code_changed": false,
+    "main_5000_reevaluation_started": false,
+    "go_no_go": "NO-GO"
   }
 }

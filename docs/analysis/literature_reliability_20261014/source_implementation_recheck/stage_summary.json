@@ -1,0 +1,10 @@
+{
+  "counts": {
+    "原文確認済み": 2,
+    "実装確認済み": 8,
+    "独立検証済み": 9,
+    "未確認": 2
+  },
+  "item_count": 21,
+  "interpretation": "Stages are per item and deployment scope; independent verification is bounded case evidence, not a correctness proof."
+}

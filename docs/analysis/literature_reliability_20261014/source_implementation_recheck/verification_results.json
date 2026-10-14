@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "targeted_tests_passed": 80,
+  "warnings": 20,
+  "new_tests": 3,
+  "production_code_changed": false,
+  "source_version": "evaluation_policy_v4",
+  "main_5000_reevaluation_started": false,
+  "historical_scores_changed": false,
+  "source_receipts_preserved": true,
+  "code_and_test_symbols_verified": true,
+  "check_date": "2026-10-14",
+  "previous_full_suite": {
+    "passed": 276,
+    "scope": "previous audit, not rerun as a full suite in this recheck"
+  },
+  "pilot_threshold_mismatch_confirmed": true,
+  "uncovered_qft_column_phase_confirmed": true,
+  "parent_experiment_artifacts_unchanged": true,
+  "production_hashes_unchanged": true,
+  "historical_raw_hashes_unchanged": true,
+  "receipt_bytes_and_pages_verified": true
+}

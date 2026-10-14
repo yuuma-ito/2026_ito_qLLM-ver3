@@ -1,0 +1,45 @@
+{
+  "versions": {
+    "qiskit": "2.5.2",
+    "qiskit-aer": "0.17.2",
+    "numpy": "2.5.3"
+  },
+  "apis": [
+    {
+      "name": "Statevector.reset",
+      "signature": "(self, qargs: 'list[int] | None' = None) -> 'Statevector'",
+      "source_line": 675,
+      "source_sha256": "ad925b5379105af411d00c5431a94362c538075ec1984e569d7b8637341c51aa"
+    },
+    {
+      "name": "Statevector.equiv",
+      "signature": "(self, other: 'Statevector', rtol: 'float | None' = None, atol: 'float | None' = None) -> 'bool'",
+      "source_line": 480,
+      "source_sha256": "2982419181a9fbf0ffd347aafe0983affbd7ceffd12540b26b06bc012c8d8a6a"
+    },
+    {
+      "name": "DensityMatrix.from_instruction",
+      "signature": "(instruction: 'circuit.instruction.Instruction | QuantumCircuit') -> 'DensityMatrix'",
+      "source_line": 603,
+      "source_sha256": "cb70f9c20c786bae56226f4eaf9fb1601ce9d9f74f2898d77d749614ba5d880c"
+    },
+    {
+      "name": "Operator.is_unitary",
+      "signature": "(self, atol=None, rtol=None)",
+      "source_line": 462,
+      "source_sha256": "5b7395a0d3e80f85f42666594a3756b874b68622a46013211006bc525c7cb0c4"
+    },
+    {
+      "name": "state_fidelity",
+      "signature": "(state1: 'Statevector | DensityMatrix', state2: 'Statevector | DensityMatrix', validate: 'bool' = True) -> 'float'",
+      "source_line": 29,
+      "source_sha256": "5da10d658173211f90bcf48d4ee1e0342103f393e429be7588bea65cbf2950d8"
+    },
+    {
+      "name": "QuantumCircuit.measure_all",
+      "signature": "(self, inplace: 'bool' = True, add_bits: 'bool' = True) -> 'QuantumCircuit | None'",
+      "source_line": 4617,
+      "source_sha256": "de9e7c969556c3156613b376674aa92e217b190ba6fdbd94ac59a3eae2f84456"
+    }
+  ]
+}

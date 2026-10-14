@@ -12,7 +12,33 @@
       "§4.3.1–4.3.3",
       "§7.2"
     ],
-    "application": "入力・出力オラクル・距離・統計・mutationの分類を監査の枠組みに使用。特定閾値や本実験の正当性を保証する文献ではない。"
+    "application": "入力・出力オラクル・距離・統計・mutationの分類を監査の枠組みに使用。特定閾値や本実験の正当性を保証する文献ではない。",
+    "source_recheck_evidence": "source_implementation_recheck/source_receipts.json",
+    "receipt_sha256": "6394250beaa149bf862231801d3d234a48852e68eb0ce8e2f4f15ec3a19c316f",
+    "retrieved_at_utc": "2026-10-14T12:04:11.560977+00:00",
+    "checked_pdf_pages": [
+      {
+        "pdf_page": 8,
+        "section": "§4.1",
+        "page_text_sha256": "5291d9c438f20b4d836f10237c5b7258a14d50fca84a06adf02ea1c01e5b09b1"
+      },
+      {
+        "pdf_page": 12,
+        "section": "§4.3.2",
+        "page_text_sha256": "9ea145abe0d54e1241bf9cf85c209b6e93432139675308116e9363297c7ad5fc"
+      },
+      {
+        "pdf_page": 13,
+        "section": "§4.3.3",
+        "page_text_sha256": "adb6db6d5d5f1d3ee62ad01d95a68bbd29a3acab97058ddb5179568d0085c40e"
+      },
+      {
+        "pdf_page": 27,
+        "section": "§7.2",
+        "page_text_sha256": "c4825712e5aeaf8ab6a43f4c9ebd023a1c7f8f356e867d11b03a2e06b6209faa"
+      }
+    ],
+    "verified_version": "arXiv:2410.00650v1"
   },
   {
     "id": "R2",
@@ -28,7 +54,11 @@
       "DensityMatrix.from_instruction",
       "Operator.is_unitary"
     ],
-    "application": "全体位相・状態忠実度・部分reset・ユニタリ判定の仕様を照合。latest版をローカル2.5.2と同じ版だと仮定しない。"
+    "application": "全体位相・状態忠実度・部分reset・ユニタリ判定の仕様を照合。latest版をローカル2.5.2と同じ版だと仮定しない。",
+    "source_recheck_evidence": "source_implementation_recheck/source_receipts.json",
+    "receipt_sha256": "e82883e88d288f46e5497feb6aff4d3c991f0eb718d1ef000a494468a9eba429",
+    "retrieved_at_utc": "2026-10-14T12:04:11.583560+00:00",
+    "source_delivery": "User-specified IBM documentation mirror; installed Qiskit 2.5.2 checked separately"
   },
   {
     "id": "R3",
@@ -44,7 +74,28 @@
       "§5.1",
       "§5.2"
     ],
-    "application": "soundness/completeness、抽象仕様の限界、派生・メタモルフィックオラクルを区別する。一般ソフトウェアの論点を量子の確率出力に適用する際は条件を明記。"
+    "application": "soundness/completeness、抽象仕様の限界、派生・メタモルフィックオラクルを区別する。一般ソフトウェアの論点を量子の確率出力に適用する際は条件を明記。",
+    "source_recheck_evidence": "source_implementation_recheck/source_receipts.json",
+    "receipt_sha256": "0572def3bfd4baaadb2041a098f12a0bac261427962e46cef084efff60fd3a36",
+    "retrieved_at_utc": "2026-10-14T12:04:11.562109+00:00",
+    "checked_pdf_pages": [
+      {
+        "pdf_page": 4,
+        "section": "§2.3",
+        "page_text_sha256": "7c269a73fe6eb0dbf65a6ba0c3e88a394deaf0024953fa03a0b470a6e5c522de"
+      },
+      {
+        "pdf_page": 8,
+        "section": "§4.3.1",
+        "page_text_sha256": "0f53b9f09562554818dd8f97bd6b860bafdc73ec0f2f4c934095ca4e6632e1ea"
+      },
+      {
+        "pdf_page": 9,
+        "section": "§5.1 / §5.2",
+        "page_text_sha256": "74589d1748e8ea3653b9dc16b1d0d2da110dfb376efcc849a772adaa366447d4"
+      }
+    ],
+    "verified_version": "UCL 06963470.pdf, IEEE TSE 41(5), 2015"
   },
   {
     "id": "R4",
@@ -56,7 +107,8 @@
     "status": "本文未確認",
     "locations": [],
     "access_problem": "DOI先は取得失敗、ACM PDFは403。著者・会議ページと検索で本文の公開版を探したが取得できなかった。",
-    "application": "手法・結果を推測せず、本報告の実装根拠には使用しない。R1による紹介もR4原文確認の代わりにしない。"
+    "application": "手法・結果を推測せず、本報告の実装根拠には使用しない。R1による紹介もR4原文確認の代わりにしない。",
+    "source_recheck_evidence": "source_implementation_recheck/source_receipts.json"
   },
   {
     "id": "R5",
@@ -71,7 +123,28 @@
       "§2.2",
       "§2.3（PDF pp.2–4）"
     ],
-    "application": "実行による機能的評価とサンドボックスの必要性を参照。独立候補に対するpass@kを適応的な修正履歴へそのまま使わない。"
+    "application": "実行による機能的評価とサンドボックスの必要性を参照。独立候補に対するpass@kを適応的な修正履歴へそのまま使わない。",
+    "source_recheck_evidence": "source_implementation_recheck/source_receipts.json",
+    "receipt_sha256": "ebae72ea0e8a5eb2ecbccdb985aec6cc1254a7c4d29e6d4de7866db1e66c4855",
+    "retrieved_at_utc": "2026-10-14T12:04:11.562892+00:00",
+    "checked_pdf_pages": [
+      {
+        "pdf_page": 2,
+        "section": "§2.1",
+        "page_text_sha256": "652bcb5f11342d13434f709ec704bf4909cde9dd06e69bbb6d8203732911f871"
+      },
+      {
+        "pdf_page": 3,
+        "section": "Eq.1 / Figure 3",
+        "page_text_sha256": "ae1aca571501d6a802b3666a255dbbe931340103d72044f0142f9cb6b0f2f18b"
+      },
+      {
+        "pdf_page": 4,
+        "section": "§2.3",
+        "page_text_sha256": "47ffa087ba608bb4cd5cd3af0d578d9644360a69d36b5c9e5e96741dd5c7e7d1"
+      }
+    ],
+    "verified_version": "arXiv:2107.03374v2"
   },
   {
     "id": "R6",
@@ -84,6 +157,27 @@
     "locations": [
       "§2 / Algorithm 1 / Eq.1–4"
     ],
-    "application": "同じモデルによる生成・feedback・refine、履歴と停止条件を参照。現在のRはfeedbackと修正を1要求にまとめる方式であり、原論文の忠実な再現とは扱わない。"
+    "application": "同じモデルによる生成・feedback・refine、履歴と停止条件を参照。現在のRはfeedbackと修正を1要求にまとめる方式であり、原論文の忠実な再現とは扱わない。",
+    "source_recheck_evidence": "source_implementation_recheck/source_receipts.json",
+    "receipt_sha256": "81e44592314d80218ad108d3490cd0b84ba5962fefd5c84819987afd77a57087",
+    "retrieved_at_utc": "2026-10-14T12:04:11.563728+00:00",
+    "checked_pdf_pages": [
+      {
+        "pdf_page": 2,
+        "section": "§2 / Eq.1",
+        "page_text_sha256": "61737de49cbe4e46f94a7b2b0d6506d965117f514ad4ffd09b41b10e6c9f6abd"
+      },
+      {
+        "pdf_page": 3,
+        "section": "Algorithm 1",
+        "page_text_sha256": "4b4755f358849d0a13414b7dccbe764e701ed3b5607eaebf0c08cd67dbcbcf07"
+      },
+      {
+        "pdf_page": 4,
+        "section": "Eq.4 / history / final output",
+        "page_text_sha256": "bd38c6231de8f2f9deb1111e8a4eea5e152e4e8962d4f71626c4a444310e3e1f"
+      }
+    ],
+    "verified_version": "arXiv:2303.17651v2"
   }
 ]
