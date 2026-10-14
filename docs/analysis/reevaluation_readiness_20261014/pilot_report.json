@@ -1,0 +1,975 @@
+{
+  "captured_at_utc": "2026-10-14T13:10:40.589762+00:00",
+  "manifest": {
+    "schema": "saved_code_reevaluation_v1",
+    "purpose": "pilot_only",
+    "snapshot_sha256": "cb7e9532a4dea52e763f43eb7d366707bcb37c67eb5e29d094a1e3fd872008f0",
+    "sources": {
+      "results/shared_three_models_full_20261008T103231611899Z": {
+        "raw_sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515",
+        "config_sha256": "a4cd6ab1126e8927aa3a76c4fcf7392026007215d0388d8b6f73c3bba84691ec"
+      },
+      "results/shared_five_models_full_20261010T041019864060Z": {
+        "raw_sha256": "308d32d6b097a8628c0d90889e9f3a5dd5054443ef0e0c8f0c3c054aec7f2599",
+        "config_sha256": "5c9232f76cc6758b52983fe90ec0757ba2ffe2c4972884a25736f09edd45f22a"
+      },
+      "results/shared_two_models_seed0_9_full_20261012T100658266051Z": {
+        "raw_sha256": "56b0859fdd09b522f542a0e45f0539b2e8102771d2ce6fe16b8ddf7c12d815e0",
+        "config_sha256": "dd6b694be0b0c03b3bc33ecc13c69872104a5dba2b66706389b8163a618b0a9b"
+      }
+    },
+    "selection": [
+      {
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:4b",
+        "task_id": "T1_Bell",
+        "base_seed": 0,
+        "condition_id": "baseline"
+      },
+      {
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T2_GHZ",
+        "base_seed": 0,
+        "condition_id": "baseline"
+      },
+      {
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:gemma4:e4b-it-qat",
+        "task_id": "T6_QFT_001",
+        "base_seed": 0,
+        "condition_id": "baseline"
+      },
+      {
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:4b",
+        "task_id": "T7_IQFT_001",
+        "base_seed": 0,
+        "condition_id": "baseline"
+      },
+      {
+        "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "model_spec": "ollama:gemma4:e4b-it-qat",
+        "task_id": "T8_QPE_001",
+        "base_seed": 16,
+        "condition_id": "baseline"
+      },
+      {
+        "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "model_spec": "ollama:gemma4:e4b-it-qat",
+        "task_id": "T8_QPE_001",
+        "base_seed": 16,
+        "condition_id": "execution_feedback"
+      },
+      {
+        "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "model_spec": "ollama:qwen2.5-coder:7b",
+        "task_id": "T4_BV_011",
+        "base_seed": 0,
+        "condition_id": "baseline"
+      },
+      {
+        "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "model_spec": "ollama:gemma3:4b",
+        "task_id": "T9_Ansatz_001",
+        "base_seed": 0,
+        "condition_id": "baseline"
+      }
+    ],
+    "cases": [
+      {
+        "key": "839221e5511a4baf39f63e38de57bf8d8d464316e5549433fe06005fe692878a:0",
+        "record_key": "839221e5511a4baf39f63e38de57bf8d8d464316e5549433fe06005fe692878a",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:4b",
+        "task_id": "T1_Bell",
+        "base_seed": 0,
+        "condition_id": "baseline",
+        "round": 0,
+        "is_final": true,
+        "code_sha256": "984dc9160fff91d89fc222b443c9aeef75e13efaf31fab5070d05e854cb746fd",
+        "old_primary": {
+          "L0": false,
+          "L1": false,
+          "L2": false,
+          "structure_match": false,
+          "L3": false,
+          "error_category": "import_error"
+        }
+      },
+      {
+        "key": "2c76858a0e66524b68e6677ddef30a2043d6ed679f7842c8377ce4bc4c0dad6a:0",
+        "record_key": "2c76858a0e66524b68e6677ddef30a2043d6ed679f7842c8377ce4bc4c0dad6a",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T2_GHZ",
+        "base_seed": 0,
+        "condition_id": "baseline",
+        "round": 0,
+        "is_final": true,
+        "code_sha256": "49ea8355c1c929063b29b31c579d84e2e27b0f897a796af7d31a6af3f2e2043b",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": true,
+          "structure_match": true,
+          "L3": true,
+          "error_category": "ok"
+        }
+      },
+      {
+        "key": "55c7f83e4f621ecc1d2985a24d7b1be402c51bb9368c6335ffcdfaa6858f4a61:0",
+        "record_key": "55c7f83e4f621ecc1d2985a24d7b1be402c51bb9368c6335ffcdfaa6858f4a61",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:gemma4:e4b-it-qat",
+        "task_id": "T6_QFT_001",
+        "base_seed": 0,
+        "condition_id": "baseline",
+        "round": 0,
+        "is_final": true,
+        "code_sha256": "55ad48a8eb4e32af4cdae3763862559e2f25007ee9e4fabfa4fbbb247d2e4cf6",
+        "old_primary": {
+          "L0": true,
+          "L1": false,
+          "L2": false,
+          "structure_match": false,
+          "L3": false,
+          "error_category": "interface_mismatch"
+        }
+      },
+      {
+        "key": "1e788ea98dbc4f46c4e67f6acbf4dcfb29737c0e4933529c01ef04feb839c1f0:0",
+        "record_key": "1e788ea98dbc4f46c4e67f6acbf4dcfb29737c0e4933529c01ef04feb839c1f0",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:4b",
+        "task_id": "T7_IQFT_001",
+        "base_seed": 0,
+        "condition_id": "baseline",
+        "round": 0,
+        "is_final": true,
+        "code_sha256": "1a86cccb60b8418a1fb772c25b8f66cf531acf645ef06f6d3370b17e8191e74e",
+        "old_primary": {
+          "L0": true,
+          "L1": false,
+          "L2": false,
+          "structure_match": false,
+          "L3": false,
+          "error_category": "interface_mismatch"
+        }
+      },
+      {
+        "key": "b832c18aa2058f3eaf6c1aa59ca691d3e1591495f9dc75d5e9766022b4a8b46d:0",
+        "record_key": "b832c18aa2058f3eaf6c1aa59ca691d3e1591495f9dc75d5e9766022b4a8b46d",
+        "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "model_spec": "ollama:gemma4:e4b-it-qat",
+        "task_id": "T8_QPE_001",
+        "base_seed": 16,
+        "condition_id": "baseline",
+        "round": 0,
+        "is_final": true,
+        "code_sha256": "211472064d5aefc8e890f9a182ea01359c98115c3f15eaaef03aaa7be1ad542a",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": false,
+          "structure_match": true,
+          "L3": false,
+          "error_category": "wrong_output"
+        }
+      },
+      {
+        "key": "45c95434e14e287a81a2b0d544164f518c2ab4697e08ed8bf4c9d925f9f93547:0",
+        "record_key": "45c95434e14e287a81a2b0d544164f518c2ab4697e08ed8bf4c9d925f9f93547",
+        "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "model_spec": "ollama:gemma4:e4b-it-qat",
+        "task_id": "T8_QPE_001",
+        "base_seed": 16,
+        "condition_id": "execution_feedback",
+        "round": 0,
+        "is_final": false,
+        "code_sha256": "211472064d5aefc8e890f9a182ea01359c98115c3f15eaaef03aaa7be1ad542a",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": false,
+          "structure_match": true,
+          "L3": false,
+          "error_category": "wrong_output"
+        }
+      },
+      {
+        "key": "45c95434e14e287a81a2b0d544164f518c2ab4697e08ed8bf4c9d925f9f93547:1",
+        "record_key": "45c95434e14e287a81a2b0d544164f518c2ab4697e08ed8bf4c9d925f9f93547",
+        "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "model_spec": "ollama:gemma4:e4b-it-qat",
+        "task_id": "T8_QPE_001",
+        "base_seed": 16,
+        "condition_id": "execution_feedback",
+        "round": 1,
+        "is_final": false,
+        "code_sha256": "e31168c77cc2f0f7b4cf228f2b2441c74df20f51c013c057aa5b87e41ff2f873",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": false,
+          "structure_match": true,
+          "L3": false,
+          "error_category": "wrong_output"
+        }
+      },
+      {
+        "key": "45c95434e14e287a81a2b0d544164f518c2ab4697e08ed8bf4c9d925f9f93547:2",
+        "record_key": "45c95434e14e287a81a2b0d544164f518c2ab4697e08ed8bf4c9d925f9f93547",
+        "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "model_spec": "ollama:gemma4:e4b-it-qat",
+        "task_id": "T8_QPE_001",
+        "base_seed": 16,
+        "condition_id": "execution_feedback",
+        "round": 2,
+        "is_final": true,
+        "code_sha256": "7ac228b2430768dc9fed5ff3efe5efad21334a65a46a2114149b611db90fd9b8",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": true,
+          "structure_match": true,
+          "L3": true,
+          "error_category": "ok"
+        }
+      },
+      {
+        "key": "1cf8163468dd9b0ade725f38179e473284570d1ba376b378b050fe52e84a9ec6:0",
+        "record_key": "1cf8163468dd9b0ade725f38179e473284570d1ba376b378b050fe52e84a9ec6",
+        "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "model_spec": "ollama:qwen2.5-coder:7b",
+        "task_id": "T4_BV_011",
+        "base_seed": 0,
+        "condition_id": "baseline",
+        "round": 0,
+        "is_final": true,
+        "code_sha256": "6689796c92a9591b538d8d2d9f464e69f96fa2f4e85a6f9adf16e7fb814627ff",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": true,
+          "structure_match": true,
+          "L3": true,
+          "error_category": "ok"
+        }
+      },
+      {
+        "key": "f7343de5839514a7216300efb4b31f4c57ee7f07f150691a88cc2ac99e10ce9a:0",
+        "record_key": "f7343de5839514a7216300efb4b31f4c57ee7f07f150691a88cc2ac99e10ce9a",
+        "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "model_spec": "ollama:gemma3:4b",
+        "task_id": "T9_Ansatz_001",
+        "base_seed": 0,
+        "condition_id": "baseline",
+        "round": 0,
+        "is_final": true,
+        "code_sha256": "a61cbc86cf0972b2a7db27f385332ab0fefcb69c1e399d6353e68c7abc48e02a",
+        "old_primary": {
+          "L0": false,
+          "L1": false,
+          "L2": false,
+          "structure_match": false,
+          "L3": false,
+          "error_category": "import_error"
+        }
+      }
+    ],
+    "evaluator_profile": {
+      "primary_version": "evaluation_policy_v4",
+      "supplement_version": "coherent_oracles_v1",
+      "sandbox_policy": "linux_landlock_seccomp_v1",
+      "files": {
+        "harness/evaluator.py": "f90faf3d4ac034e057b07752e7972fe4d2bd4353a6d91a077294a01343e25bf7",
+        "harness/readout.py": "ec7b447997600e0391abf9744a4fbeff0eed69d8b43b0567d519a45cdcff1a4e",
+        "harness/failure_metadata.py": "0eb955a6aa8463681816f50e2d9647285d803f5d247ae054f2a6ca823e50236c",
+        "harness/supplementary.py": "5a0a3dbf90ee9b5f549bea74f8c86ab31c41f4d04975406e4f1c2f251c03c327",
+        "harness/sandbox_policy.py": "2e89325d25865ad526293b96ec8b236d085decd8d7938b0a756bad408b565d05",
+        "harness/isolated_worker.py": "0fe8892fa49022f86963f6e11d4b7e8c473692d08843cec96106c1f6cd0eba07",
+        "harness/isolated_evaluation.py": "7dd698dc2f73bd1877047081a1a7100c1c754187d56064d5ff27715500c28f75",
+        "harness/reevaluation_checkpoint.py": "b74d0d75a7ed816f0abb985798673772acad63a186dd60f254522dbdfd65c421",
+        "scripts/pilot_reevaluation.py": "ef6093208fad5f864654aa6c73c7f44e159b1344e6c036384e8ef41c545eb275",
+        "tasks/__init__.py": "9f3a509f452d08e9b63e75701bcddfe27db3c86fa941c3636e6c4bc656f7efe9",
+        "tasks/t1_bell.py": "43f2e537ee8dfb8c8905895834b55f07c74194ac3a5b7562517b23a1c56f0071",
+        "tasks/t2_ghz.py": "3e90913f700f01b4ade19a176617e4e44892406ef73a525924533c3dfcf409ef",
+        "tasks/t3_dj_balanced.py": "1e747fc582a02520d407c02a3a46a0d3786ad1d870d12c3ac8044b1c92d5edd5",
+        "tasks/t3_dj_constant.py": "463b8a291b0fb9d28d462cc6cc7618ffa5aa8011367223229b0eace93b10e590",
+        "tasks/t4_bv.py": "4e1e6006542c9a2bb84ba89861ecee7ed40238731a7734a830231f913221ae13",
+        "tasks/t5_grover.py": "5ed5a81e4be75da8d556b2ad8cff4b2119e1c302226aff5acd9f421120cc05a8",
+        "tasks/t6_qft.py": "91aa125cf945f588cd73ab9a4d7b9389d7f1be9a7b567769c5343a39d8fe95f7",
+        "tasks/t7_iqft.py": "a8cae9b1ae33a64ac1ad68eb94a104089db018dcef668202319bcd00c408bd04",
+        "tasks/t8_qpe.py": "cad2545b8e15c7bf69e536b0918e2c2e86306750372840e3f2e871da0189d6d0",
+        "tasks/t9_ansatz.py": "4eb50ac05c70ee77b8c8d1211df962522a56c449ea0c7b39d3f7b7ecb0be8acb"
+      },
+      "limits_per_stage": {
+        "wall_seconds": 25,
+        "cpu_seconds": 15,
+        "memory_bytes": 2147483648,
+        "file_bytes": 4194304
+      },
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "packages": {
+        "qiskit": "2.5.2",
+        "qiskit-aer": "0.17.2",
+        "numpy": "2.5.3"
+      },
+      "sampling": {
+        "shots": 8192,
+        "seed_simulator": 42,
+        "seed_transpiler": 42
+      }
+    }
+  },
+  "sanity": {
+    "planned": 10,
+    "completed": 10,
+    "missing": 0,
+    "manifest_sha256": "3c3f0c0110c54aee9aae85d53f164dbff975c97cd09ea25d193cc66d95f3d1d7",
+    "integrity": "ok"
+  },
+  "executed_this_invocation": 10,
+  "elapsed_seconds_this_invocation": 12.996292333118618,
+  "runtime_failures": [],
+  "outputs": [
+    {
+      "key": "839221e5511a4baf39f63e38de57bf8d8d464316e5549433fe06005fe692878a:0",
+      "record_key": "839221e5511a4baf39f63e38de57bf8d8d464316e5549433fe06005fe692878a",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:4b",
+      "task_id": "T1_Bell",
+      "base_seed": 0,
+      "condition_id": "baseline",
+      "round": 0,
+      "is_final": true,
+      "code_sha256": "984dc9160fff91d89fc222b443c9aeef75e13efaf31fab5070d05e854cb746fd",
+      "old_primary": {
+        "L0": false,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "error_category": "import_error"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": false,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "L2_distance": null,
+        "error_category": "import_error",
+        "failure_stage": "import",
+        "exception_type": "ImportError"
+      },
+      "auxiliary": {
+        "reason": "no circuit",
+        "status": "not_applicable"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0,
+      "oracle_or_failure_seconds": 0.7668867632746696,
+      "cpu_seconds": 0.727204
+    },
+    {
+      "key": "2c76858a0e66524b68e6677ddef30a2043d6ed679f7842c8377ce4bc4c0dad6a:0",
+      "record_key": "2c76858a0e66524b68e6677ddef30a2043d6ed679f7842c8377ce4bc4c0dad6a",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T2_GHZ",
+      "base_seed": 0,
+      "condition_id": "baseline",
+      "round": 0,
+      "is_final": true,
+      "code_sha256": "49ea8355c1c929063b29b31c579d84e2e27b0f897a796af7d31a6af3f2e2043b",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "error_category": "ok"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 0.0096435546875,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "fidelity": 0.9999999999999997,
+        "purity": 0.9999999999999996,
+        "scope": "fixed_prepared_state_density_fidelity",
+        "status": "pass",
+        "strict_fidelity_cutoff": 0.9975015625000001,
+        "version": "coherent_oracles_v1"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.666244397405535,
+      "oracle_or_failure_seconds": 0.9671606938354671,
+      "cpu_seconds": 1.5586380000000002
+    },
+    {
+      "key": "55c7f83e4f621ecc1d2985a24d7b1be402c51bb9368c6335ffcdfaa6858f4a61:0",
+      "record_key": "55c7f83e4f621ecc1d2985a24d7b1be402c51bb9368c6335ffcdfaa6858f4a61",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:gemma4:e4b-it-qat",
+      "task_id": "T6_QFT_001",
+      "base_seed": 0,
+      "condition_id": "baseline",
+      "round": 0,
+      "is_final": true,
+      "code_sha256": "55ad48a8eb4e32af4cdae3763862559e2f25007ee9e4fabfa4fbbb247d2e4cf6",
+      "old_primary": {
+        "L0": true,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "error_category": "interface_mismatch"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "L2_distance": null,
+        "error_category": "build_error",
+        "failure_stage": "build",
+        "exception_type": "TypeError"
+      },
+      "auxiliary": {
+        "reason": "no circuit",
+        "status": "not_applicable"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0,
+      "oracle_or_failure_seconds": 0.6665320638567209,
+      "cpu_seconds": 0.657091
+    },
+    {
+      "key": "1e788ea98dbc4f46c4e67f6acbf4dcfb29737c0e4933529c01ef04feb839c1f0:0",
+      "record_key": "1e788ea98dbc4f46c4e67f6acbf4dcfb29737c0e4933529c01ef04feb839c1f0",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:4b",
+      "task_id": "T7_IQFT_001",
+      "base_seed": 0,
+      "condition_id": "baseline",
+      "round": 0,
+      "is_final": true,
+      "code_sha256": "1a86cccb60b8418a1fb772c25b8f66cf531acf645ef06f6d3370b17e8191e74e",
+      "old_primary": {
+        "L0": true,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "error_category": "interface_mismatch"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "L2_distance": null,
+        "error_category": "build_error",
+        "failure_stage": "build",
+        "exception_type": "TypeError"
+      },
+      "auxiliary": {
+        "reason": "no circuit",
+        "status": "not_applicable"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0,
+      "oracle_or_failure_seconds": 0.7673882329836488,
+      "cpu_seconds": 0.763779
+    },
+    {
+      "key": "b832c18aa2058f3eaf6c1aa59ca691d3e1591495f9dc75d5e9766022b4a8b46d:0",
+      "record_key": "b832c18aa2058f3eaf6c1aa59ca691d3e1591495f9dc75d5e9766022b4a8b46d",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "model_spec": "ollama:gemma4:e4b-it-qat",
+      "task_id": "T8_QPE_001",
+      "base_seed": 16,
+      "condition_id": "baseline",
+      "round": 0,
+      "is_final": true,
+      "code_sha256": "211472064d5aefc8e890f9a182ea01359c98115c3f15eaaef03aaa7be1ad542a",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": false,
+        "structure_match": true,
+        "L3": false,
+        "error_category": "wrong_output"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 4.440892098500626e-16,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "reason": "no independent auxiliary specification for this task",
+        "status": "not_implemented",
+        "version": "coherent_oracles_v1"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.6690322724170983,
+      "oracle_or_failure_seconds": 0.9679046138189733,
+      "cpu_seconds": 1.60499
+    },
+    {
+      "key": "45c95434e14e287a81a2b0d544164f518c2ab4697e08ed8bf4c9d925f9f93547:0",
+      "record_key": "45c95434e14e287a81a2b0d544164f518c2ab4697e08ed8bf4c9d925f9f93547",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "model_spec": "ollama:gemma4:e4b-it-qat",
+      "task_id": "T8_QPE_001",
+      "base_seed": 16,
+      "condition_id": "execution_feedback",
+      "round": 0,
+      "is_final": false,
+      "code_sha256": "211472064d5aefc8e890f9a182ea01359c98115c3f15eaaef03aaa7be1ad542a",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": false,
+        "structure_match": true,
+        "L3": false,
+        "error_category": "wrong_output"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 4.440892098500626e-16,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "reason": "no independent auxiliary specification for this task",
+        "status": "not_implemented",
+        "version": "coherent_oracles_v1"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.7166199176572263,
+      "oracle_or_failure_seconds": 1.01759066991508,
+      "cpu_seconds": 1.7232540000000007
+    },
+    {
+      "key": "45c95434e14e287a81a2b0d544164f518c2ab4697e08ed8bf4c9d925f9f93547:1",
+      "record_key": "45c95434e14e287a81a2b0d544164f518c2ab4697e08ed8bf4c9d925f9f93547",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "model_spec": "ollama:gemma4:e4b-it-qat",
+      "task_id": "T8_QPE_001",
+      "base_seed": 16,
+      "condition_id": "execution_feedback",
+      "round": 1,
+      "is_final": false,
+      "code_sha256": "e31168c77cc2f0f7b4cf228f2b2441c74df20f51c013c057aa5b87e41ff2f873",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": false,
+        "structure_match": true,
+        "L3": false,
+        "error_category": "wrong_output"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 4.440892098500626e-16,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "reason": "no independent auxiliary specification for this task",
+        "status": "not_implemented",
+        "version": "coherent_oracles_v1"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.6662751897238195,
+      "oracle_or_failure_seconds": 0.9680972769856453,
+      "cpu_seconds": 1.5925029999999996
+    },
+    {
+      "key": "45c95434e14e287a81a2b0d544164f518c2ab4697e08ed8bf4c9d925f9f93547:2",
+      "record_key": "45c95434e14e287a81a2b0d544164f518c2ab4697e08ed8bf4c9d925f9f93547",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "model_spec": "ollama:gemma4:e4b-it-qat",
+      "task_id": "T8_QPE_001",
+      "base_seed": 16,
+      "condition_id": "execution_feedback",
+      "round": 2,
+      "is_final": true,
+      "code_sha256": "7ac228b2430768dc9fed5ff3efe5efad21334a65a46a2114149b611db90fd9b8",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "error_category": "ok"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 4.440892098500626e-16,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "reason": "no independent auxiliary specification for this task",
+        "status": "not_implemented",
+        "version": "coherent_oracles_v1"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.6666820230893791,
+      "oracle_or_failure_seconds": 0.9175085471943021,
+      "cpu_seconds": 1.557853
+    },
+    {
+      "key": "1cf8163468dd9b0ade725f38179e473284570d1ba376b378b050fe52e84a9ec6:0",
+      "record_key": "1cf8163468dd9b0ade725f38179e473284570d1ba376b378b050fe52e84a9ec6",
+      "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "model_spec": "ollama:qwen2.5-coder:7b",
+      "task_id": "T4_BV_011",
+      "base_seed": 0,
+      "condition_id": "baseline",
+      "round": 0,
+      "is_final": true,
+      "code_sha256": "6689796c92a9591b538d8d2d9f464e69f96fa2f4e85a6f9adf16e7fb814627ff",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "error_category": "ok"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 0.0054931640625,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "reason": "no independent auxiliary specification for this task",
+        "status": "not_implemented",
+        "version": "coherent_oracles_v1"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.6163588310591877,
+      "oracle_or_failure_seconds": 0.9179030465893447,
+      "cpu_seconds": 1.5265509999999995
+    },
+    {
+      "key": "f7343de5839514a7216300efb4b31f4c57ee7f07f150691a88cc2ac99e10ce9a:0",
+      "record_key": "f7343de5839514a7216300efb4b31f4c57ee7f07f150691a88cc2ac99e10ce9a",
+      "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "model_spec": "ollama:gemma3:4b",
+      "task_id": "T9_Ansatz_001",
+      "base_seed": 0,
+      "condition_id": "baseline",
+      "round": 0,
+      "is_final": true,
+      "code_sha256": "a61cbc86cf0972b2a7db27f385332ab0fefcb69c1e399d6353e68c7abc48e02a",
+      "old_primary": {
+        "L0": false,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "error_category": "import_error"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": false,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "L2_distance": null,
+        "error_category": "import_error",
+        "failure_stage": "import",
+        "exception_type": "ImportError"
+      },
+      "auxiliary": {
+        "reason": "no circuit",
+        "status": "not_applicable"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0,
+      "oracle_or_failure_seconds": 0.7187855918891728,
+      "cpu_seconds": 0.7031180000000017
+    }
+  ],
+  "llm_requests": 0,
+  "estimated_llm_cost_usd": 0,
+  "histories": [
+    {
+      "record_key": "839221e5511a4baf39f63e38de57bf8d8d464316e5549433fe06005fe692878a",
+      "recorded_rounds": 1,
+      "reevaluation_complete": true,
+      "old_first_success_round": null,
+      "old_ever_success": false,
+      "old_final_success": false,
+      "new_first_success_round": null,
+      "new_ever_success": false,
+      "new_final_success": false,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "2c76858a0e66524b68e6677ddef30a2043d6ed679f7842c8377ce4bc4c0dad6a",
+      "recorded_rounds": 1,
+      "reevaluation_complete": true,
+      "old_first_success_round": 0,
+      "old_ever_success": true,
+      "old_final_success": true,
+      "new_first_success_round": 0,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "55c7f83e4f621ecc1d2985a24d7b1be402c51bb9368c6335ffcdfaa6858f4a61",
+      "recorded_rounds": 1,
+      "reevaluation_complete": true,
+      "old_first_success_round": null,
+      "old_ever_success": false,
+      "old_final_success": false,
+      "new_first_success_round": null,
+      "new_ever_success": false,
+      "new_final_success": false,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "1e788ea98dbc4f46c4e67f6acbf4dcfb29737c0e4933529c01ef04feb839c1f0",
+      "recorded_rounds": 1,
+      "reevaluation_complete": true,
+      "old_first_success_round": null,
+      "old_ever_success": false,
+      "old_final_success": false,
+      "new_first_success_round": null,
+      "new_ever_success": false,
+      "new_final_success": false,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "b832c18aa2058f3eaf6c1aa59ca691d3e1591495f9dc75d5e9766022b4a8b46d",
+      "recorded_rounds": 1,
+      "reevaluation_complete": true,
+      "old_first_success_round": null,
+      "old_ever_success": false,
+      "old_final_success": false,
+      "new_first_success_round": 0,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "45c95434e14e287a81a2b0d544164f518c2ab4697e08ed8bf4c9d925f9f93547",
+      "recorded_rounds": 3,
+      "reevaluation_complete": true,
+      "old_first_success_round": 2,
+      "old_ever_success": true,
+      "old_final_success": true,
+      "new_first_success_round": 0,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "1cf8163468dd9b0ade725f38179e473284570d1ba376b378b050fe52e84a9ec6",
+      "recorded_rounds": 1,
+      "reevaluation_complete": true,
+      "old_first_success_round": 0,
+      "old_ever_success": true,
+      "old_final_success": true,
+      "new_first_success_round": 0,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "f7343de5839514a7216300efb4b31f4c57ee7f07f150691a88cc2ac99e10ce9a",
+      "recorded_rounds": 1,
+      "reevaluation_complete": true,
+      "old_first_success_round": null,
+      "old_ever_success": false,
+      "old_final_success": false,
+      "new_first_success_round": null,
+      "new_ever_success": false,
+      "new_final_success": false,
+      "new_regression_observed": false
+    }
+  ],
+  "historical_feedback_policy": "saved codes only; no new feedback or unobserved rounds",
+  "full_5000_started": false
+}

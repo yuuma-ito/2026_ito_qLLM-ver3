@@ -1,0 +1,16 @@
+[
+  {
+    "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+    "model_spec": "ollama:qwen3.5:4b",
+    "task_id": "T6_QFT_001",
+    "base_seed": 0,
+    "condition_id": "baseline"
+  },
+  {
+    "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+    "model_spec": "ollama:qwen3.5:4b",
+    "task_id": "T7_IQFT_001",
+    "base_seed": 5,
+    "condition_id": "baseline"
+  }
+]

@@ -153,6 +153,17 @@ def evaluate(code: str, task: Task) -> EvalResult:
         res.error_category, res.error_message = cat, msg
         return res
 
+    return evaluate_circuit(qc, task, res)
+
+
+def evaluate_circuit(qc, task: Task, res: Optional[EvalResult] = None) -> EvalResult:
+    """Evaluate an already built circuit with the unchanged v4 primary policy.
+
+    The isolated reevaluator invokes this only in a fresh QPY reader process.
+    """
+    if res is None:
+        res = EvalResult(L0=True, failure_stage="build")
+
     try:
         res.n_qubits_actual = qc.num_qubits
         res.n_clbits_actual = qc.num_clbits

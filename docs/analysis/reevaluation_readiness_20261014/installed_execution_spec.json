@@ -1,0 +1,55 @@
+{
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "kernel": [
+    "Linux",
+    "s3",
+    "6.8.0-138-generic",
+    "#138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026",
+    "x86_64"
+  ],
+  "packages": {
+    "qiskit": "2.5.2",
+    "qiskit-aer": "0.17.2",
+    "numpy": "2.5.3"
+  },
+  "qpy_apis": [
+    {
+      "function": "qiskit.qpy.dump",
+      "signature": "(programs: 'list[QPY_SUPPORTED_TYPES] | QPY_SUPPORTED_TYPES', file_obj: 'BinaryIO', metadata_serializer: 'type[JSONEncoder] | None' = None, use_symengine: 'bool' = False, version: 'int' = 17, annotation_factories: 'Mapping[str, Callable[[], annotation.QPYSerializer]] | None' = None)",
+      "source_file": "interface.py",
+      "source_line": 89,
+      "function_source_sha256": "d9fc2977bf9c8a020dcb5edaf37db458c448b03cbf55d4e70dfe5984530f5126"
+    },
+    {
+      "function": "qiskit.qpy.load",
+      "signature": "(file_obj: 'BinaryIO', metadata_deserializer: 'type[JSONDecoder] | None' = None, annotation_factories: 'Mapping[str, Callable[[], annotation.QPYSerializer]] | None' = None) -> 'list[QPY_SUPPORTED_TYPES]'",
+      "source_file": "interface.py",
+      "source_line": 267,
+      "function_source_sha256": "86f1d11486e0c4f67e122963aaf239737261a1654661a8981578487c67e4f6e1"
+    }
+  ],
+  "landlock_abi_observed": 4,
+  "seccomp_policy": "linux_landlock_seccomp_v1",
+  "specification_pages_confirmed": [
+    {
+      "url": "https://docs.kernel.org/userspace-api/landlock.html",
+      "method": "web.run open; original technical documentation viewed; no PDF page number",
+      "recorded_at_utc": "2026-10-14T13:14:54.511976+00:00"
+    },
+    {
+      "url": "https://github.com/seccomp/libseccomp/blob/main/doc/man/man3/seccomp_rule_add.3",
+      "method": "web.run open; original technical documentation viewed; no PDF page number",
+      "recorded_at_utc": "2026-10-14T13:14:54.511976+00:00"
+    },
+    {
+      "url": "https://docs.python.org/3.12/library/resource.html",
+      "method": "web.run open; original technical documentation viewed; no PDF page number",
+      "recorded_at_utc": "2026-10-14T13:14:54.511976+00:00"
+    },
+    {
+      "url": "https://qiskit.qotlabs.org/docs/api/qiskit/qpy",
+      "method": "web.run open; original technical documentation viewed; no PDF page number",
+      "recorded_at_utc": "2026-10-14T13:14:54.511976+00:00"
+    }
+  ]
+}

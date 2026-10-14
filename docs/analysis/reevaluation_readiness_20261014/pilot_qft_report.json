@@ -1,0 +1,276 @@
+{
+  "captured_at_utc": "2026-10-14T13:12:00.519077+00:00",
+  "manifest": {
+    "schema": "saved_code_reevaluation_v1",
+    "purpose": "pilot_only",
+    "snapshot_sha256": "cb7e9532a4dea52e763f43eb7d366707bcb37c67eb5e29d094a1e3fd872008f0",
+    "sources": {
+      "results/shared_three_models_full_20261008T103231611899Z": {
+        "raw_sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515",
+        "config_sha256": "a4cd6ab1126e8927aa3a76c4fcf7392026007215d0388d8b6f73c3bba84691ec"
+      }
+    },
+    "selection": [
+      {
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:4b",
+        "task_id": "T6_QFT_001",
+        "base_seed": 0,
+        "condition_id": "baseline"
+      },
+      {
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:4b",
+        "task_id": "T7_IQFT_001",
+        "base_seed": 5,
+        "condition_id": "baseline"
+      }
+    ],
+    "cases": [
+      {
+        "key": "759881dbd34d2c98ea4262c8a439447104320220d2ccbf96e2cd44186394dfc9:0",
+        "record_key": "759881dbd34d2c98ea4262c8a439447104320220d2ccbf96e2cd44186394dfc9",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:4b",
+        "task_id": "T6_QFT_001",
+        "base_seed": 0,
+        "condition_id": "baseline",
+        "round": 0,
+        "is_final": true,
+        "code_sha256": "c4f19422cd5056b9f222deffc20c405f841c1f31fc6d2e67873f39224fe333e1",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": true,
+          "structure_match": true,
+          "L3": true,
+          "error_category": "ok"
+        }
+      },
+      {
+        "key": "41457ad243f0cf216bc612968f8684e83807aeb8eb9146ef730ddf7662ab52d0:0",
+        "record_key": "41457ad243f0cf216bc612968f8684e83807aeb8eb9146ef730ddf7662ab52d0",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:4b",
+        "task_id": "T7_IQFT_001",
+        "base_seed": 5,
+        "condition_id": "baseline",
+        "round": 0,
+        "is_final": true,
+        "code_sha256": "2dff72226460c8db0fa5f79ab91220c36160e5c3321cebb9c5f87d8521ba002f",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": true,
+          "structure_match": true,
+          "L3": true,
+          "error_category": "ok"
+        }
+      }
+    ],
+    "evaluator_profile": {
+      "primary_version": "evaluation_policy_v4",
+      "supplement_version": "coherent_oracles_v1",
+      "sandbox_policy": "linux_landlock_seccomp_v1",
+      "files": {
+        "harness/evaluator.py": "f90faf3d4ac034e057b07752e7972fe4d2bd4353a6d91a077294a01343e25bf7",
+        "harness/readout.py": "ec7b447997600e0391abf9744a4fbeff0eed69d8b43b0567d519a45cdcff1a4e",
+        "harness/failure_metadata.py": "0eb955a6aa8463681816f50e2d9647285d803f5d247ae054f2a6ca823e50236c",
+        "harness/supplementary.py": "5a0a3dbf90ee9b5f549bea74f8c86ab31c41f4d04975406e4f1c2f251c03c327",
+        "harness/sandbox_policy.py": "2e89325d25865ad526293b96ec8b236d085decd8d7938b0a756bad408b565d05",
+        "harness/isolated_worker.py": "0fe8892fa49022f86963f6e11d4b7e8c473692d08843cec96106c1f6cd0eba07",
+        "harness/isolated_evaluation.py": "7dd698dc2f73bd1877047081a1a7100c1c754187d56064d5ff27715500c28f75",
+        "harness/reevaluation_checkpoint.py": "b74d0d75a7ed816f0abb985798673772acad63a186dd60f254522dbdfd65c421",
+        "scripts/pilot_reevaluation.py": "ef6093208fad5f864654aa6c73c7f44e159b1344e6c036384e8ef41c545eb275",
+        "tasks/__init__.py": "9f3a509f452d08e9b63e75701bcddfe27db3c86fa941c3636e6c4bc656f7efe9",
+        "tasks/t1_bell.py": "43f2e537ee8dfb8c8905895834b55f07c74194ac3a5b7562517b23a1c56f0071",
+        "tasks/t2_ghz.py": "3e90913f700f01b4ade19a176617e4e44892406ef73a525924533c3dfcf409ef",
+        "tasks/t3_dj_balanced.py": "1e747fc582a02520d407c02a3a46a0d3786ad1d870d12c3ac8044b1c92d5edd5",
+        "tasks/t3_dj_constant.py": "463b8a291b0fb9d28d462cc6cc7618ffa5aa8011367223229b0eace93b10e590",
+        "tasks/t4_bv.py": "4e1e6006542c9a2bb84ba89861ecee7ed40238731a7734a830231f913221ae13",
+        "tasks/t5_grover.py": "5ed5a81e4be75da8d556b2ad8cff4b2119e1c302226aff5acd9f421120cc05a8",
+        "tasks/t6_qft.py": "91aa125cf945f588cd73ab9a4d7b9389d7f1be9a7b567769c5343a39d8fe95f7",
+        "tasks/t7_iqft.py": "a8cae9b1ae33a64ac1ad68eb94a104089db018dcef668202319bcd00c408bd04",
+        "tasks/t8_qpe.py": "cad2545b8e15c7bf69e536b0918e2c2e86306750372840e3f2e871da0189d6d0",
+        "tasks/t9_ansatz.py": "4eb50ac05c70ee77b8c8d1211df962522a56c449ea0c7b39d3f7b7ecb0be8acb"
+      },
+      "limits_per_stage": {
+        "wall_seconds": 25,
+        "cpu_seconds": 15,
+        "memory_bytes": 2147483648,
+        "file_bytes": 4194304
+      },
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "packages": {
+        "qiskit": "2.5.2",
+        "qiskit-aer": "0.17.2",
+        "numpy": "2.5.3"
+      },
+      "sampling": {
+        "shots": 8192,
+        "seed_simulator": 42,
+        "seed_transpiler": 42
+      }
+    }
+  },
+  "sanity": {
+    "planned": 2,
+    "completed": 2,
+    "missing": 0,
+    "manifest_sha256": "8bc36fef88dc2c4c3f9bb674e6a72905f04c90bf737e6b845c4271b79be62535",
+    "integrity": "ok"
+  },
+  "executed_this_invocation": 2,
+  "elapsed_seconds_this_invocation": 3.030708136036992,
+  "runtime_failures": [],
+  "outputs": [
+    {
+      "key": "759881dbd34d2c98ea4262c8a439447104320220d2ccbf96e2cd44186394dfc9:0",
+      "record_key": "759881dbd34d2c98ea4262c8a439447104320220d2ccbf96e2cd44186394dfc9",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:4b",
+      "task_id": "T6_QFT_001",
+      "base_seed": 0,
+      "condition_id": "baseline",
+      "round": 0,
+      "is_final": true,
+      "code_sha256": "c4f19422cd5056b9f222deffc20c405f841c1f31fc6d2e67873f39224fe333e1",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "error_category": "ok"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 3.526997437561379e-16,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "minimum_fidelity": 0.9999999999999993,
+        "probe_count": 22,
+        "process_fidelity": 1.0,
+        "scope": "whole_preparation_plus_transform_unitary",
+        "status": "pass",
+        "strict_fidelity_cutoff": 0.9975015625000001,
+        "version": "coherent_oracles_v1",
+        "worst_probe": "coherent_0_2_imag"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.7668468588963151,
+      "oracle_or_failure_seconds": 0.8170001800172031,
+      "cpu_seconds": 1.565991
+    },
+    {
+      "key": "41457ad243f0cf216bc612968f8684e83807aeb8eb9146ef730ddf7662ab52d0:0",
+      "record_key": "41457ad243f0cf216bc612968f8684e83807aeb8eb9146ef730ddf7662ab52d0",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:4b",
+      "task_id": "T7_IQFT_001",
+      "base_seed": 5,
+      "condition_id": "baseline",
+      "round": 0,
+      "is_final": true,
+      "code_sha256": "2dff72226460c8db0fa5f79ab91220c36160e5c3321cebb9c5f87d8521ba002f",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "error_category": "ok"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 0.0,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "minimum_fidelity": 0.9999999999999987,
+        "probe_count": 22,
+        "process_fidelity": 0.9999999999999996,
+        "scope": "whole_preparation_plus_transform_unitary",
+        "status": "pass",
+        "strict_fidelity_cutoff": 0.9975015625000001,
+        "version": "coherent_oracles_v1",
+        "worst_probe": "coherent_0_5_real"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.6662383531220257,
+      "oracle_or_failure_seconds": 0.6661682678386569,
+      "cpu_seconds": 1.274231
+    }
+  ],
+  "llm_requests": 0,
+  "estimated_llm_cost_usd": 0,
+  "histories": [
+    {
+      "record_key": "759881dbd34d2c98ea4262c8a439447104320220d2ccbf96e2cd44186394dfc9",
+      "recorded_rounds": 1,
+      "reevaluation_complete": true,
+      "old_first_success_round": 0,
+      "old_ever_success": true,
+      "old_final_success": true,
+      "new_first_success_round": 0,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "41457ad243f0cf216bc612968f8684e83807aeb8eb9146ef730ddf7662ab52d0",
+      "recorded_rounds": 1,
+      "reevaluation_complete": true,
+      "old_first_success_round": 0,
+      "old_ever_success": true,
+      "old_final_success": true,
+      "new_first_success_round": 0,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    }
+  ],
+  "historical_feedback_policy": "saved codes only; no new feedback or unobserved rounds",
+  "full_5000_started": false
+}

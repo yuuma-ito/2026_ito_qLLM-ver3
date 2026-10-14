@@ -1,0 +1,185 @@
+{
+  "verified_at_utc_before_saved_code_execution": "2026-10-14T13:10:25.140818+00:00",
+  "command": ".venv/bin/python -m pytest -q --junitxml=.cache/reevaluation_readiness_tests_final.xml",
+  "tests": 309,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 69.913,
+  "warnings": 40,
+  "warning_scope": "Qiskit QFT/BlueprintCircuit deprecations",
+  "evaluator_profile": {
+    "primary_version": "evaluation_policy_v4",
+    "supplement_version": "coherent_oracles_v1",
+    "sandbox_policy": "linux_landlock_seccomp_v1",
+    "files": {
+      "harness/evaluator.py": "f90faf3d4ac034e057b07752e7972fe4d2bd4353a6d91a077294a01343e25bf7",
+      "harness/readout.py": "ec7b447997600e0391abf9744a4fbeff0eed69d8b43b0567d519a45cdcff1a4e",
+      "harness/failure_metadata.py": "0eb955a6aa8463681816f50e2d9647285d803f5d247ae054f2a6ca823e50236c",
+      "harness/supplementary.py": "5a0a3dbf90ee9b5f549bea74f8c86ab31c41f4d04975406e4f1c2f251c03c327",
+      "harness/sandbox_policy.py": "2e89325d25865ad526293b96ec8b236d085decd8d7938b0a756bad408b565d05",
+      "harness/isolated_worker.py": "0fe8892fa49022f86963f6e11d4b7e8c473692d08843cec96106c1f6cd0eba07",
+      "harness/isolated_evaluation.py": "7dd698dc2f73bd1877047081a1a7100c1c754187d56064d5ff27715500c28f75",
+      "harness/reevaluation_checkpoint.py": "b74d0d75a7ed816f0abb985798673772acad63a186dd60f254522dbdfd65c421",
+      "scripts/pilot_reevaluation.py": "ef6093208fad5f864654aa6c73c7f44e159b1344e6c036384e8ef41c545eb275",
+      "tasks/__init__.py": "9f3a509f452d08e9b63e75701bcddfe27db3c86fa941c3636e6c4bc656f7efe9",
+      "tasks/t1_bell.py": "43f2e537ee8dfb8c8905895834b55f07c74194ac3a5b7562517b23a1c56f0071",
+      "tasks/t2_ghz.py": "3e90913f700f01b4ade19a176617e4e44892406ef73a525924533c3dfcf409ef",
+      "tasks/t3_dj_balanced.py": "1e747fc582a02520d407c02a3a46a0d3786ad1d870d12c3ac8044b1c92d5edd5",
+      "tasks/t3_dj_constant.py": "463b8a291b0fb9d28d462cc6cc7618ffa5aa8011367223229b0eace93b10e590",
+      "tasks/t4_bv.py": "4e1e6006542c9a2bb84ba89861ecee7ed40238731a7734a830231f913221ae13",
+      "tasks/t5_grover.py": "5ed5a81e4be75da8d556b2ad8cff4b2119e1c302226aff5acd9f421120cc05a8",
+      "tasks/t6_qft.py": "91aa125cf945f588cd73ab9a4d7b9389d7f1be9a7b567769c5343a39d8fe95f7",
+      "tasks/t7_iqft.py": "a8cae9b1ae33a64ac1ad68eb94a104089db018dcef668202319bcd00c408bd04",
+      "tasks/t8_qpe.py": "cad2545b8e15c7bf69e536b0918e2c2e86306750372840e3f2e871da0189d6d0",
+      "tasks/t9_ansatz.py": "4eb50ac05c70ee77b8c8d1211df962522a56c449ea0c7b39d3f7b7ecb0be8acb"
+    },
+    "limits_per_stage": {
+      "wall_seconds": 25,
+      "cpu_seconds": 15,
+      "memory_bytes": 2147483648,
+      "file_bytes": 4194304
+    },
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "packages": {
+      "qiskit": "2.5.2",
+      "qiskit-aer": "0.17.2",
+      "numpy": "2.5.3"
+    },
+    "sampling": {
+      "shots": 8192,
+      "seed_simulator": 42,
+      "seed_transpiler": 42
+    }
+  },
+  "new_tests": [
+    {
+      "name": "test_old_qft_blind_spot_and_new_anchor_coherences[False]",
+      "seconds": 0.006
+    },
+    {
+      "name": "test_old_qft_blind_spot_and_new_anchor_coherences[True]",
+      "seconds": 0.006
+    },
+    {
+      "name": "test_whole_preparation_qft_reference_agrees_and_detects_mutation[T6_QFT_001]",
+      "seconds": 0.009
+    },
+    {
+      "name": "test_whole_preparation_qft_reference_agrees_and_detects_mutation[T7_IQFT_001]",
+      "seconds": 0.009
+    },
+    {
+      "name": "test_exact_fidelity_threshold_detects_rounded_gap_and_boundary",
+      "seconds": 0.001
+    },
+    {
+      "name": "test_independent_bell_ghz_phase_and_reset_oracles[T1_Bell-2]",
+      "seconds": 0.004
+    },
+    {
+      "name": "test_independent_bell_ghz_phase_and_reset_oracles[T2_GHZ-3]",
+      "seconds": 0.004
+    },
+    {
+      "name": "test_checkpoint_restart_duplicate_and_result_immutability",
+      "seconds": 0.023
+    },
+    {
+      "name": "test_checkpoint_version_source_scope_mismatch_and_lock",
+      "seconds": 0.012
+    },
+    {
+      "name": "test_checkpoint_hard_exit_releases_lock_and_resumes_pending",
+      "seconds": 0.068
+    },
+    {
+      "name": "test_checkpoint_accepts_full_history_sized_catalog_without_execution",
+      "seconds": 0.086
+    },
+    {
+      "name": "test_public_report_atomic_publish_cannot_overwrite",
+      "seconds": 0.006
+    },
+    {
+      "name": "test_checkpoint_corrupt_results_and_database_are_refused",
+      "seconds": 0.015
+    },
+    {
+      "name": "test_isolated_primary_matches_existing_policy_and_auxiliary[T1_Bell]",
+      "seconds": 1.813
+    },
+    {
+      "name": "test_isolated_primary_matches_existing_policy_and_auxiliary[T2_GHZ]",
+      "seconds": 1.81
+    },
+    {
+      "name": "test_isolated_primary_matches_existing_policy_and_auxiliary[T3a_DJ_constant]",
+      "seconds": 1.804
+    },
+    {
+      "name": "test_isolated_primary_matches_existing_policy_and_auxiliary[T3b_DJ_balanced]",
+      "seconds": 1.974
+    },
+    {
+      "name": "test_isolated_primary_matches_existing_policy_and_auxiliary[T4_BV_011]",
+      "seconds": 2.075
+    },
+    {
+      "name": "test_isolated_primary_matches_existing_policy_and_auxiliary[T5_Grover_11]",
+      "seconds": 1.758
+    },
+    {
+      "name": "test_isolated_primary_matches_existing_policy_and_auxiliary[T6_QFT_001]",
+      "seconds": 1.599
+    },
+    {
+      "name": "test_isolated_primary_matches_existing_policy_and_auxiliary[T7_IQFT_001]",
+      "seconds": 1.599
+    },
+    {
+      "name": "test_isolated_primary_matches_existing_policy_and_auxiliary[T8_QPE_001]",
+      "seconds": 1.922
+    },
+    {
+      "name": "test_isolated_primary_matches_existing_policy_and_auxiliary[T9_Ansatz_001]",
+      "seconds": 1.398
+    },
+    {
+      "name": "test_sandbox_refuses_host_files_network_processes_and_secret_environment",
+      "seconds": 1.747
+    },
+    {
+      "name": "test_builder_cannot_inject_oracle_success",
+      "seconds": 0.622
+    },
+    {
+      "name": "test_monkeypatched_builder_does_not_change_fresh_oracle",
+      "seconds": 1.745
+    },
+    {
+      "name": "test_policy_denial_is_not_model_wrong_output",
+      "seconds": 0.838
+    },
+    {
+      "name": "test_wall_cpu_memory_crash_and_import_errors_are_separate",
+      "seconds": 4.653
+    },
+    {
+      "name": "test_synthetic_pipeline_isolation_checkpoint_and_zero_execution_resume",
+      "seconds": 1.74
+    },
+    {
+      "name": "test_sandbox_installation_failure_has_no_subprocess_fallback",
+      "seconds": 0.002
+    }
+  ],
+  "development_failure": {
+    "restricted_scratch_before_tempdir_cache": {
+      "failures": 16,
+      "passed": 291,
+      "cause": "dill tempfile.gettempdir probe blocked by deny-create filesystem policy",
+      "fixed_by": "cache designated tempfile.tempdir before installing policy; do not allow arbitrary file creation"
+    }
+  }
+}

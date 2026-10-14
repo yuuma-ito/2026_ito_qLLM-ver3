@@ -1,0 +1,47 @@
+{
+  "recorded_at_utc": "2026-10-14T13:14:54.511976+00:00",
+  "decision": "CONDITIONAL GO",
+  "records": 10,
+  "rounds": 12,
+  "completed_rounds": 12,
+  "missing_rounds": 0,
+  "duplicate_case_keys": 0,
+  "runtime_failures": 0,
+  "resume_executions": [
+    0,
+    0
+  ],
+  "sources": {
+    "results/shared_three_models_full_20261008T103231611899Z": {
+      "raw_sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515",
+      "config_sha256": "a4cd6ab1126e8927aa3a76c4fcf7392026007215d0388d8b6f73c3bba84691ec",
+      "unchanged_after_pilot": true
+    },
+    "results/shared_five_models_full_20261010T041019864060Z": {
+      "raw_sha256": "308d32d6b097a8628c0d90889e9f3a5dd5054443ef0e0c8f0c3c054aec7f2599",
+      "config_sha256": "5c9232f76cc6758b52983fe90ec0757ba2ffe2c4972884a25736f09edd45f22a",
+      "unchanged_after_pilot": true
+    },
+    "results/shared_two_models_seed0_9_full_20261012T100658266051Z": {
+      "raw_sha256": "56b0859fdd09b522f542a0e45f0539b2e8102771d2ce6fe16b8ddf7c12d815e0",
+      "config_sha256": "dd6b694be0b0c03b3bc33ecc13c69872104a5dba2b66706389b8163a618b0a9b",
+      "unchanged_after_pilot": true
+    }
+  },
+  "old_round_L3_successes": 5,
+  "new_round_L3_successes": 8,
+  "old_final_L3_successes": 5,
+  "new_final_L3_successes": 6,
+  "changed_round_keys": [
+    "b832c18aa2058f3eaf6c1aa59ca691d3e1591495f9dc75d5e9766022b4a8b46d:0",
+    "45c95434e14e287a81a2b0d544164f518c2ab4697e08ed8bf4c9d925f9f93547:0",
+    "45c95434e14e287a81a2b0d544164f518c2ab4697e08ed8bf4c9d925f9f93547:1"
+  ],
+  "pilot_elapsed_seconds": 16.02700046915561,
+  "child_cpu_seconds": 15.255203000000002,
+  "llm_requests": 0,
+  "llm_cost_usd": 0,
+  "full_5000_started": false,
+  "historical_results_overwritten": false,
+  "coverage_limit": "selected 10 records, 7 task types, 5 model names; full-plan/resources and six auxiliary task specifications not verified"
+}

@@ -1,0 +1,306 @@
+[
+  {
+    "file": "harness/evaluator.py",
+    "sha256": "f90faf3d4ac034e057b07752e7972fe4d2bd4353a6d91a077294a01343e25bf7",
+    "functions_and_classes": [
+      {
+        "name": "EvalResult",
+        "line": 21
+      },
+      {
+        "name": "_inside_build",
+        "line": 42
+      },
+      {
+        "name": "_exec_code",
+        "line": 52
+      },
+      {
+        "name": "_try_build",
+        "line": 86
+      },
+      {
+        "name": "_run_distribution",
+        "line": 101
+      },
+      {
+        "name": "_run_statevector",
+        "line": 111
+      },
+      {
+        "name": "_tvd",
+        "line": 125
+      },
+      {
+        "name": "_statevector_distance",
+        "line": 130
+      },
+      {
+        "name": "_bit_reversed_distribution",
+        "line": 137
+      },
+      {
+        "name": "evaluate",
+        "line": 144
+      },
+      {
+        "name": "evaluate_circuit",
+        "line": 159
+      },
+      {
+        "name": "to_dict",
+        "line": 38
+      }
+    ]
+  },
+  {
+    "file": "harness/supplementary.py",
+    "sha256": "5a0a3dbf90ee9b5f549bea74f8c86ab31c41f4d04975406e4f1c2f251c03c327",
+    "functions_and_classes": [
+      {
+        "name": "fidelity_cutoff",
+        "line": 12
+      },
+      {
+        "name": "pure_fidelity",
+        "line": 19
+      },
+      {
+        "name": "coherent_operator_check",
+        "line": 30
+      },
+      {
+        "name": "fourier_reference",
+        "line": 55
+      },
+      {
+        "name": "auxiliary_checks",
+        "line": 63
+      }
+    ]
+  },
+  {
+    "file": "harness/sandbox_policy.py",
+    "sha256": "2e89325d25865ad526293b96ec8b236d085decd8d7938b0a756bad408b565d05",
+    "functions_and_classes": [
+      {
+        "name": "install",
+        "line": 15
+      },
+      {
+        "name": "Ruleset",
+        "line": 28
+      },
+      {
+        "name": "PathRule",
+        "line": 31
+      },
+      {
+        "name": "Compare",
+        "line": 79
+      }
+    ]
+  },
+  {
+    "file": "harness/isolated_evaluation.py",
+    "sha256": "7dd698dc2f73bd1877047081a1a7100c1c754187d56064d5ff27715500c28f75",
+    "functions_and_classes": [
+      {
+        "name": "Limits",
+        "line": 27
+      },
+      {
+        "name": "profile",
+        "line": 38
+      },
+      {
+        "name": "_stage",
+        "line": 52
+      },
+      {
+        "name": "isolated_evaluate",
+        "line": 119
+      },
+      {
+        "name": "__post_init__",
+        "line": 33
+      }
+    ]
+  },
+  {
+    "file": "harness/isolated_worker.py",
+    "sha256": "0fe8892fa49022f86963f6e11d4b7e8c473692d08843cec96106c1f6cd0eba07",
+    "functions_and_classes": [
+      {
+        "name": "clean",
+        "line": 11
+      },
+      {
+        "name": "main",
+        "line": 21
+      }
+    ]
+  },
+  {
+    "file": "harness/reevaluation_checkpoint.py",
+    "sha256": "b74d0d75a7ed816f0abb985798673772acad63a186dd60f254522dbdfd65c421",
+    "functions_and_classes": [
+      {
+        "name": "canonical",
+        "line": 12
+      },
+      {
+        "name": "digest",
+        "line": 16
+      },
+      {
+        "name": "Checkpoint",
+        "line": 20
+      },
+      {
+        "name": "__init__",
+        "line": 27
+      },
+      {
+        "name": "__enter__",
+        "line": 37
+      },
+      {
+        "name": "__exit__",
+        "line": 80
+      },
+      {
+        "name": "completed",
+        "line": 84
+      },
+      {
+        "name": "claim",
+        "line": 88
+      },
+      {
+        "name": "finish",
+        "line": 96
+      },
+      {
+        "name": "sanity",
+        "line": 110
+      }
+    ]
+  },
+  {
+    "file": "scripts/pilot_reevaluation.py",
+    "sha256": "ef6093208fad5f864654aa6c73c7f44e159b1344e6c036384e8ef41c545eb275",
+    "functions_and_classes": [
+      {
+        "name": "immutable_report",
+        "line": 22
+      },
+      {
+        "name": "sha",
+        "line": 48
+      },
+      {
+        "name": "collect_cases",
+        "line": 52
+      },
+      {
+        "name": "run_pilot",
+        "line": 112
+      },
+      {
+        "name": "main",
+        "line": 165
+      }
+    ]
+  },
+  {
+    "file": "tests/test_reevaluation_readiness.py",
+    "sha256": "eff0ec4786a3e30f014c7a0632261d2a262c9a1e66acff6e290b7eb8b0c17f5d",
+    "functions_and_classes": [
+      {
+        "name": "test_old_qft_blind_spot_and_new_anchor_coherences",
+        "line": 16
+      },
+      {
+        "name": "test_whole_preparation_qft_reference_agrees_and_detects_mutation",
+        "line": 32
+      },
+      {
+        "name": "test_exact_fidelity_threshold_detects_rounded_gap_and_boundary",
+        "line": 47
+      },
+      {
+        "name": "test_independent_bell_ghz_phase_and_reset_oracles",
+        "line": 65
+      },
+      {
+        "name": "manifest",
+        "line": 81
+      },
+      {
+        "name": "test_checkpoint_restart_duplicate_and_result_immutability",
+        "line": 85
+      },
+      {
+        "name": "test_checkpoint_version_source_scope_mismatch_and_lock",
+        "line": 100
+      },
+      {
+        "name": "test_checkpoint_hard_exit_releases_lock_and_resumes_pending",
+        "line": 114
+      },
+      {
+        "name": "test_checkpoint_accepts_full_history_sized_catalog_without_execution",
+        "line": 129
+      },
+      {
+        "name": "test_public_report_atomic_publish_cannot_overwrite",
+        "line": 141
+      },
+      {
+        "name": "test_checkpoint_corrupt_results_and_database_are_refused",
+        "line": 150
+      },
+      {
+        "name": "test_isolated_primary_matches_existing_policy_and_auxiliary",
+        "line": 164
+      },
+      {
+        "name": "test_sandbox_refuses_host_files_network_processes_and_secret_environment",
+        "line": 174
+      },
+      {
+        "name": "test_builder_cannot_inject_oracle_success",
+        "line": 201
+      },
+      {
+        "name": "test_monkeypatched_builder_does_not_change_fresh_oracle",
+        "line": 211
+      },
+      {
+        "name": "test_policy_denial_is_not_model_wrong_output",
+        "line": 223
+      },
+      {
+        "name": "test_wall_cpu_memory_crash_and_import_errors_are_separate",
+        "line": 236
+      },
+      {
+        "name": "test_synthetic_pipeline_isolation_checkpoint_and_zero_execution_resume",
+        "line": 248
+      },
+      {
+        "name": "test_sandbox_installation_failure_has_no_subprocess_fallback",
+        "line": 279
+      },
+      {
+        "name": "should_not_execute",
+        "line": 266
+      },
+      {
+        "name": "refuse",
+        "line": 286
+      }
+    ]
+  }
+]

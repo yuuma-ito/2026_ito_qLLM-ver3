@@ -1,0 +1,58 @@
+[
+  {
+    "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+    "model_spec": "ollama:qwen3.5:4b",
+    "task_id": "T1_Bell",
+    "base_seed": 0,
+    "condition_id": "baseline"
+  },
+  {
+    "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+    "model_spec": "ollama:qwen3.5:9b",
+    "task_id": "T2_GHZ",
+    "base_seed": 0,
+    "condition_id": "baseline"
+  },
+  {
+    "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+    "model_spec": "ollama:gemma4:e4b-it-qat",
+    "task_id": "T6_QFT_001",
+    "base_seed": 0,
+    "condition_id": "baseline"
+  },
+  {
+    "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+    "model_spec": "ollama:qwen3.5:4b",
+    "task_id": "T7_IQFT_001",
+    "base_seed": 0,
+    "condition_id": "baseline"
+  },
+  {
+    "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+    "model_spec": "ollama:gemma4:e4b-it-qat",
+    "task_id": "T8_QPE_001",
+    "base_seed": 16,
+    "condition_id": "baseline"
+  },
+  {
+    "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+    "model_spec": "ollama:gemma4:e4b-it-qat",
+    "task_id": "T8_QPE_001",
+    "base_seed": 16,
+    "condition_id": "execution_feedback"
+  },
+  {
+    "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+    "model_spec": "ollama:qwen2.5-coder:7b",
+    "task_id": "T4_BV_011",
+    "base_seed": 0,
+    "condition_id": "baseline"
+  },
+  {
+    "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+    "model_spec": "ollama:gemma3:4b",
+    "task_id": "T9_Ansatz_001",
+    "base_seed": 0,
+    "condition_id": "baseline"
+  }
+]

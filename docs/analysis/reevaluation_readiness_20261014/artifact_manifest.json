@@ -1,0 +1,56 @@
+{
+  "files": {
+    "README.md": {
+      "bytes": 22729,
+      "sha256": "34d84e5f3586d4dbede0a7110afb47ca156558d5258b5dfab19e7a0ae3901cae"
+    },
+    "implementation_locations.json": {
+      "bytes": 6489,
+      "sha256": "7d937dc9a52a2dcf590593eb2835ec45804b378b7370c813db316fe8d7f8e804"
+    },
+    "installed_execution_spec.json": {
+      "bytes": 2362,
+      "sha256": "8a99642ae8211d7b52079267a0b32d9b040ddf18d9a26f286a43307856542445"
+    },
+    "pilot_comparison.csv": {
+      "bytes": 5328,
+      "sha256": "dbc5fe0badd2e1f5921ccc47c306753465abfc2ad1bb4e38acb29a78e2cf3ef8"
+    },
+    "pilot_qft_report.json": {
+      "bytes": 10320,
+      "sha256": "267a90d58398c71cd9ae98c5b52ebd3c00e714bcf056dbfbd3f4c458ffb235a2"
+    },
+    "pilot_qft_resume_report.json": {
+      "bytes": 10322,
+      "sha256": "33c11df0e89cb96a8f70675135da4503ded8e790cb83a71a2e940d789fc71394"
+    },
+    "pilot_qft_selection.json": {
+      "bytes": 414,
+      "sha256": "373e80a65e82b232ad7cc4155e855b7e126db63dec1f75cd48b368686d3b8f43"
+    },
+    "pilot_report.json": {
+      "bytes": 34015,
+      "sha256": "c0fc3220fbd4034176ce11a50ef7610bde08ef67d0f032f79d6cb907eca719f7"
+    },
+    "pilot_resume_report.json": {
+      "bytes": 34015,
+      "sha256": "95e7c4cfac0838824970705fc5d0cdada17d9a70e00137ca37c14b30ea07d9ea"
+    },
+    "pilot_sanity.json": {
+      "bytes": 1879,
+      "sha256": "2fa1b0a8f387016288f828b56a3a87ea7665ed4b66996855439567cd40d71e6a"
+    },
+    "pilot_selection.json": {
+      "bytes": 1687,
+      "sha256": "9ffe2f821cb03889a6bc497d83df9c06c1aca0a7ea9e4bdd1886866a125588cb"
+    },
+    "verification_results.json": {
+      "bytes": 6837,
+      "sha256": "271c9104ed498f3c5c0ff31a3a33d46ed70d8f0243f59ec3609d199dace1474c"
+    }
+  },
+  "generated_code_published": false,
+  "raw_published": false,
+  "full_5000_started": false,
+  "git_push_performed": false
+}
