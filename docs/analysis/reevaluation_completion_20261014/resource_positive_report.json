@@ -1,0 +1,1920 @@
+{
+  "captured_at_utc": "2026-10-14T13:34:37.308688+00:00",
+  "manifest": {
+    "schema": "saved_code_reevaluation_v1",
+    "purpose": "pilot_only",
+    "snapshot_sha256": "cb7e9532a4dea52e763f43eb7d366707bcb37c67eb5e29d094a1e3fd872008f0",
+    "sources": {
+      "results/shared_three_models_full_20261008T103231611899Z": {
+        "raw_sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515",
+        "config_sha256": "a4cd6ab1126e8927aa3a76c4fcf7392026007215d0388d8b6f73c3bba84691ec"
+      },
+      "results/shared_five_models_full_20261010T041019864060Z": {
+        "raw_sha256": "308d32d6b097a8628c0d90889e9f3a5dd5054443ef0e0c8f0c3c054aec7f2599",
+        "config_sha256": "5c9232f76cc6758b52983fe90ec0757ba2ffe2c4972884a25736f09edd45f22a"
+      }
+    },
+    "selection": [
+      {
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T1_Bell",
+        "base_seed": 2,
+        "condition_id": "self_debugging"
+      },
+      {
+        "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "model_spec": "ollama:qwen3.5:4b",
+        "task_id": "T2_GHZ",
+        "base_seed": 19,
+        "condition_id": "self_debugging"
+      },
+      {
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:4b",
+        "task_id": "T3a_DJ_constant",
+        "base_seed": 9,
+        "condition_id": "self_debugging"
+      },
+      {
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:gemma4:e4b-it-qat",
+        "task_id": "T3b_DJ_balanced",
+        "base_seed": 8,
+        "condition_id": "baseline"
+      },
+      {
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T4_BV_011",
+        "base_seed": 6,
+        "condition_id": "self_refine"
+      },
+      {
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T5_Grover_11",
+        "base_seed": 2,
+        "condition_id": "preventive_spec"
+      },
+      {
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T6_QFT_001",
+        "base_seed": 1,
+        "condition_id": "self_debugging"
+      },
+      {
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:gemma4:e4b-it-qat",
+        "task_id": "T7_IQFT_001",
+        "base_seed": 1,
+        "condition_id": "baseline"
+      },
+      {
+        "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T8_QPE_001",
+        "base_seed": 19,
+        "condition_id": "self_refine"
+      },
+      {
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T9_Ansatz_001",
+        "base_seed": 1,
+        "condition_id": "self_debugging"
+      }
+    ],
+    "cases": [
+      {
+        "key": "d19fa7e7ef718920a0a0c66756295576b41b545192fc04a51c62f5fc7c8ba5af:0",
+        "record_key": "d19fa7e7ef718920a0a0c66756295576b41b545192fc04a51c62f5fc7c8ba5af",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T1_Bell",
+        "base_seed": 2,
+        "condition_id": "self_debugging",
+        "round": 0,
+        "is_final": false,
+        "code_sha256": "747ff557df623aeb338fea7de741b2720a6d199cba32310eb7fe549295498140",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": false,
+          "structure_match": true,
+          "L3": false,
+          "error_category": "wrong_output"
+        }
+      },
+      {
+        "key": "d19fa7e7ef718920a0a0c66756295576b41b545192fc04a51c62f5fc7c8ba5af:1",
+        "record_key": "d19fa7e7ef718920a0a0c66756295576b41b545192fc04a51c62f5fc7c8ba5af",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T1_Bell",
+        "base_seed": 2,
+        "condition_id": "self_debugging",
+        "round": 1,
+        "is_final": false,
+        "code_sha256": "c27c67b0364b0459cadce1c12415b08aec24cda1adbbdaeae33ff0f330c54668",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": false,
+          "structure_match": true,
+          "L3": false,
+          "error_category": "wrong_output"
+        }
+      },
+      {
+        "key": "d19fa7e7ef718920a0a0c66756295576b41b545192fc04a51c62f5fc7c8ba5af:2",
+        "record_key": "d19fa7e7ef718920a0a0c66756295576b41b545192fc04a51c62f5fc7c8ba5af",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T1_Bell",
+        "base_seed": 2,
+        "condition_id": "self_debugging",
+        "round": 2,
+        "is_final": true,
+        "code_sha256": "cf32f8c5826b8896771c2a44ab7560dd921fe5f84643bfde4e2c8ea45cc9a74e",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": true,
+          "structure_match": true,
+          "L3": true,
+          "error_category": "ok"
+        }
+      },
+      {
+        "key": "4df5750ac778a376c951de7c2ff0c52432406d446c838528648aa97e547bd09e:0",
+        "record_key": "4df5750ac778a376c951de7c2ff0c52432406d446c838528648aa97e547bd09e",
+        "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "model_spec": "ollama:qwen3.5:4b",
+        "task_id": "T2_GHZ",
+        "base_seed": 19,
+        "condition_id": "self_debugging",
+        "round": 0,
+        "is_final": false,
+        "code_sha256": "2e26461987cc820392429d64c00431f3ffbe6efb9dd289513e5c509536302c16",
+        "old_primary": {
+          "L0": false,
+          "L1": false,
+          "L2": false,
+          "structure_match": false,
+          "L3": false,
+          "error_category": "import_error"
+        }
+      },
+      {
+        "key": "4df5750ac778a376c951de7c2ff0c52432406d446c838528648aa97e547bd09e:1",
+        "record_key": "4df5750ac778a376c951de7c2ff0c52432406d446c838528648aa97e547bd09e",
+        "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "model_spec": "ollama:qwen3.5:4b",
+        "task_id": "T2_GHZ",
+        "base_seed": 19,
+        "condition_id": "self_debugging",
+        "round": 1,
+        "is_final": true,
+        "code_sha256": "1b344edd9c91996efa66d8ec9ea34140d4c836ce8aea329c94cd316473478b4c",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": true,
+          "structure_match": true,
+          "L3": true,
+          "error_category": "ok"
+        }
+      },
+      {
+        "key": "b307e1f24d6f322880337141c093c7e67e7598a0dfce33cb5deeec4197522860:0",
+        "record_key": "b307e1f24d6f322880337141c093c7e67e7598a0dfce33cb5deeec4197522860",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:4b",
+        "task_id": "T3a_DJ_constant",
+        "base_seed": 9,
+        "condition_id": "self_debugging",
+        "round": 0,
+        "is_final": false,
+        "code_sha256": "6e068acef58e1e486201e633069f822e3741269c0d5df79d057a8bc334212832",
+        "old_primary": {
+          "L0": false,
+          "L1": false,
+          "L2": false,
+          "structure_match": false,
+          "L3": false,
+          "error_category": "interface_mismatch"
+        }
+      },
+      {
+        "key": "b307e1f24d6f322880337141c093c7e67e7598a0dfce33cb5deeec4197522860:1",
+        "record_key": "b307e1f24d6f322880337141c093c7e67e7598a0dfce33cb5deeec4197522860",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:4b",
+        "task_id": "T3a_DJ_constant",
+        "base_seed": 9,
+        "condition_id": "self_debugging",
+        "round": 1,
+        "is_final": false,
+        "code_sha256": "142e3d03c87f7a5a25cb50ade3c43b6fae00d2ff660bcbed7e472c7856b49177",
+        "old_primary": {
+          "L0": false,
+          "L1": false,
+          "L2": false,
+          "structure_match": false,
+          "L3": false,
+          "error_category": "interface_mismatch"
+        }
+      },
+      {
+        "key": "b307e1f24d6f322880337141c093c7e67e7598a0dfce33cb5deeec4197522860:2",
+        "record_key": "b307e1f24d6f322880337141c093c7e67e7598a0dfce33cb5deeec4197522860",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:4b",
+        "task_id": "T3a_DJ_constant",
+        "base_seed": 9,
+        "condition_id": "self_debugging",
+        "round": 2,
+        "is_final": true,
+        "code_sha256": "1a224d2e70f23913e8a1432fefaa8fc1ed039d69f9e749d8ce4d54c9fc73cb6b",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": true,
+          "structure_match": true,
+          "L3": true,
+          "error_category": "ok"
+        }
+      },
+      {
+        "key": "3477b8df9674f3f80debae24ae2430147a5f3bcd20f0398712663f21bd1ec92d:0",
+        "record_key": "3477b8df9674f3f80debae24ae2430147a5f3bcd20f0398712663f21bd1ec92d",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:gemma4:e4b-it-qat",
+        "task_id": "T3b_DJ_balanced",
+        "base_seed": 8,
+        "condition_id": "baseline",
+        "round": 0,
+        "is_final": true,
+        "code_sha256": "b8ab78a66601767af7d46ed96dbf365d38df92971036cac03c40d4dea270d8b0",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": true,
+          "structure_match": true,
+          "L3": true,
+          "error_category": "ok"
+        }
+      },
+      {
+        "key": "2eb7c7baf35fd02cd5d22ee94e37421a00c2b9059904492d27c32be84cc376de:0",
+        "record_key": "2eb7c7baf35fd02cd5d22ee94e37421a00c2b9059904492d27c32be84cc376de",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T4_BV_011",
+        "base_seed": 6,
+        "condition_id": "self_refine",
+        "round": 0,
+        "is_final": false,
+        "code_sha256": "36020ee4cba652a44635e23cc5a30dafee7fe138d3304bac85a6cb57c2b4288d",
+        "old_primary": {
+          "L0": true,
+          "L1": false,
+          "L2": false,
+          "structure_match": false,
+          "L3": false,
+          "error_category": "build_error"
+        }
+      },
+      {
+        "key": "2eb7c7baf35fd02cd5d22ee94e37421a00c2b9059904492d27c32be84cc376de:1",
+        "record_key": "2eb7c7baf35fd02cd5d22ee94e37421a00c2b9059904492d27c32be84cc376de",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T4_BV_011",
+        "base_seed": 6,
+        "condition_id": "self_refine",
+        "round": 1,
+        "is_final": false,
+        "code_sha256": "e410ab1178f4e7735a7e15b72808bf29ac5059a54761176481ae494e98134407",
+        "old_primary": {
+          "L0": true,
+          "L1": false,
+          "L2": false,
+          "structure_match": false,
+          "L3": false,
+          "error_category": "build_error"
+        }
+      },
+      {
+        "key": "2eb7c7baf35fd02cd5d22ee94e37421a00c2b9059904492d27c32be84cc376de:2",
+        "record_key": "2eb7c7baf35fd02cd5d22ee94e37421a00c2b9059904492d27c32be84cc376de",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T4_BV_011",
+        "base_seed": 6,
+        "condition_id": "self_refine",
+        "round": 2,
+        "is_final": true,
+        "code_sha256": "0baf7eb7a3922e5c9e6985ecded2d2a2553fb34620e29ae65a39d85a1c5fa84f",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": true,
+          "structure_match": true,
+          "L3": true,
+          "error_category": "ok"
+        }
+      },
+      {
+        "key": "8c5eb8d45babd9601c3805ee66648418252f5e8d74e3a59dc8bd9cf9e4b16a6d:0",
+        "record_key": "8c5eb8d45babd9601c3805ee66648418252f5e8d74e3a59dc8bd9cf9e4b16a6d",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T5_Grover_11",
+        "base_seed": 2,
+        "condition_id": "preventive_spec",
+        "round": 0,
+        "is_final": true,
+        "code_sha256": "77cca589b8f32dc3f7868f9460ee451a4f5ff78f2fc20f14cca00b43ae555429",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": true,
+          "structure_match": true,
+          "L3": true,
+          "error_category": "ok"
+        }
+      },
+      {
+        "key": "79829d5943d3833fbc1e3a029259c466b11fcf98962d8bb5a3b8dd0dfcc3074c:0",
+        "record_key": "79829d5943d3833fbc1e3a029259c466b11fcf98962d8bb5a3b8dd0dfcc3074c",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T6_QFT_001",
+        "base_seed": 1,
+        "condition_id": "self_debugging",
+        "round": 0,
+        "is_final": false,
+        "code_sha256": "ccabecfe384021fd8c6e8a64dffda311fcfa89d7d0f92682c27b3a46c330bef3",
+        "old_primary": {
+          "L0": true,
+          "L1": false,
+          "L2": false,
+          "structure_match": false,
+          "L3": false,
+          "error_category": "build_error"
+        }
+      },
+      {
+        "key": "79829d5943d3833fbc1e3a029259c466b11fcf98962d8bb5a3b8dd0dfcc3074c:1",
+        "record_key": "79829d5943d3833fbc1e3a029259c466b11fcf98962d8bb5a3b8dd0dfcc3074c",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T6_QFT_001",
+        "base_seed": 1,
+        "condition_id": "self_debugging",
+        "round": 1,
+        "is_final": true,
+        "code_sha256": "cebbd868ee46691c890d278df1c54785da82f5ae1104611e2170e6b217f53f40",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": true,
+          "structure_match": true,
+          "L3": true,
+          "error_category": "ok"
+        }
+      },
+      {
+        "key": "afa920f4c26958936285d2e86886ccd7ecb0fc0a76a9f438a775f67c2f4195fa:0",
+        "record_key": "afa920f4c26958936285d2e86886ccd7ecb0fc0a76a9f438a775f67c2f4195fa",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:gemma4:e4b-it-qat",
+        "task_id": "T7_IQFT_001",
+        "base_seed": 1,
+        "condition_id": "baseline",
+        "round": 0,
+        "is_final": true,
+        "code_sha256": "3b8c7b3130f4f9239fe3a6bf71211b83702c848102b7b2a57c443651f91bf413",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": true,
+          "structure_match": true,
+          "L3": true,
+          "error_category": "ok"
+        }
+      },
+      {
+        "key": "ddc969e53a2f0dfb6ea41a755f42e2d480dee45fc542c93c6d9caacf320508b2:0",
+        "record_key": "ddc969e53a2f0dfb6ea41a755f42e2d480dee45fc542c93c6d9caacf320508b2",
+        "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T8_QPE_001",
+        "base_seed": 19,
+        "condition_id": "self_refine",
+        "round": 0,
+        "is_final": false,
+        "code_sha256": "b1324f166fc64fad89ae5e0a1d79e4c08857ae487cbde95f23fc450cee6c80d4",
+        "old_primary": {
+          "L0": false,
+          "L1": false,
+          "L2": false,
+          "structure_match": false,
+          "L3": false,
+          "error_category": "syntax"
+        }
+      },
+      {
+        "key": "ddc969e53a2f0dfb6ea41a755f42e2d480dee45fc542c93c6d9caacf320508b2:1",
+        "record_key": "ddc969e53a2f0dfb6ea41a755f42e2d480dee45fc542c93c6d9caacf320508b2",
+        "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T8_QPE_001",
+        "base_seed": 19,
+        "condition_id": "self_refine",
+        "round": 1,
+        "is_final": false,
+        "code_sha256": "89e84589edd5c86189fdc02ade0d4e79ff213c3e5190b7f4fcfde1778982fa87",
+        "old_primary": {
+          "L0": false,
+          "L1": false,
+          "L2": false,
+          "structure_match": false,
+          "L3": false,
+          "error_category": "syntax"
+        }
+      },
+      {
+        "key": "ddc969e53a2f0dfb6ea41a755f42e2d480dee45fc542c93c6d9caacf320508b2:2",
+        "record_key": "ddc969e53a2f0dfb6ea41a755f42e2d480dee45fc542c93c6d9caacf320508b2",
+        "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T8_QPE_001",
+        "base_seed": 19,
+        "condition_id": "self_refine",
+        "round": 2,
+        "is_final": true,
+        "code_sha256": "e1ed241cb56d29d365f146fc0678082ced63ee9475aa4b6d71e4afdba9d05807",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": true,
+          "structure_match": true,
+          "L3": true,
+          "error_category": "ok"
+        }
+      },
+      {
+        "key": "52de2286bcaa3fe4c516fa07302f82abafee4c843d831488df6371fba4e07b54:0",
+        "record_key": "52de2286bcaa3fe4c516fa07302f82abafee4c843d831488df6371fba4e07b54",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T9_Ansatz_001",
+        "base_seed": 1,
+        "condition_id": "self_debugging",
+        "round": 0,
+        "is_final": false,
+        "code_sha256": "d700dc574482ff937a682c8596922172811ea5f52679cfe4d0b9d3cc513efe78",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": false,
+          "structure_match": true,
+          "L3": false,
+          "error_category": "wrong_output"
+        }
+      },
+      {
+        "key": "52de2286bcaa3fe4c516fa07302f82abafee4c843d831488df6371fba4e07b54:1",
+        "record_key": "52de2286bcaa3fe4c516fa07302f82abafee4c843d831488df6371fba4e07b54",
+        "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+        "model_spec": "ollama:qwen3.5:9b",
+        "task_id": "T9_Ansatz_001",
+        "base_seed": 1,
+        "condition_id": "self_debugging",
+        "round": 1,
+        "is_final": true,
+        "code_sha256": "3ef706eb95af8d1bfe0bbd0e6707706d869672bfa9ce3ea855e233ff4ffcc54b",
+        "old_primary": {
+          "L0": true,
+          "L1": true,
+          "L2": true,
+          "structure_match": true,
+          "L3": true,
+          "error_category": "ok"
+        }
+      }
+    ],
+    "evaluator_profile": {
+      "primary_version": "evaluation_policy_v4",
+      "supplement_version": "coherent_oracles_v2",
+      "sandbox_policy": "linux_landlock_seccomp_v1",
+      "files": {
+        "harness/evaluator.py": "f90faf3d4ac034e057b07752e7972fe4d2bd4353a6d91a077294a01343e25bf7",
+        "harness/readout.py": "ec7b447997600e0391abf9744a4fbeff0eed69d8b43b0567d519a45cdcff1a4e",
+        "harness/failure_metadata.py": "0eb955a6aa8463681816f50e2d9647285d803f5d247ae054f2a6ca823e50236c",
+        "harness/supplementary.py": "78907cec4db26764036e9ea51c39f4bdd0a56565280e03758b05877f0a3db3bf",
+        "harness/sandbox_policy.py": "2e89325d25865ad526293b96ec8b236d085decd8d7938b0a756bad408b565d05",
+        "harness/isolated_worker.py": "0fe8892fa49022f86963f6e11d4b7e8c473692d08843cec96106c1f6cd0eba07",
+        "harness/isolated_evaluation.py": "7da232f8612f9980e3eced1b3b1ff45a52258edd10211368cf997fda995bb3a0",
+        "harness/reevaluation_checkpoint.py": "b74d0d75a7ed816f0abb985798673772acad63a186dd60f254522dbdfd65c421",
+        "harness/reevaluation_plan.py": "7038762444930d7c0c59b83ca96dbd837107db90abba41749c9747cab1ececfc",
+        "scripts/pilot_reevaluation.py": "ef6093208fad5f864654aa6c73c7f44e159b1344e6c036384e8ef41c545eb275",
+        "tasks/__init__.py": "9f3a509f452d08e9b63e75701bcddfe27db3c86fa941c3636e6c4bc656f7efe9",
+        "tasks/t1_bell.py": "43f2e537ee8dfb8c8905895834b55f07c74194ac3a5b7562517b23a1c56f0071",
+        "tasks/t2_ghz.py": "3e90913f700f01b4ade19a176617e4e44892406ef73a525924533c3dfcf409ef",
+        "tasks/t3_dj_balanced.py": "1e747fc582a02520d407c02a3a46a0d3786ad1d870d12c3ac8044b1c92d5edd5",
+        "tasks/t3_dj_constant.py": "463b8a291b0fb9d28d462cc6cc7618ffa5aa8011367223229b0eace93b10e590",
+        "tasks/t4_bv.py": "4e1e6006542c9a2bb84ba89861ecee7ed40238731a7734a830231f913221ae13",
+        "tasks/t5_grover.py": "5ed5a81e4be75da8d556b2ad8cff4b2119e1c302226aff5acd9f421120cc05a8",
+        "tasks/t6_qft.py": "91aa125cf945f588cd73ab9a4d7b9389d7f1be9a7b567769c5343a39d8fe95f7",
+        "tasks/t7_iqft.py": "a8cae9b1ae33a64ac1ad68eb94a104089db018dcef668202319bcd00c408bd04",
+        "tasks/t8_qpe.py": "cad2545b8e15c7bf69e536b0918e2c2e86306750372840e3f2e871da0189d6d0",
+        "tasks/t9_ansatz.py": "4eb50ac05c70ee77b8c8d1211df962522a56c449ea0c7b39d3f7b7ecb0be8acb"
+      },
+      "limits_per_stage": {
+        "wall_seconds": 25,
+        "cpu_seconds": 15,
+        "memory_bytes": 2147483648,
+        "file_bytes": 4194304
+      },
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "packages": {
+        "qiskit": "2.5.2",
+        "qiskit-aer": "0.17.2",
+        "numpy": "2.5.3"
+      },
+      "sampling": {
+        "shots": 8192,
+        "seed_simulator": 42,
+        "seed_transpiler": 42
+      }
+    }
+  },
+  "sanity": {
+    "planned": 21,
+    "completed": 21,
+    "missing": 0,
+    "manifest_sha256": "d38e12c4e5784fc143c7d18d2c6ec8ba9d7aba19f743f953711eac3881dee876",
+    "integrity": "ok"
+  },
+  "executed_this_invocation": 21,
+  "elapsed_seconds_this_invocation": 26.07943772384897,
+  "runtime_failures": [],
+  "outputs": [
+    {
+      "key": "d19fa7e7ef718920a0a0c66756295576b41b545192fc04a51c62f5fc7c8ba5af:0",
+      "record_key": "d19fa7e7ef718920a0a0c66756295576b41b545192fc04a51c62f5fc7c8ba5af",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T1_Bell",
+      "base_seed": 2,
+      "condition_id": "self_debugging",
+      "round": 0,
+      "is_final": false,
+      "code_sha256": "747ff557df623aeb338fea7de741b2720a6d199cba32310eb7fe549295498140",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": false,
+        "structure_match": true,
+        "L3": false,
+        "error_category": "wrong_output"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 0.0087890625,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "fidelity": 0.9999999999999997,
+        "purity": 0.9999999999999996,
+        "scope": "fixed_prepared_state_density_fidelity",
+        "status": "pass",
+        "strict_fidelity_cutoff": 0.9975015625000001,
+        "version": "coherent_oracles_v2"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.666258935816586,
+      "oracle_or_failure_seconds": 0.9173660278320312,
+      "cpu_seconds": 1.5570370000000002
+    },
+    {
+      "key": "d19fa7e7ef718920a0a0c66756295576b41b545192fc04a51c62f5fc7c8ba5af:1",
+      "record_key": "d19fa7e7ef718920a0a0c66756295576b41b545192fc04a51c62f5fc7c8ba5af",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T1_Bell",
+      "base_seed": 2,
+      "condition_id": "self_debugging",
+      "round": 1,
+      "is_final": false,
+      "code_sha256": "c27c67b0364b0459cadce1c12415b08aec24cda1adbbdaeae33ff0f330c54668",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": false,
+        "structure_match": true,
+        "L3": false,
+        "error_category": "wrong_output"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 0.0087890625,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "fidelity": 0.9999999999999997,
+        "purity": 0.9999999999999996,
+        "scope": "fixed_prepared_state_density_fidelity",
+        "status": "pass",
+        "strict_fidelity_cutoff": 0.9975015625000001,
+        "version": "coherent_oracles_v2"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.6661233170889318,
+      "oracle_or_failure_seconds": 0.9694916708394885,
+      "cpu_seconds": 1.57184
+    },
+    {
+      "key": "d19fa7e7ef718920a0a0c66756295576b41b545192fc04a51c62f5fc7c8ba5af:2",
+      "record_key": "d19fa7e7ef718920a0a0c66756295576b41b545192fc04a51c62f5fc7c8ba5af",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T1_Bell",
+      "base_seed": 2,
+      "condition_id": "self_debugging",
+      "round": 2,
+      "is_final": true,
+      "code_sha256": "cf32f8c5826b8896771c2a44ab7560dd921fe5f84643bfde4e2c8ea45cc9a74e",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "error_category": "ok"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 0.0087890625,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "fidelity": 0.9999999999999997,
+        "purity": 0.9999999999999996,
+        "scope": "fixed_prepared_state_density_fidelity",
+        "status": "pass",
+        "strict_fidelity_cutoff": 0.9975015625000001,
+        "version": "coherent_oracles_v2"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.6662442372180521,
+      "oracle_or_failure_seconds": 0.9172601201571524,
+      "cpu_seconds": 1.5369469999999994
+    },
+    {
+      "key": "4df5750ac778a376c951de7c2ff0c52432406d446c838528648aa97e547bd09e:0",
+      "record_key": "4df5750ac778a376c951de7c2ff0c52432406d446c838528648aa97e547bd09e",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "model_spec": "ollama:qwen3.5:4b",
+      "task_id": "T2_GHZ",
+      "base_seed": 19,
+      "condition_id": "self_debugging",
+      "round": 0,
+      "is_final": false,
+      "code_sha256": "2e26461987cc820392429d64c00431f3ffbe6efb9dd289513e5c509536302c16",
+      "old_primary": {
+        "L0": false,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "error_category": "import_error"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": false,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "L2_distance": null,
+        "error_category": "import_error",
+        "failure_stage": "import",
+        "exception_type": "ModuleNotFoundError"
+      },
+      "auxiliary": {
+        "reason": "no circuit",
+        "status": "not_applicable"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0,
+      "oracle_or_failure_seconds": 0.6662283046171069,
+      "cpu_seconds": 0.6165479999999995
+    },
+    {
+      "key": "4df5750ac778a376c951de7c2ff0c52432406d446c838528648aa97e547bd09e:1",
+      "record_key": "4df5750ac778a376c951de7c2ff0c52432406d446c838528648aa97e547bd09e",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "model_spec": "ollama:qwen3.5:4b",
+      "task_id": "T2_GHZ",
+      "base_seed": 19,
+      "condition_id": "self_debugging",
+      "round": 1,
+      "is_final": true,
+      "code_sha256": "1b344edd9c91996efa66d8ec9ea34140d4c836ce8aea329c94cd316473478b4c",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "error_category": "ok"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 0.0096435546875,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "fidelity": 0.9999999999999997,
+        "purity": 0.9999999999999996,
+        "scope": "fixed_prepared_state_density_fidelity",
+        "status": "pass",
+        "strict_fidelity_cutoff": 0.9975015625000001,
+        "version": "coherent_oracles_v2"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.7165011367760599,
+      "oracle_or_failure_seconds": 0.9169288799166679,
+      "cpu_seconds": 1.6189939999999996
+    },
+    {
+      "key": "b307e1f24d6f322880337141c093c7e67e7598a0dfce33cb5deeec4197522860:0",
+      "record_key": "b307e1f24d6f322880337141c093c7e67e7598a0dfce33cb5deeec4197522860",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:4b",
+      "task_id": "T3a_DJ_constant",
+      "base_seed": 9,
+      "condition_id": "self_debugging",
+      "round": 0,
+      "is_final": false,
+      "code_sha256": "6e068acef58e1e486201e633069f822e3741269c0d5df79d057a8bc334212832",
+      "old_primary": {
+        "L0": false,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "error_category": "interface_mismatch"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": false,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "L2_distance": null,
+        "error_category": "interface_mismatch",
+        "failure_stage": "exec",
+        "exception_type": "QiskitError"
+      },
+      "auxiliary": {
+        "reason": "no circuit",
+        "status": "not_applicable"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0,
+      "oracle_or_failure_seconds": 0.7667985870502889,
+      "cpu_seconds": 0.7366340000000001
+    },
+    {
+      "key": "b307e1f24d6f322880337141c093c7e67e7598a0dfce33cb5deeec4197522860:1",
+      "record_key": "b307e1f24d6f322880337141c093c7e67e7598a0dfce33cb5deeec4197522860",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:4b",
+      "task_id": "T3a_DJ_constant",
+      "base_seed": 9,
+      "condition_id": "self_debugging",
+      "round": 1,
+      "is_final": false,
+      "code_sha256": "142e3d03c87f7a5a25cb50ade3c43b6fae00d2ff660bcbed7e472c7856b49177",
+      "old_primary": {
+        "L0": false,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "error_category": "interface_mismatch"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": false,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "L2_distance": null,
+        "error_category": "interface_mismatch",
+        "failure_stage": "exec",
+        "exception_type": "QiskitError"
+      },
+      "auxiliary": {
+        "reason": "no circuit",
+        "status": "not_applicable"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0,
+      "oracle_or_failure_seconds": 0.7164315800182521,
+      "cpu_seconds": 0.6877359999999995
+    },
+    {
+      "key": "b307e1f24d6f322880337141c093c7e67e7598a0dfce33cb5deeec4197522860:2",
+      "record_key": "b307e1f24d6f322880337141c093c7e67e7598a0dfce33cb5deeec4197522860",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:4b",
+      "task_id": "T3a_DJ_constant",
+      "base_seed": 9,
+      "condition_id": "self_debugging",
+      "round": 2,
+      "is_final": true,
+      "code_sha256": "1a224d2e70f23913e8a1432fefaa8fc1ed039d69f9e749d8ce4d54c9fc73cb6b",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "error_category": "ok"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 0.0054931640625,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "reason": "unmeasured expected-width circuit required",
+        "scope": "fixed_state_and_prescribed_whole_unitary",
+        "status": "not_applicable",
+        "version": "coherent_oracles_v2"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.7667072997428477,
+      "oracle_or_failure_seconds": 0.9166691680438817,
+      "cpu_seconds": 1.6412469999999983
+    },
+    {
+      "key": "3477b8df9674f3f80debae24ae2430147a5f3bcd20f0398712663f21bd1ec92d:0",
+      "record_key": "3477b8df9674f3f80debae24ae2430147a5f3bcd20f0398712663f21bd1ec92d",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:gemma4:e4b-it-qat",
+      "task_id": "T3b_DJ_balanced",
+      "base_seed": 8,
+      "condition_id": "baseline",
+      "round": 0,
+      "is_final": true,
+      "code_sha256": "b8ab78a66601767af7d46ed96dbf365d38df92971036cac03c40d4dea270d8b0",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "error_category": "ok"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 0.0054931640625,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "scope": "fixed_state_and_prescribed_whole_unitary",
+        "state": {
+          "fidelity": 0.9999999999999981,
+          "purity": 0.9999999999999984,
+          "status": "pass",
+          "strict_fidelity_cutoff": 0.9975015625000001
+        },
+        "status": "pass",
+        "transform": {
+          "minimum_fidelity": 0.9999999999999978,
+          "probe_count": 22,
+          "process_fidelity": 0.999999999999998,
+          "status": "pass",
+          "strict_fidelity_cutoff": 0.9975015625000001,
+          "worst_probe": "coherent_0_1_real"
+        },
+        "version": "coherent_oracles_v2"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.6663115969859064,
+      "oracle_or_failure_seconds": 0.9201480126939714,
+      "cpu_seconds": 1.5179230000000008
+    },
+    {
+      "key": "2eb7c7baf35fd02cd5d22ee94e37421a00c2b9059904492d27c32be84cc376de:0",
+      "record_key": "2eb7c7baf35fd02cd5d22ee94e37421a00c2b9059904492d27c32be84cc376de",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T4_BV_011",
+      "base_seed": 6,
+      "condition_id": "self_refine",
+      "round": 0,
+      "is_final": false,
+      "code_sha256": "36020ee4cba652a44635e23cc5a30dafee7fe138d3304bac85a6cb57c2b4288d",
+      "old_primary": {
+        "L0": true,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "error_category": "build_error"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "L2_distance": null,
+        "error_category": "build_error",
+        "failure_stage": "build",
+        "exception_type": "TypeError"
+      },
+      "auxiliary": {
+        "reason": "no circuit",
+        "status": "not_applicable"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0,
+      "oracle_or_failure_seconds": 0.72002212703228,
+      "cpu_seconds": 0.702265000000001
+    },
+    {
+      "key": "2eb7c7baf35fd02cd5d22ee94e37421a00c2b9059904492d27c32be84cc376de:1",
+      "record_key": "2eb7c7baf35fd02cd5d22ee94e37421a00c2b9059904492d27c32be84cc376de",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T4_BV_011",
+      "base_seed": 6,
+      "condition_id": "self_refine",
+      "round": 1,
+      "is_final": false,
+      "code_sha256": "e410ab1178f4e7735a7e15b72808bf29ac5059a54761176481ae494e98134407",
+      "old_primary": {
+        "L0": true,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "error_category": "build_error"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "L2_distance": null,
+        "error_category": "build_error",
+        "failure_stage": "build",
+        "exception_type": "TypeError"
+      },
+      "auxiliary": {
+        "reason": "no circuit",
+        "status": "not_applicable"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0,
+      "oracle_or_failure_seconds": 0.6662514940835536,
+      "cpu_seconds": 0.6234039999999994
+    },
+    {
+      "key": "2eb7c7baf35fd02cd5d22ee94e37421a00c2b9059904492d27c32be84cc376de:2",
+      "record_key": "2eb7c7baf35fd02cd5d22ee94e37421a00c2b9059904492d27c32be84cc376de",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T4_BV_011",
+      "base_seed": 6,
+      "condition_id": "self_refine",
+      "round": 2,
+      "is_final": true,
+      "code_sha256": "0baf7eb7a3922e5c9e6985ecded2d2a2553fb34620e29ae65a39d85a1c5fa84f",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "error_category": "ok"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 0.0054931640625,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "scope": "fixed_state_and_prescribed_whole_unitary",
+        "state": {
+          "fidelity": 0.9999999999999978,
+          "purity": 0.9999999999999978,
+          "status": "pass",
+          "strict_fidelity_cutoff": 0.9975015625000001
+        },
+        "status": "pass",
+        "transform": {
+          "minimum_fidelity": 0.9999999999999973,
+          "probe_count": 46,
+          "process_fidelity": 0.9999999999999978,
+          "status": "pass",
+          "strict_fidelity_cutoff": 0.9975015625000001,
+          "worst_probe": "coherent_0_1_real"
+        },
+        "version": "coherent_oracles_v2"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.6664941860362887,
+      "oracle_or_failure_seconds": 1.0678968811407685,
+      "cpu_seconds": 1.6707219999999996
+    },
+    {
+      "key": "8c5eb8d45babd9601c3805ee66648418252f5e8d74e3a59dc8bd9cf9e4b16a6d:0",
+      "record_key": "8c5eb8d45babd9601c3805ee66648418252f5e8d74e3a59dc8bd9cf9e4b16a6d",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T5_Grover_11",
+      "base_seed": 2,
+      "condition_id": "preventive_spec",
+      "round": 0,
+      "is_final": true,
+      "code_sha256": "77cca589b8f32dc3f7868f9460ee451a4f5ff78f2fc20f14cca00b43ae555429",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "error_category": "ok"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 0.0,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "scope": "fixed_state_and_prescribed_whole_unitary",
+        "state": {
+          "fidelity": 0.9999999999999986,
+          "purity": 0.999999999999998,
+          "status": "pass",
+          "strict_fidelity_cutoff": 0.9975015625000001
+        },
+        "status": "pass",
+        "transform": {
+          "minimum_fidelity": 0.9999999999999984,
+          "probe_count": 10,
+          "process_fidelity": 0.9999999999999987,
+          "status": "pass",
+          "strict_fidelity_cutoff": 0.9975015625000001,
+          "worst_probe": "coherent_0_1_real"
+        },
+        "version": "coherent_oracles_v2"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.6665467289276421,
+      "oracle_or_failure_seconds": 1.0171704380773008,
+      "cpu_seconds": 1.6062030000000025
+    },
+    {
+      "key": "79829d5943d3833fbc1e3a029259c466b11fcf98962d8bb5a3b8dd0dfcc3074c:0",
+      "record_key": "79829d5943d3833fbc1e3a029259c466b11fcf98962d8bb5a3b8dd0dfcc3074c",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T6_QFT_001",
+      "base_seed": 1,
+      "condition_id": "self_debugging",
+      "round": 0,
+      "is_final": false,
+      "code_sha256": "ccabecfe384021fd8c6e8a64dffda311fcfa89d7d0f92682c27b3a46c330bef3",
+      "old_primary": {
+        "L0": true,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "error_category": "build_error"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "L2_distance": null,
+        "error_category": "build_error",
+        "failure_stage": "build",
+        "exception_type": "TypeError"
+      },
+      "auxiliary": {
+        "reason": "no circuit",
+        "status": "not_applicable"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0,
+      "oracle_or_failure_seconds": 0.6660532830283046,
+      "cpu_seconds": 0.6299659999999974
+    },
+    {
+      "key": "79829d5943d3833fbc1e3a029259c466b11fcf98962d8bb5a3b8dd0dfcc3074c:1",
+      "record_key": "79829d5943d3833fbc1e3a029259c466b11fcf98962d8bb5a3b8dd0dfcc3074c",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T6_QFT_001",
+      "base_seed": 1,
+      "condition_id": "self_debugging",
+      "round": 1,
+      "is_final": true,
+      "code_sha256": "cebbd868ee46691c890d278df1c54785da82f5ae1104611e2170e6b217f53f40",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "error_category": "ok"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 0.0,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "minimum_fidelity": 0.9999999999999987,
+        "probe_count": 22,
+        "process_fidelity": 0.9999999999999996,
+        "scope": "whole_preparation_plus_transform_unitary",
+        "status": "pass",
+        "strict_fidelity_cutoff": 0.9975015625000001,
+        "version": "coherent_oracles_v2",
+        "worst_probe": "coherent_0_5_real"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.6162356580607593,
+      "oracle_or_failure_seconds": 0.6661853296682239,
+      "cpu_seconds": 1.2547089999999987
+    },
+    {
+      "key": "afa920f4c26958936285d2e86886ccd7ecb0fc0a76a9f438a775f67c2f4195fa:0",
+      "record_key": "afa920f4c26958936285d2e86886ccd7ecb0fc0a76a9f438a775f67c2f4195fa",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:gemma4:e4b-it-qat",
+      "task_id": "T7_IQFT_001",
+      "base_seed": 1,
+      "condition_id": "baseline",
+      "round": 0,
+      "is_final": true,
+      "code_sha256": "3b8c7b3130f4f9239fe3a6bf71211b83702c848102b7b2a57c443651f91bf413",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "error_category": "ok"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 0.0,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "minimum_fidelity": 0.9999999999999987,
+        "probe_count": 22,
+        "process_fidelity": 0.9999999999999996,
+        "scope": "whole_preparation_plus_transform_unitary",
+        "status": "pass",
+        "strict_fidelity_cutoff": 0.9975015625000001,
+        "version": "coherent_oracles_v2",
+        "worst_probe": "coherent_0_5_real"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.6262413891963661,
+      "oracle_or_failure_seconds": 0.71619629021734,
+      "cpu_seconds": 1.3249320000000009
+    },
+    {
+      "key": "ddc969e53a2f0dfb6ea41a755f42e2d480dee45fc542c93c6d9caacf320508b2:0",
+      "record_key": "ddc969e53a2f0dfb6ea41a755f42e2d480dee45fc542c93c6d9caacf320508b2",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T8_QPE_001",
+      "base_seed": 19,
+      "condition_id": "self_refine",
+      "round": 0,
+      "is_final": false,
+      "code_sha256": "b1324f166fc64fad89ae5e0a1d79e4c08857ae487cbde95f23fc450cee6c80d4",
+      "old_primary": {
+        "L0": false,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "error_category": "syntax"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": false,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "L2_distance": null,
+        "error_category": "syntax",
+        "failure_stage": "parse",
+        "exception_type": "SyntaxError"
+      },
+      "auxiliary": {
+        "reason": "no circuit",
+        "status": "not_applicable"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0,
+      "oracle_or_failure_seconds": 0.6660096538253129,
+      "cpu_seconds": 0.6213419999999976
+    },
+    {
+      "key": "ddc969e53a2f0dfb6ea41a755f42e2d480dee45fc542c93c6d9caacf320508b2:1",
+      "record_key": "ddc969e53a2f0dfb6ea41a755f42e2d480dee45fc542c93c6d9caacf320508b2",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T8_QPE_001",
+      "base_seed": 19,
+      "condition_id": "self_refine",
+      "round": 1,
+      "is_final": false,
+      "code_sha256": "89e84589edd5c86189fdc02ade0d4e79ff213c3e5190b7f4fcfde1778982fa87",
+      "old_primary": {
+        "L0": false,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "error_category": "syntax"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": false,
+        "L1": false,
+        "L2": false,
+        "structure_match": false,
+        "L3": false,
+        "L2_distance": null,
+        "error_category": "syntax",
+        "failure_stage": "parse",
+        "exception_type": "SyntaxError"
+      },
+      "auxiliary": {
+        "reason": "no circuit",
+        "status": "not_applicable"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0,
+      "oracle_or_failure_seconds": 0.6661524237133563,
+      "cpu_seconds": 0.6432549999999986
+    },
+    {
+      "key": "ddc969e53a2f0dfb6ea41a755f42e2d480dee45fc542c93c6d9caacf320508b2:2",
+      "record_key": "ddc969e53a2f0dfb6ea41a755f42e2d480dee45fc542c93c6d9caacf320508b2",
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T8_QPE_001",
+      "base_seed": 19,
+      "condition_id": "self_refine",
+      "round": 2,
+      "is_final": true,
+      "code_sha256": "e1ed241cb56d29d365f146fc0678082ced63ee9475aa4b6d71e4afdba9d05807",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "error_category": "ok"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 4.440892098500626e-16,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "scope": "fixed_state_and_prescribed_whole_unitary",
+        "state": {
+          "fidelity": 0.9999999999999986,
+          "purity": 0.999999999999998,
+          "status": "pass",
+          "strict_fidelity_cutoff": 0.9975015625000001
+        },
+        "status": "pass",
+        "transform": {
+          "minimum_fidelity": 1.1253489370321643e-33,
+          "probe_count": 46,
+          "process_fidelity": 0.24999999999999967,
+          "status": "fail",
+          "strict_fidelity_cutoff": 0.9975015625000001,
+          "worst_probe": "basis_9"
+        },
+        "version": "coherent_oracles_v2"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.6666449559852481,
+      "oracle_or_failure_seconds": 0.9168134741485119,
+      "cpu_seconds": 1.5803330000000009
+    },
+    {
+      "key": "52de2286bcaa3fe4c516fa07302f82abafee4c843d831488df6371fba4e07b54:0",
+      "record_key": "52de2286bcaa3fe4c516fa07302f82abafee4c843d831488df6371fba4e07b54",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T9_Ansatz_001",
+      "base_seed": 1,
+      "condition_id": "self_debugging",
+      "round": 0,
+      "is_final": false,
+      "code_sha256": "d700dc574482ff937a682c8596922172811ea5f52679cfe4d0b9d3cc513efe78",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": false,
+        "structure_match": true,
+        "L3": false,
+        "error_category": "wrong_output"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 1.6883057536160649e-16,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "scope": "fixed_state_and_prescribed_whole_unitary",
+        "state": {
+          "fidelity": 1.0,
+          "purity": 1.0,
+          "status": "pass",
+          "strict_fidelity_cutoff": 0.9975015625000001
+        },
+        "status": "pass",
+        "transform": {
+          "minimum_fidelity": 0.8535533905932731,
+          "probe_count": 10,
+          "process_fidelity": 0.8535533905932737,
+          "status": "fail",
+          "strict_fidelity_cutoff": 0.9975015625000001,
+          "worst_probe": "coherent_0_3_imag"
+        },
+        "version": "coherent_oracles_v2"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.7774141863919795,
+      "oracle_or_failure_seconds": 0.6665758513845503,
+      "cpu_seconds": 1.3853680000000028
+    },
+    {
+      "key": "52de2286bcaa3fe4c516fa07302f82abafee4c843d831488df6371fba4e07b54:1",
+      "record_key": "52de2286bcaa3fe4c516fa07302f82abafee4c843d831488df6371fba4e07b54",
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "model_spec": "ollama:qwen3.5:9b",
+      "task_id": "T9_Ansatz_001",
+      "base_seed": 1,
+      "condition_id": "self_debugging",
+      "round": 1,
+      "is_final": true,
+      "code_sha256": "3ef706eb95af8d1bfe0bbd0e6707706d869672bfa9ce3ea855e233ff4ffcc54b",
+      "old_primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "error_category": "ok"
+      },
+      "runtime_status": "completed",
+      "primary": {
+        "L0": true,
+        "L1": true,
+        "L2": true,
+        "structure_match": true,
+        "L3": true,
+        "L2_distance": 1.1102230246251565e-16,
+        "error_category": "ok",
+        "failure_stage": "unknown",
+        "exception_type": ""
+      },
+      "auxiliary": {
+        "changes_primary": false,
+        "scope": "fixed_state_and_prescribed_whole_unitary",
+        "state": {
+          "fidelity": 1.0,
+          "purity": 1.0,
+          "status": "pass",
+          "strict_fidelity_cutoff": 0.9975015625000001
+        },
+        "status": "pass",
+        "transform": {
+          "minimum_fidelity": 0.9999999999999996,
+          "probe_count": 10,
+          "process_fidelity": 1.0,
+          "status": "pass",
+          "strict_fidelity_cutoff": 0.9975015625000001,
+          "worst_probe": "coherent_0_1_real"
+        },
+        "version": "coherent_oracles_v2"
+      },
+      "isolation": {
+        "landlock_abi": 4,
+        "limits": {
+          "cpu_seconds": 15,
+          "file_bytes": 4194304,
+          "memory_bytes": 2147483648,
+          "wall_seconds": 25
+        },
+        "no_new_privs": true,
+        "policy": "linux_landlock_seccomp_v1",
+        "preexisting_threads": 1,
+        "seccomp": true
+      },
+      "build_seconds": 0.6660864478908479,
+      "oracle_or_failure_seconds": 0.6667467360384762,
+      "cpu_seconds": 1.2647200000000018
+    }
+  ],
+  "llm_requests": 0,
+  "estimated_llm_cost_usd": 0,
+  "histories": [
+    {
+      "record_key": "d19fa7e7ef718920a0a0c66756295576b41b545192fc04a51c62f5fc7c8ba5af",
+      "recorded_rounds": 3,
+      "reevaluation_complete": true,
+      "old_first_success_round": 2,
+      "old_ever_success": true,
+      "old_final_success": true,
+      "new_first_success_round": 0,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "4df5750ac778a376c951de7c2ff0c52432406d446c838528648aa97e547bd09e",
+      "recorded_rounds": 2,
+      "reevaluation_complete": true,
+      "old_first_success_round": 1,
+      "old_ever_success": true,
+      "old_final_success": true,
+      "new_first_success_round": 1,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "b307e1f24d6f322880337141c093c7e67e7598a0dfce33cb5deeec4197522860",
+      "recorded_rounds": 3,
+      "reevaluation_complete": true,
+      "old_first_success_round": 2,
+      "old_ever_success": true,
+      "old_final_success": true,
+      "new_first_success_round": 2,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "3477b8df9674f3f80debae24ae2430147a5f3bcd20f0398712663f21bd1ec92d",
+      "recorded_rounds": 1,
+      "reevaluation_complete": true,
+      "old_first_success_round": 0,
+      "old_ever_success": true,
+      "old_final_success": true,
+      "new_first_success_round": 0,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "2eb7c7baf35fd02cd5d22ee94e37421a00c2b9059904492d27c32be84cc376de",
+      "recorded_rounds": 3,
+      "reevaluation_complete": true,
+      "old_first_success_round": 2,
+      "old_ever_success": true,
+      "old_final_success": true,
+      "new_first_success_round": 2,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "8c5eb8d45babd9601c3805ee66648418252f5e8d74e3a59dc8bd9cf9e4b16a6d",
+      "recorded_rounds": 1,
+      "reevaluation_complete": true,
+      "old_first_success_round": 0,
+      "old_ever_success": true,
+      "old_final_success": true,
+      "new_first_success_round": 0,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "79829d5943d3833fbc1e3a029259c466b11fcf98962d8bb5a3b8dd0dfcc3074c",
+      "recorded_rounds": 2,
+      "reevaluation_complete": true,
+      "old_first_success_round": 1,
+      "old_ever_success": true,
+      "old_final_success": true,
+      "new_first_success_round": 1,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "afa920f4c26958936285d2e86886ccd7ecb0fc0a76a9f438a775f67c2f4195fa",
+      "recorded_rounds": 1,
+      "reevaluation_complete": true,
+      "old_first_success_round": 0,
+      "old_ever_success": true,
+      "old_final_success": true,
+      "new_first_success_round": 0,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "ddc969e53a2f0dfb6ea41a755f42e2d480dee45fc542c93c6d9caacf320508b2",
+      "recorded_rounds": 3,
+      "reevaluation_complete": true,
+      "old_first_success_round": 2,
+      "old_ever_success": true,
+      "old_final_success": true,
+      "new_first_success_round": 2,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    },
+    {
+      "record_key": "52de2286bcaa3fe4c516fa07302f82abafee4c843d831488df6371fba4e07b54",
+      "recorded_rounds": 2,
+      "reevaluation_complete": true,
+      "old_first_success_round": 1,
+      "old_ever_success": true,
+      "old_final_success": true,
+      "new_first_success_round": 0,
+      "new_ever_success": true,
+      "new_final_success": true,
+      "new_regression_observed": false
+    }
+  ],
+  "historical_feedback_policy": "saved codes only; no new feedback or unobserved rounds",
+  "full_5000_started": false
+}

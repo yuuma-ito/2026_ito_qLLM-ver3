@@ -1,0 +1,72 @@
+[
+  {
+    "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+    "model_spec": "ollama:gemma3:4b",
+    "task_id": "T1_Bell",
+    "base_seed": 15,
+    "condition_id": "self_debugging"
+  },
+  {
+    "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+    "model_spec": "ollama:gemma3:4b",
+    "task_id": "T2_GHZ",
+    "base_seed": 9,
+    "condition_id": "self_debugging"
+  },
+  {
+    "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+    "model_spec": "ollama:qwen2.5-coder:7b",
+    "task_id": "T3a_DJ_constant",
+    "base_seed": 4,
+    "condition_id": "self_debugging"
+  },
+  {
+    "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+    "model_spec": "ollama:qwen3.5:9b",
+    "task_id": "T3b_DJ_balanced",
+    "base_seed": 9,
+    "condition_id": "self_debugging"
+  },
+  {
+    "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+    "model_spec": "ollama:qwen3.5:9b",
+    "task_id": "T4_BV_011",
+    "base_seed": 18,
+    "condition_id": "execution_feedback"
+  },
+  {
+    "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+    "model_spec": "ollama:qwen3.5:9b",
+    "task_id": "T5_Grover_11",
+    "base_seed": 11,
+    "condition_id": "self_debugging"
+  },
+  {
+    "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+    "model_spec": "ollama:qwen3.5:4b",
+    "task_id": "T6_QFT_001",
+    "base_seed": 7,
+    "condition_id": "execution_feedback"
+  },
+  {
+    "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+    "model_spec": "ollama:gemma4:e4b-it-qat",
+    "task_id": "T7_IQFT_001",
+    "base_seed": 8,
+    "condition_id": "baseline"
+  },
+  {
+    "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+    "model_spec": "ollama:qwen3.5:4b",
+    "task_id": "T8_QPE_001",
+    "base_seed": 18,
+    "condition_id": "execution_feedback"
+  },
+  {
+    "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+    "model_spec": "ollama:qwen3.5:9b",
+    "task_id": "T9_Ansatz_001",
+    "base_seed": 12,
+    "condition_id": "self_debugging"
+  }
+]

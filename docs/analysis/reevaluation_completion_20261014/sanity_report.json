@@ -1,0 +1,76 @@
+{
+  "captured_at_utc": "2026-10-14T13:41:42.431173+00:00",
+  "decision": "GO",
+  "go_scope": "primary-v4 saved-code rescoring with separate auxiliary diagnostics and stop-on-infrastructure-failure",
+  "planned_records": 5000,
+  "planned_rounds": 9517,
+  "full_plan_sha256": "2e2186ce8474eb6e48c5423940e8421235c3e686074b9e152661fc51014a4a1b",
+  "case_catalog_sha256": "c2f2d27f4966edf01ebbe0b908a559a2e8adae39f24f8e282289bbff667ba97d",
+  "static_checks": {
+    "rounds": 9517,
+    "max_code_bytes": 4736,
+    "total_code_bytes": 10727045,
+    "model_syntax_failures": 715,
+    "legacy_empty_code_hashes": 1,
+    "missing_records": 0,
+    "duplicate_keys": 0
+  },
+  "sample_records": 20,
+  "sample_rounds": 58,
+  "task_types": 10,
+  "model_names": 5,
+  "completed_rounds": 58,
+  "missing_rounds": 0,
+  "duplicate_keys": 0,
+  "runtime_failures": 0,
+  "resume_executions": [
+    0,
+    0
+  ],
+  "total_pilot_wall_seconds": 65.22778273979202,
+  "total_child_cpu_seconds": 62.11975100000001,
+  "max_stage_wall_seconds": 1.0687908651307225,
+  "max_builder_wall_seconds": 0.7774141863919795,
+  "primary_categories": {
+    "ok": 17,
+    "import_error": 6,
+    "interface_mismatch": 2,
+    "build_error": 10,
+    "syntax": 14,
+    "wrong_output": 9
+  },
+  "auxiliary_statuses": {
+    "pass": 16,
+    "not_applicable": 33,
+    "fail": 9
+  },
+  "old_final_successes": 10,
+  "new_final_successes": 10,
+  "state_pass_transform_fail_keys": [
+    "ddc969e53a2f0dfb6ea41a755f42e2d480dee45fc542c93c6d9caacf320508b2:2",
+    "52de2286bcaa3fe4c516fa07302f82abafee4c843d831488df6371fba4e07b54:0"
+  ],
+  "sources": {
+    "results/shared_three_models_full_20261008T103231611899Z": {
+      "raw_sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515",
+      "config_sha256": "a4cd6ab1126e8927aa3a76c4fcf7392026007215d0388d8b6f73c3bba84691ec",
+      "records": 1500
+    },
+    "results/shared_five_models_full_20261010T041019864060Z": {
+      "raw_sha256": "308d32d6b097a8628c0d90889e9f3a5dd5054443ef0e0c8f0c3c054aec7f2599",
+      "config_sha256": "5c9232f76cc6758b52983fe90ec0757ba2ffe2c4972884a25736f09edd45f22a",
+      "records": 2500
+    },
+    "results/shared_two_models_seed0_9_full_20261012T100658266051Z": {
+      "raw_sha256": "56b0859fdd09b522f542a0e45f0539b2e8102771d2ce6fe16b8ddf7c12d815e0",
+      "config_sha256": "dd6b694be0b0c03b3bc33ecc13c69872104a5dba2b66706389b8163a618b0a9b",
+      "records": 1000
+    }
+  },
+  "historical_sources_unchanged": true,
+  "full_5000_started": false,
+  "llm_requests": 0,
+  "llm_cost_usd": 0,
+  "unexecuted_code_resource_compatibility_proven": false,
+  "failure_policy": "stop, persist failure, refuse automatic continuation in same checkpoint; never count as wrong_output"
+}

@@ -167,7 +167,7 @@ def test_isolated_primary_matches_existing_policy_and_auxiliary(task_id):
     result = isolated_evaluate(task.mock_correct_code, task_id)
     assert result["runtime_status"] == "completed", result
     assert result["primary"] == direct
-    assert result["auxiliary"]["status"] == ("pass" if task_id in {"T1_Bell", "T2_GHZ", "T6_QFT_001", "T7_IQFT_001"} else "not_implemented")
+    assert result["auxiliary"]["status"] == "pass"
     assert result["isolation"]["seccomp"] and result["isolation"]["landlock_abi"] >= 3
 
 

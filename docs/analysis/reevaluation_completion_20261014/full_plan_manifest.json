@@ -1,0 +1,79 @@
+{
+  "schema": "full_saved_code_plan_v1",
+  "purpose": "preflight_only",
+  "snapshot_sha256": "cb7e9532a4dea52e763f43eb7d366707bcb37c67eb5e29d094a1e3fd872008f0",
+  "evaluator_profile": {
+    "primary_version": "evaluation_policy_v4",
+    "supplement_version": "coherent_oracles_v2",
+    "sandbox_policy": "linux_landlock_seccomp_v1",
+    "files": {
+      "harness/evaluator.py": "f90faf3d4ac034e057b07752e7972fe4d2bd4353a6d91a077294a01343e25bf7",
+      "harness/readout.py": "ec7b447997600e0391abf9744a4fbeff0eed69d8b43b0567d519a45cdcff1a4e",
+      "harness/failure_metadata.py": "0eb955a6aa8463681816f50e2d9647285d803f5d247ae054f2a6ca823e50236c",
+      "harness/supplementary.py": "78907cec4db26764036e9ea51c39f4bdd0a56565280e03758b05877f0a3db3bf",
+      "harness/sandbox_policy.py": "2e89325d25865ad526293b96ec8b236d085decd8d7938b0a756bad408b565d05",
+      "harness/isolated_worker.py": "0fe8892fa49022f86963f6e11d4b7e8c473692d08843cec96106c1f6cd0eba07",
+      "harness/isolated_evaluation.py": "7da232f8612f9980e3eced1b3b1ff45a52258edd10211368cf997fda995bb3a0",
+      "harness/reevaluation_checkpoint.py": "b74d0d75a7ed816f0abb985798673772acad63a186dd60f254522dbdfd65c421",
+      "harness/reevaluation_plan.py": "7038762444930d7c0c59b83ca96dbd837107db90abba41749c9747cab1ececfc",
+      "scripts/pilot_reevaluation.py": "ef6093208fad5f864654aa6c73c7f44e159b1344e6c036384e8ef41c545eb275",
+      "tasks/__init__.py": "9f3a509f452d08e9b63e75701bcddfe27db3c86fa941c3636e6c4bc656f7efe9",
+      "tasks/t1_bell.py": "43f2e537ee8dfb8c8905895834b55f07c74194ac3a5b7562517b23a1c56f0071",
+      "tasks/t2_ghz.py": "3e90913f700f01b4ade19a176617e4e44892406ef73a525924533c3dfcf409ef",
+      "tasks/t3_dj_balanced.py": "1e747fc582a02520d407c02a3a46a0d3786ad1d870d12c3ac8044b1c92d5edd5",
+      "tasks/t3_dj_constant.py": "463b8a291b0fb9d28d462cc6cc7618ffa5aa8011367223229b0eace93b10e590",
+      "tasks/t4_bv.py": "4e1e6006542c9a2bb84ba89861ecee7ed40238731a7734a830231f913221ae13",
+      "tasks/t5_grover.py": "5ed5a81e4be75da8d556b2ad8cff4b2119e1c302226aff5acd9f421120cc05a8",
+      "tasks/t6_qft.py": "91aa125cf945f588cd73ab9a4d7b9389d7f1be9a7b567769c5343a39d8fe95f7",
+      "tasks/t7_iqft.py": "a8cae9b1ae33a64ac1ad68eb94a104089db018dcef668202319bcd00c408bd04",
+      "tasks/t8_qpe.py": "cad2545b8e15c7bf69e536b0918e2c2e86306750372840e3f2e871da0189d6d0",
+      "tasks/t9_ansatz.py": "4eb50ac05c70ee77b8c8d1211df962522a56c449ea0c7b39d3f7b7ecb0be8acb"
+    },
+    "limits_per_stage": {
+      "wall_seconds": 25,
+      "cpu_seconds": 15,
+      "memory_bytes": 2147483648,
+      "file_bytes": 4194304
+    },
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "packages": {
+      "qiskit": "2.5.2",
+      "qiskit-aer": "0.17.2",
+      "numpy": "2.5.3"
+    },
+    "sampling": {
+      "shots": 8192,
+      "seed_simulator": 42,
+      "seed_transpiler": 42
+    }
+  },
+  "sources": {
+    "results/shared_three_models_full_20261008T103231611899Z": {
+      "raw_sha256": "3fcf63e17659b8179d965be18d3583acf6adbab662466783c3dcecefb77dd515",
+      "config_sha256": "a4cd6ab1126e8927aa3a76c4fcf7392026007215d0388d8b6f73c3bba84691ec",
+      "records": 1500
+    },
+    "results/shared_five_models_full_20261010T041019864060Z": {
+      "raw_sha256": "308d32d6b097a8628c0d90889e9f3a5dd5054443ef0e0c8f0c3c054aec7f2599",
+      "config_sha256": "5c9232f76cc6758b52983fe90ec0757ba2ffe2c4972884a25736f09edd45f22a",
+      "records": 2500
+    },
+    "results/shared_two_models_seed0_9_full_20261012T100658266051Z": {
+      "raw_sha256": "56b0859fdd09b522f542a0e45f0539b2e8102771d2ce6fe16b8ddf7c12d815e0",
+      "config_sha256": "dd6b694be0b0c03b3bc33ecc13c69872104a5dba2b66706389b8163a618b0a9b",
+      "records": 1000
+    }
+  },
+  "records": 5000,
+  "static_checks": {
+    "rounds": 9517,
+    "max_code_bytes": 4736,
+    "total_code_bytes": 10727045,
+    "model_syntax_failures": 715,
+    "legacy_empty_code_hashes": 1,
+    "missing_records": 0,
+    "duplicate_keys": 0
+  },
+  "stop_on_runtime_failure": true,
+  "plan_sha256": "2e2186ce8474eb6e48c5423940e8421235c3e686074b9e152661fc51014a4a1b"
+}

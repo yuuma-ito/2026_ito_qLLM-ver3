@@ -40,7 +40,7 @@ def profile(limits=Limits()):
     from harness.supplementary import SUPPLEMENT_VERSION
     names = ["harness/evaluator.py", "harness/readout.py", "harness/failure_metadata.py",
              "harness/supplementary.py", "harness/sandbox_policy.py", "harness/isolated_worker.py",
-             "harness/isolated_evaluation.py", "harness/reevaluation_checkpoint.py", "scripts/pilot_reevaluation.py"]
+             "harness/isolated_evaluation.py", "harness/reevaluation_checkpoint.py", "harness/reevaluation_plan.py", "scripts/pilot_reevaluation.py"]
     files = {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest() for name in names if (ROOT / name).exists()}
     files.update({str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted((ROOT / "tasks").glob("*.py"))})
     return {"primary_version": EVALUATOR_VERSION, "supplement_version": SUPPLEMENT_VERSION,

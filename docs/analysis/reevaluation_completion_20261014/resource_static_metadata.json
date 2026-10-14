@@ -1,0 +1,7 @@
+{
+  "scope": "historically recorded metadata, not a bound on new execution",
+  "max_final_n_qubits": 4,
+  "max_recorded_round_gate_count": 40,
+  "final_widths_over_8": 0,
+  "round_gate_counts_over_10000": 0
+}

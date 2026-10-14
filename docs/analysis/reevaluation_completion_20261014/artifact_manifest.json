@@ -1,0 +1,64 @@
+{
+  "files": {
+    "README.md": {
+      "bytes": 14986,
+      "sha256": "27fecd3b223203fc40af2815c2676dee1f5fda7d36cfaa2e334e25cab440f258"
+    },
+    "full_case_catalog.csv": {
+      "bytes": 4731353,
+      "sha256": "c2f2d27f4966edf01ebbe0b908a559a2e8adae39f24f8e282289bbff667ba97d"
+    },
+    "full_plan_manifest.json": {
+      "bytes": 4075,
+      "sha256": "936a92ec4e5ed344d2c98997af0c56faa93e1a8abf9961be619664698cd7e9b1"
+    },
+    "installed_oracle_spec.json": {
+      "bytes": 1165,
+      "sha256": "e4fc0c68c3635aebc8cd01ee518fdca56db2bce1b0d704f90558e84de06a90bd"
+    },
+    "resource_comparison.csv": {
+      "bytes": 19998,
+      "sha256": "0cb95eed3da3836aee43a6b7d4055720090ba1a9c16bd398d70eaebe68565ad1"
+    },
+    "resource_negative_report.json": {
+      "bytes": 104031,
+      "sha256": "84e29c9aeb0b79c7c3fd0f5bcc3feaa32952cd26e21198b327e498ccf2c22644"
+    },
+    "resource_negative_resume.json": {
+      "bytes": 104031,
+      "sha256": "4ddfd5772d2414b18a3c34df66ef43daa70d7779f09aed795566a424d783d429"
+    },
+    "resource_positive_report.json": {
+      "bytes": 65271,
+      "sha256": "539372350b334269c49649e0e9edefbe2caaa25f9dd133a2e98085c80482a938"
+    },
+    "resource_positive_resume.json": {
+      "bytes": 65272,
+      "sha256": "4f6a39a39b16a27b5cb59d08f23d3eb16cf17bf75e5f828a6b33dc914169c563"
+    },
+    "resource_selection_negative.json": {
+      "bytes": 2150,
+      "sha256": "f2500a2d2f232dd4490e896eba96b14b4f8e4e85db651e4413916f018b377f93"
+    },
+    "resource_selection_positive.json": {
+      "bytes": 2118,
+      "sha256": "6af6eb21fb9f0935dc0cc3063dee87729ccdbc07318d8642ca010d6d6d7e39a4"
+    },
+    "resource_static_metadata.json": {
+      "bytes": 209,
+      "sha256": "5180f40447ab495cf1d47720853963fe8f53197df1d1a6d3cd298f5c6d46678e"
+    },
+    "sanity_report.json": {
+      "bytes": 2717,
+      "sha256": "1ce3da2d72ccaaecd6334f27a957c67ab51d3261d388a4b8a5b11136e35ce0d5"
+    },
+    "verification_results.json": {
+      "bytes": 4442,
+      "sha256": "2e8c73ec9bce17f777790176c6d211113369ca1117a101dd744bc56ba580992f"
+    }
+  },
+  "full_5000_started": false,
+  "generated_code_published": false,
+  "historical_sources_overwritten": false,
+  "git_push_performed": false
+}

@@ -1,0 +1,29 @@
+{
+  "packages": {
+    "qiskit": "2.5.2",
+    "qiskit-aer": "0.17.2",
+    "numpy": "2.5.3"
+  },
+  "apis": [
+    {
+      "name": "state_fidelity",
+      "signature": "(state1: 'Statevector | DensityMatrix', state2: 'Statevector | DensityMatrix', validate: 'bool' = True) -> 'float'",
+      "line": 29,
+      "source_file": "measures.py",
+      "sha256": "5da10d658173211f90bcf48d4ee1e0342103f393e429be7588bea65cbf2950d8"
+    },
+    {
+      "name": "DensityMatrix.from_instruction",
+      "signature": "(instruction: 'circuit.instruction.Instruction | QuantumCircuit') -> 'DensityMatrix'",
+      "line": 603,
+      "source_file": "densitymatrix.py",
+      "sha256": "cb70f9c20c786bae56226f4eaf9fb1601ce9d9f74f2898d77d749614ba5d880c"
+    }
+  ],
+  "specification_pages_viewed": [
+    "https://qiskit.qotlabs.org/docs/api/qiskit/quantum_info#state_fidelity",
+    "https://qiskit.qotlabs.org/docs/api/qiskit/qiskit.quantum_info.DensityMatrix"
+  ],
+  "method": "web.run original documentation viewed; local source signatures/hashes and controlled cases checked",
+  "paper_receipts": "../literature_reliability_20261014/source_implementation_recheck/source_receipts.json"
+}
