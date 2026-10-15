@@ -1,0 +1,270 @@
+\documentclass[dvipdfmx,aspectratio=169,11pt]{beamer}
+\usepackage{bxdpx-beamer}
+\usepackage{pxjahyper}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\definecolor{Navy}{HTML}{172D46}
+\definecolor{Teal}{HTML}{087F8C}
+\definecolor{Orange}{HTML}{C96B32}
+\definecolor{Muted}{HTML}{65758A}
+\definecolor{Pale}{HTML}{F0F5F8}
+\definecolor{Gray}{HTML}{8495A8}
+\setbeamercolor{normal text}{fg=Navy,bg=white}
+\setbeamercolor{frametitle}{fg=Navy}
+\setbeamercolor{structure}{fg=Teal}
+\setbeamercolor{block title}{fg=white,bg=Teal}
+\setbeamercolor{block body}{fg=Navy,bg=Pale}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}{\color{Teal}\small$\bullet$}
+\setbeamersize{text margin left=9mm,text margin right=9mm}
+\setbeamertemplate{frametitle}{\vspace{3mm}\insertframetitle\par\vspace{1mm}\textcolor{Teal}{\rule{\textwidth}{0.6pt}}}
+\setbeamertemplate{footline}{\hspace{9mm}\textcolor{Muted}{\scriptsize 中間発表・仮版｜2026-10-16}\hfill\textcolor{Muted}{\scriptsize\insertframenumber\ / 8\ifnum\value{framenumber}>8\quad 補足\fi}\hspace{9mm}\vspace{3mm}}
+\newcommand{\takeaway}[1]{\vspace{2mm}\begin{beamercolorbox}[wd=\textwidth,sep=2mm]{block body}\small\bfseries #1\end{beamercolorbox}}
+\newcommand{\src}[1]{\par\vspace{1mm}{\fontsize{6.5}{8}\selectfont\color{Muted} 出典：固定集計 20261016T\_reachable\_rescues / #1\par}}
+\newcommand{\smallnote}[1]{{\scriptsize\color{Muted}#1\par}}
+\input{data.tex}
+\title{Qiskit量子回路コードの初期失敗に対する修正介入}
+\author{2023TC011 伊藤 悠真}
+\date{2026年10月16日・中間発表 仮スライド}
+\begin{document}
+
+% 1 / 15 seconds
+\begin{frame}[plain]
+\vspace{4mm}
+{\small\color{Teal}\bfseries 量子回路コード生成 × LLM}\par\vspace{5mm}
+{\LARGE\bfseries 初期生成の失敗を、\\[2mm]どの修正介入が救済できるか}\par\vspace{4mm}
+{\large Qiskit量子回路コードの救済率と救済対象の分析}\par\vspace{6mm}
+{\normalsize 2023TC011 伊藤 悠真}\par\vspace{1mm}
+{\small 指導教員：横山 哲郎}\par\vspace{5mm}
+{\scriptsize\color{Muted} 中間発表 仮版｜6分・本編8枚｜2026年10月16日}
+\end{frame}
+
+% 2 / 35 seconds
+\begin{frame}{背景と目的：一度の生成で終わらせない}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.48\textwidth}
+\begin{block}{量子回路コード生成で起きる失敗}
+\small
+\begin{itemize}
+\item importや回路構築で止まる
+\item 実行できても期待する出力と異なる
+\item 量子ビット数などの構造条件を満たさない
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{.48\textwidth}
+\begin{block}{調べたいこと}
+\small
+\begin{itemize}
+\item どれだけ初期失敗を救済できるか
+\item 同じ数を救済しても対象は同じか
+\item 追加修正の消費と救済は見合うか
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\vspace{3mm}
+\takeaway{初期コードを共有して、修正の与え方による違いを比較する。}
+\vspace{2mm}
+\smallnote{先行研究：Self-Refine（Madaan et al., 2023）、Self-Debugging（Chen et al., 2023）。\\本研究の条件はハーネス内の実装であり、先行研究の完全再現ではない。}
+\end{frame}
+
+% 3 / 55 seconds
+\begin{frame}{実験設計：同じ初期コードから3条件へ分岐}
+\centering
+\begin{tikzpicture}[node distance=4mm,box/.style={draw=Teal,rounded corners=2pt,align=center,font=\small,minimum height=8mm},>=Latex]
+\node[box,fill=Pale,text width=34mm] (b) at (0,0) {B：初期生成・評価};
+\node[box,text width=61mm] (r) at (6,1.0) {R：自己見直し};
+\node[box,text width=61mm] (f) at (6,0) {F：エラー等の実行結果を提示};
+\node[box,text width=61mm] (d) at (6,-1.0) {D：説明・原因分析を促す自己デバッグ};
+\draw[->,thick,Teal] (b.east)--(r.west);
+\draw[->,thick,Teal] (b.east)--(f.west);
+\draw[->,thick,Teal] (b.east)--(d.west);
+\end{tikzpicture}\par
+\vspace{2mm}
+{\small\bfseries 5モデル × 10タスク × seed 0〜19 ＝ 1,000初期組}\par
+\vspace{2mm}
+\begin{itemize}\small
+\item 修正は最大3回。主判定に合格した時点で停止する。
+\item 生成上限1,024 tokens／要求、temperature 0.7。
+\item P：生成前注意事項による独立生成。修正型3条件と分けて扱う。
+\end{itemize}
+\smallnote{各初期組5条件、計5,000条件記録。モデル・タスクの一覧は補足A。}
+\src{repair\_summary.csv / source\_manifest.json・各保存設定}
+\end{frame}
+
+% 4 / 45 seconds
+\begin{frame}{評価：初期失敗545組を救済率の分母にする}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.53\textwidth}
+\begin{block}{主L3：指定入力と構造条件への合格}
+\small
+\begin{enumerate}
+\item import・必須関数の要件
+\item 回路構築と評価処理の実行
+\item 指定入力に対する期待出力との一致
+\item 量子ビット数・回路命令数の範囲
+\end{enumerate}
+\end{block}
+\end{column}
+\begin{column}{.43\textwidth}
+\vspace{2mm}
+{\small 初期1,000組の内訳}\par\vspace{2mm}
+{\Large\bfseries 455}\quad 初期成功\par\vspace{2mm}
+{\Large\bfseries\color{Orange}545}\quad 初期失敗\par\vspace{2mm}
+{\small 救済率}\par
+\vspace{2mm}{\small\(\displaystyle\frac{\text{初期失敗から最終主L3成功}}{\text{初期失敗545組}}\)}\par
+\end{column}
+\end{columns}
+\takeaway{「全入力で正しい」「全指示を守る」ことまで保証する判定ではない。}
+\smallnote{現行結果は保存コードの再評価と部分追試293ケースを組み合わせた経路。\\全件を新評価器で初回生成からやり直した実験ではない。}
+\src{results\_snapshot.json / 評価・追試の仕様照合記録（補足B）}
+\end{frame}
+
+% 5 / 60 seconds
+\begin{frame}{結果1：FとDは、初期失敗の約3分の1を救済}
+\centering
+\begin{tikzpicture}[x=0.22cm,y=1cm]
+\foreach \t in {0,10,20,30,40} {
+ \draw[Gray!25] (\t,0.25)--(\t,3.0);
+ \node[font=\scriptsize,text=Muted] at (\t,0) {\t\%};
+}
+\rescuebars
+\end{tikzpicture}\par
+\vspace{2mm}
+\takeaway{FとDの救済数の差は3組。救済率だけでは違いが見えにくい。}
+\smallnote{分母は共通の初期失敗545組。全体率は合算値であり、モデル率の単純平均ではない。\\指定モデル・タスク・seedでの観測値。一般的な優劣や統計的有意差は主張しない。}
+\src{repair\_summary.csv（pooled / overall）}
+\end{frame}
+
+% 6 / 50 seconds
+\begin{frame}{結果2：救済数が近くても、救済対象は異なる}
+\begin{columns}[c,onlytextwidth]
+\begin{column}{.53\textwidth}
+\centering\small
+\setlength{\tabcolsep}{4mm}\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{lcc}
+ & Dで救済 & Dで未救済 \\\toprule
+Fで救済 & \textcolor{Teal}{\bfseries 140} & \textcolor{Orange}{\bfseries 43} \\
+Fで未救済 & \textcolor{Orange}{\bfseries 40} & 322 \\\bottomrule
+\end{tabular}
+\par\vspace{2mm}\smallnote{同じ初期失敗545組を対応づけた比較。}
+\end{column}
+\begin{column}{.43\textwidth}
+{\small Fのみ・Dのみを合わせて}\par\vspace{2mm}
+{\Huge\bfseries\color{Orange}83組}\par\vspace{3mm}
+\small 両条件の166履歴・398修正遷移を確認。\par\vspace{2mm}
+\small 複数箇所が同時に変わるため、変更箇所だけで成功原因は確定できない。
+\end{column}
+\end{columns}
+\vspace{2mm}
+\takeaway{介入の評価には、救済数に加えて「何を救済したか」が必要。}
+\smallnote{両条件の結果を見て選んだ223組を、実行前の選択方策の成功数とは扱わない。}
+\src{fd\_overlap\_summary.csv / discordant\_transitions.csv}
+\end{frame}
+
+% 7 / 55 seconds
+\begin{frame}{結果3：追加消費と3回目の救済を併せて見る}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.48\textwidth}
+\begin{block}{救済1組あたりの追加tokens}
+\centering\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{lr}\toprule
+R：自己見直し & \costR \\
+F：実行結果提示 & \textcolor{Teal}{\bfseries\costF} \\
+D：自己デバッグ & \costD \\\bottomrule
+\end{tabular}\par\vspace{2mm}
+\smallnote{共有初期生成を除き、未救済例の消費も含む。\\保存記録＋部分追試の再構成計算値。}
+\end{block}
+\end{column}
+\begin{column}{.48\textwidth}
+\begin{block}{3回目の修正による追加救済}
+\centering\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{lrr}\toprule
+ & 追加救済 & 全救済中の割合 \\
+R & 19組 & 19.8\% \\
+F & 28組 & 15.3\% \\
+D & 33組 & 18.3\% \\\bottomrule
+\end{tabular}\par\vspace{2mm}
+\smallnote{同じ履歴を2回で区切ると失われる救済。\\上限別の独立実験ではない。}
+\end{block}
+\end{column}
+\end{columns}
+\takeaway{修正を増やすと救済も増える。停止回数は追加消費との両面で考える。}
+\smallnote{金銭費用は未測定。実測の費用削減や一般的な最適回数は主張しない。}
+\src{cost\_by\_cap\_and\_stratum.csv / third\_round\_summary.csv}
+\end{frame}
+
+% 8 / 45 seconds
+\begin{frame}{まとめと今後の課題}
+\begin{block}{今回の対象で観測できたこと}
+\begin{itemize}
+\item 初期失敗545組に対し、Fは183組、Dは180組を救済。
+\item 全体の救済数が近くても、片側のみ救済する対象が83組。
+\item 3回目の追加救済と、未救済例を含む追加消費を定量化。
+\end{itemize}
+\end{block}
+\vspace{1mm}
+\small\textbf{結果の範囲}\quad 指定入力・構造要件での成功。共有初期や出典間の差を含む記述的比較。\par\vspace{2mm}
+\small\textbf{次の研究課題}\quad 介入の選択方法と停止回数を事前に決め、別seed・タスクで検証する。\par
+\vspace{2mm}
+\takeaway{「どれだけ救済できるか」から、「どの失敗に何を使うか」へ。}
+\end{frame}
+
+\appendix
+\setbeamertemplate{footline}{\hspace{9mm}\textcolor{Muted}{\scriptsize 中間発表・仮版｜質疑用補足}\hfill\textcolor{Muted}{\scriptsize\insertframenumber}\hspace{9mm}\vspace{3mm}}
+\begin{frame}{補足A：モデル別結果と対象タスク}
+\small\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lrrrr}\toprule
+モデル識別子 & 初期失敗 & R救済 & F救済 & D救済 \\\midrule
+\modelrows
+\bottomrule\end{tabular}\par\vspace{3mm}
+\raggedright\scriptsize
+各モデル200初期組。救済率はモデルごとの初期失敗を分母に計算する。\\
+10タスク：Bell、GHZ、Deutsch--Jozsa（constant/balanced）、Bernstein--Vazirani、\\
+Grover、QFT、IQFT、QPE、Ansatz。モデルのタグを厳密なパラメータ数とは扱わない。\par\vspace{2mm}
+\textbf{初期失敗類型による違い：}\quad
+import失敗271組でF 58・D 72、回路構築失敗126組でF 76・D 68。\\
+類型とモデル・タスクの構成は関連するため、介入選択の一般則にはしない。
+\src{repair\_summary.csv（pooled / model, baseline\_error）}
+\end{frame}
+
+\begin{frame}{補足B：検証状況と評価が保証する範囲}
+\small
+\begin{itemize}
+\item 保存5,000記録・9,517 roundを再評価。欠落・重複・基盤障害は0。
+\item 影響する293ケースを部分追試。新規生成647回、API障害0。
+\item 原本hash、共有初期、入力連鎖、成功時停止、生成設定を照合。
+\item 主判定合格・厳格な補助判定失敗が保存roundに1件。\\
+固定入力では正しいが、全入力で同じ変換になるとは限らない。
+\item 測定禁止など全プロンプト条件の遵守は保証しない。\\
+主判定合格・補助適用外の測定入りコードも仕様照合に記録済み。
+\end{itemize}
+\takeaway{定義した主L3の結果として報告する。補助判定を混ぜて成功の定義を変えない。}
+\smallnote{有限shots・測定乱数・生成長上限・サーバ負荷への依存が残る。\\元3実験の設定・診断文差があり、独立標本や因果効果の証拠とは扱わない。}
+{\fontsize{6.5}{8}\selectfont\color{Muted} 出典：docs/analysis/reevaluation\_followup\_20261015/ のREADME、\\specification\_review.md、partial\_rerun\_sanity\_report.json。全件新規生成ではない。\par}
+\end{frame}
+
+\begin{frame}{補足C：Pの位置づけ・出典・先行研究}
+\small
+\textbf{P：生成前注意事項による独立生成}\par\vspace{1mm}
+初期失敗545組に対応する成功124組、初期成功455組に対応する失敗106組。\\
+最終成功は473/1,000組。同じ初期コードの修正とは分けて解釈する。\par\vspace{3mm}
+\textbf{固定した結果の出典}\par\vspace{1mm}
+{\scriptsize\texttt{docs/presentation\_sources/20261016T\_reachable\_rescues/}}\\
+\scriptsize results\_snapshot.json、repair\_summary.csv、fd\_overlap\_summary.csv、\\
+third\_round\_summary.csv、source\_manifest.json、sanity/validation report。\par\vspace{2mm}
+元3実験：3モデル・seed 0〜9（1,500条件）、5モデル・seed 10〜19（2,500条件）、\\
+残り2モデル・seed 0〜9（1,000条件）。旧120件は合算しない。\par\vspace{3mm}
+\textbf{先行研究}\par\vspace{1mm}
+Madaan et al., Self-Refine: Iterative Refinement with Self-Feedback, arXiv:2303.17651, 2023.\\
+Chen et al., Teaching Large Language Models to Self-Debug, arXiv:2304.05128, 2023.
+\end{frame}
+\end{document}

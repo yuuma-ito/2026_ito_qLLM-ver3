@@ -5,6 +5,10 @@
 - [paper.pdf](paper.pdf)：共有用PDF。
 - [paper.tex](paper.tex)：編集用原稿。
 - [進捗報告](progress_report_draft.txt)：前回からの変更・完了作業・残る課題。
+- [6分用の仮スライドPDF](slides/slides.pdf)：本編8枚＋質疑用補足3枚。固定済みの現行集計に基づく。
+- [スライドの編集用TeX](slides/slides.tex)・[6分用発表メモ](slides/speaker_notes.txt)：各ページの目安時間と質疑の要点。
+
+スライドはリポジトリ直下から `.venv/bin/python docs/midterm2026/slides/build.py` でビルドする。固定CSVからグラフ・モデル別表・コスト値を取り込み、数値照合、11ページ、文字欠け・はみ出し、フォント埋め込みを確認する。中間ファイルは `.cache/midterm_slides_20261016/`、出典と成果物hashは [スライド検証記録](slides/validation_report.json) に保存する。ビルド直後の目視確認状態は未確認になるので、配布前に画像化して確認する。6分は発表メモ上の配分であり、実際の発表速度はリハーサルで調整する。
 
 既存原稿の著者・指導教員情報を維持した。
 
