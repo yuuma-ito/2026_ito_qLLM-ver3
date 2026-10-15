@@ -16,7 +16,7 @@ config の `model_spec` では provider prefix の `ollama:` を含む形式を�
 - `ollama:qwen2.5-coder:7b` → `qwen2.5-coder:7b`
 - `ollama:gemma3:4b` → `gemma3:4b`
 
-動作確認は `configs/shared_five_models_quick.json` の100件、本実験は `configs/shared_five_models_full.json` の2,500件です。稼働中の3モデル実験は保存済みの3モデル設定で完了・再検証し、新しい実験は `--new-run` で結果を分けます。SF3の確認記録は [モデル取得記録](sf3_model_inventory_20261008.json) に保存しています。
+動作確認は `configs/shared_five_models_quick.json` の100件、本実験は `configs/shared_five_models_full.json` の2,500件です。既存の3モデル実験は保存済みの3モデル設定で再開・再検証し、新しい実験は `--new-run` で結果を分けます。SF3の確認記録は [モデル取得記録](sf3_model_inventory_20261008.json) に保存しています。
 
 既存の T1〜T9 を使用します。T3 は T3a と T3b に分かれるため、合計10タスクです。
 
@@ -26,7 +26,7 @@ config の `model_spec` では provider prefix の `ollama:` を含む形式を�
 | `medium`（中） | `T3a_DJ_constant`，`T3b_DJ_balanced`，`T4_BV_011`，`T5_Grover_11` |
 | `hard`（難） | `T6_QFT_001`，`T7_IQFT_001`，`T8_QPE_001`，`T9_Ansatz_001` |
 
-Full experiments の seed は両端を含む0〜9です。
+本実験テンプレートのseedは両端を含む0〜9です。保存済みの5モデル追加実験は10〜19、3モデル実験と2モデル補完実験は0〜9です。既存実験の再開・再検証では各 `experiment_config.json` のseedを使い、テンプレートの値で置き換えません。統合範囲と処理差は [統合方針](seed0_19_integration.md) を参照してください。
 
 ## 3. 介入条件
 

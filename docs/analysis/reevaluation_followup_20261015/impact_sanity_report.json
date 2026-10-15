@@ -1,0 +1,19 @@
+{
+  "records": 5000,
+  "rounds": 9517,
+  "affected_records": 634,
+  "partial_cases": 293,
+  "generation_cap": 773,
+  "reasons": {
+    "single_generation_condition": 1072,
+    "reachable_saved_stop": 2325,
+    "correction_limit": 982,
+    "first_feedback_divergence": 293,
+    "initial_new_pass_stop": 328
+  },
+  "sample_groups": 50,
+  "unverified_rounds": 0,
+  "same_L3_feedback_changed_rounds": 565,
+  "manifest_sha256": "2a14727466d646e783d26dfe1da76227aca93c330e7524e2449b3cd71fa240b2",
+  "llm_requests": 0
+}

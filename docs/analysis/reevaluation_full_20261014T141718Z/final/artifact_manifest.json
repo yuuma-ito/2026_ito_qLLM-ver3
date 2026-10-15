@@ -1,0 +1,30 @@
+{
+  "files": {
+    "round_comparison.csv": {
+      "sha256": "02fdd8302217ed444655fe0f4600fc58555f1e27dfef6405d7dd53850ce3caf3",
+      "bytes": 4624187
+    },
+    "paired_effects.csv": {
+      "sha256": "63d450f1af2d078976816b1eb99854fb620d84b8cff17f4dae7f78cf0e9d8e41",
+      "bytes": 604334
+    },
+    "sanity_report.json": {
+      "sha256": "b7d3f6ddf72608b3198a0f838dfe478a8652acf610e0aef8e86babbdc1fec19a",
+      "bytes": 354
+    },
+    "model_condition_summary.csv": {
+      "sha256": "ebcd6ca2bbfd935a2573aa14164b01c57032d889266b405e1bc12592fc084292",
+      "bytes": 1568
+    },
+    "summary.json": {
+      "sha256": "4cd4d151ec2ae92d1178c82be543a25458b81f40fd40dce7bc023f6e656708ef",
+      "bytes": 1348
+    },
+    "record_comparison.csv": {
+      "sha256": "05207aead8b11a55fb705a652130239c930a8c8de8a7a4a4c305b0ac1733da79",
+      "bytes": 1108815
+    }
+  },
+  "generated_code_published": false,
+  "raw_published": false
+}

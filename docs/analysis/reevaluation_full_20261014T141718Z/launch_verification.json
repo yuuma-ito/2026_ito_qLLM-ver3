@@ -1,0 +1,11 @@
+{
+  "full_suite_tests": 327,
+  "full_suite_failures": 0,
+  "full_suite_warnings": 44,
+  "updated_driver_tests": 3,
+  "updated_driver_failures": 0,
+  "driver_sha256": "daa0aa1e91a7a2682219cb95facf9ffe2766ed2047885529a0f3142bd73b83da",
+  "verified_at_utc": "2026-10-14T14:17:18.484563+00:00",
+  "launch_authorization": "user explicitly authorized full reevaluation: やろう",
+  "git_push_authorized": false
+}

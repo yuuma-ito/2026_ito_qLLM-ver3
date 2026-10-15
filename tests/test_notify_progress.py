@@ -347,3 +347,39 @@ def test_overview_cli_dry_run_never_delivers(experiment, monkeypatch, capsys):
     monkeypatch.setattr(notify, "deliver", lambda *_: pytest.fail("Dry run delivered"))
     assert notify.main(["--overview", "--transport", "email", "--dry-run"]) == 0
     assert "保存済みの実験はありません" in capsys.readouterr().out
+
+
+def test_periodic_overview_sleeps_then_resumes_for_starting_run_and_stops_after_completion(experiment, monkeypatch):
+    config, output, root = experiment
+    monkeypatch.setattr(notify, "ROOT", root)
+    monkeypatch.setattr(notify, "load_dotenv", lambda *_: None)
+    overview = notify.overview
+    monkeypatch.setattr(notify, "overview", lambda timezone: overview(timezone, root))
+    sent = []
+    monkeypatch.setattr(notify, "deliver", lambda *args: sent.append(args))
+    args = ["--overview", "--only-active", "--transport", "email"]
+    assert notify.main(args) == 0 and not sent
+    # A new run is detected before its config exists, including ordinary runs
+    # with immediate event notifications disabled.
+    with RunTracker(output, config["experiment_id"], root=root) as tracker:
+        tracker.update(notification_transport="none")
+        assert notify.main(args) == 0 and len(sent) == 1
+        tracker.finish("completed", phase="completed")
+    assert notify.main(args) == 0 and len(sent) == 1
+    # A subsequent experiment automatically arms the same installed cron.
+    with RunTracker(output, config["experiment_id"], root=root):
+        assert notify.main(args) == 0 and len(sent) == 2
+
+
+def test_only_active_skips_failed_history_but_keeps_explicit_overview(experiment, monkeypatch):
+    config, output, root = experiment
+    (output / "experiment_config.json").write_text(json.dumps(config))
+    with RunTracker(output, config["experiment_id"], root=root) as tracker:
+        tracker.finish("failed", phase="generating")
+    assert not notify.has_active_experiments(root)
+    assert "未完了／要確認: 1件" in notify.overview("Asia/Tokyo", root)
+
+
+def test_only_active_cannot_silently_change_explicit_config_notification(experiment):
+    with pytest.raises(SystemExit):
+        notify.main(["--config", "config.json", "--only-active"])

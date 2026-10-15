@@ -1,0 +1,15 @@
+{
+  "status": "completed",
+  "pid": 1667786,
+  "process_identity": "7a3fb480-ed8b-40fb-a1c6-beeaf57c47bd:392745152",
+  "started_at_utc": "2026-10-14T17:13:08.356351+00:00",
+  "updated_at_utc": "2026-10-14T19:21:51.612108+00:00",
+  "planned_records": 5000,
+  "planned_rounds": 9517,
+  "completed_rounds": 9517,
+  "checkpoint_dir": "/home/23tc011/2026_ito_qLLM-ver3/.cache/reevaluation/reevaluation_full_20261014T141718Z",
+  "plan_sha256": "df7dc9a5adf303d22b97e34ec03b85dba10c32f7fba456bd19746a5bcf496b51",
+  "full_5000_started": true,
+  "batch_offset": 9504,
+  "active_key": "9089dec19c44860c560f3ab7e828991a57e8c55f8d69462154461b0cc7cebed5:0"
+}

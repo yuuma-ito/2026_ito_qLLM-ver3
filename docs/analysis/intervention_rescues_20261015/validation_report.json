@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "independent_baseline_pair_count": 1000,
+  "independent_initial_failures": 545,
+  "independently_reconciled_conditions": 4,
+  "final_success_total": 2752,
+  "report_snapshot_and_prose_match": true,
+  "csv_column_counts_match": true,
+  "secret_pattern_check_passed": true,
+  "public_artifact_extensions_checked": true,
+  "tests": {
+    "command": ".venv/bin/python -m pytest -q tests/test_analyze_verified_rescues.py tests/test_update_experiment_report.py",
+    "passed": 21,
+    "failed": 0,
+    "warnings": 6,
+    "source_sha256": {
+      "tests/test_analyze_verified_rescues.py": "e09d5581a3c95550a65d13bafa7dbacc5470ac4293e248138de017fc909bbacc",
+      "tests/test_update_experiment_report.py": "a177a28bce7a3939d7551a819cba372a666d502ceff60665a19ba2a04c26b79d"
+    }
+  }
+}

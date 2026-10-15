@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "current_environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "qiskit": "2.5.2",
+    "qiskit_aer": "0.17.2",
+    "openai": "3.26.0"
+  },
+  "current_ollama_version": "0.35.1",
+  "source_comparisons": [
+    {
+      "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+      "saved_ollama_version": "0.35.1",
+      "checks": {
+        "python": true,
+        "platform": true,
+        "qiskit": true,
+        "qiskit_aer": true,
+        "openai": true,
+        "ollama_version": true
+      }
+    },
+    {
+      "source_dir": "results/shared_three_models_full_20261008T103231611899Z",
+      "saved_ollama_version": "0.35.1",
+      "checks": {
+        "python": true,
+        "platform": true,
+        "qiskit": true,
+        "qiskit_aer": true,
+        "openai": true,
+        "ollama_version": true
+      }
+    },
+    {
+      "source_dir": "results/shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "saved_ollama_version": "0.35.1",
+      "checks": {
+        "python": true,
+        "platform": true,
+        "qiskit": true,
+        "qiskit_aer": true,
+        "openai": true,
+        "ollama_version": true
+      }
+    }
+  ],
+  "note": "生成設定と全5モデルdigestは生成前の専用preflightで別途照合済み。環境情報の公開用確認。"
+}

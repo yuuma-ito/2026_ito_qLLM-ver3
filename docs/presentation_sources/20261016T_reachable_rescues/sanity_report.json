@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "condition_records": 5000,
+  "initial_groups": 1000,
+  "discordant_pairs": 83,
+  "discordant_condition_paths": 166,
+  "discordant_transition_count": 398,
+  "reachable_rounds": 9249,
+  "all_reachable_code_hashes_verified": true,
+  "raw_source_hashes_verified": true,
+  "checkpoint_hashes_verified": true,
+  "public_suffix_costs_verified": true,
+  "reconstructed_costs_reconciled": true,
+  "fixed_counts_match": true,
+  "unreachable_saved_suffixes_excluded": true,
+  "missing": 0,
+  "duplicates": 0,
+  "new_llm_requests": 0,
+  "generated_code_executions": 0
+}

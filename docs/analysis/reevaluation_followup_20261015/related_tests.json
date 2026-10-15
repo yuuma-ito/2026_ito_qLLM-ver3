@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "commands": [
+    {
+      "command": ".venv/bin/python -m pytest tests/test_reevaluation_followup_work.py tests/test_followup_reevaluation.py tests/test_full_reevaluation_driver.py tests/test_reevaluation_completion.py tests/test_reevaluation_readiness.py -q",
+      "passed": 70,
+      "warnings": 20
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_reevaluation_followup_work.py -q",
+      "passed": 13,
+      "warnings": 6
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_reevaluation_followup_work.py -q",
+      "passed": 15,
+      "warnings": 6
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_reevaluation_followup_work.py -q",
+      "passed": 17,
+      "warnings": 6
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_reevaluation_followup_work.py -q",
+      "passed": 19,
+      "warnings": 6
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_reevaluation_followup_work.py -q",
+      "passed": 20,
+      "warnings": 6
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_reevaluation_followup_work.py -q",
+      "passed": 21,
+      "warnings": 6
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_reevaluation_followup_work.py -k mixed_path -q",
+      "passed": 1,
+      "deselected": 20,
+      "warnings": 0
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_reevaluation_followup_work.py -q",
+      "passed": 22,
+      "warnings": 6
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_reevaluation_followup_work.py -q",
+      "passed": 23,
+      "warnings": 6
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_reevaluation_followup_work.py -q",
+      "passed": 24,
+      "warnings": 6
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_reevaluation_followup_work.py -q",
+      "passed": 25,
+      "warnings": 6
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_reevaluation_followup_work.py -q",
+      "passed": 26,
+      "warnings": 6
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_reevaluation_followup_work.py tests/test_followup_reevaluation.py tests/test_full_reevaluation_driver.py tests/test_reevaluation_completion.py tests/test_reevaluation_readiness.py -q",
+      "passed": 85,
+      "warnings": 20
+    }
+  ],
+  "integration": "実API生成なし。分布T1と状態T6の2件で本番隔離評価を含む部分経路を確認。"
+}

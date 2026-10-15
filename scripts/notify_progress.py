@@ -30,6 +30,16 @@ ROOT = Path(__file__).resolve().parent.parent
 ACTIVE = {"running", "stalled", "heartbeat_stale"}
 
 
+def has_active_experiments(root: Path = ROOT):
+    """Allow periodic cron to stay armed while remaining quiet between runs."""
+    results = (root / "results").resolve()
+    for path in sorted((root / ".cache/run_states").glob("*.json")):
+        runtime = json.loads(path.read_text(encoding="utf-8"))
+        if Path(runtime["output"]).resolve().is_relative_to(results) and observation(runtime) in ACTIVE:
+            return True
+    return False
+
+
 def resolve_config(path: Path, latest: bool, root: Path = ROOT):
     config = load_config(path)
     if latest:
@@ -321,12 +331,18 @@ def main(argv=None):
     parser.add_argument("--channel", help="Slack conversation ID; requires SLACK_BOT_TOKEN instead of webhook")
     parser.add_argument("--transport", choices=("slack", "email"), default="slack")
     parser.add_argument("--dry-run", action="store_true", help="Print notification without sending")
+    parser.add_argument("--only-active", action="store_true", help="Skip overview delivery when no experiment is active; automatically resume for new runs")
     args = parser.parse_args(argv)
     if args.overview and args.latest:
         parser.error("--latest requires --config")
+    if args.only_active and not args.overview:
+        parser.error("--only-active requires --overview")
     if args.transport == "email" and args.channel:
         parser.error("--channel is not used with --transport email; set SLACK_EMAIL_TO in .env.")
     try:
+        if args.only_active and not has_active_experiments(ROOT):
+            print("No active experiment; periodic notification skipped. It will resume automatically when an experiment starts.")
+            return 0
         load_dotenv(ROOT / ".env")
         if args.overview:
             text = overview(args.timezone)

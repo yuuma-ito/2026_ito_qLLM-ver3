@@ -1,5 +1,24 @@
 # Qiskit LLM Code Generation Harness
 
+<!-- reachable-rescues:20261016 -->
+現行の主要結果は[2026-10-16の救済経路分析](docs/analysis/reachable_rescues_20261016/README.md)です。初期失敗545組に対しR96組（17.6%）、F183組（33.6%）、D180組（33.0%）を救済しました。Fのみ43組・Dのみ40組の全履歴と現行経路の追加コスト・3回目の寄与を確認し、[中間発表PDF](docs/midterm2026/paper.pdf)・[WiNF共有下書きPDF](docs/winf2026/paper.pdf)を更新しました。[固定出典](docs/presentation_sources/20261016T_reachable_rescues/README.md)を引用してください。以下の10月13〜14日版の紹介・分析は過去の固定記録であり、現行救済率・コストと混ぜません。
+
+
+## 目的から探す
+
+| やりたいこと | 最初に開く場所 |
+| --- | --- |
+| フォルダやファイルの役割を知る | [リポジトリ全体の案内](docs/README.md) |
+| 発表資料・実験レポートを読む | [資料の案内](docs/README.md#資料を読む) |
+| 分析・再評価の記録を探す | [分析の索引](docs/analysis/README.md) |
+| 実験設定を選ぶ | [設定の索引](configs/README.md) |
+| 実行・集計・通知のスクリプトを探す | [スクリプトの索引](scripts/README.md) |
+| セットアップ・実行手順を確認する | [セットアップ](#セットアップ)・[Quick debug](#quick-debug)・[Full experiments](#full-experiments) |
+
+以下は結果の紹介と詳しい操作手順です。固定した過去の分析と、その後の再評価記録は[分析の索引](docs/analysis/README.md)で区別しています。
+
+作業ルールは [AGENTS.md](AGENTS.md)、既存実験の設定は各実験の `experiment_config.json`、資料の数値はその資料が指定する固定出典を確認してください。以下で紹介する2026-10-13の原稿・分析は旧評価の保存結果に基づきます。評価器修正後の保存コード再採点や、新しいフィードバックを使う部分追試とは区別します。
+
 最新の共有原稿は[中間発表PDF](docs/midterm2026/paper.pdf)と[WiNF下書きPDF](docs/winf2026/paper.pdf)です。2026-10-13の更新で、検証済み3モデル1,500件、5モデル2,500件、2モデル補完1,000件と記述的統合集計5,000件を反映し、L0〜L3の累積達成、最終到達段階、介入前後の移動、初期成功と救出、構造検証の範囲を整理しました。[固定出典・詳細表](docs/presentation_sources/20261013T_pooled_verified/README.md)からCSV・スナップショット・検証状態を参照できます。補完実験は再分類と全件検証が完了しました。統合値は診断文の処理差を含む記述的結果として扱います。
 
 [モデル・難度・seed別の介入効果分析](docs/analysis/model_difficulty_seed_20261013/README.md)では、検証済み5,000件の救出・部分改善・段階低下を、統合と元実験別に比較できます。FとDの救出数は全体でともに191件ですが、共通149件、Fのみ42件、Dのみ42件であり、同じ救出数でも対象例は異なります。
@@ -16,7 +35,7 @@
 
 起動にはログイン済みの `/home/23tc011/.local/bin/codex` を使用します（[Codexの非対話実行](https://developers.openai.com/codex/noninteractive)）。状態は `.cache/draft_jobs/`、起動ログは `logs/draft_after_experiment.log` と `logs/draft_codex_*.log` に保存します。AI失敗・中断や通知失敗の自動再試行はありません。状況を確認してから必要な場合のみ `--retry` で明示的に再実行してください。完了条件の手動確認には、同じ保存設定を指定した `--dry-run` を使用します。
 
-[文献・公式仕様に基づく追加監査](docs/analysis/literature_reliability_20261014/README.md)では、非ユニタリ操作の主判定と再開・統合条件を修正しました。本番5,000件の再評価は、隔離実行・専用checkpoint・補助オラクルの確認が残るためNO-GOです。
+[文献・公式仕様に基づく追加監査](docs/analysis/literature_reliability_20261014/README.md)では、当時の準備判定をNO-GOとしました。その後の[準備条件の解消](docs/analysis/reevaluation_completion_20261014/README.md)を経て、[本再評価の記録](docs/analysis/reevaluation_full_20261014T141718Z/README.md)では5,000記録・9,517 roundの採点完了が報告されています。採点完了は新フィードバックによる介入実験の完了を意味しません。[影響監査・部分追試の記録](docs/analysis/reevaluation_followup_20261015/README.md)で後続作業の状態と検証範囲を確認してください。
 
 [5,000件再評価前の評価方法点検](docs/analysis/evaluation_methods_20261014/README.md)では、全体位相の補正不具合を修正し、分布・構造判定の限界と再評価時の補助検査を整理しています。
 
@@ -114,7 +133,7 @@
 - `ollama:qwen2.5-coder:7b`
 - `ollama:gemma3:4b`
 
-ユーザー提示の5モデルのサイズ・量子化・参考生成速度は、[実験レポートのモデル一覧](docs/experiment_report_draft.md)と[保存記録](docs/model_inventory_20261008.json)に整理しています。起動済みの本実験は従来の3モデルで完了させ、次回から上記5モデルを対象にします。追加の2モデルは中間発表の予備実験との対応を記録しています。SF3上で5モデルの存在を確認した情報は[サーバ取得記録](docs/sf3_model_inventory_20261008.json)に保存しています。
+ユーザー提示の5モデルのサイズ・量子化・参考生成速度は、[実験レポートのモデル一覧](docs/experiment_report_draft.md)と[保存記録](docs/model_inventory_20261008.json)に整理しています。既存の3モデル本実験は当時の保存設定を保持し、新規実験は上記5モデルを対象にします。追加の2モデルは中間発表の予備実験との対応を記録しています。SF3上で5モデルの存在を確認した情報は[サーバ取得記録](docs/sf3_model_inventory_20261008.json)に保存しています。
 
 **タスク**：T1，T2，T3a，T3b，T4，T5，T6，T7，T8，T9 の計10タスクです。難度は次のように分類します。
 
@@ -124,7 +143,7 @@
 | medium（中） | `T3a_DJ_constant`，`T3b_DJ_balanced`，`T4_BV_011`，`T5_Grover_11` |
 | hard（難） | `T6_QFT_001`，`T7_IQFT_001`，`T8_QPE_001`，`T9_Ansatz_001` |
 
-Full experiments の seed は 0〜9 です。比較する条件は次の5種類です。
+本実験のテンプレート `configs/shared_five_models_full.json` のseedは0〜9です。保存済みの5モデル追加実験はseed 10〜19、3モデル実験と2モデル補完実験はseed 0〜9です。再開・再検証では対象実験の保存設定を基準にします。比較する条件は次の5種類です。
 
 - `baseline`：介入なし。初回生成のみ。
 - `self_refine`：自己修正。モデル自身がコードを見直して修正します。
@@ -220,7 +239,7 @@ Invoke-RestMethod http://127.0.0.1:11435/api/tags
 
 実験レポートの[下書き](docs/experiment_report_draft.md)と[集計スナップショット](docs/experiment_report_snapshot.json)は、`configs/slack_progress.cron` のレポート更新行で60分ごと（毎時0分）に更新します。手動更新は `.venv/bin/python -m scripts.update_experiment_report` です。対象はスナップショットに指定した実験で、時刻・本実験の件数・モデル別／条件別／タスク別／失敗類型別の表と検証状況を更新します。`<!-- auto:... -->` の範囲外に書いた考察は保持します。完了した簡易実験の結果が変わった場合や、重複・予定外・件数減少を検出した場合は更新を止めます。レポート更新はモデルへの生成要求・通知送信・Git操作を行いません。
 
-このサーバでは6時間ごと、**0時・6時・12時・18時（日本時間）** に、メール経由でSlackbotとのDMへ進捗を送る設定を `configs/slack_progress.cron` に用意しています。`--overview` で全実験の保存設定と実行状態を読み、実行中の実験を先頭に、未完了・中断・検証失敗・API障害のある実験と直近の完了結果を送ります。実行中の実験がない場合も明記します。即時通知を `--notify none` で無効にした実験もこの定時レポートには含みます。無料プランに対応し、Slackアプリ・Botトークンは不要です。送信先はSlackの転送先メールアドレスで決まり、チャンネルIDは指定しません。[Slack公式手順](https://slack.com/help/articles/206819278-Send-emails-to-Slack)
+このサーバでは6時間ごと、**0時・6時・12時・18時（日本時間）** に、メール経由でSlackbotとのDMへ進捗を送る設定を `configs/slack_progress.cron` に用意しています。定期実行は `--overview --only-active` で全実験の保存設定と実行状態を読み、実行中の実験がない間は送信せず、次の実験開始後の通知枠で自動再開します。実行中の実験を先頭に、未完了・中断・検証失敗・API障害のある実験と直近の完了結果を送ります。即時通知を `--notify none` で無効にした実験もこの定時レポートには含みます。`--only-active` を省いた手動実行では、実行中の実験がない場合も状況を表示・通知できます。無料プランに対応し、Slackアプリ・Botトークンは不要です。送信先はSlackの転送先メールアドレスで決まり、チャンネルIDは指定しません。[Slack公式手順](https://slack.com/help/articles/206819278-Send-emails-to-Slack)
 
 Slackとメール送信の準備:
 
@@ -337,7 +356,7 @@ head -n 1 results/quick_debug/raw.jsonl | python -m json.tool
 
 ## Full experiments
 
-次回の本実験は `configs/shared_five_models_full.json` を使用し、5モデル × 10タスク × 10 seed × 5条件、計2,500レコードを計画します。生成・評価設定は3モデル実験とそろえています。起動済みの3モデル・1,500件の設定 `configs/full_all_models.json` と各実験の保存設定は保持します。
+新規の本実験のテンプレートは `configs/shared_five_models_full.json` で、5モデル × 10タスク × 10 seed × 5条件、計2,500レコードを計画します。条件構成・生成設定は従来の3モデル実験に対応しますが、評価器や診断文の版の一致を保証するものではありません。既存の3モデル・1,500件の設定 `configs/full_all_models.json` と各実験の保存設定は保持します。新規実験と既存実験の再検証を区別し、比較時は保存設定・manifest・評価方針を確認してください。
 
 ```bash
 .venv/bin/python -m scripts.automate_experiment --config configs/shared_five_models_full.json --new-run

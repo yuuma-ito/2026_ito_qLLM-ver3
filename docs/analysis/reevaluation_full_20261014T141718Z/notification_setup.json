@@ -1,0 +1,13 @@
+{
+  "configured_at_utc": "2026-10-14T14:39:23.133365+00:00",
+  "user_requested": true,
+  "transport": "existing_email_to_slackbot_dm",
+  "monitor_session_id": 85891,
+  "completion_requires": "full record/round counts, successful sanity, matching artifact hashes",
+  "stopped_runs": "alert separately; never claim completion",
+  "duplicate_prevention": "durable event ledger; no automatic retry after uncertain SMTP acceptance",
+  "smtp_accepted": false,
+  "slack_delivery_confirmed": false,
+  "tests_passed": 5,
+  "evaluator_modified": false
+}

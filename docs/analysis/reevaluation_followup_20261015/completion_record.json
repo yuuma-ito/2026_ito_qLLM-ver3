@@ -1,0 +1,19 @@
+{
+  "verified_at_utc": "2026-10-15T13:19:05.757549+00:00",
+  "status": "completed",
+  "related_tests_passed": 85,
+  "warnings": 20,
+  "source_and_partial_driver_locks_released": true,
+  "public_payload_and_credential_scan": "passed",
+  "csv_column_consistency": "passed",
+  "model_postflight": "passed",
+  "local_commit": {
+    "status": "not_created",
+    "attempted_action": "git add of related files only",
+    "reason": "Read-only file system: .git/index.lock cannot be created",
+    "index_unchanged": true
+  },
+  "git_push_performed": false,
+  "new_full_generation_experiment_performed": false,
+  "notification": "最終通知のSMTP受理状態はnotification_status.jsonへ記録。Slack到達確認とは区別する。"
+}

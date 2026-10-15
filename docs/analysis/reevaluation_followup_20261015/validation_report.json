@@ -1,0 +1,29 @@
+{
+  "captured_at_utc": "2026-10-14T19:25:05.591865+00:00",
+  "status": "passed",
+  "plan_sha256": "df7dc9a5adf303d22b97e34ec03b85dba10c32f7fba456bd19746a5bcf496b51",
+  "records": 5000,
+  "rounds": 9517,
+  "missing": 0,
+  "duplicates": 0,
+  "unexpected": 0,
+  "sources_unchanged": true,
+  "artifact_hashes_verified": true,
+  "driver_lock_released": true,
+  "evaluator_profile_verified": true,
+  "mixed_profiles": false,
+  "original_completed_rounds_preserved": 3740,
+  "runtime_failures": 0,
+  "shared_initial_mismatches": 0,
+  "unknown_primary_labels_preserved": 12,
+  "unknown_causes_resolved": 12,
+  "unknown_causes_unresolved": 0,
+  "cause_counts": {
+    "model_top_level_result_lookup_without_saved_measurements": 4,
+    "model_top_level_undefined_sim": 8
+  },
+  "llm_requests": 0,
+  "limits": "原因注記は別表。元unknown_error分類と主判定を保持し、再分類版の全件再採点と呼ばない。",
+  "original_results_digest": "0baca45b8adfd66c4e5cae0fa90190af78bf876c5b3af818140904b862bce533",
+  "documented_original_digest_verified": true
+}

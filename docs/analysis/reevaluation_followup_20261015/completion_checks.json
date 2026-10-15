@@ -1,0 +1,8 @@
+{
+  "source_integrity": true,
+  "missing_duplicate_check": true,
+  "partial_rerun_sanity": true,
+  "unchanged_sample_check": true,
+  "comparison_report": true,
+  "related_tests": true
+}

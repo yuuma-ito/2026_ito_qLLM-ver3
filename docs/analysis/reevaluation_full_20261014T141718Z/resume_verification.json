@@ -1,0 +1,21 @@
+{
+  "checked_at_utc": "2026-10-14T17:11:50.319494+00:00",
+  "plan_sha256": "df7dc9a5adf303d22b97e34ec03b85dba10c32f7fba456bd19746a5bcf496b51",
+  "completed_rounds": 3740,
+  "pending_rounds": 1,
+  "completed_results_digest": "0baca45b8adfd66c4e5cae0fa90190af78bf876c5b3af818140904b862bce533",
+  "integrity_check": "ok",
+  "profile_and_sources_verified": true,
+  "private_backup": ".cache/reevaluation/reevaluation_full_20261014T141718Z/checkpoint.before_tmux_resume.sqlite3",
+  "tests": {
+    "passed": 53,
+    "warnings": 20
+  },
+  "resume_verified_at_utc": "2026-10-14T17:14:36.984665+00:00",
+  "completed_rounds_after_resume": 3756,
+  "original_completed_results_unchanged": true,
+  "driver_lock_held": true,
+  "tmux_session": "qllm-reevaluation",
+  "notification_tmux_session": "qllm-reevaluation-notify",
+  "host_parent_chain": "python -> tmux server PID 690385 -> systemd PID 1"
+}

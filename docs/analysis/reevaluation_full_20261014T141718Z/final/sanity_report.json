@@ -1,0 +1,13 @@
+{
+  "planned": 9517,
+  "completed": 9517,
+  "missing": 0,
+  "manifest_sha256": "df7dc9a5adf303d22b97e34ec03b85dba10c32f7fba456bd19746a5bcf496b51",
+  "integrity": "ok",
+  "runtime_failures": 0,
+  "records_complete": 5000,
+  "sources_unchanged": true,
+  "duplicate_keys": 0,
+  "unclassified_primary_rounds": 12,
+  "shared_initial_judgment_mismatches": 0
+}

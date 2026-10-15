@@ -1,0 +1,33 @@
+{
+  "incidents": [
+    {
+      "checked_at_utc": "2026-10-15T10:20:33.394934+00:00",
+      "status": "cause_resolved_manual_resume_authorized",
+      "completed_cases_before_stop": 215,
+      "planned_cases": 293,
+      "case_record_key": "324483b34d3eacf90e1892600bb1c69a56a3936c0190d5f83d9762d0e46e17bc",
+      "round": 1,
+      "task_id": "T4_BV_011",
+      "model_spec": "ollama:qwen2.5-coder:7b",
+      "base_seed": 10,
+      "condition_id": "self_debugging",
+      "primary_category_preserved": "unknown_error",
+      "exception_type": "NameError",
+      "resolved_cause": "model_top_level_undefined_Aer",
+      "ast_observation": "Aerの参照があり、import/定義なし",
+      "production_isolated_replay_primary_identical": true,
+      "replay_artifact_sha256": "d1b538c6328aa6470380ccf72c6d5bea1d670a659bd78351cbb52c9649473653",
+      "original_response_sha256": "a8ec4f827a5e331fe791425b9da1195db036ed08be36974881b47fc30716c40f",
+      "original_evaluation_sha256": "c0723895b043c145d1f3cea629dc6db08fc20e145351f34384cfbfc01a21924c",
+      "runner_unchanged": true,
+      "evaluator_changed": false,
+      "fixed_manifest_changed": false,
+      "validation_cause_helper_before_sha256": "67c9913e8df58f3746a18f4d10831b3eba55aa1c4f7eb1281c25d6d777076241",
+      "validation_cause_helper_after_sha256": "6b7ac9e30ebe952f19e3bd6cf8c74c4d77270f3dab75529b347b833fa5a03775",
+      "resume_policy": "既存の応答・評価を再利用し、応答確認済みroundを再送しない。完了215ケースはskip。残り上限内のみ継続。",
+      "api_failure": false,
+      "infrastructure_failure": false,
+      "automatic_retry": false
+    }
+  ]
+}

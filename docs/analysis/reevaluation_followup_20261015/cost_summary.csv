@@ -1,0 +1,4 @@
+scope,generations,tokens_in,tokens_out,elapsed_sec,cost_usd,meaning
+old_recorded_generation_shared_initial_counted_once,6517,4777849,2507839,377778.8324329853,,"recorded historical API usage, excludes reused shared round0; unrecorded requests cannot be recovered"
+saved_stop_reconstruction_resolved_records_only,,4578893.0,2839554.0,393154.3234927654,,counterfactual truncation of saved per-path costs; shared initial allocations repeated; no money saved was measured
+partial_new_generation_only,647,712277,348942,62865.270373825915,,actual new API usage; local serving monetary cost not measured

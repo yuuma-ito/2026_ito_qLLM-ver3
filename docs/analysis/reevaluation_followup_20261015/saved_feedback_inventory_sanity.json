@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "captured_at_utc": "2026-10-15T00:12:34.577912+00:00",
+  "rounds": 9517,
+  "historical_consumed_feedback_inputs": 4517,
+  "missing_historical_fields": 0,
+  "ambiguous_historical_null_distances": 0,
+  "historical_prompts_added_at_changed_stops": 231,
+  "frozen_selection_hashes_verified": true,
+  "case_selection_unchanged": true,
+  "generation_cap_unchanged": 773,
+  "frozen_manifest_sha256": "2a14727466d646e783d26dfe1da76227aca93c330e7524e2449b3cd71fa240b2",
+  "inventory_sha256": "bb0086acab6ce3640abeaf1ad30f6937d27036a538bae43c2ac3e363540fce5a",
+  "llm_requests": 0,
+  "raw_published": false,
+  "generated_code_published": false
+}

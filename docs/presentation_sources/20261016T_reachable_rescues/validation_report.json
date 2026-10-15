@@ -1,0 +1,91 @@
+{
+  "captured_at_utc": "2026-10-15T15:25:21.068044+00:00",
+  "passed": true,
+  "checks": {
+    "sanity_passed": true,
+    "fixed_counts": true,
+    "source_hashes_unchanged": true,
+    "analysis_script_hash": true,
+    "analysis_output_hashes": true,
+    "all_83_both_paths": true,
+    "all_83_success_transitions": true,
+    "transition_uniqueness": true,
+    "transition_hash_chain": true,
+    "reproduced_csv_identical": true,
+    "related_tests_passed": true,
+    "tables_match_csv": true,
+    "public_csv_fields_allowlisted": true,
+    "public_json_no_raw_fields": true,
+    "no_obvious_secrets": true,
+    "midterm2026": true,
+    "winf2026": true,
+    "existing_report_preserved_except_new_section": true,
+    "existing_report_snapshot_fields_preserved": true,
+    "legacy_fixed_files_unchanged": true
+  },
+  "related_tests": "16 passed: analysis, reachable branch/stopping, cost, safe static delta, report preservation",
+  "supplementary_source_tests": "53 passed including existing followup tests; mock API and fixture circuits only; 6 existing QFT deprecation warnings",
+  "new_llm_requests": 0,
+  "saved_generated_code_executions": 0,
+  "evaluator_changes": 0,
+  "publication_scope": "No raw, generated code, prompts, API responses, raw exception messages or secrets",
+  "documents": {
+    "midterm2026": {
+      "checks": {
+        "pdf_header": true,
+        "two_a4_pages": true,
+        "no_unresolved_refs": true,
+        "fonts_embedded": true,
+        "main_counts_in_pdf": true,
+        "no_obsolete_main_counts": true,
+        "current_tables_only": true,
+        "style_unchanged_from_before": true,
+        "visually_reviewed_all_pages": true,
+        "passed": true
+      },
+      "pages": 2,
+      "pdf_sha256": "88b3c5b0fb33dada402d85a567ce2bcab2f07f2494d4c404847cf4fcbfa28220",
+      "tex_sha256": "86cd29ed59edbc9df4cd21e00621f60458e4f9a8a71e905e5c2fe64bb4bd6396",
+      "style_sha256": "4dc0c47bdc9c61c7903734ad9068656f6cc11aa11391fe351713e3d23b73e86d",
+      "visual_notes": [
+        "全2ページを画像化して目視確認",
+        "日本語の文字化け・欠字・本文/表の切れや重なりなし",
+        "モデル別・失敗類型別・コスト・3回目の表は判読可能",
+        "参考文献は2ページ目内に収まり、参照番号は解決済み"
+      ],
+      "nonblocking_tex_warning": "Underfull hbox in displayed rescue-rate fraction; no clipping"
+    },
+    "winf2026": {
+      "checks": {
+        "pdf_header": true,
+        "two_a4_pages": true,
+        "no_unresolved_refs": true,
+        "fonts_embedded": true,
+        "main_counts_in_pdf": true,
+        "no_obsolete_main_counts": true,
+        "current_tables_only": true,
+        "style_unchanged_from_before": true,
+        "visually_reviewed_all_pages": true,
+        "passed": true
+      },
+      "pages": 2,
+      "pdf_sha256": "a89300c84c963ee779ddabf7c75477604a74f684a9c4e39bf332c9edace4f340",
+      "tex_sha256": "17f7eff64013da0dae1efe5ffda1b164c5089903a210de7818f9cd8f78f23932",
+      "style_sha256": "4dc0c47bdc9c61c7903734ad9068656f6cc11aa11391fe351713e3d23b73e86d",
+      "visual_notes": [
+        "全2ページを画像化して目視確認",
+        "日本語の文字化け・欠字・本文/表の切れや重なりなし",
+        "モデル別・失敗類型別・コスト・3回目の表は判読可能",
+        "参考文献は2ページ目内に収まり、参照番号は解決済み"
+      ],
+      "nonblocking_tex_warning": "Underfull hbox in displayed rescue-rate fraction; no clipping"
+    }
+  },
+  "remaining_research_limitations": [
+    "静的差分の因果的寄与は未同定",
+    "再構成経路の計算コスト・金銭費用未測定",
+    "共有初期・タスク・seed依存、設定/処理差、指定入力のみの主L3",
+    "別seed/タスクでの介入選択・停止方策の検証は未実施",
+    "WiNF著者・正式所属は要確認"
+  ]
+}

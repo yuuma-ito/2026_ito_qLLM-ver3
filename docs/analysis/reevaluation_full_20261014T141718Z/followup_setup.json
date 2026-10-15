@@ -1,0 +1,32 @@
+{
+  "configured_at_utc": "2026-10-14T17:36:49.119512+00:00",
+  "tmux_session": "qllm-reevaluation-followup",
+  "watcher_lock_held": true,
+  "tests_passed": 15,
+  "followup_started": false,
+  "source_completed_rounds_at_setup": 4551,
+  "source_planned_rounds": 9517,
+  "instructions_sha256": "5dca9bcc6b94962509eaac6e3dc3a83646c875160afd777d34ca8d97d41080d1",
+  "notification_transport": "email_to_slackbot_dm",
+  "setup_notification_status": "smtp_accepted",
+  "slack_delivery_confirmed": false,
+  "notifications": "3時間ごとの件数・作業段階、全作業完了または異常停止の最終通知後に終了",
+  "new_full_generation_authorized": false,
+  "git_push_authorized": false,
+  "notification_interval_seconds": 10800,
+  "stop_periodic_after_final_notice": true,
+  "milestone_notifications_immediate": false,
+  "updated_at_utc": "2026-10-14T17:46:09.882264+00:00",
+  "next_periodic_notification_due_at_utc": "2026-10-14T20:35:53.614498+00:00",
+  "notification_related_tests_passed": 47,
+  "notification_related_test_warnings": 6,
+  "experiment_periodic_interval_seconds": 21600,
+  "experiment_periodic_only_active": true,
+  "experiment_periodic_auto_resume": true,
+  "experiment_periodic_jst_hours": [
+    0,
+    6,
+    12,
+    18
+  ]
+}

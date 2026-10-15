@@ -1,0 +1,43 @@
+{
+  "status": "passed",
+  "selection_seed": 20261015,
+  "groups": 50,
+  "records": 200,
+  "rounds": 387,
+  "independent_code_task_executions": 150,
+  "llm_requests": 0,
+  "primary_disagreements": 0,
+  "feedback_disagreements": 0,
+  "stop_disagreements": 0,
+  "auxiliary_statuses": {
+    "not_applicable": 259,
+    "pass": 123,
+    "fail": 5
+  },
+  "primary_pass_auxiliary_fail": 0,
+  "source_group_counts": {
+    "results/shared_five_models_full_20261010T041019864060Z": 34,
+    "results/shared_two_models_seed0_9_full_20261012T100658266051Z": 4,
+    "results/shared_three_models_full_20261008T103231611899Z": 12
+  },
+  "seed_group_counts": {
+    "17": 7,
+    "6": 4,
+    "19": 2,
+    "12": 5,
+    "13": 3,
+    "10": 8,
+    "9": 2,
+    "3": 2,
+    "2": 3,
+    "8": 3,
+    "11": 2,
+    "18": 1,
+    "16": 5,
+    "5": 1,
+    "15": 1,
+    "4": 1
+  },
+  "sample_sha256": "7070549bbfee8db3b5166b0f7ffc9b46a5fc3616bb09664a55707c1447cd4271",
+  "limitations": "存在する50モデル×task層で各1共有初期。出典・seedは均等でない。補助判定は独立オラクルだが同じQPY再構築回路を用いる。抽出確認を全件の妥当性証明と扱わない。"
+}

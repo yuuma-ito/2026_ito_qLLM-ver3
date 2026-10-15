@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "missing": 0,
+  "duplicates": 0,
+  "unexpected": 0,
+  "shared_initial_mismatches": 0,
+  "strata_and_source_totals_verified": true,
+  "fd_partitions_verified": true,
+  "reachable_paths_and_stopping_verified": true,
+  "input_artifact_hashes_verified": true,
+  "condition_records": 5000,
+  "initial_groups": 1000,
+  "partial_cases": 293,
+  "new_suffix_rounds": 647,
+  "llm_requests": 0,
+  "generated_code_executions": 0
+}
