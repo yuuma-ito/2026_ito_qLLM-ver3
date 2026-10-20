@@ -1,0 +1,308 @@
+[
+  {
+    "number": "1",
+    "title": "はじめに",
+    "level": 1,
+    "page": "5"
+  },
+  {
+    "number": "1.1",
+    "title": "研究背景",
+    "level": 2,
+    "page": "5"
+  },
+  {
+    "number": "1.2",
+    "title": "研究目的と研究課題",
+    "level": 2,
+    "page": "5"
+  },
+  {
+    "number": "1.3",
+    "title": "論文の構成と対象範囲",
+    "level": 2,
+    "page": "5"
+  },
+  {
+    "number": "2",
+    "title": "関連研究",
+    "level": 1,
+    "page": "6"
+  },
+  {
+    "number": "2.1",
+    "title": "自己フィードバックによる修正",
+    "level": 2,
+    "page": "6"
+  },
+  {
+    "number": "2.2",
+    "title": "実行結果と自己デバッグ",
+    "level": 2,
+    "page": "6"
+  },
+  {
+    "number": "2.3",
+    "title": "量子回路コードで確認する対象",
+    "level": 2,
+    "page": "6"
+  },
+  {
+    "number": "3",
+    "title": "提案手法",
+    "level": 1,
+    "page": "7"
+  },
+  {
+    "number": "3.1",
+    "title": "介入条件と評価指標",
+    "level": 2,
+    "page": "7"
+  },
+  {
+    "number": "3.1.1",
+    "title": "共有初期と五つの条件",
+    "level": 3,
+    "page": "7"
+  },
+  {
+    "number": "3.1.2",
+    "title": "主L3と出力一致",
+    "level": 3,
+    "page": "7"
+  },
+  {
+    "number": "3.1.3",
+    "title": "救済・保持・独立生成の比較",
+    "level": 3,
+    "page": "7"
+  },
+  {
+    "number": "3.2",
+    "title": "実装と記録の検証",
+    "level": 2,
+    "page": "7"
+  },
+  {
+    "number": "3.2.1",
+    "title": "ハーネスの構成",
+    "level": 3,
+    "page": "7"
+  },
+  {
+    "number": "3.2.2",
+    "title": "失敗分類とモデル接続障害",
+    "level": 3,
+    "page": "8"
+  },
+  {
+    "number": "3.2.3",
+    "title": "到達可能な履歴の再構成",
+    "level": 3,
+    "page": "8"
+  },
+  {
+    "number": "3.2.4",
+    "title": "集計の整合性と静的履歴分析",
+    "level": 3,
+    "page": "8"
+  },
+  {
+    "number": "3.3",
+    "title": "実験設定と出典",
+    "level": 2,
+    "page": "8"
+  },
+  {
+    "number": "3.3.1",
+    "title": "対象モデルと課題",
+    "level": 3,
+    "page": "8"
+  },
+  {
+    "number": "3.3.2",
+    "title": "生成条件と元実験の区別",
+    "level": 3,
+    "page": "9"
+  },
+  {
+    "number": "3.3.3",
+    "title": "追加コストと修正回数の集計方針",
+    "level": 3,
+    "page": "9"
+  },
+  {
+    "number": "4",
+    "title": "結果",
+    "level": 1,
+    "page": "10"
+  },
+  {
+    "number": "4.1",
+    "title": "全体の救済率",
+    "level": 2,
+    "page": "10"
+  },
+  {
+    "number": "4.2",
+    "title": "モデル別・初期失敗類型別の結果",
+    "level": 2,
+    "page": "10"
+  },
+  {
+    "number": "4.3",
+    "title": "タスク・難度別の結果",
+    "level": 2,
+    "page": "10"
+  },
+  {
+    "number": "4.4",
+    "title": "FとDの救済対象の重なり",
+    "level": 2,
+    "page": "11"
+  },
+  {
+    "number": "4.5",
+    "title": "追加消費と3回目の修正",
+    "level": 2,
+    "page": "11"
+  },
+  {
+    "number": "4.6",
+    "title": "Pの独立生成としての比較",
+    "level": 2,
+    "page": "12"
+  },
+  {
+    "number": "5",
+    "title": "考察",
+    "level": 1,
+    "page": "13"
+  },
+  {
+    "number": "5.1",
+    "title": "介入で何が変わったか",
+    "level": 2,
+    "page": "13"
+  },
+  {
+    "number": "5.2",
+    "title": "介入カタログへ向けた解釈",
+    "level": 2,
+    "page": "13"
+  },
+  {
+    "number": "5.3",
+    "title": "内的妥当性と再構成経路",
+    "level": 2,
+    "page": "13"
+  },
+  {
+    "number": "5.4",
+    "title": "評価範囲・一般化・静的分析の限界",
+    "level": 2,
+    "page": "13"
+  },
+  {
+    "number": "6",
+    "title": "おわりに",
+    "level": 1,
+    "page": "14"
+  },
+  {
+    "number": "6.1",
+    "title": "研究成果",
+    "level": 2,
+    "page": "14"
+  },
+  {
+    "number": "6.2",
+    "title": "今後の課題",
+    "level": 2,
+    "page": "14"
+  },
+  {
+    "number": "6.3",
+    "title": "提出に向けた確認",
+    "level": 2,
+    "page": "14"
+  },
+  {
+    "number": "7",
+    "title": "参考文献",
+    "level": 1,
+    "page": "15"
+  },
+  {
+    "number": "8",
+    "title": "付録",
+    "level": 1,
+    "page": "16"
+  },
+  {
+    "number": "8.1",
+    "title": "出典と再現性",
+    "level": 2,
+    "page": "16"
+  },
+  {
+    "number": "8.1.1",
+    "title": "元実験の保存設定",
+    "level": 3,
+    "page": "16"
+  },
+  {
+    "number": "8.1.2",
+    "title": "元実験の保存設定",
+    "level": 3,
+    "page": "16"
+  },
+  {
+    "number": "8.1.3",
+    "title": "元実験の保存設定",
+    "level": 3,
+    "page": "16"
+  },
+  {
+    "number": "8.1.4",
+    "title": "固定集計と公開範囲",
+    "level": 3,
+    "page": "16"
+  },
+  {
+    "number": "8.2",
+    "title": "指標の読み方と提出前確認",
+    "level": 2,
+    "page": "17"
+  },
+  {
+    "number": "8.2.1",
+    "title": "集計単位",
+    "level": 3,
+    "page": "17"
+  },
+  {
+    "number": "8.2.2",
+    "title": "退行0の意味",
+    "level": 3,
+    "page": "17"
+  },
+  {
+    "number": "8.2.3",
+    "title": "静的変更の意味",
+    "level": 3,
+    "page": "17"
+  },
+  {
+    "number": "8.2.4",
+    "title": "コストの意味",
+    "level": 3,
+    "page": "17"
+  },
+  {
+    "number": "8.2.5",
+    "title": "提出前の確認",
+    "level": 3,
+    "page": "17"
+  }
+]

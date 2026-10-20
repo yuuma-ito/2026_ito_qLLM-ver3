@@ -1,0 +1,32 @@
+{
+  "reviewed_at_utc": "2026-10-20T12:42:58.326375+00:00",
+  "status": "reviewed_all_pages",
+  "pdf_sha256": "93799919f4239962d8793e1f9a902c722228d42e27e7ce55d8fae815f5557264",
+  "pages_reviewed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "render_directory": ".cache/graduation_template_review",
+  "method": "Rendered every PDF page; reviewed sheets 1–5, then individually rechecked final changed pages 3, 9, 16, 17. Unchanged rendered pages matched previously reviewed PNG hashes.",
+  "findings": [
+    "表紙・要約・目次・本文・参考文献・付録の全ページを確認。",
+    "空白ページは意図した4ページ目のみ。表は本文幅内、キャプションは表と同じページに配置。",
+    "付録の最終小節だけが残るページを避け、8.2節全体を17ページ目へ配置。",
+    "原本未照合。MS系フォントとCentury未導入のためPDFは代替フォント。Microsoft Word本体での最終確認は未実施。"
+  ]
+}
