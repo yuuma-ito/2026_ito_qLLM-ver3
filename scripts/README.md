@@ -1,10 +1,12 @@
-# スクリプトの索引
+# 実行・集計・運用スクリプト（scripts）
+
+実験の実行、結果の検証・集計、評価器監査、通知、資料更新の入口となる Python スクリプトを保存するフォルダです。処理本体は主に [harness](../harness/README.md)、実行設定は [configs](../configs/README.md) にあります。
 
 <!-- reachable-rescues:20261016 -->
 [analyze_reachable_rescue_history.py](analyze_reachable_rescue_history.py)：現行経路の全83組・追加コスト・3回目を保存資料から再集計。[render_rescue_materials.py](render_rescue_materials.py)：固定出典・継続レポート・両発表原稿を更新。生成・評価実行・通知は行わない。
 
 
-[全体の案内へ戻る](../docs/README.md)
+[リポジトリの説明へ](../README.md)
 
 リポジトリ直下から `python -m scripts.<名前>` で使います。以下は用途の分類です。再評価関連には特定の保存設定や実行先を前提とする処理もあるため、索引の掲載を新たな実行指示とは扱わず、対応する記録と各引数を確認してください。
 

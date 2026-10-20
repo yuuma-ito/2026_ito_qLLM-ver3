@@ -4,11 +4,30 @@
 現行の主要結果は[2026-10-16の救済経路分析](docs/analysis/reachable_rescues_20261016/README.md)です。初期失敗545組に対しR96組（17.6%）、F183組（33.6%）、D180組（33.0%）を救済しました。Fのみ43組・Dのみ40組の全履歴と現行経路の追加コスト・3回目の寄与を確認し、[中間発表PDF](docs/midterm2026/paper.pdf)・[WiNF共有下書きPDF](docs/winf2026/paper.pdf)を更新しました。[固定出典](docs/presentation_sources/20261016T_reachable_rescues/README.md)を引用してください。以下の10月13〜14日版の紹介・分析は過去の固定記録であり、現行救済率・コストと混ぜません。
 
 
+## フォルダ構成
+
+| 場所 | 何が入っているか | 主に見る・変更する場面 |
+| --- | --- | --- |
+| [configs/](configs/README.md) | 実験・統合・定期実行の設定 | モデル・seed・条件を選ぶ |
+| [scripts/](scripts/README.md) | 実行・検証・集計・通知の入口 | コマンドを選ぶ |
+| [harness/](harness/README.md) | LLM接続、実験制御、コード抽出、L0〜L3評価、隔離実行 | 実験処理や評価器を修正する |
+| [tasks/](tasks/README.md) | 10種類の量子回路タスクと期待値 | タスクの定義を確認する |
+| [prompts/](prompts/README.md) | 共通指示・予防的仕様のプロンプト | モデルへの指示を確認する |
+| [tests/](tests/README.md) | ハーネス・集計・運用処理のテスト | 変更を検証する |
+| [results/](results/README.md) | 実験IDごとの保存設定・記録・集計・検証結果 | 数値の元データを確認する |
+| [docs/](docs/README.md) | 仕様、レポート、発表原稿、分析資料 | 結果や方法を読む |
+| [experiments/](experiments/README.md) | 従来の介入比較設定 `intervention_compare_v2.json` | 旧設定を参照する。今後の標準設定は `configs/` |
+| [findings.md](findings.md) | 2026年6月からの旧実験の知見メモ | 研究の経緯を確認する |
+| [AGENTS.md](AGENTS.md)・[CLAUDE.md](CLAUDE.md) | AI作業者向けの指示・背景情報 | AIによる作業ルールを確認する |
+| [requirements.txt](requirements.txt)・[.env.example](.env.example) | Python依存関係・環境設定のひな形 | 環境を準備する |
+
+ローカル専用の `logs/` は実行ログ、`.cache/` はロック・checkpoint・ジョブ状態、`.venv/` はPython環境、`.pytest_cache/`・`__pycache__/` はキャッシュです。`.env` は接続設定などを置く非公開ファイルです。`.git/` はGit自身の管理情報です。これらは通常、研究資料として読む場所ではありません。特に実行中のログ・ロック・checkpointは処理の継続に使います。
+
 ## 目的から探す
 
 | やりたいこと | 最初に開く場所 |
 | --- | --- |
-| フォルダやファイルの役割を知る | [リポジトリ全体の案内](docs/README.md) |
+| フォルダやファイルの役割を知る | [フォルダ構成](#フォルダ構成) |
 | 発表資料・実験レポートを読む | [資料の案内](docs/README.md#資料を読む) |
 | 分析・再評価の記録を探す | [分析の索引](docs/analysis/README.md) |
 | 実験設定を選ぶ | [設定の索引](configs/README.md) |
