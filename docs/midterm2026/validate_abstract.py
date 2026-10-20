@@ -30,6 +30,7 @@ def validate_pdf(path):
     assert len(doc) == 2, (path, len(doc))
     body = []
     pages = []
+    font_names = set()
     for i, page in enumerate(doc):
         assert abs(page.rect.width - 210 / 25.4 * 72) < .1
         assert abs(page.rect.height - 297 / 25.4 * 72) < .1
@@ -39,6 +40,7 @@ def validate_pdf(path):
         assert norm(''.join(s['text'] for s in footer)) == str(i+1), (path, 'page number', footer)
         content = [s for s in spans if s not in footer]
         for s in spans:
+            font_names.add(s['font'])
             assert 10 - .02 <= s['size'] <= 11 + .02, (path, 'font size', s)
             assert s['color'] == 0, (path, 'non-black text', s)
             assert '\ufffd' not in s['text'], (path, 'missing glyph', s)
@@ -84,7 +86,10 @@ def validate_pdf(path):
         assert norm(f'表{i}{caption}') in text
         for row in [headers] + rows:
             assert norm(''.join(row)) in text, (path, 'table row mismatch', row)
+    families = ''.join(re.sub('[^a-z]', '', name.lower()) for name in font_names)
+    font_match = all(name in families for name in ['mspmincho', 'mspgothic', 'timesnewroman'])
     return {'path': str(path.relative_to(ROOT)), 'sha256': sha(path), 'pages': pages,
+            'actual_pdf_fonts': sorted(font_names), 'requested_font_families_present': font_match,
             'complete_paragraphs_and_references': True, 'tables_match_source_csv': True,
             'all_fonts_embedded': True, 'black_text_only': True}
 
@@ -155,6 +160,18 @@ def main():
     assert doc.sections[0].footer._element.xpath('.//w:fldSimple')[0].get(qn('w:instr')) == 'PAGE'
     paragraphs = doc.paragraphs + [p for t in doc.tables for r in t.rows for c in r.cells for p in c.paragraphs]
     assert all(r.font.size and abs(r.font.size.pt - 11) < .01 for p in paragraphs for r in p.runs if r.text)
+    for name in ['Normal', 'Body Text', 'Caption', 'Title', 'Heading 1', 'Heading 2', 'Heading 3']:
+        rf = doc.styles[name].element.get_or_add_rPr().get_or_add_rFonts()
+        assert rf.get(qn('w:ascii')) == rf.get(qn('w:hAnsi')) == b.LATIN_FONT
+        assert rf.get(qn('w:eastAsia')) == (b.HEADING_FONT if name == 'Title' or name.startswith('Heading ') else b.BODY_FONT)
+        assert not any(key.endswith('Theme') for key in rf.attrib)
+    for p in paragraphs + [p for s in doc.sections for p in s.footer.paragraphs]:
+        for r in p.runs:
+            if not r.text:
+                continue
+            rf = r._element.get_or_add_rPr().get_or_add_rFonts()
+            assert rf.get(qn('w:ascii')) == rf.get(qn('w:hAnsi')) == b.LATIN_FONT
+            assert rf.get(qn('w:eastAsia')) == (b.HEADING_FONT if r.bold else b.BODY_FONT)
     log = (CACHE / 'paper.log').read_text()
     for error in ['Overfull', 'Missing character', 'undefined references', 'LaTeX Error']:
         assert error not in log, error
@@ -173,7 +190,13 @@ def main():
         candidate = json.loads(visual_path.read_text())
         if all(candidate.get('reviewed_pdf_sha256', {}).get(r['path']) == r['sha256'] for r in reports):
             visual = candidate
-    report = {'validated_at_utc': datetime.now(timezone.utc).isoformat(), 'passed': True,
+    fonts_met = all(r['requested_font_families_present'] for r in reports)
+    report = {'validated_at_utc': datetime.now(timezone.utc).isoformat(), 'passed': fonts_met,
+              'layout_and_content_passed': True,
+              'font_request': {'word_specification_passed': True, 'pdf_font_requirement_met': fonts_met,
+                               'japanese_heading': b.HEADING_FONT, 'japanese_body': b.BODY_FONT,
+                               'latin_and_digits': b.LATIN_FONT,
+                               'limitation': None if fonts_met else '指定フォントがサーバーに存在しないため，PDFは代替フォントによる確認版．指定フォントを備えた環境で再生成と再検証が必要．'},
               'pdfs': reports, 'numeric_checks': numbers, 'word_structure_checked': True,
               'margins_mm': {'left': 18, 'right': 18, 'top': 18, 'bottom': 24},
               'body_and_tables_pt': 11, 'latex_no_overfull_or_missing_characters': True,
@@ -192,7 +215,8 @@ def main():
               'word_layout_note': 'LibreOfficeで検証．Microsoft Wordで編集後は再ページ割付を確認する．',
               'experiment_actions': {'new_generations': 0, 'generated_code_executions': 0}}
     (HERE / 'validation_report_20261021.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
-    print('Passed: both PDFs 2 pages, A4, margins, 11pt, page numbers, complete prose, tables and frozen numbers.')
+    print('Layout/content passed: both PDFs 2 pages, A4, margins, 11pt, page numbers, complete prose, tables and frozen numbers.')
+    print('Word font specification passed. PDF requested fonts: ' + ('passed.' if fonts_met else 'NOT MET; substitute-font preview only.'))
 
 
 if __name__ == '__main__':

@@ -1,10 +1,19 @@
 {
-  "validated_at_utc": "2026-10-20T17:40:35.899371+00:00",
-  "passed": true,
+  "validated_at_utc": "2026-10-20T17:51:18.078977+00:00",
+  "passed": false,
+  "layout_and_content_passed": true,
+  "font_request": {
+    "word_specification_passed": true,
+    "pdf_font_requirement_met": false,
+    "japanese_heading": "ＭＳ Ｐゴシック",
+    "japanese_body": "ＭＳ Ｐ明朝",
+    "latin_and_digits": "Times New Roman",
+    "limitation": "指定フォントがサーバーに存在しないため，PDFは代替フォントによる確認版．指定フォントを備えた環境で再生成と再検証が必要．"
+  },
   "pdfs": [
     {
       "path": "docs/midterm2026/paper.pdf",
-      "sha256": "577e32e9432b25285107548600750bb74577d1e7c94fa241517f559a5d9a7ddb",
+      "sha256": "adf0af0bc0550b9877caff336bd1da8baa48ea1aecfe548d7365b8813e442864",
       "pages": [
         {
           "page": 1,
@@ -45,6 +54,13 @@
           "both_columns_have_text": true
         }
       ],
+      "actual_pdf_fonts": [
+        "IPAPGothic",
+        "IPAPMincho",
+        "NimbusRoman-Bold",
+        "NimbusRoman-Regular"
+      ],
+      "requested_font_families_present": false,
       "complete_paragraphs_and_references": true,
       "tables_match_source_csv": true,
       "all_fonts_embedded": true,
@@ -52,7 +68,7 @@
     },
     {
       "path": ".cache/midterm_abstract_20261021/word/paper.pdf",
-      "sha256": "2f5b38318802c3fef79c92d53f0dafcabf37a38a890de76b825b953e5bdb8420",
+      "sha256": "ddc63bdfa10ce882f1f03049b67f857f5dde41a2e269fa0d7825203e3309a65b",
       "pages": [
         {
           "page": 1,
@@ -66,10 +82,10 @@
           "page_number": 1,
           "content_within_margins": true,
           "printed_ink_bounds_mm": [
-            18.227,
+            18.109,
             18.697,
             191.911,
-            266.112
+            265.759
           ],
           "both_columns_have_text": true
         },
@@ -87,12 +103,19 @@
           "printed_ink_bounds_mm": [
             17.992,
             18.815,
-            191.676,
-            262.467
+            191.794,
+            257.293
           ],
           "both_columns_have_text": true
         }
       ],
+      "actual_pdf_fonts": [
+        "IPAGothic",
+        "NimbusRoman-Bold",
+        "NimbusRoman-Regular",
+        "UMingCN"
+      ],
+      "requested_font_families_present": false,
       "complete_paragraphs_and_references": true,
       "tables_match_source_csv": true,
       "all_fonts_embedded": true,
@@ -144,10 +167,10 @@
     "docs/analysis/reachable_rescues_20261016/discordant_cases.csv": "50b69c319355f750a091e4d18e60fc8365d52e75e9bc3573f3feb2f20d1d038b",
     "docs/analysis/reachable_rescues_20261016/discordant_transitions.csv": "6c07410a9c1d71aade0171978d114449ed35e58ac2a8c26951a846e47a0791fb",
     "docs/analysis/reachable_rescues_20261016/sanity_report.json": "c9543cc1f437755ef491a844874248414e5fee73eebaa83a0b53db3d7e896d81",
-    "docs/midterm2026/build_abstract.py": "f34166350dc8f16afd28e5b22fad811535771642632e381ac61f883ff3274520",
-    "docs/midterm2026/validate_abstract.py": "65189941cd53c616bbd9e6212737b338f67c92293ef288686f2fe43408bbc3e3",
-    "docs/midterm2026/paper.tex": "ae66d74e6d615408bb617a38603adb2902af4d7939c043856936d7627343ce3d",
-    "docs/midterm2026/paper.docx": "8ad29c84d2dfd68464579b48dfd5fdba56d3f9fa23be991b48c7352f42041e5b",
+    "docs/midterm2026/build_abstract.py": "be6d82d547138ddfe7bbc500faf80f846ba687fb573de87a7017e38569e39485",
+    "docs/midterm2026/validate_abstract.py": "be97a8094342d7f2be36352ad2ba76a33ff4099e149195cb6694d18d9345b537",
+    "docs/midterm2026/paper.tex": "ade96d4de3fcf8a8cb05c5f675c8da9b52af894aa371e33cd88b1db73c310987",
+    "docs/midterm2026/paper.docx": "b2d358d6542d706446e37bf9c9c9427f65bc1a43f2ad6172dabdae2972d3bc0f",
     "docs/midterm2026/bibliography_sources.json": "cada1124948e94ae6c70eaeb15c082640424b735c1c05b029a36b340844901a2",
     "harness/evaluator.py": "f90faf3d4ac034e057b07752e7972fe4d2bd4353a6d91a077294a01343e25bf7",
     "harness/readout.py": "ec7b447997600e0391abf9744a4fbeff0eed69d8b43b0567d519a45cdcff1a4e",
@@ -156,8 +179,9 @@
   },
   "visual_review": {
     "status": "passed",
+    "scope": "代替フォント確認版のレイアウト・内容のみ．指定フォントへの適合は未達．",
     "reviewer": "AIによるページ画像の目視確認",
-    "reviewed_at_utc": "2026-10-20T17:40:35.155948+00:00",
+    "reviewed_at_utc": "2026-10-20T17:51:17.360311+00:00",
     "pages_reviewed": {
       "docs/midterm2026/paper.pdf": [
         1,
@@ -169,18 +193,16 @@
       ]
     },
     "reviewed_pdf_sha256": {
-      "docs/midterm2026/paper.pdf": "577e32e9432b25285107548600750bb74577d1e7c94fa241517f559a5d9a7ddb",
-      ".cache/midterm_abstract_20261021/word/paper.pdf": "2f5b38318802c3fef79c92d53f0dafcabf37a38a890de76b825b953e5bdb8420"
+      "docs/midterm2026/paper.pdf": "adf0af0bc0550b9877caff336bd1da8baa48ea1aecfe548d7365b8813e442864",
+      ".cache/midterm_abstract_20261021/word/paper.pdf": "ddc63bdfa10ce882f1f03049b67f857f5dde41a2e269fa0d7825203e3309a65b"
     },
     "checks": [
       "題目と著者情報1段，本文2段",
-      "7章構成，背景・関連研究・評価・方法・結果・考察・結論の流れ",
-      "表1〜3のキャプション位置，行と数字の対応",
-      "文字欠け・表のはみ出し・文章の欠落なし",
-      "両ページ下中央のページ番号",
-      "独立した第7章おわりに，参考文献7件"
+      "7章構成と本文・表の欠落なし",
+      "表1〜3のキャプション位置と本文領域内への収まり",
+      "両ページ下中央のページ番号"
     ],
-    "note": "Word版はLibreOffice出力を確認．Microsoft Word上での編集後の再ページ割付は別途確認する．"
+    "note": "指定フォントが存在せずWordの変換も代替表示となる．指定フォントを備えた環境でPDFを再生成し，文字・フォント・2ページを再確認する必要がある．"
   },
   "word_layout_note": "LibreOfficeで検証．Microsoft Wordで編集後は再ページ割付を確認する．",
   "experiment_actions": {

@@ -1,7 +1,8 @@
 {
   "status": "passed",
+  "scope": "代替フォント確認版のレイアウト・内容のみ．指定フォントへの適合は未達．",
   "reviewer": "AIによるページ画像の目視確認",
-  "reviewed_at_utc": "2026-10-20T17:40:35.155948+00:00",
+  "reviewed_at_utc": "2026-10-20T17:51:17.360311+00:00",
   "pages_reviewed": {
     "docs/midterm2026/paper.pdf": [
       1,
@@ -13,16 +14,14 @@
     ]
   },
   "reviewed_pdf_sha256": {
-    "docs/midterm2026/paper.pdf": "577e32e9432b25285107548600750bb74577d1e7c94fa241517f559a5d9a7ddb",
-    ".cache/midterm_abstract_20261021/word/paper.pdf": "2f5b38318802c3fef79c92d53f0dafcabf37a38a890de76b825b953e5bdb8420"
+    "docs/midterm2026/paper.pdf": "adf0af0bc0550b9877caff336bd1da8baa48ea1aecfe548d7365b8813e442864",
+    ".cache/midterm_abstract_20261021/word/paper.pdf": "ddc63bdfa10ce882f1f03049b67f857f5dde41a2e269fa0d7825203e3309a65b"
   },
   "checks": [
     "題目と著者情報1段，本文2段",
-    "7章構成，背景・関連研究・評価・方法・結果・考察・結論の流れ",
-    "表1〜3のキャプション位置，行と数字の対応",
-    "文字欠け・表のはみ出し・文章の欠落なし",
-    "両ページ下中央のページ番号",
-    "独立した第7章おわりに，参考文献7件"
+    "7章構成と本文・表の欠落なし",
+    "表1〜3のキャプション位置と本文領域内への収まり",
+    "両ページ下中央のページ番号"
   ],
-  "note": "Word版はLibreOffice出力を確認．Microsoft Word上での編集後の再ページ割付は別途確認する．"
+  "note": "指定フォントが存在せずWordの変換も代替表示となる．指定フォントを備えた環境でPDFを再生成し，文字・フォント・2ページを再確認する必要がある．"
 }
