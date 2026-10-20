@@ -1,10 +1,10 @@
 {
-  "validated_at_utc": "2026-10-20T17:18:22.264306+00:00",
+  "validated_at_utc": "2026-10-20T17:40:35.899371+00:00",
   "passed": true,
   "pdfs": [
     {
       "path": "docs/midterm2026/paper.pdf",
-      "sha256": "fd633577af2bcbc97d153ea6f8723b3103f51103ef216f0bf615ea31119d9504",
+      "sha256": "577e32e9432b25285107548600750bb74577d1e7c94fa241517f559a5d9a7ddb",
       "pages": [
         {
           "page": 1,
@@ -21,7 +21,7 @@
             18.109,
             21.637,
             191.794,
-            271.051
+            255.764
           ],
           "both_columns_have_text": true
         },
@@ -39,8 +39,8 @@
           "printed_ink_bounds_mm": [
             18.109,
             18.227,
-            191.794,
-            177.565
+            191.676,
+            247.18
           ],
           "both_columns_have_text": true
         }
@@ -52,7 +52,7 @@
     },
     {
       "path": ".cache/midterm_abstract_20261021/word/paper.pdf",
-      "sha256": "35e719970cd7bdd6f4d3d5b46c8c0d72e2c9c0cdcd55281f423dfd4153d4ad9f",
+      "sha256": "2f5b38318802c3fef79c92d53f0dafcabf37a38a890de76b825b953e5bdb8420",
       "pages": [
         {
           "page": 1,
@@ -66,10 +66,10 @@
           "page_number": 1,
           "content_within_margins": true,
           "printed_ink_bounds_mm": [
-            18.109,
+            18.227,
             18.697,
             191.911,
-            271.051
+            266.112
           ],
           "both_columns_have_text": true
         },
@@ -85,10 +85,10 @@
           "page_number": 2,
           "content_within_margins": true,
           "printed_ink_bounds_mm": [
-            18.227,
+            17.992,
             18.815,
             191.676,
-            193.44
+            262.467
           ],
           "both_columns_have_text": true
         }
@@ -121,6 +121,22 @@
   },
   "body_and_tables_pt": 11,
   "latex_no_overfull_or_missing_characters": true,
+  "seven_sections_and_all_citations_checked": true,
+  "evaluation_definition_review": {
+    "L0": "構文・importを含むコード読込みと必須関数への適合",
+    "L1": "回路構築と出力評価処理の実行",
+    "L2": "指定入力での出力距離が0.05未満",
+    "primary_L3": "L0 and L1 and L2 and structure_match．全入力の同値性を保証しない．",
+    "structural_instruction_count_excludes": [
+      "measure",
+      "barrier"
+    ],
+    "shots": 8192,
+    "simulator_seed": 42,
+    "transpiler_seed": 42,
+    "definition_source": "harness/evaluator.pyおよび固定追試のpartial_evaluation_profile.jsonを照合",
+    "old_120_records_included_in_primary": false
+  },
   "source_and_artifact_sha256": {
     "docs/presentation_sources/20261016T_reachable_rescues/results_snapshot.json": "67df2972c197f90117c30541fd646d72ec64f4023df66d705c51010b392ea35d",
     "docs/presentation_sources/20261016T_reachable_rescues/source_manifest.json": "53586c59f33572fe8233c894fe0ef4f67308e7746ff08d1bb42cc9afd9acc089",
@@ -128,15 +144,20 @@
     "docs/analysis/reachable_rescues_20261016/discordant_cases.csv": "50b69c319355f750a091e4d18e60fc8365d52e75e9bc3573f3feb2f20d1d038b",
     "docs/analysis/reachable_rescues_20261016/discordant_transitions.csv": "6c07410a9c1d71aade0171978d114449ed35e58ac2a8c26951a846e47a0791fb",
     "docs/analysis/reachable_rescues_20261016/sanity_report.json": "c9543cc1f437755ef491a844874248414e5fee73eebaa83a0b53db3d7e896d81",
-    "docs/midterm2026/build_abstract.py": "d542f9af22fa47fe08399e2fd74b7d9533d20f01e3ecd19f7845be8397e7003e",
-    "docs/midterm2026/validate_abstract.py": "91d5a413bdac1d8c391cff8b78054dbd499cde7840582ce19ac377f7822693ee",
-    "docs/midterm2026/paper.tex": "435713d039a560369299fced5de114924f0c5ae432b485b8a0b883952457b902",
-    "docs/midterm2026/paper.docx": "cf5279bf5821225dbdc15f3444d9693ff303edca7b1a31fbd59722f46c6e8a80"
+    "docs/midterm2026/build_abstract.py": "f34166350dc8f16afd28e5b22fad811535771642632e381ac61f883ff3274520",
+    "docs/midterm2026/validate_abstract.py": "65189941cd53c616bbd9e6212737b338f67c92293ef288686f2fe43408bbc3e3",
+    "docs/midterm2026/paper.tex": "ae66d74e6d615408bb617a38603adb2902af4d7939c043856936d7627343ce3d",
+    "docs/midterm2026/paper.docx": "8ad29c84d2dfd68464579b48dfd5fdba56d3f9fa23be991b48c7352f42041e5b",
+    "docs/midterm2026/bibliography_sources.json": "cada1124948e94ae6c70eaeb15c082640424b735c1c05b029a36b340844901a2",
+    "harness/evaluator.py": "f90faf3d4ac034e057b07752e7972fe4d2bd4353a6d91a077294a01343e25bf7",
+    "harness/readout.py": "ec7b447997600e0391abf9744a4fbeff0eed69d8b43b0567d519a45cdcff1a4e",
+    "tasks/__init__.py": "9f3a509f452d08e9b63e75701bcddfe27db3c86fa941c3636e6c4bc656f7efe9",
+    "docs/analysis/reevaluation_followup_20261015/partial_evaluation_profile.json": "d0c874fe67b6999323fd76580ae913a41022928eeb5188d095ae305f4c2eaeea"
   },
   "visual_review": {
     "status": "passed",
     "reviewer": "AIによるページ画像の目視確認",
-    "reviewed_at_utc": "2026-10-20T17:18:21.575377+00:00",
+    "reviewed_at_utc": "2026-10-20T17:40:35.155948+00:00",
     "pages_reviewed": {
       "docs/midterm2026/paper.pdf": [
         1,
@@ -148,15 +169,16 @@
       ]
     },
     "reviewed_pdf_sha256": {
-      "docs/midterm2026/paper.pdf": "fd633577af2bcbc97d153ea6f8723b3103f51103ef216f0bf615ea31119d9504",
-      ".cache/midterm_abstract_20261021/word/paper.pdf": "35e719970cd7bdd6f4d3d5b46c8c0d72e2c9c0cdcd55281f423dfd4153d4ad9f"
+      "docs/midterm2026/paper.pdf": "577e32e9432b25285107548600750bb74577d1e7c94fa241517f559a5d9a7ddb",
+      ".cache/midterm_abstract_20261021/word/paper.pdf": "2f5b38318802c3fef79c92d53f0dafcabf37a38a890de76b825b953e5bdb8420"
     },
     "checks": [
       "題目と著者情報1段，本文2段",
+      "7章構成，背景・関連研究・評価・方法・結果・考察・結論の流れ",
       "表1〜3のキャプション位置，行と数字の対応",
       "文字欠け・表のはみ出し・文章の欠落なし",
       "両ページ下中央のページ番号",
-      "独立した第6章おわりにと参考文献"
+      "独立した第7章おわりに，参考文献7件"
     ],
     "note": "Word版はLibreOffice出力を確認．Microsoft Word上での編集後の再ページ割付は別途確認する．"
   },

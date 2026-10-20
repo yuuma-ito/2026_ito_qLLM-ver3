@@ -1,7 +1,7 @@
 {
   "status": "passed",
   "reviewer": "AIによるページ画像の目視確認",
-  "reviewed_at_utc": "2026-10-20T17:18:21.575377+00:00",
+  "reviewed_at_utc": "2026-10-20T17:40:35.155948+00:00",
   "pages_reviewed": {
     "docs/midterm2026/paper.pdf": [
       1,
@@ -13,15 +13,16 @@
     ]
   },
   "reviewed_pdf_sha256": {
-    "docs/midterm2026/paper.pdf": "fd633577af2bcbc97d153ea6f8723b3103f51103ef216f0bf615ea31119d9504",
-    ".cache/midterm_abstract_20261021/word/paper.pdf": "35e719970cd7bdd6f4d3d5b46c8c0d72e2c9c0cdcd55281f423dfd4153d4ad9f"
+    "docs/midterm2026/paper.pdf": "577e32e9432b25285107548600750bb74577d1e7c94fa241517f559a5d9a7ddb",
+    ".cache/midterm_abstract_20261021/word/paper.pdf": "2f5b38318802c3fef79c92d53f0dafcabf37a38a890de76b825b953e5bdb8420"
   },
   "checks": [
     "題目と著者情報1段，本文2段",
+    "7章構成，背景・関連研究・評価・方法・結果・考察・結論の流れ",
     "表1〜3のキャプション位置，行と数字の対応",
     "文字欠け・表のはみ出し・文章の欠落なし",
     "両ページ下中央のページ番号",
-    "独立した第6章おわりにと参考文献"
+    "独立した第7章おわりに，参考文献7件"
   ],
   "note": "Word版はLibreOffice出力を確認．Microsoft Word上での編集後の再ページ割付は別途確認する．"
 }

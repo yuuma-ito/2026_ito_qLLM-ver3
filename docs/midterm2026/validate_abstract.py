@@ -135,6 +135,14 @@ def validate_numbers():
 
 
 def main():
+    assert [text for kind, text in b.BLOCKS if kind == 'h'] == [
+        'はじめに', '評価の枠組み', '関連研究・準備', '実験方法', '結果', '考察', 'おわりに']
+    refs = [text for kind, text in b.BLOCKS if kind == 'ref']
+    assert len(refs) == 7
+    citations = [int(n) for kind, text in b.BLOCKS if kind == 'p' for n in re.findall(r'［(\d+)］', text)]
+    assert sorted(set(citations)) == list(range(1, 8))
+    bibliography = json.loads((HERE / 'bibliography_sources.json').read_text())
+    assert [r['reference'] for r in bibliography['references']] == refs[:6]
     doc = Document(HERE / 'paper.docx')
     assert len(doc.tables) == 3
     assert [s._sectPr.find(qn('w:cols')).get(qn('w:num'), '1') for s in doc.sections] == ['1', '2', '1']
@@ -155,7 +163,10 @@ def main():
     paths = [b.SOURCE / 'results_snapshot.json', b.SOURCE / 'source_manifest.json',
              ANALYSIS / 'core/repair_summary.csv', ANALYSIS / 'discordant_cases.csv',
              ANALYSIS / 'discordant_transitions.csv', ANALYSIS / 'sanity_report.json',
-             HERE / 'build_abstract.py', HERE / 'validate_abstract.py', HERE / 'paper.tex', HERE / 'paper.docx']
+             HERE / 'build_abstract.py', HERE / 'validate_abstract.py', HERE / 'paper.tex', HERE / 'paper.docx',
+             HERE / 'bibliography_sources.json', ROOT / 'harness/evaluator.py', ROOT / 'harness/readout.py',
+             ROOT / 'tasks/__init__.py',
+             ROOT / 'docs/analysis/reevaluation_followup_20261015/partial_evaluation_profile.json']
     visual = {'status': 'pending', 'scope': 'both pages of LaTeX and Word-export PDFs'}
     visual_path = HERE / 'visual_review_20261021.json'
     if visual_path.exists():
@@ -166,6 +177,16 @@ def main():
               'pdfs': reports, 'numeric_checks': numbers, 'word_structure_checked': True,
               'margins_mm': {'left': 18, 'right': 18, 'top': 18, 'bottom': 24},
               'body_and_tables_pt': 11, 'latex_no_overfull_or_missing_characters': True,
+              'seven_sections_and_all_citations_checked': True,
+              'evaluation_definition_review': {
+                  'L0': '構文・importを含むコード読込みと必須関数への適合',
+                  'L1': '回路構築と出力評価処理の実行',
+                  'L2': '指定入力での出力距離が0.05未満',
+                  'primary_L3': 'L0 and L1 and L2 and structure_match．全入力の同値性を保証しない．',
+                  'structural_instruction_count_excludes': ['measure', 'barrier'],
+                  'shots': 8192, 'simulator_seed': 42, 'transpiler_seed': 42,
+                  'definition_source': 'harness/evaluator.pyおよび固定追試のpartial_evaluation_profile.jsonを照合',
+                  'old_120_records_included_in_primary': False},
               'source_and_artifact_sha256': {str(p.relative_to(ROOT)): sha(p) for p in paths},
               'visual_review': visual,
               'word_layout_note': 'LibreOfficeで検証．Microsoft Wordで編集後は再ページ割付を確認する．',

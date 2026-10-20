@@ -1,0 +1,43 @@
+{
+  "verified_at_utc": "2026-10-20T17:38:49.192670+00:00",
+  "verification_scope": "arXivの原論文公開ページの著者・題名・公開年・要旨を確認．この版の原稿では要旨が支持する範囲のみ参照する．",
+  "references": [
+    {
+      "number": 1,
+      "reference": "M. Chen et al.：Evaluating Large Language Models Trained on Code，arXiv:2107.03374（2021）．",
+      "url": "https://arxiv.org/abs/2107.03374",
+      "supported_statement": "HumanEvalはコード生成の機能的正しさを評価する．"
+    },
+    {
+      "number": 2,
+      "reference": "J. Austin et al.：Program Synthesis with Large Language Models，arXiv:2108.07732（2021）．",
+      "url": "https://arxiv.org/abs/2108.07732",
+      "supported_statement": "MBPPは自然言語から短いPythonプログラムを生成する課題群である．"
+    },
+    {
+      "number": 3,
+      "reference": "A. Madaan et al.：Self-Refine: Iterative Refinement with Self-Feedback，arXiv:2303.17651（2023）．",
+      "url": "https://arxiv.org/abs/2303.17651",
+      "supported_statement": "同一LLMの自己フィードバックと反復修正を扱う．"
+    },
+    {
+      "number": 4,
+      "reference": "X. Chen et al.：Teaching Large Language Models to Self-Debug，arXiv:2304.05128（2023）．",
+      "url": "https://arxiv.org/abs/2304.05128",
+      "supported_statement": "コード説明と実行結果を用いる自己デバッグを扱う．"
+    },
+    {
+      "number": 5,
+      "reference": "J. Huang et al.：Large Language Models Cannot Self-Correct Reasoning Yet，arXiv:2310.01798（2023）．",
+      "url": "https://arxiv.org/abs/2310.01798",
+      "supported_statement": "推論課題で，外部フィードバックのない自己修正が改善を保証しないことを報告．量子コードで同じ結果を証明する文献とは扱わない．"
+    },
+    {
+      "number": 6,
+      "reference": "S. Vishwakarma et al.：Qiskit HumanEval: An Evaluation Benchmark For Quantum Code Generative Models，arXiv:2406.14712（2024）．",
+      "url": "https://arxiv.org/abs/2406.14712",
+      "supported_statement": "Qiskitは量子SDKであり，Qiskit HumanEvalはQiskitコード生成の評価課題である．本研究の10タスクの出典とは扱わない．"
+    }
+  ],
+  "note": "Huangほかの2023年は初版公開年．最新版v2は2024年．固定集計の出典はREADMEと検証記録に保持．"
+}
