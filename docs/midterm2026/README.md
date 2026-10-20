@@ -1,9 +1,15 @@
-# 中間発表の現行共有版（2026-10-16）
+# 卒業論文要旨・中間発表の現行共有版（2026-10-21書式修正版）
+
+題目：**量子LLM支援プログラミングにおける失敗類型と介入カタログの実証研究**．要旨本文は「背景」「評価の枠組み」「実験方法」「結果」「考察」「おわりに」の6章に改稿した．2026-10-16版の固定集計を使用し，実験結果は更新していない．
+
+要旨はA4縦・2ページ，左右18mm，上18mm，下24mm，題目と著者情報は1段，本文は2段とした．本文・表・参考文献は11pt，両ページにページ番号を付けた．日本語の句読点は「，」「．」を使用し，表1〜3のキャプションは上に置いた．図は使用していない．PDFはLuaLaTeXから生成した．Wordも同じ文章・固定CSVから生成し，LibreOfficeでのPDF変換により2ページとレイアウトを確認した．Wordで編集後はフォントと改ページを再確認する．
 
 研究の主題は初期失敗コードを介入がどれだけ救済できるか。主要結果は5モデルの現行到達経路：初期失敗545組にR96、F183、D180組救済。Fのみ43組・Dのみ40組の全83組を確認した。
 
 - [paper.pdf](paper.pdf)：共有用PDF。
-- [paper.tex](paper.tex)：編集用原稿。
+- [paper.docx](paper.docx)：編集用Word原稿．
+- [paper.tex](paper.tex)：編集用LaTeX原稿．
+- [修正・圧縮内容](revision_notes_20261021.md)・[今回の検証記録](validation_report_20261021.json)：指定書式，全文と数値の照合結果．
 - [進捗報告](progress_report_draft.txt)：前回からの変更・完了作業・残る課題。
 - [6分用の仮スライドPDF](slides/slides.pdf)：本編8枚＋質疑用補足3枚。固定済みの現行集計に基づく。
 - [スライドの編集用TeX](slides/slides.tex)・[6分用発表メモ](slides/speaker_notes.txt)：各ページの目安時間と質疑の要点。
@@ -22,12 +28,18 @@
 
 ## ビルドと確認
 
-このディレクトリでpLaTeX・dvipdfmx・IPAexフォントを用いる。スタイルファイルは変更しない。共通表は固定出典のtables.texから読み込む。
+リポジトリ直下で以下を実行する．LuaLaTeX・IPAexフォント・python-docx・PyMuPDF・NumPyを使用する．[build_abstract.py](build_abstract.py)は共通の文章と固定CSVからTeX・Wordを生成するため，原稿を更新する場合はこのスクリプトの本文を編集する．旧WiNF用スタイルと共有表のファイルは保持し，この要旨からは読み込まない．中間ファイルとフォントキャッシュは`.cache/midterm_abstract_20261021/`に置く．
 
 ```bash
-platex -interaction=nonstopmode -halt-on-error paper.tex
-platex -interaction=nonstopmode -halt-on-error paper.tex
-dvipdfmx -p a4 -f ptex-ipaex.map -o paper.pdf paper.dvi
+PYTHONPATH=.cache/graduation_tools .venv/bin/python docs/midterm2026/build_abstract.py
+mkdir -p .cache/midterm_abstract_20261021
+TEXMFVAR="$PWD/.cache/midterm_abstract_20261021/texmf" lualatex -interaction=nonstopmode -halt-on-error -output-directory=.cache/midterm_abstract_20261021 docs/midterm2026/paper.tex
+TEXMFVAR="$PWD/.cache/midterm_abstract_20261021/texmf" lualatex -interaction=nonstopmode -halt-on-error -output-directory=.cache/midterm_abstract_20261021 docs/midterm2026/paper.tex
+cp .cache/midterm_abstract_20261021/paper.pdf docs/midterm2026/paper.pdf
+libreoffice --headless --convert-to pdf --outdir .cache/midterm_abstract_20261021/word docs/midterm2026/paper.docx
+PYTHONPATH=.cache/graduation_tools .venv/bin/python docs/midterm2026/validate_abstract.py
 ```
 
-[今回の検証記録](validation_report_20261016.json)に関連テスト、本文/CSV一致、引用・参照、ページ数、フォント、はみ出し、ページ画像の目視確認を記録する。10月14日検証記録は当時の資料に対応する。本資料は共有用下書き。今回の作業では追加生成・生成コード再実行・通知・投稿・外部アップロードを行わない。
+この環境のLibreOfficeは`.cache/graduation_office/root/usr/lib/libreoffice/program/soffice.bin`にあり，既存の[変換処理](../graduation2026/convert_thesis.py)と同じ共有ライブラリ設定で使用した．Word変換PDFは検証用キャッシュであり，配布用`paper.pdf`はLaTeX出力である．
+
+[検証スクリプト](validate_abstract.py)は両PDFのページ数・用紙・実際の文字サイズ・白黒・ページ番号・全段落と参考文献の欠落・表と固定CSVの一致・フォント埋込みを確認する．余白はTeX/Wordの設定に加え，216dpiの印字領域で確認する（全角括弧の空白を含むフォント矩形と実際の印字は区別する）．[画像確認記録](visual_review_20261021.json)はAIが確認した両PDFのhashに対応する．10月14日・16日の検証記録は改稿前の資料として保持する．今回，追加実験・通知・投稿は行っていない．要旨修正の関連ファイルのコミット・プッシュはユーザーの指示に従う．

@@ -1,0 +1,168 @@
+{
+  "validated_at_utc": "2026-10-20T17:18:22.264306+00:00",
+  "passed": true,
+  "pdfs": [
+    {
+      "path": "docs/midterm2026/paper.pdf",
+      "sha256": "fd633577af2bcbc97d153ea6f8723b3103f51103ef216f0bf615ea31119d9504",
+      "pages": [
+        {
+          "page": 1,
+          "size_mm": [
+            210.0,
+            297.0
+          ],
+          "font_sizes_pt": [
+            11.0
+          ],
+          "page_number": 1,
+          "content_within_margins": true,
+          "printed_ink_bounds_mm": [
+            18.109,
+            21.637,
+            191.794,
+            271.051
+          ],
+          "both_columns_have_text": true
+        },
+        {
+          "page": 2,
+          "size_mm": [
+            210.0,
+            297.0
+          ],
+          "font_sizes_pt": [
+            11.0
+          ],
+          "page_number": 2,
+          "content_within_margins": true,
+          "printed_ink_bounds_mm": [
+            18.109,
+            18.227,
+            191.794,
+            177.565
+          ],
+          "both_columns_have_text": true
+        }
+      ],
+      "complete_paragraphs_and_references": true,
+      "tables_match_source_csv": true,
+      "all_fonts_embedded": true,
+      "black_text_only": true
+    },
+    {
+      "path": ".cache/midterm_abstract_20261021/word/paper.pdf",
+      "sha256": "35e719970cd7bdd6f4d3d5b46c8c0d72e2c9c0cdcd55281f423dfd4153d4ad9f",
+      "pages": [
+        {
+          "page": 1,
+          "size_mm": [
+            210.01,
+            297.0
+          ],
+          "font_sizes_pt": [
+            11.0
+          ],
+          "page_number": 1,
+          "content_within_margins": true,
+          "printed_ink_bounds_mm": [
+            18.109,
+            18.697,
+            191.911,
+            271.051
+          ],
+          "both_columns_have_text": true
+        },
+        {
+          "page": 2,
+          "size_mm": [
+            210.01,
+            297.0
+          ],
+          "font_sizes_pt": [
+            11.0
+          ],
+          "page_number": 2,
+          "content_within_margins": true,
+          "printed_ink_bounds_mm": [
+            18.227,
+            18.815,
+            191.676,
+            193.44
+          ],
+          "both_columns_have_text": true
+        }
+      ],
+      "complete_paragraphs_and_references": true,
+      "tables_match_source_csv": true,
+      "all_fonts_embedded": true,
+      "black_text_only": true
+    }
+  ],
+  "numeric_checks": {
+    "overall_rescues": [
+      96,
+      183,
+      180
+    ],
+    "initial_failure_denominator": 545,
+    "model_and_error_table_totals_reconciled": true,
+    "fd_overlap_reconciled": true,
+    "all_83_cases_and_398_transitions_checked": true,
+    "cost_and_third_round_checked": true,
+    "independent_generation_P_checked": true
+  },
+  "word_structure_checked": true,
+  "margins_mm": {
+    "left": 18,
+    "right": 18,
+    "top": 18,
+    "bottom": 24
+  },
+  "body_and_tables_pt": 11,
+  "latex_no_overfull_or_missing_characters": true,
+  "source_and_artifact_sha256": {
+    "docs/presentation_sources/20261016T_reachable_rescues/results_snapshot.json": "67df2972c197f90117c30541fd646d72ec64f4023df66d705c51010b392ea35d",
+    "docs/presentation_sources/20261016T_reachable_rescues/source_manifest.json": "53586c59f33572fe8233c894fe0ef4f67308e7746ff08d1bb42cc9afd9acc089",
+    "docs/analysis/reachable_rescues_20261016/core/repair_summary.csv": "84e419e1c5eefea2db337e3f14027ec3dd2ad4d21a4bed980b785630c7c24497",
+    "docs/analysis/reachable_rescues_20261016/discordant_cases.csv": "50b69c319355f750a091e4d18e60fc8365d52e75e9bc3573f3feb2f20d1d038b",
+    "docs/analysis/reachable_rescues_20261016/discordant_transitions.csv": "6c07410a9c1d71aade0171978d114449ed35e58ac2a8c26951a846e47a0791fb",
+    "docs/analysis/reachable_rescues_20261016/sanity_report.json": "c9543cc1f437755ef491a844874248414e5fee73eebaa83a0b53db3d7e896d81",
+    "docs/midterm2026/build_abstract.py": "d542f9af22fa47fe08399e2fd74b7d9533d20f01e3ecd19f7845be8397e7003e",
+    "docs/midterm2026/validate_abstract.py": "91d5a413bdac1d8c391cff8b78054dbd499cde7840582ce19ac377f7822693ee",
+    "docs/midterm2026/paper.tex": "435713d039a560369299fced5de114924f0c5ae432b485b8a0b883952457b902",
+    "docs/midterm2026/paper.docx": "cf5279bf5821225dbdc15f3444d9693ff303edca7b1a31fbd59722f46c6e8a80"
+  },
+  "visual_review": {
+    "status": "passed",
+    "reviewer": "AIによるページ画像の目視確認",
+    "reviewed_at_utc": "2026-10-20T17:18:21.575377+00:00",
+    "pages_reviewed": {
+      "docs/midterm2026/paper.pdf": [
+        1,
+        2
+      ],
+      ".cache/midterm_abstract_20261021/word/paper.pdf": [
+        1,
+        2
+      ]
+    },
+    "reviewed_pdf_sha256": {
+      "docs/midterm2026/paper.pdf": "fd633577af2bcbc97d153ea6f8723b3103f51103ef216f0bf615ea31119d9504",
+      ".cache/midterm_abstract_20261021/word/paper.pdf": "35e719970cd7bdd6f4d3d5b46c8c0d72e2c9c0cdcd55281f423dfd4153d4ad9f"
+    },
+    "checks": [
+      "題目と著者情報1段，本文2段",
+      "表1〜3のキャプション位置，行と数字の対応",
+      "文字欠け・表のはみ出し・文章の欠落なし",
+      "両ページ下中央のページ番号",
+      "独立した第6章おわりにと参考文献"
+    ],
+    "note": "Word版はLibreOffice出力を確認．Microsoft Word上での編集後の再ページ割付は別途確認する．"
+  },
+  "word_layout_note": "LibreOfficeで検証．Microsoft Wordで編集後は再ページ割付を確認する．",
+  "experiment_actions": {
+    "new_generations": 0,
+    "generated_code_executions": 0
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "reviewer": "AIによるページ画像の目視確認",
+  "reviewed_at_utc": "2026-10-20T17:18:21.575377+00:00",
+  "pages_reviewed": {
+    "docs/midterm2026/paper.pdf": [
+      1,
+      2
+    ],
+    ".cache/midterm_abstract_20261021/word/paper.pdf": [
+      1,
+      2
+    ]
+  },
+  "reviewed_pdf_sha256": {
+    "docs/midterm2026/paper.pdf": "fd633577af2bcbc97d153ea6f8723b3103f51103ef216f0bf615ea31119d9504",
+    ".cache/midterm_abstract_20261021/word/paper.pdf": "35e719970cd7bdd6f4d3d5b46c8c0d72e2c9c0cdcd55281f423dfd4153d4ad9f"
+  },
+  "checks": [
+    "題目と著者情報1段，本文2段",
+    "表1〜3のキャプション位置，行と数字の対応",
+    "文字欠け・表のはみ出し・文章の欠落なし",
+    "両ページ下中央のページ番号",
+    "独立した第6章おわりにと参考文献"
+  ],
+  "note": "Word版はLibreOffice出力を確認．Microsoft Word上での編集後の再ページ割付は別途確認する．"
+}
