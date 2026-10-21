@@ -1,0 +1,19 @@
+{
+  "captured_at_utc": "2026-10-21T15:17:43.719950+00:00",
+  "experiment_id": "independent_4_full_20261020T185811381595Z",
+  "source_directory": "results/independent_4_full_20261020T185811381595Z",
+  "validation": "全1000組，欠落・重複・予定外0．sanity成功．追加roundのunknown_error 2件はコード側NameErrorでAPI障害ではない．",
+  "source_hashes": {
+    "docs/analysis/independent_4_completed_20261022/pairwise.csv": "e7a75ee9ad716f6773d7a342c2ac95f9983f877bd4493df622492c02a5e6132c",
+    "docs/analysis/independent_4_completed_20261022/manifest.json": "a1a5b778a0c0731b3ef0ae3d80db655a5337add5be7866c90be9465c944b981f",
+    "docs/analysis/independent_4_completed_20261022/repetitions.csv": "a6b47127728b5e9d7114bce7a5087efff1e0a91233036e86c301c97984da642e",
+    "docs/analysis/independent_4_completed_20261022/sanity_report.json": "3cc4ab325a52fdb5befa6cdd5d6fa1595f128c70d5e76fe02e7213d6a4a11d5c",
+    "docs/analysis/independent_4_completed_20261022/runner_experiment_config.json": "a23720130eb78dbdf8ba5afc4df94a2140895a9b2df53abab0e95202913db965",
+    "docs/analysis/independent_4_completed_20261022/overlap.csv": "42aa37c7fe16f37bc4edc4a0ba972007b0cef25fff49329123de6cf6c9ea381f",
+    "docs/analysis/independent_4_completed_20261022/runner_manifest.json": "ab291d563bfd6802fd701c79a27be551209fd8f37f197563ee9f54dd01918501",
+    "docs/analysis/independent_4_completed_20261022/first_success.csv": "ec169e95e89d4fb0b6b04dad716d45b10b9ca983e935fabff5476a042a697a6c",
+    "docs/analysis/independent_4_completed_20261022/summary.csv": "4ff68c4fb0f8d6f94bfd6c1eabe8018e14b29b97435ed028305550823b391344"
+  },
+  "raw_sha256": "f7812b2ddf09b3b8aa6f8de126d1305498e2eaba655f2c031c01eb1f13d27ab4",
+  "new_generation_during_writing": false
+}

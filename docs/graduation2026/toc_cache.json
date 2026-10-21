@@ -67,12 +67,18 @@
   },
   {
     "number": "3.1.2",
-    "title": "主L3と出力一致",
+    "title": "独立再生成対照B4",
     "level": 3,
     "page": "7"
   },
   {
     "number": "3.1.3",
+    "title": "主L3と出力一致",
+    "level": 3,
+    "page": "7"
+  },
+  {
+    "number": "3.1.4",
     "title": "救済・保持・独立生成の比較",
     "level": 3,
     "page": "7"
@@ -81,13 +87,13 @@
     "number": "3.2",
     "title": "実装と記録の検証",
     "level": 2,
-    "page": "7"
+    "page": "8"
   },
   {
     "number": "3.2.1",
     "title": "ハーネスの構成",
     "level": 3,
-    "page": "7"
+    "page": "8"
   },
   {
     "number": "3.2.2",
@@ -174,135 +180,147 @@
     "page": "12"
   },
   {
+    "number": "4.7",
+    "title": "独立再生成B4との比較",
+    "level": 2,
+    "page": "12"
+  },
+  {
     "number": "5",
     "title": "考察",
     "level": 1,
-    "page": "13"
+    "page": "14"
   },
   {
     "number": "5.1",
-    "title": "介入で何が変わったか",
+    "title": "再生成対照を含む解釈",
     "level": 2,
-    "page": "13"
+    "page": "14"
   },
   {
     "number": "5.2",
-    "title": "介入カタログへ向けた解釈",
+    "title": "介入で何が変わったか",
     "level": 2,
-    "page": "13"
+    "page": "14"
   },
   {
     "number": "5.3",
-    "title": "内的妥当性と再構成経路",
+    "title": "介入カタログへ向けた解釈",
     "level": 2,
-    "page": "13"
+    "page": "14"
   },
   {
     "number": "5.4",
+    "title": "内的妥当性と再構成経路",
+    "level": 2,
+    "page": "14"
+  },
+  {
+    "number": "5.5",
     "title": "評価範囲・一般化・静的分析の限界",
     "level": 2,
-    "page": "13"
+    "page": "14"
   },
   {
     "number": "6",
     "title": "おわりに",
     "level": 1,
-    "page": "14"
+    "page": "15"
   },
   {
     "number": "6.1",
     "title": "研究成果",
     "level": 2,
-    "page": "14"
+    "page": "15"
   },
   {
     "number": "6.2",
     "title": "今後の課題",
     "level": 2,
-    "page": "14"
+    "page": "15"
   },
   {
     "number": "6.3",
     "title": "提出に向けた確認",
     "level": 2,
-    "page": "14"
+    "page": "15"
   },
   {
     "number": "7",
     "title": "参考文献",
     "level": 1,
-    "page": "15"
+    "page": "16"
   },
   {
     "number": "8",
     "title": "付録",
     "level": 1,
-    "page": "16"
+    "page": "17"
   },
   {
     "number": "8.1",
     "title": "出典と再現性",
     "level": 2,
-    "page": "16"
+    "page": "17"
   },
   {
     "number": "8.1.1",
     "title": "元実験の保存設定",
     "level": 3,
-    "page": "16"
+    "page": "17"
   },
   {
     "number": "8.1.2",
     "title": "元実験の保存設定",
     "level": 3,
-    "page": "16"
+    "page": "17"
   },
   {
     "number": "8.1.3",
     "title": "元実験の保存設定",
     "level": 3,
-    "page": "16"
+    "page": "17"
   },
   {
     "number": "8.1.4",
     "title": "固定集計と公開範囲",
     "level": 3,
-    "page": "16"
+    "page": "17"
   },
   {
     "number": "8.2",
     "title": "指標の読み方と提出前確認",
     "level": 2,
-    "page": "17"
+    "page": "18"
   },
   {
     "number": "8.2.1",
     "title": "集計単位",
     "level": 3,
-    "page": "17"
+    "page": "18"
   },
   {
     "number": "8.2.2",
     "title": "退行0の意味",
     "level": 3,
-    "page": "17"
+    "page": "18"
   },
   {
     "number": "8.2.3",
     "title": "静的変更の意味",
     "level": 3,
-    "page": "17"
+    "page": "18"
   },
   {
     "number": "8.2.4",
     "title": "コストの意味",
     "level": 3,
-    "page": "17"
+    "page": "18"
   },
   {
     "number": "8.2.5",
     "title": "提出前の確認",
     "level": 3,
-    "page": "17"
+    "page": "18"
   }
 ]

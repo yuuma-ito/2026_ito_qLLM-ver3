@@ -1,7 +1,7 @@
 {
-  "reviewed_at_utc": "2026-10-20T12:42:58.326375+00:00",
-  "status": "reviewed_all_pages",
-  "pdf_sha256": "93799919f4239962d8793e1f9a902c722228d42e27e7ce55d8fae815f5557264",
+  "reviewed_at_utc": "2026-10-21T15:27:36.635168+00:00",
+  "status": "reviewed",
+  "pdf_sha256": "3015482149a81bbd03a27533aaf1567ba3cd1ea70520b29686f2e4026891e274",
   "pages_reviewed": [
     1,
     2,
@@ -19,14 +19,14 @@
     14,
     15,
     16,
-    17
+    17,
+    18
   ],
-  "render_directory": ".cache/graduation_template_review",
-  "method": "Rendered every PDF page; reviewed sheets 1–5, then individually rechecked final changed pages 3, 9, 16, 17. Unchanged rendered pages matched previously reviewed PNG hashes.",
+  "method": "AIによる全18ページのコンタクトシート確認，参照修正後の12ページを拡大再確認．",
   "findings": [
-    "表紙・要約・目次・本文・参考文献・付録の全ページを確認。",
-    "空白ページは意図した4ページ目のみ。表は本文幅内、キャプションは表と同じページに配置。",
-    "付録の最終小節だけが残るページを避け、8.2節全体を17ページ目へ配置。",
-    "原本未照合。MS系フォントとCentury未導入のためPDFは代替フォント。Microsoft Word本体での最終確認は未実施。"
+    "表紙・要約・目次・意図した空白ページを維持",
+    "B4の方法・3比較表・考察・結論と出典を確認",
+    "本文・表・ページ番号の重なりやはみ出しなし",
+    "PDFは代替フォント確認版"
   ]
 }

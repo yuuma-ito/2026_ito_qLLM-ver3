@@ -1,8 +1,18 @@
 {
-  "created_at_utc": "2026-10-16T06:36:09.490313+00:00",
+  "created_at_utc": "2026-10-21T15:25:51.875753+00:00",
   "status": "draft",
   "source_snapshot_at_utc": "2026-10-15T15:20:18.335286+00:00",
   "source_hashes": {
+    "docs/analysis/independent_4_completed_20261022/source_manifest.json": "290111e0da3613e85018c47a0d1f09c30b1d8c0728727ef5d6fabbda2bca5d66",
+    "docs/analysis/independent_4_completed_20261022/manifest.json": "a1a5b778a0c0731b3ef0ae3d80db655a5337add5be7866c90be9465c944b981f",
+    "docs/analysis/independent_4_completed_20261022/sanity_report.json": "3cc4ab325a52fdb5befa6cdd5d6fa1595f128c70d5e76fe02e7213d6a4a11d5c",
+    "docs/analysis/independent_4_completed_20261022/runner_experiment_config.json": "a23720130eb78dbdf8ba5afc4df94a2140895a9b2df53abab0e95202913db965",
+    "docs/analysis/independent_4_completed_20261022/runner_manifest.json": "ab291d563bfd6802fd701c79a27be551209fd8f37f197563ee9f54dd01918501",
+    "docs/analysis/independent_4_completed_20261022/pairwise.csv": "e7a75ee9ad716f6773d7a342c2ac95f9983f877bd4493df622492c02a5e6132c",
+    "docs/analysis/independent_4_completed_20261022/repetitions.csv": "a6b47127728b5e9d7114bce7a5087efff1e0a91233036e86c301c97984da642e",
+    "docs/analysis/independent_4_completed_20261022/overlap.csv": "42aa37c7fe16f37bc4edc4a0ba972007b0cef25fff49329123de6cf6c9ea381f",
+    "docs/analysis/independent_4_completed_20261022/first_success.csv": "ec169e95e89d4fb0b6b04dad716d45b10b9ca983e935fabff5476a042a697a6c",
+    "docs/analysis/independent_4_completed_20261022/summary.csv": "4ff68c4fb0f8d6f94bfd6c1eabe8018e14b29b97435ed028305550823b391344",
     "docs/presentation_sources/20261016T_reachable_rescues/results_snapshot.json": "67df2972c197f90117c30541fd646d72ec64f4023df66d705c51010b392ea35d",
     "docs/presentation_sources/20261016T_reachable_rescues/validation_report.json": "266b4ceb66c70f9d1e3cef98a7f573bd81885d3cc49b1509828841c3b69fca1d",
     "docs/analysis/reachable_rescues_20261016/manifest.json": "afea494441162b5774fcbdb97f69ca5a38231fac7741feba33c53c511242d0cc",
@@ -10,6 +20,8 @@
     "docs/analysis/reachable_rescues_20261016/core/sanity_report.json": "67f2b0b6916adba9861a071bdca151a25921d35c1167cf42d3c0caed027237de",
     "docs/analysis/reachable_rescues_20261016/sanity_report.json": "c9543cc1f437755ef491a844874248414e5fee73eebaa83a0b53db3d7e896d81"
   },
+  "B4_experiment_id": "independent_4_full_20261020T185811381595Z",
+  "B4_snapshot": "docs/analysis/independent_4_completed_20261022",
   "new_experiments": 0,
   "new_model_requests": 0,
   "generated_code_executions": 0,
@@ -18,17 +30,10 @@
     "https://arxiv.org/abs/2304.05128v2"
   ],
   "pending": [
-    "原本テンプレートの書式照合・正式題目の承認",
+    "提出年月",
     "英語の著者・教員・所属の正式表記",
     "指導教員による内容と書式の確認",
     "剽窃チェック・類似レポート（審査用と最終版）",
     "Microsoft Word・PowerPoint上での最終レイアウト確認・6分リハーサル"
-  ],
-  "thesis_format_update": {
-    "basis": "User-transcribed template analysis, original not received",
-    "format_spec": "format_spec.json",
-    "submission_month": "2027年1月",
-    "affiliation": "南山大学 理工学部 電子情報学科",
-    "thesis_title": "Existing research title; formal approval pending"
-  }
+  ]
 }

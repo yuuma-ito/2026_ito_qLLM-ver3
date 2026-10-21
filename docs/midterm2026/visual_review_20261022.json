@@ -1,0 +1,24 @@
+{
+  "reviewed_at_utc": "2026-10-21T15:27:36.635168+00:00",
+  "status": "reviewed",
+  "reviewed_pdf_sha256": {
+    "docs/midterm2026/paper.pdf": "71749211708b3e1695a08154c955b0cac0c15cf15f9685b6420f8503c53ebef4",
+    ".cache/midterm_abstract_20261021/word/paper.pdf": "fe491438f0f48affc83a4e6196607c174d1e4a05a12e5dc75ab6898875bbf199"
+  },
+  "pages_reviewed": {
+    "LaTeX": [
+      1,
+      2
+    ],
+    "Word_export": [
+      1,
+      2
+    ]
+  },
+  "method": "AIによる全ページ画像確認．表見出し修正後の最終PDF両ページを再確認．",
+  "findings": [
+    "本文・表・参考文献・ページ番号の欠落や重なりなし",
+    "2段組み2ページを維持",
+    "PDFは代替フォント確認版"
+  ]
+}

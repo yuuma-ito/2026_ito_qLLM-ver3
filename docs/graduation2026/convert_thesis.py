@@ -12,6 +12,23 @@ sys.path.insert(0, str(ROOT / '.cache/graduation_tools'))
 import template_thesis
 
 
+def convert_abstract_preview():
+    local = ROOT / '.cache/graduation_office/root/usr/lib'
+    env = os.environ.copy()
+    binary = shutil.which('libreoffice')
+    if not binary:
+        binary = str(local / 'libreoffice/program/soffice.bin')
+        env['LD_LIBRARY_PATH'] = ':'.join([str(local/'libreoffice/program'), str(local/'x86_64-linux-gnu'), env.get('LD_LIBRARY_PATH','')])
+        env['SAL_USE_VCLPLUGIN'] = 'svp'
+    output = ROOT / '.cache/midterm_abstract_20261021/word'
+    output.mkdir(parents=True, exist_ok=True)
+    pdf = output/'paper.pdf'
+    before = pdf.stat().st_mtime_ns if pdf.exists() else None
+    subprocess.run([binary, '-env:UserInstallation=file:///tmp/qllm-b4-abstract-office', '--headless', '--convert-to', 'pdf', '--outdir', str(output), str(ROOT/'docs/midterm2026/paper.docx')], env=env, check=True, timeout=90)
+    if not pdf.exists() or pdf.stat().st_mtime_ns == before:
+        raise RuntimeError('Abstract PDF was not refreshed')
+
+
 def convert():
     local = ROOT / '.cache/graduation_office/root/usr/lib'
     env = os.environ.copy()
@@ -41,4 +58,7 @@ def convert():
 
 
 if __name__ == '__main__':
-    convert()
+    if '--abstract-preview' in sys.argv:
+        convert_abstract_preview()
+    else:
+        convert()

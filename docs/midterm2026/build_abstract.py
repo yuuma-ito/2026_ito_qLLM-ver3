@@ -28,6 +28,12 @@ ERROR_NAMES = [('回路構築', 'build_error'), ('import', 'import_error'),
                ('IF不適合', 'interface_mismatch'), ('量子ビット数', 'qubit_count_mismatch'),
                ('構文', 'syntax'), ('unknown', 'unknown_error'), ('出力不一致', 'wrong_output')]
 ROWS = list(csv.DictReader((ROOT / 'docs/analysis/reachable_rescues_20261016/core/repair_summary.csv').open()))
+B4_SOURCE = ROOT / 'docs/analysis/independent_4_completed_20261022'
+B4_ROWS = list(csv.DictReader((B4_SOURCE / 'summary.csv').open()))
+
+def b4_value(grouping, value):
+    return next(r['successes_from_initial_failure'] for r in B4_ROWS if r['condition'] == 'B4' and r['generation_cap'] == '4' and r['grouping'] == grouping and r['group'] == value)
+
 SNAP = json.loads((SOURCE / 'results_snapshot.json').read_text())
 
 
@@ -39,13 +45,13 @@ def rows(grouping, names):
                    and r['model_spec' if grouping == 'model' else 'baseline_error_category']
                    == ('ollama:' + value if grouping == 'model' else value)) for c in CONDITIONS]
         assert len({r['initial_failures'] for r in rr}) == 1
-        result.append([label, rr[0]['initial_failures']] + [r['rescued'] for r in rr])
+        result.append([label, rr[0]['initial_failures']] + [r['rescued'] for r in rr] + [b4_value('model' if grouping == 'model' else 'initial_failure', 'ollama:' + value if grouping == 'model' else value)])
     return result
 
 
 TABLES = [
-    ('モデル別の救済件数（分母は初期失敗）', ['モデル', '分母', 'R', 'F', 'D'], rows('model', MODEL_NAMES)),
-    ('初期失敗類型別の救済件数', ['初期失敗', '分母', 'R', 'F', 'D'], rows('baseline_error', ERROR_NAMES)),
+    ('モデル別の成功件数（分母は初期失敗）', ['モデル', '分母', 'R', 'F', 'D', 'B4'], rows('model', MODEL_NAMES)),
+    ('初期失敗類型別の成功件数', ['初期失敗', '分母', 'R', 'F', 'D', 'B4'], rows('baseline_error', ERROR_NAMES)),
     ('FとDの救済対象（初期失敗545組）', ['共通', 'Fのみ', 'Dのみ', '双方未救済'],
      [[str(SNAP['primary']['fd_overlap'][k]) for k in ['both', 'F_only', 'D_only', 'neither']]])
 ]
@@ -59,12 +65,12 @@ BLOCKS = [
 ('p', '現行評価器では，L0は構文・importを含むコード読込みと必須関数への適合，L1は回路構築と評価処理の実行，L2は指定入力での期待出力との一致，主L3はL0〜L2と構造要件への適合とする．関数名・戻り値・出力形式などのインターフェース適合性と，量子的な出力一致を区別する．'),
 ('p', '構造要件は量子ビット数や，測定・barrierを除く命令数の範囲などである．主L3は限定された基準であり，全入力のアルゴリズム同値性を保証しない．測定分布は8,192 shotsの全変動距離，状態ベクトルは大域位相を整合した距離を用い，0.05未満を一致とする．測定先は量子ビット順に戻す．救済率は「初期失敗から最終主L3成功となった組数／初期主L3失敗組数」とし，失敗類型は介入前で固定する．'),
 ('h', '関連研究・準備'),
-('p', 'Self-Refine［3］は自己フィードバックと反復修正，Self-Debugging［4］はコード説明や実行結果を用いる．推論課題では，外部フィードバックのない自己修正の限界も報告されている［5］．QiskitはPythonで量子回路を構築する基盤であり，Qiskit HumanEval［6］はそのコード生成を評価する．本研究では独自の10タスクに修正条件を実装し，先行研究の完全再現とは位置づけない．予備実験から対象・介入を拡張したが，旧L2評価の120件は主結果に合算しない．'),
+('p', 'Self-Refine［3］は自己フィードバックと反復修正，Self-Debugging［4］はコード説明や実行結果を用いる．推論課題では，外部フィードバックのない自己修正の限界も報告されている［5］．QiskitはPythonで量子回路を構築する基盤であり，Qiskit HumanEval［6］はそのコード生成を評価する．本研究では独自の10タスクに修正条件を実装し，先行研究の完全再現とは位置づけない．'),
 ('h', '実験方法'),
 ('p', '5モデル・10タスク・seed 0〜19の1,000初期組を対象に，5条件，計5,000条件記録を分析した．モデル略号はQ4：qwen3.5:4b，G4：gemma4:e4b-it-qat，Q9：qwen3.5:9b，C7：qwen2.5-coder:7b，G3：gemma3:4bである．'),
 ('p', 'タスクはBell，GHZ，Deutsch–Jozsa（constant/balanced），Bernstein–Vazirani，Grover，QFT，IQFT，QPE，Ansatzとした．temperatureは0.7，1要求の生成上限は1,024 tokensである．'),
 ('p', 'Bは初期生成，Rは自己見直し，Fはエラー等の実行結果提示，Dは説明・原因分析を促す自己デバッグ，Pは生成前注意事項である．R/F/DはBと同じ初期コード・判定から最大3回修正し，成功時に停止する．Pは別プロンプトによる独立生成である．'),
-('p', '検証済み保存記録と部分追試293ケースを反映した到達可能な経路を集計した［7］．全件を新規生成・再実行した結果ではない．今回の執筆で追加実験は行っていない．'),
+('p', '検証済み保存記録と部分追試を反映した到達可能な経路を集計した［7］．全件を新規生成・再実行した結果ではない．追加のB4は同じ初期コードを保持し，初期失敗だけ課題仕様から最大3回独立再生成する．前回コード・診断を与えず，専用seed規則と成功時停止を用いる．'),
 ('h', '結果'),
 ('p', '初期成功は455組，失敗は545組であった．救済はRが96/545組（17.6%），Fが183/545組（33.6%），Dが180/545組（33.0%）であった．全体率は初期失敗545組を分母とする合算値である．'),
 ('t', 0),
@@ -73,20 +79,20 @@ BLOCKS = [
 ('p', '表2のimport失敗はF 58/271組（21.4%），D 72/271組（26.6%），回路構築失敗はF 76/126組（60.3%），D 68/126組（54.0%）であった．IFはインターフェースを表す．保存分類unknownの1組は生成コード側の失敗であり，API接続障害ではない．少数分母の率は参考値とする．'),
 ('t', 2),
 ('p', 'FとDの全体の救済数は3組差だが，表3の片側のみ救済した83組では対象が異なる．import失敗はFのみ8組・Dのみ22組，回路構築失敗は19組・11組であった．83組すべての両条件166履歴・398修正遷移を静的に確認した．複数箇所が同時に変わるため，変更内容から救済原因は分離できない．少なくとも一方が救済した223/545組（40.9%）は事後的な集合であり，実行前の選択方策の成功率ではない．'),
-('p', 'PではBの初期失敗に対応する成功が124/545組（22.8%），初期成功に対応する失敗が106/455組（23.3%）で，最終成功は473/1,000組だった．独立生成の結果を同一コードの修正による救済と同じ作用とは解釈しない．'),
-('p', '共有初期生成を除き，未救済例への消費も含めた追加入力・出力tokens／救済はR 18,852.6，F 9,333.8，D 10,976.6であった．保存記録と部分追試の再構成値であり，全件新実験の実測費用ではない．3回目はFで28/390組（7.2%），Dで33/398組（8.3%）を追加救済した．2回打切りでは3回で救済できた組の15.3%，18.3%をそれぞれ失う．これは同一履歴の打切り比較である．'),
+('p', 'B4の追加実験［7］は1,000組を完了し，欠落・重複・予定外0，sanity検証成功であった．初期失敗から217/545組（39.8%）が成功し，最終成功は672/1,000組（67.2%）だった．Fより34組，Dより37組多い．B4とFの共通成功は131組，B4のみ86組，Fのみ52組だった．'),
+('p', '共有初期を除き未成功例も含む追加tokens／追加成功はB4 4,589.0，R 18,852.6，F 9,333.8，D 10,976.6だった．B4は追加1,342要求・995,815 tokens，R/F/Dは保存記録と部分追試の再構成値である．金銭費用ではない．'),
 ('h', '考察'),
 ('p', 'FとDの救済率が近くても救済対象は一致せず，初期失敗類型・モデルによって大小が変わった．介入カタログには全体率だけでなく，適用対象，失敗分母，追加消費を併記する必要がある．ただし，失敗類型はモデル・タスクと関連しており，この結果だけで介入選択規則を確定できない．'),
-('p', 'R/F/Dは最大3回の修正機会を持つ一方，B/Pは独立した1回生成であり，要求回数・投入情報が異なる．同じ要求回数の独立再生成対照もなく，因果効果を断定しない．成功時停止，初期コード・タスク・seedの依存，元実験の診断文差もあり，5,000条件を独立標本として統計的有意差や一般的優劣を主張しない．主L3の入力範囲，有限shots，生成長上限も限界である．'),
+('p', 'B4とR/F/Dは初回込み最大4回だが，成功時停止により実要求数は異なる．入力情報・tokens・seed規則・実行時期・出典schemaに差があり，診断提示の因果効果は断定しない．成功時停止，初期コード・タスク・seedの依存，元実験の診断文差もあり，5,000条件を独立標本として統計的有意差や一般的優劣を主張しない．主L3の入力範囲，有限shots，生成長上限も限界である．'),
 ('h', 'おわりに'),
-('p', '初期失敗545組に対し，Fは33.6%，Dは33.0%を救済したが，片側のみ救済した83組の内訳は異なった．この違いを介入カタログの根拠として整理した．今後は介入選択・停止方策を事前固定し，要求回数をそろえた独立再生成対照と別seed・タスクによる検証を行う．'),
+('p', '初期失敗545組に対し，Fは33.6%，Dは33.0%を救済したが，片側のみ救済した83組の内訳は異なった．B4は39.8%で成功し，再生成対照を含めた検討の必要性を示した．カタログには修正介入に加えて独立再生成も候補として記録する．介入選択・停止方策を事前固定し，別seed・タスクでも検証する．'),
 ('ref', 'M. Chen et al.：Evaluating Large Language Models Trained on Code，arXiv:2107.03374（2021）．'),
 ('ref', 'J. Austin et al.：Program Synthesis with Large Language Models，arXiv:2108.07732（2021）．'),
 ('ref', 'A. Madaan et al.：Self-Refine: Iterative Refinement with Self-Feedback，arXiv:2303.17651（2023）．'),
 ('ref', 'X. Chen et al.：Teaching Large Language Models to Self-Debug，arXiv:2304.05128（2023）．'),
 ('ref', 'J. Huang et al.：Large Language Models Cannot Self-Correct Reasoning Yet，arXiv:2310.01798（2023）．'),
 ('ref', 'S. Vishwakarma et al.：Qiskit HumanEval: An Evaluation Benchmark For Quantum Code Generative Models，arXiv:2406.14712（2024）．'),
-('ref', '現行到達経路の固定集計・保存設定・出典hash（2026-10-16版）．本原稿READMEに出典と検証記録を示す．'),
+('ref', '現行到達経路（2026-10-16版）とB4追加実験（2026-10-22固定）の集計・保存設定・出典hash．本原稿READMEに出典と検証記録を示す．'),
 ]
 
 
@@ -155,6 +161,8 @@ AUTHOR
     refnum = 0
     for kind, text in BLOCKS:
         if kind == 'h':
+            if text == '実験方法':
+                out.append(r'\newpage')  # Begin the methods in the right column.
             out.append(r'\section{' + text + '}')
         elif kind == 'p':
             out.append(escape(text) + '\n')
@@ -266,7 +274,7 @@ def build_docx():
             font(p.add_run(f'表{text+1}　{caption}'))
             t = d.add_table(rows=0, cols=len(headers))
             t.autofit = False
-            widths = [33, 12, 12, 12, 14.5] if len(headers) == 5 else [19, 19, 19, 26.5]
+            widths = [27, 12, 10, 10, 10, 14.5] if len(headers) == 6 else [19, 19, 19, 26.5]
             for c, w in zip(t.columns, widths):
                 c.width = Mm(w)
             tw = t._tbl.tblPr.find(qn('w:tblW'))

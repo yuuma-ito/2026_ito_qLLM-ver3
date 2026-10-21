@@ -25,6 +25,12 @@ SOURCE = ROOT / 'docs/presentation_sources/20261016T_reachable_rescues'
 ANALYSIS = ROOT / 'docs/analysis/reachable_rescues_20261016'
 SNAP = json.loads((SOURCE/'results_snapshot.json').read_text())
 ROWS = list(csv.DictReader((ANALYSIS/'core/repair_summary.csv').open()))
+B4_SOURCE = ROOT / 'docs/analysis/independent_4_completed_20261022'
+B4_ROWS = list(csv.DictReader((B4_SOURCE/'summary.csv').open()))
+
+def b4_rows(grouping, value='all'):
+    return [r for r in B4_ROWS if r['grouping']==grouping and r['group']==value and r['generation_cap']=='4' and r['condition'] in ['B4','R','F','D']]
+
 CONDITIONS = [('R','self_refine'),('F','execution_feedback'),('D','self_debugging')]
 MODELS = [('Q4','qwen3.5:4b'),('G4','gemma4:e4b-it-qat'),('Q9','qwen3.5:9b'),('C7','qwen2.5-coder:7b'),('G3','gemma3:4b')]
 TITLE = 'Qiskit量子回路コードの初期失敗に対する修正介入の救済率と救済対象の分析'
@@ -34,7 +40,7 @@ GOTHIC = 'IPAexGothic'
 REFS = [
  'A. Madaan et al.：Self-Refine: Iterative Refinement with Self-Feedback，arXiv:2303.17651v2（2023）．https://arxiv.org/abs/2303.17651v2',
  'X. Chen，M. Lin，N. Schärli，D. Zhou：Teaching Large Language Models to Self-Debug，arXiv:2304.05128v2（2023）．https://arxiv.org/abs/2304.05128v2',
- '伊藤悠真：現行救済経路の固定発表出典（2026-10-16版）．本リポジトリ docs/presentation_sources/20261016T_reachable_rescues/，results_snapshot.json，source_manifest.jsonおよび対応CSV．',
+ '伊藤悠真：現行救済経路の固定発表出典（2026-10-16版）．本リポジトリ docs/presentation_sources/20261016T_reachable_rescues/，results_snapshot.json，source_manifest.jsonおよび対応CSV．B4追加実験（2026-10-22固定）：docs/analysis/independent_4_completed_20261022/の保存設定・manifest・sanity・集計CSV．',
 ]
 
 def row(group, value, condition):
@@ -138,9 +144,11 @@ def table(d,caption,headers,rows,size=10.5):
 
 JA_SUMMARY='''LLMによる量子回路コード生成では，APIの誤用や回路構築の失敗に加え，実行できても期待した出力を返さない失敗が生じる．本研究では，Qiskitを用いたコードの初期失敗を修正介入がどの程度救済し，どの対象を救済するかを分析した．自己見直しR，実行結果提示F，説明・原因分析を促す自己デバッグDを，同じ初期コードから比較した．生成前注意事項Pは独立生成として扱った．
 対象は5モデル，10タスク，seed 0〜19の1,000初期組，5,000条件記録である．検証済み保存prefixと必要な部分追試suffixを組み合わせた到達可能な経路を採用した．成功は指定入力の出力一致と所定の構造要件を含む主L3で判定した．初期失敗545組の救済はR96組（17.6%），F183組（33.6%），D180組（33.0%）であった．FとDの共通救済は140組，Fのみ43組，Dのみ40組であり，救済数が近くても対象は異なった．片側救済83組の両条件166履歴・398修正遷移を静的に確認した．
+同じ初期コードを保持する独立再生成B4を追加し，初期失敗に対して最大3回，前回コードや診断を与えず再生成した．B4は217/545組（39.8%）で成功し，最終成功は672/1,000組（67.2%）であった．追加1,342要求，995,815 tokens，追加tokens／追加成功は4,589.0であった．最大生成回数が同じでも入力情報・seed規則・実行時期が異なり，因果効果は断定しない．
 未救済例への消費を含む追加tokens／救済はR18,852.6，F9,333.8，D10,976.6であった．3回目の修正はFで28組，Dで33組を追加救済した．これらは保存記録と部分追試を組み合わせた計算値であり，全件新実験の実測コストではない．結果は今回のモデル・タスクと指定入力での評価に限られ，介入の一般的優劣，因果効果，統計的有意差を主張しない．今後は介入選択・停止方策を事前固定し，別seed・タスクで検証する必要がある．'''
 EN_SUMMARY='''Large language models can produce Qiskit code that fails during import or circuit construction, or produces an unexpected output despite executing successfully. This study examines how often repair interventions rescue initial failures and whether different interventions rescue the same cases. We compare self-review (R), execution feedback (F), and self-debugging with explanation and cause analysis (D), starting from shared initial code. Preventive instructions (P) are treated as independent generation.
 The analysis covers 1,000 initial groups and 5,000 condition records across five models, ten tasks, and seeds 0–19. The primary paths combine verified saved prefixes with necessary suffixes from partial reruns. Success requires the expected output for the specified input and predefined structural constraints. Of 545 initial failures, R rescued 96 (17.6%), F rescued 183 (33.6%), and D rescued 180 (33.0%). F and D shared 140 rescued cases; 43 were rescued only by F and 40 only by D. All 166 condition histories and 398 repair transitions for these 83 discordant cases were inspected statically.
+An additional independent-regeneration control (B4) retained the shared initial code and generated up to three new candidates from the task specification without previous code or diagnostic feedback. B4 succeeded on 217 of 545 initial failures (39.8%), yielding 672 successes out of 1,000 groups (67.2%). It used 1,342 additional requests and 995,815 tokens, or 4,589.0 tokens per added success. Equal maximum generation counts do not equalize input information, seed rules, or execution periods.
 Additional input and output tokens per rescue, including consumption on unresolved cases, were 18,852.6 for R, 9,333.8 for F, and 10,976.6 for D. The third repair added 28 rescues for F and 33 for D. These costs describe reconstructed paths, rather than a fully regenerated experiment. The findings are limited to the selected models, tasks, inputs, and evaluation policy. They do not establish general superiority, causal effects, or statistical significance. Future work should predefine intervention selection and stopping policies and evaluate them on separate seeds and tasks.'''
 
 # Each chapter has substantive prose and tables; no invented experiments or results.
@@ -154,7 +162,7 @@ CHAPTERS=[
 '目的は，Qiskit量子回路コードの初期失敗に対する修正介入の適用範囲を明らかにし，介入を選ぶための根拠を整理することである．第一の問いは，同じ初期失敗のうち各介入がどれだけを救済するかである．第二の問いは，救済数が近い介入が同じ失敗を救済しているかである．第三の問いは，未救済例も含む追加消費と修正回数が救済にどう対応するかである．',
 '本研究の貢献は，共有初期コードを用いた救済率の比較，初期失敗類型・モデル・タスク別の分母を伴う分析，FとDの片側救済全83組の履歴整理，および追加修正コストと3回目の寄与の記述である．介入の最適な選択方策を既に実証したとは主張しない．']),
 ('論文の構成と対象範囲',[
-'第2章で関連研究と本研究の位置づけを述べ，第3章で介入と指標を定義する．第4章では評価・記録の実装を説明し，第5章で設定と出典を整理する．第6章で結果，第7章で考察と限界，第8章で結論と今後の課題を述べる．本稿は2026-10-16版の固定出典 [3] に基づく草稿であり，今回の執筆では追加生成・生成コード実行を行っていない．'])]),
+'第2章で関連研究と本研究の位置づけを述べ，第3章で介入と指標を定義する．第4章では評価・記録の実装を説明し，第5章で設定と出典を整理する．第6章で結果，第7章で考察と限界，第8章で結論と今後の課題を述べる．本稿は2026-10-16版の到達経路と2026-10-22固定のB4追加実験 [3] に基づく草稿であり，今回の執筆では追加生成・生成コード実行を行っていない．'])]),
 ('関連研究と本研究の位置づけ',[
 ('自己フィードバックによる修正',[
 'Self-Refine [1] は，同じLLMによる生成，フィードバック，修正の反復を扱う．本研究のRは，前回コードと課題仕様を与えて自己点検を求める条件であり，外部評価の診断内容を与えない．自己点検だけで救済できる範囲を確認する比較条件として用いる．',
@@ -169,9 +177,12 @@ CHAPTERS=[
 ('共有初期と五つの条件',[
 'モデル・タスク・seedの組を初期組と呼ぶ．Bは初期生成のみの条件である．R/F/DはBと同じ初期コードと判定を共有し，初期失敗に対して最大3回の修正を行う．成功した時点で停止し，以降の修正は行わない．この対応により，初期生成の違いを介入差と混同しにくくする．',
 'Rは自己見直し，Fは実行結果提示，Dは説明・原因分析を促す自己デバッグである．Pは初回プロンプトに注意事項を追加して独立に生成する条件であり，同じコードを修正する条件ではない．Pの対応比較は，Bの初期失敗に対応して成功した場合と，Bの初期成功に対応して失敗した場合を分ける．']),
+('独立再生成対照B4',[
+'B4は初期1回を含む最大4回生成である．Bと同じ初期コード・主L3判定を用い，初期成功455組は保持する．初期失敗545組のみ，前回コードと診断を与えず課題仕様から最大3回独立再生成し，主L3成功時に停止する．初期失敗からの成功は修正介入による救済と区別する．',
+'5モデル・10タスク・base seed 0〜19は従来と対応するが，追加生成はindependent_4_v1の専用seed規則を用いる．temperature 0.7，max_tokens 1,024，timeout 600秒，並列1，reasoning_effort noneで実行した．上限が同じでも入力情報・実要求数・tokens・実行時期・診断文・出典schemaは等しくない．']),
 ('主L3と出力一致',[
 'L0は生成コードの読込み・import等と必須インターフェースの要件，L1は回路構築と評価処理の実行，L2は指定入力に対する期待出力との一致を表す．主L3はL0，L1，L2およびstructure_matchがすべて真であることと定義する．構造要件には量子ビット数と測定・barrierを除く回路命令数の範囲を用いる．',
-'測定分布の距離は全変動距離 TVD(p,q) = (1/2)Σx |p(x)−q(x)| とし，8,192 shotsで得た分布と期待分布を比較する．状態ベクトルは大域位相を整合したユークリッド距離を用いる．各タスクで距離0.05未満を出力一致とする．有限shotsと未固定の測定乱数の影響は残る．',
+'測定分布の距離は全変動距離 TVD(p,q) = (1/2)Σx |p(x)−q(x)| とし，8,192 shotsで得た分布と期待分布を比較する．状態ベクトルは大域位相を整合したユークリッド距離を用いる．各タスクで距離0.05未満を出力一致とする．測定・変換seedは42に固定したが，有限shotsと指定入力に限られる．',
 '本稿で用いるevaluation_policy_v4は，測定先から量子ビット順への対応を反映する．タスクに構造制約が明示されていない項目を，一律の制約として追加しない．主L3は所定の検査を通過したことを意味し，全入力でのアルゴリズム同値性やプロンプトの全自然言語条件の充足を保証しない．']),
 ('救済・保持・独立生成の比較',[
 '初期主L3失敗から最終主L3成功に変化した初期組を救済と呼ぶ．救済率 = 救済組数／初期主L3失敗組数 とする．初期失敗類型は介入前のBの分類に固定する．修正後の分類で分母を選別すると対象が変わるため，その方法は採用しない．',
@@ -232,7 +243,7 @@ CHAPTERS=[
 '共有初期コードによって初期生成の違いを抑えている一方，同一タスク・seedの依存が残る．5,000条件記録を独立な5,000標本として扱わない．元実験にはschemaや診断文処理の差もあるため，差を消して単一の同条件実験だったと表現しない．',
 '現行経路は検証済み保存prefixと必要な新suffixの組合せである．停止やフィードバックの影響を受ける部分は追試しているが，全件の新生成とは異なる．古い要求ログが完全には残らない出典もあり，負荷・待機・再送の影響を完全には分離できない．コストはこの再構成経路の記録に限った計算値である．']),
 ('評価範囲・一般化・静的分析の限界',[
-'主L3は指定入力の出力と所定の構造要件に限定される．全入力の正しさ，すべての自然言語指示，等価なアルゴリズム実装を保証するものではない．有限shotsと未固定の測定乱数による判定変動，1,024 tokens上限による出力制約，モデルdigest・量子化・サーバ負荷の影響も考慮する必要がある．',
+'主L3は指定入力の出力と所定の構造要件に限定される．全入力の正しさ，すべての自然言語指示，等価なアルゴリズム実装を保証するものではない．有限shots・指定入力による評価範囲の制約，生成長上限による出力制約，モデルdigest・量子化・サーバ負荷の影響も考慮する必要がある．',
 '片側救済83組を全件確認しても，静的差分だけで変更の意味的寄与は特定できない．ゲート名の増減は量子論理の訂正の証拠にはならず，複数同時変更がある．さらに，今回の5モデルと10タスクから，モデルの一般的優劣や介入の普遍的優位を断定しない．本研究では因果効果や統計的有意差を主張しない．'])]),
 ('おわりに',[
 ('研究成果',[
@@ -245,51 +256,26 @@ CHAPTERS=[
 '本稿は検証済みの固定集計に基づく卒業論文草稿である．提出年月，英語の著者表記・所属，指導教員による内容・参考文献書式の確認を残す．要旨の審査用と最終版の提出時には，学部の指示に従って剽窃チェックと類似レポートの作成を行う．本稿の作成をもって剽窃チェック完了とはしない．'])]),
 ]
 
+
+# B4 is a separate completed experiment, sharing the initial cohort only.
+CHAPTERS[5][1].append(('独立再生成B4との比較',[
+'B4実験 independent_4_full_20261020T185811381595Z は2026年10月21日に全1,000組を完了した．欠落・重複・予定外記録はいずれも0で，sanity検証は成功した．追加roundの保存分類unknown_error 2件は生成コード内の未定義変数によるNameErrorであり，API接続障害ではない．執筆時に追加生成・生成コード実行は行っていない．',
+'B4は初期失敗545組中217組（39.8%）で成功し，最終成功は672/1,000組（67.2%）であった．表6.8，表6.9，表6.10に全体・モデル・初期失敗類型別の比較を示す．R96組（17.6%），F183組（33.6%），D180組（33.0%）に対し，B4の成功数はFより34組，Dより37組多かった．この観測により，修正条件と単回生成だけの比較から介入自体の効果を論じることはできない．',
+'B4とFの共通成功は131組，B4のみ86組，Fのみ52組，双方未成功276組であった．B4とDでは共通120組，B4のみ97組，Dのみ60組，双方未成功268組であった．独立再生成が多く成功しても，修正介入だけが成功する対象も残る．事後的な和集合を事前の選択成功率とは扱わない．',
+'B4の追加要求は1,342回，追加tokensは995,815，追加tokens／追加成功は4,589.0であった．共有初期は一度だけ数え，追加消費から除外し，最後まで未成功の例への消費を含めた．R/F/Dは過去の保存prefixと必要なsuffixの再構成値であり，B4との要求時間・tokens差を同時期の同一入力条件の実測費用差とは解釈しない．']))
+CHAPTERS[6][1].insert(0,('再生成対照を含む解釈',[
+'本対象ではB4の初期失敗からの成功率39.8%がF33.6%，D33.0%を上回った．したがって，実行結果を与える修正が独立再生成より常に有用であるとは結論づけられない．一方でFのみ52組，Dのみ60組があり，再生成だけで全介入の成功を包含しない．介入カタログには独立再生成，対象分母，入力情報，追加消費も記載する．',
+'B4は初回込み最大4回という生成機会の上限を合わせた比較である．成功時停止による実要求数，入力tokens，専用seed規則，実行時期，保存・追試経路の違いが残る．診断情報の因果効果や統計的有意差をこの集計から認定しない．次は同時期・同一評価設定で方策を事前固定し，別seed・タスクで比較する必要がある．']))
+CHAPTERS[7][1][0][1].append('独立再生成B4は同じ初期失敗545組中217組（39.8%）で成功し，最終成功は672組となった．F/Dのみが成功する組も残り，独立再生成を含む選択・停止方策の検証を今後の課題とする．')
+
+
 def abstract():
-    d=setup(10,True);page_numbers(d.sections[0])
-    para(d,'Qiskit量子回路コードの初期失敗に対する\n修正介入の救済率と救済対象の分析',11,True,True)
-    para(d,'2023TC011 伊藤 悠真　　指導教員：横山 哲郎',10,center=True)
-    s=d.add_section(WD_SECTION_START.CONTINUOUS)
-    cols=s._sectPr.find(qn('w:cols'));cols.set(qn('w:num'),'2');cols.set(qn('w:space'),'340')
-    def h(x):heading(d,x,small=True)
-    def p(x):para(d,x,10)
-    def br():d.add_paragraph().add_run().add_break(WD_BREAK.COLUMN)
-    h('1　背景と目的')
-    p('LLMによる量子回路コード生成では，importや回路構築の失敗に加え，実行できても期待出力と一致しない場合がある．本研究では，Qiskitコードの初期失敗を修正介入がどれだけ救済し，どの対象を救済するかを調べる．Self-Refine [1]とSelf-Debugging [2]を背景に，本ハーネスで修正条件を実装した．先行研究の完全再現ではない．')
-    h('2　方法と実験設定')
-    p('対象は5モデル・10タスク・seed 0〜19の1,000初期組，各組5条件，計5,000条件記録である．Q4はqwen3.5:4b，G4はgemma4:e4b-it-qat，Q9はqwen3.5:9b，C7はqwen2.5-coder:7b，G3はgemma3:4bを示す．タグはモデル識別子として扱う．')
-    p('タスクはBell，GHZ，Deutsch–Jozsaのconstant/balanced，Bernstein–Vazirani，Grover，QFT，IQFT，QPE，Ansatzである．temperatureは0.7，生成上限は1要求1,024 tokens，修正は最大3回とした．')
-    p('Bは初期生成，Rは外部診断を与えない自己見直し，Fは実行結果提示，Dは同じ診断に説明・原因分析の指示を加える自己デバッグである．R/F/Dは同じ初期コードと判定を共有し，成功時に停止する．Pは生成前注意事項を与える独立生成である．')
-    p('元3実験は3モデルseed 0〜9の1,500条件記録，5モデルseed 10〜19の2,500，残り2モデルseed 0〜9の1,000である．主結果は検証済み保存prefixと必要な新suffix（部分追試293ケース）を接続した到達可能な経路で，全件新生成ではない．保存設定・実験ID・処理差は固定出典 [3] に保持した．旧120件は合算しない．')
-    br()
-    h('3　評価と全体の救済')
-    p('主L3はimport・必須関数，回路構築と評価処理，指定入力の期待出力，所定の構造要件への適合である．分布は8,192 shotsの全変動距離，状態ベクトルは大域位相を整合した距離を用い，0.05未満を出力一致とする．量子ビット数と測定・barrierを除く命令数範囲も確認する．全入力の同値性は保証しない．')
-    p('救済率は「初期主L3失敗から最終主L3成功となった組数／初期主L3失敗組数」とする．失敗類型は介入前のBで固定する．evaluation_policy_v4を採用し，5,000条件の欠落・重複・予定外記録，共有初期不一致が0であることと，成功時停止・到達経路・出典hashを検証済みである．')
-    p('初期成功は455組，初期失敗は545組であった．Rは96/545組（17.6%），Fは183/545組（33.6%），Dは180/545組（33.0%）を救済した．最終成功はR551，F638，D635組で，初期成功の無修正保持を含む．退行0は成功時停止の設計と合わせて解釈する．')
-    h('4　モデル・初期失敗類型別の結果')
-    p('表1にモデル別の救済を示す．G4ではF，Q4ではDの救済が多く，大小が入れ替わった．全体率は545組の合算値であり，モデル率の単純平均ではない．')
-    table(d,'表1　モデル別の救済組数',['モデル','分母','R','F','D'],model_rows(),10)
-    br()
-    p('表2ではimport失敗でD，回路構築失敗でFの救済が多かった．類型の構成はモデル・タスクと関連するため，この結果だけで介入選択規則を確定しない．保存分類unknownの1組は原因確認記録を伴う生成コード側の失敗である．')
-    table(d,'表2　初期失敗類型別の救済組数',['類型','分母','R','F','D'],error_rows(),10)
-    h('5　救済対象の違いと追加消費')
-    p('F/Dの共通救済は140組，Fのみ43組，Dのみ40組，双方未救済322組であった．片側救済83組の両条件166履歴・398修正遷移を全件静的確認した．importや回路構築等の変更は複数箇所が同時に現れ，静的差分だけでは救済原因を分離できない．')
-    p('少なくとも一方が救済した223/545組（40.9%）は両条件の結果を見て選んだ集合であり，実行前の介入選択方策の成功率ではない．')
-    p('共有初期生成を除き，未救済例への消費も含む追加tokens／救済はR18,852.6，F9,333.8，D10,976.6であった．保存prefixの過去の記録値と部分追試suffixの実測値を合わせた経路の計算値であり，全件新実験の実測コストや金銭費用ではない．')
-    br()
-    p('3回目の追加救済はR19組，F28組，D33組であった．2回で区切ると3回までの救済のF15.3%，D18.3%を失う．同じ最大3修正の履歴を区切った比較であり，上限別の独立実験ではない．')
-    p('PはBの初期失敗に対応する成功124/545組，初期成功に対応する失敗106/455組で，最終成功473/1,000組だった．独立生成の改善と悪化を含み，R/F/Dと同じ修正効果とは解釈しない．')
-    h('6　考察・限界と今後の課題')
-    p('本対象ではFとDがRより多くの初期失敗を救済した．FとDの全体差は3組だが，片側救済83組が示すように救済する対象は異なる．率とともに失敗類型やモデルによる適用範囲を確認する必要がある．')
-    p('共有初期・タスク・seedの依存，元実験のschema・診断文差があり，5,000条件を独立標本と扱わない．指定入力だけの主L3，有限shotsと未固定の測定乱数，1,024 tokens上限，モデルdigest・量子化・負荷差が限界である．介入やモデルの一般的優劣，因果効果，統計的有意差を断定しない．')
-    p('今後は介入選択と停止方策を事前固定し，別seed・タスクで検証する．意味的変更の人手確認と，測定乱数・生成長・負荷への感度も課題とする．本稿作成に伴う追加実験は行っていない．')
-    h('参考文献')
-    for i,r in enumerate(REFS,1):
-        # Compact reference entries retain stable bibliographic identifiers.
-        if i<3:r=r.split(' https://')[0]
-        else:r='伊藤悠真：現行救済経路の固定集計・保存設定・出典（2026-10-16版）．本資料README記載の固定出典を参照．'
-        para(d,f'[{i}] {r}',10,indent=False)
-    d.save(HERE/'abstract.docx')
+    # The current university abstract has one canonical prose/table source.
+    import runpy
+    import shutil
+    runpy.run_path(str(ROOT/'docs/midterm2026/build_abstract.py'), run_name='__main__')
+    shutil.copy2(ROOT/'docs/midterm2026/paper.docx', HERE/'abstract.docx')
+
 
 def thesis_tables(d, chapter):
     if chapter==3:
@@ -317,6 +303,21 @@ def thesis_tables(d, chapter):
         third={r['condition_id']:r for r in SNAP['third_round']}
         table(d,'表6.7　3回目の追加救済と消費',['条件','追加／未救済','追加tokens','要求秒','2回で失う割合'],[
             [s,f"{third[c]['additional_rescues']}/{third[c]['at_risk_after_2']}",f"{third[c]['third_round_tokens']:,}",f"{third[c]['third_round_seconds']:,.1f}",f"{third[c]['loss_if_stop_at_2']*100:.1f}%"] for s,c in CONDITIONS])
+
+
+    if chapter==6:
+        table(d,'表6.8　最大4回生成での比較（初期失敗545組）',
+              ['条件','追加成功','率','最終成功','追加tokens'],
+              [[r['condition'],r['successes_from_initial_failure'],f"{float(r['success_from_initial_failure_rate'])*100:.1f}%",r['final_L3_successes'],f"{int(r['additional_tokens']):,}"] for r in b4_rows('overall')])
+        for number,grouping,labels,title in [
+            (9,'model',[(short,'ollama:'+model) for short,model in MODELS],'モデル別'),
+            (10,'initial_failure',ERRORS,'初期失敗類型別')]:
+            data=[]
+            for label,value in labels:
+                rr={r['condition']:r for r in b4_rows(grouping,value)}
+                data.append([label,rr['B4']['initial_failures']]+[rr[c]['successes_from_initial_failure'] for c in ['B4','R','F','D']])
+            table(d,f'表6.{number}　{title}の初期失敗からの成功', ['対象','失敗分母','B4','R','F','D'],data)
+
 
 def legacy_thesis():
     d=setup();
@@ -375,6 +376,7 @@ def legacy_thesis():
     heading(d,'A.4　固定集計と公開範囲',2)
     for text in ['固定集計時点（UTC）：'+SNAP['captured_at_utc'],
        '主出典：docs/presentation_sources/20261016T_reachable_rescues/results_snapshot.json',
+       'B4追加実験：independent_4_full_20261020T185811381595Z．固定出典：docs/analysis/independent_4_completed_20261022/．runner_experiment_config.json，runner_manifest.json，summary.csv，pairwise.csv，sanity_report.json，source_manifest.jsonを参照．',
        '全分母：docs/analysis/reachable_rescues_20261016/core/repair_summary.csv',
        '追加消費：同ディレクトリのcost_by_cap_and_stratum.csvとthird_round_summary.csv',
        '片側救済全履歴：discordant_cases.csvとdiscordant_transitions.csv',
@@ -488,10 +490,10 @@ def slides():
     (HERE/'speaker_notes.txt').write_text('6分発表用の要点メモ（原稿の読み上げには使わない）\n本編8枚＝360秒．補足3枚は質疑用．\n\n'+'\n\n'.join(f'{i}枚目\n{x}' for i,x in enumerate(notes,1))+'\n\n練習：スライドだけを見て説明し，6分以内に収める．ゼミの練習で修正する．不明な質問は不明と答え，確認方法を述べる．\n')
 
 def source_record():
-    sources=[SOURCE/'results_snapshot.json',SOURCE/'validation_report.json',ANALYSIS/'manifest.json',ANALYSIS/'core/repair_summary.csv',ANALYSIS/'core/sanity_report.json',ANALYSIS/'sanity_report.json']
+    sources=list(B4_SOURCE.glob('*.json'))+list(B4_SOURCE.glob('*.csv'))+[SOURCE/'results_snapshot.json',SOURCE/'validation_report.json',ANALYSIS/'manifest.json',ANALYSIS/'core/repair_summary.csv',ANALYSIS/'core/sanity_report.json',ANALYSIS/'sanity_report.json']
     data={'created_at_utc':datetime.now(timezone.utc).isoformat(),'status':'draft','source_snapshot_at_utc':SNAP['captured_at_utc'],
       'source_hashes':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},
-      'new_experiments':0,'new_model_requests':0,'generated_code_executions':0,
+      'B4_experiment_id':'independent_4_full_20261020T185811381595Z','B4_snapshot':'docs/analysis/independent_4_completed_20261022','new_experiments':0,'new_model_requests':0,'generated_code_executions':0,
       'literature_checked':['https://arxiv.org/abs/2303.17651v2','https://arxiv.org/abs/2304.05128v2'],
       'pending':['提出年月','英語の著者・教員・所属の正式表記','指導教員による内容と書式の確認','剽窃チェック・類似レポート（審査用と最終版）','Microsoft Word・PowerPoint上での最終レイアウト確認・6分リハーサル']}
     (HERE/'source_manifest.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')

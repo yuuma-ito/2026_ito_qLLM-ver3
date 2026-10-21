@@ -45,11 +45,11 @@ def validate():
     instructions=[e.text.strip() for e in d.element.iter(qn('w:instrText'))]
     checks['editable_toc_levels_1_to_3'] = any('TOC' in i and '"1-3"' in i for i in instructions)
     cache=json.loads((HERE/'toc_cache.json').read_text())
-    checks['all_51_toc_entries_match_pdf']=len(cache)==51 and cache==template.toc_entries()
+    checks['all_toc_entries_match_pdf']=len(cache)==len(headings) and cache==template.toc_entries()
     checks['toc_dot_leaders_and_right_tabs']=all(
         p.paragraph_format.tab_stops[0].alignment==2 and p.paragraph_format.tab_stops[0].leader==1
         for p in d.paragraphs if '\t' in p.text)
-    checks['nine_sequential_table_fields']=sum(i.startswith('SEQ Table ') for i in instructions)==9
+    checks['sequential_table_fields']=sum(i.startswith('SEQ Table ') for i in instructions)==len(d.tables)==12
     checks['editable_table_references']=any(i.startswith('REF Table') for i in instructions)
     checks['table_widths_within_170mm']=all(sum(c.width.mm for c in t.columns)<=170.1 for t in d.tables)
     checks['table_headers_repeat']=all(t.rows[0]._tr.get_or_add_trPr().find(qn('w:tblHeader')) is not None for t in d.tables)
@@ -58,6 +58,17 @@ def validate():
     tables=[[[c.text for c in row.cells] for row in t.rows] for t in d.tables]
     checks['model_table_matches_frozen_csv']=tables[3][1:]==[[str(c) for c in row] for row in template.content.model_rows(True)]
     checks['failure_table_matches_frozen_csv']=tables[4][1:]==[[str(c) for c in row] for row in template.content.error_rows()]
+    b4 = template.content.b4_rows('overall')
+    expected = [[r['condition'],r['successes_from_initial_failure'],f"{float(r['success_from_initial_failure_rate'])*100:.1f}%",r['final_L3_successes'],f"{int(r['additional_tokens']):,}"] for r in b4]
+    checks['B4_overall_table_matches_frozen_csv'] = tables[9][1:]==expected
+    for index,grouping,labels in [(10,'model',[(short,'ollama:'+model) for short,model in template.content.MODELS]),(11,'initial_failure',template.content.ERRORS)]:
+        expected=[]
+        for label,value in labels:
+            rr={r['condition']:r for r in template.content.b4_rows(grouping,value)}
+            expected.append([label,rr['B4']['initial_failures']]+[rr[c]['successes_from_initial_failure'] for c in ['B4','R','F','D']])
+        checks['B4_'+grouping+'_table_matches_frozen_csv'] = tables[index][1:]==expected
+    checks['B4_pairwise_counts_match_prose'] = {r['comparator']:[int(r.get(k) or 0) for k in ['both','B4_only',r['comparator']+'_only','neither']] for r in template.content.csv.DictReader((template.content.B4_SOURCE/'pairwise.csv').open())} == {'R':[69,148,27,301],'F':[131,86,52,276],'D':[120,97,60,268]}
+    checks['B4_sanity_passed'] = json.loads((template.content.B4_SOURCE/'sanity_report.json').read_text())['passed']
     norm=lambda text:''.join(text.split())
     texts=[p.get_text() for p in pdf]
     checks['cover_identity_date']=all(norm(value) in norm(texts[0]) for value in ['卒業論文',template.content.TITLE,'2023TC011 伊藤 悠真','横山 哲郎','2027年1月'])

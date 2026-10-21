@@ -181,8 +181,8 @@ def toc(d):
 
 def remap(text):
     mappings = {'表3.1': '表1', '表5.1': '表2'}
-    mappings.update({f'表6.{i}': f'表{i+2}' for i in range(1, 8)})
-    for old, new in mappings.items():
+    mappings.update({f'表6.{i}': f'表{i+2}' for i in range(1, 11)})
+    for old, new in sorted(mappings.items(), key=lambda item: -len(item[0])):
         text = text.replace(old, new)
     text = text.replace('付録A', '付録（8.1節）').replace('付録B', '付録（8.2節）')
     text = text.replace('提出年月，英語の著者表記・所属，', '題目の正式承認，')
@@ -192,7 +192,7 @@ def remap(text):
         text = ('第2章で関連研究を整理し，第3章で提案手法として介入条件・評価指標・実装・実験設定を述べる．'
                 '第4章で結果，第5章で考察，第6章で結論と今後の課題を述べる．'
                 '第7章に参考文献，第8章に出典と指標の付録を置く．'
-                '本稿は2026-10-16版の固定出典 [3] に基づく草稿であり，今回の執筆では追加生成・生成コード実行を行っていない．')
+                '本稿は2026-10-16版の到達経路と2026-10-22固定のB4追加実験 [3] に基づく草稿であり，今回の執筆では追加生成・生成コード実行を行っていない．')
     return text
 
 
@@ -288,9 +288,9 @@ def build_thesis():
             else:
                 # Keep normal citations [n]; link table references to their
                 # caption numbers using editable REF fields.
-                chunks = re.split(r'(表[1-9](?!\d))', text)
+                chunks = re.split(r'(表[1-9]\d*(?!\d))', text)
                 for chunk in chunks:
-                    if re.fullmatch(r'表[1-9]', chunk):
+                    if re.fullmatch(r'表[1-9]\d*', chunk):
                         font(p.add_run('表')); field(p, f'REF Table{chunk[1:]} \\h', chunk[1:])
                     else:
                         font(p.add_run(chunk))

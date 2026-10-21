@@ -100,6 +100,7 @@ def validate_numbers():
     assert [(overall[c]['rescued'], overall[c]['initial_failures']) for c in b.CONDITIONS] == [(96, 545), (183, 545), (180, 545)]
     assert [round(overall[c]['rescue_rate'] * 100, 1) for c in b.CONDITIONS] == [17.6, 33.6, 33.0]
     for table in b.TABLES[:2]:
+        assert sum(int(r[5]) for r in table[2]) == 217
         assert sum(int(r[1]) for r in table[2]) == 545
         assert [sum(int(r[i]) for r in table[2]) for i in [2, 3, 4]] == [96, 183, 180]
     assert 455 + 545 == snap['primary']['initial_groups'] == 1000
@@ -133,10 +134,13 @@ def validate_numbers():
     assert round(124/545*100, 1) == 22.8 and round(106/455*100, 1) == 23.3
     assert 455-106+124 == 473
     assert json.loads((ANALYSIS / 'sanity_report.json').read_text())['passed']
+    b4 = next(r for r in b.B4_ROWS if r['condition']=='B4' and r['generation_cap']=='4' and r['grouping']=='overall')
+    assert [int(b4[k]) for k in ['groups','initial_failures','successes_from_initial_failure','final_L3_successes','additional_requests','additional_tokens']] == [1000,545,217,672,1342,995815]
+    assert json.loads((b.B4_SOURCE/'sanity_report.json').read_text())['passed']
     return {'overall_rescues': [96, 183, 180], 'initial_failure_denominator': 545,
             'model_and_error_table_totals_reconciled': True, 'fd_overlap_reconciled': True,
             'all_83_cases_and_398_transitions_checked': True, 'cost_and_third_round_checked': True,
-            'independent_generation_P_checked': True}
+            'independent_generation_P_checked': True, 'B4_initial_failure_successes': 217, 'B4_final_successes': 672, 'B4_additional_requests': 1342, 'B4_additional_tokens': 995815}
 
 
 def main():
@@ -177,7 +181,7 @@ def main():
         assert error not in log, error
     numbers = validate_numbers()
     reports = [validate_pdf(HERE / 'paper.pdf'), validate_pdf(CACHE / 'word/paper.pdf')]
-    paths = [b.SOURCE / 'results_snapshot.json', b.SOURCE / 'source_manifest.json',
+    paths = list(b.B4_SOURCE.glob('*.json')) + list(b.B4_SOURCE.glob('*.csv')) + [b.SOURCE / 'results_snapshot.json', b.SOURCE / 'source_manifest.json',
              ANALYSIS / 'core/repair_summary.csv', ANALYSIS / 'discordant_cases.csv',
              ANALYSIS / 'discordant_transitions.csv', ANALYSIS / 'sanity_report.json',
              HERE / 'build_abstract.py', HERE / 'validate_abstract.py', HERE / 'paper.tex', HERE / 'paper.docx',
@@ -185,7 +189,7 @@ def main():
              ROOT / 'tasks/__init__.py',
              ROOT / 'docs/analysis/reevaluation_followup_20261015/partial_evaluation_profile.json']
     visual = {'status': 'pending', 'scope': 'both pages of LaTeX and Word-export PDFs'}
-    visual_path = HERE / 'visual_review_20261021.json'
+    visual_path = HERE / 'visual_review_20261022.json'
     if visual_path.exists():
         candidate = json.loads(visual_path.read_text())
         if all(candidate.get('reviewed_pdf_sha256', {}).get(r['path']) == r['sha256'] for r in reports):
@@ -214,7 +218,7 @@ def main():
               'visual_review': visual,
               'word_layout_note': 'LibreOfficeで検証．Microsoft Wordで編集後は再ページ割付を確認する．',
               'experiment_actions': {'new_generations': 0, 'generated_code_executions': 0}}
-    (HERE / 'validation_report_20261021.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
+    (HERE / 'validation_report_20261022.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
     print('Layout/content passed: both PDFs 2 pages, A4, margins, 11pt, page numbers, complete prose, tables and frozen numbers.')
     print('Word font specification passed. PDF requested fonts: ' + ('passed.' if fonts_met else 'NOT MET; substitute-font preview only.'))
 

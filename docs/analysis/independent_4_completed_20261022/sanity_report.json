@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "groups": 1000,
+  "missing": 0,
+  "duplicates": 0,
+  "unexpected": 0,
+  "initial_failures": 545,
+  "shared_initial_tokens_counted_once": 659997,
+  "shared_initial_generation_seconds_counted_once": 43725.96080803871,
+  "max_new_requests": 1635,
+  "actual_new_requests": 1342,
+  "semantics": "初期コード共通．追加コストは初回を除く．Pは独立1回生成の全コスト．",
+  "comparison_limit": "同じ最大要求回数でも入力情報・tokens・seed規則・出典schema・診断文と実行時期が異なる．因果効果を確定しない．"
+}

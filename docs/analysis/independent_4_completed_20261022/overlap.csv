@@ -1,0 +1,9 @@
+success_pattern,B4_success,F_success,D_success,initial_failure_groups
+none,False,False,False,255
+D_only,False,False,True,21
+F_only,False,True,False,13
+F_D_only,False,True,True,39
+B4_only,True,False,False,67
+B4_D_only,True,False,True,19
+B4_F_only,True,True,False,30
+all_three,True,True,True,101
