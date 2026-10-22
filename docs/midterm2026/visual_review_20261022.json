@@ -1,9 +1,9 @@
 {
-  "reviewed_at_utc": "2026-10-21T15:27:36.635168+00:00",
+  "reviewed_at_utc": "2026-10-22T09:15:28.822573+00:00",
   "status": "reviewed",
   "reviewed_pdf_sha256": {
-    "docs/midterm2026/paper.pdf": "71749211708b3e1695a08154c955b0cac0c15cf15f9685b6420f8503c53ebef4",
-    ".cache/midterm_abstract_20261021/word/paper.pdf": "fe491438f0f48affc83a4e6196607c174d1e4a05a12e5dc75ab6898875bbf199"
+    "docs/midterm2026/paper.pdf": "ab7a1e1b38923e966f9e06be63a42869e5a6897b060442b2e7e93426682e08cd",
+    ".cache/midterm_abstract_20261021/word/paper.pdf": "d31cb13bd25531ac57cc005e0052f95409042a5e57024043e39c77aa1eb94929"
   },
   "pages_reviewed": {
     "LaTeX": [
@@ -15,7 +15,7 @@
       2
     ]
   },
-  "method": "AIによる全ページ画像確認．表見出し修正後の最終PDF両ページを再確認．",
+  "method": "AIによるLaTeX・Word変換PDFの全4ページ画像確認．実行時エラー（未定義変数）への分類表記更新後に確認．",
   "findings": [
     "本文・表・参考文献・ページ番号の欠落や重なりなし",
     "2段組み2ページを維持",

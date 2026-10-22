@@ -26,7 +26,7 @@ MODEL_NAMES = [('G3', 'gemma3:4b'), ('G4', 'gemma4:e4b-it-qat'),
                ('C7', 'qwen2.5-coder:7b'), ('Q4', 'qwen3.5:4b'), ('Q9', 'qwen3.5:9b')]
 ERROR_NAMES = [('回路構築', 'build_error'), ('import', 'import_error'),
                ('IF不適合', 'interface_mismatch'), ('量子ビット数', 'qubit_count_mismatch'),
-               ('構文', 'syntax'), ('unknown', 'unknown_error'), ('出力不一致', 'wrong_output')]
+               ('構文', 'syntax'), ('実行時', 'unknown_error'), ('出力不一致', 'wrong_output')]
 ROWS = list(csv.DictReader((ROOT / 'docs/analysis/reachable_rescues_20261016/core/repair_summary.csv').open()))
 B4_SOURCE = ROOT / 'docs/analysis/independent_4_completed_20261022'
 B4_ROWS = list(csv.DictReader((B4_SOURCE / 'summary.csv').open()))
@@ -76,7 +76,7 @@ BLOCKS = [
 ('t', 0),
 ('p', '表1は各モデル200初期組のうち失敗した組を分母とする．G4とQ4ではFとDの大小が入れ替わる．'),
 ('t', 1),
-('p', '表2のimport失敗はF 58/271組（21.4%），D 72/271組（26.6%），回路構築失敗はF 76/126組（60.3%），D 68/126組（54.0%）であった．IFはインターフェースを表す．保存分類unknownの1組は生成コード側の失敗であり，API接続障害ではない．少数分母の率は参考値とする．'),
+('p', '表2のimport失敗はF 58/271組（21.4%），D 72/271組（26.6%），回路構築失敗はF 76/126組（60.3%），D 68/126組（54.0%）であった．IFはインターフェースを表す．「実行時」の1組は未定義変数simによるNameErrorで，実行時エラー（未定義変数）に分類した．少数分母の率は参考値とする．'),
 ('t', 2),
 ('p', 'FとDの全体の救済数は3組差だが，表3の片側のみ救済した83組では対象が異なる．import失敗はFのみ8組・Dのみ22組，回路構築失敗は19組・11組であった．83組すべての両条件166履歴・398修正遷移を静的に確認した．複数箇所が同時に変わるため，変更内容から救済原因は分離できない．少なくとも一方が救済した223/545組（40.9%）は事後的な集合であり，実行前の選択方策の成功率ではない．'),
 ('p', 'B4の追加実験［7］は1,000組を完了し，欠落・重複・予定外0，sanity検証成功であった．初期失敗から217/545組（39.8%）が成功し，最終成功は672/1,000組（67.2%）だった．Fより34組，Dより37組多い．B4とFの共通成功は131組，B4のみ86組，Fのみ52組だった．'),
