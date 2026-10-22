@@ -1,5 +1,5 @@
 {
-  "validated_at_utc": "2026-10-22T09:15:29.671752+00:00",
+  "validated_at_utc": "2026-10-22T09:33:36.702580+00:00",
   "passed": false,
   "layout_and_content_passed": true,
   "font_request": {
@@ -13,7 +13,7 @@
   "pdfs": [
     {
       "path": "docs/midterm2026/paper.pdf",
-      "sha256": "ab7a1e1b38923e966f9e06be63a42869e5a6897b060442b2e7e93426682e08cd",
+      "sha256": "87958d8d12fb4a252ad6dd7c874aa47bc0a9c8559c70570a9d0c27eb23e5b3de",
       "pages": [
         {
           "page": 1,
@@ -30,7 +30,7 @@
             18.109,
             21.637,
             191.794,
-            245.533
+            266.818
           ],
           "both_columns_have_text": true
         },
@@ -49,7 +49,7 @@
             18.109,
             18.227,
             191.676,
-            237.302
+            242.476
           ],
           "both_columns_have_text": true
         }
@@ -68,7 +68,7 @@
     },
     {
       "path": ".cache/midterm_abstract_20261021/word/paper.pdf",
-      "sha256": "d31cb13bd25531ac57cc005e0052f95409042a5e57024043e39c77aa1eb94929",
+      "sha256": "9ef0869e6b023c50f46213c4c2b66c72b3e275d57a2c1629fbdb91618488eecb",
       "pages": [
         {
           "page": 1,
@@ -85,7 +85,7 @@
             18.109,
             18.697,
             191.911,
-            255.764
+            266.818
           ],
           "both_columns_have_text": true
         },
@@ -102,9 +102,9 @@
           "content_within_margins": true,
           "printed_ink_bounds_mm": [
             17.992,
-            18.932,
+            18.815,
             191.558,
-            251.531
+            265.054
           ],
           "both_columns_have_text": true
         }
@@ -181,10 +181,10 @@
     "docs/analysis/reachable_rescues_20261016/discordant_cases.csv": "50b69c319355f750a091e4d18e60fc8365d52e75e9bc3573f3feb2f20d1d038b",
     "docs/analysis/reachable_rescues_20261016/discordant_transitions.csv": "6c07410a9c1d71aade0171978d114449ed35e58ac2a8c26951a846e47a0791fb",
     "docs/analysis/reachable_rescues_20261016/sanity_report.json": "c9543cc1f437755ef491a844874248414e5fee73eebaa83a0b53db3d7e896d81",
-    "docs/midterm2026/build_abstract.py": "67dabf12e595024a9825515d4b760a68b06db809de31dc2108631a392dccea87",
+    "docs/midterm2026/build_abstract.py": "0dcc4af1957a68a8a92e03304cabb39cacef1a139c927d8c78c44b1facfc3ae4",
     "docs/midterm2026/validate_abstract.py": "e43d87b63f82a42bbddd4b3b76e665c8c2c3bd9b54a3d9d08510923864aa8a4e",
-    "docs/midterm2026/paper.tex": "f07caccca49480dbd28f98687343f4900b89f59b76a4fa0f978e642921e50baa",
-    "docs/midterm2026/paper.docx": "abb9d0744e4ba4a9dc5351d117df0e5c8d36e0c8db0eb8178e56a08a9ce9495a",
+    "docs/midterm2026/paper.tex": "90c90cc9b3c82c78f36aad8bb5a1561c8a857a7623c17612d8db5ff239987bff",
+    "docs/midterm2026/paper.docx": "79a85fe561033e2a761acfda224fa9a8c188d7a8795b59d6eb36b147cbb809d8",
     "docs/midterm2026/bibliography_sources.json": "cada1124948e94ae6c70eaeb15c082640424b735c1c05b029a36b340844901a2",
     "harness/evaluator.py": "f90faf3d4ac034e057b07752e7972fe4d2bd4353a6d91a077294a01343e25bf7",
     "harness/readout.py": "ec7b447997600e0391abf9744a4fbeff0eed69d8b43b0567d519a45cdcff1a4e",
@@ -192,11 +192,11 @@
     "docs/analysis/reevaluation_followup_20261015/partial_evaluation_profile.json": "d0c874fe67b6999323fd76580ae913a41022928eeb5188d095ae305f4c2eaeea"
   },
   "visual_review": {
-    "reviewed_at_utc": "2026-10-22T09:15:28.822573+00:00",
+    "reviewed_at_utc": "2026-10-22T09:33:35.979075+00:00",
     "status": "reviewed",
     "reviewed_pdf_sha256": {
-      "docs/midterm2026/paper.pdf": "ab7a1e1b38923e966f9e06be63a42869e5a6897b060442b2e7e93426682e08cd",
-      ".cache/midterm_abstract_20261021/word/paper.pdf": "d31cb13bd25531ac57cc005e0052f95409042a5e57024043e39c77aa1eb94929"
+      "docs/midterm2026/paper.pdf": "87958d8d12fb4a252ad6dd7c874aa47bc0a9c8559c70570a9d0c27eb23e5b3de",
+      ".cache/midterm_abstract_20261021/word/paper.pdf": "9ef0869e6b023c50f46213c4c2b66c72b3e275d57a2c1629fbdb91618488eecb"
     },
     "pages_reviewed": {
       "LaTeX": [
@@ -208,7 +208,7 @@
         2
       ]
     },
-    "method": "AIによるLaTeX・Word変換PDFの全4ページ画像確認．実行時エラー（未定義変数）への分類表記更新後に確認．",
+    "method": "AIによるLaTeX・Word変換PDFの全4ページ画像確認．用語定義・追加成功数の表見出し・B4の説明更新後に確認．",
     "findings": [
       "本文・表・参考文献・ページ番号の欠落や重なりなし",
       "2段組み2ページを維持",
