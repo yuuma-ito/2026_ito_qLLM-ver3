@@ -1,0 +1,60 @@
+{
+  "validated_at_utc": "2026-10-28T00:51:32.105870+00:00",
+  "passed": true,
+  "checks": {
+    "source_hashes_unchanged": true,
+    "B4_source_manifest_hashes": true,
+    "B4_sanity_passed": true,
+    "model_and_failure_tables_match_csv": true,
+    "B4_group_totals_match_overall": true,
+    "pdf_main_counts": true,
+    "fixed_title_in_pdf": true,
+    "two_A4_pages": true,
+    "no_overfull_unresolved_references_missing_characters": true,
+    "all_fonts_embedded": true,
+    "style_unchanged": true,
+    "references_resolved": true,
+    "visual_review_all_pages": true,
+    "author_affiliation_in_pdf": true
+  },
+  "artifacts_sha256": {
+    "paper.tex": "65e669108d19c38603d9cc72ef0eceda24ec384c0c5f234590fbad0b583fb7de",
+    "paper.pdf": "10a3cbffc746642ff8f9b68101ae51d27676a9901913bfea48315a68484b1610",
+    "tables_20261028.tex": "4699ac9df80755701571a28c33ea9e9ed01d0331cfc1b803c0bd19abd5102459",
+    "abstract.txt": "d8df33fb99ce4043b45bcbcf3d1cf52321460fe4d85cd129f87ca1d46b146c3a",
+    "results_snapshot_20261028.json": "8093bfd06554c7c417feec037a3bd6fdc58a8b757c4f36267d5fb6aaccef6da2",
+    "winf-paper.sty": "4dc0c47bdc9c61c7903734ad9068656f6cc11aa11391fe351713e3d23b73e86d"
+  },
+  "visual_review": {
+    "pages": [
+      1,
+      2
+    ],
+    "method": "PDF全ページを1400pxのPNGにレンダリングしAIで目視確認",
+    "findings": [
+      "本文・表・参考文献の欠落・重なりなし",
+      "固定タイトルの指定位置の改行を確認",
+      "B4列・表見出しが判読可能"
+    ]
+  },
+  "nonblocking_build_notes": [
+    "Underfull hbox/vboxあり。はみ出しなし。",
+    "dvipdfmxのCID=2839のUnicode対応警告あり。PDFの全ページ画像と本文抽出では欠字を認めず。"
+  ],
+  "remaining_items": [
+    "別seed・タスクでの選択・停止方策の検証"
+  ],
+  "experiment_actions": {
+    "new_generations": 0,
+    "generated_code_executions": 0
+  },
+  "scope": "WiNF資料のみ。固定済み集計の反映。新規実験なし。旧検証記録は保存。",
+  "author_information": {
+    "author": "2023TC011 伊藤 悠真",
+    "supervisor": "横山 哲郎",
+    "affiliation": "南山大学 理工学部 電子情報学科",
+    "author_source": "docs/midterm2026/paper.tex",
+    "affiliation_source": "docs/graduation2026/format_spec.json",
+    "instruction": "要旨と同じ表記にするユーザー指示を反映。指導教員の役割表記を維持。"
+  }
+}

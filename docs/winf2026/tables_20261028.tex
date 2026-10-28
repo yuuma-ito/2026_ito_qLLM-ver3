@@ -1,0 +1,79 @@
+% Fixed CSV sources and hashes: results_snapshot_20261028.json
+\begin{table}[tb]
+\centering
+\caption{モデル別の初期失敗数と追加成功数}
+\label{tab:model}
+\begin{tabular}{lrrrrr}
+\hline
+区分 & 分母 & R & F & D & B4 \\
+\hline
+G3 & 190 & 5 & 1 & 1 & 16 \\
+G4 & 62 & 30 & 48 & 38 & 51 \\
+C7 & 65 & 15 & 23 & 23 & 47 \\
+Q4 & 162 & 31 & 78 & 90 & 66 \\
+Q9 & 66 & 15 & 33 & 28 & 37 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[tb]
+\centering
+\caption{初期失敗類型別の追加成功数}
+\label{tab:error}
+\begin{tabular}{lrrrrr}
+\hline
+区分 & 分母 & R & F & D & B4 \\
+\hline
+回路構築 & 126 & 32 & 76 & 68 & 77 \\
+import & 271 & 24 & 58 & 72 & 67 \\
+IF不適合 & 11 & 1 & 0 & 1 & 2 \\
+量子ビット数 & 3 & 2 & 0 & 0 & 0 \\
+構文 & 68 & 21 & 25 & 21 & 24 \\
+実行時（未定義変数） & 1 & 0 & 0 & 0 & 1 \\
+出力不一致 & 65 & 16 & 24 & 18 & 46 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[tb]
+\centering
+\caption{F/Dの救済対象（初期失敗545組）}
+\label{tab:overlap}
+\begin{tabular}{rrrr}
+\hline
+共通 & Fのみ & Dのみ & 双方未救済 \\
+\hline
+140 & 43 & 40 & 322 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[tb]
+\centering
+\caption{修正追加コスト（未救済への消費も含む）}
+\label{tab:cost}
+\begin{tabular}{lrrrr}
+\hline
+条件 & 保存$10^3$tok & 新$10^3$tok & tok/救済 & 秒/救済 \\
+\hline
+R & 1809.8 & 0.0 & 18,852.6 & 911.1 \\
+F & 1213.9 & 494.1 & 9,333.8 & 444.2 \\
+D & 1408.7 & 567.1 & 10,976.6 & 553.6 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[tb]
+\centering
+\caption{3回目の追加救済・消費と2回打切り時の損失}
+\label{tab:third}
+\begin{tabular}{lrrrr}
+\hline
+条件 & 追加/未救済 & 千tok & 要求時間h & 失う割合 \\
+\hline
+R & 19/468 & 559.1 & 6.89 & 19.8\% \\
+F & 28/390 & 491.7 & 6.05 & 15.3\% \\
+D & 33/398 & 589.0 & 7.81 & 18.3\% \\
+\hline
+\end{tabular}
+\end{table}
