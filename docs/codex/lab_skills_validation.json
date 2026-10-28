@@ -1,0 +1,46 @@
+{
+  "checked_at_utc": "2026-10-28T14:32:39.708234+00:00",
+  "source_repo": "yokoyama-lab/claude-skills",
+  "source_revision": "7b0bfc9705136fb7f9137f88c76e61b2c84c049c",
+  "source_visibility": "private",
+  "codex_cli_version": "0.165.0",
+  "installed_count": 10,
+  "full_skill_count": 9,
+  "guidance_only": [
+    "pii-filter"
+  ],
+  "native_codex_discovery": {
+    "source": "Codex app-server skills/list; no model requests",
+    "expected_count": 10,
+    "discovered": [
+      "dellm",
+      "game-review",
+      "ieice-a-review",
+      "ieice-d-review",
+      "interim-slide-review",
+      "ipsj-review",
+      "pii-filter",
+      "scidraft-cs",
+      "slide-review",
+      "thesis-abstract-review"
+    ],
+    "missing": [],
+    "errors": []
+  },
+  "checks": {
+    "installed_hashes_match": true,
+    "skill_creator_validation_10_passed": true,
+    "installer_tests_passed": 7,
+    "dellm_selftests_passed": 26,
+    "abstract_facts_json_smoke_passed": true,
+    "slide_facts_json_smoke_passed": true,
+    "dellm_scan_smoke_passed": true,
+    "existing_skills_preserved": true,
+    "private_upstream_contents_not_published": true,
+    "pinned_old_commit_fetch_test_passed": true
+  },
+  "scope": "導入・互換処理・スキル検出・ローカル補助ツールの検証。原稿の独立査読と書き換えは実行していない。",
+  "model_requests": 0,
+  "new_experiments": 0,
+  "automatic_pii_filter_active": false
+}

@@ -1,0 +1,77 @@
+{
+  "repo": "yokoyama-lab/claude-skills",
+  "revision": "7b0bfc9705136fb7f9137f88c76e61b2c84c049c",
+  "source_visibility": "private",
+  "skills": [
+    {
+      "name": "slide-review",
+      "path": "plugins/slide-review/skills/slide-review",
+      "description": "学会発表スライドの構成・可読性・引用・予稿との整合を査読する。",
+      "mode": "skill",
+      "source_skill_sha256": "3560d4969a57d305d91a2689d6e7892fc8cd83653170fc8659da9777ff071091"
+    },
+    {
+      "name": "interim-slide-review",
+      "path": "plugins/slide-review/skills/interim-slide-review",
+      "description": "卒研・修論の中間発表スライドを要旨と照合し、時間配分も査読する。",
+      "mode": "skill",
+      "source_skill_sha256": "7e5f4b4855ac09f5949302e8fb1d50fe65657e2eb8c9f8c2db54565e2f798305"
+    },
+    {
+      "name": "game-review",
+      "path": "plugins/game-review/skills/game-review",
+      "description": "学生制作ゲームの提出物・起動・到達性を確認し、根拠付きで評価する。",
+      "mode": "skill",
+      "source_skill_sha256": "051a4c1531396558e838f9c3c8c6859c14834e0cc58e9f294f3d4846679211fc"
+    },
+    {
+      "name": "pii-filter",
+      "path": "plugins/pii-filter/skills/pii-filter",
+      "description": "個人情報フィルターの元設計とCodexでの未対応範囲を確認する。",
+      "mode": "guidance-only",
+      "source_skill_sha256": "31a5cf87c860bccd1819a1aec17035def959839fca87a18523f9dcf7e02e459f"
+    },
+    {
+      "name": "ieice-d-review",
+      "path": "plugins/ieice-d-review/skills/ieice-d-review",
+      "description": "電子情報通信学会の英文論文誌Dを対象に、投稿前の原稿を査読する。",
+      "mode": "skill",
+      "source_skill_sha256": "47f991ad130673ab19bae886a5966b0dff0f773d8706b2c0825f65d93f09c5c0"
+    },
+    {
+      "name": "ieice-a-review",
+      "path": "plugins/ieice-a-review/skills/ieice-a-review",
+      "description": "電子情報通信学会の英文論文誌Aを対象に、投稿前の原稿を査読する。",
+      "mode": "skill",
+      "source_skill_sha256": "2072c86f4248bfa70a89f3cdde46365d7bcedf1fd0b2ab2be724aa7fe9fb8879"
+    },
+    {
+      "name": "ipsj-review",
+      "path": "plugins/ipsj-review/skills/ipsj-review",
+      "description": "情報処理学会の原稿を投稿先の基準に照らし、貢献と採録条件を査読する。",
+      "mode": "skill",
+      "source_skill_sha256": "29105303e885704ead379097b24e425a710353eb66134eb1fa82f0c23c4b343c"
+    },
+    {
+      "name": "thesis-abstract-review",
+      "path": "plugins/thesis-abstract-review/skills/thesis-abstract-review",
+      "description": "論文要旨の目的と結論の対応、図表・引用・表記の整合を査読する。",
+      "mode": "skill",
+      "source_skill_sha256": "667eac28cb9120e61908426a18f66ec560a9ca005cb35a8125d351306c68748d"
+    },
+    {
+      "name": "scidraft-cs",
+      "path": "plugins/scidraft-cs/skills/scidraft-cs",
+      "description": "計算機科学の論文を根拠に基づいて構成し、段階的に承認を得て執筆する。",
+      "mode": "skill",
+      "source_skill_sha256": "237bc1ade6e4930ebb4e18c44b077a91d8d40d547a7836684b4aaa27f9d8cced"
+    },
+    {
+      "name": "dellm",
+      "path": "plugins/dellm/skills/dellm",
+      "description": "論文・ポスター・スライドの生成AI風に見える表現を点検して改善する。",
+      "mode": "skill",
+      "source_skill_sha256": "6731f3aa2b1b26cb4fc32b4c7693d9a97200abedf3af012527a0698c77b122dc"
+    }
+  ]
+}

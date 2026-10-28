@@ -32,3 +32,11 @@ Git の投稿者情報が未設定の場合、今回の作業ではこのリポ�
 - PDFをビルドし、本文と集計の一致、引用・参照、体裁を確認してから共有する。共有先が確定していればその指定に従い、未指定なら共有用ファイルとリンクをユーザーに提示する。学会への投稿は別途指示を受ける。
 
 `configs/slack_progress.cron` の `scripts.draft_after_experiment` 行で5分ごとに対象実験の完了を確認し、元プロセス終了・共有ロック解放・全件記録後にCodexを1回だけ起動する。自動作成の更新版は既存原稿を保持して `docs/completion_drafts/<保存先のhash>/midterm2026/` と `winf2026/` に保存する。検証不備やAPI障害が残る場合も暫定資料を作成し、その制約を明記する。作成完了後は既存のメール経由のSlackbot DMへ進捗報告本文とローカル保存先を通知する。AI起動と通知の状態は `.cache/draft_jobs/`、ログは `logs/draft_after_experiment.log` と `logs/draft_codex_*.log` に記録する。失敗・中断時は重複起動を避けて自動再実行しない。原因を確認してから同じ保存設定で `--retry` を明示する。学会投稿・追加実験・Git操作はこの起動処理では行わない。
+
+# 横山研究室スキルのCodex利用
+
+2026-10-28のユーザー指示により、`yokoyama-lab/claude-skills` をCodexでも利用する。導入・用途・制約・検証は `docs/codex/README.md`、固定版は `configs/lab_codex_skills.json` を参照する。導入確認は `python -m scripts.setup_lab_codex_skills --check`、未導入環境では同モジュールで導入する。元本文は非公開のため公開リポジトリへ転載しない。
+
+要旨査読は `thesis-abstract-review`、学会発表は `slide-review`、中間発表は `interim-slide-review`、表現点検は `dellm`、段階的な執筆は `scidraft-cs` を使い分ける。査読を依頼されたら、原稿を書いた履歴を継承しない独立したCodexセッションまたは査読用エージェントに、原稿と規定だけを渡す。レビューだけの依頼で原稿を直さない。ユーザーが具体的に指示・承認した修正には承認を取り直さない。
+
+`pii-filter` は元設計と制約の参照のみで、Claude専用フックによる自動匿名化・送信防止はCodexで有効になっていない。個人情報を扱う依頼ではこの制約を先に確認する。導入確認と、独立した原稿査読を実施済みであることを混同しない。
