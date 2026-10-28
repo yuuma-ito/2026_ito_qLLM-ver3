@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-28T15:36:29.152438+00:00",
+  "checked_at_utc": "2026-10-28T16:12:12.303741+00:00",
   "passed": true,
   "checks": {
     "source_inputs_unchanged": true,
@@ -19,14 +19,32 @@
     "saved_examples_not_causal_claims": true,
     "method_description_replaces_work_log": true,
     "requested_Japanese_revisions": true,
+    "P_instruction_competition_is_unverified_limitation": true,
+    "D_case_and_both_excerpts_on_same_page": true,
+    "latest_Japanese_revisions": true,
     "P_template_matches_actual_prompt_builder": true
   },
   "pages": 33,
   "tables": 10,
   "case_groups": 2,
   "task_prompts": 10,
-  "pdf_sha256": "899bcba83b0cb1f5c5a7c28449de1b13422e5b2c075b839aec6299e2b878b97c",
-  "docx_sha256": "6c041b980752a97d420a3cc73327581cb2bf2e6608b6883678adc26048a12b80",
+  "pdf_sha256": "217c77f0d3ef8fd86b5e3f6d7ad560d7ed8dd2aead11cbe8b2324a153d6d4189",
+  "docx_sha256": "d067f28bd0324da5cdf4aa35a04a2da452f261096b11ade1ae217fdd9ed28151",
+  "D_case_pages": [
+    [
+      20
+    ],
+    [
+      20
+    ],
+    [
+      20
+    ],
+    [
+      20
+    ]
+  ],
+  "verification_scope": "掲載した短いコード抜粋は原記録と照合。固定テンプレートは保存commitのソースと照合。個別の全送信ログや生成コード全文と掲載内容の完全一致を確認したという意味ではない。",
   "new_model_requests": 0,
   "generated_code_executions": 0,
   "publication_limits": "固定プロンプトと明示プレースホルダー、選択2事例の短いコード抜粋とhashのみ。raw・応答全文・秘密情報なし。"

@@ -58,6 +58,17 @@ def validate():
             and all(t not in prose for t in ['今回の執筆','今回の資料作成','今回の原稿修正']),
         'requested_Japanese_revisions':all(t not in prose for t in ['追加成功を得る','分母を伴う分析','F/Dの大小が異なった','未成功を含む消費']),
     }
+    checks['P_instruction_competition_is_unverified_limitation'] = all(normalize(t) in prose for t in [
+        'Pの一律の注意事項が課題仕様や共通指示と競合し',
+        'この指示が生成コードやPの成績に与える影響は分離して検証していない'])
+    d_markers = ['Dのみ成功した保存事例は', '修正前（Dの初期コードから抜粋）',
+                 '修正後（Dのround 1から抜粋）', '同じ初期コードからのFも']
+    d_pages = [[i+1 for i,page in enumerate(pdf) if normalize(t) in normalize(page.get_text())] for t in d_markers]
+    checks['D_case_and_both_excerpts_on_same_page'] = all(len(pages)==1 for pages in d_pages) and len({pages[0] for pages in d_pages if pages})==1
+    checks['latest_Japanese_revisions'] = all(normalize(t) in prose for t in [
+        '追加の生成によってL3に到達するか', '同じ評価方式に基づく診断',
+        '初期失敗事例', '失敗した生成要求の消費も含む追加計算コスト']) and all(normalize(t) not in prose for t in [
+        '追加でL3を達成するか', '同じ方式の診断', '初期失敗組', '未成功例への消費も含む追加計算コスト'])
     for row in catalog:
         old = next(r for r in tables[4][1:] if r[0]==row['label'])
         for c,index in [('F',3),('D',4),('B4',5)]:
@@ -96,6 +107,8 @@ def validate():
     report={'checked_at_utc':datetime.now(timezone.utc).isoformat(),'passed':all(checks.values()),'checks':checks,
         'pages':len(pdf),'tables':len(doc.tables),'case_groups':len(examples),'task_prompts':len(prompts['tasks']),
         'pdf_sha256':digest(HERE/'thesis.pdf'),'docx_sha256':digest(HERE/'thesis.docx'),
+        'D_case_pages':d_pages,
+        'verification_scope':'掲載した短いコード抜粋は原記録と照合。固定テンプレートは保存commitのソースと照合。個別の全送信ログや生成コード全文と掲載内容の完全一致を確認したという意味ではない。',
         'new_model_requests':0,'generated_code_executions':0,
         'publication_limits':manifest['publication_scope']}
     (HERE/'enrichment_validation_report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')

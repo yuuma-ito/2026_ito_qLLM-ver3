@@ -1,0 +1,31 @@
+{
+  "updated_at_utc": "2026-10-28T16:13:03.272451+00:00",
+  "scope": "ユーザー指定のPの未検証制約，QPE事例配置，日本語4表現を反映。",
+  "changes": [
+    "5.4節（23ページ）へPの古典ビット数指示と課題仕様・共通system指示が競合し得ることを追記。その性能への影響は未検証と明記。",
+    "Dのみ成功したQPE事例の説明・修正前・修正後・相手条件の履歴を20ページへまとめた。",
+    "指定4表現を生成時に統一。実験済みのプロンプト原文は変更しない。"
+  ],
+  "checks": {
+    "all_ten_tables_unchanged": true,
+    "experiment_prompts.json_unchanged": true,
+    "case_studies.json_unchanged": true,
+    "intervention_catalog.csv_unchanged": true
+  },
+  "pages": 33,
+  "D_case_page": 20,
+  "P_limitation_page": 23,
+  "visual_review": "全33ページのコンタクトシートと20・23ページの単ページ画像を確認。",
+  "verification_scope": "保存コードの掲載抜粋とhash，保存commitから復元した固定テンプレートを照合。個々の全送信ログや生成コード全文との完全一致は検証していない。",
+  "validation_report": "enrichment_validation_report.json",
+  "artifact_sha256": {
+    "thesis.pdf": "217c77f0d3ef8fd86b5e3f6d7ad560d7ed8dd2aead11cbe8b2324a153d6d4189",
+    "thesis.docx": "d067f28bd0324da5cdf4aa35a04a2da452f261096b11ade1ae217fdd9ed28151",
+    "template_thesis.py": "1d2f37b37f21cefbd53d039779db54cc844a130f3065711c42851bce40b5b7d8",
+    "thesis_language.py": "98e356081814fb97195c44481f4dae95f3a1f4dc155c428aec433d39c1becb11",
+    "thesis_expansion.py": "3ebb37f4ff2417ef37f6dd8fea8f403daa4a870879cd6620214ee0c2ed44dc17",
+    "validate_enrichment.py": "b8cff96efd3ab9197b2d9c5a2f41dff71c12e9a6d95bcf867a2cbfd7bc72f9ed"
+  },
+  "new_experiments": 0,
+  "generated_code_executions": 0
+}

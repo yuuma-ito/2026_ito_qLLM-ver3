@@ -364,6 +364,16 @@ def build_thesis():
                                 rf.set(qn('w:' + key), 'DejaVu Serif')
                         p._p.insert(position, replacement._r)
                         position += 1
+            # Start the QPE case on a fresh page and keep both excerpts
+            # together with their introductory and comparison paragraphs.
+            if text.startswith('Dのみ成功した保存事例は'):
+                p.paragraph_format.page_break_before = True
+                p.paragraph_format.keep_together = True
+                p.paragraph_format.keep_with_next = True
+            if text.startswith(('修正前（D', '修正後（D')):
+                p.paragraph_format.keep_with_next = True
+            if text.startswith('同じ初期コードからのFも'):
+                p.paragraph_format.keep_together = True
             if text.startswith('修正前（') or text.startswith('修正後（'):
                 p.paragraph_format.keep_together = True
         elif started and child.tag == qn('w:tbl'):
