@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-28T12:19:14.143721+00:00",
+  "checked_at_utc": "2026-10-28T12:36:35.383340+00:00",
   "passed": true,
   "scope": "現行の卒論・要旨・中間発表・WiNF原稿と発表資料および生成元。過去の固定分析・実験の評価仕様・CSV分類キーは保持。",
   "terminology": {
@@ -91,14 +91,14 @@
     },
     {
       "path": "docs/graduation2026/thesis.docx",
-      "sha256": "3881aa3f6e535471ff529d6cbb428cbb18edd7fafa1cfc6add3b01b44dc68ebf",
+      "sha256": "745eb48cfc9c8502cf32245736f598b7746befd68ff257b08a887224b30dc1fc",
       "pages": null,
       "old_L3_alias_absent": true,
       "old_unknown_label_absent": true
     },
     {
       "path": "docs/graduation2026/thesis.pdf",
-      "sha256": "039b2302a828a9e110891c101571bd7b4103bba4230d84ef827fa28584f82ac4",
+      "sha256": "eb54d3616812185d6bab1816acd02966a397947523134d6a609e759746b5be84",
       "pages": 26,
       "old_L3_alias_absent": true,
       "old_unknown_label_absent": true

@@ -40,7 +40,12 @@ GOTHIC = 'IPAexGothic'
 REFS = [
  'A. Madaan et al.：Self-Refine: Iterative Refinement with Self-Feedback，arXiv:2303.17651v2（2023）．https://arxiv.org/abs/2303.17651v2',
  'X. Chen，M. Lin，N. Schärli，D. Zhou：Teaching Large Language Models to Self-Debug，arXiv:2304.05128v2（2023）．https://arxiv.org/abs/2304.05128v2',
- '伊藤悠真：現行救済経路の固定発表出典（2026-10-16版）．本リポジトリ docs/presentation_sources/20261016T_reachable_rescues/，results_snapshot.json，source_manifest.jsonおよび対応CSV．B4追加実験（2026-10-22固定）：docs/analysis/independent_4_completed_20261022/の保存設定・manifest・sanity・集計CSV．',
+ ('伊藤悠真：現行救済経路の固定発表出典（2026-10-16版）．\n'
+  '固定出典：docs/presentation_sources/20261016T_reachable_rescues/\n'
+  '参照ファイル：results_snapshot.json，source_manifest.json および対応CSV．\n'
+  'B4追加実験（2026-10-22固定）．\n'
+  '固定出典：docs/analysis/independent_4_completed_20261022/\n'
+  '参照資料：保存設定・manifest・sanity・集計CSV．'),
 ]
 
 def row(group, value, condition):

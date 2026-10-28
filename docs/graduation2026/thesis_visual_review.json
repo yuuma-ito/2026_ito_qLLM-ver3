@@ -1,7 +1,7 @@
 {
-  "reviewed_at_utc": "2026-10-28T12:19:14.143721+00:00",
+  "reviewed_at_utc": "2026-10-28T12:36:35.383340+00:00",
   "status": "reviewed",
-  "pdf_sha256": "039b2302a828a9e110891c101571bd7b4103bba4230d84ef827fa28584f82ac4",
+  "pdf_sha256": "eb54d3616812185d6bab1816acd02966a397947523134d6a609e759746b5be84",
   "pages_reviewed": [
     1,
     2,
@@ -38,11 +38,26 @@
     "研究目的に修正介入と独立再生成の比較を明記し、介入定義にPを含め、B4を対照として区別",
     "図表・本文・ページ番号の欠けや重なりなし、白紙ページなし",
     "旧分類名を実行時エラー（未定義変数）へ修正。表5の分類名は1行に収まり，件数と全26ページの体裁を保持。",
-    "評価水準はL3，結果はL3成功へ用語を統一。全26ページと定義・評価説明の単ページ画像を確認し，欠落や重なりなし。"
+    "評価水準はL3，結果はL3成功へ用語を統一。全26ページと定義・評価説明の単ページ画像を確認し，欠落や重なりなし。",
+    "文献[3]を固定出典・参照ファイルに分け，2パスと2ファイル名がそれぞれ1行に収まることを24ページの画像と抽出文字で確認。前コミットPDFとの画像比較で24ページ以外の全25ページは同一。"
   ],
   "unperformed": [
     "原本テンプレートとの照合",
     "指定フォントを備えたMicrosoft Wordでの最終レンダリング確認",
     "指導教員による内容の確認"
-  ]
+  ],
+  "bibliography_path_review": {
+    "page": 24,
+    "unbroken_paths_and_filenames": [
+      "docs/presentation_sources/20261016T_reachable_rescues/",
+      "docs/analysis/independent_4_completed_20261022/",
+      "results_snapshot.json",
+      "source_manifest.json"
+    ],
+    "all_on_single_lines": true,
+    "visible_changes_only_on_pages": [
+      24
+    ],
+    "other_25_pages_identical_to_previous_commit": true
+  }
 }
