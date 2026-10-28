@@ -18,7 +18,11 @@
     "docs/analysis/reachable_rescues_20261016/manifest.json": "afea494441162b5774fcbdb97f69ca5a38231fac7741feba33c53c511242d0cc",
     "docs/analysis/reachable_rescues_20261016/core/repair_summary.csv": "84e419e1c5eefea2db337e3f14027ec3dd2ad4d21a4bed980b785630c7c24497",
     "docs/analysis/reachable_rescues_20261016/core/sanity_report.json": "67f2b0b6916adba9861a071bdca151a25921d35c1167cf42d3c0caed027237de",
-    "docs/analysis/reachable_rescues_20261016/sanity_report.json": "c9543cc1f437755ef491a844874248414e5fee73eebaa83a0b53db3d7e896d81"
+    "docs/analysis/reachable_rescues_20261016/sanity_report.json": "c9543cc1f437755ef491a844874248414e5fee73eebaa83a0b53db3d7e896d81",
+    "docs/analysis/reachable_rescues_20261016/core/fd_overlap_summary.csv": "48e9b1aad2e0003e4331c0c84d976d835064aaed89aa5c2f449f388d933ef67e",
+    "harness/evaluator.py": "f90faf3d4ac034e057b07752e7972fe4d2bd4353a6d91a077294a01343e25bf7",
+    "harness/readout.py": "ec7b447997600e0391abf9744a4fbeff0eed69d8b43b0567d519a45cdcff1a4e",
+    "tasks/__init__.py": "9f3a509f452d08e9b63e75701bcddfe27db3c86fa941c3636e6c4bc656f7efe9"
   },
   "B4_experiment_id": "independent_4_full_20261020T185811381595Z",
   "B4_snapshot": "docs/analysis/independent_4_completed_20261022",
@@ -26,8 +30,12 @@
   "new_model_requests": 0,
   "generated_code_executions": 0,
   "literature_checked": [
-    "https://arxiv.org/abs/2303.17651v2",
-    "https://arxiv.org/abs/2304.05128v2"
+    "https://arxiv.org/abs/2303.17651",
+    "https://arxiv.org/abs/2304.05128",
+    "https://arxiv.org/abs/2107.03374",
+    "https://arxiv.org/abs/2108.07732",
+    "https://arxiv.org/abs/2310.01798",
+    "https://arxiv.org/abs/2406.14712"
   ],
   "pending": [
     "提出年月",
@@ -35,5 +43,14 @@
     "指導教員による内容と書式の確認",
     "剽窃チェック・類似レポート（審査用と最終版）",
     "Microsoft Word・PowerPoint上での最終レイアウト確認・6分リハーサル"
-  ]
+  ],
+  "thesis_expanded_on": "2026-10-28",
+  "thesis_expansion_scope": "固定集計を維持した本文の大幅拡充。新規生成・生成コード実行なし。",
+  "manuscript_source_hashes": {
+    "docs/graduation2026/build.py": "29ad675a6ab4ba474978e154832f0555aa0487b1247e32d6943d15a75b2fa2fa",
+    "docs/graduation2026/template_thesis.py": "af72b8b1b6675fd2e6375e1fea03175a978c3b63057bc7513bb00ebde7ea6624",
+    "docs/graduation2026/thesis_expansion.py": "70dfd990e4571cf44dea7c3d843c07d2cb2c1e17f5b370af34a854232607ac01",
+    "docs/graduation2026/bibliography_sources.json": "91db67e56cdf84a606d53a75f7d11d0cedefb5354af7f13b9e577922e485f732"
+  },
+  "thesis_expansion_report": "docs/graduation2026/expansion_report_20261028.json"
 }

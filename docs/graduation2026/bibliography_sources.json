@@ -1,0 +1,13 @@
+{
+  "checked_on": "2026-10-28",
+  "method": "arXivの原論文公開ページをwebツールで取得し、著者・題名・初版年・要旨を確認。本文では下記の範囲で参照する。",
+  "references": [
+    {"number": 1, "url": "https://arxiv.org/abs/2303.17651", "title": "Self-Refine: Iterative Refinement with Self-Feedback", "first_author": "Aman Madaan", "first_year": 2023, "supported_scope": "同一LLMによる出力・自己フィードバック・反復修正。Rは本研究独自の実装で完全再現ではない。"},
+    {"number": 2, "url": "https://arxiv.org/abs/2304.05128", "title": "Teaching Large Language Models to Self-Debug", "first_author": "Xinyun Chen", "first_year": 2023, "supported_scope": "コード説明や実行結果を用いる自己デバッグ。Dは本研究独自の実装。"},
+    {"number": 3, "type": "internal_frozen_aggregates", "sources": ["docs/presentation_sources/20261016T_reachable_rescues/", "docs/analysis/independent_4_completed_20261022/"], "supported_scope": "本研究の件数・保存設定・検証状態・集計値。"},
+    {"number": 4, "url": "https://arxiv.org/abs/2107.03374", "title": "Evaluating Large Language Models Trained on Code", "first_author": "Mark Chen", "first_year": 2021, "supported_scope": "HumanEvalによる機能的正しさの評価。本文では他研究との成功率直接比較を行わない。"},
+    {"number": 5, "url": "https://arxiv.org/abs/2108.07732", "title": "Program Synthesis with Large Language Models", "first_author": "Jacob Austin", "first_year": 2021, "supported_scope": "MBPPは自然言語から短いPythonコードを生成する課題群。"},
+    {"number": 6, "url": "https://arxiv.org/abs/2310.01798", "title": "Large Language Models Cannot Self-Correct Reasoning Yet", "first_author": "Jie Huang", "first_year": 2023, "latest_version_year": 2024, "supported_scope": "推論課題における外部フィードバックなしの自己修正の限界。本研究の量子コードへの直接的な証明として扱わない。"},
+    {"number": 7, "url": "https://arxiv.org/abs/2406.14712", "title": "Qiskit HumanEval: An Evaluation Benchmark For Quantum Code Generative Models", "first_author": "Sanjay Vishwakarma", "first_year": 2024, "supported_scope": "Qiskitコード生成の専用評価課題。本研究の10タスクの出典とは位置づけない。"}
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "validated_at_utc": "2026-10-28T01:33:20.178287+00:00",
+  "passed": true,
+  "checks": {
+    "all_expected_body_paragraphs_in_pdf": true,
+    "citation_numbers_in_first_use_order": true,
+    "B4_three_way_cross_counts": true,
+    "frozen_model_task_failure_totals": true,
+    "fixed_title": true,
+    "all_seven_bibliography_entries_in_pdf": true,
+    "body_at_least_tripled": true
+  },
+  "before": {
+    "body_paragraphs": 82,
+    "body_characters_excluding_tables": 10117,
+    "all_paragraph_characters_including_toc": 14845,
+    "tables": 12,
+    "pdf_pages": 18
+  },
+  "after": {
+    "body_paragraphs": 273,
+    "body_characters_excluding_tables": 42602,
+    "all_paragraph_characters_including_toc": 49401,
+    "tables": 12,
+    "pdf_pages": 35
+  },
+  "growth_ratio": 4.2109320944944155,
+  "expected_body_paragraphs": 261,
+  "missing_body_paragraphs": [],
+  "citation_first_use": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7"
+  ],
+  "frozen_totals": {
+    "R/model": 96,
+    "F/model": 183,
+    "D/model": 180,
+    "B4/model": 217,
+    "R/task": 96,
+    "F/task": 183,
+    "D/task": 180,
+    "B4/task": 217,
+    "R/initial_failure": 96,
+    "F/initial_failure": 183,
+    "D/initial_failure": 180,
+    "B4/initial_failure": 217
+  },
+  "pdf_sha256": "4060b00855f6e40403c94baf3becdfe9aba9be515bc19ec60bb8e4c1ee85b359",
+  "docx_sha256": "764330d5332636d1e94bf9017e5d56cd4df0377fb2f0c08cb8bd2f9bed1a60cd",
+  "scope": "本文拡充・記述的計算の照合のみ。新規実験・モデル要求・生成コード実行0。"
+}

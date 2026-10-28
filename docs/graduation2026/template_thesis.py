@@ -204,7 +204,7 @@ def build_thesis():
     d = Document(); configure(d)
     # Unknown cover coordinates are an explicitly documented approximation.
     for text, size, before in [
-        ('卒　業　論　文', 18, 45), (content.TITLE, 18, 60),
+        ('卒　業　論　文', 18, 45), (content.TITLE.replace('における', 'における\n'), 18, 60),
         ('2023TC011 伊藤 悠真', 16, 100), ('指導教員　横山 哲郎', 12, 40),
         ('2027年1月', 12, 35)]:
         p = paragraph(d, text, size, heading=True, center=True)
@@ -316,7 +316,7 @@ def build_thesis():
         'paper': {'width_mm':210,'height_mm':297,'top_mm':30,'bottom_mm':30,'left_mm':20,'right_mm':20,'header_mm':0,'footer_mm':17.5,'columns':1},
         'fonts': FONTS, 'body_pt':10.5, 'heading_pt':[18,14,12],
         'provided_identity': {'student':'2023TC011 伊藤 悠真','supervisor':'横山 哲郎','date':'2027年1月','affiliation':'南山大学 理工学部 電子情報学科'},
-        'title_status': 'Existing research draft title retained; formal approval is unconfirmed.',
+        'title_status': 'Fixed research title specified by the user on 2026-10-25; retain across future revisions.',
         'implemented': ['Heading 1–3 linked multilevel numbering','TOC levels 1–3 with cached PDF-matched pages','decimal PAGE field including cover','SEQ captions and REF table references','intentional blank page after TOC','six body chapters followed by references and appendix'],
         'supplemental_settings_not_verified_against_original': [
             'Cover vertical spacing: paragraph-before 45/60/100/40/35pt; visual coordinates unknown.',

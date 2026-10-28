@@ -33,8 +33,8 @@ def b4_rows(grouping, value='all'):
 
 CONDITIONS = [('R','self_refine'),('F','execution_feedback'),('D','self_debugging')]
 MODELS = [('Q4','qwen3.5:4b'),('G4','gemma4:e4b-it-qat'),('Q9','qwen3.5:9b'),('C7','qwen2.5-coder:7b'),('G3','gemma3:4b')]
-TITLE = 'Qiskit量子回路コードの初期失敗に対する修正介入の救済率と救済対象の分析'
-TITLE_EN = 'Rescue Rates and Rescued Cases of Repair Interventions for Initial Failures in LLM-Generated Qiskit Quantum Circuit Code'
+TITLE = '量子LLM支援プログラミングにおける失敗類型と介入カタログの実証研究'
+TITLE_EN = 'An Empirical Study of Failure Types and an Intervention Catalog in Quantum LLM-Assisted Programming'
 FONT = 'IPAexMincho'
 GOTHIC = 'IPAexGothic'
 REFS = [
@@ -269,6 +269,11 @@ CHAPTERS[6][1].insert(0,('再生成対照を含む解釈',[
 CHAPTERS[7][1][0][1].append('独立再生成B4は同じ初期失敗545組中217組（39.8%）で成功し，最終成功は672組となった．F/Dのみが成功する組も残り，独立再生成を含む選択・停止方策の検証を今後の課題とする．')
 
 
+# Expand thesis prose without changing the frozen experimental results.
+from thesis_expansion import apply as expand_thesis
+expand_thesis(CHAPTERS, REFS)
+
+
 def abstract():
     # The current university abstract has one canonical prose/table source.
     import runpy
@@ -358,14 +363,14 @@ def legacy_thesis():
             thesis_tables(d,6)
             # Place tables after the prose that first discusses them.
             body=d._element.body
-            for number,target in [(1,'6.2'),(2,'6.3'),(3,'6.3'),(4,'6.4'),(5,'6.5'),(6,'6.6'),(7,'6.6')]:
+            for number,target in [(1,'6.2'),(2,'6.3'),(3,'6.3'),(4,'6.4'),(5,'6.5'),(6,'6.6'),(7,'6.6'),(8,'6.8'),(9,'6.8'),(10,'6.8')]:
                 caption=next(e for e in body if e.tag==qn('w:p') and ''.join(e.itertext()).startswith(f'表6.{number}　'))
                 tbl=caption.getnext(); spacer=tbl.getnext()
                 anchor=next(p._p for p in d.paragraphs if p.text.startswith(target+'　'))
                 for el in [caption,tbl,spacer]:anchor.addprevious(el)
     d.add_page_break();heading(d,'参考文献',1)
     for i,r in enumerate(REFS,1):para(d,f'[{i}] {r}',indent=False)
-    para(d,'文献[1]，[2]は著者・題名・版を原論文の公開ページで照合した．引用番号は本文の初出順である．文献[3]は本研究の一次資料で，集計時点・保存設定・検証記録を固定している．')
+    para(d,'文献[1]，[2]，[4]〜[7]の書誌情報と本文で参照した主張の範囲は，原論文の公開ページで確認した．引用番号は本文の初出順である．文献[3]は本研究の一次資料で，集計時点・保存設定・検証記録を固定している．')
     d.add_page_break();heading(d,'付録A　出典と再現性',1)
     manifest=json.loads((ANALYSIS/'manifest.json').read_text())
     for i,s in enumerate(manifest['source_settings'],1):
@@ -427,7 +432,7 @@ def slides():
         text=f'目安：{time}\n話す要点（読み上げ原稿ではない）\n'+ '\n'.join('・'+x for x in cues)
         s.notes_slide.notes_text_frame.text=text;notes.append(text)
     s=base('初期失敗コードを，どこまで救済できるか',1)
-    txt(s,.8,1.8,11.8,1.6,'Qiskit量子回路コードの\n修正介入と救済対象の分析',36,True)
+    txt(s,.8,1.8,11.8,1.6,'量子LLM支援プログラミングにおける\n失敗類型と介入カタログの実証研究',28,True)
     txt(s,.85,4.05,11.5,1.2,'2023TC011　伊藤 悠真\n指導教員　横山 哲郎',24)
     txt(s,.85,5.9,11.6,.7,'実行結果提示と自己デバッグを，同じ初期失敗から比較する',23)
     note(s,'0:00–0:15（15秒）',['研究対象はLLM生成のQiskitコード','救済率と救済する対象の違いを調べる'])
@@ -490,11 +495,12 @@ def slides():
     (HERE/'speaker_notes.txt').write_text('6分発表用の要点メモ（原稿の読み上げには使わない）\n本編8枚＝360秒．補足3枚は質疑用．\n\n'+'\n\n'.join(f'{i}枚目\n{x}' for i,x in enumerate(notes,1))+'\n\n練習：スライドだけを見て説明し，6分以内に収める．ゼミの練習で修正する．不明な質問は不明と答え，確認方法を述べる．\n')
 
 def source_record():
-    sources=list(B4_SOURCE.glob('*.json'))+list(B4_SOURCE.glob('*.csv'))+[SOURCE/'results_snapshot.json',SOURCE/'validation_report.json',ANALYSIS/'manifest.json',ANALYSIS/'core/repair_summary.csv',ANALYSIS/'core/sanity_report.json',ANALYSIS/'sanity_report.json']
+    sources=list(B4_SOURCE.glob('*.json'))+list(B4_SOURCE.glob('*.csv'))+[SOURCE/'results_snapshot.json',SOURCE/'validation_report.json',ANALYSIS/'manifest.json',ANALYSIS/'core/repair_summary.csv',ANALYSIS/'core/sanity_report.json',ANALYSIS/'sanity_report.json',ANALYSIS/'core/fd_overlap_summary.csv',ROOT/'harness/evaluator.py',ROOT/'harness/readout.py',ROOT/'tasks/__init__.py']
     data={'created_at_utc':datetime.now(timezone.utc).isoformat(),'status':'draft','source_snapshot_at_utc':SNAP['captured_at_utc'],
       'source_hashes':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},
       'B4_experiment_id':'independent_4_full_20261020T185811381595Z','B4_snapshot':'docs/analysis/independent_4_completed_20261022','new_experiments':0,'new_model_requests':0,'generated_code_executions':0,
-      'literature_checked':['https://arxiv.org/abs/2303.17651v2','https://arxiv.org/abs/2304.05128v2'],
+      'literature_checked':[r['url'] for r in json.loads((HERE/'bibliography_sources.json').read_text())['references'] if 'url' in r],
+      'thesis_expanded_on':'2026-10-28','thesis_expansion_scope':'固定集計を維持した本文の大幅拡充。新規生成・生成コード実行なし。',
       'pending':['提出年月','英語の著者・教員・所属の正式表記','指導教員による内容と書式の確認','剽窃チェック・類似レポート（審査用と最終版）','Microsoft Word・PowerPoint上での最終レイアウト確認・6分リハーサル']}
     (HERE/'source_manifest.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
 

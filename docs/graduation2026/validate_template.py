@@ -74,18 +74,27 @@ def validate():
     checks['cover_identity_date']=all(norm(value) in norm(texts[0]) for value in ['卒業論文',template.content.TITLE,'2023TC011 伊藤 悠真','横山 哲郎','2027年1月'])
     checks['summary_second_page']=all(norm(value) in norm(texts[1]) for value in ['南山大学 理工学部 電子情報学科','要約','545','183','180'])
     checks['toc_third_page']='目次' in texts[2]
-    checks['only_intentional_blank_page_4']=[i for i,text in enumerate(texts,1) if len(norm(re.sub(r'\d+\s*$','',text)))<5]==[4]
+    first_body_page = int(cache[0]['page'])
+    expected_blank = first_body_page - 1
+    checks['only_intentional_blank_after_toc'] = [i for i,text in enumerate(texts,1) if len(norm(re.sub(r'\d+\s*$', '', text))) < 5] == [expected_blank]
+    checks['toc_may_span_multiple_pages'] = expected_blank >= 4 and all(str(entry['page']) in ''.join(texts[2:expected_blank-1]) for entry in cache)
     checks['continuous_visible_decimal_pages']=all(text.rstrip().splitlines()[-1]==str(i) for i,text in enumerate(texts,1))
     checks['pdf_a4']=all(abs(p.rect.width-595.28)<.6 and abs(p.rect.height-841.89)<.6 for p in pdf)
     outside=[];margin=[]
     for i,p in enumerate(pdf,1):
-        for b in p.get_text('dict')['blocks']:
+        for b in p.get_text('rawdict')['blocks']:
             for line in b.get('lines',[]):
                 for sp in line['spans']:
-                    if not sp['text'].strip():continue
-                    r=pymupdf.Rect(sp['bbox'])
+                    # Justified PDF spans can include trailing spaces beyond the
+                    # print area. Inspect visible characters, not space advance.
+                    chars = [c for c in sp['chars'] if c['c'].strip()]
+                    if not chars:
+                        continue
+                    r = pymupdf.Rect(chars[0]['bbox'])
+                    for c in chars[1:]:
+                        r |= pymupdf.Rect(c['bbox'])
                     if r.x0<-.5 or r.y0<-.5 or r.x1>p.rect.width+.5 or r.y1>p.rect.height+.5:outside.append(i)
-                    if r.x0<56 or r.x1>539.5:margin.append({'page':i,'text':sp['text']})
+                    if r.x0<56 or r.x1>539.5:margin.append({'page':i,'text':''.join(c['c'] for c in chars)})
     checks['no_text_outside_page']=not outside
     checks['text_within_left_right_margins']=not margin
     xrefs={f[0] for p in pdf for f in p.get_fonts()}
@@ -97,7 +106,7 @@ def validate():
     checks['frozen_source_hashes_unchanged']=all(digest(template.content.ROOT/p)==sha for p,sha in manifest['source_hashes'].items())
     alltext='\n'.join(p.text for p in d.paragraphs)
     refs=set(re.findall(r'\[(\d+)\]',alltext))
-    checks['reference_numbers_consistent']=refs=={'1','2','3'}
+    checks['reference_numbers_consistent'] = refs == {str(i) for i in range(1,len(template.content.REFS)+1)}
     visual_file=HERE/'thesis_visual_review.json'
     visual=json.loads(visual_file.read_text()) if visual_file.exists() else {'status':'pending'}
     visual_current=visual.get('pdf_sha256')==digest(HERE/'thesis.pdf') and visual.get('pages_reviewed')==list(range(1,len(pdf)+1))
@@ -110,7 +119,7 @@ def validate():
         'font_fidelity':'DOCX specifies requested fonts; LibreOffice PDF uses substitutes. Final Microsoft Word rendering unverified.',
         'format_spec':'format_spec.json', 'source_snapshot_at_utc':manifest['source_snapshot_at_utc'],
         'new_experiments':0, 'new_model_requests':0,'generated_code_executions':0,
-        'artifact_sha256':{p.name:digest(p) for p in HERE.iterdir() if p.is_file() and p.name not in ['validation_report.json']},
+        'artifact_sha256':{name:digest(HERE/name) for name in ['thesis.docx','thesis.pdf','build.py','template_thesis.py','thesis_expansion.py','convert_thesis.py','validate_template.py','validate_expansion.py','thesis_headings.json','toc_cache.json','format_spec.json','source_manifest.json','bibliography_sources.json','expansion_report_20261028.json','thesis_visual_review.json','README.md']},
         'out_of_margin_spans':margin,
         'pending':['Original template comparison, especially cover coordinates and inherited paragraph styles','Formal approval of thesis title','Final rendering and updated fields in Microsoft Word with the specified fonts','Supervisor review of content and references']}
     (HERE/'validation_report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')

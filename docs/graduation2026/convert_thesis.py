@@ -38,23 +38,25 @@ def convert():
         env['LD_LIBRARY_PATH'] = ':'.join([str(local/'libreoffice/program'), str(local/'x86_64-linux-gnu'), env.get('LD_LIBRARY_PATH','')])
         env['SAL_USE_VCLPLUGIN'] = 'svp'
     command = [binary, '-env:UserInstallation=file:///tmp/qllm-thesis-template-office-3', '--headless', '--convert-to', 'pdf', '--outdir', str(HERE), str(HERE/'thesis.docx')]
-    for attempt in range(4):
+    for attempt in range(6):
         template_thesis.build_thesis()
         # Conversion must actually replace the PDF; never silently accept a
         # stale artifact left by a failed export.
         before = (HERE/'thesis.pdf').stat().st_mtime_ns if (HERE/'thesis.pdf').exists() else None
         run = subprocess.run(command, env=env, capture_output=True, text=True, timeout=90)
+        if run.returncode == 81:
+            run = subprocess.run(command, env=env, capture_output=True, text=True, timeout=90)
         (ROOT/'.cache/graduation_office/template_convert.log').write_text(run.stdout+run.stderr)
         if run.returncode or (HERE/'thesis.pdf').stat().st_mtime_ns == before:
             raise RuntimeError('PDF conversion failed; inspect .cache/graduation_office/template_convert.log')
         entries = template_thesis.toc_entries()
         cache = HERE/'toc_cache.json'
-        previous = json.loads(cache.read_text())
+        previous = json.loads(cache.read_text()) if cache.exists() else []
         if previous == entries:
             print(f'TOC converged: {len(entries)} entries; PDF and DOCX agree.')
             return
         cache.write_text(json.dumps(entries, ensure_ascii=False, indent=2)+'\n')
-    raise RuntimeError('TOC did not converge within four PDF exports')
+    raise RuntimeError('TOC did not converge within six PDF exports')
 
 
 if __name__ == '__main__':
