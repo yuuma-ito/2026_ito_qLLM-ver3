@@ -147,6 +147,10 @@ def validate():
     resources=subsection('資源制約と停止方策への含意')
     checks['RQ1_to_RQ3_explicit_in_introduction'] = all(f'RQ{i}（' in questions for i in [1,2,3])
     checks['RQ_answers_in_discussion'] = all(f'RQ{i}への回答' in comparison for i in [1,2]) and 'RQ3への回答' in resources
+    checks['RQ3_includes_B4_cost_from_frozen_csv'] = all(t in resources for t in [
+        f"B4の追加tokens／追加成功は{float(overall['B4']['tokens_per_added_success']):,.1f}",
+        f"総追加{int(overall['B4']['additional_tokens']):,} tokens",
+        f"追加成功{overall['B4']['successes_from_initial_failure']}組で割った値"])
     checks['order_of_metrics_explained'] = 'まず全対象の最終的な到達状況を比較し，次に初期成功の保持を除いて' in alltext
     conclusion=subsection('研究成果')
     checks['conclusion_states_catalog_and_no_policy_validation'] = all(t in conclusion for t in [

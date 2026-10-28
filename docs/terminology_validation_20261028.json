@@ -91,7 +91,7 @@
     },
     {
       "path": "docs/graduation2026/thesis.docx",
-      "sha256": "93b335cef5061d611d2ee92969bc574be46f46ada336467b7eb26c68583d7983",
+      "sha256": "43fb7dda5fd233eb203e3dc37ca2c67b2f84436dc0b92aa2db687e8b522395f8",
       "pages": null,
       "old_L3_alias_absent": true,
       "old_unknown_label_absent": false,
@@ -99,7 +99,7 @@
     },
     {
       "path": "docs/graduation2026/thesis.pdf",
-      "sha256": "317f1af44dc5c4c64578e7b932009edfff3947d075b41c93766f8e521c60c043",
+      "sha256": "bbf29c7bf015056893837080f78fd4b430268db0c8a8b54437e74721c7f35336",
       "pages": 34,
       "old_L3_alias_absent": true,
       "old_unknown_label_absent": false,
@@ -163,6 +163,6 @@
     "previous_bibliography_path_fix_retained": true,
     "thesis_34_pages": true
   },
-  "thesis_refreshed_at_utc": "2026-10-28T17:27:07.887576+00:00",
-  "thesis_refresh_scope": "RQの対応・表4・結論を整理した卒論34ページのhashを更新。他資料はchecked_at_utc時点を保持。固定集計・保存分類・プロンプト原文は変更しない。"
+  "thesis_refreshed_at_utc": "2026-10-28T17:39:43.072262+00:00",
+  "thesis_refresh_scope": "RQ3へB4コストを追記した卒論34ページのhashを更新。他資料はchecked_at_utc時点を保持。固定集計・保存分類・プロンプト原文は変更しない。"
 }

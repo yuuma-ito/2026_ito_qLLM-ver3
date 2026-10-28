@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-28T17:25:29.683763+00:00",
+  "checked_at_utc": "2026-10-28T17:39:43.072262+00:00",
   "scope": "RQ明記と考察の回答対応，表4の分母と列の整理，比較順序の説明，重複する限界説明の短縮，結論のカタログ成果の具体化。",
   "checks": {
     "other_ten_tables_unchanged": true,
@@ -23,7 +23,7 @@
     "RQ3": {
       "question": "1.2節",
       "answer": "5.3節",
-      "evidence": "表9の追加tokens／救済，表10の3回目の追加救済"
+      "evidence": "表9のR/F/D/B4の追加tokens／追加成功，表10の3回目の追加救済"
     }
   },
   "limitations_retained": {
@@ -108,8 +108,8 @@
   "pages": 34,
   "tables": 11,
   "figures": 4,
-  "pdf_sha256": "317f1af44dc5c4c64578e7b932009edfff3947d075b41c93766f8e521c60c043",
-  "docx_sha256": "93b335cef5061d611d2ee92969bc574be46f46ada336467b7eb26c68583d7983",
+  "pdf_sha256": "bbf29c7bf015056893837080f78fd4b430268db0c8a8b54437e74721c7f35336",
+  "docx_sha256": "43fb7dda5fd233eb203e3dc37ca2c67b2f84436dc0b92aa2db687e8b522395f8",
   "new_experiments": 0,
   "new_aggregates": 0,
   "re_evaluations": 0,
@@ -121,5 +121,11 @@
     "figure_validation_report_20261028.json",
     "revision_report_20261028.json"
   ],
-  "visual_review": "現行全34ページを確認。23・24・26ページを単ページでも確認。"
+  "visual_review": "前版全34ページとの画像比較で変更は24ページのみ。24ページを再確認し，他33ページの同一性を確認。",
+  "RQ3_B4_cost_addition": {
+    "additional_tokens": 995815,
+    "added_successes": 217,
+    "tokens_per_added_success": 4589.0,
+    "scope": "未成功例への消費も含む。R/F/Dの救済とは区別。固定CSVと照合。"
+  }
 }
