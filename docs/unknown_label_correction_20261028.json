@@ -58,7 +58,7 @@
     },
     {
       "path": "docs/graduation2026/thesis.docx",
-      "sha256": "d067f28bd0324da5cdf4aa35a04a2da452f261096b11ade1ae217fdd9ed28151",
+      "sha256": "81ca18173887aa3dd21509237c555c4faeacd0fbf4e0ee8951b3225d3a90287d",
       "pages": null,
       "old_L3_alias_absent": true,
       "old_unknown_label_absent": false,
@@ -66,8 +66,8 @@
     },
     {
       "path": "docs/graduation2026/thesis.pdf",
-      "sha256": "217c77f0d3ef8fd86b5e3f6d7ad560d7ed8dd2aead11cbe8b2324a153d6d4189",
-      "pages": 33,
+      "sha256": "b15b4054c56681a960cc18383f650c2ce14b7d2fd330cc6fa6cf4034a84c5e01",
+      "pages": 34,
       "old_L3_alias_absent": true,
       "old_unknown_label_absent": false,
       "unknown_occurrences_only_saved_key_explanation": true
@@ -126,8 +126,8 @@
     "exclusive_primary_aggregate_phrase_removed": true,
     "saved_unknown_key_only_no_obsolete_display_label": true,
     "previous_bibliography_path_fix_retained": true,
-    "thesis_33_pages": true
+    "thesis_34_pages": true
   },
-  "thesis_refreshed_at_utc": "2026-10-28T16:13:03.272451+00:00",
-  "thesis_refresh_scope": "卒論のPの制約・QPE事例配置・日本語修正後のhashを更新。他資料の検証時点はchecked_at_utcのまま。固定集計・掲載事例・プロンプト原文を保持。"
+  "thesis_refreshed_at_utc": "2026-10-28T16:39:21.193908+00:00",
+  "thesis_refresh_scope": "6条件の最終L3成功率を追加した卒論34ページのhashを更新。他資料はchecked_at_utc時点の記録を保持。保存分類・固定集計・プロンプト原文は変更しない。"
 }

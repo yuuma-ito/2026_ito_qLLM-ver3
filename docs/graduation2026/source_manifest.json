@@ -1,5 +1,5 @@
 {
-  "created_at_utc": "2026-10-28T15:14:10.426571+00:00",
+  "created_at_utc": "2026-10-28T16:32:54.380445+00:00",
   "status": "draft",
   "source_snapshot_at_utc": "2026-10-15T15:20:18.335286+00:00",
   "source_hashes": {
@@ -23,6 +23,7 @@
     "harness/evaluator.py": "f90faf3d4ac034e057b07752e7972fe4d2bd4353a6d91a077294a01343e25bf7",
     "harness/readout.py": "ec7b447997600e0391abf9744a4fbeff0eed69d8b43b0567d519a45cdcff1a4e",
     "tasks/__init__.py": "9f3a509f452d08e9b63e75701bcddfe27db3c86fa941c3636e6c4bc656f7efe9",
+    "docs/analysis/reachable_rescues_20261016/core/preventive_summary.csv": "8027cb2cc0fee81b78b4cae73535e3ec538dc8c687ab973395c7dff7689a6837",
     "docs/graduation2026/intervention_catalog.csv": "7f231af5fa18e70a748f6a7266f928ea3441425772cf4f48746939fe917afaf6",
     "docs/graduation2026/case_studies.json": "4ff23031b9c58f3b054d4db7ffd903b75661074301277026f0f68a65177b8dcb",
     "docs/graduation2026/experiment_prompts.json": "b4c619a2009bfe84e9daa37d387fa8b9d8664b56880093259bffce0f4ba61787",

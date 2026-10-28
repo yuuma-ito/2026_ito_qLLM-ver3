@@ -3,7 +3,10 @@
     "docs/analysis/independent_4_completed_20261022/summary.csv": "4ff68c4fb0f8d6f94bfd6c1eabe8018e14b29b97435ed028305550823b391344",
     "docs/analysis/reachable_rescues_20261016/core/fd_overlap_summary.csv": "48e9b1aad2e0003e4331c0c84d976d835064aaed89aa5c2f449f388d933ef67e",
     "docs/presentation_sources/20261016T_reachable_rescues/results_snapshot.json": "67df2972c197f90117c30541fd646d72ec64f4023df66d705c51010b392ea35d",
-    "docs/graduation2026/thesis_figures.py": "7825b0a41359f17cea618144b4c1541f178c086052f702df4b42046af70b7a29"
+    "docs/graduation2026/thesis_figures.py": "0e86407184f888bfcdf8bebac1d080b29dec80514dd5ecb16cd00608efd9f1bb",
+    "docs/analysis/reachable_rescues_20261016/core/repair_summary.csv": "84e419e1c5eefea2db337e3f14027ec3dd2ad4d21a4bed980b785630c7c24497",
+    "docs/analysis/reachable_rescues_20261016/core/preventive_summary.csv": "8027cb2cc0fee81b78b4cae73535e3ec538dc8c687ab973395c7dff7689a6837",
+    "docs/graduation2026/six_conditions.py": "ee2cc77369838d163115b211bdf7447c3ab8cdb93b3a90e6685e9d4db274e428"
   },
   "rates": [
     {
@@ -31,6 +34,44 @@
       "rate_percent": 39.81651376146789
     }
   ],
+  "final_rates": [
+    {
+      "condition": "B",
+      "successes": 455,
+      "denominator": 1000,
+      "rate_percent": 45.5
+    },
+    {
+      "condition": "P",
+      "successes": 473,
+      "denominator": 1000,
+      "rate_percent": 47.3
+    },
+    {
+      "condition": "R",
+      "successes": 551,
+      "denominator": 1000,
+      "rate_percent": 55.1
+    },
+    {
+      "condition": "F",
+      "successes": 638,
+      "denominator": 1000,
+      "rate_percent": 63.8
+    },
+    {
+      "condition": "D",
+      "successes": 635,
+      "denominator": 1000,
+      "rate_percent": 63.5
+    },
+    {
+      "condition": "B4",
+      "successes": 672,
+      "denominator": 1000,
+      "rate_percent": 67.2
+    }
+  ],
   "fd_overlap": {
     "F_only": 43,
     "both": 140,
@@ -46,10 +87,13 @@
   },
   "artifacts_sha256": {
     "fd_overlap.png": "65c68b4ccaffd109b96990319854390e3f643de7881a4d8bbf531153a1324807",
+    "final_success_rates.svg": "8f24091977ce2c84e0914d8badda6ee88adf49dff33ce551435961efd6fafb85",
     "additional_success_rates.png": "2681dd3614526fb9570894194374c18419e9e65b959411c48f8c40f99e3c6be7",
+    "final_success_rates.pdf": "bf91ab58d0a98b51423bff205d29080b0f2ff9e09c923264311aa283320ef23f",
     "experiment_flow.svg": "5a886beaefa6df9c7b900f77f01a1156f2142abd6dbd34217ece452c7f640938",
     "additional_success_rates.svg": "bd3a184a3484f4b644fcbead10ec730ef05c4adf1c77cce97be11882c0bc87bc",
     "fd_overlap.svg": "f025ed010166e791149cddacd7ed5e5f014d267628b493010aee9c7eca45af6c",
+    "final_success_rates.png": "7436823647eb26002dd07ac1fd9c490465e463c4f0336b7cf439c17bd4eedc60",
     "additional_success_rates.pdf": "572d5ff4e084f92acae9281529888d331f333d6d3be672a760f0beb459f6f754",
     "experiment_flow.png": "67d3aefa2e6b5d50312bf1c415a5c0d4a2068610cbc82dc37a43855b86e0009d",
     "experiment_flow.pdf": "50fbdc6718fc9a1db058abd49195ad678a220cb51ba01bba4e3a19fa9d240c87",
@@ -64,12 +108,18 @@
     },
     {
       "number": 2,
+      "stem": "final_success_rates",
+      "caption": "6条件の最終L3成功率（分母は全1,000初期組）",
+      "width_mm": 160
+    },
+    {
+      "number": 3,
       "stem": "additional_success_rates",
       "caption": "初期失敗545組に対する条件別の追加成功率",
       "width_mm": 160
     },
     {
-      "number": 3,
+      "number": 4,
       "stem": "fd_overlap",
       "caption": "FとDの救済対象の重なり（初期失敗545組を排他的な4集合に分割）",
       "width_mm": 160

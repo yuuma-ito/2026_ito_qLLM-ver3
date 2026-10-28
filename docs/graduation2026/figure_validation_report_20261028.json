@@ -1,13 +1,14 @@
 {
-  "checked_at_utc": "2026-10-28T16:12:10.648266+00:00",
+  "checked_at_utc": "2026-10-28T16:37:30.132333+00:00",
   "passed": true,
   "checks": {
     "frozen_sources_unchanged": true,
     "figure_artifacts_unchanged": true,
     "rates_match_frozen_csv": true,
+    "six_final_rates_match_frozen_csv": true,
     "overlap_matches_csv": true,
     "flow_denominators_and_cap": true,
-    "all_3_pngs_embedded": true,
+    "all_4_pngs_embedded": true,
     "captions_in_pdf": true,
     "first_use_definitions_in_summary": true,
     "plain_language_applied": true,
@@ -22,6 +23,10 @@
       "pages": 1,
       "fonts_embedded": true
     },
+    "final_success_rates": {
+      "pages": 1,
+      "fonts_embedded": true
+    },
     "additional_success_rates": {
       "pages": 1,
       "fonts_embedded": true
@@ -33,11 +38,12 @@
   },
   "figure_captions": [
     "図1 共有初期コードを起点とする比較手順",
-    "図2 初期失敗545組に対する条件別の追加成功率",
-    "図3 FとDの救済対象の重なり（初期失敗545組を排他的な4集合に分割）"
+    "図2 6条件の最終L3成功率（分母は全1,000初期組）",
+    "図3 初期失敗545組に対する条件別の追加成功率",
+    "図4 FとDの救済対象の重なり（初期失敗545組を排他的な4集合に分割）"
   ],
-  "pages": 33,
-  "pdf_sha256": "217c77f0d3ef8fd86b5e3f6d7ad560d7ed8dd2aead11cbe8b2324a153d6d4189",
+  "pages": 34,
+  "pdf_sha256": "b15b4054c56681a960cc18383f650c2ce14b7d2fd330cc6fa6cf4034a84c5e01",
   "source_manifest": "figures/figure_manifest.json",
   "new_generations": 0,
   "generated_code_executions": 0

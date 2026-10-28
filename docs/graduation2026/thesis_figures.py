@@ -6,6 +6,7 @@ Run: PYTHONPATH=.cache/graduation_plot_tools:.cache/graduation_tools .venv/bin/p
 from pathlib import Path
 import csv
 import hashlib
+import io
 import json
 import os
 import sys
@@ -16,10 +17,13 @@ FIG_DIR = HERE/'figures'
 DATA = ROOT/'docs/analysis/independent_4_completed_20261022/summary.csv'
 OVERLAP = ROOT/'docs/analysis/reachable_rescues_20261016/core/fd_overlap_summary.csv'
 SNAPSHOT = ROOT/'docs/presentation_sources/20261016T_reachable_rescues/results_snapshot.json'
+from six_conditions import SOURCES as SIX_SOURCES, values as six_values
+
 FIGURES = [
     {'number':1, 'stem':'experiment_flow', 'caption':'共有初期コードを起点とする比較手順', 'width_mm':160},
-    {'number':2, 'stem':'additional_success_rates', 'caption':'初期失敗545組に対する条件別の追加成功率', 'width_mm':160},
-    {'number':3, 'stem':'fd_overlap', 'caption':'FとDの救済対象の重なり（初期失敗545組を排他的な4集合に分割）', 'width_mm':160},
+    {'number':2, 'stem':'final_success_rates', 'caption':'6条件の最終L3成功率（分母は全1,000初期組）', 'width_mm':160},
+    {'number':3, 'stem':'additional_success_rates', 'caption':'初期失敗545組に対する条件別の追加成功率', 'width_mm':160},
+    {'number':4, 'stem':'fd_overlap', 'caption':'FとDの救済対象の重なり（初期失敗545組を排他的な4集合に分割）', 'width_mm':160},
 ]
 
 
@@ -28,7 +32,7 @@ def digest(p):
 
 
 def inputs():
-    return {str(p.relative_to(ROOT)):digest(p) for p in [DATA,OVERLAP,SNAPSHOT,Path(__file__)]}
+    return {str(p.relative_to(ROOT)):digest(p) for p in [DATA,OVERLAP,SNAPSHOT,Path(__file__),*SIX_SOURCES,HERE/'six_conditions.py']}
 
 
 def values():
@@ -58,8 +62,20 @@ def build():
     FIG_DIR.mkdir(parents=True,exist_ok=True)
     rates,parts=values()
     def save(fig,stem):
-        for ext in ['pdf','svg','png']:
+        # Preserve existing vector artifacts when their rendered content is
+        # unchanged; PDF timestamps and SVG IDs alone must not replace them.
+        png=io.BytesIO()
+        fig.savefig(png,format='png',dpi=360,facecolor='white',bbox_inches='tight',pad_inches=.12)
+        paths=[FIG_DIR/(stem+'.'+ext) for ext in ['pdf','svg','png']]
+        if all(p.exists() for p in paths) and paths[2].read_bytes()==png.getvalue():
+            plt.close(fig)
+            return
+        for ext in ['pdf','svg']:
             fig.savefig(FIG_DIR/(stem+'.'+ext),dpi=360,facecolor='white',bbox_inches='tight',pad_inches=.12)
+            if ext == 'svg':
+                output=FIG_DIR/(stem+'.'+ext)
+                output.write_text('\n'.join(line.rstrip() for line in output.read_text().splitlines())+'\n')
+        paths[2].write_bytes(png.getvalue())
         plt.close(fig)
     # Logical procedure, not a claim that the reconstructed cohort was newly generated.
     fig,ax=plt.subplots(figsize=(7.7,6.6));ax.set_xlim(0,136);ax.set_ylim(-10,110);ax.axis('off')
@@ -105,6 +121,21 @@ def build():
     ax.text(50,-5,'R/F/D/B4は同じ初期コードを共有',ha='center',fontsize=9.5)
     fig.subplots_adjust(left=.01,right=.99,top=.99,bottom=.07)
     save(fig,'experiment_flow')
+    # Whole-cohort outcome: all six conditions, denominator 1,000.
+    final_rates = six_values()
+    fig,ax=plt.subplots(figsize=(6.5,4.0))
+    names=['B 初回生成','P 生成前介入','R 自己見直し','F 実行結果提示','D 自己デバッグ','B4 独立再生成']
+    ax.barh(range(6),[r['rate_percent'] for r in final_rates],height=.58,
+            color=['white','.88','.72','.55','.35','.92'],edgecolor='black',linewidth=.8,
+            hatch=[None,'..',None,None,None,'///'])
+    for i,r in enumerate(final_rates):
+        ax.text(r['rate_percent']+1,i,f"{r['successes']}/1,000（{r['rate_percent']:.1f}%）",va='center',fontsize=10)
+    ax.set_yticks(range(6),names);ax.invert_yaxis();ax.set_xlim(0,100)
+    ax.set_xticks([0,20,40,60,80,100],[f'{i}%' for i in [0,20,40,60,80,100]])
+    ax.set_xlabel('最終L3成功率（分母：全1,000初期組）')
+    ax.grid(axis='x',color='.86',linewidth=.6);ax.set_axisbelow(True)
+    ax.spines[['top','right','left']].set_visible(False);ax.tick_params(axis='y',length=0)
+    fig.tight_layout();save(fig,'final_success_rates')
     # Zero-based axes and common denominator; grayscale and hatching for print.
     fig,ax=plt.subplots(figsize=(6.5,3.6))
     names=['R 自己見直し','F 実行結果提示','D 自己デバッグ','B4 独立再生成']
@@ -126,7 +157,7 @@ def build():
     ax.text(272.5,.1,f"片側救済：{parts['F_only']}＋{parts['D_only']}＝{parts['F_only']+parts['D_only']}組",ha='center',va='center',fontsize=11)
     fig.tight_layout();save(fig,'fd_overlap')
     artifacts={p.name:digest(p) for p in FIG_DIR.iterdir() if p.suffix in ['.png','.pdf','.svg']}
-    manifest={'sources_sha256':inputs(),'rates':rates,'fd_overlap':parts,'flow':{'initial_groups':1000,'initial_successes':455,'initial_failures':545,'additional_cap':3,'stopping':'L3 success or cap'},'artifacts_sha256':artifacts,'figures':FIGURES,'new_generations':0,'generated_code_executions':0,'flow_scope':'論理的な比較手順。保存済み履歴と部分追試に基づく集計であり，全件新生成とは異なる。'}
+    manifest={'sources_sha256':inputs(),'rates':rates,'final_rates':final_rates,'fd_overlap':parts,'flow':{'initial_groups':1000,'initial_successes':455,'initial_failures':545,'additional_cap':3,'stopping':'L3 success or cap'},'artifacts_sha256':artifacts,'figures':FIGURES,'new_generations':0,'generated_code_executions':0,'flow_scope':'論理的な比較手順。保存済み履歴と部分追試に基づく集計であり，全件新生成とは異なる。'}
     (FIG_DIR/'figure_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
     return manifest
 
@@ -140,4 +171,4 @@ def ensure():
 
 
 if __name__=='__main__':
-    ensure();print('Created/verified 3 figures in PNG, PDF and SVG')
+    ensure();print('Created/verified 4 figures in PNG, PDF and SVG')

@@ -147,7 +147,7 @@ def table(d,caption,headers,rows,size=10.5,widths=None):
     setfont(end.add_run(''),2)
     return t
 
-JA_SUMMARY='''LLMによる量子回路コード生成では，APIの誤用や回路構築の失敗に加え，実行できても期待した出力を返さない失敗が生じる．本研究では，Qiskitを用いた量子回路コード生成において，初期失敗に対する修正介入と独立再生成を比較し，追加成功数，成功対象および計算コストを分析した．自己見直しR，実行結果提示F，説明・原因分析を促す自己デバッグDと，独立再生成B4を，同じ初期コードを起点として比較した．生成前注意事項Pは独立生成として扱った．
+JA_SUMMARY='''LLMによる量子回路コード生成では，APIの誤用や回路構築の失敗に加え，実行できても期待した出力を返さない失敗が生じる．本研究では，Qiskitを用いた量子回路コード生成において，初期失敗に対する修正介入と独立再生成を比較し，追加成功数，成功対象および計算コストを分析した．自己見直しR，実行結果提示F，説明・原因分析を促す自己デバッグDと，独立再生成B4を，同じ初期コードを起点として比較した．生成前注意事項Pは独立生成として扱った．全1,000初期組の最終L3成功率はB45.5%，P47.3%，R55.1%，F63.8%，D63.5%，B4 67.2%であった．
 対象は5モデル，10タスク，seed 0〜19の1,000初期組，5,000条件記録である．検証済み保存prefixと必要な部分追試suffixを組み合わせた到達可能な経路を採用した．成功は指定入力の出力一致と所定の構造要件を含むL3で判定した．初期失敗545組の救済はR96組（17.6%），F183組（33.6%），D180組（33.0%）であった．FとDの共通救済は140組，Fのみ43組，Dのみ40組であり，救済数が近くても対象は異なった．Fのみ・Dのみの救済計83組について，両条件166履歴・398修正遷移を静的に確認した．
 独立再生成B4では同じ初期コードを保持し，初期失敗に対して最大3回，前回コードや診断を与えず再生成した．B4は217/545組（39.8%）で成功し，最終成功は672/1,000組（67.2%）であった．追加1,342要求，995,815 tokens，追加tokens／追加成功は4,589.0であった．最大生成回数が同じでも入力情報・seed規則・実行時期が異なり，因果効果は断定しない．
 未救済例への消費を含む追加tokens／救済はR18,852.6，F9,333.8，D10,976.6であった．3回目の修正はFで28組，Dで33組を追加救済した．これらは保存記録と部分追試を組み合わせた計算値であり，全件新実験の実測コストではない．結果は今回のモデル・タスクと指定入力での評価に限られ，介入の一般的優劣，因果効果，統計的有意差を主張しない．今後は介入選択・停止方策を事前固定し，別seed・タスクで検証する必要がある．'''
@@ -179,8 +179,8 @@ CHAPTERS=[
 '本研究は，回路を返す関数の存在，回路の構築と評価処理，指定入力の期待状態または分布，所定の構造要件を区別する．量子回路では，実行可能性と期待出力への適合は別の性質である．測定分布が一致しても，全入力で同じアルゴリズムを実装している保証にはならない．',
 '本研究は，選定した量子回路課題における介入の救済対象と追加計算コストを記述する実証研究である．一般の量子プログラム全体への網羅的評価や，形式的な同値性証明は対象に含めない．その範囲を明確にしたうえで，成功例と失敗例を同じ分母で扱う．'])]),
 ('介入条件と評価指標',[
-('共有初期と五つの条件',[
-'モデル・タスク・seedの組を初期組と呼ぶ．Bは初期生成のみの条件である．R/F/DはBと同じ初期コードと判定を共有し，初期失敗に対して最大3回の修正を行う．成功した時点で停止し，以降の修正は行わない．この対応により，初期生成の違いを介入差と混同しにくくする．',
+('6条件と共有初期コード',[
+'表3.1に6条件の方法，最大生成回数と役割を示す．モデル・タスク・seedの組を初期組と呼ぶ．Bは初期生成のみの条件である．R/F/DはBと同じ初期コードと判定を共有し，初期失敗に対して最大3回の修正を行う．成功した時点で停止し，以降の修正は行わない．R/F/D/B4の最大4回は，初回1回と最大3回の追加生成を意味する．B4もBの初期コードを共有する一方，PはBとは異なる初期コードを独立に生成する．',
 'Rは自己見直し，Fは実行結果提示，Dは説明・原因分析を促す自己デバッグである．Pは初回プロンプトに注意事項を追加して独立に生成する条件であり，同じコードを修正する条件ではない．Pの対応比較は，Bの初期失敗に対応して成功した場合と，Bの初期成功に対応して失敗した場合を分ける．']),
 ('独立再生成対照B4',[
 'B4は初期1回を含む最大4回生成である．Bと同じ初期コード・L3判定を用い，初期成功455組は保持する．初期失敗545組のみ，前回コードと診断を与えず課題仕様から最大3回独立再生成し，L3成功時に停止する．初期失敗からの成功は修正介入による救済と区別する．',
@@ -290,8 +290,8 @@ JA_SUMMARY = JA_SUMMARY.replace('組み合わせた到達履歴を採用した�
 CHAPTERS[0][1][0][1].append(DEFINITIONS)
 for _chapter_index, (_chapter_title, _sections) in enumerate(CHAPTERS):
     CHAPTERS[_chapter_index] = (polish(_chapter_title), [(polish(t), [polish(p) for p in ps]) for t,ps in _sections])
-CHAPTERS[5][1][0][1].insert(1, '図2は同じ初期失敗545組を分母として追加成功率を比較したものである．R/F/Dは修正による救済，B4は独立再生成による追加成功として区別する．')
-CHAPTERS[5][1][4][1].insert(1, '図3はこの対応を件数に比例する帯で示したものである．共通救済と片側のみの救済を，双方未救済の集合と合わせて比較できる．')
+CHAPTERS[5][1][0][1].insert(2, '図3は同じ初期失敗545組を分母として追加成功率を比較したものである．R/F/Dは修正による救済，B4は独立再生成による追加成功として区別する．')
+CHAPTERS[5][1][4][1].insert(1, '図4はこの対応を件数に比例する帯で示したものである．共通救済と片側のみの救済を，双方未救済の集合と合わせて比較できる．')
 
 
 
@@ -305,10 +305,9 @@ def abstract():
 
 def thesis_tables(d, chapter):
     if chapter == 3:
-        table(d,'表3.1　条件と修正時に与える情報',['条件','入力・特徴','生成・停止'],[
-            ['B','課題仕様から初期生成','1回'],['R','前回コードと自己点検の指示','最大3修正・成功時停止'],
-            ['F','前回コードと実行ベースの診断','最大3修正・成功時停止'],['D','Fの診断＋説明・原因分析','最大3修正・成功時停止'],
-            ['P','課題仕様＋生成前注意事項','独立生成1回'],['B4','前回コード・診断なしで再生成','初回込み最大4回・成功時停止']],widths=[16,84,60])
+        from six_conditions import DEFINITIONS
+        table(d,'表3.1　6条件の方法・最大生成回数・役割',
+              ['条件','方法','最大生成回数','役割'],DEFINITIONS,widths=[16,48,30,66])
     elif chapter == 5:
         table(d,'表5.1　モデルの略号と識別子',['略号','モデルタグ','初期組数'],[[s,m,200] for s,m in MODELS],widths=[18,112,30])
     elif chapter == 6:
@@ -371,6 +370,10 @@ def legacy_thesis():
             heading(d,f'{n}.{j}　{subtitle}',2)
             for paragraph_index,text in enumerate(paragraphs):
                 para(d,text)
+                if (n,j,paragraph_index)==(6,1,0):
+                    from six_conditions import table_rows
+                    table(d,'表6.0　6条件の最終L3成功率（全1,000初期組）',
+                          ['条件','L3成功数','分母','最終L3成功率'],table_rows(),widths=[20,42,42,56])
                 if (n,j,paragraph_index)==(7,2,0):thesis_tables(d,7)
             # Insert each table near its first textual reference.
             if (n,j)==(3,1):thesis_tables(d,3)
@@ -518,6 +521,8 @@ def slides():
 
 def source_record():
     sources=list(B4_SOURCE.glob('*.json'))+list(B4_SOURCE.glob('*.csv'))+[SOURCE/'results_snapshot.json',SOURCE/'validation_report.json',ANALYSIS/'manifest.json',ANALYSIS/'core/repair_summary.csv',ANALYSIS/'core/sanity_report.json',ANALYSIS/'sanity_report.json',ANALYSIS/'core/fd_overlap_summary.csv',ROOT/'harness/evaluator.py',ROOT/'harness/readout.py',ROOT/'tasks/__init__.py']
+    from six_conditions import SOURCES as SIX_SOURCES
+    sources += SIX_SOURCES
     sources += [HERE/n for n in ['intervention_catalog.csv','case_studies.json','experiment_prompts.json','enrichment_manifest.json']]
     data={'created_at_utc':datetime.now(timezone.utc).isoformat(),'status':'draft','source_snapshot_at_utc':SNAP['captured_at_utc'],
       'source_hashes':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},

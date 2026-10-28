@@ -184,8 +184,9 @@ def toc(d):
 def remap(text):
     text = polish(text)
     mappings = {'表3.1': '表1', '表5.1': '表2'}
-    mappings.update({f'表6.{i}': f'表{i+2}' for i in range(1, 11)})
-    mappings['表7.1'] = '表10'
+    mappings.update({f'表6.{i}': f'表{i+3}' for i in range(1, 11)})
+    mappings['表6.0'] = '表3'
+    mappings['表7.1'] = '表11'
     for old, new in sorted(mappings.items(), key=lambda item: -len(item[0])):
         text = text.replace(old, new)
     text = text.replace('付録A', '付録（8.1節）').replace('付録B', '付録（8.2節）')
@@ -301,9 +302,9 @@ def build_thesis():
                 level = 3 if old_chapter in [3,4,5,10,11,12] else 2
             if level:
                 if old_chapter == 6 and title == 'モデル別の結果':
-                    add_figure(d, 2)
-                if old_chapter == 6 and title == '追加計算コストと停止回数':
                     add_figure(d, 3)
+                if old_chapter == 6 and title == '追加計算コストと停止回数':
+                    add_figure(d, 4)
                 if old_chapter == 10 and level == 3 and counters[1] == 0:
                     add_heading(d, '出典と再現性', 2, counters, headings)
                 p = add_heading(d, title, level, counters, headings)
@@ -379,6 +380,8 @@ def build_thesis():
         elif started and child.tag == qn('w:tbl'):
             copy = deepcopy(child)
             body.insert(len(body)-1, copy)
+            if table_index == 3:
+                add_figure(d, 2)
     # Clear legacy direct font/spacing settings in copied tables.
     for table in d.tables:
         for row_index, row in enumerate(table.rows):

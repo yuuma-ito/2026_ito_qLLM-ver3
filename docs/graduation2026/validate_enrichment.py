@@ -40,7 +40,7 @@ def validate():
     checks = {
         'source_inputs_unchanged':all(digest(ROOT/p)==h for p,h in manifest['inputs_sha256'].items()),
         'publication_outputs_unchanged':all(digest(HERE/p)==h for p,h in manifest['outputs_sha256'].items()),
-        'ten_tables':len(tables)==10,
+        'eleven_tables':len(tables)==11,
         'catalog_matches_existing_failure_count_table':True,
         'catalog_matches_requested_rates':[[r[c+'_rate_percent'] for c in ['F','D','B4']] for r in catalog]==[
             ['21.4','26.6','24.7'],['60.3','54.0','61.1'],['36.9','27.7','70.8']],
@@ -70,7 +70,7 @@ def validate():
         '初期失敗事例', '失敗した生成要求の消費も含む追加計算コスト']) and all(normalize(t) not in prose for t in [
         '追加でL3を達成するか', '同じ方式の診断', '初期失敗組', '未成功例への消費も含む追加計算コスト'])
     for row in catalog:
-        old = next(r for r in tables[4][1:] if r[0]==row['label'])
+        old = next(r for r in tables[5][1:] if r[0]==row['label'])
         for c,index in [('F',3),('D',4),('B4',5)]:
             checks['catalog_matches_existing_failure_count_table'] &= int(old[1])==int(row['initial_failures']) and int(old[index])==int(row[c+'_successes']) and f'{100*int(old[index])/int(old[1]):.1f}'==row[c+'_rate_percent']
     history = list(csv.DictReader((ROOT/'docs/analysis/reachable_rescues_20261016/reachable_rounds.csv').open()))
