@@ -74,7 +74,7 @@ def configure(d):
         st = d.styles[name]
         font(st)
         pf = st.paragraph_format
-        pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+        pf.alignment = WD_ALIGN_PARAGRAPH.LEFT
         # Neither line spacing nor paragraph spacing was established by the
         # source description. Leave these unspecified rather than fixing 17pt.
         for tag in ['spacing', 'ind']:
@@ -143,7 +143,7 @@ def numbering(d):
 
 def paragraph(d, text, size=10.5, heading=False, center=False, bold=False):
     p = d.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER if center else WD_ALIGN_PARAGRAPH.JUSTIFY
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER if center else WD_ALIGN_PARAGRAPH.LEFT
     font(p.add_run(text), size, heading, bold)
     return p
 
@@ -189,7 +189,7 @@ def remap(text):
     if text.startswith('提出年月と日英の正式表記'):
         text = text.replace('提出年月と日英の正式表記', '原本の書式と題目の正式承認')
     if text.startswith('第2章で関連研究'):
-        text = ('第2章で関連研究を整理し，第3章で提案手法として介入条件・評価指標・実装・実験設定を述べる．'
+        text = ('第2章で関連研究を整理し，第3章で評価・実験方法として介入条件・評価指標・実装・実験設定を述べる．'
                 '第4章で結果，第5章で考察，第6章で結論と今後の課題を述べる．'
                 '第7章に参考文献，第8章に出典と指標の付録を置く．'
                 '本稿は2026-10-16版の到達経路と2026-10-22固定のB4追加実験 [3] に基づく草稿であり，今回の執筆では追加生成・生成コード実行を行っていない．')
@@ -217,8 +217,7 @@ def build_thesis():
     for text in content.JA_SUMMARY.splitlines():
         paragraph(d, text)
     d.add_page_break(); toc(d)
-    # Preserve the template's intentional blank page following the TOC.
-    d.add_page_break(); d.add_page_break()
+    # Chapter style starts the body on the next page; no blank sheet after TOC.
     started = False
     old_chapter = 0
     table_index = 0
@@ -248,14 +247,14 @@ def build_thesis():
                     if old_chapter in [4, 5]:
                         title, level = match[2], 2
                     else:
-                        title = {1:'はじめに', 2:'関連研究', 3:'提案手法', 6:'結果', 7:'考察', 8:'おわりに'}[old_chapter]
+                        title = {1:'はじめに', 2:'関連研究', 3:'評価・実験方法', 6:'結果', 7:'考察', 8:'おわりに'}[old_chapter]
                         level = 1
                 elif title == '参考文献':
                     old_chapter, title, level = 9, '参考文献', 1
                 elif title.startswith('付録A'):
                     old_chapter, title, level = 10, '付録', 1
                 elif title.startswith('付録B'):
-                    old_chapter, title, level = 11, '指標の読み方と提出前確認', 2
+                    old_chapter, title, level = 11, '指標の読み方', 2
             elif style == 'Heading 2':
                 title = re.sub(r'^(?:\d+\.\d+|A\.\d+)\s*', '', title)
                 level = 3 if old_chapter in [3,4,5,10,11] else 2
@@ -269,7 +268,7 @@ def build_thesis():
                     add_heading(d, '介入条件と評価指標', 2, counters, headings)
                 continue
             p = d.add_paragraph()
-            p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+            p.alignment = WD_ALIGN_PARAGRAPH.LEFT
             p.paragraph_format.widow_control = True
             # The observed 3.47mm indent is not established as a universal rule;
             # retain no universal first-line indent until the source is present.
@@ -302,8 +301,10 @@ def build_thesis():
     # Clear legacy direct font/spacing settings in copied tables.
     for table in d.tables:
         for row_index, row in enumerate(table.rows):
-            for cell in row.cells:
+            for col_index, cell in enumerate(row.cells):
                 for p in cell.paragraphs:
+                    numeric = bool(re.fullmatch(r'[0-9,./%]+', cell.text.strip()))
+                    p.alignment = (WD_ALIGN_PARAGRAPH.CENTER if row_index == 0 and col_index > 0 else (WD_ALIGN_PARAGRAPH.RIGHT if numeric else WD_ALIGN_PARAGRAPH.LEFT))
                     p.paragraph_format.keep_together = True
                     p.paragraph_format.keep_with_next = row_index < len(table.rows)-1
                     for run in p.runs:
@@ -317,18 +318,19 @@ def build_thesis():
         'fonts': FONTS, 'body_pt':10.5, 'heading_pt':[18,14,12],
         'provided_identity': {'student':'2023TC011 伊藤 悠真','supervisor':'横山 哲郎','date':'2027年1月','affiliation':'南山大学 理工学部 電子情報学科'},
         'title_status': 'Fixed research title specified by the user on 2026-10-25; retain across future revisions.',
-        'implemented': ['Heading 1–3 linked multilevel numbering','TOC levels 1–3 with cached PDF-matched pages','decimal PAGE field including cover','SEQ captions and REF table references','intentional blank page after TOC','six body chapters followed by references and appendix'],
+        'implemented': ['Heading 1–3 linked multilevel numbering','TOC levels 1–3 with cached PDF-matched pages','decimal PAGE field including cover','SEQ captions and REF table references','no blank page between TOC and body','six body chapters followed by references and appendix'],
         'supplemental_settings_not_verified_against_original': [
             'Cover vertical spacing: paragraph-before 45/60/100/40/35pt; visual coordinates unknown.',
             'Normal line/paragraph spacing left unspecified; original style inheritance cannot be recovered.',
             'No universal 3.47mm first-line indent; description did not establish this for all paragraphs.',
             'Heading bold off, left indent 0, keep-with-next; lower-level spacing before 8pt / after 6pt.',
             'TOC cache 9pt single-spaced, 4mm indent per level, right tab 169mm; automatic TOC remains editable.',
-            'Table layout retained from previous draft, 160mm width, 10.5pt; captions use provisional sequential numbering.',
-            'Blank page follows TOC even if TOC uses multiple pages; no fixed 11-page length imposed.',
+            'Tables use 160mm total width, explicit column proportions, left-aligned labels and right-aligned numeric cells at 10.5pt.',
+            'TOC may span multiple pages; the next page begins the body without a blank sheet.',
             'Appendix subsection 8.2 starts a new page to avoid a lone final subsection on its own page.'
         ],
         'pdf_font_limit': 'MS 明朝, MS Pゴシック and Century unavailable on server; PDF uses substitutes. Word fidelity requires original fonts and original template.',
+        'body_alignment': 'left; avoid distributed spacing in mixed Japanese/Latin text',
         'source_snapshot': str(content.SOURCE.relative_to(content.ROOT)),
     }
     (HERE/'format_spec.json').write_text(json.dumps(spec, ensure_ascii=False, indent=2)+'\n')

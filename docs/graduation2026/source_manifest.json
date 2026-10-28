@@ -47,10 +47,13 @@
   "thesis_expanded_on": "2026-10-28",
   "thesis_expansion_scope": "固定集計を維持した本文の大幅拡充。新規生成・生成コード実行なし。",
   "manuscript_source_hashes": {
-    "docs/graduation2026/build.py": "29ad675a6ab4ba474978e154832f0555aa0487b1247e32d6943d15a75b2fa2fa",
-    "docs/graduation2026/template_thesis.py": "af72b8b1b6675fd2e6375e1fea03175a978c3b63057bc7513bb00ebde7ea6624",
-    "docs/graduation2026/thesis_expansion.py": "70dfd990e4571cf44dea7c3d843c07d2cb2c1e17f5b370af34a854232607ac01",
+    "docs/graduation2026/build.py": "1c7855c56e781bf907a60c1db25ec88300dabe8f3b2d7148476de49c6a838a8f",
+    "docs/graduation2026/template_thesis.py": "702ace7842253f08f1663da4fbe944fe4193ac3dfd4237898b1cd676f6130de0",
+    "docs/graduation2026/thesis_expansion.py": "f543ff132e5ece5e9d2e6d7644aee6658122f97fa85c21e7b220fbfeaa39fd67",
     "docs/graduation2026/bibliography_sources.json": "91db67e56cdf84a606d53a75f7d11d0cedefb5354af7f13b9e577922e485f732"
   },
-  "thesis_expansion_report": "docs/graduation2026/expansion_report_20261028.json"
+  "thesis_expansion_report": "docs/graduation2026/expansion_report_20261028.json",
+  "thesis_revision_on": "2026-10-28",
+  "thesis_revision_scope": "ユーザーの6点の指摘に対応。空白ページ削除・第3章改題・第4/5章と表の統合・左揃え・作業メモ分離。固定実験結果を保持。",
+  "thesis_revision_report": "docs/graduation2026/revision_report_20261028.json"
 }

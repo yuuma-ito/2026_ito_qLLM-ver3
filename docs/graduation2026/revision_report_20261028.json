@@ -1,0 +1,59 @@
+{
+  "validated_at_utc": "2026-10-28T02:12:43.670775+00:00",
+  "passed": true,
+  "checks": {
+    "all_expected_body_paragraphs_in_pdf": true,
+    "citation_numbers_in_first_use_order": true,
+    "B4_three_way_cross_counts": true,
+    "frozen_model_task_failure_totals": true,
+    "fixed_title": true,
+    "all_seven_bibliography_entries_in_pdf": true,
+    "repetition_reduced": true,
+    "results_7_sections_discussion_5_sections": true,
+    "no_administrative_material_in_pdf": true,
+    "method_chapter_renamed": true
+  },
+  "before": {
+    "body_paragraphs": 273,
+    "body_characters_excluding_tables": 42602,
+    "all_paragraph_characters_including_toc": 49401,
+    "tables": 12,
+    "pdf_pages": 35
+  },
+  "after": {
+    "body_paragraphs": 164,
+    "body_characters_excluding_tables": 25938,
+    "all_paragraph_characters_including_toc": 31692,
+    "tables": 9,
+    "pdf_pages": 25
+  },
+  "growth_ratio": 0.608844655180508,
+  "expected_body_paragraphs": 155,
+  "missing_body_paragraphs": [],
+  "citation_first_use": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7"
+  ],
+  "frozen_totals": {
+    "R/model": 96,
+    "F/model": 183,
+    "D/model": 180,
+    "B4/model": 217,
+    "R/task": 96,
+    "F/task": 183,
+    "D/task": 180,
+    "B4/task": 217,
+    "R/initial_failure": 96,
+    "F/initial_failure": 183,
+    "D/initial_failure": 180,
+    "B4/initial_failure": 217
+  },
+  "pdf_sha256": "1750e2fe149b0f894334b2f77185e7aa1079d95f5ff03c53dcfc9442495f29fb",
+  "docx_sha256": "940fe63601a91a155045f8bf9a4d79302b2117abf3fcd1084459c288d3c7db03",
+  "scope": "構成整理・重複削減・記述的計算の照合のみ。新規実験・モデル要求・生成コード実行0。"
+}

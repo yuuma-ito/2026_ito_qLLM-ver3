@@ -113,13 +113,13 @@ def heading(d,text,level=2,small=False):
         for r in p.runs:setfont(r,10.5,True,GOTHIC)
     return p
 
-def table(d,caption,headers,rows,size=10.5):
+def table(d,caption,headers,rows,size=10.5,widths=None):
     p=para(d,caption,size,center=True,indent=False);p.paragraph_format.keep_with_next=True
     t=d.add_table(rows=1,cols=len(headers));t.autofit=False
     cols=d.sections[-1]._sectPr.find(qn('w:cols'))
     narrow=cols is not None and cols.get(qn('w:num'))=='2'
     width=81 if narrow else 160
-    ratios=([.32,.17,.17,.17,.17] if narrow and len(headers)==5 else [1/len(headers)]*len(headers))
+    ratios=([w/sum(widths) for w in widths] if widths else ([.32,.17,.17,.17,.17] if narrow and len(headers)==5 else [1/len(headers)]*len(headers)))
     for col,ratio in zip(t.columns,ratios):col.width=Mm(width*ratio)
     tw=t._tbl.tblPr.find(qn('w:tblW'));tw.set(qn('w:type'),'dxa');tw.set(qn('w:w'),str(round(width/25.4*1440)))
     for c,text in zip(t.rows[0].cells,headers): c.text=str(text)
@@ -283,46 +283,37 @@ def abstract():
 
 
 def thesis_tables(d, chapter):
-    if chapter==3:
+    if chapter == 3:
         table(d,'表3.1　条件と修正時に与える情報',['条件','入力・特徴','生成・停止'],[
-          ['B','課題仕様から初期生成','1回'],['R','前回コードと自己点検の指示','最大3修正・成功時停止'],
-          ['F','前回コードと実行ベースの診断','最大3修正・成功時停止'],['D','Fの診断＋説明・原因分析の指示','最大3修正・成功時停止'],['P','課題仕様＋生成前注意事項','独立生成1回']])
-    if chapter==5:
-        table(d,'表5.1　モデルの略号と識別子',['略号','モデルタグ','初期組数'],[[s,m,200] for s,m in MODELS])
-    if chapter==6:
-        table(d,'表6.1　初期失敗545組に対する救済',['条件','救済組数','救済率','最終成功／1,000'],[
-            [s,r['rescued'],f"{r['rescue_rate']*100:.1f}%",r['final_successes']]
-            for s,c in CONDITIONS for r in SNAP['primary']['overall'] if r['condition_id']==c])
-        table(d,'表6.2　モデル別の救済組数（括弧内は率）',['モデル','失敗分母','R','F','D'],model_rows(True))
-        table(d,'表6.3　初期失敗類型別の救済組数',['初期失敗','分母','R','F','D'],error_rows())
-        taskids=['T1_Bell','T2_GHZ','T3a_DJ_constant','T3b_DJ_balanced','T4_BV_011','T5_Grover_11','T6_QFT_001','T7_IQFT_001','T8_QPE_001','T9_Ansatz_001']
-        names=['Bell','GHZ','DJ constant','DJ balanced','BV','Grover','QFT','IQFT','QPE','Ansatz']
-        data=[]
-        for task,name in zip(taskids,names):
-            rs=[row('task',task,c) for _,c in CONDITIONS];data.append([name,rs[0]['initial_failures']]+[r['rescued'] for r in rs])
-        table(d,'表6.4　タスク別の救済組数',['タスク','失敗分母','R','F','D'],data)
-        table(d,'表6.5　F/Dの救済対象の分割（分母545組）',['共通','Fのみ','Dのみ','双方未救済'],[[140,43,40,322]])
-        costs={r['condition_id']:r for r in SNAP['overall_costs'] if r['cap']==3}
-        table(d,'表6.6　初期生成を除く追加消費（未救済を含む）',['条件','保存tokens','新tokens','tokens／救済','秒／救済'],[
-            [s,f"{costs[c]['saved_prefix_tokens']:,}",f"{costs[c]['new_suffix_tokens']:,}",f"{costs[c]['tokens_per_rescue']:,.1f}",f"{costs[c]['seconds_per_rescue']:,.1f}"] for s,c in CONDITIONS])
-        third={r['condition_id']:r for r in SNAP['third_round']}
-        table(d,'表6.7　3回目の追加救済と消費',['条件','追加／未救済','追加tokens','要求秒','2回で失う割合'],[
-            [s,f"{third[c]['additional_rescues']}/{third[c]['at_risk_after_2']}",f"{third[c]['third_round_tokens']:,}",f"{third[c]['third_round_seconds']:,.1f}",f"{third[c]['loss_if_stop_at_2']*100:.1f}%"] for s,c in CONDITIONS])
-
-
-    if chapter==6:
-        table(d,'表6.8　最大4回生成での比較（初期失敗545組）',
-              ['条件','追加成功','率','最終成功','追加tokens'],
-              [[r['condition'],r['successes_from_initial_failure'],f"{float(r['success_from_initial_failure_rate'])*100:.1f}%",r['final_L3_successes'],f"{int(r['additional_tokens']):,}"] for r in b4_rows('overall')])
-        for number,grouping,labels,title in [
-            (9,'model',[(short,'ollama:'+model) for short,model in MODELS],'モデル別'),
-            (10,'initial_failure',ERRORS,'初期失敗類型別')]:
+            ['B','課題仕様から初期生成','1回'],['R','前回コードと自己点検の指示','最大3修正・成功時停止'],
+            ['F','前回コードと実行ベースの診断','最大3修正・成功時停止'],['D','Fの診断＋説明・原因分析','最大3修正・成功時停止'],
+            ['P','課題仕様＋生成前注意事項','独立生成1回'],['B4','前回コード・診断なしで再生成','初回込み最大4回・成功時停止']],widths=[16,84,60])
+    elif chapter == 5:
+        table(d,'表5.1　モデルの略号と識別子',['略号','モデルタグ','初期組数'],[[s,m,200] for s,m in MODELS],widths=[18,112,30])
+    elif chapter == 6:
+        overall={r['condition']:r for r in b4_rows('overall')}
+        table(d,'表6.1　初期失敗545組からの追加成功',['条件','追加成功','率','最終成功／1,000'],[
+            [c,overall[c]['successes_from_initial_failure'],f"{100*float(overall[c]['success_from_initial_failure_rate']):.1f}%",overall[c]['final_L3_successes']]
+            for c in ['R','F','D','B4']],widths=[18,36,36,70])
+        for number,grouping,labels,title,widths in [
+            (2,'model',[(s,'ollama:'+m) for s,m in MODELS],'モデル別',[35,25,25,25,25,25]),
+            (3,'initial_failure',THESIS_ERRORS,'初期失敗類型別',[56,18,21.5,21.5,21.5,21.5]),
+            (4,'task',THESIS_TASKS,'タスク別',[48,24,22,22,22,22])]:
             data=[]
             for label,value in labels:
-                rr={r['condition']:r for r in b4_rows(grouping,value)}
-                data.append([label,rr['B4']['initial_failures']]+[rr[c]['successes_from_initial_failure'] for c in ['B4','R','F','D']])
-            table(d,f'表6.{number}　{title}の初期失敗からの成功', ['対象','失敗分母','B4','R','F','D'],data)
+                rs={r['condition']:r for r in b4_rows(grouping,value)}
+                data.append([label,rs['B4']['initial_failures']]+[rs[c]['successes_from_initial_failure'] for c in ['R','F','D','B4']])
+            table(d,f'表6.{number}　{title}の追加成功数',['対象','分母','R','F','D','B4'],data,widths=widths)
+        table(d,'表6.5　F/Dの救済対象（初期失敗545組）',['共通','Fのみ','Dのみ','双方未救済'],[[140,43,40,322]])
+        table(d,'表6.6　共有初期を除く追加消費（未成功への消費を含む）',['条件','追加要求','追加tokens','tokens／追加成功'],[
+            [c,overall[c]['additional_requests'],f"{int(overall[c]['additional_tokens']):,}",f"{float(overall[c]['tokens_per_added_success']):,.1f}"] for c in ['R','F','D','B4']],widths=[18,30,54,58])
+        third={r['condition_id']:r for r in SNAP['third_round']}
+        table(d,'表6.7　3回目の追加救済と消費',['条件','追加／未救済','追加tokens','要求秒','2回で失う割合'],[
+            [s,f"{third[c]['additional_rescues']}/{third[c]['at_risk_after_2']}",f"{third[c]['third_round_tokens']:,}",f"{third[c]['third_round_seconds']:,.1f}",f"{third[c]['loss_if_stop_at_2']*100:.1f}%"] for s,c in CONDITIONS],widths=[16,34,34,32,44])
 
+
+THESIS_ERRORS=[('import失敗','import_error'),('回路構築失敗','build_error'),('構文誤り','syntax'),('出力不一致','wrong_output'),('IF不適合','interface_mismatch'),('量子ビット数','qubit_count_mismatch'),('その他（未定義変数）','unknown_error')]
+THESIS_TASKS=[('Bell','T1_Bell'),('GHZ','T2_GHZ'),('DJ constant','T3a_DJ_constant'),('DJ balanced','T3b_DJ_balanced'),('BV','T4_BV_011'),('Grover','T5_Grover_11'),('QFT','T6_QFT_001'),('IQFT','T7_IQFT_001'),('QPE','T8_QPE_001'),('Ansatz','T9_Ansatz_001')]
 
 def legacy_thesis():
     d=setup();
@@ -363,7 +354,7 @@ def legacy_thesis():
             thesis_tables(d,6)
             # Place tables after the prose that first discusses them.
             body=d._element.body
-            for number,target in [(1,'6.2'),(2,'6.3'),(3,'6.3'),(4,'6.4'),(5,'6.5'),(6,'6.6'),(7,'6.6'),(8,'6.8'),(9,'6.8'),(10,'6.8')]:
+            for number,target in [(1,'6.2'),(2,'6.3'),(3,'6.4'),(4,'6.5'),(5,'6.6'),(6,'6.7'),(7,'6.7')]:
                 caption=next(e for e in body if e.tag==qn('w:p') and ''.join(e.itertext()).startswith(f'表6.{number}　'))
                 tbl=caption.getnext(); spacer=tbl.getnext()
                 anchor=next(p._p for p in d.paragraphs if p.text.startswith(target+'　'))
@@ -388,13 +379,12 @@ def legacy_thesis():
        '検証：core/sanity_report.json，sanity_report.json，validation_report.json',
        '公開資料には生成コード・prompt・API応答・生例外文・raw.jsonl・秘密情報を含めない．今回の資料作成は固定公開集計の読み取りと文書化であり，追加のモデル要求や生成コード再実行は行わない．']:
         para(d,text,10,indent=False)
-    d.add_page_break();heading(d,'付録B　指標の読み方と提出前確認',1)
+    d.add_page_break();heading(d,'付録B　指標の読み方',1)
     for title,text in [
       ('集計単位','初期組はモデル×タスク×seedの1,000組，条件記録は各組5条件の5,000記録，到達roundは現在の経路上の9,249 roundである．単位を混ぜて成功率の分母にしない．'),
       ('退行0の意味','R/F/Dは初期成功を保持し，修正中も成功時に停止する．退行0はこの設計を反映しており，自由な修正を続けても正しさが保たれる保証ではない．'),
       ('静的変更の意味','import/APIやゲート名の変更は観察された文字列上の事実であり，その変更単独の因果的効果や意味的正しさを認定したものではない．'),
       ('コストの意味','共有初期を除く入力＋出力tokensと生成要求時間を集計した．再構成経路の計算値で，評価時間・全工程時間・金銭費用とは異なる．'),
-      ('提出前の確認','提出年月と日英の正式表記，指導教員による内容・参考文献書式，Wordでの再ページ割付，剽窃チェックと類似レポート，WebClass提出要領を確認する．卒業論文PDFは10MB以下を目安とし，超過時は指定されたProself経由で提出する．'),
     ]:
         heading(d,title,2);para(d,text)
     # Suppress blue hyperlink styles in the updated TOC as well.

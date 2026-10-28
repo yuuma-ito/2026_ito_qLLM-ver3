@@ -18,7 +18,7 @@ import template_thesis
 
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[1]
-CACHE=ROOT/'.cache/thesis_expansion_20261028'
+CACHE=ROOT/'.cache/thesis_revision_20261028'
 CACHE.mkdir(parents=True,exist_ok=True)
 
 
@@ -66,7 +66,10 @@ def validate():
     after=body_stats(HERE/'thesis.docx');after['pdf_pages']=len(pdf)
     if before:
         before['pdf_pages']=len(pymupdf.open(CACHE/'before/thesis.pdf'))
-        checks['body_at_least_tripled']=after['body_characters_excluding_tables']>=3*before['body_characters_excluding_tables']
+        checks['repetition_reduced'] = after['body_characters_excluding_tables'] < before['body_characters_excluding_tables']
+    checks['results_7_sections_discussion_5_sections'] = len(build.CHAPTERS[5][1]) == 7 and len(build.CHAPTERS[6][1]) == 5
+    checks['no_administrative_material_in_pdf'] = all(norm(t) not in full for t in ['提出に向けた確認','提出前の確認','剽窃チェック','WebClass','再現可能な資料作成と変更管理'])
+    checks['method_chapter_renamed'] = norm('評価・実験方法') in full and norm('提案手法') not in full
     for i,page in enumerate(pdf,1):
         page.get_pixmap(matrix=pymupdf.Matrix(1.2,1.2)).save(CACHE/f'page_{i:02}.png')
     for start in range(1,len(pdf)+1,6):
@@ -76,8 +79,8 @@ def validate():
             x=15+(k%3)*600;y=30+(k//3)*870
             canvas.paste(im,(x,y));draw.text((x,y-18),f'Page {n}',fill='black')
         canvas.save(CACHE/f'contact_{start:02}.png')
-    report={'validated_at_utc':datetime.now(timezone.utc).isoformat(),'passed':all(checks.values()),'checks':checks,'before':before,'after':after,'growth_ratio':after['body_characters_excluding_tables']/before['body_characters_excluding_tables'] if before else None,'expected_body_paragraphs':expected_count,'missing_body_paragraphs':missing,'citation_first_use':citations,'frozen_totals':sums,'pdf_sha256':hashlib.sha256((HERE/'thesis.pdf').read_bytes()).hexdigest(),'docx_sha256':hashlib.sha256((HERE/'thesis.docx').read_bytes()).hexdigest(),'scope':'本文拡充・記述的計算の照合のみ。新規実験・モデル要求・生成コード実行0。'}
-    (HERE/'expansion_report_20261028.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+    report={'validated_at_utc':datetime.now(timezone.utc).isoformat(),'passed':all(checks.values()),'checks':checks,'before':before,'after':after,'growth_ratio':after['body_characters_excluding_tables']/before['body_characters_excluding_tables'] if before else None,'expected_body_paragraphs':expected_count,'missing_body_paragraphs':missing,'citation_first_use':citations,'frozen_totals':sums,'pdf_sha256':hashlib.sha256((HERE/'thesis.pdf').read_bytes()).hexdigest(),'docx_sha256':hashlib.sha256((HERE/'thesis.docx').read_bytes()).hexdigest(),'scope':'構成整理・重複削減・記述的計算の照合のみ。新規実験・モデル要求・生成コード実行0。'}
+    (HERE/'revision_report_20261028.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(report,ensure_ascii=False,indent=2));assert report['passed']
 
 

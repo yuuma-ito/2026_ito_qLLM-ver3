@@ -39,7 +39,7 @@ def validate():
     checks['number_patterns'] = [e.find(qn('w:lvlText')).get(qn('w:val')) for e in definitions if e.tag==qn('w:lvl')]==['%1','%1.%2','%1.%2.%3']
     headings=[p for p in d.paragraphs if p.style.name.startswith('Heading ')]
     checks['heading_numbers_not_typed'] = all(not re.match(r'^(?:第\d|\d+\.|付録[A-Z])',p.text) for p in headings)
-    checks['chapter_order'] = [p.text for p in headings if p.style.name=='Heading 1']==['はじめに','関連研究','提案手法','結果','考察','おわりに','参考文献','付録']
+    checks['chapter_order'] = [p.text for p in headings if p.style.name=='Heading 1']==['はじめに','関連研究','評価・実験方法','結果','考察','おわりに','参考文献','付録']
     checks['heading_keep_with_next'] = all(d.styles[f'Heading {i}'].paragraph_format.keep_with_next for i in range(1,4))
     checks['chapter_page_breaks'] = d.styles['Heading 1'].paragraph_format.page_break_before
     instructions=[e.text.strip() for e in d.element.iter(qn('w:instrText'))]
@@ -49,35 +49,45 @@ def validate():
     checks['toc_dot_leaders_and_right_tabs']=all(
         p.paragraph_format.tab_stops[0].alignment==2 and p.paragraph_format.tab_stops[0].leader==1
         for p in d.paragraphs if '\t' in p.text)
-    checks['sequential_table_fields']=sum(i.startswith('SEQ Table ') for i in instructions)==len(d.tables)==12
+    checks['sequential_table_fields']=sum(i.startswith('SEQ Table ') for i in instructions)==len(d.tables)==9
     checks['editable_table_references']=any(i.startswith('REF Table') for i in instructions)
     checks['table_widths_within_170mm']=all(sum(c.width.mm for c in t.columns)<=170.1 for t in d.tables)
     checks['table_headers_repeat']=all(t.rows[0]._tr.get_or_add_trPr().find(qn('w:tblHeader')) is not None for t in d.tables)
     caption_ps=[p for p in d.paragraphs if any('SEQ Table' in e.text for e in p._p.iter(qn('w:instrText')))]
     checks['captions_before_table_and_kept_with_next']=all(p._p.getnext().tag==qn('w:tbl') and p.paragraph_format.keep_with_next for p in caption_ps)
     tables=[[[c.text for c in row.cells] for row in t.rows] for t in d.tables]
-    checks['model_table_matches_frozen_csv']=tables[3][1:]==[[str(c) for c in row] for row in template.content.model_rows(True)]
-    checks['failure_table_matches_frozen_csv']=tables[4][1:]==[[str(c) for c in row] for row in template.content.error_rows()]
-    b4 = template.content.b4_rows('overall')
-    expected = [[r['condition'],r['successes_from_initial_failure'],f"{float(r['success_from_initial_failure_rate'])*100:.1f}%",r['final_L3_successes'],f"{int(r['additional_tokens']):,}"] for r in b4]
-    checks['B4_overall_table_matches_frozen_csv'] = tables[9][1:]==expected
-    for index,grouping,labels in [(10,'model',[(short,'ollama:'+model) for short,model in template.content.MODELS]),(11,'initial_failure',template.content.ERRORS)]:
+    overall = {r['condition']:r for r in template.content.b4_rows('overall')}
+    expected = [[c,overall[c]['successes_from_initial_failure'],f"{100*float(overall[c]['success_from_initial_failure_rate']):.1f}%",overall[c]['final_L3_successes']] for c in ['R','F','D','B4']]
+    checks['overall_table_matches_frozen_csv'] = tables[2][1:] == expected
+    for index,grouping,labels in [(3,'model',[(short,'ollama:'+model) for short,model in template.content.MODELS]),(4,'initial_failure',template.content.THESIS_ERRORS),(5,'task',template.content.THESIS_TASKS)]:
         expected=[]
         for label,value in labels:
             rr={r['condition']:r for r in template.content.b4_rows(grouping,value)}
-            expected.append([label,rr['B4']['initial_failures']]+[rr[c]['successes_from_initial_failure'] for c in ['B4','R','F','D']])
-        checks['B4_'+grouping+'_table_matches_frozen_csv'] = tables[index][1:]==expected
+            expected.append([label,rr['B4']['initial_failures']]+[rr[c]['successes_from_initial_failure'] for c in ['R','F','D','B4']])
+        checks[grouping+'_table_matches_frozen_csv'] = tables[index][1:] == expected
+    checks['overlap_table_matches_counts'] = tables[6][1:] == [['140','43','40','322']]
+    checks['additional_cost_table_matches_csv'] = tables[7][1:] == [[c,overall[c]['additional_requests'],f"{int(overall[c]['additional_tokens']):,}",f"{float(overall[c]['tokens_per_added_success']):,.1f}"] for c in ['R','F','D','B4']]
+    third={r['condition_id']:r for r in template.content.SNAP['third_round']}
+    checks['third_round_table_matches_snapshot'] = tables[8][1:] == [[c,f"{third[k]['additional_rescues']}/{third[k]['at_risk_after_2']}",f"{third[k]['third_round_tokens']:,}",f"{third[k]['third_round_seconds']:,.1f}",f"{third[k]['loss_if_stop_at_2']*100:.1f}%"] for c,k in template.content.CONDITIONS]
+    checks['tables_not_justified'] = all(p.alignment in [0,1,2] for t in d.tables for r in t.rows for c in r.cells for p in c.paragraphs)
+    checks['body_left_aligned'] = all(p.alignment == 0 for p in d.paragraphs if p.text.strip() and p.style.name == 'Normal' and not any('SEQ Table' in e.text for e in p._p.iter(qn('w:instrText'))) and '\t' not in p.text and not any(t in p.text.replace('\n','') for t in ['卒　業　論　文',template.content.TITLE,'2023TC011','指導教員','2027年1月','南山大学 理工学部']))
     checks['B4_pairwise_counts_match_prose'] = {r['comparator']:[int(r.get(k) or 0) for k in ['both','B4_only',r['comparator']+'_only','neither']] for r in template.content.csv.DictReader((template.content.B4_SOURCE/'pairwise.csv').open())} == {'R':[69,148,27,301],'F':[131,86,52,276],'D':[120,97,60,268]}
     checks['B4_sanity_passed'] = json.loads((template.content.B4_SOURCE/'sanity_report.json').read_text())['passed']
     norm=lambda text:''.join(text.split())
     texts=[p.get_text() for p in pdf]
     checks['cover_identity_date']=all(norm(value) in norm(texts[0]) for value in ['卒業論文',template.content.TITLE,'2023TC011 伊藤 悠真','横山 哲郎','2027年1月'])
     checks['summary_second_page']=all(norm(value) in norm(texts[1]) for value in ['南山大学 理工学部 電子情報学科','要約','545','183','180'])
+    label_lines=[]
+    for page in pdf:
+        lines=[''.join(sp['text'] for sp in line['spans']) for b in page.get_text('dict')['blocks'] for line in b.get('lines',[])]
+        for pos,line in enumerate(lines):
+            if norm(line) == norm('表5 初期失敗類型別の追加成功数'):
+                label_lines.extend(lines[pos+1:])
+    checks['failure_labels_not_wrapped'] = all(any(norm(label) in norm(line) for line in label_lines) for label,_ in template.content.THESIS_ERRORS)
     checks['toc_third_page']='目次' in texts[2]
     first_body_page = int(cache[0]['page'])
-    expected_blank = first_body_page - 1
-    checks['only_intentional_blank_after_toc'] = [i for i,text in enumerate(texts,1) if len(norm(re.sub(r'\d+\s*$', '', text))) < 5] == [expected_blank]
-    checks['toc_may_span_multiple_pages'] = expected_blank >= 4 and all(str(entry['page']) in ''.join(texts[2:expected_blank-1]) for entry in cache)
+    checks['no_blank_pages'] = not [i for i,text in enumerate(texts,1) if len(norm(re.sub(r'\d+\s*$', '', text))) < 5]
+    checks['toc_may_span_multiple_pages'] = first_body_page >= 4 and all(str(entry['page']) in ''.join(texts[2:first_body_page-1]) for entry in cache)
     checks['continuous_visible_decimal_pages']=all(text.rstrip().splitlines()[-1]==str(i) for i,text in enumerate(texts,1))
     checks['pdf_a4']=all(abs(p.rect.width-595.28)<.6 and abs(p.rect.height-841.89)<.6 for p in pdf)
     outside=[];margin=[]
@@ -119,7 +129,7 @@ def validate():
         'font_fidelity':'DOCX specifies requested fonts; LibreOffice PDF uses substitutes. Final Microsoft Word rendering unverified.',
         'format_spec':'format_spec.json', 'source_snapshot_at_utc':manifest['source_snapshot_at_utc'],
         'new_experiments':0, 'new_model_requests':0,'generated_code_executions':0,
-        'artifact_sha256':{name:digest(HERE/name) for name in ['thesis.docx','thesis.pdf','build.py','template_thesis.py','thesis_expansion.py','convert_thesis.py','validate_template.py','validate_expansion.py','thesis_headings.json','toc_cache.json','format_spec.json','source_manifest.json','bibliography_sources.json','expansion_report_20261028.json','thesis_visual_review.json','README.md']},
+        'artifact_sha256':{name:digest(HERE/name) for name in ['thesis.docx','thesis.pdf','build.py','template_thesis.py','thesis_expansion.py','convert_thesis.py','validate_template.py','validate_expansion.py','thesis_headings.json','toc_cache.json','format_spec.json','source_manifest.json','bibliography_sources.json','expansion_report_20261028.json','revision_report_20261028.json','work_notes.txt','thesis_visual_review.json','README.md']},
         'out_of_margin_spans':margin,
         'pending':['Original template comparison, especially cover coordinates and inherited paragraph styles','Formal approval of thesis title','Final rendering and updated fields in Microsoft Word with the specified fonts','Supervisor review of content and references']}
     (HERE/'validation_report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
