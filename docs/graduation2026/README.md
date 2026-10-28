@@ -8,13 +8,32 @@
 
 | 資料 | 編集用 | 閲覧用 |
 | --- | --- | --- |
-| 卒業論文本体（表紙・要約・目次・空白ページ・付録を含む25ページ） | [thesis.docx](thesis.docx) | [thesis.pdf](thesis.pdf) |
+| 卒業論文本体（表紙・要約・目次・空白ページ・付録を含む26ページ） | [thesis.docx](thesis.docx) | [thesis.pdf](thesis.pdf) |
 | 要旨（個人研究・2ページ） | [abstract.docx](abstract.docx) | [abstract.pdf](abstract.pdf) |
 | 発表スライド（本編8枚・補足3枚） | [slides.pptx](slides.pptx) | [slides.pdf](slides.pdf) |
 
 [発表の要点メモ](speaker_notes.txt)は本編合計360秒の配分。PowerPointの各ページにも同じ要点を発表者ノートとして格納した。原稿の読み上げには使わず，スライドを見て自分の言葉で説明する練習に用いる。実際の発表時間はリハーサルで確認する。発表6分・質疑3分を想定している。
 
-## 2026-10-28の構成・体裁の見直し（現行版）
+## 2026-10-28の図追加・用語整理（現行版）
+
+現行PDFは26ページ・9表・3図。研究の題目と固定実験結果は保持した。
+
+- 図1：共有初期生成からR/F/D/B4への分岐、最大3回の追加生成と成功時停止、集計までの論理的手順（第3章）。Pは独立1回生成として区別し、保存履歴と追試に基づく集計であることを本文へ明記した。
+- 図2：初期失敗545組に対するR/F/D/B4の追加成功率（第4章）。R/F/Dの救済とB4の独立再生成を区別する。
+- 図3：Fのみ43組・共通140組・Dのみ40組・双方未救済322組を、件数に比例する帯で表示（第4章）。
+- 付録8.1.1〜8.1.3を、それぞれ「5モデル追加実験」「3モデル本実験」「2モデル補完実験」の保存設定へ改題。
+- 要約と本文冒頭に初期組・主L3・到達履歴を定義し、prefix/suffixの混在表現を日本語化。「追加消費」は「追加計算コスト」へ統一した。
+
+図は [thesis_figures.py](thesis_figures.py) が固定CSVから生成する。Wordには高解像度PNGを埋め込み、再利用用に [フローチャートPDF](figures/experiment_flow.pdf)・[追加成功率PDF](figures/additional_success_rates.pdf)・[F/D重なりPDF](figures/fd_overlap.pdf) と各SVGも保存した。[図の出典・数値](figures/figure_manifest.json)、[図の検証記録](figure_validation_report_20261028.json)から生成元を確認できる。
+
+```bash
+PYTHONPATH=.cache/graduation_plot_tools:.cache/graduation_tools .venv/bin/python docs/graduation2026/thesis_figures.py
+PYTHONPATH=.cache/graduation_tools .venv/bin/python docs/graduation2026/validate_figures.py
+```
+
+図の生成にはMatplotlib（今回3.11.2）とIPAexGothicを使用した。この環境では `.cache/graduation_plot_tools/` に依存を配置した。図の元CSV・生成コード・画像のhashを記録し、図番号はWordのSEQ、本文の参照はREFフィールドとした。キャプションは図の下へ配置する。用語の共通処理は [thesis_language.py](thesis_language.py) に保持する。
+
+## 2026-10-28の構成・体裁の見直し（図追加前の履歴）
 
 ユーザーの6点の指摘に基づき、重複を整理した25ページ版へ更新した。本文は25,938字（第1〜6章、見出し・目次・表セルを除く）。分量を増やした直前の35ページ版は下記の拡充履歴として区別する。
 
@@ -25,7 +44,7 @@
 - 本文は左揃え、表の説明・分類名は左揃え、数値は右揃えとし、両端揃えによる不自然な字間伸長を避けた。
 - 第3章を「評価・実験方法」へ改題。資料作成・変更管理・提出前確認は本文・付録から外し、[作業メモ](work_notes.txt)へ移動した。
 
-[構成整理の検証記録](revision_report_20261028.json)に直前版との比較、全本文段落の収録、引用順、集計との一致を記録した。空白なし・通し番号・目次・9表の整合・段落配置は [validation_report.json](validation_report.json)、最終25ページの画像確認は [thesis_visual_review.json](thesis_visual_review.json)を参照。
+[構成整理の検証記録](revision_report_20261028.json)に直前版との比較、全本文段落の収録、引用順、集計との一致を記録した。空白なし・通し番号・目次・9表の整合・段落配置は [validation_report.json](validation_report.json)、現行PDFの画像確認は [thesis_visual_review.json](thesis_visual_review.json)を参照。
 
 ## 2026-10-28の本文大幅拡充（構成整理前の履歴）
 

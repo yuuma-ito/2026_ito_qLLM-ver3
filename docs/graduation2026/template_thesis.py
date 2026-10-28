@@ -14,6 +14,8 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_TAB_ALIGNMENT, WD_TAB_LEADER
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 import build as content
+from thesis_language import polish
+import thesis_figures
 
 HERE = Path(__file__).resolve().parent
 MARKER = 'user-transcribed-template-20261020'
@@ -180,6 +182,7 @@ def toc(d):
 
 
 def remap(text):
+    text = polish(text)
     mappings = {'表3.1': '表1', '表5.1': '表2'}
     mappings.update({f'表6.{i}': f'表{i+2}' for i in range(1, 11)})
     for old, new in sorted(mappings.items(), key=lambda item: -len(item[0])):
@@ -196,9 +199,44 @@ def remap(text):
     return text
 
 
+
+def make_figure_references(p):
+    text = p.text
+    for child in list(p._p):
+        if child.tag != qn('w:pPr'):
+            p._p.remove(child)
+    for chunk in re.split(r'(図[1-9]\d*)', text):
+        if re.fullmatch(r'図[1-9]\d*', chunk):
+            font(p.add_run('図')); field(p, f'REF Figure{chunk[1:]} \\h', chunk[1:])
+        else:
+            font(p.add_run(chunk))
+    for r in p.runs: font(r)
+
+
+def add_figure(d, number):
+    spec = thesis_figures.FIGURES[number-1]
+    p = d.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.keep_with_next = True
+    p.paragraph_format.keep_together = True
+    run = p.add_run()
+    run.add_picture(str(thesis_figures.FIG_DIR/(spec['stem']+'.png')), width=Mm(spec['width_mm']))
+    p.runs[0]._r.xpath('.//wp:docPr')[0].set('descr', spec['caption'])
+    cap = d.add_paragraph()
+    cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    cap.paragraph_format.keep_together = True
+    font(cap.add_run('図'))
+    cap._p.append(element('bookmarkStart', id=1000+number, name=f'Figure{number}'))
+    field(cap, 'SEQ Figure \\* ARABIC', str(number))
+    cap._p.append(element('bookmarkEnd', id=1000+number))
+    font(cap.add_run(' '+spec['caption']))
+    for r in cap.runs: font(r)
+
+
 def build_thesis():
     # Retain the source manuscript, tables and appendices. Existing outputs were
     # backed up in .cache/graduation_template_before before this change.
+    thesis_figures.ensure()
     content.legacy_thesis()
     old = Document(HERE / 'thesis.docx')
     d = Document(); configure(d)
@@ -259,12 +297,19 @@ def build_thesis():
                 title = re.sub(r'^(?:\d+\.\d+|A\.\d+)\s*', '', title)
                 level = 3 if old_chapter in [3,4,5,10,11] else 2
             if level:
+                if old_chapter == 6 and title == 'モデル別の結果':
+                    add_figure(d, 2)
+                if old_chapter == 6 and title == '追加計算コストと停止回数':
+                    add_figure(d, 3)
                 if old_chapter == 10 and level == 3 and counters[1] == 0:
                     add_heading(d, '出典と再現性', 2, counters, headings)
                 p = add_heading(d, title, level, counters, headings)
                 if old_chapter == 11 and level == 2:
                     p.paragraph_format.page_break_before = True
                 if old_chapter == 3 and level == 1:
+                    p = paragraph(d, '図1に実験の論理的な比較手順を示す．初期成功の保持と初期失敗への追加生成を分ける．保存済みの生成履歴と部分追試に基づく集計であり，全件を新たに生成した実験ではない．')
+                    make_figure_references(p)
+                    add_figure(d, 1)
                     add_heading(d, '介入条件と評価指標', 2, counters, headings)
                 continue
             p = d.add_paragraph()
@@ -287,10 +332,11 @@ def build_thesis():
             else:
                 # Keep normal citations [n]; link table references to their
                 # caption numbers using editable REF fields.
-                chunks = re.split(r'(表[1-9]\d*(?!\d))', text)
+                chunks = re.split(r'([表図][1-9]\d*(?!\d))', text)
                 for chunk in chunks:
-                    if re.fullmatch(r'表[1-9]\d*', chunk):
-                        font(p.add_run('表')); field(p, f'REF Table{chunk[1:]} \\h', chunk[1:])
+                    if re.fullmatch(r'[表図][1-9]\d*', chunk):
+                        kind = 'Table' if chunk[0] == '表' else 'Figure'
+                        font(p.add_run(chunk[0])); field(p, f'REF {kind}{chunk[1:]} \\h', chunk[1:])
                     else:
                         font(p.add_run(chunk))
             for run in p.runs:

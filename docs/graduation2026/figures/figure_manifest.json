@@ -1,0 +1,81 @@
+{
+  "sources_sha256": {
+    "docs/analysis/independent_4_completed_20261022/summary.csv": "4ff68c4fb0f8d6f94bfd6c1eabe8018e14b29b97435ed028305550823b391344",
+    "docs/analysis/reachable_rescues_20261016/core/fd_overlap_summary.csv": "48e9b1aad2e0003e4331c0c84d976d835064aaed89aa5c2f449f388d933ef67e",
+    "docs/presentation_sources/20261016T_reachable_rescues/results_snapshot.json": "67df2972c197f90117c30541fd646d72ec64f4023df66d705c51010b392ea35d",
+    "docs/graduation2026/thesis_figures.py": "3072a0618373fb0e6223e6178e5c0dc014b795e52fca353a4a195669143fc077"
+  },
+  "rates": [
+    {
+      "condition": "R",
+      "added_successes": 96,
+      "denominator": 545,
+      "rate_percent": 17.61467889908257
+    },
+    {
+      "condition": "F",
+      "added_successes": 183,
+      "denominator": 545,
+      "rate_percent": 33.57798165137615
+    },
+    {
+      "condition": "D",
+      "added_successes": 180,
+      "denominator": 545,
+      "rate_percent": 33.027522935779814
+    },
+    {
+      "condition": "B4",
+      "added_successes": 217,
+      "denominator": 545,
+      "rate_percent": 39.81651376146789
+    }
+  ],
+  "fd_overlap": {
+    "F_only": 43,
+    "both": 140,
+    "D_only": 40,
+    "neither": 322
+  },
+  "flow": {
+    "initial_groups": 1000,
+    "initial_successes": 455,
+    "initial_failures": 545,
+    "additional_cap": 3,
+    "stopping": "L3 success or cap"
+  },
+  "artifacts_sha256": {
+    "fd_overlap.png": "65c68b4ccaffd109b96990319854390e3f643de7881a4d8bbf531153a1324807",
+    "additional_success_rates.png": "2681dd3614526fb9570894194374c18419e9e65b959411c48f8c40f99e3c6be7",
+    "experiment_flow.svg": "ef7d6e8017eb32014b66d301e83e9820b9f8cfe97d77e3116c89b701d6f6aec3",
+    "additional_success_rates.svg": "045513dd604df39fa0d302f0c91c8a20d8a21335fcc77514b0eb4c9cbee28a73",
+    "fd_overlap.svg": "9afd8a0426048c4d330d6e714e2f7f352331dcbc8834d2170f8e837042469f1d",
+    "additional_success_rates.pdf": "8ea2f197970ab268adc415503a237afc99b853c424125dc638365f7518f79cb5",
+    "experiment_flow.png": "88c78ee677480a2081634b9dfdf8d976ef16775fded175c636c3577f6108c363",
+    "experiment_flow.pdf": "e9868f127c64cf084c232659d1c011f149bee8d56a59884b362b7b5ed55e1b3e",
+    "fd_overlap.pdf": "a5eda0aea4ed64d552efa0e8156c84bf36f8b849e19c44a90f21eeb0e850b542"
+  },
+  "figures": [
+    {
+      "number": 1,
+      "stem": "experiment_flow",
+      "caption": "共有初期コードを起点とする比較手順",
+      "width_mm": 155
+    },
+    {
+      "number": 2,
+      "stem": "additional_success_rates",
+      "caption": "初期失敗545組に対する追加成功率（R/F/Dは修正による救済，B4は独立再生成）",
+      "width_mm": 160
+    },
+    {
+      "number": 3,
+      "stem": "fd_overlap",
+      "caption": "FとDの救済対象の重なり（初期失敗545組を排他的な4集合に分割）",
+      "width_mm": 160
+    }
+  ],
+  "new_generations": 0,
+  "generated_code_executions": 0,
+  "flow_scope": "論理的な比較手順。保存済み履歴と部分追試に基づく集計であり，全件新生成とは異なる。"
+}

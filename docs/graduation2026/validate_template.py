@@ -51,6 +51,11 @@ def validate():
         for p in d.paragraphs if '\t' in p.text)
     checks['sequential_table_fields']=sum(i.startswith('SEQ Table ') for i in instructions)==len(d.tables)==9
     checks['editable_table_references']=any(i.startswith('REF Table') for i in instructions)
+    checks['three_figures_with_sequential_fields'] = len(d.inline_shapes) == sum(i.startswith('SEQ Figure ') for i in instructions) == 3
+    checks['editable_figure_references'] = all(any(i.startswith('REF Figure'+str(n)+' ') for i in instructions) for n in [1,2,3])
+    figure_caps=[p for p in d.paragraphs if any('SEQ Figure' in e.text for e in p._p.iter(qn('w:instrText')))]
+    checks['figure_captions_below_images'] = len(figure_caps)==3 and all(p._p.getprevious() is not None and bool(p._p.getprevious().xpath('.//w:drawing')) for p in figure_caps)
+    checks['appendix_titles_distinct'] = [h['title'] for h in cache if h['number'] in ['8.1.1','8.1.2','8.1.3']] == ['5モデル追加実験の保存設定','3モデル本実験の保存設定','2モデル補完実験の保存設定']
     checks['table_widths_within_170mm']=all(sum(c.width.mm for c in t.columns)<=170.1 for t in d.tables)
     checks['table_headers_repeat']=all(t.rows[0]._tr.get_or_add_trPr().find(qn('w:tblHeader')) is not None for t in d.tables)
     caption_ps=[p for p in d.paragraphs if any('SEQ Table' in e.text for e in p._p.iter(qn('w:instrText')))]
@@ -70,7 +75,7 @@ def validate():
     third={r['condition_id']:r for r in template.content.SNAP['third_round']}
     checks['third_round_table_matches_snapshot'] = tables[8][1:] == [[c,f"{third[k]['additional_rescues']}/{third[k]['at_risk_after_2']}",f"{third[k]['third_round_tokens']:,}",f"{third[k]['third_round_seconds']:,.1f}",f"{third[k]['loss_if_stop_at_2']*100:.1f}%"] for c,k in template.content.CONDITIONS]
     checks['tables_not_justified'] = all(p.alignment in [0,1,2] for t in d.tables for r in t.rows for c in r.cells for p in c.paragraphs)
-    checks['body_left_aligned'] = all(p.alignment == 0 for p in d.paragraphs if p.text.strip() and p.style.name == 'Normal' and not any('SEQ Table' in e.text for e in p._p.iter(qn('w:instrText'))) and '\t' not in p.text and not any(t in p.text.replace('\n','') for t in ['卒　業　論　文',template.content.TITLE,'2023TC011','指導教員','2027年1月','南山大学 理工学部']))
+    checks['body_left_aligned'] = all(p.alignment == 0 for p in d.paragraphs if p.text.strip() and p.style.name == 'Normal' and not any('SEQ Table' in e.text or 'SEQ Figure' in e.text for e in p._p.iter(qn('w:instrText'))) and '\t' not in p.text and not any(t in p.text.replace('\n','') for t in ['卒　業　論　文',template.content.TITLE,'2023TC011','指導教員','2027年1月','南山大学 理工学部']))
     checks['B4_pairwise_counts_match_prose'] = {r['comparator']:[int(r.get(k) or 0) for k in ['both','B4_only',r['comparator']+'_only','neither']] for r in template.content.csv.DictReader((template.content.B4_SOURCE/'pairwise.csv').open())} == {'R':[69,148,27,301],'F':[131,86,52,276],'D':[120,97,60,268]}
     checks['B4_sanity_passed'] = json.loads((template.content.B4_SOURCE/'sanity_report.json').read_text())['passed']
     norm=lambda text:''.join(text.split())
@@ -129,7 +134,7 @@ def validate():
         'font_fidelity':'DOCX specifies requested fonts; LibreOffice PDF uses substitutes. Final Microsoft Word rendering unverified.',
         'format_spec':'format_spec.json', 'source_snapshot_at_utc':manifest['source_snapshot_at_utc'],
         'new_experiments':0, 'new_model_requests':0,'generated_code_executions':0,
-        'artifact_sha256':{name:digest(HERE/name) for name in ['thesis.docx','thesis.pdf','build.py','template_thesis.py','thesis_expansion.py','convert_thesis.py','validate_template.py','validate_expansion.py','thesis_headings.json','toc_cache.json','format_spec.json','source_manifest.json','bibliography_sources.json','expansion_report_20261028.json','revision_report_20261028.json','work_notes.txt','thesis_visual_review.json','README.md']},
+        'artifact_sha256':{name:digest(HERE/name) for name in ['thesis.docx','thesis.pdf','build.py','template_thesis.py','thesis_expansion.py','thesis_language.py','thesis_figures.py','validate_figures.py','figure_validation_report_20261028.json','figures/figure_manifest.json','convert_thesis.py','validate_template.py','validate_expansion.py','thesis_headings.json','toc_cache.json','format_spec.json','source_manifest.json','bibliography_sources.json','expansion_report_20261028.json','revision_report_20261028.json','work_notes.txt','thesis_visual_review.json','README.md']},
         'out_of_margin_spans':margin,
         'pending':['Original template comparison, especially cover coordinates and inherited paragraph styles','Formal approval of thesis title','Final rendering and updated fields in Microsoft Word with the specified fonts','Supervisor review of content and references']}
     (HERE/'validation_report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')

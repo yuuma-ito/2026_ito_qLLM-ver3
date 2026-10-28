@@ -273,6 +273,19 @@ CHAPTERS[7][1][0][1].append('独立再生成B4は同じ初期失敗545組中217�
 from thesis_expansion import apply as expand_thesis
 expand_thesis(CHAPTERS, REFS)
 
+# Use the same plain-language vocabulary in the abstract and generated body.
+from thesis_language import polish, DEFINITIONS
+JA_SUMMARY = polish(JA_SUMMARY)
+JA_SUMMARY = JA_SUMMARY.replace('対象は5モデル，10タスク，seed 0〜19の1,000初期組，5,000条件記録である．', '対象は5モデル，10タスク，seed 0〜19である．モデル・タスク・seedの組合せを初期組と呼び，1,000初期組・5,000条件記録を対象とする．')
+JA_SUMMARY = JA_SUMMARY.replace('成功は指定入力の出力一致と所定の構造要件を含む主L3で判定した．', '本研究における最終評価水準（L3，以下，主L3）は，指定入力の出力一致と所定の構造要件を含む成功基準である．')
+JA_SUMMARY = JA_SUMMARY.replace('組み合わせた到達履歴を採用した．', '組み合わせ，現行評価器の停止・修正規則に従って到達可能な生成履歴（以下，到達履歴）を採用した．')
+CHAPTERS[0][1][0][1].append(DEFINITIONS)
+for _chapter_index, (_chapter_title, _sections) in enumerate(CHAPTERS):
+    CHAPTERS[_chapter_index] = (polish(_chapter_title), [(polish(t), [polish(p) for p in ps]) for t,ps in _sections])
+CHAPTERS[5][1][0][1].insert(1, '図2は同じ初期失敗545組を分母として追加成功率を比較したものである．R/F/Dは修正による救済，B4は独立再生成による追加成功として区別する．')
+CHAPTERS[5][1][4][1].insert(1, '図3はこの対応を件数に比例する帯で示したものである．共通救済と片側のみの救済を，双方未救済の集合と合わせて比較できる．')
+
+
 
 def abstract():
     # The current university abstract has one canonical prose/table source.
@@ -365,7 +378,8 @@ def legacy_thesis():
     d.add_page_break();heading(d,'付録A　出典と再現性',1)
     manifest=json.loads((ANALYSIS/'manifest.json').read_text())
     for i,s in enumerate(manifest['source_settings'],1):
-        heading(d,f'A.{i}　元実験の保存設定',2)
+        experiment_label = ('5モデル追加実験' if 'shared_five_models' in s['source_dir'] else '3モデル本実験' if 'shared_three_models' in s['source_dir'] else '2モデル補完実験')
+        heading(d,f'A.{i}　{experiment_label}の保存設定',2)
         para(d,s['source_dir']+'/experiment_config.json',10,indent=False)
         para(d,'設定SHA-256：'+s['config_sha256'],9,indent=False)
         para(d,f"保存schema：{s['schema_version']}．ハーネスcommit：{s['git_commit']}．モデルdigestとプロンプト関数hashは元manifestに保持．",10,indent=False)
