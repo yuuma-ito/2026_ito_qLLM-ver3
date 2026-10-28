@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-28T03:13:43.012665+00:00",
+  "checked_at_utc": "2026-10-28T03:37:04.104729+00:00",
   "passed": true,
   "checks": {
     "frozen_sources_unchanged": true,
@@ -11,6 +11,10 @@
     "captions_in_pdf": true,
     "first_use_definitions_in_summary": true,
     "plain_language_applied": true,
+    "P_separate_path_labelled_in_figure": true,
+    "purpose_includes_B4_comparison": true,
+    "intervention_definition_includes_P": true,
+    "requested_Japanese_corrections": true,
     "standalone_vector_figures": true
   },
   "standalone": {
@@ -29,11 +33,11 @@
   },
   "figure_captions": [
     "図1 共有初期コードを起点とする比較手順",
-    "図2 初期失敗545組に対する追加成功率（R/F/Dは修正による救済，B4は独立再生成）",
+    "図2 初期失敗545組に対する条件別の追加成功率",
     "図3 FとDの救済対象の重なり（初期失敗545組を排他的な4集合に分割）"
   ],
   "pages": 26,
-  "pdf_sha256": "55df0f336860a702c9251d5f6bfee88472042cea300541a79fa3f8944f9de377",
+  "pdf_sha256": "51cef2f2da51c58c9fb8af87d0d194077e9d63ab6b7989ffc695c2f557d18aec",
   "source_manifest": "figures/figure_manifest.json",
   "new_generations": 0,
   "generated_code_executions": 0

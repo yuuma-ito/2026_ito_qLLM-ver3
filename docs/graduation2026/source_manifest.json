@@ -47,11 +47,11 @@
   "thesis_expanded_on": "2026-10-28",
   "thesis_expansion_scope": "固定集計を維持した本文の大幅拡充。新規生成・生成コード実行なし。",
   "manuscript_source_hashes": {
-    "docs/graduation2026/build.py": "6b0c98047968ce37ae2ad6772c5c979e2be04b95bcf16bb950dd3b541a229fbd",
-    "docs/graduation2026/template_thesis.py": "b0e6ce81d22e82266a957aae0d0e5977b0ffa739e431ec3dadbc2028ac0f9d09",
-    "docs/graduation2026/thesis_expansion.py": "f543ff132e5ece5e9d2e6d7644aee6658122f97fa85c21e7b220fbfeaa39fd67",
+    "docs/graduation2026/build.py": "762e5b9fbc39207d43604bc9398dc40589260c1c50abc7137a57996b7abdb621",
+    "docs/graduation2026/template_thesis.py": "de01d6f2393b63918d8c203c58f86be19985ca75ed9ec064b8dff9a17c49211e",
+    "docs/graduation2026/thesis_expansion.py": "e85bea5cb4d0abcc868eb27e6c11b7faee94208a7d8d2c7dd3c42f4af8434b03",
     "docs/graduation2026/thesis_language.py": "a6abf0c175c762a1b1812d37e60b5ec395939abdbcaf212f8a2c68d6d22719da",
-    "docs/graduation2026/thesis_figures.py": "3072a0618373fb0e6223e6178e5c0dc014b795e52fca353a4a195669143fc077",
+    "docs/graduation2026/thesis_figures.py": "7825b0a41359f17cea618144b4c1541f178c086052f702df4b42046af70b7a29",
     "docs/graduation2026/bibliography_sources.json": "91db67e56cdf84a606d53a75f7d11d0cedefb5354af7f13b9e577922e485f732"
   },
   "thesis_expansion_report": "docs/graduation2026/expansion_report_20261028.json",
@@ -61,5 +61,5 @@
   "figures_added_on": "2026-10-28",
   "figure_manifest": "docs/graduation2026/figures/figure_manifest.json",
   "figure_validation": "docs/graduation2026/figure_validation_report_20261028.json",
-  "language_revision": "初期組・主L3・到達履歴の初出定義、prefix/suffixの日本語化、追加計算コストへの統一。"
+  "language_revision": "重複・助詞・履歴の表現を修正。研究目的にB4比較を明記し、介入の定義に生成前Pと生成後R/F/Dを含め、B4を独立再生成対照として区別。図1のP独立経路と図2キャプションを改善。"
 }

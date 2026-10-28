@@ -307,7 +307,7 @@ def build_thesis():
                 if old_chapter == 11 and level == 2:
                     p.paragraph_format.page_break_before = True
                 if old_chapter == 3 and level == 1:
-                    p = paragraph(d, '図1に実験の論理的な比較手順を示す．初期成功の保持と初期失敗への追加生成を分ける．保存済みの生成履歴と部分追試に基づく集計であり，全件を新たに生成した実験ではない．')
+                    p = paragraph(d, '図1に実験の論理的な比較手順を示す．初期成功の保持と初期失敗への追加生成を分け，生成前介入Pは点線の独立経路で示す．保存済みの生成履歴と部分追試に基づく集計であり，全件を新たに生成した実験ではない．')
                     make_figure_references(p)
                     add_figure(d, 1)
                     add_heading(d, '介入条件と評価指標', 2, counters, headings)

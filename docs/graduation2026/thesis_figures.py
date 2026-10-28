@@ -17,8 +17,8 @@ DATA = ROOT/'docs/analysis/independent_4_completed_20261022/summary.csv'
 OVERLAP = ROOT/'docs/analysis/reachable_rescues_20261016/core/fd_overlap_summary.csv'
 SNAPSHOT = ROOT/'docs/presentation_sources/20261016T_reachable_rescues/results_snapshot.json'
 FIGURES = [
-    {'number':1, 'stem':'experiment_flow', 'caption':'共有初期コードを起点とする比較手順', 'width_mm':155},
-    {'number':2, 'stem':'additional_success_rates', 'caption':'初期失敗545組に対する追加成功率（R/F/Dは修正による救済，B4は独立再生成）', 'width_mm':160},
+    {'number':1, 'stem':'experiment_flow', 'caption':'共有初期コードを起点とする比較手順', 'width_mm':160},
+    {'number':2, 'stem':'additional_success_rates', 'caption':'初期失敗545組に対する条件別の追加成功率', 'width_mm':160},
     {'number':3, 'stem':'fd_overlap', 'caption':'FとDの救済対象の重なり（初期失敗545組を排他的な4集合に分割）', 'width_mm':160},
 ]
 
@@ -62,13 +62,13 @@ def build():
             fig.savefig(FIG_DIR/(stem+'.'+ext),dpi=360,facecolor='white',bbox_inches='tight',pad_inches=.12)
         plt.close(fig)
     # Logical procedure, not a claim that the reconstructed cohort was newly generated.
-    fig,ax=plt.subplots(figsize=(6.5,6.6));ax.set_xlim(0,100);ax.set_ylim(-10,110);ax.axis('off')
-    def box(x,y,w,h,label,size=11):
-        ax.add_patch(FancyBboxPatch((x-w/2,y-h/2),w,h,boxstyle='round,pad=0.25,rounding_size=1',facecolor='white',edgecolor='black',linewidth=1))
+    fig,ax=plt.subplots(figsize=(7.7,6.6));ax.set_xlim(0,136);ax.set_ylim(-10,110);ax.axis('off')
+    def box(x,y,w,h,label,size=11,dashed=False):
+        ax.add_patch(FancyBboxPatch((x-w/2,y-h/2),w,h,boxstyle='round,pad=0.25,rounding_size=1',facecolor='white',edgecolor='black',linewidth=1,linestyle='--' if dashed else '-'))
         ax.text(x,y,label,ha='center',va='center',fontsize=size,linespacing=1.45)
-    def arrow(points):
-        for a,b in zip(points[:-2],points[1:-1]):ax.plot([a[0],b[0]],[a[1],b[1]],color='black',lw=1)
-        ax.annotate('',xy=points[-1],xytext=points[-2],arrowprops={'arrowstyle':'->','lw':1,'color':'black'})
+    def arrow(points,dashed=False):
+        for a,b in zip(points[:-2],points[1:-1]):ax.plot([a[0],b[0]],[a[1],b[1]],color='black',lw=1,linestyle='--' if dashed else '-')
+        ax.annotate('',xy=points[-1],xytext=points[-2],arrowprops={'arrowstyle':'->','lw':1,'color':'black','linestyle':'--' if dashed else '-'})
     box(47,103,66,9,'モデル・タスク・seedを設定')
     box(47,88,66,12,'初期コード生成・L0〜L3評価\n同じ初期コードを各条件で共有')
     arrow([(47,98.5),(47,94)])
@@ -79,7 +79,7 @@ def build():
     arrow([(68,72),(76,72)]);ax.text(71,74,'はい',fontsize=9)
     arrow([(47,64),(47,61)]);ax.text(50,62,'いいえ：初期失敗545組',fontsize=9.5)
     ax.plot([12,83],[59,59],color='black',lw=1);ax.plot([47,47],[61,59],color='black',lw=1)
-    labels=['R 自己見直し\n前回コード','F 実行結果提示\n前回コード＋診断','D 自己デバッグ\n診断＋説明・原因分析','B4 独立再生成\n課題仕様のみ']
+    labels=['R 自己見直し\n前回コード','F 実行結果提示\n前回コード＋診断','D 自己デバッグ\n前回コード＋診断\n説明・原因分析','B4 独立再生成\n課題仕様のみ']
     for x,label in zip([12,35.5,59,82.5],labels):
         arrow([(x,59),(x,55)]);box(x,49,22,12,label,9.1)
         arrow([(x,43),(x,40)])
@@ -94,7 +94,15 @@ def build():
     box(50,3.5,91,10,'初期成功の保持・追加成功数・初期失敗類型・\n追加計算コストを集計',10.2)
     arrow([(47,12),(47,8.5)]);ax.text(50,10,'はい',fontsize=9)
     arrow([(98,72),(99,72),(99,3.5),(95.5,3.5)])
-    ax.text(50,-5,'Pは別プロンプトの独立1回生成として別集計',ha='center',fontsize=9.5)
+    # P branches before shared code generation and never enters the failed cohort.
+    arrow([(80,103),(119,103),(119,96)],dashed=True)
+    box(119,88,30,16,'P 生成前介入\n注意事項を追加\n独立に1回生成',9.6,dashed=True)
+    arrow([(119,80),(119,74)],dashed=True)
+    box(119,65,30,18,'L0〜L3評価\n全1,000組\n初期失敗に限定しない',9.4,dashed=True)
+    arrow([(119,56),(119,48)],dashed=True)
+    box(119,39,30,18,'Pを別集計\nBとの対応で\n改善・悪化を比較',9.4,dashed=True)
+    ax.text(119,22,'点線：Pの独立経路',ha='center',fontsize=9)
+    ax.text(50,-5,'R/F/D/B4は同じ初期コードを共有',ha='center',fontsize=9.5)
     fig.subplots_adjust(left=.01,right=.99,top=.99,bottom=.07)
     save(fig,'experiment_flow')
     # Zero-based axes and common denominator; grayscale and hatching for print.
