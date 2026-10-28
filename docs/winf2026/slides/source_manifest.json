@@ -1,0 +1,140 @@
+{
+  "built_at_utc": "2026-10-28T01:04:58.270232+00:00",
+  "title": "量子LLM支援プログラミングにおける失敗類型と介入カタログの実証研究",
+  "main_slides": 13,
+  "appendix_slides": 4,
+  "duration_seconds": 640,
+  "B4_experiment_id": "independent_4_full_20261020T185811381595Z",
+  "slides": [
+    {
+      "slide": 1,
+      "title": "初期失敗コードを，どこまで救済できるか",
+      "appendix": false,
+      "source": "[3][4] 検証済みの固定集計",
+      "duration_seconds": 20
+    },
+    {
+      "slide": 2,
+      "title": "実行できても，期待した量子出力とは限らない",
+      "appendix": false,
+      "source": "[1] Self-Refine ／ [2] Self-Debugging ／ [3] 本研究の固定集計",
+      "duration_seconds": 45
+    },
+    {
+      "slide": 3,
+      "title": "同じ初期コードから，修正と再生成を比較する",
+      "appendix": false,
+      "source": "[3] B/R/F/D/P ／ [4] B4追加対照",
+      "duration_seconds": 55
+    },
+    {
+      "slide": 4,
+      "title": "対象は1,000初期組．出典を揃えて比較する",
+      "appendix": false,
+      "source": "[3] 現行到達経路 ／ [4] B4追加対照（10/22固定）",
+      "duration_seconds": 60
+    },
+    {
+      "slide": 5,
+      "title": "救済率の分母は，初期失敗545組",
+      "appendix": false,
+      "source": "[3] 現行到達経路：10/16固定",
+      "duration_seconds": 45
+    },
+    {
+      "slide": 6,
+      "title": "FとDは初期失敗の約3分の1を救済",
+      "appendix": false,
+      "source": "[3] 現行到達経路：10/16固定",
+      "duration_seconds": 60
+    },
+    {
+      "slide": 7,
+      "title": "救済数が近くても，救済する対象は異なる",
+      "appendix": false,
+      "source": "[3] 現行到達経路：10/16固定",
+      "duration_seconds": 55
+    },
+    {
+      "slide": 8,
+      "title": "初期失敗類型によって，FとDの関係が変わる",
+      "appendix": false,
+      "source": "[3] 現行到達経路：10/16固定",
+      "duration_seconds": 55
+    },
+    {
+      "slide": 9,
+      "title": "独立再生成B4では217組が追加成功した",
+      "appendix": false,
+      "source": "[3] R/F/D再構成値 ／ [4] B4完了集計",
+      "duration_seconds": 60
+    },
+    {
+      "slide": 10,
+      "title": "追加消費を含めると，独立再生成も比較候補になる",
+      "appendix": false,
+      "source": "[3] R/F/D再構成値 ／ [4] B4実測記録",
+      "duration_seconds": 50
+    },
+    {
+      "slide": 11,
+      "title": "3回目にも救済がある．停止回数も検討対象",
+      "appendix": false,
+      "source": "[3] 現行到達経路：10/16固定",
+      "duration_seconds": 50
+    },
+    {
+      "slide": 12,
+      "title": "介入カタログには，適用範囲と限界を併記する",
+      "appendix": false,
+      "source": "[3] 現行到達経路：10/16固定",
+      "duration_seconds": 45
+    },
+    {
+      "slide": 13,
+      "title": "救済率に加え，「何を救済するか」を比較する",
+      "appendix": false,
+      "source": "[3][4] 検証済み固定集計",
+      "duration_seconds": 40
+    },
+    {
+      "slide": 14,
+      "title": "補足A　モデル別の初期失敗と追加成功",
+      "appendix": true,
+      "source": "[3] R/F/D ／ [4] B4",
+      "duration_seconds": 0
+    },
+    {
+      "slide": 15,
+      "title": "補足B　B4とFでも成功する対象は一致しない",
+      "appendix": true,
+      "source": "[3] Pの既存集計 ／ [4] B4 pairwise.csv",
+      "duration_seconds": 0
+    },
+    {
+      "slide": 16,
+      "title": "補足C　評価範囲・経路・データ品質",
+      "appendix": true,
+      "source": "[3][4] 保存設定・manifest・sanity report",
+      "duration_seconds": 0
+    },
+    {
+      "slide": 17,
+      "title": "補足D　参考文献と固定出典",
+      "appendix": true,
+      "source": "[1]–[4] 参考文献・公開用集計",
+      "duration_seconds": 0
+    }
+  ],
+  "source_sha256": {
+    "docs/winf2026/results_snapshot_20261028.json": "8093bfd06554c7c417feec037a3bd6fdc58a8b757c4f36267d5fb6aaccef6da2",
+    "docs/winf2026/paper.tex": "65e669108d19c38603d9cc72ef0eceda24ec384c0c5f234590fbad0b583fb7de",
+    "docs/analysis/independent_4_completed_20261022/summary.csv": "4ff68c4fb0f8d6f94bfd6c1eabe8018e14b29b97435ed028305550823b391344",
+    "docs/analysis/independent_4_completed_20261022/first_success.csv": "ec169e95e89d4fb0b6b04dad716d45b10b9ca983e935fabff5476a042a697a6c",
+    "docs/analysis/independent_4_completed_20261022/pairwise.csv": "e7a75ee9ad716f6773d7a342c2ac95f9983f877bd4493df622492c02a5e6132c",
+    "docs/analysis/independent_4_completed_20261022/source_manifest.json": "290111e0da3613e85018c47a0d1f09c30b1d8c0728727ef5d6fabbda2bca5d66",
+    "docs/analysis/reachable_rescues_20261016/core/repair_summary.csv": "84e419e1c5eefea2db337e3f14027ec3dd2ad4d21a4bed980b785630c7c24497"
+  },
+  "new_generations": 0,
+  "generated_code_executions": 0
+}

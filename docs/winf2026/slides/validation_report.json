@@ -1,0 +1,163 @@
+{
+  "validated_at_utc": "2026-10-28T01:05:39.581694+00:00",
+  "automated_checks_passed": true,
+  "checks": {
+    "sources_unchanged": true,
+    "17_slides_and_pages": true,
+    "13_main_4_appendix": true,
+    "duration_10_to_12_minutes": true,
+    "fixed_title": true,
+    "speaker_notes_every_slide": true,
+    "all_pptx_text_present_in_pdf": true,
+    "all_elements_inside_slide": true,
+    "all_pages_16_9": true,
+    "fonts_embedded": true,
+    "headline_counts_match_snapshot": true
+  },
+  "missing_text": [],
+  "offpage_elements": [],
+  "pages": [
+    {
+      "slide": 1,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 9
+    },
+    {
+      "slide": 2,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 15
+    },
+    {
+      "slide": 3,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 18
+    },
+    {
+      "slide": 4,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 17
+    },
+    {
+      "slide": 5,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 13
+    },
+    {
+      "slide": 6,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 15
+    },
+    {
+      "slide": 7,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 16
+    },
+    {
+      "slide": 8,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 26
+    },
+    {
+      "slide": 9,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 17
+    },
+    {
+      "slide": 10,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 17
+    },
+    {
+      "slide": 11,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 26
+    },
+    {
+      "slide": 12,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 14
+    },
+    {
+      "slide": 13,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 14
+    },
+    {
+      "slide": 14,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 41
+    },
+    {
+      "slide": 15,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 16
+    },
+    {
+      "slide": 16,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 19
+    },
+    {
+      "slide": 17,
+      "width_pt": 960.0094604492188,
+      "height_pt": 540.0,
+      "text_spans": 13
+    }
+  ],
+  "artifact_sha256": {
+    "slides.pptx": "a3861f4ae441ec16fffda0cd0b698791d11f8afccbf18cb9dcc4c6cb45cf9984",
+    "slides.pdf": "aa94fabdccb4a75e3aa29bbd059bb53a5bff1c3d78bd5941560ae61e83eafaac",
+    "speaker_notes.txt": "5b8e2abacdd280cda514f55b7b3649228d09ce194e46b7b2620a6c7a3742b3eb",
+    "source_manifest.json": "e6ec88bb1535f56423dba96608d430b2ece695e35693a9dd62a8c8f75b964a5f",
+    "build.py": "aa9e50ded5a4a13c270f98691581dc40e51ac5eba09b470224436b66de9e66c6",
+    "validate.py": "e6ab173cc2b19060de6fed7ee9b74804b9ba8848598a73a494b64bd7d2fc4de3"
+  },
+  "visual_review": {
+    "status": "reviewed",
+    "reviewed_at_utc": "2026-10-28T01:06:01.036338+00:00",
+    "reviewed_pdf_sha256": "aa94fabdccb4a75e3aa29bbd059bb53a5bff1c3d78bd5941560ae61e83eafaac",
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "method": "全17ページをPNG化し、4枚単位のコンタクトシート5枚でAIが確認。背景スライドの文字重なりを修正後に全ページを再確認。",
+    "findings": [
+      "題目の指定位置の改行、著者・指導教員・所属を確認",
+      "本文・表・棒グラフ・数値・脚注の欠落や文字重なりなし",
+      "本編13枚と質疑用補足4枚を確認"
+    ]
+  },
+  "scope": "資料作成のみ。新規生成・生成コード実行0。",
+  "passed": true
+}
