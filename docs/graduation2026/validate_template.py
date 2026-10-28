@@ -65,8 +65,8 @@ def validate():
     checks['six_condition_table_matches_csv'] = tables[2][1:] == table_rows()
     checks['six_condition_definitions'] = tables[0][1:] == DEFINITIONS
     overall = {r['condition']:r for r in template.content.b4_rows('overall')}
-    expected = [[c,overall[c]['successes_from_initial_failure'],f"{100*float(overall[c]['success_from_initial_failure_rate']):.1f}%",overall[c]['final_L3_successes']] for c in ['R','F','D','B4']]
-    checks['overall_table_matches_frozen_csv'] = tables[3][1:] == expected
+    expected = [[c,overall[c]['initial_failures'],overall[c]['successes_from_initial_failure'],f"{100*float(overall[c]['success_from_initial_failure_rate']):.1f}%"] for c in ['R','F','D','B4']]
+    checks['overall_table_matches_frozen_csv'] = tables[3][1:] == expected and tables[3][0] == ['条件','初期失敗数','追加成功数','追加成功率']
     for index,grouping,labels in [(4,'model',[(short,'ollama:'+model) for short,model in template.content.MODELS]),(5,'initial_failure',template.content.THESIS_ERRORS),(6,'task',template.content.THESIS_TASKS)]:
         expected=[]
         for label,value in labels:
@@ -134,6 +134,30 @@ def validate():
     alltext='\n'.join(citation_paragraphs)
     refs=set(re.findall(r'\[(\d+)\]',alltext))
     checks['reference_numbers_consistent'] = refs == {str(i) for i in range(1,len(template.content.REFS)+1)}
+    def subsection(title):
+        result=[];active=False
+        for p in d.paragraphs:
+            if p.style.name.startswith('Heading'):
+                if active:break
+                active=p.text==title
+            elif active:result.append(p.text)
+        return '\n'.join(result)
+    questions=subsection('研究目的と研究課題')
+    comparison=subsection('修正と独立再生成の比較から得られる知見')
+    resources=subsection('資源制約と停止方策への含意')
+    checks['RQ1_to_RQ3_explicit_in_introduction'] = all(f'RQ{i}（' in questions for i in [1,2,3])
+    checks['RQ_answers_in_discussion'] = all(f'RQ{i}への回答' in comparison for i in [1,2]) and 'RQ3への回答' in resources
+    checks['order_of_metrics_explained'] = 'まず全対象の最終的な到達状況を比較し，次に初期成功の保持を除いて' in alltext
+    conclusion=subsection('研究成果')
+    checks['conclusion_states_catalog_and_no_policy_validation'] = all(t in conclusion for t in [
+        '主要な初期失敗3類型（import失敗，回路構築失敗，出力不一致）',
+        '初期失敗数とF/Dによる修正の救済率，B4による独立再生成の追加成功率',
+        '自動選択方策の有効性を実証したものではない'])
+    limitations=subsection('妥当性と限界')
+    checks['critical_limitations_retained'] = all(t in limitations for t in [
+        'L3は指定入力の出力と構造要件への適合', '実行時期などの交絡は残る',
+        '量子変換の意味的差を測定していない', '複数同時変更の寄与も分離できない']) and all(t in comparison for t in [
+        '投入情報，tokens，seed規則，実行時期は一致しない', '成功率の差を介入の因果効果と解釈しない'])
     visual_file=HERE/'thesis_visual_review.json'
     visual=json.loads(visual_file.read_text()) if visual_file.exists() else {'status':'pending'}
     visual_current=visual.get('pdf_sha256')==digest(HERE/'thesis.pdf') and visual.get('pages_reviewed')==list(range(1,len(pdf)+1))
@@ -146,7 +170,7 @@ def validate():
         'font_fidelity':'DOCX specifies requested fonts; LibreOffice PDF uses substitutes. Final Microsoft Word rendering unverified.',
         'format_spec':'format_spec.json', 'source_snapshot_at_utc':manifest['source_snapshot_at_utc'],
         'new_experiments':0, 'new_model_requests':0,'generated_code_executions':0,
-        'artifact_sha256':{name:digest(HERE/name) for name in ['thesis.docx','thesis.pdf','build.py','template_thesis.py','thesis_expansion.py','thesis_language.py','thesis_figures.py','validate_figures.py','figure_validation_report_20261028.json','figures/figure_manifest.json','convert_thesis.py','validate_template.py','validate_expansion.py','thesis_headings.json','toc_cache.json','format_spec.json','source_manifest.json','bibliography_sources.json','expansion_report_20261028.json','revision_report_20261028.json','work_notes.txt','thesis_visual_review.json','README.md','build_research_evidence.py','thesis_enrichment.py','validate_enrichment.py','intervention_catalog.csv','case_studies.json','experiment_prompts.json','enrichment_manifest.json','enrichment_validation_report.json','MANUSCRIPT_STATE.md','skill_edit_report_20261029.json','prompt_layout_revision_20261029.json','six_conditions.py','six_conditions_validation.json','validate_six_conditions.py']},
+        'artifact_sha256':{name:digest(HERE/name) for name in ['thesis.docx','thesis.pdf','build.py','template_thesis.py','thesis_expansion.py','thesis_language.py','thesis_figures.py','validate_figures.py','figure_validation_report_20261028.json','figures/figure_manifest.json','convert_thesis.py','validate_template.py','validate_expansion.py','thesis_headings.json','toc_cache.json','format_spec.json','source_manifest.json','bibliography_sources.json','expansion_report_20261028.json','revision_report_20261028.json','work_notes.txt','thesis_visual_review.json','README.md','build_research_evidence.py','thesis_enrichment.py','validate_enrichment.py','intervention_catalog.csv','case_studies.json','experiment_prompts.json','enrichment_manifest.json','enrichment_validation_report.json','MANUSCRIPT_STATE.md','skill_edit_report_20261029.json','prompt_layout_revision_20261029.json','six_conditions.py','six_conditions_validation.json','validate_six_conditions.py','rq_revision_validation.json']},
         'out_of_margin_spans':margin,
         'pending':['Original template comparison, especially cover coordinates and inherited paragraph styles','Formal approval of thesis title','Final rendering and updated fields in Microsoft Word with the specified fonts','Supervisor review of content and references']}
     (HERE/'validation_report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')

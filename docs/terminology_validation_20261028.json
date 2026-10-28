@@ -91,7 +91,7 @@
     },
     {
       "path": "docs/graduation2026/thesis.docx",
-      "sha256": "81ca18173887aa3dd21509237c555c4faeacd0fbf4e0ee8951b3225d3a90287d",
+      "sha256": "93b335cef5061d611d2ee92969bc574be46f46ada336467b7eb26c68583d7983",
       "pages": null,
       "old_L3_alias_absent": true,
       "old_unknown_label_absent": false,
@@ -99,7 +99,7 @@
     },
     {
       "path": "docs/graduation2026/thesis.pdf",
-      "sha256": "b15b4054c56681a960cc18383f650c2ce14b7d2fd330cc6fa6cf4034a84c5e01",
+      "sha256": "317f1af44dc5c4c64578e7b932009edfff3947d075b41c93766f8e521c60c043",
       "pages": 34,
       "old_L3_alias_absent": true,
       "old_unknown_label_absent": false,
@@ -163,6 +163,6 @@
     "previous_bibliography_path_fix_retained": true,
     "thesis_34_pages": true
   },
-  "thesis_refreshed_at_utc": "2026-10-28T16:39:21.193908+00:00",
-  "thesis_refresh_scope": "6条件の最終L3成功率を追加した卒論34ページのhashを更新。他資料はchecked_at_utc時点の記録を保持。保存分類・固定集計・プロンプト原文は変更しない。"
+  "thesis_refreshed_at_utc": "2026-10-28T17:27:07.887576+00:00",
+  "thesis_refresh_scope": "RQの対応・表4・結論を整理した卒論34ページのhashを更新。他資料はchecked_at_utc時点を保持。固定集計・保存分類・プロンプト原文は変更しない。"
 }

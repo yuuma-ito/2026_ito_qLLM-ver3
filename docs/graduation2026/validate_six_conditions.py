@@ -42,6 +42,7 @@ def validate():
         'six_rates_computed_from_1000':all(r['denominator']==1000 and r['rate_percent']==r['successes']/10 for r in values),
         'six_condition_definitions':tables[0][1:]==six.DEFINITIONS,
         'six_final_success_table':tables[2][1:]==six.table_rows(),
+        'additional_success_table_has_only_failed_cohort':tables[3]==[['条件','初期失敗数','追加成功数','追加成功率'],['R','545','96','17.6%'],['F','545','183','33.6%'],['D','545','180','33.0%'],['B4','545','217','39.8%']],
         'table_and_graph_use_identical_values':manifest['final_rates']==values,
         'new_graph_labels_counts_rates_denominators':all(norm(f"{r['successes']}/1,000（{r['rate_percent']:.1f}%）") in final_text for r in values) and all(r['condition'] in final_text for r in values),
         'original_added_success_analysis_retained':[r['added_successes'] for r in manifest['rates']]==[96,183,180,217] and all(r['denominator']==545 for r in manifest['rates']),
@@ -64,7 +65,7 @@ def validate():
     if before.exists():
         old=Document(before)
         old_tables=[[[c.text for c in r.cells] for r in t.rows] for t in old.tables]
-        checks['all_prior_numerical_tables_preserved']=old_tables[1:]==tables[1:2]+tables[3:]
+        checks['prior_numerical_tables_except_reformatted_additional_success_preserved']=old_tables[1:2]+old_tables[3:]==tables[1:2]+tables[4:]
         def media_hashes(path):
             with zipfile.ZipFile(path) as archive:
                 return {hashlib.sha256(archive.read(n)).hexdigest() for n in archive.namelist() if n.startswith('word/media/')}

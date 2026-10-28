@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-28T16:42:32.412487+00:00",
+  "checked_at_utc": "2026-10-28T17:29:15.607729+00:00",
   "scope": "thesis.docx and thesis.pdf only; separate abstract and slides retained",
   "automated_checks_passed": true,
   "checks": {
@@ -59,19 +59,24 @@
     "no_field_errors": true,
     "under_10mb": true,
     "frozen_source_hashes_unchanged": true,
-    "reference_numbers_consistent": true
+    "reference_numbers_consistent": true,
+    "RQ1_to_RQ3_explicit_in_introduction": true,
+    "RQ_answers_in_discussion": true,
+    "order_of_metrics_explained": true,
+    "conclusion_states_catalog_and_no_policy_validation": true,
+    "critical_limitations_retained": true
   },
   "documents": {
     "thesis": {
       "pages": 34,
-      "pdf_bytes": 1620304,
-      "pdf_sha256": "b15b4054c56681a960cc18383f650c2ce14b7d2fd330cc6fa6cf4034a84c5e01"
+      "pdf_bytes": 1622100,
+      "pdf_sha256": "317f1af44dc5c4c64578e7b932009edfff3947d075b41c93766f8e521c60c043"
     }
   },
   "visual_review": {
-    "reviewed_at_utc": "2026-10-28T16:39:21.193908+00:00",
+    "reviewed_at_utc": "2026-10-28T17:27:07.887576+00:00",
     "status": "reviewed",
-    "pdf_sha256": "b15b4054c56681a960cc18383f650c2ce14b7d2fd330cc6fa6cf4034a84c5e01",
+    "pdf_sha256": "317f1af44dc5c4c64578e7b932009edfff3947d075b41c93766f8e521c60c043",
     "pages_reviewed": [
       1,
       2,
@@ -108,7 +113,7 @@
       33,
       34
     ],
-    "method": "現行PDF全34ページを6枚のコンタクトシートで確認し，10ページの条件表，17ページの6条件比較，18ページの追加成功率を単ページ画像で確認。",
+    "method": "現行PDF全34ページを6枚のコンタクトシートで確認し，23・24ページのRQ回答と限界，26ページのカタログ作成の結論を単ページ画像で確認。",
     "findings": [
       "全34ページで文字と図表の欠け・重なり・はみ出しなし。白紙ページなし。",
       "表1でB・P・R・F・D・B4の方法・上限・役割を確認。4回は初回込みと本文に明記。",
@@ -116,7 +121,10 @@
       "18ページの表4・図3に初期失敗545組からの追加成功率を保持。B・Pは含めない。",
       "Fの事例は20ページ，DのQPE事例の修正前後は21ページ内に保持。",
       "Pの未検証制約は24ページ，プロンプト付録は30〜34ページで原文の表示を保持。",
-      "図はキャプションが下，表は上。図表参照と目次を更新。"
+      "図はキャプションが下，表は上。図表参照と目次を更新。",
+      "5ページの1.2節にRQ1〜RQ3を独立して表示。23ページの5.1節でRQ1・RQ2，24ページの5.3節でRQ3に回答。",
+      "18ページの表4は条件・初期失敗数・追加成功数・追加成功率の4列で表示し，数値と分母を確認。",
+      "26ページの結論に主要3類型のカタログ作成を明記し，自動選択方策の有効性の実証とは区別。"
     ],
     "unperformed": [
       "原本テンプレートとの照合",
@@ -152,18 +160,18 @@
   "new_model_requests": 0,
   "generated_code_executions": 0,
   "artifact_sha256": {
-    "thesis.docx": "81ca18173887aa3dd21509237c555c4faeacd0fbf4e0ee8951b3225d3a90287d",
-    "thesis.pdf": "b15b4054c56681a960cc18383f650c2ce14b7d2fd330cc6fa6cf4034a84c5e01",
-    "build.py": "4cc70e0cde17319747aa6ae2fde52c863c40bb1011faa7996c39cfd4cf5b32c3",
+    "thesis.docx": "93b335cef5061d611d2ee92969bc574be46f46ada336467b7eb26c68583d7983",
+    "thesis.pdf": "317f1af44dc5c4c64578e7b932009edfff3947d075b41c93766f8e521c60c043",
+    "build.py": "04e9c811ef76e9b7e445ab5d345d459e583578760cf315b4bc56ef12aa8d8cae",
     "template_thesis.py": "e4787222ef6ccf33148c529c930cb6463799cda0dd78184acd7a010b0037383e",
-    "thesis_expansion.py": "2c44bac08e6c765db84315d8a290763b00874dbef8e10e133023c0a901932b19",
+    "thesis_expansion.py": "2c4c36f04af7ba65f5595a1816929ea00d225b2f6010b27b05d9664b68ab0387",
     "thesis_language.py": "98e356081814fb97195c44481f4dae95f3a1f4dc155c428aec433d39c1becb11",
     "thesis_figures.py": "0e86407184f888bfcdf8bebac1d080b29dec80514dd5ecb16cd00608efd9f1bb",
     "validate_figures.py": "0e0f9d975fdec56ebfa19db6e65bf1f9e4d2e344c941faaf8f989b237b17415b",
-    "figure_validation_report_20261028.json": "479603e2dcca18c2c0edfaaa853142abec8705b14e28a77132c698d288a2d0af",
+    "figure_validation_report_20261028.json": "ef289199f43b535fd5a6ccc0a2fbbfb7a469de63c7dd9ad7812e05ae1c497d12",
     "figures/figure_manifest.json": "25fa61e4bb003f20ae85535342130ceb15a105b4ec8fda82d532bfeb073455db",
     "convert_thesis.py": "eefec30813ecce333af8f6267fa10eb525ddf87967f01d1f667438e2317cb882",
-    "validate_template.py": "0e7913c3c447e275c427fcc5f769b74ff6b1223575c5577725e3fd6fe349f0d8",
+    "validate_template.py": "a8c191a70bbea18e593bdfbf892ddadbc7132ad9fd001828669730c41af99bf2",
     "validate_expansion.py": "e6ff7e36503f4a79972707889286234adf5e1dbcfa40ebe66d7d69f2c804b114",
     "thesis_headings.json": "1fee1b883b77ca602561cd35bf00b514690a4353bc53de8eab45c70b0b3c9716",
     "toc_cache.json": "2f61263149d01952325425bb973aaf4381704da3f12ee0343ec55ce182e5f323",
@@ -171,24 +179,25 @@
     "source_manifest.json": "52a69d71eb4eed84278b31169a5cca0f6651638f47e95cca6ca8a4252be91db5",
     "bibliography_sources.json": "91db67e56cdf84a606d53a75f7d11d0cedefb5354af7f13b9e577922e485f732",
     "expansion_report_20261028.json": "2f823a5d17b4877219b3be9372c2eaf60f35b817a44c66cd44443e11829ff85f",
-    "revision_report_20261028.json": "0d6dd84c427c4bf558e349f840d43fa6adf39d16fa673ba3a813218ddd8616a4",
+    "revision_report_20261028.json": "9c26afde31a113915a31609f2bbad3e5e715f75c12f6fc016360149a5933273e",
     "work_notes.txt": "9ff757e5d34c866bf47360698cd99cbd99cb09936e1f20b2fc61bc7e886d7fb8",
-    "thesis_visual_review.json": "5402aecc29320818845ce6a06a623495dd5b3d414202d0bc43533cdcab18b51c",
-    "README.md": "3bc3bcce335ee3e40d4e965778139ca7c23fa900c54e8f8c587a6ad3adb43757",
+    "thesis_visual_review.json": "31dc7ad046177555b95b3ee5c8dd1be8b20c7cafcaad3fb453eedfcd8414afd7",
+    "README.md": "3385ae74c5c8a94fa16732de80d26137cceba61d79dbbd750aa873539f391ad9",
     "build_research_evidence.py": "ce9661b523b6c8df637e0f69b3235152c7e40aa6d15fae988a9f19965448ecc9",
-    "thesis_enrichment.py": "39a354ea03c1ee2280f38caf6a19a0779698bf98b39f85cdf700bc91387cc9d3",
+    "thesis_enrichment.py": "a0150d1fa07788251c2f96046c05cb78e3538df8b1a82c2dba46876fc6f9e13c",
     "validate_enrichment.py": "cf150f48e3a88e84d9442e489a43f0ae64018c84319974f65ffba157f1aedc79",
     "intervention_catalog.csv": "7f231af5fa18e70a748f6a7266f928ea3441425772cf4f48746939fe917afaf6",
     "case_studies.json": "4ff23031b9c58f3b054d4db7ffd903b75661074301277026f0f68a65177b8dcb",
     "experiment_prompts.json": "b4c619a2009bfe84e9daa37d387fa8b9d8664b56880093259bffce0f4ba61787",
     "enrichment_manifest.json": "c89826837d4b49a28947d0ddb32facff06c96529f824158ff7d3272afd582997",
-    "enrichment_validation_report.json": "71555f1a1fa0f69d5d2910499d9888ebf83410ed6b0902205d95067e9c4cb83d",
-    "MANUSCRIPT_STATE.md": "44d72905dd934b489bf8b18d5a57ce5f5873857a44354f3aabf1cfa8403765d6",
+    "enrichment_validation_report.json": "2550d2979606c5196f622d7f42c22654fe4d7ed2528440e1373d569beda6d968",
+    "MANUSCRIPT_STATE.md": "8eca7da1146f3b1e7b410e2f0ef205d1b0ce2cbd19b92dbe85e191da82d09fd3",
     "skill_edit_report_20261029.json": "023cc5cb2bb2c5f070778ff3f57b02f48b03316644f91aea949a3c5e172b842c",
     "prompt_layout_revision_20261029.json": "0d8e8f5c78ae7890db598d6925be61770761f31806224c5186f234fff975a182",
     "six_conditions.py": "ee2cc77369838d163115b211bdf7447c3ab8cdb93b3a90e6685e9d4db274e428",
-    "six_conditions_validation.json": "bb7b3feed23ad22bdfe7bcae0998aaf540947f839426529e7ede0a57f51919ca",
-    "validate_six_conditions.py": "412ccf8d8ea6869a2599bac446f23247582acbabb27d2a63abb2692bab516b92"
+    "six_conditions_validation.json": "ab178cc753cb36683d4d465e8aad575022c70c4fe629a072e77e636599ff73f6",
+    "validate_six_conditions.py": "c359435209303a428d95cd9bd9fbaeaf5ee174234a8af5705c41df63749bcfcb",
+    "rq_revision_validation.json": "a3c696bf05ba5034164243bf8c4e83717d30c011799097bfb418efb892938e26"
   },
   "out_of_margin_spans": [],
   "pending": [

@@ -1,11 +1,12 @@
 {
-  "checked_at_utc": "2026-10-28T16:40:08.879594+00:00",
+  "checked_at_utc": "2026-10-28T17:24:44.080137+00:00",
   "passed": true,
   "checks": {
     "six_counts_match_reference_and_fixed_csv": true,
     "six_rates_computed_from_1000": true,
     "six_condition_definitions": true,
     "six_final_success_table": true,
+    "additional_success_table_has_only_failed_cohort": true,
     "table_and_graph_use_identical_values": true,
     "new_graph_labels_counts_rates_denominators": true,
     "original_added_success_analysis_retained": true,
@@ -18,7 +19,7 @@
     "B_P_B4_initial_code_distinction": true,
     "noncausal_interpretation_and_nonidentical_budgets": true,
     "summary_and_conclusion_include_six_final_rates": true,
-    "all_prior_numerical_tables_preserved": true,
+    "prior_numerical_tables_except_reformatted_additional_success_preserved": true,
     "all_prior_embedded_figures_preserved": true,
     "frozen_source_hashes_unchanged": true,
     "prompt_case_catalog_evidence_unchanged": true
@@ -88,8 +89,8 @@
     ]
   },
   "pages": 34,
-  "pdf_sha256": "b15b4054c56681a960cc18383f650c2ce14b7d2fd330cc6fa6cf4034a84c5e01",
-  "docx_sha256": "81ca18173887aa3dd21509237c555c4faeacd0fbf4e0ee8951b3225d3a90287d",
+  "pdf_sha256": "317f1af44dc5c4c64578e7b932009edfff3947d075b41c93766f8e521c60c043",
+  "docx_sha256": "93b335cef5061d611d2ee92969bc574be46f46ada336467b7eb26c68583d7983",
   "new_experiments": 0,
   "re_evaluations": 0,
   "generated_code_executions": 0,
