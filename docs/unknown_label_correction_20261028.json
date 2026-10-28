@@ -58,7 +58,7 @@
     },
     {
       "path": "docs/graduation2026/thesis.docx",
-      "sha256": "4032afafcd4fc4880f65fadfb0710ac3917f824ad3705da78091ee7d2b1a070f",
+      "sha256": "6c041b980752a97d420a3cc73327581cb2bf2e6608b6883678adc26048a12b80",
       "pages": null,
       "old_L3_alias_absent": true,
       "old_unknown_label_absent": false,
@@ -66,7 +66,7 @@
     },
     {
       "path": "docs/graduation2026/thesis.pdf",
-      "sha256": "185d702a0c1ebea848d1be6c4e0e79f254048dd4efc92f3e2baab95de7d302fd",
+      "sha256": "899bcba83b0cb1f5c5a7c28449de1b13422e5b2c075b839aec6299e2b878b97c",
       "pages": 33,
       "old_L3_alias_absent": true,
       "old_unknown_label_absent": false,
@@ -128,6 +128,6 @@
     "previous_bibliography_path_fix_retained": true,
     "thesis_33_pages": true
   },
-  "thesis_refreshed_at_utc": "2026-10-28T15:13:22.557915+00:00",
-  "thesis_refresh_scope": "卒論のみ更新。他資料の検証時点はchecked_at_utcのまま。固定プロンプトと検証済み短縮事例を新たに掲載し，保存キー説明・表示分類・固定集計を保持。"
+  "thesis_refreshed_at_utc": "2026-10-28T15:37:06.589616+00:00",
+  "thesis_refresh_scope": "卒論のスキル添削後のhashと全33ページを更新。他資料の検証時点はchecked_at_utcのまま。固定集計・掲載事例・プロンプト原文と保存キー説明を保持。"
 }

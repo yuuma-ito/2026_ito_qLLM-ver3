@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-28T15:14:12.141019+00:00",
+  "checked_at_utc": "2026-10-28T15:36:29.152438+00:00",
   "passed": true,
   "checks": {
     "source_inputs_unchanged": true,
@@ -25,8 +25,8 @@
   "tables": 10,
   "case_groups": 2,
   "task_prompts": 10,
-  "pdf_sha256": "185d702a0c1ebea848d1be6c4e0e79f254048dd4efc92f3e2baab95de7d302fd",
-  "docx_sha256": "4032afafcd4fc4880f65fadfb0710ac3917f824ad3705da78091ee7d2b1a070f",
+  "pdf_sha256": "899bcba83b0cb1f5c5a7c28449de1b13422e5b2c075b839aec6299e2b878b97c",
+  "docx_sha256": "6c041b980752a97d420a3cc73327581cb2bf2e6608b6883678adc26048a12b80",
   "new_model_requests": 0,
   "generated_code_executions": 0,
   "publication_limits": "固定プロンプトと明示プレースホルダー、選択2事例の短いコード抜粋とhashのみ。raw・応答全文・秘密情報なし。"

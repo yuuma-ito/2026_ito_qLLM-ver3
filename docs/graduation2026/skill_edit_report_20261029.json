@@ -1,0 +1,277 @@
+{
+  "checked_at_utc": "2026-10-28T15:37:06.589616+00:00",
+  "scope": "卒論の日本語表現・用語・主張と根拠の対応・比較条件の明確化。投稿先の正式な査読ではない。",
+  "skills": [
+    "scidraft-cs",
+    "dellm"
+  ],
+  "independent_check": {
+    "history_inherited": false,
+    "scope": "公開済み原稿の表現・論理整合性を独立文脈で点検。指摘を本文・出典と照合して採否を判断。",
+    "not_checked": [
+      "文献の真正性と原論文の主張範囲の再検証",
+      "投稿先固有の審査規定",
+      "指定フォントを備えたMicrosoft Wordでの最終表示"
+    ]
+  },
+  "accepted_edits": [
+    {
+      "file": "docs/graduation2026/template_thesis.py",
+      "before": "第8章に出典と指標の付録を置く．",
+      "after": "第8章に出典，指標の読み方，実験プロンプトを付録として示す．",
+      "reason": "追加済みのプロンプト付録と構成説明を対応させる"
+    },
+    {
+      "file": "docs/graduation2026/build.py",
+      "before": "初期L3未達から最終L3成功に変化した初期組を救済と呼ぶ．",
+      "after": "R/F/Dによる修正で，初期L3未達から最終L3成功に変化した初期組を救済と呼ぶ．",
+      "reason": "1.6節と同じく救済を修正条件に限定しB4と区別する"
+    },
+    {
+      "file": "docs/graduation2026/build.py",
+      "before": "本研究の位置づけは，選定した量子回路課題の中で介入の救済対象と消費を記述する実験的分析である．",
+      "after": "本研究は，選定した量子回路課題における介入の救済対象と追加計算コストを記述する実証研究である．",
+      "reason": "抽象的な位置づけ表現を減らし指標名を明確にする"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "対象課題，モデル，評価指標の相違を残したまま，外部情報の有無を比較設計で明示するという問題意識に接続する．",
+      "after": "対象課題，モデル，評価指標の違いを踏まえ，本研究では外部情報の有無を比較条件として明示する．",
+      "reason": "関連研究と本研究の関係を具体的に述べる"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "本研究の10タスクはこのベンチマークからの抽出と位置づけておらず，独自の課題仕様，期待出力，構造要件に基づく．",
+      "after": "本研究の10タスクは，同ベンチマークから抽出したものではなく，独自の課題仕様，期待出力，構造要件に基づく．",
+      "reason": "不自然な名詞句を修正する"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "本研究のB4は，生成回数だけを増やして採点を無視する条件ではなく，各候補をL3で検査し，成功時に停止する対照である．比較対象は，評価を受ける機会を持った反復的なコード生成手順になる．",
+      "after": "本研究のB4は，各候補をL3で検査し，成功時に停止する対照である．候補の生成だけでなく，評価と停止も含む手順として比較する．",
+      "reason": "不必要な対比と抽象的な言換えを簡潔にする"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "これは比較を改善する一歩だが，同じ上限にしただけでは入力情報量や消費tokensを揃えられない．比較で何を揃え，何を揃えていないかを明示する．",
+      "after": "ただし，生成回数の上限を揃えても，入力情報量や消費tokensは一致しない．",
+      "reason": "重複する説明と評価的な言回しを削る"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "重要なのは，生成要求を送った回数と，保存された条件記録数が同じではない点である．",
+      "after": "生成要求の回数と，保存された条件記録数は異なる．",
+      "reason": "dellm検出の注意喚起の前置きを削る"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "診断が後続生成へ入る条件では，採点変更の影響を最終フラグだけに局限できない．",
+      "after": "診断を後続生成へ与える条件では，採点変更は最終判定だけでなく後続の要求にも影響する．",
+      "reason": "難解な動詞を具体的な処理関係へ置き換える"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "本研究の現在の主経路は，",
+      "after": "本研究で分析する到達履歴は，",
+      "reason": "未定義の主経路を定義済みの用語に統一する"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "このように，分類ラベル，例外の由来，最終集計へ含める根拠を分けることで，不明なものを都合よく成功または障害へ振り分けることを避ける．",
+      "after": "分類ラベルだけでなく例外の由来を確認し，コード側の失敗として集計した．",
+      "reason": "作業上の注意を分析方法の記述へ直す"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "この分析の役割は，救済対象の不一致がどの初期類型に現れ，どのような文字列上の修正領域と同じ履歴に存在したかを，追跡可能な形で残すことである．",
+      "after": "この分析では，救済対象の不一致が生じた初期類型と，各履歴で変更されたコード領域を対応づける．",
+      "reason": "複雑な係り受けを簡潔にする"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "本稿ではその作業を今後の課題とし，今回の静的確認だけで機構の解明が完了したとは主張しない．",
+      "after": "静的確認だけでは，修正が成功に至る仕組みは特定できない．",
+      "reason": "未検証という限定を保って自己言及を削る"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "公開集計には，実験ID，保存設定，記録の完備性，集計上の単位を残す．一方，モデルの生出力や例外の全文を本文へ大量に掲載することが，本研究の説明力を直接高めるとは限らない．本文では検証した性質と残る制約を言語化し，詳細な追跡はmanifestとCSVへ接続する．数値の根拠を追えることと，読者が分析上の意味を理解できることを両立させる構成とする．",
+      "after": "公開集計には，実験ID，保存設定，記録の完備性，集計単位を記載する．本文では集計結果とその解釈，検証上の制約を示し，個別記録の由来はmanifestとCSVで追跡できるようにする．",
+      "reason": "原稿作成の方針を公開資料の構成の説明へ直す"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "Q4ではF78組，D90組と大小が逆転した．",
+      "after": "Q4ではF78組，D90組とDの救済数が多かった．",
+      "reason": "比較関係を具体的に述べる"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "C7ではF/Dの救済件数が同じだが，成功した初期組まで一致するとは限らない．",
+      "after": "C7ではF/Dの救済件数が同じだが，成功した初期組が一致するとは限らない．",
+      "reason": "不要な強調を削る"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "この違いから，最大の全体率を持つ条件だけで各モデルの適用範囲を代表させることは適切でない．",
+      "after": "全体の追加成功率が最も高い条件でも，各モデルで最も多く成功するとは限らない．",
+      "reason": "適用範囲の代表という曖昧な表現を観測関係へ直す"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "モデル間では初期失敗の大きさと構成が異なる．",
+      "after": "モデル間では初期失敗数と失敗類型の構成が異なる．",
+      "reason": "大きさが表す指標を明確にする"
+    },
+    {
+      "file": "docs/graduation2026/thesis_enrichment.py",
+      "before": "2事例は，APIの利用箇所と保存判定の推移を読み取れる同一モデルの事例として目的選択した．",
+      "after": "2事例は，APIの利用箇所と保存判定の推移を説明するため，同一モデルから選んだ．",
+      "reason": "選択意図を平易に述べる"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "本対象ではFとDがRより多くを救済したが，B4はさらに多くの初期失敗を追加成功へ導いた．",
+      "after": "本対象ではFとDがRより多くを救済し，B4ではさらに多くの初期失敗組が追加でL3を達成した．",
+      "reason": "救済と独立再生成の用語を区別する"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "表6.3の分母付き結果へ結び付け，",
+      "after": "表6.3の初期失敗数と救済数に結び付け，",
+      "reason": "分母付きという硬い表現を指標名へ直す"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "未成功への消費が大きいことから，その対象を事前に識別して無料で除外できるとはいえない．",
+      "after": "未成功例への消費が大きくても，その対象を事前に識別できるとは限らない．",
+      "reason": "測定していない無料という表現を避ける"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "保存履歴を都合よく貼り合わせて方策の成績を確定しない．",
+      "after": "保存履歴の接続だけで，新しい方策の成績を確定することはできない．",
+      "reason": "口語的な作業上の注意を検証の限界へ直す"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "実運用の目的が待機時間，tokens，成功数のどれを重視するかでも選択は変わる．",
+      "after": "実運用で待機時間，tokens，成功数のどれを重視するかによっても，選択する条件は変わる．",
+      "reason": "主語述語の不自然な対応を修正する"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "本稿は新しい介入アルゴリズムの有効性を確定した研究ではなく，方策を検証する前提となる適用範囲を整理した実証研究である．",
+      "after": "本研究では，介入選択方策を検証するための基礎資料として，観測された成功数，成功対象，追加計算コストとその適用範囲を整理した．",
+      "reason": "結論を未達事項の否定から実施した内容へ直す"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "成功例だけでなく未成功対象とその消費を残し，観測結果と未検証の方策を区別して更新することが，量子LLM支援プログラミングの次の実証へつながる．",
+      "after": "今後は，未成功対象への消費も含む観測結果を基に選択方策を定め，別の対象で検証する必要がある．",
+      "reason": "抽象的な締めを具体的な今後の課題へ直す"
+    },
+    {
+      "file": "docs/graduation2026/build.py",
+      "before": "Dを同じ診断に加えて説明・原因分析・修正の順序を促す条件として実装した．",
+      "after": "Dを同じ方式の診断に加えて説明・原因分析・修正の順序を促す条件として実装した．",
+      "reason": "独立点検を採用。履歴の分岐後もF/Dの診断文自体が同一と誤読されないようにする"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "第一に，介入選択に使う特徴を初期失敗分類やモデル，出力評価方式など実行前に得られる情報へ限定し，規則を事前固定する．",
+      "after": "第一に，介入選択に使う特徴を初期失敗分類やモデル，出力評価方式など介入選択時に得られる情報へ限定し，規則を事前固定する．",
+      "reason": "独立点検を採用。初期評価後に得られる失敗分類と情報利用時点を整合させる"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "次の段階では，実行前に利用できる特徴による選択と停止を事前固定し，",
+      "after": "次の段階では，介入選択時や停止判断時に利用できる特徴に基づいて規則を事前固定し，",
+      "reason": "独立点検を採用。選択・停止それぞれの情報利用時点を明記する"
+    },
+    {
+      "file": "docs/graduation2026/build.py",
+      "before": "条件記録は各組5条件の5,000記録，到達roundは現在の経路上の9,249 roundである．",
+      "after": "B/R/F/D/Pの条件記録は5,000記録，到達roundは9,249 roundである．B4の追加実験1,000組は別に集計する．",
+      "reason": "独立点検を採用。条件記録とB4の集計範囲を明示する"
+    },
+    {
+      "file": "docs/graduation2026/build.py",
+      "before": "1,000初期組・5,000条件記録を対象とする．",
+      "after": "B/R/F/D/Pの1,000初期組・5,000条件記録を対象とし，B4の追加実験を別に集計する．",
+      "reason": "要約にも5,000記録の対象条件を明示する"
+    },
+    {
+      "file": "docs/graduation2026/build.py",
+      "before": "片側救済83組の両条件166履歴・398修正遷移を静的に確認した．",
+      "after": "Fのみ・Dのみの救済計83組について，両条件166履歴・398修正遷移を静的に確認した．",
+      "reason": "独立点検を採用。要約で未定義の片側救済を説明する"
+    },
+    {
+      "file": "docs/graduation2026/build.py",
+      "before": "保存prefixの過去の記録値と，後半履歴の実測値を分離して保持する．",
+      "after": "保存履歴の前半の記録値と，部分追試による後半の実測値を分けて保持する．",
+      "reason": "独立点検を採用。連続する修飾を削り実測値の出典を明示する"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "2回で打ち切ると，3回までに救済した集合のうちF15.3%，D18.3%を失う．",
+      "after": "同じ履歴を2回で打ち切る計算では，最終救済のうちF15.3%，D18.3%が失われる．",
+      "reason": "独立点検を採用。上限2回の独立実験でなく履歴の打切り計算と明示する"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "接続先の根拠を失うと，異なる履歴の一部を寄せ集めて一つの条件が実際に辿り得たように見せる危険がある．",
+      "after": "接続先の根拠を確認せずに異なる履歴の一部を接続すると，実際には到達できない経路を作るおそれがある．",
+      "reason": "独立点検を採用。意図を連想させる表現を手続き上の問題へ直す"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "全体差が3組であっても，成功した対象の入れ替わりはそれより大きい．",
+      "after": "救済数の差は3組だが，片側のみ救済された対象は83組あった．",
+      "reason": "独立点検を採用。比喩と曖昧な比較を観測件数へ直す"
+    },
+    {
+      "file": "docs/graduation2026/thesis_expansion.py",
+      "before": "成功率・追加消費・対象の被覆は，必ずしも同じ条件を最良としない．",
+      "after": "成功率・追加消費・対象の被覆では，最良となる条件が異なり得る．",
+      "reason": "独立点検を採用。抽象名詞を判断主体とする表現を直す"
+    }
+  ],
+  "accepted_edit_count": 37,
+  "checks": {
+    "all_ten_tables_unchanged": true,
+    "case_studies.json_unchanged": true,
+    "experiment_prompts.json_unchanged": true,
+    "intervention_catalog.csv_unchanged": true
+  },
+  "body_scan": {
+    "remaining_candidates": 1,
+    "decision": "前回コードをどこまで残すか，は範囲を表す表現であり，成果の積み増しではないため保持。参考文献・出典ラベル・保存プロンプトの記号は本文の一括修正対象から除外。"
+  },
+  "body_characters_excluding_tables": {
+    "before": 28126,
+    "after": 27898
+  },
+  "pages": 33,
+  "tables": 10,
+  "figures": 3,
+  "visual_review": "全33ページを確認。最終差分10ページも再確認。",
+  "artifact_sha256": {
+    "thesis.pdf": "899bcba83b0cb1f5c5a7c28449de1b13422e5b2c075b839aec6299e2b878b97c",
+    "thesis.docx": "6c041b980752a97d420a3cc73327581cb2bf2e6608b6883678adc26048a12b80",
+    "build.py": "8d3132b296b0333b1ec866a5fd9d44b5d3a2cba0e4694589ba1d571c472b0b0d",
+    "template_thesis.py": "e7fa2c00ea343617c0d609d7149c3d7cfee3398acc8786012a8a240f26af8fce",
+    "thesis_expansion.py": "fa81ed25a2f0f76f221466ed57bbf5b1f9dd2db0e26fda29f00977e929badbb7",
+    "thesis_enrichment.py": "39a354ea03c1ee2280f38caf6a19a0779698bf98b39f85cdf700bc91387cc9d3",
+    "validate_figures.py": "80bd0876952ca6a41a541beadaaadf80da4052200081ade864824ab8da993215"
+  },
+  "validation_reports": [
+    "validation_report.json",
+    "revision_report_20261028.json",
+    "figure_validation_report_20261028.json",
+    "enrichment_validation_report.json"
+  ],
+  "new_experiments": 0,
+  "generated_code_executions": 0
+}

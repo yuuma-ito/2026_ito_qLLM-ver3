@@ -25,7 +25,7 @@ def apply(chapters):
         '修正前（Dの初期コードから抜粋）\nqc.inverse_qft(range(n_counting))',
         '修正後（Dのround 1から抜粋）\nfrom qiskit.circuit.library import QFT\niqft = QFT(n_counting, inverse=True)\nqc.append(iqft.to_gate(), range(n_counting))',
         '同じ初期コードからのFも逆QFTを組み立てる形へ変更したが，QFTの読み込み先をqiskit.circuitとしたため，round 1から3はimport失敗となった．Dでもimport以外のコードやコメントが同時に変化している．掲載した抜粋は変更箇所の一部であり，完全なプログラムではない．',
-        '2事例は，APIの利用箇所と保存判定の推移を読み取れる同一モデルの事例として目的選択した．頻度や代表性を推定する標本ではなく，片側救済全83組の集計を置き換えない．記録キー，各roundのコードhash，判定と由来をcase_studies.jsonに保持した．成功に至った変更と未成功の変更を観察した結果であり，単独の変更や説明指示が成功原因だったとは断定しない．',
+        '2事例は，APIの利用箇所と保存判定の推移を説明するため，同一モデルから選んだ．頻度や代表性を推定する標本ではなく，片側救済全83組の集計を置き換えない．記録キー，各roundのコードhash，判定と由来をcase_studies.jsonに保持した．成功に至った変更と未成功の変更を観察した結果であり，単独の変更や説明指示が成功原因だったとは断定しない．',
     ])
     catalog = next(ps for title, ps in chapters[6][1] if title == '介入カタログの構成と適用範囲')
     catalog.insert(0, '表7.1に，表6.3と同じ初期失敗数を用いた介入カタログの抜粋を示す．初期失敗の多い3類型について，F/Dの救済率とB4の追加成功率を並べた．率は各条件の成功数を同じ類型の初期失敗数で割って算出し，条件間で初期対象を変えていない．他の類型の件数は表6.3を参照する．')

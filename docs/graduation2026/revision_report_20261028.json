@@ -1,5 +1,5 @@
 {
-  "validated_at_utc": "2026-10-28T15:10:35.616534+00:00",
+  "validated_at_utc": "2026-10-28T15:36:40.474847+00:00",
   "passed": true,
   "checks": {
     "all_expected_body_paragraphs_in_pdf": true,
@@ -22,12 +22,12 @@
   },
   "after": {
     "body_paragraphs": 183,
-    "body_characters_excluding_tables": 28126,
-    "all_paragraph_characters_including_toc": 42200,
+    "body_characters_excluding_tables": 27898,
+    "all_paragraph_characters_including_toc": 42025,
     "tables": 10,
     "pdf_pages": 33
   },
-  "growth_ratio": 0.6602037463029905,
+  "growth_ratio": 0.6548518848880335,
   "expected_body_paragraphs": 169,
   "missing_body_paragraphs": [],
   "citation_first_use": [
@@ -53,7 +53,7 @@
     "D/initial_failure": 180,
     "B4/initial_failure": 217
   },
-  "pdf_sha256": "185d702a0c1ebea848d1be6c4e0e79f254048dd4efc92f3e2baab95de7d302fd",
-  "docx_sha256": "4032afafcd4fc4880f65fadfb0710ac3917f824ad3705da78091ee7d2b1a070f",
+  "pdf_sha256": "899bcba83b0cb1f5c5a7c28449de1b13422e5b2c075b839aec6299e2b878b97c",
+  "docx_sha256": "6c041b980752a97d420a3cc73327581cb2bf2e6608b6883678adc26048a12b80",
   "scope": "構成整理・重複削減・記述的計算の照合のみ。新規実験・モデル要求・生成コード実行0。"
 }
