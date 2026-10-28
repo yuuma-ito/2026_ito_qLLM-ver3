@@ -1,5 +1,5 @@
 {
-  "built_at_utc": "2026-10-28T01:04:58.270232+00:00",
+  "built_at_utc": "2026-10-28T12:16:50.911498+00:00",
   "title": "量子LLM支援プログラミングにおける失敗類型と介入カタログの実証研究",
   "main_slides": 13,
   "appendix_slides": 4,
@@ -128,7 +128,7 @@
   ],
   "source_sha256": {
     "docs/winf2026/results_snapshot_20261028.json": "8093bfd06554c7c417feec037a3bd6fdc58a8b757c4f36267d5fb6aaccef6da2",
-    "docs/winf2026/paper.tex": "65e669108d19c38603d9cc72ef0eceda24ec384c0c5f234590fbad0b583fb7de",
+    "docs/winf2026/paper.tex": "f9ad910e8c886074634cae5c46306519677aa8792a7b525723dffb4f5373eaed",
     "docs/analysis/independent_4_completed_20261022/summary.csv": "4ff68c4fb0f8d6f94bfd6c1eabe8018e14b29b97435ed028305550823b391344",
     "docs/analysis/independent_4_completed_20261022/first_success.csv": "ec169e95e89d4fb0b6b04dad716d45b10b9ca983e935fabff5476a042a697a6c",
     "docs/analysis/independent_4_completed_20261022/pairwise.csv": "e7a75ee9ad716f6773d7a342c2ac95f9983f877bd4493df622492c02a5e6132c",

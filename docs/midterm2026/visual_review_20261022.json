@@ -1,24 +1,13 @@
 {
-  "reviewed_at_utc": "2026-10-22T09:33:35.979075+00:00",
+  "reviewed_at_utc": "2026-10-28T12:19:14.143721+00:00",
   "status": "reviewed",
   "reviewed_pdf_sha256": {
-    "docs/midterm2026/paper.pdf": "87958d8d12fb4a252ad6dd7c874aa47bc0a9c8559c70570a9d0c27eb23e5b3de",
-    ".cache/midterm_abstract_20261021/word/paper.pdf": "9ef0869e6b023c50f46213c4c2b66c72b3e275d57a2c1629fbdb91618488eecb"
+    "docs/midterm2026/paper.pdf": "d4172c5abd81a407781d8ab0cbae028d423d40285a0cf7d63e6d4fd7b6764dc8",
+    ".cache/midterm_abstract_20261021/word/paper.pdf": "98998bb1db375287b27ca457e8c7b5b7da2544be51f3d6f05ba0a777727a26d5"
   },
-  "pages_reviewed": {
-    "LaTeX": [
-      1,
-      2
-    ],
-    "Word_export": [
-      1,
-      2
-    ]
-  },
-  "method": "AIによるLaTeX・Word変換PDFの全4ページ画像確認．用語定義・追加成功数の表見出し・B4の説明更新後に確認．",
-  "findings": [
-    "本文・表・参考文献・ページ番号の欠落や重なりなし",
-    "2段組み2ページを維持",
-    "PDFは代替フォント確認版"
-  ]
+  "pages_reviewed": [
+    1,
+    2
+  ],
+  "method": "LaTeX版とWord出力版の両ページをPNGで確認。L3成功の定義・表・参考文献が収まり，欠落や重なりなし。"
 }

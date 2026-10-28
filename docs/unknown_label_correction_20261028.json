@@ -1,0 +1,118 @@
+{
+  "checked_at_utc": "2026-10-28T12:19:14.143721+00:00",
+  "passed": true,
+  "scope": "現行の卒論・中間発表・WiNFのPDF/Word/PowerPoint（発表者ノートを含む）。旧固定出典・履歴・CSV分類キーは保持。",
+  "display_label": "実行時エラー（未定義変数）",
+  "table_label": "実行時（未定義変数）",
+  "source_key_preserved": "unknown_error",
+  "source_triage": "docs/analysis/reevaluation_followup_20261015/unknown_failure_triage.csv",
+  "artifacts": [
+    {
+      "path": "docs/graduation2026/abstract.docx",
+      "sha256": "d27ac25c15e10f2fdea10db3b5119a8a26337935d0b33d6c5f84da110ddad401",
+      "pages": null,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/abstract.pdf",
+      "sha256": "d4172c5abd81a407781d8ab0cbae028d423d40285a0cf7d63e6d4fd7b6764dc8",
+      "pages": 2,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/figures/additional_success_rates.pdf",
+      "sha256": "572d5ff4e084f92acae9281529888d331f333d6d3be672a760f0beb459f6f754",
+      "pages": 1,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/figures/experiment_flow.pdf",
+      "sha256": "50fbdc6718fc9a1db058abd49195ad678a220cb51ba01bba4e3a19fa9d240c87",
+      "pages": 1,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/figures/fd_overlap.pdf",
+      "sha256": "4eee4440b13a50fc25d08f7d0aa6bb506c0d75ad35bebaa4a4ca898a4f3ff65f",
+      "pages": 1,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/slides.pdf",
+      "sha256": "26d57dd10716711616d8304de48ebd37bf1d1da50e4b875b3f58b6a226dc384f",
+      "pages": 11,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/slides.pptx",
+      "sha256": "7bd8fc875fdc719d7f7858f6b2357730fc8f80dfc5e194d517e3e8fe6a86560a",
+      "pages": null,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/thesis.docx",
+      "sha256": "3881aa3f6e535471ff529d6cbb428cbb18edd7fafa1cfc6add3b01b44dc68ebf",
+      "pages": null,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/thesis.pdf",
+      "sha256": "039b2302a828a9e110891c101571bd7b4103bba4230d84ef827fa28584f82ac4",
+      "pages": 26,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/midterm2026/paper.docx",
+      "sha256": "d27ac25c15e10f2fdea10db3b5119a8a26337935d0b33d6c5f84da110ddad401",
+      "pages": null,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/midterm2026/paper.pdf",
+      "sha256": "d4172c5abd81a407781d8ab0cbae028d423d40285a0cf7d63e6d4fd7b6764dc8",
+      "pages": 2,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/midterm2026/slides/slides.pdf",
+      "sha256": "4d0b589687cf4a8a18ccfded0e1892c1936dc6dda542eed30e98de775ee14e1a",
+      "pages": 11,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/winf2026/paper.pdf",
+      "sha256": "edcad8b06d27b8fdc92df01e3df35e46dd9ef03bb34ecc2f460afa946e7384ae",
+      "pages": 2,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/winf2026/slides/slides.pdf",
+      "sha256": "999ea0ccda8c0bc3769902eeb1d97f3ed147605e3ab3c9d01c6cbdaac4cee3ab",
+      "pages": 17,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/winf2026/slides/slides.pptx",
+      "sha256": "ed0d52d264d65772f930c44bdf8ae478de1a7cf319a7a4c1f80a5f49555f3771",
+      "pages": null,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    }
+  ],
+  "new_generations": 0,
+  "generated_code_executions": 0
+}

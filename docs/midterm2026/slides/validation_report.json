@@ -1,6 +1,6 @@
 {
-  "created_at_utc": "2026-10-15T16:05:13.644860+00:00",
-  "status": "passed",
+  "created_at_utc": "2026-10-28T12:08:07.571961+00:00",
+  "status": "automated_checks_passed_pending_visual_review",
   "checks": {
     "eleven_pages_eight_main_three_appendix": true,
     "six_minute_timing": true,
@@ -37,70 +37,23 @@
     "docs/presentation_sources/20261016T_reachable_rescues/source_manifest.json": "53586c59f33572fe8233c894fe0ef4f67308e7746ff08d1bb42cc9afd9acc089",
     "docs/presentation_sources/20261016T_reachable_rescues/sanity_report.json": "c9543cc1f437755ef491a844874248414e5fee73eebaa83a0b53db3d7e896d81",
     "docs/presentation_sources/20261016T_reachable_rescues/validation_report.json": "266b4ceb66c70f9d1e3cef98a7f573bd81885d3cc49b1509828841c3b69fca1d",
-    "docs/midterm2026/paper.tex": "86cd29ed59edbc9df4cd21e00621f60458e4f9a8a71e905e5c2fe64bb4bd6396",
+    "docs/midterm2026/paper.tex": "988d6eb6811ac067571efa2059db7e54347ed66a7010e7d370e7979045eef071",
     "docs/analysis/reevaluation_followup_20261015/specification_review.md": "05722fbfdffaf9f18f483c2f553a390273a1c4d6b922f56a43b25824911abfb9",
     "docs/analysis/reevaluation_followup_20261015/partial_rerun_sanity_report.json": "9d13305c47dc75807ca455f73cde80d0c269e705f7ff5da19e2b37dca75635e1"
   },
   "artifacts_sha256": {
-    "slides.tex": "0f21ea4b8e63a927132749cb74383f390984e79373c494fa8504a5fa8f0dc7f9",
+    "slides.tex": "13c6f1a0da835eda3c83b0bc8aa8a3cd690adfcbdb6f9825b866694676412405",
     "data.tex": "6ac7b107c79c100f6693340547bc86823d2d57ccd30c5b1993c15031d1baa4a2",
-    "slides.pdf": "d3290f7503502ab8e3970b2e511c3e3b09798b039d25adbcf82177180f836efc",
-    "speaker_notes.txt": "a97513a09a3adc48403b6dc168699a12b28e3f575f0a46d3a01026b29c297e09",
+    "slides.pdf": "4d0b589687cf4a8a18ccfded0e1892c1936dc6dda542eed30e98de775ee14e1a",
+    "speaker_notes.txt": "d74bd1c627571c3c811cbde9164e8e36f0c64ae7c8c9b25bf1d36ca3f25272f1",
     "build.py": "ffcc7ea54558c1e5a91d311759089f0c0d07f722929a8d999b23eccd5b99e594"
   },
   "visual_review": {
-    "passed": true,
-    "all_pages_reviewed": true,
-    "notes": [
-      "全11ページを画像で確認。日本語の欠字・文字化け、本文や図表の切れ・重なりなし。",
-      "本編8枚、質疑用補足3枚。グラフと表の分母・単位・出典を確認。",
-      "最終PDFの全ページ画像が目視確認した画像と一致。"
+    "status": "reviewed_changed_pages",
+    "pages_reviewed": [
+      4,
+      11
     ],
-    "images": [
-      {
-        "page": 1,
-        "image_sha256": "62756a81f750a0edddf9087a1a306256213de91cd06f3996c6d61fb8d00387b2"
-      },
-      {
-        "page": 2,
-        "image_sha256": "ccdb9155dfa8f1da311e00eaa5d28ab9db17a542d88467a2c54e7428ab1d0b75"
-      },
-      {
-        "page": 3,
-        "image_sha256": "72b5dcedd600c00f3ce519751b88e2f7001cd79eaeb4a0fef50f0b04c6c3a4ff"
-      },
-      {
-        "page": 4,
-        "image_sha256": "15b3cbdeb6e1d9f522cec1cf81653f3383d1aa08007e04bebb4f67fe39ab664a"
-      },
-      {
-        "page": 5,
-        "image_sha256": "e31648b6018c9783dab6f9327c27ff5a57064b39e246f07c57934fe7b58aa666"
-      },
-      {
-        "page": 6,
-        "image_sha256": "582b1321a183316b2cb2f84fdc08520ff360718b93149dad9af8d8521f3be468"
-      },
-      {
-        "page": 7,
-        "image_sha256": "7465554180c161211f37a5783ff5a02a04021c604a8957342b5aa6b09a03aa55"
-      },
-      {
-        "page": 8,
-        "image_sha256": "6c6828f1994ae621f17f3770803aa141d5c23769e8271c371000928f25ceb42c"
-      },
-      {
-        "page": 9,
-        "image_sha256": "0201de59bd26232d7ef252feeabc95e729e14acfd366fca93a592aa2eca9313a"
-      },
-      {
-        "page": 10,
-        "image_sha256": "cacb340ad6ef1a0580b269ca6e87408dd3a934a75dff19944a1ac8dd30d1d5f0"
-      },
-      {
-        "page": 11,
-        "image_sha256": "35cb96605213846c44f5f1650e758554b1054e390ab3511e5672ecf1545ce9c7"
-      }
-    ]
+    "method": "L3定義と結果式を含む修正ページをPNGで確認。全11ページのフォント埋込み・はみ出し・固定件数はビルド時に自動検証。"
   }
 }

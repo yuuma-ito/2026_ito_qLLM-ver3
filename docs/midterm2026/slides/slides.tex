@@ -27,7 +27,7 @@
 \newcommand{\src}[1]{\par\vspace{1mm}{\fontsize{6.5}{8}\selectfont\color{Muted} 出典：固定集計 20261016T\_reachable\_rescues / #1\par}}
 \newcommand{\smallnote}[1]{{\scriptsize\color{Muted}#1\par}}
 \input{data.tex}
-\title{Qiskit量子回路コードの初期失敗に対する修正介入}
+\title{量子LLM支援プログラミングにおける\\失敗類型と介入カタログの実証研究}
 \author{2023TC011 伊藤 悠真}
 \date{2026年10月16日・中間発表 仮スライド}
 \begin{document}
@@ -36,8 +36,8 @@
 \begin{frame}[plain]
 \vspace{4mm}
 {\small\color{Teal}\bfseries 量子回路コード生成 × LLM}\par\vspace{5mm}
-{\LARGE\bfseries 初期生成の失敗を、\\[2mm]どの修正介入が救済できるか}\par\vspace{4mm}
-{\large Qiskit量子回路コードの救済率と救済対象の分析}\par\vspace{6mm}
+{\Large\bfseries 量子LLM支援プログラミングにおける\\失敗類型と介入カタログの実証研究}\par\vspace{4mm}
+\vspace{6mm}
 {\normalsize 2023TC011 伊藤 悠真}\par\vspace{1mm}
 {\small 指導教員：横山 哲郎}\par\vspace{5mm}
 {\scriptsize\color{Muted} 中間発表 仮版｜6分・本編8枚｜2026年10月16日}
@@ -101,7 +101,7 @@
 \begin{frame}{評価：初期失敗545組を救済率の分母にする}
 \begin{columns}[T,onlytextwidth]
 \begin{column}{.53\textwidth}
-\begin{block}{主L3：指定入力と構造条件への合格}
+\begin{block}{L3：指定入力と構造条件への合格}
 \small
 \begin{enumerate}
 \item import・必須関数の要件
@@ -117,7 +117,7 @@
 {\Large\bfseries 455}\quad 初期成功\par\vspace{2mm}
 {\Large\bfseries\color{Orange}545}\quad 初期失敗\par\vspace{2mm}
 {\small 救済率}\par
-\vspace{2mm}{\small\(\displaystyle\frac{\text{初期失敗から最終主L3成功}}{\text{初期失敗545組}}\)}\par
+\vspace{2mm}{\small\(\displaystyle\frac{\text{初期失敗から最終L3成功}}{\text{初期失敗545組}}\)}\par
 \end{column}
 \end{columns}
 \takeaway{「全入力で正しい」「全指示を守る」ことまで保証する判定ではない。}
@@ -247,7 +247,7 @@ import失敗271組でF 58・D 72、回路構築失敗126組でF 76・D 68。\\
 \item 測定禁止など全プロンプト条件の遵守は保証しない。\\
 主判定合格・補助適用外の測定入りコードも仕様照合に記録済み。
 \end{itemize}
-\takeaway{定義した主L3の結果として報告する。補助判定を混ぜて成功の定義を変えない。}
+\takeaway{定義したL3の結果として報告する。補助判定を混ぜて成功の定義を変えない。}
 \smallnote{有限shots・測定乱数・生成長上限・サーバ負荷への依存が残る。\\元3実験の設定・診断文差があり、独立標本や因果効果の証拠とは扱わない。}
 {\fontsize{6.5}{8}\selectfont\color{Muted} 出典：docs/analysis/reevaluation\_followup\_20261015/ のREADME、\\specification\_review.md、partial\_rerun\_sanity\_report.json。全件新規生成ではない。\par}
 \end{frame}

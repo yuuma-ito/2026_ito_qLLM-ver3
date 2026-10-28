@@ -1,5 +1,5 @@
 {
-  "validated_at_utc": "2026-10-28T00:51:32.105870+00:00",
+  "validated_at_utc": "2026-10-28T12:19:14.143721+00:00",
   "passed": true,
   "checks": {
     "source_hashes_unchanged": true,
@@ -15,11 +15,15 @@
     "style_unchanged": true,
     "references_resolved": true,
     "visual_review_all_pages": true,
-    "author_affiliation_in_pdf": true
+    "author_affiliation_in_pdf": true,
+    "old_unknown_label_absent": true,
+    "runtime_error_explanation_present": true,
+    "old_L3_alias_absent": true,
+    "L3_success_definition_present": true
   },
   "artifacts_sha256": {
-    "paper.tex": "65e669108d19c38603d9cc72ef0eceda24ec384c0c5f234590fbad0b583fb7de",
-    "paper.pdf": "10a3cbffc746642ff8f9b68101ae51d27676a9901913bfea48315a68484b1610",
+    "paper.tex": "f9ad910e8c886074634cae5c46306519677aa8792a7b525723dffb4f5373eaed",
+    "paper.pdf": "edcad8b06d27b8fdc92df01e3df35e46dd9ef03bb34ecc2f460afa946e7384ae",
     "tables_20261028.tex": "4699ac9df80755701571a28c33ea9e9ed01d0331cfc1b803c0bd19abd5102459",
     "abstract.txt": "d8df33fb99ce4043b45bcbcf3d1cf52321460fe4d85cd129f87ca1d46b146c3a",
     "results_snapshot_20261028.json": "8093bfd06554c7c417feec037a3bd6fdc58a8b757c4f36267d5fb6aaccef6da2",
@@ -34,8 +38,11 @@
     "findings": [
       "本文・表・参考文献の欠落・重なりなし",
       "固定タイトルの指定位置の改行を確認",
-      "B4列・表見出しが判読可能"
-    ]
+      "B4列・表見出しが判読可能",
+      "原因確認済みの1組を実行時エラー（未定義変数）と明記し，旧分類名の残存なし。",
+      "L3成功の定義と用語統一後の2ページを画像で確認。"
+    ],
+    "reviewed_at_utc": "2026-10-28T12:19:14.143721+00:00"
   },
   "nonblocking_build_notes": [
     "Underfull hbox/vboxあり。はみ出しなし。",

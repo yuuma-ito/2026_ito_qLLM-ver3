@@ -46,7 +46,7 @@ def validate():
     checks['P_separate_path_labelled_in_figure'] = all(norm(t) in flow_text for t in ['P 生成前介入','全1,000組','初期失敗に限定しない','点線：Pの独立経路'])
     checks['purpose_includes_B4_comparison'] = norm('修正介入と独立再生成の有効性を比較し') in alltext
     checks['intervention_definition_includes_P'] = all(norm(t) in alltext for t in ['コード生成時または生成後の再試行時に','生成前に注意事項を与えるPと，生成後に修正を促すR/F/Dを含む','B4は前回コードや診断，修正指示を与えず'])
-    checks['requested_Japanese_corrections'] = all(norm(t) in alltext for t in ['部分追試で生成した後半履歴は647ラウンド','後半履歴の実測値','unknown_errorが2件','R/F/Dは保存履歴と部分追試を接続した再構成結果であり，B4は別途実施した追加実験である．']) and all(norm(t) not in alltext for t in ['検証済みの保存済みの','後半部分の部分追試時の実測値','unknown_error2件'])
+    checks['requested_Japanese_corrections'] = all(norm(t) in alltext for t in ['部分追試で生成した後半履歴は647ラウンド','後半履歴の実測値','未定義変数による実行時エラーが2件','R/F/Dは保存履歴と部分追試を接続した再構成結果であり，B4は別途実施した追加実験である．']) and all(norm(t) not in alltext for t in ['検証済みの保存済みの','後半部分の部分追試時の実測値','unknown_error2件'])
     standalone={}
     for spec in m['figures']:
         f=pymupdf.open(HERE/'figures'/(spec['stem']+'.pdf'))

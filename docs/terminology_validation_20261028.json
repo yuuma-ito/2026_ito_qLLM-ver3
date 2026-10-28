@@ -1,0 +1,153 @@
+{
+  "checked_at_utc": "2026-10-28T12:19:14.143721+00:00",
+  "passed": true,
+  "scope": "現行の卒論・要旨・中間発表・WiNF原稿と発表資料および生成元。過去の固定分析・実験の評価仕様・CSV分類キーは保持。",
+  "terminology": {
+    "evaluation_level": "L3",
+    "successful_outcome": "L3成功",
+    "runtime_error": "実行時エラー（未定義変数）"
+  },
+  "frozen_sources_unchanged": true,
+  "fixed_source_sha256": {
+    "docs/presentation_sources/20261016T_reachable_rescues/tables.tex": "613b925cba433fb2f6e14f8fa5a1465157756d24196fba2117623bd028632651",
+    "docs/presentation_sources/20261016T_reachable_rescues/discordant_transitions.csv": "6c07410a9c1d71aade0171978d114449ed35e58ac2a8c26951a846e47a0791fb",
+    "docs/presentation_sources/20261016T_reachable_rescues/fd_overlap_summary.csv": "48e9b1aad2e0003e4331c0c84d976d835064aaed89aa5c2f449f388d933ef67e",
+    "docs/presentation_sources/20261016T_reachable_rescues/source_manifest.json": "53586c59f33572fe8233c894fe0ef4f67308e7746ff08d1bb42cc9afd9acc089",
+    "docs/presentation_sources/20261016T_reachable_rescues/repair_summary.csv": "84e419e1c5eefea2db337e3f14027ec3dd2ad4d21a4bed980b785630c7c24497",
+    "docs/presentation_sources/20261016T_reachable_rescues/manifest.json": "afea494441162b5774fcbdb97f69ca5a38231fac7741feba33c53c511242d0cc",
+    "docs/presentation_sources/20261016T_reachable_rescues/third_round_rescues.csv": "dfb12957969475dc62ffe03f588b014445e577a2202cde9953c654739555a480",
+    "docs/presentation_sources/20261016T_reachable_rescues/discordant_summary.csv": "8cb43e3aa51c4552367ef0ae299396db5cfa3700236f14bbd8021011b55ba76b",
+    "docs/presentation_sources/20261016T_reachable_rescues/discordant_cases.csv": "50b69c319355f750a091e4d18e60fc8365d52e75e9bc3573f3feb2f20d1d038b",
+    "docs/presentation_sources/20261016T_reachable_rescues/sanity_report.json": "c9543cc1f437755ef491a844874248414e5fee73eebaa83a0b53db3d7e896d81",
+    "docs/presentation_sources/20261016T_reachable_rescues/README.md": "e110f7e7854be0cc65be4a78b9a0ccb12cd98145b03ce685e4b14b18b1969286",
+    "docs/presentation_sources/20261016T_reachable_rescues/validation_report.json": "266b4ceb66c70f9d1e3cef98a7f573bd81885d3cc49b1509828841c3b69fca1d",
+    "docs/presentation_sources/20261016T_reachable_rescues/third_round_summary.csv": "f08b55c8a0d2e49244d37b4c146cfd7a53176896e2541169a9a05f20a6abc7b4",
+    "docs/presentation_sources/20261016T_reachable_rescues/results_snapshot.json": "67df2972c197f90117c30541fd646d72ec64f4023df66d705c51010b392ea35d",
+    "docs/presentation_sources/20261016T_reachable_rescues/preventive_summary.csv": "8027cb2cc0fee81b78b4cae73535e3ec538dc8c687ab973395c7dff7689a6837",
+    "docs/presentation_sources/20261016T_reachable_rescues/paired_records.csv": "058a70884fdf065eaec2d3a715c18b44d8d108a036475f81a6291edd4d22a74c",
+    "docs/presentation_sources/20261016T_reachable_rescues/cost_by_cap_and_stratum.csv": "94075182d9f66f7997621c62427b06dcc43e4f147740a03943b14157992c0b89",
+    "docs/presentation_sources/20261016T_reachable_rescues/findings.md": "789f1ac7fda52c20ea02464a337cc24dde490cb8748b0b85100eb2fcb62199b9",
+    "docs/analysis/independent_4_completed_20261022/pairwise.csv": "e7a75ee9ad716f6773d7a342c2ac95f9983f877bd4493df622492c02a5e6132c",
+    "docs/analysis/independent_4_completed_20261022/source_manifest.json": "290111e0da3613e85018c47a0d1f09c30b1d8c0728727ef5d6fabbda2bca5d66",
+    "docs/analysis/independent_4_completed_20261022/manifest.json": "a1a5b778a0c0731b3ef0ae3d80db655a5337add5be7866c90be9465c944b981f",
+    "docs/analysis/independent_4_completed_20261022/repetitions.csv": "a6b47127728b5e9d7114bce7a5087efff1e0a91233036e86c301c97984da642e",
+    "docs/analysis/independent_4_completed_20261022/sanity_report.json": "3cc4ab325a52fdb5befa6cdd5d6fa1595f128c70d5e76fe02e7213d6a4a11d5c",
+    "docs/analysis/independent_4_completed_20261022/README.md": "9f797373eab45012d91e49aade7612d17da42810f48fb6df6673794c8eda7f59",
+    "docs/analysis/independent_4_completed_20261022/runner_experiment_config.json": "a23720130eb78dbdf8ba5afc4df94a2140895a9b2df53abab0e95202913db965",
+    "docs/analysis/independent_4_completed_20261022/overlap.csv": "42aa37c7fe16f37bc4edc4a0ba972007b0cef25fff49329123de6cf6c9ea381f",
+    "docs/analysis/independent_4_completed_20261022/runner_manifest.json": "ab291d563bfd6802fd701c79a27be551209fd8f37f197563ee9f54dd01918501",
+    "docs/analysis/independent_4_completed_20261022/first_success.csv": "ec169e95e89d4fb0b6b04dad716d45b10b9ca983e935fabff5476a042a697a6c",
+    "docs/analysis/independent_4_completed_20261022/summary.csv": "4ff68c4fb0f8d6f94bfd6c1eabe8018e14b29b97435ed028305550823b391344"
+  },
+  "artifacts": [
+    {
+      "path": "docs/graduation2026/abstract.docx",
+      "sha256": "d27ac25c15e10f2fdea10db3b5119a8a26337935d0b33d6c5f84da110ddad401",
+      "pages": null,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/abstract.pdf",
+      "sha256": "d4172c5abd81a407781d8ab0cbae028d423d40285a0cf7d63e6d4fd7b6764dc8",
+      "pages": 2,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/figures/additional_success_rates.pdf",
+      "sha256": "572d5ff4e084f92acae9281529888d331f333d6d3be672a760f0beb459f6f754",
+      "pages": 1,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/figures/experiment_flow.pdf",
+      "sha256": "50fbdc6718fc9a1db058abd49195ad678a220cb51ba01bba4e3a19fa9d240c87",
+      "pages": 1,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/figures/fd_overlap.pdf",
+      "sha256": "4eee4440b13a50fc25d08f7d0aa6bb506c0d75ad35bebaa4a4ca898a4f3ff65f",
+      "pages": 1,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/slides.pdf",
+      "sha256": "26d57dd10716711616d8304de48ebd37bf1d1da50e4b875b3f58b6a226dc384f",
+      "pages": 11,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/slides.pptx",
+      "sha256": "7bd8fc875fdc719d7f7858f6b2357730fc8f80dfc5e194d517e3e8fe6a86560a",
+      "pages": null,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/thesis.docx",
+      "sha256": "3881aa3f6e535471ff529d6cbb428cbb18edd7fafa1cfc6add3b01b44dc68ebf",
+      "pages": null,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/graduation2026/thesis.pdf",
+      "sha256": "039b2302a828a9e110891c101571bd7b4103bba4230d84ef827fa28584f82ac4",
+      "pages": 26,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/midterm2026/paper.docx",
+      "sha256": "d27ac25c15e10f2fdea10db3b5119a8a26337935d0b33d6c5f84da110ddad401",
+      "pages": null,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/midterm2026/paper.pdf",
+      "sha256": "d4172c5abd81a407781d8ab0cbae028d423d40285a0cf7d63e6d4fd7b6764dc8",
+      "pages": 2,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/midterm2026/slides/slides.pdf",
+      "sha256": "4d0b589687cf4a8a18ccfded0e1892c1936dc6dda542eed30e98de775ee14e1a",
+      "pages": 11,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/winf2026/paper.pdf",
+      "sha256": "edcad8b06d27b8fdc92df01e3df35e46dd9ef03bb34ecc2f460afa946e7384ae",
+      "pages": 2,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/winf2026/slides/slides.pdf",
+      "sha256": "999ea0ccda8c0bc3769902eeb1d97f3ed147605e3ab3c9d01c6cbdaac4cee3ab",
+      "pages": 17,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    },
+    {
+      "path": "docs/winf2026/slides/slides.pptx",
+      "sha256": "ed0d52d264d65772f930c44bdf8ae478de1a7cf319a7a4c1f80a5f49555f3771",
+      "pages": null,
+      "old_L3_alias_absent": true,
+      "old_unknown_label_absent": true
+    }
+  ],
+  "visual_review": "卒論全26ページ，LaTeX／Word要旨各2ページ，WiNF原稿2ページ，修正対象のスライド画像を確認。",
+  "font_limitation": "従来どおり指定フォントがない環境での代替フォントによるPDF確認版。Wordフォント指定は検証済み。",
+  "new_generations": 0,
+  "generated_code_executions": 0
+}
