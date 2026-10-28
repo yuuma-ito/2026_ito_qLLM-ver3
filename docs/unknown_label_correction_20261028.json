@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-28T12:36:35.383340+00:00",
+  "checked_at_utc": "2026-10-28T14:02:22.333847+00:00",
   "passed": true,
   "scope": "現行の卒論・中間発表・WiNFのPDF/Word/PowerPoint（発表者ノートを含む）。旧固定出典・履歴・CSV分類キーは保持。",
   "display_label": "実行時エラー（未定義変数）",
@@ -58,17 +58,19 @@
     },
     {
       "path": "docs/graduation2026/thesis.docx",
-      "sha256": "745eb48cfc9c8502cf32245736f598b7746befd68ff257b08a887224b30dc1fc",
+      "sha256": "171447fd6f54070dca7ecc6a4af9049a3a4c437a09f0aa514a0470ca4c034947",
       "pages": null,
       "old_L3_alias_absent": true,
-      "old_unknown_label_absent": true
+      "old_unknown_label_absent": false,
+      "unknown_occurrences_only_saved_key_explanation": true
     },
     {
       "path": "docs/graduation2026/thesis.pdf",
-      "sha256": "eb54d3616812185d6bab1816acd02966a397947523134d6a609e759746b5be84",
+      "sha256": "720371fb9058f865938598c8f912b2635e5b006a6437185ac4ca42359837f2e2",
       "pages": 26,
       "old_L3_alias_absent": true,
-      "old_unknown_label_absent": true
+      "old_unknown_label_absent": false,
+      "unknown_occurrences_only_saved_key_explanation": true
     },
     {
       "path": "docs/midterm2026/paper.docx",
@@ -114,5 +116,16 @@
     }
   ],
   "new_generations": 0,
-  "generated_code_executions": 0
+  "generated_code_executions": 0,
+  "saved_source_key_explanation_exception": "unknown_errorは保存時のキーを説明する本文に限り記載する。本稿の表示分類は実行時エラー（未定義変数）とし，保存キー・件数・成功判定は保持。",
+  "consistency_checks": {
+    "summary_purpose_includes_repair_and_independent_regeneration": true,
+    "saved_key_and_paper_display_explicit": true,
+    "result_table_label_is_paper_display_only": true,
+    "separate_frozen_sources_by_condition": true,
+    "exclusive_primary_aggregate_phrase_removed": true,
+    "saved_unknown_key_only_no_obsolete_display_label": true,
+    "previous_bibliography_path_fix_retained": true,
+    "26_pages": true
+  }
 }

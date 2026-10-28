@@ -1,7 +1,7 @@
 {
-  "reviewed_at_utc": "2026-10-28T12:36:35.383340+00:00",
+  "reviewed_at_utc": "2026-10-28T14:02:22.333847+00:00",
   "status": "reviewed",
-  "pdf_sha256": "eb54d3616812185d6bab1816acd02966a397947523134d6a609e759746b5be84",
+  "pdf_sha256": "720371fb9058f865938598c8f912b2635e5b006a6437185ac4ca42359837f2e2",
   "pages_reviewed": [
     1,
     2,
@@ -39,7 +39,8 @@
     "図表・本文・ページ番号の欠けや重なりなし、白紙ページなし",
     "旧分類名を実行時エラー（未定義変数）へ修正。表5の分類名は1行に収まり，件数と全26ページの体裁を保持。",
     "評価水準はL3，結果はL3成功へ用語を統一。全26ページと定義・評価説明の単ページ画像を確認し，欠落や重なりなし。",
-    "文献[3]を固定出典・参照ファイルに分け，2パスと2ファイル名がそれぞれ1行に収まることを24ページの画像と抽出文字で確認。前コミットPDFとの画像比較で24ページ以外の全25ページは同一。"
+    "文献[3]を固定出典・参照ファイルに分け，2パスと2ファイル名がそれぞれ1行に収まることを24ページの画像と抽出文字で確認。前コミットPDFとの画像比較で24ページ以外の全25ページは同一。",
+    "要約の目的をB4比較まで含めた本文と整合し，保存キーと本稿表記の区別，条件別の固定出典を明記。現行全26ページを画像で確認。"
   ],
   "unperformed": [
     "原本テンプレートとの照合",
@@ -58,6 +59,17 @@
     "visible_changes_only_on_pages": [
       24
     ],
-    "other_25_pages_identical_to_previous_commit": true
+    "other_25_pages_identical_to_previous_commit": true,
+    "comparison_scope": "参考文献だけを修正した080b923の作成時に実施した比較。今回は本文修正に伴う行配置変更あり。"
+  },
+  "consistency_checks": {
+    "summary_purpose_includes_repair_and_independent_regeneration": true,
+    "saved_key_and_paper_display_explicit": true,
+    "result_table_label_is_paper_display_only": true,
+    "separate_frozen_sources_by_condition": true,
+    "exclusive_primary_aggregate_phrase_removed": true,
+    "saved_unknown_key_only_no_obsolete_display_label": true,
+    "previous_bibliography_path_fix_retained": true,
+    "26_pages": true
   }
 }

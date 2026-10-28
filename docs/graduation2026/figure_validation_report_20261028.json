@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-28T12:36:10.623641+00:00",
+  "checked_at_utc": "2026-10-28T14:00:55.608452+00:00",
   "passed": true,
   "checks": {
     "frozen_sources_unchanged": true,
@@ -37,7 +37,7 @@
     "図3 FとDの救済対象の重なり（初期失敗545組を排他的な4集合に分割）"
   ],
   "pages": 26,
-  "pdf_sha256": "eb54d3616812185d6bab1816acd02966a397947523134d6a609e759746b5be84",
+  "pdf_sha256": "720371fb9058f865938598c8f912b2635e5b006a6437185ac4ca42359837f2e2",
   "source_manifest": "figures/figure_manifest.json",
   "new_generations": 0,
   "generated_code_executions": 0

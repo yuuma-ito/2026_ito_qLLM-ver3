@@ -147,9 +147,9 @@ def table(d,caption,headers,rows,size=10.5,widths=None):
     setfont(end.add_run(''),2)
     return t
 
-JA_SUMMARY='''LLMによる量子回路コード生成では，APIの誤用や回路構築の失敗に加え，実行できても期待した出力を返さない失敗が生じる．本研究では，Qiskitを用いたコードの初期失敗を修正介入がどの程度救済し，どの対象を救済するかを分析した．自己見直しR，実行結果提示F，説明・原因分析を促す自己デバッグDを，同じ初期コードから比較した．生成前注意事項Pは独立生成として扱った．
+JA_SUMMARY='''LLMによる量子回路コード生成では，APIの誤用や回路構築の失敗に加え，実行できても期待した出力を返さない失敗が生じる．本研究では，Qiskitを用いた量子回路コード生成において，初期失敗に対する修正介入と独立再生成を比較し，追加成功数，成功対象および計算コストを分析した．自己見直しR，実行結果提示F，説明・原因分析を促す自己デバッグDと，独立再生成B4を，同じ初期コードを起点として比較した．生成前注意事項Pは独立生成として扱った．
 対象は5モデル，10タスク，seed 0〜19の1,000初期組，5,000条件記録である．検証済み保存prefixと必要な部分追試suffixを組み合わせた到達可能な経路を採用した．成功は指定入力の出力一致と所定の構造要件を含むL3で判定した．初期失敗545組の救済はR96組（17.6%），F183組（33.6%），D180組（33.0%）であった．FとDの共通救済は140組，Fのみ43組，Dのみ40組であり，救済数が近くても対象は異なった．片側救済83組の両条件166履歴・398修正遷移を静的に確認した．
-同じ初期コードを保持する独立再生成B4を追加し，初期失敗に対して最大3回，前回コードや診断を与えず再生成した．B4は217/545組（39.8%）で成功し，最終成功は672/1,000組（67.2%）であった．追加1,342要求，995,815 tokens，追加tokens／追加成功は4,589.0であった．最大生成回数が同じでも入力情報・seed規則・実行時期が異なり，因果効果は断定しない．
+独立再生成B4では同じ初期コードを保持し，初期失敗に対して最大3回，前回コードや診断を与えず再生成した．B4は217/545組（39.8%）で成功し，最終成功は672/1,000組（67.2%）であった．追加1,342要求，995,815 tokens，追加tokens／追加成功は4,589.0であった．最大生成回数が同じでも入力情報・seed規則・実行時期が異なり，因果効果は断定しない．
 未救済例への消費を含む追加tokens／救済はR18,852.6，F9,333.8，D10,976.6であった．3回目の修正はFで28組，Dで33組を追加救済した．これらは保存記録と部分追試を組み合わせた計算値であり，全件新実験の実測コストではない．結果は今回のモデル・タスクと指定入力での評価に限られ，介入の一般的優劣，因果効果，統計的有意差を主張しない．今後は介入選択・停止方策を事前固定し，別seed・タスクで検証する必要がある．'''
 EN_SUMMARY='''Large language models can produce Qiskit code that fails during import or circuit construction, or produces an unexpected output despite executing successfully. This study examines how often repair interventions rescue initial failures and whether different interventions rescue the same cases. We compare self-review (R), execution feedback (F), and self-debugging with explanation and cause analysis (D), starting from shared initial code. Preventive instructions (P) are treated as independent generation.
 The analysis covers 1,000 initial groups and 5,000 condition records across five models, ten tasks, and seeds 0–19. The primary paths combine verified saved prefixes with necessary suffixes from partial reruns. Success requires the expected output for the specified input and predefined structural constraints. Of 545 initial failures, R rescued 96 (17.6%), F rescued 183 (33.6%), and D rescued 180 (33.0%). F and D shared 140 rescued cases; 43 were rescued only by F and 40 only by D. All 166 condition histories and 398 repair transitions for these 83 discordant cases were inspected statically.
@@ -198,7 +198,7 @@ CHAPTERS=[
 '評価対象コードはbuild_circuit()を定義し，QuantumCircuitを返すインターフェースを前提とする．測定分布と状態ベクトルのどちらを検査するかはタスク仕様で定める．実装環境の依存範囲はrequirements.txtに保持し，過去の実験の実行環境を現在の環境から推定して埋めない．保存設定・ハーネス版・モデルdigestは元実験manifestを参照する．']),
 ('失敗分類とモデル接続障害',[
 '構文，import，必須インターフェース，回路構築，出力不一致，量子ビット数などの分類を記録する．コード側のimport_errorやbuild_errorは介入の対象となる実験結果である．一方，モデルAPIの接続エラーやタイムアウトは生成されたコードの品質と分けて検証する．',
-'原因確認済みの初期失敗1組は，未定義変数simによるNameErrorであり，実行時エラー（未定義変数）に分類した．API接続障害には含めない．固定出典の検証状態を参照し，未解決の実行・評価問題を確定結果のように扱わない．']),
+'保存時にunknown_errorと記録された初期失敗1組について，事後確認により未定義変数simによるNameErrorと判明したため，本稿では「実行時エラー（未定義変数）」と表記する．保存データの分類キーは変更していない．API接続障害には含めない．固定出典の検証状態を参照し，未解決の実行・評価問題を確定結果のように扱わない．']),
 ('到達可能な履歴の再構成',[
 '評価方針の修正は，停止する時点や次に与える診断文を変えることがある．保存コードを新しい評価で再採点するだけでは，新診断を受けて生成されるはずの後続コードを再現できない．そこで，検証済みの生成履歴の前半部分と，必要な部分追試の後半履歴（suffix）を接続した現在の到達経路を主結果とする．',
 '部分追試は293ケースで，部分追試で生成した後半履歴は647ラウンドである．分岐後に到達できない旧保存suffixを現在の経路に流用しない．初期生成から全件を新評価で生成し直した実験とは区別する．現行の到達roundは9,249であり，5,000条件記録とは集計単位が異なる．']),
@@ -212,7 +212,7 @@ CHAPTERS=[
 ('生成条件と元実験の区別',[
 'temperatureは0.7，1要求の生成上限は1,024 tokens，最大修正回数は3回である．保存設定ではreasoning_effortはnone，timeout_secは600，parallel_requestsは1である．実際に生成された長さは可変であり，上限の同一性は消費量の同一性を意味しない．',
 '元実験は，3モデルseed 0〜9の1,500条件記録，5モデルseed 10〜19の2,500条件記録，残り2モデルseed 0〜9の1,000条件記録に分かれる．schemaや診断文処理の差を保持したうえで，初期組と条件を対応づける．元実験IDと保存設定の参照先は付録Aに示す．',
-'旧120件は2モデル，seed 0〜2，2条件，L2終了の既報であり，現行のL3による5,000条件記録へ合算しない．旧評価，保存コードの再採点，部分追試を三つの独立した主結果として並べない．本稿は2026-10-16版の固定スナップショット [3] を唯一の主集計とする．']),
+'旧120件は2モデル，seed 0〜2，2条件，L2終了の既報であり，現行のL3による5,000条件記録へ合算しない．旧評価，保存コードの再採点，部分追試を三つの独立した主結果として並べない．R/F/D/PおよびBの主集計には2026年10月16日版の固定スナップショットを用い，B4については2026年10月22日版の追加実験結果を用いる [3]．']),
 ('追加コストと修正回数の集計方針',[
 '追加修正コストは共有初期生成を除き，失敗した修正への消費を含めた入力＋出力tokensの合計である．tokens／救済は総追加tokensを救済組数で割る．要求時間は保存されたelapsed_secの合計であり，評価時間や全工程の所要時間ではない．',
 '保存prefixの過去の記録値と，後半履歴の実測値を分離して保持する．合計は再構成した経路に対する計算値である．金銭単価を測定していないため，金銭費用の削減とは呼ばない．修正上限別の集計も同じ最大3修正の観測履歴を区切ったものであり，上限ごとに独立実験した結果ではない．'])]),
