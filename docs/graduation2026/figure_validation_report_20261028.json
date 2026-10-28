@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-28T14:00:55.608452+00:00",
+  "checked_at_utc": "2026-10-28T15:10:30.487383+00:00",
   "passed": true,
   "checks": {
     "frozen_sources_unchanged": true,
@@ -36,8 +36,8 @@
     "図2 初期失敗545組に対する条件別の追加成功率",
     "図3 FとDの救済対象の重なり（初期失敗545組を排他的な4集合に分割）"
   ],
-  "pages": 26,
-  "pdf_sha256": "720371fb9058f865938598c8f912b2635e5b006a6437185ac4ca42359837f2e2",
+  "pages": 33,
+  "pdf_sha256": "185d702a0c1ebea848d1be6c4e0e79f254048dd4efc92f3e2baab95de7d302fd",
   "source_manifest": "figures/figure_manifest.json",
   "new_generations": 0,
   "generated_code_executions": 0

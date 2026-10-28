@@ -1,0 +1,83 @@
+{
+  "kind": "archived_literal_templates_with_explicit_placeholders",
+  "source_commits": [
+    "9c1833eba6020369247358c04e462e0dc1982705",
+    "9c6f952b41ac661bb42bb1ffe4d3f37282260658",
+    "7ccef09db9bff16785b08f2e7f1ff542cf64b849"
+  ],
+  "provenance_limit": "固定テンプレートの復元掲載。個々のネットワーク要求全文の直接記録ではない。",
+  "system": "You are an expert Qiskit programmer. Generate a complete, runnable Python script using qiskit (version 2.x) and qiskit-aer.\n\nStrict requirements:\n- Import all necessary modules at the top.\n- Define exactly one function named `build_circuit() -> QuantumCircuit`.\n- The function must return a QuantumCircuit with the requested number of qubits.\n- DO NOT add measurement operations inside `build_circuit`. Measurement is added by the evaluator.\n- Output ONLY the Python code in a single fenced block: ```python ... ```\n- No explanation outside the code block.",
+  "tasks": [
+    {
+      "task_id": "T1_Bell",
+      "source": "tasks/t1_bell.py",
+      "text": "Task: Construct the Bell state (|00⟩ + |11⟩) / √2 on 2 qubits.\n\nExpected behavior:\n- Apply H to qubit 0, then CNOT with qubit 0 as control and qubit 1 as target.\n- After execution, measuring all qubits should yield \"00\" with probability 0.5 and \"11\" with probability 0.5.\n\nNumber of qubits: 2\n"
+    },
+    {
+      "task_id": "T2_GHZ",
+      "source": "tasks/t2_ghz.py",
+      "text": "Task: Construct the GHZ state (|000⟩ + |111⟩) / √2 on 3 qubits.\n\nExpected behavior:\n- Apply H to qubit 0, then CNOT(0, 1), then CNOT(1, 2).\n- After execution, measuring all qubits should yield \"000\" with probability 0.5 and \"111\" with probability 0.5.\n\nNumber of qubits: 3\n"
+    },
+    {
+      "task_id": "T3a_DJ_constant",
+      "source": "tasks/t3_dj_constant.py",
+      "text": "Task: Implement the Deutsch-Jozsa algorithm for the constant function f(x1, x2) = 0 (the all-zero function).\n\nSetup:\n- 3 total qubits: q0 and q1 are input qubits, q2 is the ancilla.\n- The ancilla q2 must be initialized to |1⟩ (apply X gate before the H gates).\n- After Hadamards, apply the oracle for f (identity for constant 0; do nothing).\n- Apply Hadamards on the input qubits q0 and q1 only (NOT the ancilla).\n\nExpected: input qubits q0, q1 deterministically measure as \"00\" (constant detected).\nThe ancilla measurement is 50/50 between 0 and 1.\n\nNumber of qubits: 3\n"
+    },
+    {
+      "task_id": "T3b_DJ_balanced",
+      "source": "tasks/t3_dj_balanced.py",
+      "text": "Task: Implement the Deutsch-Jozsa algorithm for the balanced function f(x1, x2) = x1 XOR x2.\n\nSetup:\n- 3 total qubits: q0 and q1 are input qubits, q2 is the ancilla.\n- Initialize ancilla q2 to |1⟩ (X gate first).\n- Apply H to all 3 qubits.\n- Oracle for f = x1 XOR x2: CNOT(q0, q2), CNOT(q1, q2).\n- Apply final H on input qubits q0 and q1 only.\n\nExpected: input qubits q0, q1 deterministically measure as \"11\" (balanced detected).\nThe ancilla measurement is 50/50.\n\nNumber of qubits: 3\n"
+    },
+    {
+      "task_id": "T4_BV_011",
+      "source": "tasks/t4_bv.py",
+      "text": "Task: Implement the Bernstein-Vazirani algorithm to recover the hidden bitstring s = \"011\" (binary).\n\nBitstring convention: s is read as bits (s[2], s[1], s[0]) where s[i] corresponds to qubit i.\nSo s[0]=1, s[1]=1, s[2]=0.\n\nSetup:\n- 4 total qubits: q0, q1, q2 are the query register, q3 is the ancilla.\n- Initialize ancilla q3 to |1⟩ (X gate).\n- Apply H to all 4 qubits.\n- Oracle for f(x) = s · x = (s[0]·x[0] + s[1]·x[1] + s[2]·x[2]) mod 2:\n  - Apply CNOT(q_i, q3) for each i where s[i] = 1.\n  - For s = \"011\": apply CNOT(q0, q3) and CNOT(q1, q3).\n- Apply final H on the query qubits q0, q1, q2.\n\nExpected: q0, q1, q2 measure as \"011\" (= s) with certainty. Ancilla q3 measures 50/50.\n\nNumber of qubits: 4\n"
+    },
+    {
+      "task_id": "T5_Grover_11",
+      "source": "tasks/t5_grover.py",
+      "text": "Task: Implement Grover's search algorithm on 2 qubits with the marked state |11⟩, using exactly one Grover iteration.\n\nFor n=2 and 1 marked state, the Grover iteration produces the marked state with probability 1 (exact).\n\nAlgorithm:\n1. Initialize 2 qubits in uniform superposition (H on both).\n2. Apply oracle that marks |11⟩ with a phase flip: e.g., CZ(0,1).\n3. Apply diffusion operator (inversion about the mean): H on all, X on all, CZ(0,1), X on all, H on all.\n\nExpected: measuring should yield \"11\" with probability 1.\n\nNumber of qubits: 2\n"
+    },
+    {
+      "task_id": "T6_QFT_001",
+      "source": "tasks/t6_qft.py",
+      "text": "Task: Apply the 3-qubit Quantum Fourier Transform (QFT) to the input state |001⟩.\n\nIn Qiskit's little-endian convention, |001⟩ means qubit 0 = |1⟩ and qubits 1, 2 = |0⟩.\n\nAlgorithm:\n1. Initialize the input state by applying X to qubit 0.\n2. Apply QFT to all 3 qubits. You may use qiskit.circuit.library.QFT or implement it manually.\n   Use the standard convention with swap gates at the end (do_swaps=True).\n\nThe expected output statevector is determined by the canonical QFT mapping:\nQFT|j⟩ = (1/√N) Σ_k exp(2πi · j · k / N) |k⟩  with N = 2^3 = 8\n\nNumber of qubits: 3\n"
+    },
+    {
+      "task_id": "T7_IQFT_001",
+      "source": "tasks/t7_iqft.py",
+      "text": "Task: Apply the INVERSE 3-qubit Quantum Fourier Transform (inverse QFT, IQFT) to the input state |001⟩.\n\nIn Qiskit's little-endian convention, |001⟩ means qubit 0 = |1⟩ and qubits 1, 2 = |0⟩.\n\nAlgorithm:\n1. Initialize the input state by applying X to qubit 0.\n2. Apply the INVERSE QFT (not the forward QFT) to all 3 qubits.\n   You may use qiskit.circuit.library.QFT with inverse=True, or implement it manually.\n   Use the standard convention with swap gates (do_swaps=True).\n\nNote: the inverse QFT is the conjugate transpose of the forward QFT; getting the direction\n(sign of the phase rotations) and the swap placement right is essential.\n\nNumber of qubits: 3\n"
+    },
+    {
+      "task_id": "T8_QPE_001",
+      "source": "tasks/t8_qpe.py",
+      "text": "Task: Implement 3-bit Quantum Phase Estimation (QPE) for the single-qubit phase gate P(theta)\nwith theta = pi/2, acting on its eigenstate |1>.\n\nSetup (4 qubits total):\n- Qubits 0, 1, 2: the counting register (3 estimation qubits).\n- Qubit 3: the eigenstate register, prepared in |1> (eigenstate of P(theta) with eigenvalue e^{i*theta}).\n\nAlgorithm:\n1. Apply X to qubit 3 to prepare the eigenstate |1>.\n2. Apply H to each of the counting qubits 0, 1, 2.\n3. For each counting qubit j (j = 0, 1, 2), apply controlled-P(theta) with qubit j as control and\n   qubit 3 as target, repeated 2**j times (equivalently controlled-P(theta * 2**j)).\n4. Apply the inverse QFT to the counting register (qubits 0, 1, 2).\n\nSince theta = pi/2 corresponds to phase phi = theta/(2*pi) = 1/4 = 0.010 in binary, the counting\nregister should deterministically encode the estimate. Do NOT add measurements; the evaluator adds them.\n\nNumber of qubits: 4\n"
+    },
+    {
+      "task_id": "T9_Ansatz_001",
+      "source": "tasks/t9_ansatz.py",
+      "text": "Task: Build a 2-qubit hardware-efficient ansatz with the following exact structure and fixed\nrotation angles (in radians). Apply the operations in this order:\n\n1. RY(pi/4) on qubit 0\n2. RY(pi/3) on qubit 1\n3. CX with qubit 0 as control and qubit 1 as target\n4. RY(pi/6) on qubit 0\n5. RY(pi/5) on qubit 1\n\nThis is a single-entangling-layer ansatz: a layer of parameterized RY rotations, one CX entangler,\nthen a second layer of RY rotations. Use the angle values exactly as given. Do NOT add measurements.\n\nNumber of qubits: 2\n"
+    }
+  ],
+  "repair_templates": [
+    {
+      "condition": "self_refine",
+      "text": "〈課題仕様〉\n\n--- 前回のコード ---\nあなたは前回、以下のコードを生成しました。外部のテスト結果や正解は与えません。\n\n```python\n〈前回コード〉\n```\n\nこのコードを自分で慎重に点検してください。タスク要件、Qiskit API、量子回路の意味、build_circuit() の仕様を確認し、問題がある場合は修正してください。\n最終的に、完全な修正版 Python コードだけを ```python ``` ブロックで出力してください。"
+    },
+    {
+      "condition": "execution_feedback",
+      "text": "〈課題仕様〉\n\n--- 前回の試行結果 ---\nあなたは以下のコードを生成しましたが、実行ベース検証に失敗しました。\n\n```python\n〈前回コード〉\n```\n\n検証器から得られた情報:\n〈直前の評価から生成した診断〉\n\nこの実行フィードバックを使って問題を修正し、完全な Python コードを ```python ``` ブロックで出力してください。"
+    },
+    {
+      "condition": "self_debugging",
+      "text": "〈課題仕様〉\n\n--- 前回の試行結果 ---\n```python\n〈前回コード〉\n```\n\n検証器から得られた情報:\n〈直前の評価から生成した診断〉\n\n次の順序で自己デバッグしてください。\n1. 前回コードが何をしているかを説明する。\n2. タスク要件と検証結果を照合し、失敗原因を特定する。\n3. 原因を踏まえてコードを修正する。\n4. system の『コードブロックのみ』制約を守るため、説明と原因分析は 修正版コードブロック先頭の Python コメント（# DEBUG: ...）として 3〜6 行残す。その後に完全な修正版コードを書く。"
+    }
+  ],
+  "preventive_appendix": "量子コード生成では以下の点に注意してください。\n\n1. 指定された関数名と戻り値形式を必ず守ること。\n2. Qiskitに存在しないAPIを使用しないこと。\n3. 量子ビット数と古典ビット数を一致させること。\n4. 測定結果のビット順序に注意すること。\n5. 期待される測定分布または状態ベクトルと一致する回路を作ること。\n6. 不要なゲートを追加しないこと。\n7. 指定されたインターフェースを必ず実装すること。",
+  "initial_rules": {
+    "B/R/F/D": "課題仕様",
+    "P": "課題仕様 + 改行2個 + 予防的注意事項",
+    "B4": "Bと共有する初回は保存コード。失敗後の各追加要求は同じ課題仕様だけ。"
+  },
+  "diagnostic_limit": "診断は各roundの評価値に依存する。保存schema・当時の評価処理と部分追試の判定の差を保持する。"
+}

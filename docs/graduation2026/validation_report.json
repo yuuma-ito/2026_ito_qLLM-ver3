@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-28T14:02:25.735937+00:00",
+  "checked_at_utc": "2026-10-28T15:14:16.245432+00:00",
   "scope": "thesis.docx and thesis.pdf only; separate abstract and slides retained",
   "automated_checks_passed": true,
   "checks": {
@@ -37,6 +37,7 @@
     "overlap_table_matches_counts": true,
     "additional_cost_table_matches_csv": true,
     "third_round_table_matches_snapshot": true,
+    "catalog_table_matches_frozen_counts": true,
     "tables_not_justified": true,
     "body_left_aligned": true,
     "B4_pairwise_counts_match_prose": true,
@@ -60,15 +61,15 @@
   },
   "documents": {
     "thesis": {
-      "pages": 26,
-      "pdf_bytes": 1315352,
-      "pdf_sha256": "720371fb9058f865938598c8f912b2635e5b006a6437185ac4ca42359837f2e2"
+      "pages": 33,
+      "pdf_bytes": 1404162,
+      "pdf_sha256": "185d702a0c1ebea848d1be6c4e0e79f254048dd4efc92f3e2baab95de7d302fd"
     }
   },
   "visual_review": {
-    "reviewed_at_utc": "2026-10-28T14:02:22.333847+00:00",
+    "reviewed_at_utc": "2026-10-28T15:13:22.557915+00:00",
     "status": "reviewed",
-    "pdf_sha256": "720371fb9058f865938598c8f912b2635e5b006a6437185ac4ca42359837f2e2",
+    "pdf_sha256": "185d702a0c1ebea848d1be6c4e0e79f254048dd4efc92f3e2baab95de7d302fd",
     "pages_reviewed": [
       1,
       2,
@@ -95,19 +96,23 @@
       23,
       24,
       25,
-      26
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33
     ],
-    "method": "現行PDFの全26ページを6ページ単位のコンタクトシート5枚で確認し，分類表の18ページ目を単ページ画像で確認。",
+    "method": "全33ページのコンタクトシートを確認し，最終調整で変化した4・22・23・24・29・30ページを単ページ画像で再確認。最後の本文修正後は24ページを再確認。",
     "findings": [
-      "図1は初期生成前から分岐するPの点線独立経路を表示。Pは全1,000組を評価し別集計することを明記",
-      "図1のR/F/D/B4の分岐・追加上限・成功時停止と図中文字を確認。Dの入力と説明を3行で表示",
-      "図2のキャプションを簡潔にし、初期失敗545組という分母と条件別の説明を保持",
-      "研究目的に修正介入と独立再生成の比較を明記し、介入定義にPを含め、B4を対照として区別",
-      "図表・本文・ページ番号の欠けや重なりなし、白紙ページなし",
-      "旧分類名を実行時エラー（未定義変数）へ修正。表5の分類名は1行に収まり，件数と全26ページの体裁を保持。",
-      "評価水準はL3，結果はL3成功へ用語を統一。全26ページと定義・評価説明の単ページ画像を確認し，欠落や重なりなし。",
-      "文献[3]を固定出典・参照ファイルに分け，2パスと2ファイル名がそれぞれ1行に収まることを24ページの画像と抽出文字で確認。前コミットPDFとの画像比較で24ページ以外の全25ページは同一。",
-      "要約の目的をB4比較まで含めた本文と整合し，保存キーと本稿表記の区別，条件別の固定出典を明記。現行全26ページを画像で確認。"
+      "介入カタログを22ページの5.2節の説明直後に掲載。初期失敗数と9件の割合を確認し，最大割合の無条件な推奨を避ける説明を保持。",
+      "Fのみ成功・Dのみ成功の保存事例を19〜20ページに掲載し，修正前後の短いコード断片と保存結果を区別。",
+      "実験プロンプトを29〜33ページに掲載。量子状態の閉じ括弧を含めて欠落なく表示。",
+      "全33ページで図表・本文・ページ番号に欠けや重なりなし，白紙ページなし。",
+      "保存キーと本稿の表示分類の区別，条件別の固定出典，L3の用語統一を保持。",
+      "参考文献[3]のパスとファイル名の改行対策を26ページで保持。"
     ],
     "unperformed": [
       "原本テンプレートとの照合",
@@ -115,19 +120,14 @@
       "指導教員による内容の確認"
     ],
     "bibliography_path_review": {
-      "page": 24,
+      "page": 26,
       "unbroken_paths_and_filenames": [
         "docs/presentation_sources/20261016T_reachable_rescues/",
         "docs/analysis/independent_4_completed_20261022/",
         "results_snapshot.json",
         "source_manifest.json"
       ],
-      "all_on_single_lines": true,
-      "visible_changes_only_on_pages": [
-        24
-      ],
-      "other_25_pages_identical_to_previous_commit": true,
-      "comparison_scope": "参考文献だけを修正した080b923の作成時に実施した比較。今回は本文修正に伴う行配置変更あり。"
+      "all_on_single_lines": true
     },
     "consistency_checks": {
       "summary_purpose_includes_repair_and_independent_regeneration": true,
@@ -137,7 +137,7 @@
       "exclusive_primary_aggregate_phrase_removed": true,
       "saved_unknown_key_only_no_obsolete_display_label": true,
       "previous_bibliography_path_fix_retained": true,
-      "26_pages": true
+      "33_pages": true
     }
   },
   "original_template_comparison": "not performed; original .doc not accessible",
@@ -148,29 +148,38 @@
   "new_model_requests": 0,
   "generated_code_executions": 0,
   "artifact_sha256": {
-    "thesis.docx": "171447fd6f54070dca7ecc6a4af9049a3a4c437a09f0aa514a0470ca4c034947",
-    "thesis.pdf": "720371fb9058f865938598c8f912b2635e5b006a6437185ac4ca42359837f2e2",
-    "build.py": "5de94c4ee151b382938eb5b1bbcbae8d6039477778bd515d7341e230bd9fb710",
-    "template_thesis.py": "de01d6f2393b63918d8c203c58f86be19985ca75ed9ec064b8dff9a17c49211e",
-    "thesis_expansion.py": "0afd95deef4d9781ab26e725dad7b0e9fba6714586b996a0397eeb97b004490d",
-    "thesis_language.py": "f8fb33a9176ce658863823c368511f028e7cd9af5504a4a98005b784e75ca3e6",
+    "thesis.docx": "4032afafcd4fc4880f65fadfb0710ac3917f824ad3705da78091ee7d2b1a070f",
+    "thesis.pdf": "185d702a0c1ebea848d1be6c4e0e79f254048dd4efc92f3e2baab95de7d302fd",
+    "build.py": "0e464ff26071e024fdaa7a700bdada091c56d243f60219014448c5a6a8e0340b",
+    "template_thesis.py": "29c3ce5e2611c88a4a69661f47d36f450be560ae584dbde9ccf5da24bbbaf52d",
+    "thesis_expansion.py": "73fdb68e630022193feadb3056c91e2266051a5aa54b90fa6e31151483042441",
+    "thesis_language.py": "3ee64b25d492f79ae6b5dedc8720e687b7ab79faaa4c641c7cb2e42920c2f45e",
     "thesis_figures.py": "7825b0a41359f17cea618144b4c1541f178c086052f702df4b42046af70b7a29",
     "validate_figures.py": "282100f5e4ea9bc0fc7eafebfcb181f3adcf120e40f0bda7920d5bf3db4c00d7",
-    "figure_validation_report_20261028.json": "e812a072b8ee0eb5d1db677e90451356a025f8ef10af410cc55c6bbccd5b108d",
+    "figure_validation_report_20261028.json": "818749fa87220cc7a9b9c58bc6a78ec8ac53bced3ae415cc3b53ec53f9f99f4c",
     "figures/figure_manifest.json": "abad6608cae8a8c4ed4d0a9df8fce8bbec0b86d2e62346c6f0b9343d87fd802a",
     "convert_thesis.py": "eefec30813ecce333af8f6267fa10eb525ddf87967f01d1f667438e2317cb882",
-    "validate_template.py": "10d334fc5167bab7d50def7a8db01297f5d78e389797b5f9939e75d38b86e82d",
+    "validate_template.py": "03044c85c8f0c5e6a0e965ed44bf3ca9a551880d18e0354f04b21298d7e72762",
     "validate_expansion.py": "e6ff7e36503f4a79972707889286234adf5e1dbcfa40ebe66d7d69f2c804b114",
-    "thesis_headings.json": "998b8e6ebb44f1d0b704354dc3cdc9eb24f731ad3976d0ade9948a920d478750",
-    "toc_cache.json": "114454ad5c45c1407de15f3f403c69c43d082ecebbe69a257898560096ea9467",
-    "format_spec.json": "63433319e3c6125496cb0637850c8148ea23767ad0cc4553c2e2916639c96cb5",
-    "source_manifest.json": "409cd102e492cbd1259307e942d39efab3d7f432b284bdc52377982637be1e81",
+    "thesis_headings.json": "335dbb121f097bb64888c4ec00cc0bdfe1b1d870d6ccd155ea7f6e628e0b27da",
+    "toc_cache.json": "7955b195ba1fc639e1844aeae4672e9d844bc108663fca0c3676d87b7c79aee7",
+    "format_spec.json": "9339a09938aec09c44176363c6c6ddfcce632d5ef9c3e1eacc26fc2b9f36be16",
+    "source_manifest.json": "87104b41f8f55498d0e3c5a63769c95337c0fef49e8e09e0d182c4da944da5c0",
     "bibliography_sources.json": "91db67e56cdf84a606d53a75f7d11d0cedefb5354af7f13b9e577922e485f732",
     "expansion_report_20261028.json": "2f823a5d17b4877219b3be9372c2eaf60f35b817a44c66cd44443e11829ff85f",
-    "revision_report_20261028.json": "79022b0defa641f17aea55bbee93c81e78e982972a631b17c2279234e7cbe805",
+    "revision_report_20261028.json": "ab5f0dca4dc28a77fccd43a6b0896e23bb5c67050b0eddbd02245e9ecb9e1549",
     "work_notes.txt": "9ff757e5d34c866bf47360698cd99cbd99cb09936e1f20b2fc61bc7e886d7fb8",
-    "thesis_visual_review.json": "85981e4450af4f763bd236e19d80547faaabfb3686871c154437e9ebaeb37124",
-    "README.md": "cba92f34ae46e9620e460934bdc6f2512508416cf8f6c03d7f5f1154f11f5464"
+    "thesis_visual_review.json": "025615d4b96be0eb350df12e97fbccd6283c7a9ea5da3ac6a03b0b6605be0bc2",
+    "README.md": "1510ec0fc3beccf098d14bd7507d2a66e9af4e299304d2b363719f379d21a687",
+    "build_research_evidence.py": "ce9661b523b6c8df637e0f69b3235152c7e40aa6d15fae988a9f19965448ecc9",
+    "thesis_enrichment.py": "9b14a272d45a42c31a0d26cac07be1bea358c7edb73fa5461023c3ad3d026fc7",
+    "validate_enrichment.py": "8017bc2aef2490452abffb02e71be1c512bdc90d9a79d3eb4b3fdade31000a0a",
+    "intervention_catalog.csv": "7f231af5fa18e70a748f6a7266f928ea3441425772cf4f48746939fe917afaf6",
+    "case_studies.json": "4ff23031b9c58f3b054d4db7ffd903b75661074301277026f0f68a65177b8dcb",
+    "experiment_prompts.json": "b4c619a2009bfe84e9daa37d387fa8b9d8664b56880093259bffce0f4ba61787",
+    "enrichment_manifest.json": "c89826837d4b49a28947d0ddb32facff06c96529f824158ff7d3272afd582997",
+    "enrichment_validation_report.json": "8e462f661d3e4399f3a330d4e4b4d35bb4cf491256c520cd5fb88de4cee1ebe9",
+    "MANUSCRIPT_STATE.md": "bf4c242695350557f3ffb80b345e31136a0a47d62d032187ee487b2546b1865d"
   },
   "out_of_margin_spans": [],
   "pending": [

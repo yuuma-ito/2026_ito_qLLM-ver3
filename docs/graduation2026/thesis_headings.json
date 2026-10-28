@@ -196,7 +196,7 @@
   },
   {
     "number": "3.3.6",
-    "title": "固定出典と執筆時点の切り分け",
+    "title": "分析対象と固定出典の範囲",
     "level": 3
   },
   {
@@ -342,6 +342,86 @@
   {
     "number": "8.2.4",
     "title": "コストの意味",
+    "level": 3
+  },
+  {
+    "number": "8.3",
+    "title": "実験プロンプト",
+    "level": 2
+  },
+  {
+    "number": "8.3.1",
+    "title": "共通systemメッセージ",
+    "level": 3
+  },
+  {
+    "number": "8.3.2",
+    "title": "課題仕様 T1_Bell",
+    "level": 3
+  },
+  {
+    "number": "8.3.3",
+    "title": "課題仕様 T2_GHZ",
+    "level": 3
+  },
+  {
+    "number": "8.3.4",
+    "title": "課題仕様 T3a_DJ_constant",
+    "level": 3
+  },
+  {
+    "number": "8.3.5",
+    "title": "課題仕様 T3b_DJ_balanced",
+    "level": 3
+  },
+  {
+    "number": "8.3.6",
+    "title": "課題仕様 T4_BV_011",
+    "level": 3
+  },
+  {
+    "number": "8.3.7",
+    "title": "課題仕様 T5_Grover_11",
+    "level": 3
+  },
+  {
+    "number": "8.3.8",
+    "title": "課題仕様 T6_QFT_001",
+    "level": 3
+  },
+  {
+    "number": "8.3.9",
+    "title": "課題仕様 T7_IQFT_001",
+    "level": 3
+  },
+  {
+    "number": "8.3.10",
+    "title": "課題仕様 T8_QPE_001",
+    "level": 3
+  },
+  {
+    "number": "8.3.11",
+    "title": "課題仕様 T9_Ansatz_001",
+    "level": 3
+  },
+  {
+    "number": "8.3.12",
+    "title": "修正テンプレート R：自己見直し",
+    "level": 3
+  },
+  {
+    "number": "8.3.13",
+    "title": "修正テンプレート F：実行結果提示",
+    "level": 3
+  },
+  {
+    "number": "8.3.14",
+    "title": "修正テンプレート D：自己デバッグ",
+    "level": 3
+  },
+  {
+    "number": "8.3.15",
+    "title": "Pの予防的注意事項",
     "level": 3
   }
 ]

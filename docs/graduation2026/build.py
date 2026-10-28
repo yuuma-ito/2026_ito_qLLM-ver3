@@ -167,7 +167,7 @@ CHAPTERS=[
 '本研究の目的は，Qiskit量子回路コードの初期失敗に対する修正介入と独立再生成の有効性を比較し，失敗類型やモデルに応じた対処方法を選択するための根拠を整理することである．第一の問いは，同じ初期失敗に対して修正介入R/F/Dと独立再生成B4がそれぞれどれだけ追加成功を得るかである．第二の問いは，救済数が近い介入が同じ失敗を救済しているかである．第三の問いは，未救済例も含む追加消費と修正回数が救済にどう対応するかである．',
 '本研究の貢献は，共有初期コードを用いた修正介入と独立再生成の追加成功率の比較，初期失敗類型・モデル・タスク別の分母を伴う分析，FとDの片側救済全83組の履歴整理，および追加修正コストと3回目の寄与の記述である．介入の最適な選択方策を既に実証したとは主張しない．']),
 ('論文の構成と対象範囲',[
-'第2章で関連研究と本研究の位置づけを述べ，第3章で介入と指標を定義する．第4章では評価・記録の実装を説明し，第5章で設定と出典を整理する．第6章で結果，第7章で考察と限界，第8章で結論と今後の課題を述べる．本稿は2026-10-16版の到達経路と2026-10-22固定のB4追加実験 [3] に基づく草稿であり，今回の執筆では追加生成・生成コード実行を行っていない．'])]),
+'第2章で関連研究と本研究の位置づけを述べ，第3章で介入と指標を定義する．第4章では評価・記録の実装を説明し，第5章で設定と出典を整理する．第6章で結果，第7章で考察と限界，第8章で結論と今後の課題を述べる．本研究の分析には，保存済みの実験結果と必要な部分追試を用いた．B/R/F/D/Pは2026-10-16版，B4は2026-10-22固定の追加実験結果 [3] に基づく．'])]),
 ('関連研究と本研究の位置づけ',[
 ('自己フィードバックによる修正',[
 'Self-Refine [1] は，同じLLMによる生成，フィードバック，修正の反復を扱う．本研究のRは，前回コードと課題仕様を与えて自己点検を求める条件であり，外部評価の診断内容を与えない．自己点検だけで救済できる範囲を確認する比較条件として用いる．',
@@ -256,7 +256,7 @@ CHAPTERS=[
 'FとDの救済数は近かったが，共通140組，Fのみ43組，Dのみ40組であり，片側救済83組を認めた．全83組の166履歴と398遷移を静的に整理した．追加消費は未救済例も含め，3回目の追加救済と停止回数を減らした際の損失を明示した．']),
 ('今後の課題',[
 '第一に，介入の選び方と停止条件を事前固定し，別seed・タスクで検証する．その際，事後的に最も良い結果を選ぶ評価と区別し，追加要求数と消費を含めて報告する必要がある．第二に，静的変更の意味を人手で確認し，複数同時変更の寄与を分ける検証方法を設計する．',
-'第三に，測定乱数，生成長の上限，モデルdigestや実行負荷への感度を調べる．L3を拡張する場合は，過去の成功時停止とフィードバックへの影響を監査する．同じ保存設定と出典を保持し，必要な追試を明示的に計画する．これらの追加実験は今回の資料作成では行っていない．']),
+'第三に，測定乱数，生成長の上限，モデルdigestや実行負荷への感度を調べる．L3を拡張する場合は，過去の成功時停止とフィードバックへの影響を監査する．同じ保存設定と出典を保持し，必要な追試を明示的に計画する．これらは今後の検証課題である．']),
 ('提出に向けた確認',[
 '本稿は検証済みの固定集計に基づく卒業論文草稿である．提出年月，英語の著者表記・所属，指導教員による内容・参考文献書式の確認を残す．要旨の審査用と最終版の提出時には，学部の指示に従って剽窃チェックと類似レポートの作成を行う．本稿の作成をもって剽窃チェック完了とはしない．'])]),
 ]
@@ -264,7 +264,7 @@ CHAPTERS=[
 
 # B4 is a separate completed experiment, sharing the initial cohort only.
 CHAPTERS[5][1].append(('独立再生成B4との比較',[
-'B4実験 independent_4_full_20261020T185811381595Z は2026年10月21日に全1,000組を完了した．欠落・重複・予定外記録はいずれも0で，sanity検証は成功した．追加roundでは未定義変数による実行時エラーが2件あり，いずれも生成コード内のNameErrorであり，API接続障害ではない．執筆時に追加生成・生成コード実行は行っていない．',
+'B4実験 independent_4_full_20261020T185811381595Z は2026年10月21日に全1,000組を完了した．欠落・重複・予定外記録はいずれも0で，sanity検証は成功した．追加roundでは未定義変数による実行時エラーが2件あり，いずれも生成コード内のNameErrorであり，API接続障害ではない．',
 'B4は初期失敗545組中217組（39.8%）で成功し，最終成功は672/1,000組（67.2%）であった．表6.8，表6.9，表6.10に全体・モデル・初期失敗類型別の比較を示す．R96組（17.6%），F183組（33.6%），D180組（33.0%）に対し，B4の成功数はFより34組，Dより37組多かった．この観測により，修正条件と単回生成だけの比較から介入自体の効果を論じることはできない．',
 'B4とFの共通成功は131組，B4のみ86組，Fのみ52組，双方未成功276組であった．B4とDでは共通120組，B4のみ97組，Dのみ60組，双方未成功268組であった．独立再生成が多く成功しても，修正介入だけが成功する対象も残る．事後的な和集合を事前の選択成功率とは扱わない．',
 'B4の追加要求は1,342回，追加tokensは995,815，追加tokens／追加成功は4,589.0であった．共有初期は一度だけ数え，追加消費から除外し，最後まで未成功の例への消費を含めた．R/F/Dは過去の保存prefixと必要なsuffixの再構成値であり，B4との要求時間・tokens差を同時期の同一入力条件の実測費用差とは解釈しない．']))
@@ -277,6 +277,9 @@ CHAPTERS[7][1][0][1].append('独立再生成B4は同じ初期失敗545組中217�
 # Expand thesis prose without changing the frozen experimental results.
 from thesis_expansion import apply as expand_thesis
 expand_thesis(CHAPTERS, REFS)
+from thesis_enrichment import ensure as ensure_enrichment, apply as enrich_thesis
+ensure_enrichment()
+enrich_thesis(CHAPTERS)
 
 # Use the same plain-language vocabulary in the abstract and generated body.
 from thesis_language import polish, DEFINITIONS
@@ -328,6 +331,11 @@ def thesis_tables(d, chapter):
         third={r['condition_id']:r for r in SNAP['third_round']}
         table(d,'表6.7　3回目の追加救済と消費',['条件','追加／未救済','追加tokens','要求秒','2回で失う割合'],[
             [s,f"{third[c]['additional_rescues']}/{third[c]['at_risk_after_2']}",f"{third[c]['third_round_tokens']:,}",f"{third[c]['third_round_seconds']:,.1f}",f"{third[c]['loss_if_stop_at_2']*100:.1f}%"] for s,c in CONDITIONS],widths=[16,34,34,32,44])
+    elif chapter == 7:
+        from thesis_enrichment import catalog_rows
+        table(d,'表7.1　介入カタログの抜粋（主要3類型の観測率）',
+              ['初期失敗類型','初期失敗数','F救済率','D救済率','B4追加成功率'],
+              catalog_rows(),widths=[40,28,28,28,36])
 
 
 THESIS_ERRORS=[('import失敗','import_error'),('回路構築失敗','build_error'),('構文誤り','syntax'),('出力不一致','wrong_output'),('IF不適合','interface_mismatch'),('量子ビット数','qubit_count_mismatch'),('実行時（未定義変数）','unknown_error')]
@@ -361,7 +369,9 @@ def legacy_thesis():
         if n>1:hp.paragraph_format.page_break_before=True
         for j,(subtitle,paragraphs) in enumerate(sections,1):
             heading(d,f'{n}.{j}　{subtitle}',2)
-            for text in paragraphs:para(d,text)
+            for paragraph_index,text in enumerate(paragraphs):
+                para(d,text)
+                if (n,j,paragraph_index)==(7,2,0):thesis_tables(d,7)
             # Insert each table near its first textual reference.
             if (n,j)==(3,1):thesis_tables(d,3)
             if (n,j)==(5,1):thesis_tables(d,5)
@@ -396,7 +406,8 @@ def legacy_thesis():
        '追加消費：同ディレクトリのcost_by_cap_and_stratum.csvとthird_round_summary.csv',
        '片側救済全履歴：discordant_cases.csvとdiscordant_transitions.csv',
        '検証：core/sanity_report.json，sanity_report.json，validation_report.json',
-       '公開資料には生成コード・prompt・API応答・生例外文・raw.jsonl・秘密情報を含めない．今回の資料作成は固定公開集計の読み取りと文書化であり，追加のモデル要求や生成コード再実行は行わない．']:
+       '介入カタログ：intervention_catalog.csv．事例の記録キー・判定・コードhash・短い抜粋：case_studies.json．固定プロンプト：experiment_prompts.json．追加資料の出典とhash：enrichment_manifest.json．',
+       '本稿では検証済み事例の短いコード抜粋と固定プロンプトを掲載する．API応答全文・生成コード全文・生例外文・raw.jsonl・秘密情報は掲載しない．']:
         para(d,text,10,indent=False)
     d.add_page_break();heading(d,'付録B　指標の読み方',1)
     for title,text in [
@@ -406,6 +417,8 @@ def legacy_thesis():
       ('コストの意味','共有初期を除く入力＋出力tokensと生成要求時間を集計した．再構成経路の計算値で，評価時間・全工程時間・金銭費用とは異なる．'),
     ]:
         heading(d,title,2);para(d,text)
+    from thesis_enrichment import add_prompt_appendix
+    add_prompt_appendix(d,heading,para)
     # Suppress blue hyperlink styles in the updated TOC as well.
     for style in ['Hyperlink','FollowedHyperlink']:
         if style in d.styles:d.styles[style].font.color.rgb=RGBColor(0,0,0)
@@ -505,6 +518,7 @@ def slides():
 
 def source_record():
     sources=list(B4_SOURCE.glob('*.json'))+list(B4_SOURCE.glob('*.csv'))+[SOURCE/'results_snapshot.json',SOURCE/'validation_report.json',ANALYSIS/'manifest.json',ANALYSIS/'core/repair_summary.csv',ANALYSIS/'core/sanity_report.json',ANALYSIS/'sanity_report.json',ANALYSIS/'core/fd_overlap_summary.csv',ROOT/'harness/evaluator.py',ROOT/'harness/readout.py',ROOT/'tasks/__init__.py']
+    sources += [HERE/n for n in ['intervention_catalog.csv','case_studies.json','experiment_prompts.json','enrichment_manifest.json']]
     data={'created_at_utc':datetime.now(timezone.utc).isoformat(),'status':'draft','source_snapshot_at_utc':SNAP['captured_at_utc'],
       'source_hashes':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},
       'B4_experiment_id':'independent_4_full_20261020T185811381595Z','B4_snapshot':'docs/analysis/independent_4_completed_20261022','new_experiments':0,'new_model_requests':0,'generated_code_executions':0,

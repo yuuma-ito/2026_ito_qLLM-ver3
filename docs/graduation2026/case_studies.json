@@ -1,0 +1,162 @@
+[
+  {
+    "model_spec": "ollama:gemma4:e4b-it-qat",
+    "task_id": "T7_IQFT_001",
+    "base_seed": 14,
+    "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+    "cohort": "F_only",
+    "records": [
+      {
+        "condition_id": "execution_feedback",
+        "record_key": "e4b9698f06bb69170782ee0e7cca9cb84dc9442be27c22d6879910cde52154b3",
+        "final_success": true,
+        "error_path": "import_error > ok",
+        "rounds": [
+          {
+            "round": "0",
+            "origin": "saved_prefix",
+            "code_sha256": "73e4ec82f13d973e52a662bda9ca1998000483c7c5897fbb08f6744edbf6ebce",
+            "new_L3": "False",
+            "new_error_category": "import_error"
+          },
+          {
+            "round": "1",
+            "origin": "saved_prefix",
+            "code_sha256": "5597384817c2b0cd83cefe12a064e3442600e81e646c7c5f471fafc3d83af584",
+            "new_L3": "True",
+            "new_error_category": "ok"
+          }
+        ],
+        "excerpt": {
+          "before": [
+            "from qiskit.circuit import QFT"
+          ],
+          "after": [
+            "from qiskit.circuit.library import QFT"
+          ]
+        },
+        "transition_count": 1
+      },
+      {
+        "condition_id": "self_debugging",
+        "record_key": "d7f1cefa4750ffe44a6eb7b6d5f3e21cf826aaf192b432d3d7fe38d65e5e18e2",
+        "final_success": false,
+        "error_path": "import_error > import_error > import_error > import_error",
+        "rounds": [
+          {
+            "round": "0",
+            "origin": "saved_prefix",
+            "code_sha256": "73e4ec82f13d973e52a662bda9ca1998000483c7c5897fbb08f6744edbf6ebce",
+            "new_L3": "False",
+            "new_error_category": "import_error"
+          },
+          {
+            "round": "1",
+            "origin": "saved_prefix",
+            "code_sha256": "2f2f3d66a42fe7c8ca2e2d6c057b9aba6b8ef02e9b0dcbbf45fc1f918eb94521",
+            "new_L3": "False",
+            "new_error_category": "import_error"
+          },
+          {
+            "round": "2",
+            "origin": "saved_prefix",
+            "code_sha256": "33702ef095465335c375401c689291594d96d59a538358726844312d367e07a9",
+            "new_L3": "False",
+            "new_error_category": "import_error"
+          },
+          {
+            "round": "3",
+            "origin": "saved_prefix",
+            "code_sha256": "50d33b93254d09fed80900c90f6595755035832ef10757423d6e4e58dd9e5928",
+            "new_L3": "False",
+            "new_error_category": "import_error"
+          }
+        ],
+        "excerpt": null,
+        "transition_count": 3
+      }
+    ],
+    "interpretation": "Observed changes and saved outcomes; causal role not identified."
+  },
+  {
+    "model_spec": "ollama:gemma4:e4b-it-qat",
+    "task_id": "T8_QPE_001",
+    "base_seed": 10,
+    "source_dir": "results/shared_five_models_full_20261010T041019864060Z",
+    "cohort": "D_only",
+    "records": [
+      {
+        "condition_id": "execution_feedback",
+        "record_key": "5a099b386bba56921a925a265c987ebc5ab155f6cd315c8b2a3dfd88cd3e5e42",
+        "final_success": false,
+        "error_path": "build_error > import_error > import_error > import_error",
+        "rounds": [
+          {
+            "round": "0",
+            "origin": "saved_prefix",
+            "code_sha256": "c3d4ff123b8d1b498c5d8bd0336a57ea0492e9e41aaf2aa1704785a6ed9ce2a6",
+            "new_L3": "False",
+            "new_error_category": "build_error"
+          },
+          {
+            "round": "1",
+            "origin": "saved_prefix",
+            "code_sha256": "0aa9964ec6eb1799c6d1365dd15fe676e6ddf27d954ac1e3aa7401ba42d8aa22",
+            "new_L3": "False",
+            "new_error_category": "import_error"
+          },
+          {
+            "round": "2",
+            "origin": "saved_prefix",
+            "code_sha256": "235e6cb585b9c55ec81d1f5602e9122309e71876e7e15fcc108aa43c490e73fd",
+            "new_L3": "False",
+            "new_error_category": "import_error"
+          },
+          {
+            "round": "3",
+            "origin": "saved_prefix",
+            "code_sha256": "f21a00b332fef9c6f6a7013db42e7f9badc3dc2c87a17fe055eac024010246bd",
+            "new_L3": "False",
+            "new_error_category": "import_error"
+          }
+        ],
+        "excerpt": null,
+        "transition_count": 3
+      },
+      {
+        "condition_id": "self_debugging",
+        "record_key": "ccc2125653aa0e2ceeb252e5c5e426bc50560e5e7176477954f77e93f289a882",
+        "final_success": true,
+        "error_path": "build_error > ok",
+        "rounds": [
+          {
+            "round": "0",
+            "origin": "saved_prefix",
+            "code_sha256": "c3d4ff123b8d1b498c5d8bd0336a57ea0492e9e41aaf2aa1704785a6ed9ce2a6",
+            "new_L3": "False",
+            "new_error_category": "build_error"
+          },
+          {
+            "round": "1",
+            "origin": "saved_prefix",
+            "code_sha256": "332d1d0d5cbd159158e126f58506bb1bdd742d0166e23d5d37254f95ff8d47cb",
+            "new_L3": "True",
+            "new_error_category": "ok"
+          }
+        ],
+        "excerpt": {
+          "before": [
+            "qc.inverse_qft(range(n_counting))"
+          ],
+          "after": [
+            "from qiskit.circuit.library import QFT",
+            "iqft = QFT(n_counting, inverse=True)",
+            "qc.append(iqft.to_gate(), range(n_counting))"
+          ]
+        },
+        "transition_count": 1
+      }
+    ],
+    "interpretation": "Observed changes and saved outcomes; causal role not identified."
+  }
+]

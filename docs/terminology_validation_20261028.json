@@ -91,7 +91,7 @@
     },
     {
       "path": "docs/graduation2026/thesis.docx",
-      "sha256": "171447fd6f54070dca7ecc6a4af9049a3a4c437a09f0aa514a0470ca4c034947",
+      "sha256": "4032afafcd4fc4880f65fadfb0710ac3917f824ad3705da78091ee7d2b1a070f",
       "pages": null,
       "old_L3_alias_absent": true,
       "old_unknown_label_absent": false,
@@ -99,8 +99,8 @@
     },
     {
       "path": "docs/graduation2026/thesis.pdf",
-      "sha256": "720371fb9058f865938598c8f912b2635e5b006a6437185ac4ca42359837f2e2",
-      "pages": 26,
+      "sha256": "185d702a0c1ebea848d1be6c4e0e79f254048dd4efc92f3e2baab95de7d302fd",
+      "pages": 33,
       "old_L3_alias_absent": true,
       "old_unknown_label_absent": false,
       "unknown_occurrences_only_saved_key_explanation": true
@@ -148,7 +148,7 @@
       "old_unknown_label_absent": true
     }
   ],
-  "visual_review": "卒論全26ページ，LaTeX／Word要旨各2ページ，WiNF原稿2ページ，修正対象のスライド画像を確認。",
+  "visual_review": "卒論現行33ページの画像確認済み。他資料は従前の確認記録を保持。",
   "font_limitation": "従来どおり指定フォントがない環境での代替フォントによるPDF確認版。Wordフォント指定は検証済み。",
   "new_generations": 0,
   "generated_code_executions": 0,
@@ -161,6 +161,8 @@
     "exclusive_primary_aggregate_phrase_removed": true,
     "saved_unknown_key_only_no_obsolete_display_label": true,
     "previous_bibliography_path_fix_retained": true,
-    "26_pages": true
-  }
+    "thesis_33_pages": true
+  },
+  "thesis_refreshed_at_utc": "2026-10-28T15:13:22.557915+00:00",
+  "thesis_refresh_scope": "卒論のみ更新。他資料の検証時点はchecked_at_utcのまま。固定プロンプトと検証済み短縮事例を新たに掲載し，保存キー説明・表示分類・固定集計を保持。"
 }

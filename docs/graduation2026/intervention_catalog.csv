@@ -1,0 +1,4 @@
+initial_failure,label,initial_failures,F_successes,D_successes,B4_successes,F_rate_percent,D_rate_percent,B4_rate_percent
+import_error,import失敗,271,58,72,67,21.4,26.6,24.7
+build_error,回路構築失敗,126,76,68,77,60.3,54.0,61.1
+wrong_output,出力不一致,65,24,18,46,36.9,27.7,70.8

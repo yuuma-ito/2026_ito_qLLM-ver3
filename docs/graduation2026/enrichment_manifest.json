@@ -1,0 +1,37 @@
+{
+  "inputs_sha256": {
+    "docs/analysis/reevaluation_followup_20261015/settings_manifest.json": "2a14727466d646e783d26dfe1da76227aca93c330e7524e2449b3cd71fa240b2",
+    "docs/analysis/reachable_rescues_20261016/discordant_cases.csv": "50b69c319355f750a091e4d18e60fc8365d52e75e9bc3573f3feb2f20d1d038b",
+    "docs/analysis/reachable_rescues_20261016/discordant_transitions.csv": "6c07410a9c1d71aade0171978d114449ed35e58ac2a8c26951a846e47a0791fb",
+    "docs/analysis/reachable_rescues_20261016/reachable_rounds.csv": "43895d2071a428209bebec83f03d3fbca47d4a11570100eeb837334be7faa574",
+    "docs/analysis/independent_4_completed_20261022/summary.csv": "4ff68c4fb0f8d6f94bfd6c1eabe8018e14b29b97435ed028305550823b391344",
+    "docs/analysis/reachable_rescues_20261016/core/repair_summary.csv": "84e419e1c5eefea2db337e3f14027ec3dd2ad4d21a4bed980b785630c7c24497",
+    "harness/interventions/prompts.py": "ea630da1c7051c0b9cd36163d19cf8d56746dad074408a7d8bd7e2002e6b4ec4",
+    "harness/refine.py": "4a2259bad2abfe5c3216c97cd22f7b689faa99d9266b8927910ce4d1e4bea4cb",
+    "prompts/system.txt": "b76e82b93808aff180580db3647711efa0a3a56cc39301cff4a7a44f108e9f9d",
+    "tasks/__init__.py": "9f3a509f452d08e9b63e75701bcddfe27db3c86fa941c3636e6c4bc656f7efe9",
+    "tasks/t1_bell.py": "43f2e537ee8dfb8c8905895834b55f07c74194ac3a5b7562517b23a1c56f0071",
+    "tasks/t2_ghz.py": "3e90913f700f01b4ade19a176617e4e44892406ef73a525924533c3dfcf409ef",
+    "tasks/t3_dj_balanced.py": "1e747fc582a02520d407c02a3a46a0d3786ad1d870d12c3ac8044b1c92d5edd5",
+    "tasks/t3_dj_constant.py": "463b8a291b0fb9d28d462cc6cc7618ffa5aa8011367223229b0eace93b10e590",
+    "tasks/t4_bv.py": "4e1e6006542c9a2bb84ba89861ecee7ed40238731a7734a830231f913221ae13",
+    "tasks/t5_grover.py": "5ed5a81e4be75da8d556b2ad8cff4b2119e1c302226aff5acd9f421120cc05a8",
+    "tasks/t6_qft.py": "91aa125cf945f588cd73ab9a4d7b9389d7f1be9a7b567769c5343a39d8fe95f7",
+    "tasks/t7_iqft.py": "a8cae9b1ae33a64ac1ad68eb94a104089db018dcef668202319bcd00c408bd04",
+    "tasks/t8_qpe.py": "cad2545b8e15c7bf69e536b0918e2c2e86306750372840e3f2e871da0189d6d0",
+    "tasks/t9_ansatz.py": "4eb50ac05c70ee77b8c8d1211df962522a56c449ea0c7b39d3f7b7ecb0be8acb",
+    "harness/independent_4.py": "8bdf7da48d75851a7ded5986c98e44739d676b2e240e405750ccbd4bbd28d08c",
+    "docs/analysis/independent_4_completed_20261022/runner_manifest.json": "ab291d563bfd6802fd701c79a27be551209fd8f37f197563ee9f54dd01918501",
+    "results/shared_five_models_full_20261010T041019864060Z/raw.jsonl": "308d32d6b097a8628c0d90889e9f3a5dd5054443ef0e0c8f0c3c054aec7f2599"
+  },
+  "publication_scope": "固定プロンプトと明示プレースホルダー、選択2事例の短いコード抜粋とhashのみ。raw・応答全文・秘密情報なし。",
+  "selection": "同じG4モデルのFのみ/Dのみ成功事例から、修正前後のAPI呼び出しを確認できる各1組を目的選択。頻度・代表性・因果効果を推定する標本ではない。",
+  "catalog_scope": "初期失敗の主要3類型。観測率の比較であり介入選択の推奨規則ではない。",
+  "outputs_sha256": {
+    "intervention_catalog.csv": "7f231af5fa18e70a748f6a7266f928ea3441425772cf4f48746939fe917afaf6",
+    "experiment_prompts.json": "b4c619a2009bfe84e9daa37d387fa8b9d8664b56880093259bffce0f4ba61787",
+    "case_studies.json": "4ff23031b9c58f3b054d4db7ffd903b75661074301277026f0f68a65177b8dcb"
+  },
+  "generated_code_executions": 0,
+  "new_model_requests": 0
+}

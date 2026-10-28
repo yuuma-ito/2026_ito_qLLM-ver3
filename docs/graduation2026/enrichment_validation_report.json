@@ -1,0 +1,33 @@
+{
+  "checked_at_utc": "2026-10-28T15:14:12.141019+00:00",
+  "passed": true,
+  "checks": {
+    "source_inputs_unchanged": true,
+    "publication_outputs_unchanged": true,
+    "ten_tables": true,
+    "catalog_matches_existing_failure_count_table": true,
+    "catalog_matches_requested_rates": true,
+    "catalog_not_a_selection_rule": true,
+    "two_saved_examples": true,
+    "case_hashes_match_frozen_history": true,
+    "case_outcomes_and_excerpts_match_saved_code": true,
+    "all_prompt_sources_and_templates_in_word": true,
+    "all_prompt_sources_and_templates_in_pdf": true,
+    "rendered_repair_templates_match_actual_prompt_builder": true,
+    "literal_tasks_match_task_registry": true,
+    "prompt_provenance_limits_explicit": true,
+    "saved_examples_not_causal_claims": true,
+    "method_description_replaces_work_log": true,
+    "requested_Japanese_revisions": true,
+    "P_template_matches_actual_prompt_builder": true
+  },
+  "pages": 33,
+  "tables": 10,
+  "case_groups": 2,
+  "task_prompts": 10,
+  "pdf_sha256": "185d702a0c1ebea848d1be6c4e0e79f254048dd4efc92f3e2baab95de7d302fd",
+  "docx_sha256": "4032afafcd4fc4880f65fadfb0710ac3917f824ad3705da78091ee7d2b1a070f",
+  "new_model_requests": 0,
+  "generated_code_executions": 0,
+  "publication_limits": "固定プロンプトと明示プレースホルダー、選択2事例の短いコード抜粋とhashのみ。raw・応答全文・秘密情報なし。"
+}

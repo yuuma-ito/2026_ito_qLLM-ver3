@@ -55,5 +55,6 @@
   ],
   "pdf_font_limit": "MS 明朝, MS Pゴシック and Century unavailable on server; PDF uses substitutes. Word fidelity requires original fonts and original template.",
   "body_alignment": "left; avoid distributed spacing in mixed Japanese/Latin text",
+  "prompt_math_symbol_font": "DejaVu Serif for U+27E9 ket brackets, preserving the exact prompt text and PDF extraction order.",
   "source_snapshot": "docs/presentation_sources/20261016T_reachable_rescues"
 }

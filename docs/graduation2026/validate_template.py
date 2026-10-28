@@ -49,7 +49,7 @@ def validate():
     checks['toc_dot_leaders_and_right_tabs']=all(
         p.paragraph_format.tab_stops[0].alignment==2 and p.paragraph_format.tab_stops[0].leader==1
         for p in d.paragraphs if '\t' in p.text)
-    checks['sequential_table_fields']=sum(i.startswith('SEQ Table ') for i in instructions)==len(d.tables)==9
+    checks['sequential_table_fields']=sum(i.startswith('SEQ Table ') for i in instructions)==len(d.tables)==10
     checks['editable_table_references']=any(i.startswith('REF Table') for i in instructions)
     checks['three_figures_with_sequential_fields'] = len(d.inline_shapes) == sum(i.startswith('SEQ Figure ') for i in instructions) == 3
     checks['editable_figure_references'] = all(any(i.startswith('REF Figure'+str(n)+' ') for i in instructions) for n in [1,2,3])
@@ -74,6 +74,8 @@ def validate():
     checks['additional_cost_table_matches_csv'] = tables[7][1:] == [[c,overall[c]['additional_requests'],f"{int(overall[c]['additional_tokens']):,}",f"{float(overall[c]['tokens_per_added_success']):,.1f}"] for c in ['R','F','D','B4']]
     third={r['condition_id']:r for r in template.content.SNAP['third_round']}
     checks['third_round_table_matches_snapshot'] = tables[8][1:] == [[c,f"{third[k]['additional_rescues']}/{third[k]['at_risk_after_2']}",f"{third[k]['third_round_tokens']:,}",f"{third[k]['third_round_seconds']:,.1f}",f"{third[k]['loss_if_stop_at_2']*100:.1f}%"] for c,k in template.content.CONDITIONS]
+    from thesis_enrichment import catalog_rows
+    checks['catalog_table_matches_frozen_counts'] = tables[9][1:] == catalog_rows()
     checks['tables_not_justified'] = all(p.alignment in [0,1,2] for t in d.tables for r in t.rows for c in r.cells for p in c.paragraphs)
     checks['body_left_aligned'] = all(p.alignment == 0 for p in d.paragraphs if p.text.strip() and p.style.name == 'Normal' and not any('SEQ Table' in e.text or 'SEQ Figure' in e.text for e in p._p.iter(qn('w:instrText'))) and '\t' not in p.text and not any(t in p.text.replace('\n','') for t in ['卒　業　論　文',template.content.TITLE,'2023TC011','指導教員','2027年1月','南山大学 理工学部']))
     checks['B4_pairwise_counts_match_prose'] = {r['comparator']:[int(r.get(k) or 0) for k in ['both','B4_only',r['comparator']+'_only','neither']] for r in template.content.csv.DictReader((template.content.B4_SOURCE/'pairwise.csv').open())} == {'R':[69,148,27,301],'F':[131,86,52,276],'D':[120,97,60,268]}
@@ -119,7 +121,14 @@ def validate():
     checks['under_10mb']=(HERE/'thesis.pdf').stat().st_size<10_000_000
     manifest=json.loads((HERE/'source_manifest.json').read_text())
     checks['frozen_source_hashes_unchanged']=all(digest(template.content.ROOT/p)==sha for p,sha in manifest['source_hashes'].items())
-    alltext='\n'.join(p.text for p in d.paragraphs)
+    # Square brackets in literal experiment prompts (e.g. qubit indices) are
+    # not bibliography citations. Limit this check to manuscript and references.
+    citation_paragraphs=[]
+    for p in d.paragraphs:
+        if p.style.name=='Heading 1' and p.text=='付録':
+            break
+        citation_paragraphs.append(p.text)
+    alltext='\n'.join(citation_paragraphs)
     refs=set(re.findall(r'\[(\d+)\]',alltext))
     checks['reference_numbers_consistent'] = refs == {str(i) for i in range(1,len(template.content.REFS)+1)}
     visual_file=HERE/'thesis_visual_review.json'
@@ -134,7 +143,7 @@ def validate():
         'font_fidelity':'DOCX specifies requested fonts; LibreOffice PDF uses substitutes. Final Microsoft Word rendering unverified.',
         'format_spec':'format_spec.json', 'source_snapshot_at_utc':manifest['source_snapshot_at_utc'],
         'new_experiments':0, 'new_model_requests':0,'generated_code_executions':0,
-        'artifact_sha256':{name:digest(HERE/name) for name in ['thesis.docx','thesis.pdf','build.py','template_thesis.py','thesis_expansion.py','thesis_language.py','thesis_figures.py','validate_figures.py','figure_validation_report_20261028.json','figures/figure_manifest.json','convert_thesis.py','validate_template.py','validate_expansion.py','thesis_headings.json','toc_cache.json','format_spec.json','source_manifest.json','bibliography_sources.json','expansion_report_20261028.json','revision_report_20261028.json','work_notes.txt','thesis_visual_review.json','README.md']},
+        'artifact_sha256':{name:digest(HERE/name) for name in ['thesis.docx','thesis.pdf','build.py','template_thesis.py','thesis_expansion.py','thesis_language.py','thesis_figures.py','validate_figures.py','figure_validation_report_20261028.json','figures/figure_manifest.json','convert_thesis.py','validate_template.py','validate_expansion.py','thesis_headings.json','toc_cache.json','format_spec.json','source_manifest.json','bibliography_sources.json','expansion_report_20261028.json','revision_report_20261028.json','work_notes.txt','thesis_visual_review.json','README.md','build_research_evidence.py','thesis_enrichment.py','validate_enrichment.py','intervention_catalog.csv','case_studies.json','experiment_prompts.json','enrichment_manifest.json','enrichment_validation_report.json','MANUSCRIPT_STATE.md']},
         'out_of_margin_spans':margin,
         'pending':['Original template comparison, especially cover coordinates and inherited paragraph styles','Formal approval of thesis title','Final rendering and updated fields in Microsoft Word with the specified fonts','Supervisor review of content and references']}
     (HERE/'validation_report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')

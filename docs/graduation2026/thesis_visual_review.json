@@ -1,7 +1,7 @@
 {
-  "reviewed_at_utc": "2026-10-28T14:02:22.333847+00:00",
+  "reviewed_at_utc": "2026-10-28T15:13:22.557915+00:00",
   "status": "reviewed",
-  "pdf_sha256": "720371fb9058f865938598c8f912b2635e5b006a6437185ac4ca42359837f2e2",
+  "pdf_sha256": "185d702a0c1ebea848d1be6c4e0e79f254048dd4efc92f3e2baab95de7d302fd",
   "pages_reviewed": [
     1,
     2,
@@ -28,19 +28,23 @@
     23,
     24,
     25,
-    26
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33
   ],
-  "method": "現行PDFの全26ページを6ページ単位のコンタクトシート5枚で確認し，分類表の18ページ目を単ページ画像で確認。",
+  "method": "全33ページのコンタクトシートを確認し，最終調整で変化した4・22・23・24・29・30ページを単ページ画像で再確認。最後の本文修正後は24ページを再確認。",
   "findings": [
-    "図1は初期生成前から分岐するPの点線独立経路を表示。Pは全1,000組を評価し別集計することを明記",
-    "図1のR/F/D/B4の分岐・追加上限・成功時停止と図中文字を確認。Dの入力と説明を3行で表示",
-    "図2のキャプションを簡潔にし、初期失敗545組という分母と条件別の説明を保持",
-    "研究目的に修正介入と独立再生成の比較を明記し、介入定義にPを含め、B4を対照として区別",
-    "図表・本文・ページ番号の欠けや重なりなし、白紙ページなし",
-    "旧分類名を実行時エラー（未定義変数）へ修正。表5の分類名は1行に収まり，件数と全26ページの体裁を保持。",
-    "評価水準はL3，結果はL3成功へ用語を統一。全26ページと定義・評価説明の単ページ画像を確認し，欠落や重なりなし。",
-    "文献[3]を固定出典・参照ファイルに分け，2パスと2ファイル名がそれぞれ1行に収まることを24ページの画像と抽出文字で確認。前コミットPDFとの画像比較で24ページ以外の全25ページは同一。",
-    "要約の目的をB4比較まで含めた本文と整合し，保存キーと本稿表記の区別，条件別の固定出典を明記。現行全26ページを画像で確認。"
+    "介入カタログを22ページの5.2節の説明直後に掲載。初期失敗数と9件の割合を確認し，最大割合の無条件な推奨を避ける説明を保持。",
+    "Fのみ成功・Dのみ成功の保存事例を19〜20ページに掲載し，修正前後の短いコード断片と保存結果を区別。",
+    "実験プロンプトを29〜33ページに掲載。量子状態の閉じ括弧を含めて欠落なく表示。",
+    "全33ページで図表・本文・ページ番号に欠けや重なりなし，白紙ページなし。",
+    "保存キーと本稿の表示分類の区別，条件別の固定出典，L3の用語統一を保持。",
+    "参考文献[3]のパスとファイル名の改行対策を26ページで保持。"
   ],
   "unperformed": [
     "原本テンプレートとの照合",
@@ -48,19 +52,14 @@
     "指導教員による内容の確認"
   ],
   "bibliography_path_review": {
-    "page": 24,
+    "page": 26,
     "unbroken_paths_and_filenames": [
       "docs/presentation_sources/20261016T_reachable_rescues/",
       "docs/analysis/independent_4_completed_20261022/",
       "results_snapshot.json",
       "source_manifest.json"
     ],
-    "all_on_single_lines": true,
-    "visible_changes_only_on_pages": [
-      24
-    ],
-    "other_25_pages_identical_to_previous_commit": true,
-    "comparison_scope": "参考文献だけを修正した080b923の作成時に実施した比較。今回は本文修正に伴う行配置変更あり。"
+    "all_on_single_lines": true
   },
   "consistency_checks": {
     "summary_purpose_includes_repair_and_independent_regeneration": true,
@@ -70,6 +69,6 @@
     "exclusive_primary_aggregate_phrase_removed": true,
     "saved_unknown_key_only_no_obsolete_display_label": true,
     "previous_bibliography_path_fix_retained": true,
-    "26_pages": true
+    "33_pages": true
   }
 }

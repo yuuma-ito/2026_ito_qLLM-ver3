@@ -185,6 +185,7 @@ def remap(text):
     text = polish(text)
     mappings = {'表3.1': '表1', '表5.1': '表2'}
     mappings.update({f'表6.{i}': f'表{i+2}' for i in range(1, 11)})
+    mappings['表7.1'] = '表10'
     for old, new in sorted(mappings.items(), key=lambda item: -len(item[0])):
         text = text.replace(old, new)
     text = text.replace('付録A', '付録（8.1節）').replace('付録B', '付録（8.2節）')
@@ -195,7 +196,7 @@ def remap(text):
         text = ('第2章で関連研究を整理し，第3章で評価・実験方法として介入条件・評価指標・実装・実験設定を述べる．'
                 '第4章で結果，第5章で考察，第6章で結論と今後の課題を述べる．'
                 '第7章に参考文献，第8章に出典と指標の付録を置く．'
-                '本稿は2026-10-16版の到達経路と2026-10-22固定のB4追加実験 [3] に基づく草稿であり，今回の執筆では追加生成・生成コード実行を行っていない．')
+                '本研究の分析には，保存済みの実験結果と必要な部分追試を用いた．B/R/F/D/Pは2026-10-16版，B4は2026-10-22固定の追加実験結果 [3] に基づく．')
     return text
 
 
@@ -293,9 +294,11 @@ def build_thesis():
                     old_chapter, title, level = 10, '付録', 1
                 elif title.startswith('付録B'):
                     old_chapter, title, level = 11, '指標の読み方', 2
+                elif title.startswith('付録C'):
+                    old_chapter, title, level = 12, '実験プロンプト', 2
             elif style == 'Heading 2':
                 title = re.sub(r'^(?:\d+\.\d+|A\.\d+)\s*', '', title)
-                level = 3 if old_chapter in [3,4,5,10,11] else 2
+                level = 3 if old_chapter in [3,4,5,10,11,12] else 2
             if level:
                 if old_chapter == 6 and title == 'モデル別の結果':
                     add_figure(d, 2)
@@ -304,7 +307,7 @@ def build_thesis():
                 if old_chapter == 10 and level == 3 and counters[1] == 0:
                     add_heading(d, '出典と再現性', 2, counters, headings)
                 p = add_heading(d, title, level, counters, headings)
-                if old_chapter == 11 and level == 2:
+                if old_chapter in [11,12] and level == 2:
                     p.paragraph_format.page_break_before = True
                 if old_chapter == 3 and level == 1:
                     p = paragraph(d, '図1に実験の論理的な比較手順を示す．初期成功の保持と初期失敗への追加生成を分け，生成前介入Pは点線の独立経路で示す．保存済みの生成履歴と部分追試に基づく集計であり，全件を新たに生成した実験ではない．')
@@ -341,6 +344,28 @@ def build_thesis():
                         font(p.add_run(chunk))
             for run in p.runs:
                 font(run)
+            if old_chapter == 12:
+                # Give the ket bracket an explicit math-capable font. Implicit
+                # fallback rendered it correctly but reordered PDF text extraction.
+                for run in list(p.runs):
+                    if '⟩' not in run.text:
+                        continue
+                    position = p._p.index(run._r)
+                    original = run.text
+                    p._p.remove(run._r)
+                    for part in re.split('(⟩)', original):
+                        if not part:
+                            continue
+                        replacement = p.add_run(part)
+                        font(replacement)
+                        if part == '⟩':
+                            rf = replacement._r.get_or_add_rPr().get_or_add_rFonts()
+                            for key in ['ascii','hAnsi','cs','eastAsia']:
+                                rf.set(qn('w:' + key), 'DejaVu Serif')
+                        p._p.insert(position, replacement._r)
+                        position += 1
+            if text.startswith('修正前（') or text.startswith('修正後（'):
+                p.paragraph_format.keep_together = True
         elif started and child.tag == qn('w:tbl'):
             copy = deepcopy(child)
             body.insert(len(body)-1, copy)
@@ -377,6 +402,7 @@ def build_thesis():
         ],
         'pdf_font_limit': 'MS 明朝, MS Pゴシック and Century unavailable on server; PDF uses substitutes. Word fidelity requires original fonts and original template.',
         'body_alignment': 'left; avoid distributed spacing in mixed Japanese/Latin text',
+        'prompt_math_symbol_font': 'DejaVu Serif for U+27E9 ket brackets, preserving the exact prompt text and PDF extraction order.',
         'source_snapshot': str(content.SOURCE.relative_to(content.ROOT)),
     }
     (HERE/'format_spec.json').write_text(json.dumps(spec, ensure_ascii=False, indent=2)+'\n')
