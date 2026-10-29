@@ -395,7 +395,7 @@ def legacy_thesis():
                 for el in [caption,tbl,spacer]:anchor.addprevious(el)
     d.add_page_break();heading(d,'参考文献',1)
     for i,r in enumerate(REFS,1):para(d,f'[{i}] {r}',indent=False)
-    para(d,'文献[1]，[2]，[4]〜[7]の書誌情報と本文で参照した主張の範囲は，原論文の公開ページで確認した．引用番号は本文の初出順である．文献[3]は本研究の一次資料で，集計時点・保存設定・検証記録を固定している．')
+    para(d,'文献[1]，[2]，[4]〜[7]の書誌情報と本文で参照した主張の範囲は，原論文の公開ページで確認した．文献[8]，[9]はQiskitとQiskit Aerの公式資料である．既存文献の引用番号を保持し，追加文献には末尾の番号を付した．文献[3]は本研究の一次資料で，集計時点・保存設定・検証記録を固定している．')
     d.add_page_break();heading(d,'付録A　出典と再現性',1)
     manifest=json.loads((ANALYSIS/'manifest.json').read_text())
     for i,s in enumerate(manifest['source_settings'],1):

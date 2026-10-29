@@ -1,13 +1,14 @@
 {
-  "validated_at_utc": "2026-10-28T17:39:06.499586+00:00",
+  "validated_at_utc": "2026-10-29T02:36:33.997230+00:00",
   "passed": true,
   "checks": {
     "all_expected_body_paragraphs_in_pdf": true,
-    "citation_numbers_in_first_use_order": true,
+    "citation_order_matches_source": true,
+    "all_references_cited": true,
     "B4_three_way_cross_counts": true,
     "frozen_model_task_failure_totals": true,
     "fixed_title": true,
-    "all_seven_bibliography_entries_in_pdf": true,
+    "all_bibliography_entries_in_pdf": true,
     "repetition_reduced": true,
     "results_7_sections_discussion_5_sections": true,
     "no_administrative_material_in_pdf": true,
@@ -21,14 +22,14 @@
     "pdf_pages": 35
   },
   "after": {
-    "body_paragraphs": 191,
-    "body_characters_excluding_tables": 28601,
-    "all_paragraph_characters_including_toc": 42796,
+    "body_paragraphs": 194,
+    "body_characters_excluding_tables": 29301,
+    "all_paragraph_characters_including_toc": 43828,
     "tables": 11,
     "pdf_pages": 34
   },
-  "growth_ratio": 0.671353457584151,
-  "expected_body_paragraphs": 175,
+  "growth_ratio": 0.6877846110511243,
+  "expected_body_paragraphs": 178,
   "missing_body_paragraphs": [],
   "citation_first_use": [
     "1",
@@ -36,6 +37,8 @@
     "3",
     "4",
     "5",
+    "8",
+    "9",
     "6",
     "7"
   ],
@@ -53,7 +56,7 @@
     "D/initial_failure": 180,
     "B4/initial_failure": 217
   },
-  "pdf_sha256": "bbf29c7bf015056893837080f78fd4b430268db0c8a8b54437e74721c7f35336",
-  "docx_sha256": "43fb7dda5fd233eb203e3dc37ca2c67b2f84436dc0b92aa2db687e8b522395f8",
+  "pdf_sha256": "c581e811e20a402171e525bcf9ddf0e7263a6ba4074a8c88cae8afd0f9071ac7",
+  "docx_sha256": "308c8a7e383f75e94302c00e0206731c80277e9109a1ac8cda5669cae3f06971",
   "scope": "構成整理・重複削減・記述的計算の照合のみ。新規実験・モデル要求・生成コード実行0。"
 }

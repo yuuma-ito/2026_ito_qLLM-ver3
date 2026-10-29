@@ -26,7 +26,17 @@ def apply(chapters, references):
         'J. Austin et al.：Program Synthesis with Large Language Models，arXiv:2108.07732（2021）．https://arxiv.org/abs/2108.07732',
         'J. Huang et al.：Large Language Models Cannot Self-Correct Reasoning Yet，arXiv:2310.01798（初版2023，v2は2024）．https://arxiv.org/abs/2310.01798',
         'S. Vishwakarma et al.：Qiskit HumanEval: An Evaluation Benchmark For Quantum Code Generative Models，arXiv:2406.14712（2024）．https://arxiv.org/abs/2406.14712',
+        'IBM Quantum：Construct circuits，IBM Quantum Documentation（2026年10月29日参照）．https://quantum.cloud.ibm.com/docs/en/guides/construct-circuits',
+        'Qiskit Development Team：Qiskit Aer documentation（2026年10月29日参照）．https://qiskit.github.io/qiskit-aer/',
     ])
+    # User-authorized addition, 2026-10-29: introduce the SDK before prior work.
+    chapters[1][1].insert(0, ('量子プログラミングとQiskit', paragraphs('''
+Qiskitは，Pythonを用いて量子回路を記述するためのソフトウェア開発キット（SDK）である．量子回路は，量子ビットと，それらに適用するゲートや測定などの命令から構成される．QiskitではQuantumCircuitクラスを用いて回路を表し，量子ビット数などを指定して作成した回路へ命令を追加する．例えば，hメソッドはアダマールゲートを，cxメソッドは制御Xゲートを追加する [8]．生成するコードには，Pythonとしての正しい記述に加え，課題に応じたゲートの選択と適用対象の指定が必要となる．
+
+回路を記述することと，その回路を実行して結果を得ることは別の処理である．Qiskit Aerは量子回路のシミュレーションを行うためのソフトウェアであり，実機を用いずに回路の動作を調べる手段を提供する [9]．本研究では，LLMが生成したコードから回路を構築し，タスク仕様に応じて測定分布または状態ベクトルを期待出力と比較する．生成コードにはbuild_circuit()を定義してQuantumCircuitを返すことを求め，評価処理はハーネスが担当する．したがって，本研究の成功判定は実機上での動作を検証した結果ではない．
+
+この構成では，必要なモジュールを読み込めないimport失敗，APIの使い方などにより回路を作れない回路構築失敗，回路を評価できても期待状態や分布を得られない出力不一致を区別できる．同じ量子コード生成の失敗でも，修正時に利用できる診断と，確認すべき内容は異なる．これらを区別したうえで，以下では自己フィードバック，実行診断，量子コード生成の評価に関する先行研究を整理する．
+''')))
     section(chapters, 0, 'コード生成支援から失敗後の意思決定へ', '''
 自然言語からプログラムを生成できることと，そのプログラムを目的に沿って利用できることは同じではない．利用者は生成されたコードを読み，実行環境に接続し，結果を確認し，問題があれば次の操作を選ばなければならない．コード生成支援の実際の作業では，最初の出力の品質だけでなく，失敗を確認した後に何を入力し，どこで生成を止めるかが作業量を左右する．本研究はこの失敗後の意思決定に対象を絞る．
 

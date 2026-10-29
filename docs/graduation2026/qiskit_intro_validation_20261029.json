@@ -1,0 +1,22 @@
+{
+  "checked_at_utc": "2026-10-29T02:30:41.916296+00:00",
+  "checks": {
+    "all_11_tables_unchanged": true,
+    "intro_is_first_related_work_section": true,
+    "intro_in_pdf_page_7": true,
+    "official_references_in_pdf": true,
+    "all_existing_paragraphs_retained_except_updated_toc_and_bibliography_note": true
+  },
+  "passed": true,
+  "pdf_pages": 34,
+  "pdf_sha256": "c581e811e20a402171e525bcf9ddf0e7263a6ba4074a8c88cae8afd0f9071ac7",
+  "visual_review": {
+    "detailed_pages": [
+      7,
+      27
+    ],
+    "all_pages_contact_sheet_overview": true,
+    "observation": "追加節・参考文献の文字切れなし。全体のページ構成を一覧確認。Microsoft Word表示は未確認。"
+  },
+  "scope": "Qiskit説明小節と公式資料2件のみ追加。実験・再評価なし。"
+}

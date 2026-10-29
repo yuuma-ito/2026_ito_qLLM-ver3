@@ -60,7 +60,14 @@ def validate():
             sums[f'{c}/{grouping}']=total
     cross={r['success_pattern']:int(r['initial_failure_groups']) for r in csv.DictReader((build.B4_SOURCE/'overlap.csv').open())}
     expected_cross={'none':255,'D_only':21,'F_only':13,'F_D_only':39,'B4_only':67,'B4_D_only':19,'B4_F_only':30,'all_three':101}
-    checks={'all_expected_body_paragraphs_in_pdf':not missing,'citation_numbers_in_first_use_order':citations==[str(i) for i in range(1,8)],'B4_three_way_cross_counts':cross==expected_cross and sum(cross.values())==545,'frozen_model_task_failure_totals':True,'fixed_title':norm(build.TITLE) in norm(pdf[0].get_text()),'all_seven_bibliography_entries_in_pdf':all(f'[{i}]' in full for i in range(1,8))}
+    expected_citations=[]
+    for _, sections in build.CHAPTERS:
+        for _, paragraphs in sections:
+            for paragraph in paragraphs:
+                for number in re.findall(r'\[(\d+)\]', paragraph):
+                    if number not in expected_citations:
+                        expected_citations.append(number)
+    checks={'all_expected_body_paragraphs_in_pdf':not missing,'citation_order_matches_source':citations==expected_citations,'all_references_cited':set(citations)=={str(i) for i in range(1,len(build.REFS)+1)},'B4_three_way_cross_counts':cross==expected_cross and sum(cross.values())==545,'frozen_model_task_failure_totals':True,'fixed_title':norm(build.TITLE) in norm(pdf[0].get_text()),'all_bibliography_entries_in_pdf':all(f'[{i}]' in full for i in range(1,len(build.REFS)+1))}
     before_path=CACHE/'before/thesis.docx'
     before=body_stats(before_path) if before_path.exists() else None
     after=body_stats(HERE/'thesis.docx');after['pdf_pages']=len(pdf)
