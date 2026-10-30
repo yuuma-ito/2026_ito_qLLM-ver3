@@ -1,0 +1,37 @@
+{
+  "checked_at_utc": "2026-10-30T07:41:29.805347+00:00",
+  "name": "quantum-review",
+  "skill_source": "docs/codex/skills/quantum-review",
+  "installed_directory": "/home/23tc011/.codex/skills/quantum-review",
+  "files_sha256": {
+    "SKILL.md": "50fcd9e2bac51739c053646aad34508f8b6bb6777698d3019460d6ba50f9e7d2",
+    "agents/openai.yaml": "fb4074ab52e4b957f7cfb9305b53ce860244b202e502cab15e1dd5ceedd1e825"
+  },
+  "installed_files_match_source": true,
+  "quick_validate": "passed for repository source and installed skill",
+  "independent_forward_test": {
+    "agent": "/root/test_quantum_review_skill",
+    "inherited_author_history": false,
+    "raw_fixture_cases": 6,
+    "cases_A_B_D_technical_errors_detected": true,
+    "cases_C_F_correct_not_flagged": true,
+    "case_E_fixed_prompt_preserved": true,
+    "unexpected_file_mutations": false,
+    "method": "新しいスキルと手書きの説明メモだけを渡した別エージェントが静的点検・解析計算と公式資料照合を実施。答えや疑わしい箇所は事前に渡していない。"
+  },
+  "passed": true,
+  "new_model_requests": 0,
+  "generated_code_executions": 0,
+  "limitations": [
+    "これはスキルの動作確認であり，現行卒論の再度の独立査読とは区別する。",
+    "形式検証・実機動作・すべての量子回路の正しさを保証しない。"
+  ],
+  "current_thesis_application": {
+    "completed_at_utc": "2026-10-30T07:45:32.769986+00:00",
+    "agent": "/root/verify_quantum_revision",
+    "pdf_sha256": "99dec50f1bfc06081f18ee4eac23d5bf16e0fb74bcf100600387172aed453c2a",
+    "inherited_author_history": false,
+    "major_quantum_errors_found": false,
+    "report": "docs/graduation2026/quantum_notation_validation_20261030.json"
+  }
+}

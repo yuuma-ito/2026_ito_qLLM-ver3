@@ -1,0 +1,116 @@
+{
+  "checked_at_utc": "2026-10-30T07:41:29.805347+00:00",
+  "passed": true,
+  "checks": {
+    "exactly_three_authorized_prose_paragraphs_changed": true,
+    "eleven_tables_unchanged": true,
+    "four_figures_unchanged": true,
+    "fixed_prompts_cases_catalog_unchanged": true,
+    "initial_ket_and_Bell_state_in_pdf": true,
+    "pure_state_scope_in_pdf": true,
+    "explicit_relative_phase_states_in_pdf": true,
+    "Bell_H0_CX01_matrix_identity": true,
+    "Bell_measurement_probabilities": true,
+    "plus_minus_initial_distributions_equal": true,
+    "H_plus_is_zero_and_H_minus_is_one": true,
+    "no_replacement_characters": true
+  },
+  "pdf_pages": 35,
+  "pdf_sha256": "99dec50f1bfc06081f18ee4eac23d5bf16e0fb74bcf100600387172aed453c2a",
+  "docx_sha256": "9f04fd51ad5c425c339bde4556498353bc4b8d20b34fdd38b4de2adce06c9c23",
+  "modified_paragraphs": [
+    {
+      "before": "具体例として，初期状態を00とする2量子ビットのBell状態を構築するコードを示す．量子ビット0へアダマールゲートを適用し，続いて量子ビット0を制御，量子ビット1を標的とする制御Xゲートを適用する．この回路を計算基底で測定すると，理想的には00と11がそれぞれ確率0.5で得られる．以下はT1の課題仕様に基づく説明用コードであり，モデルの生成結果の抜粋ではない．",
+      "after": "具体例として，初期状態|00⟩から，2量子ビットのBell状態(|00⟩ + |11⟩)/√2を準備するコードを示す．量子ビット0へアダマールゲートを適用し，続いて量子ビット0を制御，量子ビット1を標的とする制御Xゲートを適用する．両量子ビットを計算基底で測定すると，理想的には測定結果のビット列「00」と「11」がそれぞれ確率0.5で得られる．以下はT1の課題仕様に基づく説明用コードであり，モデルの生成結果の抜粋ではない．"
+    },
+    {
+      "before": "本研究の出力評価を理解するには，回路が表す処理と，回路を実行して得られる観測結果を区別する必要がある．量子状態は基底状態に対する複素振幅の組として表され，計算基底での測定確率はその振幅の絶対値の二乗に対応する．したがって，同じ測定確率を持つ状態であっても，相対位相が異なる可能性がある．このことから，分布を検査するタスクと状態ベクトルを検査するタスクでは，確認できる正しさの範囲が異なる．",
+      "after": "本研究の出力評価を理解するには，回路が表す処理と，回路を実行して得られる観測結果を区別する必要がある．本研究で状態ベクトル評価の対象とする純粋状態は，計算基底に対する複素振幅を成分とする正規化された状態ベクトルで表され，計算基底での各測定結果の確率は対応する振幅の絶対値の二乗となる．したがって，同じ測定確率を持つ純粋状態であっても，相対位相が異なる可能性がある．このことから，分布を検査するタスクと状態ベクトルを検査するタスクでは，確認できる正しさの範囲が異なる．"
+    },
+    {
+      "before": "説明用の例として，二つの基底状態の振幅の符号だけが異なる状態を考える．計算基底で直ちに測定した分布は同じでも，後続の干渉を伴う処理では異なる結果になり得る．この例は評価原理を説明するためのもので，保存コードを新たに実行して得た観測ではない．分布の一致だけから位相まで含めた状態の同一性を結論しないことが，本研究の評価範囲を正しく読むために必要となる．",
+      "after": "説明用の例として，|+⟩ = (|0⟩ + |1⟩)/√2と|−⟩ = (|0⟩ − |1⟩)/√2を考える．両状態は計算基底での測定分布が同じでも，相対位相が異なる．それぞれにアダマールゲートを適用してから計算基底で測定すると，前者ではビット値0，後者ではビット値1が確率1で得られる．この例は評価原理を説明するためのもので，保存コードを新たに実行して得た観測ではない．分布の一致だけから位相まで含めた状態の同一性を結論しないことが，本研究の評価範囲を正しく読むために必要となる．"
+    }
+  ],
+  "analytic_checks": {
+    "basis_order": "|q1 q0⟩; |00⟩, |01⟩, |10⟩, |11⟩",
+    "Bell_state_after_H0_CX01": [
+      0.7071067811865475,
+      0.0,
+      0.0,
+      0.7071067811865475
+    ],
+    "H_plus": [
+      0.9999999999999998,
+      0.0
+    ],
+    "H_minus": [
+      0.0,
+      0.9999999999999998
+    ],
+    "method": "小さな行列の数値積による恒等式照合。SDKや保存生成コードの実行ではない。"
+  },
+  "sources": [
+    "https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/multiple-systems/quantum-information",
+    "https://quantum.cloud.ibm.com/learning/en/courses/general-formulation-of-quantum-information/density-matrices/density-matrix-basics",
+    "https://quantum.cloud.ibm.com/learning/en/modules/quantum-mechanics/get-started-with-qiskit"
+  ],
+  "changed_rendered_pages": [
+    7,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    25
+  ],
+  "detail_visual_pages": [
+    7,
+    11
+  ],
+  "new_experiments": 0,
+  "new_model_requests": 0,
+  "generated_code_executions": 0,
+  "scope": "承認された3段落の修正と文書・数式の確認。評価器・固定集計の独立監査は未実施。Grover固定プロンプトは変更しない。",
+  "independent_quantum_review": {
+    "completed_at_utc": "2026-10-30T07:45:32.769986+00:00",
+    "agent": "/root/verify_quantum_revision",
+    "skill": "quantum-review",
+    "inherited_author_history": false,
+    "pdf_sha256": "99dec50f1bfc06081f18ee4eac23d5bf16e0fb74bcf100600387172aed453c2a",
+    "scope": "現行PDFの本文・付録，10タスクの仕様と評価器を静的照合。数式の画像も確認。保存生成コードの実行・再採点・新実験なし。",
+    "major_quantum_errors_found": false,
+    "confirmed": [
+      "Bell/GHZ・DJ・BVの具体的な回路と期待値",
+      "純粋状態・Born則・相対位相・大域位相と位相整合の符号",
+      "QFT/IQFTの符号・指定入力・ビット順",
+      "QPEの位相1/4と計数表示010・全体表示1010",
+      "Ansatzの回転順・制御と標的・角度単位"
+    ],
+    "remaining_nonblocking_notes": [
+      {
+        "topic": "Pの古典ビット数一致指示",
+        "resolution": "実験時の固定引用は保持。影響未検証と不要な古典ビットを促す可能性は本文5.4節（25ページ）に既に説明されている。"
+      },
+      {
+        "topic": "Grover拡散の全体符号",
+        "resolution": "大域位相を除いて同値で今回の測定結果に影響しない。固定引用と回路は保持。"
+      },
+      {
+        "topic": "BVの列挙順とビット列",
+        "resolution": "付録の直前にビット添字規約があり期待分布とも整合。固定引用は保持。"
+      },
+      {
+        "topic": "SDK参照回路からの期待値生成",
+        "resolution": "参照実装との照合と数学的検証を区別する補足候補。今回の技術記述を誤りとは判定しない。"
+      }
+    ]
+  },
+  "automated_validations": {
+    "enrichment_validation_report.json": true,
+    "six_conditions_validation.json": true,
+    "revision_report_20261028.json": true
+  }
+}

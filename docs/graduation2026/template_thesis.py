@@ -345,7 +345,7 @@ def build_thesis():
                         font(p.add_run(chunk))
             for run in p.runs:
                 font(run)
-            if old_chapter == 12:
+            if '⟩' in text:
                 # Give the ket bracket an explicit math-capable font. Implicit
                 # fallback rendered it correctly but reordered PDF text extraction.
                 for run in list(p.runs):
@@ -377,7 +377,7 @@ def build_thesis():
                 p.paragraph_format.keep_together = True
             if text.startswith('修正前（') or text.startswith('修正後（'):
                 p.paragraph_format.keep_together = True
-            if text.startswith('具体例として，初期状態を00とする'):
+            if text.startswith('具体例として，初期状態|00⟩から'):
                 p.paragraph_format.keep_with_next = True
             if text.startswith('コード例（Bell状態の回路構築）'):
                 p.paragraph_format.keep_together = True

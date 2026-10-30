@@ -1,0 +1,4 @@
+interface:
+  display_name: "量子記述・回路の点検"
+  short_description: "量子状態の記法・位相・回路・測定・Qiskitのビット順を照合する"
+  default_prompt: "$quantum-review を使って、この原稿の量子状態の記述と回路が正しいか確認してください。"
