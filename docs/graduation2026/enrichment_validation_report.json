@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-28T17:38:58.827030+00:00",
+  "checked_at_utc": "2026-10-30T07:12:48.214396+00:00",
   "passed": true,
   "checks": {
     "source_inputs_unchanged": true,
@@ -24,24 +24,24 @@
     "latest_Japanese_revisions": true,
     "P_template_matches_actual_prompt_builder": true
   },
-  "pages": 34,
+  "pages": 35,
   "tables": 11,
   "case_groups": 2,
   "task_prompts": 10,
-  "pdf_sha256": "bbf29c7bf015056893837080f78fd4b430268db0c8a8b54437e74721c7f35336",
-  "docx_sha256": "43fb7dda5fd233eb203e3dc37ca2c67b2f84436dc0b92aa2db687e8b522395f8",
+  "pdf_sha256": "398343111cbd100d17641ea8fd52b18f2062b6b41beba36b8149589b8f41f1df",
+  "docx_sha256": "a5c3cf05b3fa6ee316f8b86cdd3a5b5cbea6f8535cc2905e4aceb6096cf329ba",
   "D_case_pages": [
     [
-      21
+      22
     ],
     [
-      21
+      22
     ],
     [
-      21
+      22
     ],
     [
-      21
+      22
     ]
   ],
   "verification_scope": "掲載した短いコード抜粋は原記録と照合。固定テンプレートは保存commitのソースと照合。個別の全送信ログや生成コード全文と掲載内容の完全一致を確認したという意味ではない。",

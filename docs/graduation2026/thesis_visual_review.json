@@ -1,7 +1,7 @@
 {
-  "reviewed_at_utc": "2026-10-28T17:39:43.072262+00:00",
+  "reviewed_at_utc": "2026-10-30T07:14:52.907645+00:00",
   "status": "reviewed",
-  "pdf_sha256": "bbf29c7bf015056893837080f78fd4b430268db0c8a8b54437e74721c7f35336",
+  "pdf_sha256": "398343111cbd100d17641ea8fd52b18f2062b6b41beba36b8149589b8f41f1df",
   "pages_reviewed": [
     1,
     2,
@@ -36,45 +36,28 @@
     31,
     32,
     33,
-    34
+    34,
+    35
   ],
-  "method": "確認済みの前版全34ページと現行PDFの画像を比較し，変更は24ページのみ。24ページを単ページ画像で再確認し，他33ページは同一。",
+  "method": "現行PDF全35ページを6枚の一覧画像で確認し，24・27・28ページを拡大画像で確認。",
+  "detail_pages_reviewed": [
+    24,
+    27,
+    28
+  ],
   "findings": [
-    "全34ページで文字と図表の欠け・重なり・はみ出しなし。白紙ページなし。",
-    "表1でB・P・R・F・D・B4の方法・上限・役割を確認。4回は初回込みと本文に明記。",
-    "17ページの表3・図2に6条件の最終L3成功率を掲載。全1,000組が分母であること，成功数と率の一致，白黒の判別性を確認。",
-    "18ページの表4・図3に初期失敗545組からの追加成功率を保持。B・Pは含めない。",
-    "Fの事例は20ページ，DのQPE事例の修正前後は21ページ内に保持。",
-    "Pの未検証制約は24ページ，プロンプト付録は30〜34ページで原文の表示を保持。",
-    "図はキャプションが下，表は上。図表参照と目次を更新。",
-    "5ページの1.2節にRQ1〜RQ3を独立して表示。23ページの5.1節でRQ1・RQ2，24ページの5.3節でRQ3に回答。",
-    "18ページの表4は条件・初期失敗数・追加成功数・追加成功率の4列で表示し，数値と分母を確認。",
-    "26ページの結論に主要3類型のカタログ作成を明記し，自動選択方策の有効性の実証とは区別。",
-    "24ページのRQ3への回答にB4の追加tokens／追加成功4,589.0と総追加995,815 tokens／217組を明記。文字の欠け・重なりなし。"
+    "全35ページの一覧で白紙・大きな欠け・重なり・はみ出しがないことを確認。",
+    "24ページの5.1節でモデル別・類型別の最多条件と成功集合の違いを主要知見へ接続し，方策改善は未検証と記載。",
+    "24ページの表11はCSVの全3類型の観測率を表示し，本文で3類型・9項目と全7類型の表6との関係を説明。",
+    "25・26ページへ続く考察の改ページと，27ページの結論の三つの知見・限界を確認。",
+    "28ページの文献[3]にGitHub URL，40桁の固定commit，固定版URLと確認日を表示。長いURLは2行に折り返すが欠落はない。",
+    "既存11表の数値・4図・掲載事例・固定プロンプトを保持。目次と本文の参照は自動検証で確認。"
   ],
   "unperformed": [
+    "評価器・採点・固定集計の独立監査",
+    "独立した原稿査読",
     "原本テンプレートとの照合",
     "指定フォントを備えたMicrosoft Wordでの最終レンダリング確認",
-    "指導教員による内容の確認"
-  ],
-  "bibliography_path_review": {
-    "page": 27,
-    "unbroken_paths_and_filenames": [
-      "docs/presentation_sources/20261016T_reachable_rescues/",
-      "docs/analysis/independent_4_completed_20261022/",
-      "results_snapshot.json",
-      "source_manifest.json"
-    ],
-    "all_on_single_lines": true
-  },
-  "consistency_checks": {
-    "summary_purpose_includes_repair_and_independent_regeneration": true,
-    "saved_key_and_paper_display_explicit": true,
-    "result_table_label_is_paper_display_only": true,
-    "separate_frozen_sources_by_condition": true,
-    "exclusive_primary_aggregate_phrase_removed": true,
-    "saved_unknown_key_only_no_obsolete_display_label": true,
-    "previous_bibliography_path_fix_retained": true,
-    "34_pages": true
-  }
+    "指導教員による内容・文献の確認"
+  ]
 }

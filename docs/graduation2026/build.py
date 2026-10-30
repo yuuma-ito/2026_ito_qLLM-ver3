@@ -45,7 +45,11 @@ REFS = [
   '参照ファイル：results_snapshot.json，source_manifest.json および対応CSV．\n'
   'B4追加実験（2026-10-22固定）．\n'
   '固定出典：docs/analysis/independent_4_completed_20261022/\n'
-  '参照資料：保存設定・manifest・sanity・集計CSV．'),
+  '参照資料：保存設定・manifest・sanity・集計CSV．\n'
+  '公開リポジトリ：https://github.com/yuuma-ito/2026_ito_qLLM-ver3\n'
+  '両出典を収録する固定commit：b4c0ba79b308e7b12ab88413714746a5620424b5\n'
+  '固定版URL：https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/b4c0ba79b308e7b12ab88413714746a5620424b5\n'
+  '上記固定版内の各パスを参照（2026年10月30日確認）．'),
 ]
 
 def row(group, value, condition):
@@ -335,7 +339,7 @@ def thesis_tables(d, chapter):
             [s,f"{third[c]['additional_rescues']}/{third[c]['at_risk_after_2']}",f"{third[c]['third_round_tokens']:,}",f"{third[c]['third_round_seconds']:,.1f}",f"{third[c]['loss_if_stop_at_2']*100:.1f}%"] for s,c in CONDITIONS],widths=[16,34,34,32,44])
     elif chapter == 7:
         from thesis_enrichment import catalog_rows
-        table(d,'表7.1　介入カタログの抜粋（主要3類型の観測率）',
+        table(d,'表7.1　介入カタログ（収録3類型の観測率）',
               ['初期失敗類型','初期失敗数','F救済率','D救済率','B4追加成功率'],
               catalog_rows(),widths=[40,28,28,28,36])
 

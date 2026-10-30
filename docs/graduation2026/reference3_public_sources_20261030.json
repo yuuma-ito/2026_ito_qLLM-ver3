@@ -1,0 +1,127 @@
+{
+  "checked_at_utc": "2026-10-30T07:08:42.965214+00:00",
+  "repository_url": "https://github.com/yuuma-ito/2026_ito_qLLM-ver3",
+  "commit": "b4c0ba79b308e7b12ab88413714746a5620424b5",
+  "unauthenticated_public_api_url": "https://api.github.com/repos/yuuma-ito/2026_ito_qLLM-ver3/git/trees/b4c0ba79b308e7b12ab88413714746a5620424b5?recursive=1",
+  "response_truncated": false,
+  "verified_files": [
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/README.md",
+      "git_blob_sha": "4f323c8930e8429cc1aa15db9257add0a59bb0cd"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/cost_by_cap_and_stratum.csv",
+      "git_blob_sha": "6ad9cb36fac38208212e51b90a9a73c3d5adbf28"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/discordant_cases.csv",
+      "git_blob_sha": "9caa7e3566c150dbf8a1853294f69b6b8d39ee64"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/discordant_summary.csv",
+      "git_blob_sha": "a6daa461ef5eb2662d1d6aad24067e6b2c758681"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/discordant_transitions.csv",
+      "git_blob_sha": "8f078e4bcb1eee7726b98f16982d6b6769daac29"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/fd_overlap_summary.csv",
+      "git_blob_sha": "88031f4fbdd7a9a9a78c04751c5ba38304cc0c91"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/findings.md",
+      "git_blob_sha": "0c132f27bf1ba62255cafd91e07465a24454d5a8"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/manifest.json",
+      "git_blob_sha": "8e89599cb2bd56d5d03c6ade8f7b50dd0458f738"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/paired_records.csv",
+      "git_blob_sha": "f952696496a969b6ef9ad36c7619da3ab3558ef8"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/preventive_summary.csv",
+      "git_blob_sha": "ba607890d48fc134005b17b5f003fa21a4bc212e"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/repair_summary.csv",
+      "git_blob_sha": "a0a479bf877ed6d781d2566d5bf9bae5f996763e"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/results_snapshot.json",
+      "git_blob_sha": "5a0a610126b58a97cddc89c9c31f605d0bbaee93"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/sanity_report.json",
+      "git_blob_sha": "781f3edb9145c43c9b7ea662501c24727e08e515"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/source_manifest.json",
+      "git_blob_sha": "0a2edbf57af6306a1a1bd3a7a3f5dda75e5cb3a2"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/tables.tex",
+      "git_blob_sha": "963d26f61fe2481c96ed891b3270da659a9c36ac"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/third_round_rescues.csv",
+      "git_blob_sha": "1c4ccef3f70e53f998f713f4f748875267aae9dd"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/third_round_summary.csv",
+      "git_blob_sha": "0df372791461c758ee221413dede879b892b38ab"
+    },
+    {
+      "path": "docs/presentation_sources/20261016T_reachable_rescues/validation_report.json",
+      "git_blob_sha": "c95bbeb847bde2be24af180320d1456c09714cc1"
+    },
+    {
+      "path": "docs/analysis/independent_4_completed_20261022/README.md",
+      "git_blob_sha": "6b067443217bb54e48c0c6cdd474ad348beb0b72"
+    },
+    {
+      "path": "docs/analysis/independent_4_completed_20261022/first_success.csv",
+      "git_blob_sha": "cf2d83896956aab669348d7e7ac912e866e5ba6b"
+    },
+    {
+      "path": "docs/analysis/independent_4_completed_20261022/manifest.json",
+      "git_blob_sha": "c9012936d582582f76a8da08dd47fa157f44c23c"
+    },
+    {
+      "path": "docs/analysis/independent_4_completed_20261022/overlap.csv",
+      "git_blob_sha": "288c9ee25e0683af9d8a9ef05b4a610006a6c797"
+    },
+    {
+      "path": "docs/analysis/independent_4_completed_20261022/pairwise.csv",
+      "git_blob_sha": "4fea52d20d2d1fe865d35e6aba467454d90694c1"
+    },
+    {
+      "path": "docs/analysis/independent_4_completed_20261022/repetitions.csv",
+      "git_blob_sha": "955e9408b68bafca98abb12beddda63e496a2fac"
+    },
+    {
+      "path": "docs/analysis/independent_4_completed_20261022/runner_experiment_config.json",
+      "git_blob_sha": "35b1849bba7e45a43e5f00270df7ecc83b71499e"
+    },
+    {
+      "path": "docs/analysis/independent_4_completed_20261022/runner_manifest.json",
+      "git_blob_sha": "e1031b6e06c208117d4e2eee9198413187a6af1a"
+    },
+    {
+      "path": "docs/analysis/independent_4_completed_20261022/sanity_report.json",
+      "git_blob_sha": "87ad8d587d117f2735aef397d2832f92b9b10f20"
+    },
+    {
+      "path": "docs/analysis/independent_4_completed_20261022/source_manifest.json",
+      "git_blob_sha": "43c70ca79300611257ffead2d1ffaedc0e386e29"
+    },
+    {
+      "path": "docs/analysis/independent_4_completed_20261022/summary.csv",
+      "git_blob_sha": "9269080ac4cc0f947a684193dbff94e51a0b1b6e"
+    }
+  ],
+  "api_response_sha": "b4c0ba79b308e7b12ab88413714746a5620424b5",
+  "local_commit_tree_sha": "7149d3cfd881039ef39b2babb10d54ce3220dccd"
+}

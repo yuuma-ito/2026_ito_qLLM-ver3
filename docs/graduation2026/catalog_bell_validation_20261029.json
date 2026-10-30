@@ -1,0 +1,21 @@
+{
+  "checked_at_utc": "2026-10-29T03:07:48.175454+00:00",
+  "passed": true,
+  "checks": {
+    "all_11_tables_unchanged": true,
+    "old_phrase_removed": true,
+    "three_categories_explicit": true,
+    "bell_example_syntax_valid": true,
+    "bell_operations_match_saved_T1_specification": true
+  },
+  "pdf_pages": 35,
+  "pdf_sha256": "c793643290a8d71eca1c2e18930fc594eb7cc47d22c9ad1f42fbcb1a37d781aa",
+  "visual_review": {
+    "detailed_pages": [
+      7,
+      24
+    ],
+    "observation": "Bell状態のコード全体と字下げ，5.2節の文と表11を表示確認。"
+  },
+  "scope": "説明用コードは構文の静的確認のみ。新規実験・モデル要求・生成コード実行なし。"
+}

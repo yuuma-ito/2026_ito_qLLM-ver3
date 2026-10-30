@@ -69,13 +69,13 @@
     "number": "2.4",
     "title": "量子回路コードで確認する対象",
     "level": 2,
-    "page": "7"
+    "page": "8"
   },
   {
     "number": "2.5",
     "title": "自己修正を評価する際の外部情報の役割",
     "level": 2,
-    "page": "7"
+    "page": "8"
   },
   {
     "number": "2.6",
@@ -93,426 +93,426 @@
     "number": "3",
     "title": "評価・実験方法",
     "level": 1,
-    "page": "9"
+    "page": "10"
   },
   {
     "number": "3.1",
     "title": "介入条件と評価指標",
     "level": 2,
-    "page": "9"
+    "page": "10"
   },
   {
     "number": "3.1.1",
     "title": "6条件と共有初期コード",
     "level": 3,
-    "page": "9"
+    "page": "10"
   },
   {
     "number": "3.1.2",
     "title": "独立再生成対照B4",
     "level": 3,
-    "page": "10"
+    "page": "11"
   },
   {
     "number": "3.1.3",
     "title": "L3と出力一致",
     "level": 3,
-    "page": "10"
+    "page": "11"
   },
   {
     "number": "3.1.4",
     "title": "救済・保持・独立生成の比較",
     "level": 3,
-    "page": "10"
+    "page": "11"
   },
   {
     "number": "3.1.5",
     "title": "量子状態・測定分布とコードの正しさ",
     "level": 3,
-    "page": "10"
+    "page": "11"
   },
   {
     "number": "3.1.6",
     "title": "段階評価を用いる理由と診断の情報量",
     "level": 3,
-    "page": "11"
+    "page": "12"
   },
   {
     "number": "3.1.7",
     "title": "出力距離・測定順序・構造要件の詳細",
     "level": 3,
-    "page": "11"
+    "page": "12"
   },
   {
     "number": "3.1.8",
     "title": "対応集合による指標の定義",
     "level": 3,
-    "page": "12"
+    "page": "13"
   },
   {
     "number": "3.2",
     "title": "実装と記録の検証",
     "level": 2,
-    "page": "12"
+    "page": "13"
   },
   {
     "number": "3.2.1",
     "title": "ハーネスの構成",
     "level": 3,
-    "page": "12"
+    "page": "13"
   },
   {
     "number": "3.2.2",
     "title": "失敗分類とモデル接続障害",
     "level": 3,
-    "page": "12"
+    "page": "13"
   },
   {
     "number": "3.2.3",
     "title": "到達履歴の再構成",
     "level": 3,
-    "page": "13"
+    "page": "14"
   },
   {
     "number": "3.2.4",
     "title": "集計の整合性と静的履歴分析",
     "level": 3,
-    "page": "13"
+    "page": "14"
   },
   {
     "number": "3.2.5",
     "title": "生成・評価・停止を結ぶ処理の流れ",
     "level": 3,
-    "page": "13"
+    "page": "14"
   },
   {
     "number": "3.2.6",
     "title": "履歴再構成における分岐と到達性",
     "level": 3,
-    "page": "13"
+    "page": "14"
   },
   {
     "number": "3.2.7",
     "title": "記録の検証と失敗の切り分け",
     "level": 3,
-    "page": "14"
+    "page": "15"
   },
   {
     "number": "3.2.8",
     "title": "静的履歴分析の観察単位",
     "level": 3,
-    "page": "14"
+    "page": "15"
   },
   {
     "number": "3.3",
     "title": "実験設定と出典",
     "level": 2,
-    "page": "15"
+    "page": "16"
   },
   {
     "number": "3.3.1",
     "title": "対象モデルと課題",
     "level": 3,
-    "page": "15"
+    "page": "16"
   },
   {
     "number": "3.3.2",
     "title": "生成条件と元実験の区別",
     "level": 3,
-    "page": "15"
+    "page": "16"
   },
   {
     "number": "3.3.3",
     "title": "追加コストと修正回数の集計方針",
     "level": 3,
-    "page": "15"
+    "page": "16"
   },
   {
     "number": "3.3.4",
     "title": "課題集合の役割と被覆範囲",
     "level": 3,
-    "page": "15"
+    "page": "16"
   },
   {
     "number": "3.3.5",
     "title": "生成設定を揃える意味と限界",
     "level": 3,
-    "page": "16"
+    "page": "17"
   },
   {
     "number": "3.3.6",
     "title": "分析対象と固定出典の範囲",
     "level": 3,
-    "page": "16"
+    "page": "17"
   },
   {
     "number": "4",
     "title": "結果",
     "level": 1,
-    "page": "17"
+    "page": "18"
   },
   {
     "number": "4.1",
     "title": "全体の結果と比較の前提",
     "level": 2,
-    "page": "17"
+    "page": "18"
   },
   {
     "number": "4.2",
     "title": "モデル別の結果",
     "level": 2,
-    "page": "18"
+    "page": "19"
   },
   {
     "number": "4.3",
     "title": "初期失敗類型別の結果",
     "level": 2,
-    "page": "19"
+    "page": "20"
   },
   {
     "number": "4.4",
     "title": "タスク・難度別の結果",
     "level": 2,
-    "page": "19"
+    "page": "20"
   },
   {
     "number": "4.5",
     "title": "成功対象の重なりと履歴分析",
     "level": 2,
-    "page": "20"
+    "page": "21"
   },
   {
     "number": "4.6",
     "title": "追加計算コストと停止回数",
     "level": 2,
-    "page": "21"
+    "page": "22"
   },
   {
     "number": "4.7",
     "title": "Pの独立生成としての比較",
     "level": 2,
-    "page": "22"
+    "page": "23"
   },
   {
     "number": "5",
     "title": "考察",
     "level": 1,
-    "page": "23"
+    "page": "24"
   },
   {
     "number": "5.1",
     "title": "修正と独立再生成の比較から得られる知見",
     "level": 2,
-    "page": "23"
+    "page": "24"
   },
   {
     "number": "5.2",
     "title": "介入カタログの構成と適用範囲",
     "level": 2,
-    "page": "23"
+    "page": "24"
   },
   {
     "number": "5.3",
     "title": "資源制約と停止方策への含意",
     "level": 2,
-    "page": "24"
+    "page": "25"
   },
   {
     "number": "5.4",
     "title": "妥当性と限界",
     "level": 2,
-    "page": "24"
+    "page": "25"
   },
   {
     "number": "5.5",
     "title": "今後の検証計画",
     "level": 2,
-    "page": "24"
+    "page": "26"
   },
   {
     "number": "6",
     "title": "おわりに",
     "level": 1,
-    "page": "26"
+    "page": "27"
   },
   {
     "number": "6.1",
     "title": "研究成果",
     "level": 2,
-    "page": "26"
+    "page": "27"
   },
   {
     "number": "6.2",
     "title": "今後の課題",
     "level": 2,
-    "page": "26"
+    "page": "27"
   },
   {
     "number": "7",
     "title": "参考文献",
     "level": 1,
-    "page": "27"
+    "page": "28"
   },
   {
     "number": "8",
     "title": "付録",
     "level": 1,
-    "page": "28"
+    "page": "29"
   },
   {
     "number": "8.1",
     "title": "出典と再現性",
     "level": 2,
-    "page": "28"
+    "page": "29"
   },
   {
     "number": "8.1.1",
     "title": "5モデル追加実験の保存設定",
     "level": 3,
-    "page": "28"
+    "page": "29"
   },
   {
     "number": "8.1.2",
     "title": "3モデル本実験の保存設定",
     "level": 3,
-    "page": "28"
+    "page": "29"
   },
   {
     "number": "8.1.3",
     "title": "2モデル補完実験の保存設定",
     "level": 3,
-    "page": "28"
+    "page": "29"
   },
   {
     "number": "8.1.4",
     "title": "固定集計と公開範囲",
     "level": 3,
-    "page": "28"
+    "page": "29"
   },
   {
     "number": "8.2",
     "title": "指標の読み方",
     "level": 2,
-    "page": "29"
+    "page": "30"
   },
   {
     "number": "8.2.1",
     "title": "集計単位",
     "level": 3,
-    "page": "29"
+    "page": "30"
   },
   {
     "number": "8.2.2",
     "title": "退行0の意味",
     "level": 3,
-    "page": "29"
+    "page": "30"
   },
   {
     "number": "8.2.3",
     "title": "静的変更の意味",
     "level": 3,
-    "page": "29"
+    "page": "30"
   },
   {
     "number": "8.2.4",
     "title": "コストの意味",
     "level": 3,
-    "page": "29"
+    "page": "30"
   },
   {
     "number": "8.3",
     "title": "実験プロンプト",
     "level": 2,
-    "page": "30"
+    "page": "31"
   },
   {
     "number": "8.3.1",
     "title": "共通systemメッセージ",
     "level": 3,
-    "page": "30"
+    "page": "31"
   },
   {
     "number": "8.3.2",
     "title": "課題仕様 T1_Bell",
     "level": 3,
-    "page": "30"
+    "page": "31"
   },
   {
     "number": "8.3.3",
     "title": "課題仕様 T2_GHZ",
     "level": 3,
-    "page": "30"
+    "page": "31"
   },
   {
     "number": "8.3.4",
     "title": "課題仕様 T3a_DJ_constant",
     "level": 3,
-    "page": "30"
+    "page": "31"
   },
   {
     "number": "8.3.5",
     "title": "課題仕様 T3b_DJ_balanced",
     "level": 3,
-    "page": "31"
+    "page": "32"
   },
   {
     "number": "8.3.6",
     "title": "課題仕様 T4_BV_011",
     "level": 3,
-    "page": "31"
+    "page": "32"
   },
   {
     "number": "8.3.7",
     "title": "課題仕様 T5_Grover_11",
     "level": 3,
-    "page": "31"
+    "page": "32"
   },
   {
     "number": "8.3.8",
     "title": "課題仕様 T6_QFT_001",
     "level": 3,
-    "page": "32"
+    "page": "33"
   },
   {
     "number": "8.3.9",
     "title": "課題仕様 T7_IQFT_001",
     "level": 3,
-    "page": "32"
+    "page": "33"
   },
   {
     "number": "8.3.10",
     "title": "課題仕様 T8_QPE_001",
     "level": 3,
-    "page": "32"
+    "page": "33"
   },
   {
     "number": "8.3.11",
     "title": "課題仕様 T9_Ansatz_001",
     "level": 3,
-    "page": "33"
+    "page": "34"
   },
   {
     "number": "8.3.12",
     "title": "修正テンプレート R：自己見直し",
     "level": 3,
-    "page": "33"
+    "page": "34"
   },
   {
     "number": "8.3.13",
     "title": "修正テンプレート F：実行結果提示",
     "level": 3,
-    "page": "33"
+    "page": "34"
   },
   {
     "number": "8.3.14",
     "title": "修正テンプレート D：自己デバッグ",
     "level": 3,
-    "page": "34"
+    "page": "35"
   },
   {
     "number": "8.3.15",
     "title": "Pの予防的注意事項",
     "level": 3,
-    "page": "34"
+    "page": "35"
   }
 ]

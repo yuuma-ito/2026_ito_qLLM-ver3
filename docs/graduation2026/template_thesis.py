@@ -377,6 +377,11 @@ def build_thesis():
                 p.paragraph_format.keep_together = True
             if text.startswith('修正前（') or text.startswith('修正後（'):
                 p.paragraph_format.keep_together = True
+            if text.startswith('具体例として，初期状態を00とする'):
+                p.paragraph_format.keep_with_next = True
+            if text.startswith('コード例（Bell状態の回路構築）'):
+                p.paragraph_format.keep_together = True
+                p.paragraph_format.keep_with_next = True
         elif started and child.tag == qn('w:tbl'):
             copy = deepcopy(child)
             body.insert(len(body)-1, copy)

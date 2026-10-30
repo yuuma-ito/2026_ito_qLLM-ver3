@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-29T02:36:28.991875+00:00",
+  "checked_at_utc": "2026-10-30T07:12:46.908349+00:00",
   "passed": true,
   "checks": {
     "six_counts_match_reference_and_fixed_csv": true,
@@ -79,7 +79,7 @@
       "表8 F/Dの救済対象（初期失敗545組）",
       "表9 共有初期を除く追加計算コスト（未成功への消費を含む）",
       "表10 3回目の追加救済と消費",
-      "表11 介入カタログの抜粋（主要3類型の観測率）"
+      "表11 介入カタログ（収録3類型の観測率）"
     ],
     "Figure": [
       "図1 共有初期コードを起点とする比較手順",
@@ -88,9 +88,9 @@
       "図4 FとDの救済対象の重なり（初期失敗545組を排他的な4集合に分割）"
     ]
   },
-  "pages": 34,
-  "pdf_sha256": "c581e811e20a402171e525bcf9ddf0e7263a6ba4074a8c88cae8afd0f9071ac7",
-  "docx_sha256": "308c8a7e383f75e94302c00e0206731c80277e9109a1ac8cda5669cae3f06971",
+  "pages": 35,
+  "pdf_sha256": "398343111cbd100d17641ea8fd52b18f2062b6b41beba36b8149589b8f41f1df",
+  "docx_sha256": "a5c3cf05b3fa6ee316f8b86cdd3a5b5cbea6f8535cc2905e4aceb6096cf329ba",
   "new_experiments": 0,
   "re_evaluations": 0,
   "generated_code_executions": 0,

@@ -1,0 +1,257 @@
+{
+  "checked_at_utc": "2026-10-30T07:13:25.193784+00:00",
+  "passed": true,
+  "checks": {
+    "eleven_numerical_tables_unchanged": true,
+    "four_embedded_figures_unchanged": true,
+    "only_authorized_sections_changed": true,
+    "evidence_files_unchanged": true,
+    "catalog_has_3_rows_9_columns": true,
+    "catalog_scope_and_table_link_explicit": true,
+    "frequency_top3_claim_removed": true,
+    "catalog_caption_matches_scope": true,
+    "Q4_D_maximum": true,
+    "other_four_models_B4_maximum": true,
+    "import_D_and_build_output_B4_maxima": true,
+    "policy_improvement_unverified_in_discussion_and_conclusion": true,
+    "conclusion_three_findings": true,
+    "public_commit_and_URL_in_word_and_pdf": true,
+    "29_public_source_files_match_local_bytes": true,
+    "no_new_experiments": true,
+    "public_commit_response_and_all_29_committed_blobs_match": true
+  },
+  "changed_sections": [
+    "修正と独立再生成の比較から得られる知見",
+    "介入カタログの構成と適用範囲",
+    "研究成果",
+    "参考文献"
+  ],
+  "pages": 35,
+  "section_pages_including_toc": {
+    "5.1 修正と独立再生成の比較から得られる知見": [
+      3,
+      24
+    ],
+    "5.2 介入カタログの構成と適用範囲": [
+      3,
+      24
+    ],
+    "6.1 研究成果": [
+      3,
+      27
+    ],
+    "7 参考文献": [
+      3,
+      28
+    ]
+  },
+  "layer_maxima_from_frozen_csv": {
+    "model": {
+      "ollama:gemma3:4b": {
+        "counts": {
+          "B4": 16,
+          "D": 1,
+          "F": 1,
+          "R": 5
+        },
+        "maximum_conditions": [
+          "B4"
+        ]
+      },
+      "ollama:gemma4:e4b-it-qat": {
+        "counts": {
+          "B4": 51,
+          "D": 38,
+          "F": 48,
+          "R": 30
+        },
+        "maximum_conditions": [
+          "B4"
+        ]
+      },
+      "ollama:qwen2.5-coder:7b": {
+        "counts": {
+          "B4": 47,
+          "D": 23,
+          "F": 23,
+          "R": 15
+        },
+        "maximum_conditions": [
+          "B4"
+        ]
+      },
+      "ollama:qwen3.5:4b": {
+        "counts": {
+          "B4": 66,
+          "D": 90,
+          "F": 78,
+          "R": 31
+        },
+        "maximum_conditions": [
+          "D"
+        ]
+      },
+      "ollama:qwen3.5:9b": {
+        "counts": {
+          "B4": 37,
+          "D": 28,
+          "F": 33,
+          "R": 15
+        },
+        "maximum_conditions": [
+          "B4"
+        ]
+      }
+    },
+    "initial_failure": {
+      "build_error": {
+        "counts": {
+          "B4": 77,
+          "D": 68,
+          "F": 76,
+          "R": 32
+        },
+        "maximum_conditions": [
+          "B4"
+        ]
+      },
+      "import_error": {
+        "counts": {
+          "B4": 67,
+          "D": 72,
+          "F": 58,
+          "R": 24
+        },
+        "maximum_conditions": [
+          "D"
+        ]
+      },
+      "interface_mismatch": {
+        "counts": {
+          "B4": 2,
+          "D": 1,
+          "F": 0,
+          "R": 1
+        },
+        "maximum_conditions": [
+          "B4"
+        ]
+      },
+      "ok": {
+        "counts": {
+          "B4": 0,
+          "D": 0,
+          "F": 0,
+          "R": 0
+        },
+        "maximum_conditions": [
+          "B4",
+          "D",
+          "F",
+          "R"
+        ]
+      },
+      "qubit_count_mismatch": {
+        "counts": {
+          "B4": 0,
+          "D": 0,
+          "F": 0,
+          "R": 2
+        },
+        "maximum_conditions": [
+          "R"
+        ]
+      },
+      "syntax": {
+        "counts": {
+          "B4": 24,
+          "D": 21,
+          "F": 25,
+          "R": 21
+        },
+        "maximum_conditions": [
+          "F"
+        ]
+      },
+      "unknown_error": {
+        "counts": {
+          "B4": 1,
+          "D": 0,
+          "F": 0,
+          "R": 0
+        },
+        "maximum_conditions": [
+          "B4"
+        ]
+      },
+      "wrong_output": {
+        "counts": {
+          "B4": 46,
+          "D": 18,
+          "F": 24,
+          "R": 16
+        },
+        "maximum_conditions": [
+          "B4"
+        ]
+      }
+    }
+  },
+  "public_source_verification": "reference3_public_sources_20261030.json",
+  "pdf_sha256": "398343111cbd100d17641ea8fd52b18f2062b6b41beba36b8149589b8f41f1df",
+  "docx_sha256": "a5c3cf05b3fa6ee316f8b86cdd3a5b5cbea6f8535cc2905e4aceb6096cf329ba",
+  "scope": "ユーザー指定の①②⑤の反映，固定CSVとの数値照合，出典の公開存在確認。評価器・採点・固定集計の独立監査と独立査読は未実施。",
+  "new_experiments": 0,
+  "new_model_requests": 0,
+  "generated_code_executions": 0,
+  "visual_review": {
+    "pdf_sha256": "398343111cbd100d17641ea8fd52b18f2062b6b41beba36b8149589b8f41f1df",
+    "overview_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ],
+    "detail_pages": [
+      24,
+      27,
+      28
+    ]
+  },
+  "automated_validations": {
+    "revision_report_20261028.json": true,
+    "enrichment_validation_report.json": true,
+    "six_conditions_validation.json": true
+  }
+}
