@@ -1,7 +1,25 @@
 # Qiskit LLM Code Generation Harness
 
 <!-- reachable-rescues:20261016 -->
-現行の主要結果は[2026-10-16の救済経路分析](docs/analysis/reachable_rescues_20261016/README.md)です。初期失敗545組に対しR96組（17.6%）、F183組（33.6%）、D180組（33.0%）を救済しました。Fのみ43組・Dのみ40組の全履歴と現行経路の追加コスト・3回目の寄与を確認し、[中間発表PDF](docs/midterm2026/paper.pdf)・[WiNF共有下書きPDF](docs/winf2026/paper.pdf)を更新しました。[固定出典](docs/presentation_sources/20261016T_reachable_rescues/README.md)を引用してください。以下の10月13〜14日版の紹介・分析は過去の固定記録であり、現行救済率・コストと混ぜません。
+## 卒論の現行結果と再現資料
+
+卒論の主要結果は、評価器修正後の[2026-10-16固定の救済経路分析](docs/analysis/reachable_rescues_20261016/README.md)と、[2026-10-22固定のB4追加実験](docs/analysis/independent_4_completed_20261022/README.md)です。共有初期1,000組のうち初期成功455組、初期失敗545組を対象とします。
+
+| 条件 | 初期失敗545組からの追加成功 | 固定出典 |
+| --- | --- | --- |
+| R（自己修正） | 96組（17.6%） | [10月16日固定出典](docs/presentation_sources/20261016T_reachable_rescues/README.md) |
+| F（実行フィードバック） | 183組（33.6%） | 同上 |
+| D（自己デバッグ） | 180組（33.0%） | 同上 |
+| B4（独立再生成） | 217組（39.8%） | [10月22日固定CSV](docs/analysis/independent_4_completed_20261022/summary.csv) |
+
+R/F/Dは検証済み到達経路の再構成値です。B4は共有初期コードから追加最大3回の独立再生成を行う対照条件で、追加1,342要求・995,815 tokensを消費しました。追加tokensは共有初期生成を除き、未成功例への消費を含みます。最大生成回数が同じでも入力情報・tokens・seed規則・実行時期などは異なり、因果効果や一般的な優劣は確定しません。
+
+- [卒論本文・検証記録の案内](docs/graduation2026/README.md)
+- B4の[保存設定](docs/analysis/independent_4_completed_20261022/runner_experiment_config.json)・[sanity report](docs/analysis/independent_4_completed_20261022/sanity_report.json)・[出典とSHA-256](docs/analysis/independent_4_completed_20261022/source_manifest.json)
+- 卒論の[介入カタログCSV](docs/graduation2026/intervention_catalog.csv)：import失敗・回路構築失敗・出力不一致の3行×9列。分類キー・表示名・初期失敗数と、F/D/B4の追加成功数・率を収録しています。介入の自動選択方策の有効性は未検証です。
+- [固定ファイルの照合記録（2026-11-02）](docs/analysis/public_evidence_check_20261102.json)：B4の成功数・要求数・tokens、固定出典の9ファイルのhash、カタログの全行の件数・率を照合。ローカルファイル間の整合性確認であり、GitHubの現在の公開状態や採点の独立監査を示すものではありません。
+
+**下記の10月13〜14日版にあるF191・D191は旧評価の保存結果です。卒論の現行値F183・D180とは評価時点・到達履歴の扱いが異なるため、現行結果の引用には上記の固定出典を使ってください。**
 
 
 ## フォルダ構成
@@ -38,7 +56,9 @@
 
 作業ルールは [AGENTS.md](AGENTS.md)、既存実験の設定は各実験の `experiment_config.json`、資料の数値はその資料が指定する固定出典を確認してください。以下で紹介する2026-10-13の原稿・分析は旧評価の保存結果に基づきます。評価器修正後の保存コード再採点や、新しいフィードバックを使う部分追試とは区別します。
 
-最新の共有原稿は[中間発表PDF](docs/midterm2026/paper.pdf)と[WiNF下書きPDF](docs/winf2026/paper.pdf)です。2026-10-13の更新で、検証済み3モデル1,500件、5モデル2,500件、2モデル補完1,000件と記述的統合集計5,000件を反映し、L0〜L3の累積達成、最終到達段階、介入前後の移動、初期成功と救出、構造検証の範囲を整理しました。[固定出典・詳細表](docs/presentation_sources/20261013T_pooled_verified/README.md)からCSV・スナップショット・検証状態を参照できます。補完実験は再分類と全件検証が完了しました。統合値は診断文の処理差を含む記述的結果として扱います。
+### 旧評価の分析記録（2026-10-13固定・現行結果の引用には使わない）
+
+以下は2026-10-13時点の資料更新と分析の記録です。現行原稿の出典は各資料のREADMEを確認してください。当時の更新で、検証済み3モデル1,500件、5モデル2,500件、2モデル補完1,000件と記述的統合集計5,000件を反映し、L0〜L3の累積達成、最終到達段階、介入前後の移動、初期成功と救出、構造検証の範囲を整理しました。[固定出典・詳細表](docs/presentation_sources/20261013T_pooled_verified/README.md)からCSV・スナップショット・検証状態を参照できます。補完実験は再分類と全件検証が完了しました。統合値は診断文の処理差を含む記述的結果として扱います。
 
 [モデル・難度・seed別の介入効果分析](docs/analysis/model_difficulty_seed_20261013/README.md)では、検証済み5,000件の救出・部分改善・段階低下を、統合と元実験別に比較できます。FとDの救出数は全体でともに191件ですが、共通149件、Fのみ42件、Dのみ42件であり、同じ救出数でも対象例は異なります。
 
@@ -49,6 +69,8 @@
 [修正上限1・2・3回の比較](docs/analysis/repair_limits_20261013/findings.md)では、保存済み履歴を区切った救出数と追加コストを整理しています。Fは119→166→191件、Dは114→167→191件を救出し、3回目の追加救出と費用の交換関係をモデル・難度・出典別に確認できます。
 
 3回目の救出例と停止候補の比較は [分析結果](docs/analysis/third_round_20261013/findings.md) と [全表・修正履歴](docs/analysis/third_round_20261013/README.md) に保存しています。
+
+### 運用と再評価の記録
 
 実験完了後の自動下書きは、`scripts.draft_after_experiment` がCodexを1回起動し、中間発表・学会原稿・進捗報告の更新版を `docs/completion_drafts/<保存先のhash>/` に作成します。`configs/slack_progress.cron` の専用行で5分ごとに確認し、元プロセスの終了・共有ロック解放・全件記録を待ちます。API障害や検証不備が残る場合は暫定資料として明記します。既存原稿は参考コピーとして保持し、固定スナップショットを出典にPDFを作成します。作成完了後は既存のSlackbot DMへのメール経路で進捗報告本文とローカル保存先を通知します。PDFの添付・学会投稿・Git操作はこの処理には含めません。
 
@@ -118,7 +140,7 @@
 
 ### 発表資料・固定した出典
 
-現行共有版は `docs/midterm2026/` と `docs/winf2026/` に保存しています。固定出典は [docs/presentation_sources/20261013T_pooled_verified/](docs/presentation_sources/20261013T_pooled_verified/README.md) です。[完了後の初版下書き](docs/completion_drafts/9b253632951b3656d9a72a97/)は当時の出典とともに保持しています。
+卒論は [docs/graduation2026/](docs/graduation2026/README.md)、中間発表資料は [docs/midterm2026/](docs/midterm2026/README.md)、WiNF下書きは [docs/winf2026/](docs/winf2026/README.md) を参照してください。各資料の採用版・固定出典はそれぞれのREADMEに記載しています。以下の10月13日スナップショットは旧評価の保存資料です。[完了後の初版下書き](docs/completion_drafts/9b253632951b3656d9a72a97/)は当時の出典とともに保持しています。
 
 | ファイル・フォルダ | 内容 |
 | --- | --- |
@@ -129,12 +151,12 @@
 | 各フォルダの `progress_report_draft.txt` | 完了した作業、結果、残る課題を説明する進捗報告です。 |
 | 各フォルダの `README.md` | 資料の対象実験、出典、検証状況、PDFの作成方法などを説明します。 |
 | `winf2026/abstract.txt` | 学会原稿の内容を短くまとめた抄録です。 |
-| 固定出典の [results_snapshot.json](docs/presentation_sources/20261013T_pooled_verified/results_snapshot.json) | 資料作成時点の数値と集計・設定・検証結果を保存します。継続更新するレポートと区別します。 |
-| 固定出典の [validation_report.json](docs/presentation_sources/20261013T_pooled_verified/validation_report.json) | PDFの体裁と結果表を集計数値と照合した記録です。 |
-| 固定出典の [source_manifest.json](docs/presentation_sources/20261013T_pooled_verified/source_manifest.json) | 元ファイルと公開用コピー・派生集計のhashを保存します。 |
+| 旧10月13日出典の [results_snapshot.json](docs/presentation_sources/20261013T_pooled_verified/results_snapshot.json) | 資料作成時点の数値と集計・設定・検証結果を保存します。継続更新するレポートと区別します。 |
+| 旧10月13日出典の [validation_report.json](docs/presentation_sources/20261013T_pooled_verified/validation_report.json) | PDFの体裁と結果表を集計数値と照合した記録です。 |
+| 旧10月13日出典の [source_manifest.json](docs/presentation_sources/20261013T_pooled_verified/source_manifest.json) | 元ファイルと公開用コピー・派生集計のhashを保存します。 |
 | 旧初版下書きの `reference/` | 旧資料を参考用に保存しています。 |
 
-現行共有版は、追加実験のカタログの分母288件が全件のbaseline失敗数と一致することを確認済みです。旧初版下書きの分母137件は途中集計として保持し、現行版の確定結果には用いません。実行時の処理差と構造検証の範囲などの限界は、各資料のREADMEと固定出典に記載しています。
+10月13日版の実験別カタログは、追加実験の分母288件が全件のbaseline失敗数と一致することを確認した保存記録です。旧初版下書きの分母137件は途中集計です。これらの実験別・L2基準のカタログと、冒頭で案内した卒論のL3到達経路に基づく3類型・9列のカタログは区別してください。実行時の処理差と構造検証の範囲などの限界は、各資料のREADMEと固定出典に記載しています。
 
 ## 概要
 
