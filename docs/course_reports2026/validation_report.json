@@ -1,0 +1,117 @@
+{
+  "checked_at_utc": "2026-11-02T11:24:30.887789+00:00",
+  "passed": true,
+  "checks": {
+    "original_files_unchanged": true,
+    "copied_source_matches_original": true,
+    "exactly_two_requested_PDFs": true,
+    "design": true,
+    "progress": true
+  },
+  "reports": {
+    "design": {
+      "pdf": "卒業研究_調査設計報告.pdf",
+      "pages": 17,
+      "source_chapters": [
+        1,
+        2,
+        3
+      ],
+      "source_pdf_pages": [
+        5,
+        17
+      ],
+      "tables": 2,
+      "data_rows": 11,
+      "figures": 1,
+      "references": 9,
+      "PDF_links": 10,
+      "reused_paragraphs": 162,
+      "additional_paragraphs": 5,
+      "checks": {
+        "independent_cover_identity": true,
+        "all_selected_source_paragraphs_in_pdf": true,
+        "all_additions_in_pdf": true,
+        "all_non_TOC_paragraphs_in_pdf": true,
+        "all_source_tables_unchanged": true,
+        "all_source_figures_unchanged": true,
+        "all_table_rows_in_pdf": true,
+        "sequential_table_and_figure_numbers": true,
+        "all_table_and_figure_references_defined": true,
+        "all_numeric_section_references_defined": true,
+        "no_dangling_appendix_references": true,
+        "citations_match_reference_list": true,
+        "PDF_links_match_used_Word_links": true,
+        "no_broken_field_errors": true,
+        "no_stale_REF_or_SEQ_fields": true,
+        "toc_matches_PDF_pages": true,
+        "page_numbers_sequential": true,
+        "no_blank_pages": true,
+        "no_text_outside_page": true,
+        "all_PDF_fonts_embedded": true,
+        "all_RQs_and_evaluation_axes_present": true,
+        "completed_experiments_not_presented_as_unperformed": true
+      },
+      "missing_paragraphs": [],
+      "missing_additions": [],
+      "overflow": [],
+      "pdf_sha256": "3d36bbf82cd954e1b05f2822edaaf77f3c95b9e4ea72a7e785d719247256fc81",
+      "docx_sha256": "1c49d83f970f7d882a45c83944d4f95ee09ddbdeb3fa3004f19ccbbabbf4c4ec"
+    },
+    "progress": {
+      "pdf": "卒業研究_進捗成果報告.pdf",
+      "pages": 14,
+      "source_chapters": [
+        4,
+        5,
+        6
+      ],
+      "source_pdf_pages": [
+        18,
+        27
+      ],
+      "tables": 9,
+      "data_rows": 43,
+      "figures": 3,
+      "references": 3,
+      "PDF_links": 4,
+      "reused_paragraphs": 96,
+      "additional_paragraphs": 7,
+      "checks": {
+        "independent_cover_identity": true,
+        "all_selected_source_paragraphs_in_pdf": true,
+        "all_additions_in_pdf": true,
+        "all_non_TOC_paragraphs_in_pdf": true,
+        "all_source_tables_unchanged": true,
+        "all_source_figures_unchanged": true,
+        "all_table_rows_in_pdf": true,
+        "sequential_table_and_figure_numbers": true,
+        "all_table_and_figure_references_defined": true,
+        "all_numeric_section_references_defined": true,
+        "no_dangling_appendix_references": true,
+        "citations_match_reference_list": true,
+        "PDF_links_match_used_Word_links": true,
+        "no_broken_field_errors": true,
+        "no_stale_REF_or_SEQ_fields": true,
+        "toc_matches_PDF_pages": true,
+        "page_numbers_sequential": true,
+        "no_blank_pages": true,
+        "no_text_outside_page": true,
+        "all_PDF_fonts_embedded": true,
+        "overview_is_one_page": true,
+        "key_results_and_limits_preserved": true,
+        "implementation_and_submission_plan_present": true
+      },
+      "missing_paragraphs": [],
+      "missing_additions": [],
+      "overflow": [],
+      "pdf_sha256": "e56717332ccf6d369fcddfcf8888c9dfab106066ba9dd1e84dc37ce060747720",
+      "docx_sha256": "2a071c7003dc0db8c1b751736de3e07334c8cca2f35398190694646bea702622"
+    }
+  },
+  "new_experiments": 0,
+  "new_model_requests": 0,
+  "rescoring": false,
+  "original_artifacts_modified": false,
+  "scope": "章単位の再利用，参照・図表・主要数値・PDF収録・体裁の検証。原論文の再照合と原稿全体の独立査読は行わない。"
+}

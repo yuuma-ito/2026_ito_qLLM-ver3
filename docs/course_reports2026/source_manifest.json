@@ -1,0 +1,28 @@
+{
+  "source_files": {
+    "docs/graduation2026/thesis.docx": "0057a6c215430fa8e953ee7eca17ae9681687f0987943250677e2051044dd039",
+    "docs/graduation2026/thesis.pdf": "6907ef00e7314d59f15722323a999b7f60dd1c01c66ea977c4a84c0664897955",
+    "docs/graduation2026/slides.pptx": "0584c6514dc3337f7ead00ae18c31284959065c33121e2e2fa75c1a245245748",
+    "docs/graduation2026/slides.pdf": "4ea901659cad442b3a58cdfaab31a471422d8861a7c8b2e86519bd0df365a151",
+    "docs/graduation2026/build.py": "5c636f6c34a69714f29c75bd3e7fd5308d314f331d6279ac6bc8a5ea61cdd11b",
+    "docs/graduation2026/template_thesis.py": "43d9da3cbaf633371e2f37c95ab7bdcf9e22f110f286fcca6c0762d5468a21f4"
+  },
+  "source_commit": "8f2da55a1df461a955ea07cbc68f644e8710688f",
+  "source_pdf_pages": 35,
+  "new_experiments": 0,
+  "rescoring": false,
+  "git_operations_authorized": true,
+  "created_at_utc": "2026-11-02T11:25:36.868040+00:00",
+  "reports": {
+    "design": {
+      "pdf_sha256": "3d36bbf82cd954e1b05f2822edaaf77f3c95b9e4ea72a7e785d719247256fc81",
+      "pages": 17
+    },
+    "progress": {
+      "pdf_sha256": "e56717332ccf6d369fcddfcf8888c9dfab106066ba9dd1e84dc37ce060747720",
+      "pages": 14
+    }
+  },
+  "builder_sha256": "8be8ae332617b8952175d2eba9605bd437ed49fb66fe9bbadea8a27c80ca553f",
+  "git_authorization": "作成完了後のユーザーのpush指示に基づく．対象はdocs/course_reports2026のみ．"
+}
