@@ -1,0 +1,56 @@
+{
+  "checked_at_utc": "2026-11-02T09:20:28.877923+00:00",
+  "commit": "b4c0ba79b308e7b12ab88413714746a5620424b5",
+  "api_url": "https://api.github.com/repos/yuuma-ito/2026_ito_qLLM-ver3/git/trees/b4c0ba79b308e7b12ab88413714746a5620424b5?recursive=1",
+  "files": {
+    "docs/presentation_sources/20261016T_reachable_rescues/results_snapshot.json": {
+      "public_blob_sha": "5a0a610126b58a97cddc89c9c31f605d0bbaee93",
+      "matches_local": true
+    },
+    "docs/presentation_sources/20261016T_reachable_rescues/source_manifest.json": {
+      "public_blob_sha": "0a2edbf57af6306a1a1bd3a7a3f5dda75e5cb3a2",
+      "matches_local": true
+    },
+    "docs/presentation_sources/20261016T_reachable_rescues/cost_by_cap_and_stratum.csv": {
+      "public_blob_sha": "6ad9cb36fac38208212e51b90a9a73c3d5adbf28",
+      "matches_local": true
+    },
+    "docs/analysis/independent_4_completed_20261022/runner_experiment_config.json": {
+      "public_blob_sha": "35b1849bba7e45a43e5f00270df7ecc83b71499e",
+      "matches_local": true
+    },
+    "docs/analysis/independent_4_completed_20261022/runner_manifest.json": {
+      "public_blob_sha": "e1031b6e06c208117d4e2eee9198413187a6af1a",
+      "matches_local": true
+    },
+    "docs/analysis/independent_4_completed_20261022/sanity_report.json": {
+      "public_blob_sha": "87ad8d587d117f2735aef397d2832f92b9b10f20",
+      "matches_local": true
+    },
+    "docs/analysis/independent_4_completed_20261022/summary.csv": {
+      "public_blob_sha": "9269080ac4cc0f947a684193dbff94e51a0b1b6e",
+      "matches_local": true
+    },
+    "docs/analysis/independent_4_completed_20261022/source_manifest.json": {
+      "public_blob_sha": "43c70ca79300611257ffead2d1ffaedc0e386e29",
+      "matches_local": true
+    },
+    "docs/analysis/reachable_rescues_20261016/core/repair_summary.csv": {
+      "public_blob_sha": "a0a479bf877ed6d781d2566d5bf9bae5f996763e",
+      "matches_local": true
+    },
+    "docs/analysis/reachable_rescues_20261016/cost_by_cap_and_stratum.csv": {
+      "public_blob_sha": "6ad9cb36fac38208212e51b90a9a73c3d5adbf28",
+      "matches_local": true
+    },
+    "docs/analysis/reachable_rescues_20261016/third_round_summary.csv": {
+      "public_blob_sha": "0df372791461c758ee221413dede879b892b38ab",
+      "matches_local": true
+    },
+    "docs/graduation2026/intervention_catalog.csv": {
+      "public_blob_sha": "4d93dbd809cc26dd7e30eca65320fc5d48e262f4",
+      "matches_local": true
+    }
+  },
+  "passed": true
+}

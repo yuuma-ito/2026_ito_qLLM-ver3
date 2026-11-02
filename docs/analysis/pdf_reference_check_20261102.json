@@ -1,0 +1,220 @@
+{
+  "checked_at_utc": "2026-11-02T09:21:59.374075+00:00",
+  "target": "docs/graduation2026/thesis.pdf",
+  "pdf_sha256": "99dec50f1bfc06081f18ee4eac23d5bf16e0fb74bcf100600387172aed453c2a",
+  "pages": 35,
+  "scope": "PDFの参考文献9件の実在・書誌、本文の引用箇所、PDFからの出典到達性。11表の全データ行とWordとの文字列一致も補助確認。原稿全体の独立査読・剽窃検査・評価器監査ではない。",
+  "bibliography_page": 28,
+  "citations_in_body": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "references": [
+    {
+      "number": 1,
+      "printed_entry": "A. Madaan et al.：Self-Refine: Iterative Refinement with Self-\nFeedback，arXiv:2303.17651v2（2023）．https://arxiv.org/abs/2303.17651v2",
+      "primary_source_url": "https://arxiv.org/abs/2303.17651v2",
+      "bibliographic_match": true,
+      "verified_metadata": [
+        "Self-Refine: Iterative Refinement with Self-Feedback",
+        "Aman Madaan et al.",
+        "2023",
+        "2303.17651v2"
+      ],
+      "citation_scope": "同一LLMによる初期生成・フィードバック・修正の反復。原論文2節を確認。本稿は完全再現とは主張していない。"
+    },
+    {
+      "number": 2,
+      "printed_entry": "X. Chen，M. Lin，N. Schärli，D. Zhou：Teaching Large Language Models to Self-\nDebug，arXiv:2304.05128v2（2023）．https://arxiv.org/abs/2304.05128v2",
+      "primary_source_url": "https://arxiv.org/abs/2304.05128v2",
+      "bibliographic_match": true,
+      "verified_metadata": [
+        "Teaching Large Language Models to Self-Debug",
+        "Xinyun Chen, Maxwell Lin, Nathanael Schärli, Denny Zhou",
+        "2023",
+        "2304.05128v2"
+      ],
+      "citation_scope": "コード説明と実行結果を用いる自己デバッグ。原論文3節、4節、5.2.2節を確認。本稿のコメント出力方式そのものの有効性を原論文の実証としない。"
+    },
+    {
+      "number": 3,
+      "printed_entry": "伊藤悠真：現行救済経路の固定発表出典（2026-10-16 版）．\n固定出典：docs/presentation_sources/20261016T_reachable_rescues/\n参照ファイル：results_snapshot.json，source_manifest.json および対応CSV．\nB4 追加実験（2026-10-22 固定）．\n固定出典：docs/analysis/independent_4_completed_20261022/\n参照資料：保存設定・manifest・sanity・集計CSV．\n公開リポジトリ：https://github.com/yuuma-ito/2026_ito_qLLM-ver3\n両出典を収録する固定commit：b4c0ba79b308e7b12ab88413714746a5620424b5\n固定版URL：https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/b4c0ba79b308e7b12ab884137\n14746a5620424b5\n上記固定版内の各パスを参照（2026 年10 月30 日確認）．",
+      "primary_source_url": "https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/b4c0ba79b308e7b12ab88413714746a5620424b5",
+      "bibliographic_match": true,
+      "verified_metadata": null,
+      "citation_scope": "当該固定commitの公開treeで12資料のblobを照合。別記録pdf_reference_public_20261102.jsonを参照。"
+    },
+    {
+      "number": 4,
+      "printed_entry": "M. Chen et al.：Evaluating Large Language Models Trained on \nCode，arXiv:2107.03374v2（2021）．https://arxiv.org/abs/2107.03374v2",
+      "primary_source_url": "https://arxiv.org/abs/2107.03374v2",
+      "bibliographic_match": true,
+      "verified_metadata": [
+        "Evaluating Large Language Models Trained on Code",
+        "Mark Chen et al.",
+        "2021",
+        "2107.03374v2"
+      ],
+      "citation_scope": "HumanEvalによる生成プログラムの機能的正しさの評価。原論文の要旨と本文を確認。"
+    },
+    {
+      "number": 5,
+      "printed_entry": "J. Austin et al.：Program Synthesis with Large Language \nModels，arXiv:2108.07732（2021）．https://arxiv.org/abs/2108.07732",
+      "primary_source_url": "https://arxiv.org/abs/2108.07732",
+      "bibliographic_match": true,
+      "verified_metadata": [
+        "Program Synthesis with Large Language Models",
+        "Jacob Austin et al.",
+        "2021",
+        "2108.07732v1"
+      ],
+      "citation_scope": "自然言語から短いPythonコードを生成するMBPP。原論文の要旨と本文を確認。"
+    },
+    {
+      "number": 6,
+      "printed_entry": "J. Huang et al.：Large Language Models Cannot Self-Correct Reasoning \nYet，arXiv:2310.01798（初版2023，v2 は2024）．https://arxiv.org/abs/2310.01798",
+      "primary_source_url": "https://arxiv.org/abs/2310.01798",
+      "bibliographic_match": true,
+      "verified_metadata": [
+        "Large Language Models Cannot Self-Correct Reasoning Yet",
+        "Jie Huang et al.",
+        "v1 2023 / v2 2024",
+        "2310.01798v2"
+      ],
+      "citation_scope": "外部フィードバックなしの推論自己修正の困難さ。v2の要旨・結論を確認。本稿は量子コード・選定モデルへの直接一般化を避けている。"
+    },
+    {
+      "number": 7,
+      "printed_entry": "S. Vishwakarma et al.：Qiskit HumanEval: An Evaluation Benchmark For Quantum Code \nGenerative Models，arXiv:2406.14712（2024）．https://arxiv.org/abs/2406.14712",
+      "primary_source_url": "https://arxiv.org/abs/2406.14712",
+      "bibliographic_match": true,
+      "verified_metadata": [
+        "Qiskit HumanEval: An Evaluation Benchmark For Quantum Code Generative Models",
+        "Sanjay Vishwakarma et al.",
+        "2024",
+        "2406.14712v1"
+      ],
+      "citation_scope": "Qiskitコード生成用の課題・解・テスト・難度。原論文の要旨と3節を確認。本稿10タスクの出典とは主張していない。"
+    },
+    {
+      "number": 8,
+      "printed_entry": "IBM Quantum：Construct circuits，IBM Quantum Documentation（2026 年10 月29 日参\n照）．https://quantum.cloud.ibm.com/docs/en/guides/construct-circuits",
+      "primary_source_url": "https://quantum.cloud.ibm.com/docs/en/guides/construct-circuits",
+      "bibliographic_match": true,
+      "verified_metadata": null,
+      "citation_scope": "QuantumCircuitによる回路構築。h/cxの詳細は公式QuantumCircuit API資料でも確認。"
+    },
+    {
+      "number": 9,
+      "printed_entry": "Qiskit Development Team：Qiskit Aer documentation（2026 年10 月29 日参\n照）．https://qiskit.github.io/qiskit-aer/",
+      "primary_source_url": "https://qiskit.github.io/qiskit-aer/",
+      "bibliographic_match": true,
+      "verified_metadata": null,
+      "citation_scope": "量子回路シミュレータ。状態ベクトル等の方式は公式AerSimulator資料でも確認。"
+    }
+  ],
+  "public_data_verification": "pdf_reference_public_20261102.json",
+  "additional_primary_sources": [
+    "https://quantum.cloud.ibm.com/docs/en/api/qiskit/2.1/qiskit.circuit.QuantumCircuit",
+    "https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.AerSimulator.html"
+  ],
+  "findings": [
+    {
+      "severity": "correction",
+      "page": 29,
+      "issue": "全分母にcore/repair_summary.csvを示した直後の「同ディレクトリのcost_by_cap_and_stratum.csvとthird_round_summary.csv」はcore/を指すとファイルが存在しない。",
+      "suggestion": "docs/analysis/reachable_rescues_20261016/cost_by_cap_and_stratum.csvとdocs/analysis/reachable_rescues_20261016/third_round_summary.csvを明記する。"
+    },
+    {
+      "severity": "usability",
+      "page": 28,
+      "issue": "参考文献ページのPDFリンク注釈は0件。文字としてURLは読めるが、PDF自身にクリック可能なリンクがない。ビューア独自の自動リンク機能は別。",
+      "suggestion": "文献URLにPDFのURIリンクを付ける。"
+    },
+    {
+      "severity": "usability",
+      "page": 28,
+      "issue": "文献[3]の固定版URLがcommit文字列の途中で改行されている。",
+      "suggestion": "固定commitへの短いリンクラベルを使い、40桁のcommit IDは別行に記載する。"
+    },
+    {
+      "severity": "reproducibility_improvement",
+      "page": 28,
+      "issue": "文献[6]はv2が2024年と正しく説明されているが、番号・URL自体は版未指定。現時点ではv2に到達する。",
+      "suggestion": "実際に参照したarXiv:2310.01798v2と2024年を明示する。"
+    }
+  ],
+  "pdf_word_table_crosscheck": [
+    {
+      "table": 1,
+      "data_rows": 6,
+      "unmatched_rows": []
+    },
+    {
+      "table": 2,
+      "data_rows": 5,
+      "unmatched_rows": []
+    },
+    {
+      "table": 3,
+      "data_rows": 6,
+      "unmatched_rows": []
+    },
+    {
+      "table": 4,
+      "data_rows": 4,
+      "unmatched_rows": []
+    },
+    {
+      "table": 5,
+      "data_rows": 5,
+      "unmatched_rows": []
+    },
+    {
+      "table": 6,
+      "data_rows": 7,
+      "unmatched_rows": []
+    },
+    {
+      "table": 7,
+      "data_rows": 10,
+      "unmatched_rows": []
+    },
+    {
+      "table": 8,
+      "data_rows": 1,
+      "unmatched_rows": []
+    },
+    {
+      "table": 9,
+      "data_rows": 4,
+      "unmatched_rows": []
+    },
+    {
+      "table": 10,
+      "data_rows": 3,
+      "unmatched_rows": []
+    },
+    {
+      "table": 11,
+      "data_rows": 3,
+      "unmatched_rows": []
+    }
+  ],
+  "all_54_data_rows_match_word": true,
+  "manuscript_modified": false,
+  "new_model_requests": 0,
+  "generated_code_executions": 0,
+  "limits": [
+    "確認した引用箇所に重大な主張の逸脱は見つからないが、文献全文の全主張を独立検証したものではない。",
+    "過去の参照日自体の真偽は今回のアクセスでは証明できない。",
+    "PDF本文は未修正。上記は確認結果と修正案。"
+  ]
+}

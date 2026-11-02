@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-30T07:39:07.600603+00:00",
+  "checked_at_utc": "2026-11-02T09:26:59.002846+00:00",
   "passed": true,
   "checks": {
     "source_inputs_unchanged": true,
@@ -28,8 +28,8 @@
   "tables": 11,
   "case_groups": 2,
   "task_prompts": 10,
-  "pdf_sha256": "99dec50f1bfc06081f18ee4eac23d5bf16e0fb74bcf100600387172aed453c2a",
-  "docx_sha256": "9f04fd51ad5c425c339bde4556498353bc4b8d20b34fdd38b4de2adce06c9c23",
+  "pdf_sha256": "6907ef00e7314d59f15722323a999b7f60dd1c01c66ea977c4a84c0664897955",
+  "docx_sha256": "0057a6c215430fa8e953ee7eca17ae9681687f0987943250677e2051044dd039",
   "D_case_pages": [
     [
       22

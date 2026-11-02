@@ -45,7 +45,9 @@
     },
     {
       "number": 6,
-      "url": "https://arxiv.org/abs/2310.01798",
+      "url": "https://arxiv.org/abs/2310.01798v2",
+      "referenced_version": "v2",
+      "version_checked_on": "2026-11-02",
       "title": "Large Language Models Cannot Self-Correct Reasoning Yet",
       "first_author": "Jie Huang",
       "first_year": 2023,

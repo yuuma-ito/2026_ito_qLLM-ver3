@@ -1,0 +1,51 @@
+{
+  "checked_at_utc": "2026-11-02T10:16:38.488479+00:00",
+  "passed": true,
+  "checks": {
+    "twelve_slides_in_pptx_and_pdf": true,
+    "eight_main_slides_360_seconds": true,
+    "fixed_title_matches_thesis": true,
+    "source_files_and_latest_thesis_match_manifest": true,
+    "all_shapes_text_rendered_in_pdf": true,
+    "all_notes_match_manifest": true,
+    "speaker_notes_match_manifest": true,
+    "all_slide_numbers_visible": true,
+    "six_final_success_rates_match_fixed_csv": true,
+    "additional_success_rates_match_fixed_csv": true,
+    "all_catalog_cells_match_fixed_csv": true,
+    "all_cost_cells_match_fixed_csv": true,
+    "all_model_success_cells_match_fixed_csv": true,
+    "B4_method_and_scope_present": true,
+    "catalog_policy_unverified_explicit": true,
+    "reference_numbers_1_to_9_present": true,
+    "all_eleven_source_links_in_pdf": true,
+    "no_rendered_text_outside_page": true,
+    "fonts_embedded": true
+  },
+  "overflow": [],
+  "pdf_links": [
+    "https://arxiv.org/abs/2107.03374v2",
+    "https://arxiv.org/abs/2108.07732",
+    "https://arxiv.org/abs/2303.17651v2",
+    "https://arxiv.org/abs/2304.05128v2",
+    "https://arxiv.org/abs/2310.01798v2",
+    "https://arxiv.org/abs/2406.14712",
+    "https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/b4c0ba79b308e7b12ab88413714746a5620424b5",
+    "https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/b4c0ba79b308e7b12ab88413714746a5620424b5/docs/analysis/independent_4_completed_20261022",
+    "https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/b4c0ba79b308e7b12ab88413714746a5620424b5/docs/presentation_sources/20261016T_reachable_rescues",
+    "https://qiskit.github.io/qiskit-aer/",
+    "https://quantum.cloud.ibm.com/docs/en/guides/construct-circuits"
+  ],
+  "artifact_sha256": {
+    "thesis.pdf": "6907ef00e7314d59f15722323a999b7f60dd1c01c66ea977c4a84c0664897955",
+    "slides.pptx": "0584c6514dc3337f7ead00ae18c31284959065c33121e2e2fa75c1a245245748",
+    "slides.pdf": "4ea901659cad442b3a58cdfaab31a471422d8861a7c8b2e86519bd0df365a151",
+    "speaker_notes.txt": "7c2f533687e7366d4094e5eb5ef342e8f8c173eba0bc4b359581492af0aa1137",
+    "graduation_slides.py": "49e8695e7e07f23e94cbbd8d59a9469920bee2791e7aa49bf33a7dfb57be9277",
+    "convert_slides.py": "c520f9404fe397d091a4f765c4e89213c3a0baac4fbd788d9ea2e3f0eb081f7f",
+    "validate_slides.py": "b574d86ce950d978ab18f5dc1794443ba61d0ec23777a69893d50bdd3a6f881b"
+  },
+  "scope": "最新卒論PDFを出典にしたスライドの値・注記・PDF収録・リンク・境界・ノートの照合。独立査読と実際の発表時間の検証ではない。",
+  "new_model_requests": 0,
+  "generated_code_executions": 0
+}

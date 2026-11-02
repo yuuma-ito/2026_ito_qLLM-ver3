@@ -1,0 +1,70 @@
+{
+  "checked_at_utc": "2026-11-02T09:13:37.974478+00:00",
+  "scope": "直前に公開したREADMEの主要数値、B4固定分析、カタログ、Wordの対応表。論文全体の査読ではない。",
+  "passed": true,
+  "checks": {
+    "nine_frozen_hashes": true,
+    "B4_headline_counts": true,
+    "B4_tokens_arithmetic": true,
+    "B4_strata_reconcile": true,
+    "B4_request_and_success_rows": true,
+    "B4_first_success_partition": true,
+    "saved_sanity": true,
+    "R_original_pair_records": true,
+    "F_original_pair_records": true,
+    "D_original_pair_records": true,
+    "F_D_discordant_sets": true,
+    "catalog_shape_and_categories": true,
+    "catalog_all_counts_and_rates": true,
+    "catalog_F_D_original_pair_records": true,
+    "catalog_matches_Word_table": true,
+    "headline_matches_Word_table": true,
+    "inputs_equal_committed_bytes": true,
+    "public_main_blobs_equal_local": true
+  },
+  "inputs_sha256": {
+    "docs/analysis/independent_4_completed_20261022/source_manifest.json": "290111e0da3613e85018c47a0d1f09c30b1d8c0728727ef5d6fabbda2bca5d66",
+    "docs/analysis/independent_4_completed_20261022/pairwise.csv": "e7a75ee9ad716f6773d7a342c2ac95f9983f877bd4493df622492c02a5e6132c",
+    "docs/analysis/independent_4_completed_20261022/manifest.json": "a1a5b778a0c0731b3ef0ae3d80db655a5337add5be7866c90be9465c944b981f",
+    "docs/analysis/independent_4_completed_20261022/repetitions.csv": "a6b47127728b5e9d7114bce7a5087efff1e0a91233036e86c301c97984da642e",
+    "docs/analysis/independent_4_completed_20261022/sanity_report.json": "3cc4ab325a52fdb5befa6cdd5d6fa1595f128c70d5e76fe02e7213d6a4a11d5c",
+    "docs/analysis/independent_4_completed_20261022/runner_experiment_config.json": "a23720130eb78dbdf8ba5afc4df94a2140895a9b2df53abab0e95202913db965",
+    "docs/analysis/independent_4_completed_20261022/overlap.csv": "42aa37c7fe16f37bc4edc4a0ba972007b0cef25fff49329123de6cf6c9ea381f",
+    "docs/analysis/independent_4_completed_20261022/runner_manifest.json": "ab291d563bfd6802fd701c79a27be551209fd8f37f197563ee9f54dd01918501",
+    "docs/analysis/independent_4_completed_20261022/first_success.csv": "ec169e95e89d4fb0b6b04dad716d45b10b9ca983e935fabff5476a042a697a6c",
+    "docs/analysis/independent_4_completed_20261022/summary.csv": "4ff68c4fb0f8d6f94bfd6c1eabe8018e14b29b97435ed028305550823b391344",
+    "docs/analysis/reachable_rescues_20261016/core/paired_records.csv": "058a70884fdf065eaec2d3a715c18b44d8d108a036475f81a6291edd4d22a74c",
+    "docs/graduation2026/intervention_catalog.csv": "7f231af5fa18e70a748f6a7266f928ea3441425772cf4f48746939fe917afaf6",
+    "docs/graduation2026/thesis.docx": "9f04fd51ad5c425c339bde4556498353bc4b8d20b34fdd38b4de2adce06c9c23"
+  },
+  "public_verification": {
+    "status": "checked",
+    "commit": "a4829990b8d722392022b722b360218637e4ac28",
+    "tree_url": "https://api.github.com/repos/yuuma-ito/2026_ito_qLLM-ver3/git/trees/a4829990b8d722392022b722b360218637e4ac28",
+    "matched_blobs": {
+      "docs/analysis/independent_4_completed_20261022/source_manifest.json": true,
+      "docs/analysis/independent_4_completed_20261022/pairwise.csv": true,
+      "docs/analysis/independent_4_completed_20261022/manifest.json": true,
+      "docs/analysis/independent_4_completed_20261022/repetitions.csv": true,
+      "docs/analysis/independent_4_completed_20261022/sanity_report.json": true,
+      "docs/analysis/independent_4_completed_20261022/runner_experiment_config.json": true,
+      "docs/analysis/independent_4_completed_20261022/overlap.csv": true,
+      "docs/analysis/independent_4_completed_20261022/runner_manifest.json": true,
+      "docs/analysis/independent_4_completed_20261022/first_success.csv": true,
+      "docs/analysis/independent_4_completed_20261022/summary.csv": true,
+      "docs/analysis/reachable_rescues_20261016/core/paired_records.csv": true,
+      "docs/graduation2026/intervention_catalog.csv": true,
+      "docs/graduation2026/thesis.docx": true,
+      "README.md": true,
+      "docs/analysis/public_evidence_check_20261102.json": true
+    }
+  },
+  "limits": [
+    "保存済みsanityは照合したが、rawからの再集計・再採点は実施していない。",
+    "995,815 tokensは固定集計内の入力＋出力・層別合計との一致。API側の実消費の独立検証ではない。",
+    "hash一致は同じ内容である証拠であり、評価器・実験設計の正しさの証明ではない。",
+    "Wordの対象表を確認した。PDF表示、文献の真正性、全記述の独立査読は対象外。"
+  ],
+  "new_model_requests": 0,
+  "generated_code_executions": 0
+}

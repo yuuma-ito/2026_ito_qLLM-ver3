@@ -1,5 +1,5 @@
 {
-  "validated_at_utc": "2026-10-30T07:39:15.510839+00:00",
+  "validated_at_utc": "2026-11-02T09:27:12.972328+00:00",
   "passed": true,
   "checks": {
     "all_expected_body_paragraphs_in_pdf": true,
@@ -24,7 +24,7 @@
   "after": {
     "body_paragraphs": 200,
     "body_characters_excluding_tables": 30891,
-    "all_paragraph_characters_including_toc": 45666,
+    "all_paragraph_characters_including_toc": 45622,
     "tables": 11,
     "pdf_pages": 35
   },
@@ -56,7 +56,7 @@
     "D/initial_failure": 180,
     "B4/initial_failure": 217
   },
-  "pdf_sha256": "99dec50f1bfc06081f18ee4eac23d5bf16e0fb74bcf100600387172aed453c2a",
-  "docx_sha256": "9f04fd51ad5c425c339bde4556498353bc4b8d20b34fdd38b4de2adce06c9c23",
+  "pdf_sha256": "6907ef00e7314d59f15722323a999b7f60dd1c01c66ea977c4a84c0664897955",
+  "docx_sha256": "0057a6c215430fa8e953ee7eca17ae9681687f0987943250677e2051044dd039",
   "scope": "構成整理・重複削減・記述的計算の照合のみ。新規実験・モデル要求・生成コード実行0。"
 }

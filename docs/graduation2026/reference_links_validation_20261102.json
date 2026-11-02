@@ -1,0 +1,48 @@
+{
+  "checked_at_utc": "2026-11-02T10:16:39.369432+00:00",
+  "passed": true,
+  "checks": {
+    "all_ten_PDF_links_present": true,
+    "all_ten_Word_links_present": true,
+    "fixed_link_short_label": true,
+    "fixed_link_on_one_line": true,
+    "full_commit_visible": true,
+    "reference_six_fixed_v2_2024": true,
+    "all_nine_references_visible": true,
+    "explicit_cost_directory": true,
+    "both_cost_files_exist": true,
+    "ambiguous_cost_pointer_removed": true,
+    "all_54_table_rows_in_PDF": true,
+    "eleven_tables_unchanged": true,
+    "four_figures_unchanged": true,
+    "pages_1_to_27_unchanged": true,
+    "page_count_unchanged": true
+  },
+  "pdf_pages": 35,
+  "bibliography_page": 28,
+  "pdf_uri_targets": [
+    "https://arxiv.org/abs/2107.03374v2",
+    "https://arxiv.org/abs/2108.07732",
+    "https://arxiv.org/abs/2303.17651v2",
+    "https://arxiv.org/abs/2304.05128v2",
+    "https://arxiv.org/abs/2310.01798v2",
+    "https://arxiv.org/abs/2406.14712",
+    "https://github.com/yuuma-ito/2026_ito_qLLM-ver3",
+    "https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/b4c0ba79b308e7b12ab88413714746a5620424b5",
+    "https://qiskit.github.io/qiskit-aer/",
+    "https://quantum.cloud.ibm.com/docs/en/guides/construct-circuits"
+  ],
+  "previous_pdf_sha256": "99dec50f1bfc06081f18ee4eac23d5bf16e0fb74bcf100600387172aed453c2a",
+  "artifact_sha256": {
+    "thesis.docx": "0057a6c215430fa8e953ee7eca17ae9681687f0987943250677e2051044dd039",
+    "thesis.pdf": "6907ef00e7314d59f15722323a999b7f60dd1c01c66ea977c4a84c0664897955",
+    "build.py": "5c636f6c34a69714f29c75bd3e7fd5308d314f331d6279ac6bc8a5ea61cdd11b",
+    "template_thesis.py": "43d9da3cbaf633371e2f37c95ab7bdcf9e22f110f286fcca6c0762d5468a21f4",
+    "thesis_expansion.py": "48b6af42d7ac28534df0fdf8974fd4c2f3d9f3a3cdcde329b7f77c6eeb1f9b7f",
+    "bibliography_sources.json": "5cd95fe5e5791720cf0fc12267b70586b41af83a84ac32c53ff6dd845b4d88c8",
+    "validate_reference_links.py": "00ec5e360f5adfb1d2ff5b280ae2b8281d4ab43fdd68977ebdde1bc69d099657"
+  },
+  "scope": "PDFリンクと対象文字列、Wordとの表一致、指定した変更前資料との差分。原論文の再確認は前段のpdf_reference_check_20261102.json参照。",
+  "new_model_requests": 0,
+  "generated_code_executions": 0
+}

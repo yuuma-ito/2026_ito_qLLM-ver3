@@ -398,6 +398,7 @@ def build_thesis():
                     p.paragraph_format.keep_with_next = row_index < len(table.rows)-1
                     for run in p.runs:
                         font(run)
+    content.link_reference_urls(d, style_run=font)
     d.save(HERE / 'thesis.docx')
     (HERE / 'thesis_headings.json').write_text(json.dumps(headings, ensure_ascii=False, indent=2)+'\n')
     spec = {

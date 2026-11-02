@@ -24,7 +24,7 @@ def apply(chapters, references):
     references.extend([
         'M. Chen et al.：Evaluating Large Language Models Trained on Code，arXiv:2107.03374v2（2021）．https://arxiv.org/abs/2107.03374v2',
         'J. Austin et al.：Program Synthesis with Large Language Models，arXiv:2108.07732（2021）．https://arxiv.org/abs/2108.07732',
-        'J. Huang et al.：Large Language Models Cannot Self-Correct Reasoning Yet，arXiv:2310.01798（初版2023，v2は2024）．https://arxiv.org/abs/2310.01798',
+        'J. Huang et al.：Large Language Models Cannot Self-Correct Reasoning Yet，arXiv:2310.01798v2（2024）．https://arxiv.org/abs/2310.01798v2',
         'S. Vishwakarma et al.：Qiskit HumanEval: An Evaluation Benchmark For Quantum Code Generative Models，arXiv:2406.14712（2024）．https://arxiv.org/abs/2406.14712',
         'IBM Quantum：Construct circuits，IBM Quantum Documentation（2026年10月29日参照）．https://quantum.cloud.ibm.com/docs/en/guides/construct-circuits',
         'Qiskit Development Team：Qiskit Aer documentation（2026年10月29日参照）．https://qiskit.github.io/qiskit-aer/',

@@ -1,0 +1,80 @@
+{
+  "created_at_utc": "2026-11-02T10:14:00.209077+00:00",
+  "basis": "最新の卒論thesis.pdfと同じ固定CSV",
+  "main_slides": 8,
+  "supplemental_slides": 4,
+  "planned_seconds": 360,
+  "notes": [
+    {
+      "slide": 1,
+      "seconds": 15,
+      "text": "目安：0:00–0:15（15秒）\n話す要点\n・対象はLLMが生成するQiskitコード\n・修正R/F/Dと独立再生成B4を比較する"
+    },
+    {
+      "slide": 2,
+      "seconds": 35,
+      "text": "目安：0:15–0:50（35秒）\n話す要点\n・単に動くかと期待出力が正しいかを区別する\n・自己点検と実行診断を用いる修正を背景に，修正と再生成を比べる"
+    },
+    {
+      "slide": 3,
+      "seconds": 50,
+      "text": "目安：0:50–1:40（50秒）\n話す要点\n・1要求の生成上限は1,024 tokens\n・初期成功455組を保持し，初期失敗545組で追加成功を比較する\n・R/F/Dは検証済み保存履歴と部分追試の再構成。全件新規生成ではない\n・最大4回でも入力情報・実要求数・tokens・seed規則・実行時期は一致しない"
+    },
+    {
+      "slide": 4,
+      "seconds": 60,
+      "text": "目安：1:40–2:40（60秒）\n話す要点\n・左は全1,000組の最終L3成功率で，BとPも含む\n・右は初期失敗545組からの追加成功で，R96・F183・D180・B4217組\n・B4の39.8%と最終67.2%を混ぜない\n・観測差を因果効果や一般的優劣と断定しない"
+    },
+    {
+      "slide": 5,
+      "seconds": 40,
+      "text": "目安：2:40–3:20（40秒）\n話す要点\n・共通140にFのみ43，Dのみ40を足して各条件の成功集合を説明する\n・83組の全履歴確認と変更の因果効果の実証は区別する"
+    },
+    {
+      "slide": 6,
+      "seconds": 50,
+      "text": "目安：3:20–4:10（50秒）\n話す要点\n・importではD，構築・出力ではB4が最多\n・件数上位3類型という意味ではない\n・CSVは分類キー・表示名・分母・F/D/B4の成功数と率の9列\n・モデル別でもQ4はD，他の4モデルはB4が最多。補足Aに示す"
+    },
+    {
+      "slide": 7,
+      "seconds": 55,
+      "text": "目安：4:10–5:05（55秒）\n話す要点\n・B4は995,815 tokensを217組で割り4,589.0 tokens／追加成功\n・金銭費用ではなく，失敗要求への消費を含む\n・Fの28組とDの33組は3回目で初めて救済された。停止で失う成功も考慮する"
+    },
+    {
+      "slide": 8,
+      "seconds": 55,
+      "text": "目安：5:05–6:00（55秒）\n話す要点\n・全体の観測と層別の違いを合わせて三つの知見を述べる\n・指定入力・有限タスクでの探索的な記述で，有意差や因果効果は主張しない\n・tokens予算も揃えた比較を今後の課題とする"
+    },
+    {
+      "slide": 9,
+      "seconds": null,
+      "text": "目安：質疑用（本編6分には含めない）\n話す要点\n・Q4ではD90組，他の4モデルではB4が最多\n・失敗数やタスク構成の違いを伴い，一般的なモデルランキングではない"
+    },
+    {
+      "slide": 10,
+      "seconds": null,
+      "text": "目安：質疑用（本編6分には含めない）\n話す要点\n・初期成功の保持と成功時停止により退行0となる\n・有限shots，未固定の測定乱数，1,024 tokens上限，診断文や負荷の差が残る"
+    },
+    {
+      "slide": 11,
+      "seconds": null,
+      "text": "目安：質疑用（本編6分には含めない）\n話す要点\n・本編では設計の背景として[1][2]，実験の一次資料として[3]を引用\n・卒論の参考文献番号と版を保持。背景文献[4][5]も対応づける"
+    },
+    {
+      "slide": 12,
+      "seconds": null,
+      "text": "目安：質疑用（本編6分には含めない）\n話す要点\n・リンクから固定commit内の出典に移動できる\n・参考文献の真正性と引用の範囲は卒論PDFの確認記録に基づく"
+    }
+  ],
+  "source_sha256": {
+    "docs/graduation2026/thesis.pdf": "6907ef00e7314d59f15722323a999b7f60dd1c01c66ea977c4a84c0664897955",
+    "docs/graduation2026/intervention_catalog.csv": "7f231af5fa18e70a748f6a7266f928ea3441425772cf4f48746939fe917afaf6",
+    "docs/analysis/reachable_rescues_20261016/core/repair_summary.csv": "84e419e1c5eefea2db337e3f14027ec3dd2ad4d21a4bed980b785630c7c24497",
+    "docs/analysis/reachable_rescues_20261016/core/preventive_summary.csv": "8027cb2cc0fee81b78b4cae73535e3ec538dc8c687ab973395c7dff7689a6837",
+    "docs/analysis/reachable_rescues_20261016/core/fd_overlap_summary.csv": "48e9b1aad2e0003e4331c0c84d976d835064aaed89aa5c2f449f388d933ef67e",
+    "docs/analysis/independent_4_completed_20261022/summary.csv": "4ff68c4fb0f8d6f94bfd6c1eabe8018e14b29b97435ed028305550823b391344",
+    "docs/analysis/independent_4_completed_20261022/source_manifest.json": "290111e0da3613e85018c47a0d1f09c30b1d8c0728727ef5d6fabbda2bca5d66"
+  },
+  "new_model_requests": 0,
+  "generated_code_executions": 0
+}

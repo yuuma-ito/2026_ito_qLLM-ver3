@@ -7,6 +7,7 @@ from pathlib import Path
 import csv
 import hashlib
 import json
+import re
 from datetime import datetime, timezone
 from docx import Document
 from docx.shared import Mm, Pt, RGBColor
@@ -14,6 +15,7 @@ from docx.enum.section import WD_SECTION_START
 from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK, WD_LINE_SPACING, WD_TAB_ALIGNMENT, WD_TAB_LEADER
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
+from docx.opc.constants import RELATIONSHIP_TYPE as RT
 from pptx import Presentation
 from pptx.util import Inches, Pt as PPt
 from pptx.dml.color import RGBColor as PColor
@@ -37,6 +39,9 @@ TITLE = '量子LLM支援プログラミングにおける失敗類型と介入�
 TITLE_EN = 'An Empirical Study of Failure Types and an Intervention Catalog in Quantum LLM-Assisted Programming'
 FONT = 'IPAexMincho'
 GOTHIC = 'IPAexGothic'
+FIXED_SOURCE_COMMIT = 'b4c0ba79b308e7b12ab88413714746a5620424b5'
+FIXED_SOURCE_URL = 'https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/' + FIXED_SOURCE_COMMIT
+FIXED_SOURCE_LABEL = '公開固定版（b4c0ba7）'
 REFS = [
  'A. Madaan et al.：Self-Refine: Iterative Refinement with Self-Feedback，arXiv:2303.17651v2（2023）．https://arxiv.org/abs/2303.17651v2',
  'X. Chen，M. Lin，N. Schärli，D. Zhou：Teaching Large Language Models to Self-Debug，arXiv:2304.05128v2（2023）．https://arxiv.org/abs/2304.05128v2',
@@ -48,7 +53,7 @@ REFS = [
   '参照資料：保存設定・manifest・sanity・集計CSV．\n'
   '公開リポジトリ：https://github.com/yuuma-ito/2026_ito_qLLM-ver3\n'
   '両出典を収録する固定commit：b4c0ba79b308e7b12ab88413714746a5620424b5\n'
-  '固定版URL：https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/b4c0ba79b308e7b12ab88413714746a5620424b5\n'
+  '固定版：https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/b4c0ba79b308e7b12ab88413714746a5620424b5\n'
   '上記固定版内の各パスを参照（2026年10月30日確認）．'),
 ]
 
@@ -75,6 +80,31 @@ def setfont(run, size=10.5, bold=False, font=FONT):
     run.font.name=font; run.font.size=Pt(size); run.bold=bold; run.font.color.rgb=RGBColor(0,0,0)
     rf=run._element.get_or_add_rPr().get_or_add_rFonts()
     for key in ['ascii','hAnsi','eastAsia','cs']: rf.set(qn('w:'+key),font)
+
+
+def link_reference_urls(document, style_run=setfont):
+    """Keep bibliography URLs clickable through DOCX-to-PDF conversion."""
+    for paragraph in document.paragraphs:
+        if not re.match(r'^\[\d+\] ', paragraph.text):
+            continue
+        # Template conversion copies paragraph text; restore the fixed target
+        # before recreating its relationship in the destination document.
+        text = paragraph.text.replace(FIXED_SOURCE_LABEL, FIXED_SOURCE_URL)
+        paragraph.clear()
+        position = 0
+        for match in re.finditer(r'https?://[A-Za-z0-9:/?=._#%&+~\-]+', text):
+            style_run(paragraph.add_run(text[position:match.start()]))
+            url = match.group()
+            label = FIXED_SOURCE_LABEL if url == FIXED_SOURCE_URL else url
+            link = OxmlElement('w:hyperlink')
+            link.set(qn('r:id'), paragraph.part.relate_to(url, RT.HYPERLINK, is_external=True))
+            run = paragraph.add_run(label)
+            style_run(run)
+            run.font.underline = True
+            link.append(run._r)
+            paragraph._p.append(link)
+            position = match.end()
+        style_run(paragraph.add_run(text[position:]))
 
 def field(p, instruction, value='1'):
     r=p.add_run(); begin=OxmlElement('w:fldChar'); begin.set(qn('w:fldCharType'),'begin'); r._r.append(begin)
@@ -413,7 +443,8 @@ def legacy_thesis():
        '主出典：docs/presentation_sources/20261016T_reachable_rescues/results_snapshot.json',
        'B4追加実験：independent_4_full_20261020T185811381595Z．固定出典：docs/analysis/independent_4_completed_20261022/．runner_experiment_config.json，runner_manifest.json，summary.csv，pairwise.csv，sanity_report.json，source_manifest.jsonを参照．',
        '全分母：docs/analysis/reachable_rescues_20261016/core/repair_summary.csv',
-       '追加消費：同ディレクトリのcost_by_cap_and_stratum.csvとthird_round_summary.csv',
+       '追加計算コストの保存先：docs/analysis/reachable_rescues_20261016/',
+       '参照ファイル：cost_by_cap_and_stratum.csv，third_round_summary.csv',
        '片側救済全履歴：discordant_cases.csvとdiscordant_transitions.csv',
        '検証：core/sanity_report.json，sanity_report.json，validation_report.json',
        '介入カタログ：intervention_catalog.csv．事例の記録キー・判定・コードhash・短い抜粋：case_studies.json．固定プロンプト：experiment_prompts.json．追加資料の出典とhash：enrichment_manifest.json．',
@@ -432,6 +463,7 @@ def legacy_thesis():
     # Suppress blue hyperlink styles in the updated TOC as well.
     for style in ['Hyperlink','FollowedHyperlink']:
         if style in d.styles:d.styles[style].font.color.rgb=RGBColor(0,0,0)
+    link_reference_urls(d)
     d.save(HERE/'thesis.docx')
 
 def thesis():
@@ -440,91 +472,9 @@ def thesis():
 
 
 def slides():
-    prs=Presentation();prs.slide_width=Inches(13.333);prs.slide_height=Inches(7.5)
-    prs.core_properties.title=TITLE;prs.core_properties.author='伊藤 悠真'
-    def txt(s,x,y,w,h,text,size=26,bold=False,color='171717'):
-        shape=s.shapes.add_textbox(Inches(x),Inches(y),Inches(w),Inches(h));tf=shape.text_frame;tf.word_wrap=True
-        tf.margin_left=tf.margin_right=Inches(.02);tf.margin_top=tf.margin_bottom=Inches(.02)
-        for i,line in enumerate(text.split('\n')):
-            p=tf.paragraphs[0] if i==0 else tf.add_paragraph();p.text=line;p.space_after=PPt(10)
-            for r in p.runs:
-                r.font.name=GOTHIC;r.font.size=PPt(size);r.font.bold=bold;r.font.color.rgb=PColor.from_string(color)
-                r._r.get_or_add_rPr().set('lang','ja-JP')
-        return shape
-    def rect(s,x,y,w,h,shade='EEEEEE'):
-        a=s.shapes.add_shape(MSO_SHAPE.RECTANGLE,Inches(x),Inches(y),Inches(w),Inches(h));a.fill.solid();a.fill.fore_color.rgb=PColor.from_string(shade);a.line.fill.background();return a
-    def base(title,num,subtitle=None):
-        s=prs.slides.add_slide(prs.slide_layouts[6]);s.background.fill.solid();s.background.fill.fore_color.rgb=PColor(255,255,255)
-        txt(s,.6,.35,12.1,.7,title,30,True);rect(s,.63,1.2,12.0,.02,'333333')
-        if subtitle:txt(s,.65,1.4,12,1,subtitle,22)
-        txt(s,.65,7.08,11.6,.25,'卒業研究発表会　｜　2026-10-16版固定集計 [3]',11,color='555555')
-        txt(s,12.2,7.04,.5,.3,str(num),12,color='555555');return s
-    notes=[]
-    def note(s,time,cues):
-        text=f'目安：{time}\n話す要点（読み上げ原稿ではない）\n'+ '\n'.join('・'+x for x in cues)
-        s.notes_slide.notes_text_frame.text=text;notes.append(text)
-    s=base('初期失敗コードを，どこまで救済できるか',1)
-    txt(s,.8,1.8,11.8,1.6,'量子LLM支援プログラミングにおける\n失敗類型と介入カタログの実証研究',28,True)
-    txt(s,.85,4.05,11.5,1.2,'2023TC011　伊藤 悠真\n指導教員　横山 哲郎',24)
-    txt(s,.85,5.9,11.6,.7,'実行結果提示と自己デバッグを，同じ初期失敗から比較する',23)
-    note(s,'0:00–0:15（15秒）',['研究対象はLLM生成のQiskitコード','救済率と救済する対象の違いを調べる'])
-    s=base('動くコードでも，期待した出力とは限らない',2)
-    for x,label,desc in [(0.8,'読込み','import・APIの失敗'),(4.8,'回路構築','回路を作れない'),(8.8,'出力検証','期待分布と不一致')]:
-        rect(s,x,2.05,3.6,1.6);txt(s,x+.15,2.25,3.3,.5,label,27,True);txt(s,x+.15,2.95,3.3,.5,desc,20)
-    txt(s,.85,4.4,11.8,1.3,'修正でどれだけ救済できるか\n同じ失敗を救済するのか',30,True)
-    txt(s,.85,6.15,11.6,.5,'背景：Self-Refine [1] ／ Self-Debugging [2]（完全再現ではない）',18)
-    note(s,'0:15–0:55（40秒）',['実行可能性と出力の正しさを分ける','研究の問いは救済数・救済対象・追加消費'])
-    s=base('同じ初期コードから，3種類の修正を比較',3,'5モデル × 10タスク × seed 0〜19 ＝ 1,000初期組')
-    rect(s,.8,3,3.1,1.15);txt(s,1,3.2,2.8,.7,'初期生成 B',29,True)
-    for y,label in [(2.5,'R　自己見直し'),(3.65,'F　実行結果提示'),(4.8,'D　診断＋説明・原因分析')]:
-        txt(s,4.15,y,.6,.6,'→',30);rect(s,4.95,y,7.3,.8);txt(s,5.1,y+.12,6.95,.6,label,25,True)
-    txt(s,.85,6.05,11.8,.7,'最大3修正・成功時停止 ／ 1要求1,024 tokens ／ Pは独立生成',21)
-    note(s,'0:55–1:45（50秒）',['Rは外部診断なし，FとDは実行診断あり','Dは説明・原因分析も促す','Pを含む5条件で計5,000条件記録'])
-    s=base('救済率の分母は，初期失敗545組',4)
-    txt(s,.85,1.8,11.7,1,'1,000初期組 ＝ 初期成功455組 ＋ 初期失敗545組',28,True)
-    rect(s,.85,3.1,11.6,1.1);txt(s,1.05,3.33,11.1,.65,'救済率 ＝ 初期失敗から最終成功となった組数 ／ 545',26,True)
-    txt(s,.85,4.75,11.6,1.5,'成功：読込み・構築・指定入力の期待出力・構造要件\n全入力での正しさを保証する評価ではない',24)
-    txt(s,.85,6.35,11.6,.45,'検証済み保存prefix＋必要な部分追試suffixによる現行経路',18)
-    note(s,'1:45–2:25（40秒）',['L3を成功基準とする','初期成功は修正せず保持','全件新生成ではなく，到達可能な経路を検証した集計'])
-    s=base('FとDは初期失敗の約3分の1を救済',5,'共通の分母：初期失敗545組')
-    for y,label,n,rate,col in [(2.6,'R　自己見直し',96,17.6,'AAAAAA'),(3.65,'F　実行結果提示',183,33.6,'333333'),(4.7,'D　自己デバッグ',180,33.0,'777777')]:
-        txt(s,.85,y,3.4,.65,label,23);rect(s,4.4,y+.08,rate/40*5.5,.48,col);txt(s,9.3,y,3.1,.75,f'{n}組  {rate:.1f}%',27,True)
-    txt(s,.85,6.25,11.7,.5,'今回の対象での観測．モデル・介入の一般的優劣は断定しない．',19)
-    note(s,'2:25–3:20（55秒）',['R96/545，F183/545，D180/545','FとDの差は3組','数が近くても対象が同じかは別に調べる'])
-    s=base('救済数が近くても，救済する対象は異なる',6)
-    for x,w,n,label,col in [(0.85,3.5,'43','Fのみ','EEEEEE'),(4.55,3.5,'140','F/D共通','DDDDDD'),(8.25,3.5,'40','Dのみ','EEEEEE')]:
-        rect(s,x,2.05,w,2.2,col);txt(s,x+.2,2.35,w-.4,.9,n+'組',40,True);txt(s,x+.2,3.42,w-.4,.6,label,25)
-    txt(s,.85,4.75,11.6,.8,'片側救済83組の全履歴を確認',30,True)
-    txt(s,.85,5.6,11.6,1.0,'両条件166履歴・398修正遷移 ／ 双方未救済322組\n複数箇所が同時に変わるため，成功原因は分離できない',21)
-    note(s,'3:20–4:10（50秒）',['Fのみ43とDのみ40で計83組','全例を静的に確認した','和集合223組を実行前の選択成功率とは解釈しない'])
-    s=base('3回目にも救済がある．追加消費と併せて考える',7)
-    txt(s,.85,1.8,5.6,.6,'追加tokens／救済',26,True);txt(s,7.2,1.8,5.4,.6,'3回目の追加救済',26,True)
-    for y,label,value in [(2.8,'R','18,852.6'),(3.65,'F','9,333.8'),(4.5,'D','10,976.6')]:
-        txt(s,1.05,y,.7,.6,label,26,True);txt(s,2,y,4.6,.6,value,30,True)
-    txt(s,7.3,2.8,5.1,1.8,'F　28組\nD　33組',32,True)
-    txt(s,7.3,4.65,5.1,1.4,'2回で止めると\nF15.3%・D18.3%の救済を失う',21)
-    txt(s,.85,6.35,11.8,.45,'共有初期を除き未救済消費を含む計算値．同じ最大3修正の履歴を区切った比較．',17)
-    note(s,'4:10–5:05（55秒）',['消費には失敗した修正も含む','再構成経路の計算値で金銭費用ではない','上限ごとに独立した実験ではなく，一般的な最適回数は未確定'])
-    s=base('救済率に加え，「何を救済するか」が重要',8)
-    for y,n,text in [(1.85,'1','F183組・D180組を救済（初期失敗545組）'),(3.05,'2','片側救済83組：介入で救済対象が異なる'),(4.25,'3','追加消費と停止回数の両面から検討する')]:
-        txt(s,.85,y,.55,.7,n,30,True);txt(s,1.6,y,10.9,.9,text,27,True)
-    txt(s,.85,5.8,11.7,.9,'今後：選択・停止方策を事前固定し，別seed・タスクで検証',24)
-    note(s,'5:05–6:00（55秒）',['今回の対象・指定入力での結論に限定する','因果効果・統計的有意差は主張しない','最後に今後の検証方針を述べて終了'])
-    s=base('補足A　モデル・初期失敗類型で傾向が変わる',9)
-    lines=['モデル　失敗分母　R　F　D']+['　'.join(map(str,r)) for r in model_rows()]
-    txt(s,.85,1.7,5.8,4.3,'\n'.join(lines),23)
-    txt(s,7,1.7,5.5,4.8,'初期import失敗（271組）\nF 58組 ／ D 72組\n\n初期回路構築失敗（126組）\nF 76組 ／ D 68組',23)
-    txt(s,.85,6.3,11.6,.5,'Q4/G4/Q9/C7/G3の正式タグは要旨・論文本体のモデル表を参照．',18)
-    note(s,'質疑用（本編6分には含めない）',['初期失敗の分母がモデルごとに異なる','類型とモデル・タスクの関連がある'])
-    s=base('補足B　評価と経路の範囲',10)
-    txt(s,.85,1.75,11.6,4.6,'L3：指定入力の出力＋所定の構造要件\n分布：8,192 shots・全変動距離0.05未満\n検証済み保存prefix＋部分追試293ケースのsuffix\n旧120件は合算しない／Pは独立生成\n共有初期・タスク・seed依存，診断文・負荷差が残る',24)
-    txt(s,.85,6.15,11.6,.6,'P：改善124組・悪化106組，最終成功473/1,000組',23,True)
-    note(s,'質疑用',['評価は全入力での正しさを保証しない','退行0は成功時停止の設計による','部分追試後に到達しない旧suffixは除外'])
-    s=base('補足C　参考文献・固定出典',11)
-    for y,text in [(1.7,'[1] Madaan et al., Self-Refine, arXiv:2303.17651v2 (2023).'),(2.8,'[2] Chen et al., Teaching Large Language Models to Self-Debug,\n      arXiv:2304.05128v2 (2023).'),(4.25,'[3] 現行救済経路の固定集計（2026-10-16版）\n      docs/presentation_sources/20261016T_reachable_rescues/'),(5.7,'固定snapshot・全分母CSV・sanity/validation reportを使用．\n本資料の作成に伴う追加実験は行っていない．')]:txt(s,.85,y,11.7,1.1,text,21)
-    note(s,'質疑用',['書誌情報と固定出典の案内','提出年月・英語表記・類似レポートは別途確認'])
-    prs.save(HERE/'slides.pptx')
-    (HERE/'speaker_notes.txt').write_text('6分発表用の要点メモ（原稿の読み上げには使わない）\n本編8枚＝360秒．補足3枚は質疑用．\n\n'+'\n\n'.join(f'{i}枚目\n{x}' for i,x in enumerate(notes,1))+'\n\n練習：スライドだけを見て説明し，6分以内に収める．ゼミの練習で修正する．不明な質問は不明と答え，確認方法を述べる．\n')
+    from graduation_slides import build_slides
+    build_slides()
+
 
 def source_record():
     sources=list(B4_SOURCE.glob('*.json'))+list(B4_SOURCE.glob('*.csv'))+[SOURCE/'results_snapshot.json',SOURCE/'validation_report.json',ANALYSIS/'manifest.json',ANALYSIS/'core/repair_summary.csv',ANALYSIS/'core/sanity_report.json',ANALYSIS/'sanity_report.json',ANALYSIS/'core/fd_overlap_summary.csv',ROOT/'harness/evaluator.py',ROOT/'harness/readout.py',ROOT/'tasks/__init__.py']
