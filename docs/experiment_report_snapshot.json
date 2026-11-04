@@ -2330,5 +2330,34 @@
     "rescoring": false,
     "old_fixed_results_preserved": true,
     "v2_success_counts": "not_observed"
+  },
+  "diagnostic_policy_corrected": {
+    "status": "completed_verified",
+    "source": "docs/analysis/diagnostic_policy_corrected_20261104/manifest.json",
+    "run_id": "diagnostic_policy_followup_20261104T140554094649Z",
+    "diagnostic_policy_version": "diagnostic_policy_v2_structure_qubits",
+    "final_successes": {
+      "B": 455,
+      "B4": 671,
+      "D": 634,
+      "F": 641,
+      "P": 473,
+      "R": 551
+    },
+    "fd_overlap": {
+      "scope": "pooled",
+      "source_dir": "",
+      "grouping": "overall",
+      "initial_failures": 545,
+      "both": 139,
+      "F_only": 47,
+      "D_only": 40,
+      "neither": 319
+    },
+    "new_requests": 23,
+    "new_tokens": 37221,
+    "successful_followup_paths": 3,
+    "pending_paths": 0,
+    "old_fixed_results_preserved": true
   }
 }

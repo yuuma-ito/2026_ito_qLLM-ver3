@@ -1,0 +1,8 @@
+{
+  "original_preflight": "default_port_11434_connection_refused_before_generation",
+  "resolution": "use_README_shared_Ollama_11435",
+  "original_generation_requests": 0,
+  "digest_matched": true,
+  "server_version": "0.35.1",
+  "status": "resolved_before_generation"
+}

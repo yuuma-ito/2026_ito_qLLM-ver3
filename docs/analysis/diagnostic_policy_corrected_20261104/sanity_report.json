@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "status": "completed_verified",
+  "paths": 10,
+  "unique_initial_groups": 6,
+  "missing": 0,
+  "duplicates": 0,
+  "unexpected": 0,
+  "pending_paths": 0,
+  "runtime_failures": 0,
+  "api_failures": 0,
+  "ambiguous_requests": 0,
+  "new_requests": 23,
+  "skipped_after_success": 3,
+  "planned_request_slots": 26,
+  "historical_sources_unchanged": true,
+  "shared_initial_unchanged": true,
+  "unaffected_B_P_R_B4_verified": true,
+  "stratified_totals_verified": true,
+  "no_stronger_reference_checks": true,
+  "preflight_connection_error": "resolved_before_generation; shared_Ollama_port_11435",
+  "old_fixed_sources_overwritten": false,
+  "diagnostic_policy_version": "diagnostic_policy_v2_structure_qubits",
+  "run_id": "diagnostic_policy_followup_20261104T140554094649Z",
+  "final_successes": {
+    "B": 455,
+    "B4": 671,
+    "D": 634,
+    "F": 641,
+    "P": 473,
+    "R": 551
+  },
+  "fd_overlap": {
+    "scope": "pooled",
+    "source_dir": "",
+    "grouping": "overall",
+    "initial_failures": 545,
+    "both": 139,
+    "F_only": 47,
+    "D_only": 40,
+    "neither": 319
+  },
+  "followup": {
+    "status": "completed_verified",
+    "run_id": "diagnostic_policy_followup_20261104T140554094649Z",
+    "output_dir": "results/diagnostic_policy_followup_20261104T140554094649Z",
+    "plan_sha256": "45ce1355c22a1ea1289fe46b9fa76804619749e47a0c772d3d5d9944eeb80ca5",
+    "diagnostic_policy_version": "diagnostic_policy_v2_structure_qubits",
+    "completed_paths": 10,
+    "new_requests": 23,
+    "new_tokens": 37221,
+    "successful_paths": 3,
+    "server_before": {
+      "version": "0.35.1"
+    },
+    "server_after": {
+      "version": "0.35.1"
+    },
+    "model_digest_matched": true,
+    "historical_sources_unchanged": true,
+    "no_stronger_reference_checks": true
+  }
+}

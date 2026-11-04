@@ -7,23 +7,25 @@
 
 旧L3成功1,561コード×タスクの確認で測定違反4組を検出した。現在の経路に影響するのはDの1経路・B4の2経路。後続生成が必要だったB4の1経路だけを承認後に継続し，round 2の追加1要求・408 tokensで成功時停止した。未完了経路は0。旧固定集計と生成履歴は保持し，修正版を別保存している。
 
-診断文の2不具合は別版v2として修正した。[影響調査](docs/diagnostic_policy_v2.txt)ではF6・D4の計10履歴（6初期組）の後続入力が変わる。旧成功F638・D634は保持し、v2の成功数は未観測。対象履歴の継続には最少10〜最大26要求が必要だが、今回は新規生成・再採点を行っていない。下表は測定禁止修正後・旧診断版の固定結果である。
+診断修正v2による[10履歴の継続結果](docs/diagnostic_policy_v2_followup.txt)を確定した。新規23要求・37221 tokensで、対象履歴の成功は3件。下表は[診断修正v2反映後の固定集計](docs/analysis/diagnostic_policy_corrected_20261104/report.txt)である。旧診断版の固定集計と生成履歴は保持している。
 
 | 条件 | 最終L3成功 / 1,000 | 初期失敗545組からの追加成功 |
 | --- | ---: | ---: |
 | B（初回のみ） | 455 | 0 |
 | P（注意事項付き独立生成） | 473 | 124（独立1回生成） |
 | R（自己見直し） | 551 | 96（17.6%） |
-| F（実行結果提示） | 638 | 183（33.6%） |
+| F（実行結果提示） | 641 | 186（34.1%） |
 | D（自己デバッグ） | 634 | 179（32.8%） |
 | B4（独立再生成） | 671 | 216（39.6%） |
 
-F/D共通139組，Fのみ44組，Dのみ40組，双方未救済322組。片側84組の168履歴・404遷移を静的集計した。B4の累計追加消費は1,343要求・996,223 tokens，追加成功1組あたり4,612.1 tokensである。共有初期を除き，未成功例への消費を含む。
+F/D共通139組，Fのみ47組，Dのみ40組，双方未救済319組。旧診断版での片側84組・168履歴・404遷移の静的分析は当時の記録として保持する。B4の累計追加消費は1,343要求・996,223 tokens，追加成功1組あたり4,612.1 tokensである。共有初期を除き，未成功例への消費を含む。
 
-最大生成回数が同じでも入力情報・tokens・seed規則・実行時期は異なる。後日継続した1要求を含み，全条件を初回から新生成した実験ではない。因果効果や一般的優劣は断定しない。
+最大生成回数が同じでも入力情報・tokens・seed規則・実行時期は異なる。測定禁止修正後の1要求と診断修正後の23要求を含み，全条件を初回から新生成した実験ではない。因果効果や一般的優劣は断定しない。
+
+卒論本文・発表資料は旧診断版の固定出典で作成した版を保持している。今回のF641を引用する際は，診断修正v2反映後の出典を指定する。
 
 - [卒論本文と検証記録](docs/graduation2026/README.md)，[授業報告用の2本のスライド](docs/course_reports2026/README.md)
-- [修正版集計CSV](docs/analysis/measurement_ban_corrected_20261104/summary.csv)，[追試設定](docs/analysis/measurement_ban_corrected_20261104/followup_manifest.json)，[sanity](docs/analysis/measurement_ban_corrected_20261104/sanity_report.json)，[出典hash](docs/analysis/measurement_ban_corrected_20261104/manifest.json)
+- [診断修正v2の集計CSV](docs/analysis/diagnostic_policy_corrected_20261104/summary.csv)，[追試設定](docs/analysis/diagnostic_policy_corrected_20261104/followup_manifest.json)，[sanity](docs/analysis/diagnostic_policy_corrected_20261104/sanity_report.json)，[出典hash](docs/analysis/diagnostic_policy_corrected_20261104/manifest.json)
 - [介入カタログ](docs/graduation2026/intervention_catalog.csv)：3類型の件数・観測率。自動選択の有効性は未検証。
 - [旧v4の10月16日集計](docs/analysis/reachable_rescues_20261016/README.md)，[旧B4の10月22日集計](docs/analysis/independent_4_completed_20261022/README.md)，[測定禁止の影響調査](docs/analysis/measurement_ban_impact_20261104/report.txt)は各時点の証拠として保持する。旧D180/B4 217救済と現在のD179/B4 216救済を混同しない。
 

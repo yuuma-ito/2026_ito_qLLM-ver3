@@ -1,0 +1,20 @@
+{
+  "status": "completed_verified",
+  "run_id": "diagnostic_policy_followup_20261104T140554094649Z",
+  "output_dir": "results/diagnostic_policy_followup_20261104T140554094649Z",
+  "plan_sha256": "45ce1355c22a1ea1289fe46b9fa76804619749e47a0c772d3d5d9944eeb80ca5",
+  "diagnostic_policy_version": "diagnostic_policy_v2_structure_qubits",
+  "completed_paths": 10,
+  "new_requests": 23,
+  "new_tokens": 37221,
+  "successful_paths": 3,
+  "server_before": {
+    "version": "0.35.1"
+  },
+  "server_after": {
+    "version": "0.35.1"
+  },
+  "model_digest_matched": true,
+  "historical_sources_unchanged": true,
+  "no_stronger_reference_checks": true
+}

@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "inputs_verified": 1179,
+  "outputs_verified": 18,
+  "paths_verified": 5000,
+  "condition_records_verified": 4000,
+  "pending_paths_replaced": 10,
+  "new_requests": 23,
+  "planned_slots_accounted": 26,
+  "missing": 0,
+  "duplicates": 0,
+  "unaffected_paths_preserved": true,
+  "old_suffix_excluded": true,
+  "success_count_mutation_rejected": true,
+  "token_cost_mutation_rejected": true,
+  "model_requests": 0,
+  "generated_code_executions": 0,
+  "validator_sha256": "726255fe0645a6c89a413c3b756134ee2bd3adc9cc8e2d042deb6c7392ac26eb",
+  "tests": {
+    "passed": 522,
+    "additional_independent_validation_tests_passed": 4,
+    "warnings": 60,
+    "seconds": 86.92,
+    "command": ".venv/bin/python -m pytest -q",
+    "log_sha256": "ea0ecdac6a74b7c6c92a15ebe80581738ba90dde46d61334b9e3fc50f4c44d45"
+  }
+}
