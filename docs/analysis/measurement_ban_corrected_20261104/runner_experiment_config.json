@@ -1,0 +1,65 @@
+{
+  "experiment_id": "independent_4_full_20261020T185811381595Z",
+  "condition_id": "independent_4",
+  "max_generations": 4,
+  "expected_initial_failures": 545,
+  "models": [
+    "ollama:qwen3.5:4b",
+    "ollama:gemma4:e4b-it-qat",
+    "ollama:qwen3.5:9b",
+    "ollama:qwen2.5-coder:7b",
+    "ollama:gemma3:4b"
+  ],
+  "tasks": [
+    "T1_Bell",
+    "T2_GHZ",
+    "T3a_DJ_constant",
+    "T3b_DJ_balanced",
+    "T4_BV_011",
+    "T5_Grover_11",
+    "T6_QFT_001",
+    "T7_IQFT_001",
+    "T8_QPE_001",
+    "T9_Ansatz_001"
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "seed_namespace": "independent_4_v1",
+  "temperature": 0.7,
+  "generation_settings": {
+    "max_tokens": 1024,
+    "timeout_sec": 600,
+    "reasoning_effort": "none",
+    "parallel_requests": 1
+  },
+  "sources": {
+    "core_manifest": "docs/analysis/reachable_rescues_20261016/core/manifest.json",
+    "settings": "docs/analysis/reevaluation_followup_20261015/settings_manifest.json",
+    "evaluation_profile": "docs/analysis/reevaluation_followup_20261015/partial_evaluation_profile.json",
+    "rounds": "docs/analysis/reevaluation_full_20261014T141718Z/final/round_comparison.csv",
+    "paired": "docs/analysis/reachable_rescues_20261016/core/paired_records.csv",
+    "reachable_rounds": "docs/analysis/reachable_rescues_20261016/reachable_rounds.csv"
+  },
+  "execution_policy": "prepare_only_until_human_reviews_plan_hash; no_auto_commit_or_push",
+  "output_dir": "results/independent_4_full_20261020T185811381595Z"
+}

@@ -1,0 +1,31 @@
+{
+  "status": "completed_verified",
+  "run_id": "measurement_ban_followup_20261104T113338413073Z",
+  "output_dir": "results/measurement_ban_followup_20261104T113338413073Z",
+  "model_spec": "ollama:qwen2.5-coder:7b",
+  "task_id": "T3a_DJ_constant",
+  "base_seed": 3,
+  "new_requests": 1,
+  "final_success": true,
+  "final_round": 2,
+  "new_tokens": 408,
+  "plan_sha256": "17da6715e9ad73ce1c994f0945508b3043fd31c9045a64ed5cfb87a1efe52d54",
+  "model_digest_matched": true,
+  "server_before": {
+    "version": "0.35.1"
+  },
+  "server_after": {
+    "version": "0.35.1"
+  },
+  "new_rounds": [
+    {
+      "round": 2,
+      "seed": 2061127488,
+      "code_sha256": "7a35eb7e68ec6694aeac0844624e01de514150cbced1c8f239bad2b953fcbb82",
+      "L3": true,
+      "error_category": "ok",
+      "tokens_in": 302,
+      "tokens_out": 106
+    }
+  ]
+}

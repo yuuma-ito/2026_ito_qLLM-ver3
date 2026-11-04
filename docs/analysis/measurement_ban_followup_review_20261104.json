@@ -1,0 +1,33 @@
+{
+  "reviewer": "independent agent /root/corrected_evidence_review, fork_turns=none",
+  "scope": "全17 CSV・個別履歴・全層別集計の読み取り専用照合。生成コード実行・モデル呼出なし。",
+  "passed": true,
+  "results": {
+    "B": 455,
+    "P": 473,
+    "R": 551,
+    "F": 638,
+    "D": 634,
+    "B4": 671,
+    "FD": [
+      139,
+      44,
+      40,
+      322
+    ],
+    "discordant_pairs": 84,
+    "discordant_histories": 168,
+    "discordant_transitions": 404,
+    "new_requests": 1,
+    "new_tokens": 408,
+    "pending": 0
+  },
+  "followup_checks": "round2成功・測定数0・round3要求なし。モデルdigest一致。",
+  "source_hash_followup": "review後に追加4出典hashを再固定し親セッションで312入力・29出力の全hashを照合。",
+  "limits": [
+    "API側実消費の外部照合なし",
+    "意味的・因果的寄与は対象外",
+    "公開先未確認"
+  ],
+  "manifest_sha256": "11cab5cee61493d6439dcc99d4acb38f46837d310c259be18811c9c9705074b5"
+}
