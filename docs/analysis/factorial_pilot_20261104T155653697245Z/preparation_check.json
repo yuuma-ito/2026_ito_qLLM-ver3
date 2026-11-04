@@ -1,0 +1,82 @@
+{
+  "passed": true,
+  "plan_sha256": "a3a2250486fb905c965f9251bdac9d8b010fe722822d322a3aeacab03a9e7546",
+  "sample_reproducible": true,
+  "outcome_permutation_does_not_change_sample": true,
+  "selected": 100,
+  "models": 5,
+  "tasks": 10,
+  "new_seeds": 300,
+  "schedule_slots": 1200,
+  "stage1_positions": {
+    "A": {
+      "1": 25,
+      "2": 25,
+      "3": 25,
+      "4": 25
+    },
+    "B": {
+      "1": 25,
+      "2": 25,
+      "3": 25,
+      "4": 25
+    },
+    "C": {
+      "1": 25,
+      "2": 25,
+      "3": 25,
+      "4": 25
+    },
+    "D": {
+      "1": 25,
+      "2": 25,
+      "3": 25,
+      "4": 25
+    }
+  },
+  "historical_outcome_counts": {
+    "F_only": 10,
+    "both": 28,
+    "B4_only": 18,
+    "neither": 44
+  },
+  "stagnation_v2": [
+    {
+      "condition": "R",
+      "initial_failures": 545,
+      "successes": 96,
+      "any_ast_repeat": 396,
+      "unchanged_ast_all_rounds": 157,
+      "additional_requests": 1501,
+      "finish_reason_known": 0
+    },
+    {
+      "condition": "F",
+      "initial_failures": 545,
+      "successes": 186,
+      "any_ast_repeat": 267,
+      "unchanged_ast_all_rounds": 116,
+      "additional_requests": 1365,
+      "finish_reason_known": 319
+    },
+    {
+      "condition": "D",
+      "initial_failures": 545,
+      "successes": 179,
+      "any_ast_repeat": 247,
+      "unchanged_ast_all_rounds": 134,
+      "additional_requests": 1380,
+      "finish_reason_known": 325
+    },
+    {
+      "condition": "B4",
+      "initial_failures": 545,
+      "successes": 216,
+      "any_ast_repeat": 3,
+      "unchanged_ast_all_rounds": 0,
+      "additional_requests": 1343,
+      "finish_reason_known": 1343
+    }
+  ],
+  "new_model_requests": 0
+}

@@ -1,0 +1,10 @@
+診断v2保存履歴による停滞分析の更新（新規生成前）
+旧分析は測定禁止修正後・旧診断版。今回は診断v2の10履歴・23新出力を反映し、分岐後の旧26出力を除外した。
+保存コードは文字列とASTとしてのみ解析し、生成コードの実行・再採点・モデル要求は0。AST一致は意味的同値性ではない。
+{'condition': 'R', 'initial_failures': 545, 'successes': 96, 'any_ast_repeat': 396, 'unchanged_ast_all_rounds': 157, 'additional_requests': 1501, 'finish_reason_known': 0}
+{'condition': 'F', 'initial_failures': 545, 'successes': 186, 'any_ast_repeat': 267, 'unchanged_ast_all_rounds': 116, 'additional_requests': 1365, 'finish_reason_known': 319}
+{'condition': 'D', 'initial_failures': 545, 'successes': 179, 'any_ast_repeat': 247, 'unchanged_ast_all_rounds': 134, 'additional_requests': 1380, 'finish_reason_known': 325}
+{'condition': 'B4', 'initial_failures': 545, 'successes': 216, 'any_ast_repeat': 3, 'unchanged_ast_all_rounds': 0, 'additional_requests': 1343, 'finish_reason_known': 1343}
+旧分析から変わった指標行: 52
+既存の成否群は抽出後の包含確認にのみ用いる。停滞特徴から因果関係は確定しない。
+旧prefixの終了理由は未記録を維持する。既知suffixだけの終了理由を全体の打切り率に拡張しない。

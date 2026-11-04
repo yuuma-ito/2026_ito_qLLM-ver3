@@ -1,0 +1,5 @@
+condition,initial_failures,successes,any_ast_repeat,unchanged_ast_all_rounds,additional_requests,finish_reason_known
+R,545,96,396,157,1501,0
+F,545,186,267,116,1365,319
+D,545,179,247,134,1380,325
+B4,545,216,3,0,1343,1343

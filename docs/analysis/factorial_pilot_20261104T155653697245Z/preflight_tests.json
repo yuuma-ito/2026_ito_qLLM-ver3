@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "tests": 537,
+  "warnings": 60,
+  "seconds": 89.26,
+  "command": ".venv/bin/python -m pytest -q",
+  "test_log_sha256": "71512958f290135b060516b893f702673c024d73d248903b3e14f2728589f45c",
+  "implementation": {
+    "harness/factorial_pilot.py": "f53e63587d573b87292dfa0c3fde10b59b405ee9c465a303d32d285f20127c1a",
+    "scripts/factorial_pilot_sources.py": "4a135d5e37fc9dbacd19271ba2edbf0aed8f794582bdffb6f336d34435267a38",
+    "scripts/prepare_factorial_pilot.py": "152c829bb19692849948eff2f81549a55b5a698301ef72efdbd8fb0d234f53ec",
+    "scripts/run_factorial_pilot.py": "f8ca83087af9d39c50388ef042e574df2e012d007f1f7065cf4a57fbb7c91b52",
+    "scripts/analyze_factorial_pilot.py": "bf720c5fcb3eb617017745dac081974367ea9a6c02600ed67bd3acbf01394a42",
+    "harness/diagnostic_policy.py": "9a5852d02a12f258184d5b5654772cd09f5c7fb38c6e3d218a96ac656f4f0bcd",
+    "harness/refine.py": "6e1cfc2585f75ec1e46ceb6f26f1e4ea058b93e41fd514db169929ed1a14eacf",
+    "harness/llm_clients.py": "7bb5920c711502e054c67ed36cce3a9b4808d3c606355a6295a333f00720d7ba",
+    "harness/independent_4.py": "8bdf7da48d75851a7ded5986c98e44739d676b2e240e405750ccbd4bbd28d08c",
+    "harness/code_extractor.py": "ec1c059e4fe62512223b26fe60e5d5e280f88d012763f8434d3fd2dbed893b37",
+    "prompts/system.txt": "b76e82b93808aff180580db3647711efa0a3a56cc39301cff4a7a44f108e9f9d",
+    "tests/test_factorial_pilot.py": "ee1a6b6893d8d7c2ec2996808e8714e201590727d3b1db0e95fea5cb3b263011"
+  },
+  "selected": 100,
+  "shared_initial_failure_code_and_evaluation_frozen": true,
+  "protected_sources_verified": 1305,
+  "no_live_model_requests_in_tests": true,
+  "git_operations_performed": false
+}

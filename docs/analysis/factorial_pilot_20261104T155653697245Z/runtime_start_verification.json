@@ -1,0 +1,16 @@
+{
+  "checked_at_utc": "2026-11-04T16:15:21.076986+00:00",
+  "verified_completed_request_packets": 22,
+  "first_stage_target_requests": 400,
+  "protected_sources_unchanged": 1305,
+  "api_failures_at_check": 0,
+  "actual_wire_settings_initials_tokens_finish_reasons_verified": true,
+  "full_preflight_tests_passed": 537,
+  "independent_report_tests_passed": 3,
+  "generation_and_supervisor_running": true,
+  "git_commit_unchanged": "c50356e9f198802a8e74ccad808efdc488d54fb4",
+  "git_operations_performed": false,
+  "thesis_updated": false,
+  "status": "running_not_final_results",
+  "final_report_destination": "independent_review/final_report.txt"
+}

@@ -1,0 +1,12 @@
+{
+  "purpose": "same prespecified stage1/final metrics; independent packet reconciliation and eight-part report",
+  "files": {
+    "scripts/finish_factorial_pilot.py": "984a9bb0956c7c5d1b033c271adffeaec7223117cc7efe29b636aaf4153196e2",
+    "scripts/watch_factorial_pilot.py": "3038f3b2ca920b1c0c552789698d17243289ef6d1de8dc59ba3e3857570d18e7",
+    "tests/test_finish_factorial_pilot.py": "8d41f3c07b24a130f1d52243c78c5e62d7818fe86023f596772bc1edaf6f8325"
+  },
+  "tests_passed": 3,
+  "test_seconds": 0.2,
+  "model_prompt_evaluator_diagnostic_unchanged": true,
+  "new_generation_or_git_operations": false
+}

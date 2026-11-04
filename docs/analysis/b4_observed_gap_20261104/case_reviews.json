@@ -1,0 +1,64 @@
+[
+  {
+    "model_spec": "ollama:qwen2.5-coder:7b",
+    "task_id": "T4_BV_011",
+    "base_seed": 6,
+    "selection": "B4_only群から反復を確認できる目的選択。代表性を主張しない。",
+    "observed_mechanism": "文字列の左端をqubit0に対応させるオラクルのビット順の誤りをFが変更しなかった",
+    "F_round0_to_3_code_sha256": [
+      "d5fd1caaeb9684cbaf35ef2719e5f943a90acb5ae4ff04adb706400370b3b79c",
+      "d5fd1caaeb9684cbaf35ef2719e5f943a90acb5ae4ff04adb706400370b3b79c",
+      "d5fd1caaeb9684cbaf35ef2719e5f943a90acb5ae4ff04adb706400370b3b79c",
+      "d5fd1caaeb9684cbaf35ef2719e5f943a90acb5ae4ff04adb706400370b3b79c"
+    ],
+    "F_error_path": [
+      "wrong_output",
+      "wrong_output",
+      "wrong_output",
+      "wrong_output"
+    ],
+    "B4_additional_rounds": [
+      {
+        "round": 1,
+        "code_sha256": "b5a609c2f11a528dffa7e4c9ac305d3136688053cd442016f7d8fc2c271777d7",
+        "saved_L3": false
+      },
+      {
+        "round": 2,
+        "code_sha256": "16d18e79eee7df898533ac3b92fa01ca9047c464a3ebd9a457438c06259a1d79",
+        "saved_L3": false
+      },
+      {
+        "round": 3,
+        "code_sha256": "3ef260060a749ef5270bd2cef6de5bdb12363517fb242c4e54936673ee029398",
+        "saved_L3": true
+      }
+    ]
+  },
+  {
+    "model_spec": "ollama:gemma3:4b",
+    "task_id": "T1_Bell",
+    "base_seed": 8,
+    "selection": "B4_only群から反復を確認できる目的選択。代表性を主張しない。",
+    "observed_mechanism": "qiskitからのAer import失敗をFが変更しなかった",
+    "F_round0_to_3_code_sha256": [
+      "29a5add41c6681a7f430493a4f63eb3083c1760d3abcb041377f7cde12153564",
+      "29a5add41c6681a7f430493a4f63eb3083c1760d3abcb041377f7cde12153564",
+      "29a5add41c6681a7f430493a4f63eb3083c1760d3abcb041377f7cde12153564",
+      "29a5add41c6681a7f430493a4f63eb3083c1760d3abcb041377f7cde12153564"
+    ],
+    "F_error_path": [
+      "import_error",
+      "import_error",
+      "import_error",
+      "import_error"
+    ],
+    "B4_additional_rounds": [
+      {
+        "round": 1,
+        "code_sha256": "5c3a23c483b7c89eb17a78dc5ef04db366f3afb63434f29f47b7fb5383f7e425",
+        "saved_L3": true
+      }
+    ]
+  }
+]

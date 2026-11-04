@@ -1,0 +1,17 @@
+{
+  "captured_at_utc": "2026-11-04T18:09:26.662416+00:00",
+  "publication_scope": "code_plan_preflight_and_v2_stagnation_refresh_only",
+  "status": "running",
+  "phase": "stage1",
+  "completed_stage1_requests": 158,
+  "planned_stage1_requests": 400,
+  "max_total_requests": 1200,
+  "final_results_available": false,
+  "plan_sha256": "a3a2250486fb905c965f9251bdac9d8b010fe722822d322a3aeacab03a9e7546",
+  "protected_inputs_verified": 1305,
+  "api_failure_checkpoints": 0,
+  "raw_or_generated_code_published": false,
+  "push_authorization": "latest user instruction: push; supersedes earlier no-push request for this publication",
+  "frozen_protocol_files_modified": false,
+  "automatic_git_operations_enabled": false
+}

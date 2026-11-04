@@ -1,0 +1,32 @@
+{
+  "ollama:gemma3:4b": {
+    "digest_verified": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+    "server": {
+      "version": "0.35.1"
+    }
+  },
+  "ollama:gemma4:e4b-it-qat": {
+    "digest_verified": "ee665637121887cf3befff38abbb1be4ee117c7db867d97a67e29049ecd7e15f",
+    "server": {
+      "version": "0.35.1"
+    }
+  },
+  "ollama:qwen2.5-coder:7b": {
+    "digest_verified": "dae161e27b0e90dd1856c8bb3209201fd6736d8eb66298e75ed87571486f4364",
+    "server": {
+      "version": "0.35.1"
+    }
+  },
+  "ollama:qwen3.5:4b": {
+    "digest_verified": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd",
+    "server": {
+      "version": "0.35.1"
+    }
+  },
+  "ollama:qwen3.5:9b": {
+    "digest_verified": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+    "server": {
+      "version": "0.35.1"
+    }
+  }
+}
