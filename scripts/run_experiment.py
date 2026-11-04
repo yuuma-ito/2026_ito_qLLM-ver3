@@ -27,7 +27,7 @@ from harness.experiment import (
     validate_config,
 )
 from harness.llm_clients import make_client
-from harness.evaluator import EVALUATOR_VERSION
+from harness.measurement_evaluator import EVALUATOR_VERSION
 from harness.runner import generate_initial, run_intervention, run_one
 from scripts.sanity_check import check_results, write_sanity_report
 from scripts.analyze_interventions import write_analysis_outputs

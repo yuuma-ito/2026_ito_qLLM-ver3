@@ -1,5 +1,7 @@
 # 分布評価の測定結果の扱い
 
+2026-11-04の測定禁止修正：新規生成の標準入口は `evaluation_policy_v4_measurement_ban_v1` を使用する。共通systemに元からある回路内測定禁止だけを追加し、位相・全ユニタリなど原課題より強い参照条件は追加しない。旧 `harness/evaluator.py` と旧隔離評価器は固定v4の再現専用として保持し、新規生成のrunnerとmanifestは修正版へ切り替えた。保存済み成功コードへの影響は[別保存先](analysis/measurement_ban_impact_20261104/report.txt)で調べ、旧集計・履歴を上書きしない。新規モデル生成や自動部分追試は行わない。
+
 2026-11-04追記：以下の実装変更と実施状態は2026-10-14の再評価前の記録である。その後、[全5,000条件・9,517 roundの再採点](analysis/reevaluation_full_20261014T141718Z/README.md)と[293ケースの部分追試](analysis/reevaluation_followup_20261015/README.md)が完了した。現行結果は[到達経路](analysis/reachable_rescues_20261016/README.md)と[B4追加実験](analysis/independent_4_completed_20261022/README.md)を参照する。末尾のNO-GOは当時の準備判定であり、現在の未完了状態を示すものではない。
 
 現行v4は指定入力の出力と所定の構造条件を判定し、課題文の全条件や任意入力での算法同値性は保証しない。共通プロンプトの測定禁止を強制しない課題で、測定を含む主L3成功がある。[実例と評価範囲](analysis/reevaluation_followup_20261015/specification_review.md)を参照する。新たな[参照適合性検査](reference_conformance.txt)は別仕様として実装・テストしたものであり、既存L3・固定設定・停止経路を変更しない。保存コードへの適用と成功数の再集計は未実施である。

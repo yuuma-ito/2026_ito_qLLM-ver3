@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "planned_unique_code_tasks": 1561,
+  "completed_unique_code_tasks": 1561,
+  "missing": 0,
+  "duplicates": 0,
+  "unresolved_runtime_failures": 0,
+  "old_v4_reproduction_failures": 0,
+  "historical_sources_unchanged": true,
+  "current_condition_paths": 6000,
+  "new_model_requests": 0,
+  "generated_continuations": 0,
+  "reference_conformance_used": false
+}

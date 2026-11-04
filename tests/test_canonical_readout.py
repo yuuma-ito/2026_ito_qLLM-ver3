@@ -1,7 +1,8 @@
 from dataclasses import replace
 from types import SimpleNamespace
 import pytest
-from harness.evaluator import evaluate,EVALUATOR_VERSION
+from harness.evaluator import evaluate
+from harness.measurement_evaluator import EVALUATOR_VERSION
 from harness.readout import prepare_readout,project_counts,ReadoutError
 from tasks import get_task,Task
 from scripts.run_experiment import _check_evaluator_resume

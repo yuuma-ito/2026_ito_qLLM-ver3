@@ -1,0 +1,116 @@
+{
+  "status": "verified_impact_only",
+  "checked_at_utc": "2026-11-04T03:40:02.216934+00:00",
+  "unique_success_code_task_pairs_checked": 1561,
+  "unique_violating_code_task_pairs": 4,
+  "scopes": {
+    "saved_round_v4": {
+      "success_occurrences": 2958,
+      "violating_occurrences": 1
+    },
+    "followup_suffix_v4": {
+      "success_occurrences": 99,
+      "violating_occurrences": 1
+    },
+    "B4_new_round": {
+      "success_occurrences": 217,
+      "violating_occurrences": 2
+    },
+    "B4_shared_initial": {
+      "success_occurrences": 455,
+      "violating_occurrences": 0
+    },
+    "current_reachable_v4": {
+      "success_occurrences": 2752,
+      "violating_occurrences": 1
+    }
+  },
+  "condition_summary": [
+    {
+      "condition": "B",
+      "initial_groups": 1000,
+      "old_v4_final_successes": 455,
+      "terminal_rescored_successes": 455,
+      "invalidated_terminal_successes": 0,
+      "confirmed_reachable_successes": 455,
+      "pending_generation_paths": 0,
+      "reused_saved_R_rounds": 0,
+      "minimum_additional_requests": 0,
+      "maximum_additional_requests": 0
+    },
+    {
+      "condition": "P",
+      "initial_groups": 1000,
+      "old_v4_final_successes": 473,
+      "terminal_rescored_successes": 473,
+      "invalidated_terminal_successes": 0,
+      "confirmed_reachable_successes": 473,
+      "pending_generation_paths": 0,
+      "reused_saved_R_rounds": 0,
+      "minimum_additional_requests": 0,
+      "maximum_additional_requests": 0
+    },
+    {
+      "condition": "R",
+      "initial_groups": 1000,
+      "old_v4_final_successes": 551,
+      "terminal_rescored_successes": 551,
+      "invalidated_terminal_successes": 0,
+      "confirmed_reachable_successes": 551,
+      "pending_generation_paths": 0,
+      "reused_saved_R_rounds": 0,
+      "minimum_additional_requests": 0,
+      "maximum_additional_requests": 0
+    },
+    {
+      "condition": "F",
+      "initial_groups": 1000,
+      "old_v4_final_successes": 638,
+      "terminal_rescored_successes": 638,
+      "invalidated_terminal_successes": 0,
+      "confirmed_reachable_successes": 638,
+      "pending_generation_paths": 0,
+      "reused_saved_R_rounds": 0,
+      "minimum_additional_requests": 0,
+      "maximum_additional_requests": 0
+    },
+    {
+      "condition": "D",
+      "initial_groups": 1000,
+      "old_v4_final_successes": 635,
+      "terminal_rescored_successes": 634,
+      "invalidated_terminal_successes": 1,
+      "confirmed_reachable_successes": 634,
+      "pending_generation_paths": 0,
+      "reused_saved_R_rounds": 0,
+      "minimum_additional_requests": 0,
+      "maximum_additional_requests": 0
+    },
+    {
+      "condition": "B4",
+      "initial_groups": 1000,
+      "old_v4_final_successes": 672,
+      "terminal_rescored_successes": 670,
+      "invalidated_terminal_successes": 2,
+      "confirmed_reachable_successes": 670,
+      "pending_generation_paths": 1,
+      "reused_saved_R_rounds": 0,
+      "minimum_additional_requests": 1,
+      "maximum_additional_requests": 2
+    }
+  ],
+  "current_affected_condition_paths": 3,
+  "current_affected_initial_groups": 3,
+  "new_generation_required_paths": 1,
+  "new_generation_required_initial_groups": 1,
+  "minimum_additional_requests": 1,
+  "maximum_additional_requests": 2,
+  "old_initial_successes": 455,
+  "corrected_initial_successes": 455,
+  "old_initial_failures": 545,
+  "corrected_initial_failures": 545,
+  "new_model_requests": 0,
+  "automatic_followups": false,
+  "reference_conformance_used": false,
+  "important_limit": "terminal_rescored_successesは旧停止コードの再採点。pendingの生成を行わないため修正版プロトコルの最終成功数ではない。confirmedには同じ入力・seedが確認できたR保存suffixのみを再利用。各scopeは重複するため合算しない。"
+}

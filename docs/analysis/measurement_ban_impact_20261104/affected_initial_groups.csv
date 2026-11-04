@@ -1,0 +1,4 @@
+model_spec,task_id,base_seed,affected_conditions,pending_conditions
+ollama:qwen2.5-coder:7b,T3a_DJ_constant,3,B4,B4
+ollama:qwen2.5-coder:7b,T3a_DJ_constant,5,B4,
+ollama:qwen3.5:4b,T5_Grover_11,4,D,

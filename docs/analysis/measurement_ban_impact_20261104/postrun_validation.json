@@ -1,0 +1,20 @@
+{
+  "checked_at_utc": "2026-11-04T03:45:04.279259+00:00",
+  "passed": true,
+  "related_tests": {
+    "tests": 118,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "source_hashes_rechecked": true,
+  "published_output_hashes_rechecked": true,
+  "unique_code_task_coverage": 1561,
+  "current_condition_path_coverage": 6000,
+  "unique_measurement_violations": 4,
+  "invalidated_current_terminal_successes": 3,
+  "pending_generation_paths": 1,
+  "new_model_requests": 0,
+  "automatic_followups": false,
+  "scope": "Measurement ban only. No stronger reference checks. Existing fixed outputs unchanged."
+}

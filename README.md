@@ -3,6 +3,8 @@
 <!-- reachable-rescues:20261016 -->
 ## 卒論の現行結果と再現資料
 
+測定禁止条件だけを追加した[2026-11-04の影響調査](docs/analysis/measurement_ban_impact_20261104/report.txt)は完了した。旧停止コードの再採点はD 635→634、B4 672→670。B4の1経路は未生成の継続が残るため、新プロトコルの最終成功数は未確定である。以下の表は元のv4固定結果として保持し、新規生成・部分追試は行っていない。
+
 2026-11-04の[整合性点検と修正記録](docs/analysis/consistency_check_20261104/resolution.txt)では主要集計の一致を確認し、[評価の射程と別仕様の参照適合性検査](docs/reference_conformance.txt)、[B4実装・固定出典の再現手順](docs/independent_4_reproduction.txt)を整理した。現行v4の測定・変換seedは42固定であり、固定分析READMEに残る「未固定の測定乱数」は[訂正](docs/analysis/reachable_rescues_20261016/CORRECTIONS_20261104.txt)を参照する。既存成功数を新仕様で再採点した結果ではない。
 
 卒論の主要結果は、評価器修正後の[2026-10-16固定の救済経路分析](docs/analysis/reachable_rescues_20261016/README.md)と、[2026-10-22固定のB4追加実験](docs/analysis/independent_4_completed_20261022/README.md)です。共有初期1,000組のうち初期成功455組、初期失敗545組を対象とします。

@@ -1,0 +1,7 @@
+condition,initial_groups,old_v4_final_successes,terminal_rescored_successes,invalidated_terminal_successes,confirmed_reachable_successes,pending_generation_paths,reused_saved_R_rounds,minimum_additional_requests,maximum_additional_requests
+B,1000,455,455,0,455,0,0,0,0
+P,1000,473,473,0,473,0,0,0,0
+R,1000,551,551,0,551,0,0,0,0
+F,1000,638,638,0,638,0,0,0,0
+D,1000,635,634,1,634,0,0,0,0
+B4,1000,672,670,2,670,1,0,1,2

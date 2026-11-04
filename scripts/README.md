@@ -4,6 +4,8 @@ B4は専用入口[run_independent_4.py](run_independent_4.py)を使用する．�
 
 [summarize_generation_limits.py](summarize_generation_limits.py)は公開CSVの部分追試647生成について終了理由を条件別に集計する．保存モデルコードやAPIにはアクセスしない．結果を全実験の打切り率や説明指示の因果効果と解釈しない．
 
+[audit_measurement_ban.py](audit_measurement_ban.py)は元systemの回路内測定禁止だけを追加して保存済み成功コードを隔離再評価し、[measurement_ban_report.py](measurement_ban_report.py)で旧停止コードの再採点と到達履歴の分岐を分けて報告する。[run_measurement_ban_job.py](run_measurement_ban_job.py)はサーバー常駐実行用で、`--notify`指定時だけユーザーが依頼した既存Slackbotへの開始・終了通知を行う。新規モデル要求や不足する継続の生成機能は持たない。元資料は保持し、結果は`docs/analysis/measurement_ban_impact_20261104/`、私的checkpoint・通知状態は`.cache/measurement_ban_impact_20261104/`へ保存する。
+
 実験の実行、結果の検証・集計、評価器監査、通知、資料更新の入口となる Python スクリプトを保存するフォルダです。処理本体は主に [harness](../harness/README.md)、実行設定は [configs](../configs/README.md) にあります。
 
 <!-- reachable-rescues:20261016 -->

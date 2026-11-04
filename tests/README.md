@@ -4,6 +4,8 @@
 
 pytestで実行する、実験ハーネス・集計・運用処理の回帰テストを保存するフォルダです。
 
+`test_measurement_ban.py`は共通systemの測定禁止だけを追加した修正版を検証する。全10タスクの適合mockが旧v4と同じ結果を保ち、回路内測定違反を拒否し、位相・全ユニタリの追加条件を課さないことを確認する。`test_measurement_ban_impact.py`は旧停止コードと未生成の継続を混同しない集計、Rだけの保存suffix再利用、通知の一回性を検証する。
+
 | 対象 | 主なファイル |
 | --- | --- |
 | 評価器・出力表現・失敗分類 | `test_evaluator.py`、`test_canonical_readout.py`、`test_failure_metadata.py` |

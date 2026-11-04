@@ -8,7 +8,7 @@ from typing import Any
 
 from harness.code_extractor import extract_code
 from harness.failure_metadata import exception_name
-from harness.evaluator import EvalResult, evaluate
+from harness.measurement_evaluator import EvalResult, evaluate
 from harness.interventions import build_initial_prompt, build_intervention_prompt, intervention_feedback_type
 from harness.llm_clients import Generation
 from tasks import Task

@@ -2254,5 +2254,20 @@
     "static_scope": "lexical changed-line categories plus parse checks; no semantic or causal attribution",
     "analysis_dir": "docs/analysis/reachable_rescues_20261016",
     "fixed_presentation_source": "docs/presentation_sources/20261016T_reachable_rescues"
+  },
+  "measurement_ban_impact_20261104": {
+    "checked_at_utc": "2026-11-04T03:40:02.216934+00:00",
+    "status": "verified_impact_only",
+    "source": "docs/analysis/measurement_ban_impact_20261104/summary.json",
+    "evaluator_version": "evaluation_policy_v4_measurement_ban_v1",
+    "unique_success_code_task_pairs_checked": 1561,
+    "unique_violating_code_task_pairs": 4,
+    "current_affected_condition_paths": 3,
+    "new_generation_required_paths": 1,
+    "minimum_additional_requests": 1,
+    "maximum_additional_requests": 2,
+    "new_model_requests": 0,
+    "old_fixed_results_overwritten": false,
+    "not_final_protocol_success_counts": true
   }
 }

@@ -32,6 +32,11 @@ def _fmt_dist(dist: dict[str, float], top: int = 8) -> str:
 
 def diagnose(task: Task, ev: EvalResult) -> str:
     """評価結果から、失敗の段階に応じた日本語の診断メッセージを作る。"""
+    if (ev.error_category == "interface_mismatch" and
+            ev.error_message.startswith("in-circuit measurements are forbidden by the common system instruction")):
+        return ("- 共通system指示で禁止されている回路内測定が含まれています。\n"
+                "  build_circuit()内とその合成命令・制御フローから測定操作を除いてください。\n"
+                "  評価用の測定は評価器が追加します。")
     if not ev.L0:
         return (
             f"- コード実行（L0）に失敗しました。種別: {ev.error_category}\n"

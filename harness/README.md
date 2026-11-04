@@ -18,7 +18,11 @@ LLMによるQiskitコード生成、介入による修正、生成コードの�
 | [reevaluation_plan.py](reevaluation_plan.py)・[reevaluation_checkpoint.py](reevaluation_checkpoint.py) | 保存コード再評価の計画と再開情報 |
 | [supplementary.py](supplementary.py) | 補助的な評価情報の取得 |
 | [reference_conformance.py](reference_conformance.py) | 別仕様の測定禁止・純粋状態／全ユニタリ参照適合性。v4主判定には組み込まない |
+| [measurement_evaluator.py](measurement_evaluator.py) | 共通systemの回路内測定禁止のみを追加した修正版。新規生成の標準入口が使用 |
+| [measurement_isolation.py](measurement_isolation.py)・[measurement_worker.py](measurement_worker.py) | 旧v4と修正版を同じ隔離回路で比較。参照適合性検査を呼ばない |
 
 評価の仕様と保存形式は [ハーネス仕様](../docs/new_harness_spec.md)、評価器の版と出力表現は [評価仕様](../docs/evaluator_readout.md) を参照してください。変更時の検証対象は [tests](../tests/README.md) で確認できます。
 
 参照適合性検査の対象・全入力距離の意味・未実施の全件適用は[仕様](../docs/reference_conformance.txt)に記載した。信頼できる構築済み回路用の関数であり、保存モデルコードや信頼できないQPYを直接実行・読込みする入口ではない。
+
+測定禁止修正版は、評価器側がreadoutを追加する前に元回路のMeasure命令を検査する。合成命令と制御フロー内も対象とし、古典ビットの割当てや出力の相対位相だけでは違反にしない。既に不合格の試行の診断優先順位は保持する。旧v4の固定結果と、新判定による旧停止コードの再採点・未生成の継続を区別する。

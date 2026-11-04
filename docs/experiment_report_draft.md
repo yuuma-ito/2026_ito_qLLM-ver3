@@ -561,3 +561,13 @@ QPEで旧失敗の3 roundが主成功へ変わり、修正履歴の初成功はr
 
 状態：completed。旧実験5,000記録、保存済み9,517 roundの全件再採点、停止経路の再構成、部分追試293/293ケースを分離した。追加生成647/773回（上限）。変更なし抽出：50共有初期グループ。[出典・各別表・限界](analysis/reevaluation_followup_20261015/README.md)を参照。保存prefixと新規suffixを組み合わせた結果を、新評価器で生成から実施した5,000件実験とは呼ばない。旧表と固定発表資料を保持する。共有初期・task/seed依存があるため独立二項試行や介入の因果効果を仮定しない。
 <!-- reevaluation-followup:20261015:end -->
+
+<!-- measurement-ban-impact:20261104:start -->
+## 共通systemの測定禁止のみを修正した影響調査（2026-11-04）
+
+保存済みL3成功コード×タスク1,561組の隔離再評価が完了し、測定禁止違反は4組だった。このうち現行の成績に影響するのは3初期組・3条件経路である。旧停止コードの再採点はD 635→634、B4 672→670で、B・P・R・Fは変わらない。初期成功455・失敗545も不変。
+
+B4の1経路は旧round 1での停止が無効になり、round 2以降の生成が必要である。追加要求は最少1・最大2回だが、今回の影響調査では実施していない。したがってB4の670は旧停止コードの再採点／確認済み成功数であり、修正版プロトコルの最終成功数を確定したものではない。Dの違反1件と残るB4違反1件は上限round 3のため、予算を増やして続行しない。
+
+[報告](analysis/measurement_ban_impact_20261104/report.txt)、[条件別集計](analysis/measurement_ban_impact_20261104/condition_summary.csv)、[未生成の継続](analysis/measurement_ban_impact_20261104/pending_generation.csv)、[sanity](analysis/measurement_ban_impact_20261104/sanity_report.json)を別保存した。位相・全ユニタリ等の追加条件は使わず、新規モデル要求0、未解決の実行障害0。旧固定CSV・生成履歴・成功数の記録は上書きしていない。
+<!-- measurement-ban-impact:20261104:end -->
