@@ -9,7 +9,8 @@ from typing import Any
 from harness.code_extractor import extract_code
 from harness.failure_metadata import exception_name
 from harness.measurement_evaluator import EvalResult, evaluate
-from harness.interventions import build_initial_prompt, build_intervention_prompt, intervention_feedback_type
+from harness.interventions import build_initial_prompt, intervention_feedback_type
+from harness.diagnostic_prompts import build_intervention_prompt, DIAGNOSTIC_VERSION
 from harness.llm_clients import Generation
 from tasks import Task
 
@@ -149,13 +150,15 @@ def generate_initial(client, task: Task, seed: int, temperature: float = 0.7,
 
 
 def _round_meta(round_index: int, seed: int, gen: Generation, ev: EvalResult | None,
-                feedback_type: str, code: str = "") -> dict[str, Any]:
+                feedback_type: str, code: str = "", *, input_prompt: str | None = None) -> dict[str, Any]:
     snap = _metric_snapshot(ev, code)
     if ev is None and not gen.timeout_flag:
         snap["error_category"] = "unknown_error"
     if ev is None:
         snap["exception_type"] = (gen.exception_type or exception_name(gen.error))
     return {"round": round_index, "round_seed": seed, "feedback_type": feedback_type,
+            "diagnostic_policy_version": DIAGNOSTIC_VERSION if round_index > 0 and feedback_type in {"execution_feedback", "self_debugging"} else "none",
+            "input_prompt_sha256": hashlib.sha256(input_prompt.encode()).hexdigest() if input_prompt is not None else None,
             "code_sha256": hashlib.sha256(code.encode("utf-8")).hexdigest() if code else "",
             "extracted_code": code, "actual_distribution": ev.actual_distribution if ev else None,
             **snap, "error_message": gen.error if gen.timeout_flag else (ev.error_message if ev else gen.error),
@@ -252,7 +255,7 @@ def run_intervention(client, task: Task, seed: int, intervention: str, max_round
         last_gen = gen
         if gen.error:
             rows.append(_round_meta(correction_round, seed + correction_round, gen, None,
-                                    intervention_feedback_type(intervention), ""))
+                                    intervention_feedback_type(intervention), "", input_prompt=prompt))
             failed_attempt = InitialAttempt(gen, "", None, seed)
             if gen.timeout_flag:
                 return _record(client, task, failed_attempt, model_spec=model_spec, experiment_id=experiment_id,
@@ -265,7 +268,7 @@ def run_intervention(client, task: Task, seed: int, intervention: str, max_round
         code = extract_code(gen.raw_text)
         ev = evaluate(code, task)
         rows.append(_round_meta(correction_round, seed + correction_round, gen, ev,
-                                intervention_feedback_type(intervention), code))
+                                intervention_feedback_type(intervention), code, input_prompt=prompt))
         last_ev, last_code = ev, code
         if ev.L3:
             break

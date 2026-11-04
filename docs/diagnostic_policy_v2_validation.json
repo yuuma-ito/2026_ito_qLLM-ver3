@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "tests": {
+    "command": ".venv/bin/python -m pytest -q",
+    "passed": 515,
+    "warnings": 60,
+    "elapsed_seconds": 88.03,
+    "live_model_requests": 0
+  },
+  "audit_sanity": "docs/analysis/diagnostic_policy_impact_20261104/sanity_report.json",
+  "frozen_modules_unchanged_from": "ceef3e5",
+  "frozen_modules": [
+    "harness/refine.py",
+    "harness/interventions/prompts.py",
+    "harness/evaluator.py",
+    "harness/measurement_evaluator.py"
+  ],
+  "sources": {
+    "harness/diagnostic_policy.py": "9a5852d02a12f258184d5b5654772cd09f5c7fb38c6e3d218a96ac656f4f0bcd",
+    "harness/diagnostic_prompts.py": "26189cf5a1e76eff0fb747e64b80d07792338127476a471a9b0a5662adb9da5b",
+    "harness/runner.py": "af9106f5b43be022b3f4299cc7488d5637a51b086c34e4990aac137c106ac536",
+    "harness/experiment.py": "cfb136c66e6faffdb6cad83c5edf8cb444494b394a51c5008009911eeb02ece6",
+    "scripts/run_experiment.py": "6614b1e1a0b75c2c409a2b75ad8276b802b8da692d2ce9d514e7447d8a7d386b",
+    "scripts/audit_diagnostic_policy_impact.py": "22b8acb0dfbede5754a2e07e14aca17ce99dc990ad032b027718b49c6cf1a9a1",
+    "tests/test_diagnostic_policy.py": "bd9e7b5dc134d16de5a454b4b47a510c256c452dc0326cb2cd206e330a9dcf5d",
+    "docs/analysis/diagnostic_policy_impact_20261104/manifest.json": "c89bddff5292cbd55c73d33a455ef19222292239b5cca2a76327d6ed8e14b4bc"
+  },
+  "old_fixed_results_overwritten": false,
+  "new_model_requests": 0,
+  "v2_final_success_counts": "not_observed"
+}

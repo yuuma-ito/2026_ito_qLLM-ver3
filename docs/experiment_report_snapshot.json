@@ -2317,5 +2317,18 @@
     "pending_paths": 0,
     "old_fixed_results_preserved": true,
     "no_stronger_reference_checks": true
+  },
+  "diagnostic_policy_impact_20261104": {
+    "status": "verified_impact_only",
+    "source": "docs/analysis/diagnostic_policy_impact_20261104/manifest.json",
+    "diagnostic_policy_version": "diagnostic_policy_v2_structure_qubits",
+    "affected_paths": 10,
+    "affected_initial_groups": 6,
+    "minimum_future_requests": 10,
+    "maximum_future_requests": 26,
+    "new_model_requests": 0,
+    "rescoring": false,
+    "old_fixed_results_preserved": true,
+    "v2_success_counts": "not_observed"
   }
 }

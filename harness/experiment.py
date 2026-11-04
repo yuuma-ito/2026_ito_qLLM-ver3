@@ -22,6 +22,7 @@ from harness.measurement_evaluator import EvalResult, EVALUATOR_VERSION, SIMULAT
 from harness.interventions import INTERVENTIONS
 from harness.llm_clients import Generation, OLLAMA_CONNECTION_RETRY_DELAYS
 from harness.runner import InitialAttempt, RunRecord
+from harness.diagnostic_policy import DIAGNOSTIC_VERSION
 from tasks import all_tasks, get_task
 
 
@@ -177,6 +178,7 @@ def build_manifest(config: dict[str, Any], repo_root: str | Path) -> dict[str, A
     return {
         "schema_version": "2.1",
         "evaluator_version": EVALUATOR_VERSION,
+        "diagnostic_policy_version": DIAGNOSTIC_VERSION,
         "evaluation_sampling": {
             "shots": DISTRIBUTION_SHOTS,
             "seed_simulator": SIMULATOR_SEED,
@@ -217,6 +219,8 @@ def build_manifest(config: dict[str, Any], repo_root: str | Path) -> dict[str, A
         },
         "git_commit": _git_commit(repo_root),
         "prompt_fingerprints": {
+            "diagnostic_policy_py_sha256": _file_sha256(repo_root / "harness" / "diagnostic_policy.py"),
+            "diagnostic_prompts_py_sha256": _file_sha256(repo_root / "harness" / "diagnostic_prompts.py"),
             "system_txt_sha256": _file_sha256(repo_root / "prompts" / "system.txt"),
             "interventions_py_sha256": _file_sha256(repo_root / "harness" / "interventions" / "prompts.py"),
         },

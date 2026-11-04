@@ -1,0 +1,3 @@
+condition_id,paths,affected_paths,affected_initial_groups,minimum_new_requests,maximum_new_requests,historical_final_successes,historical_successes_on_affected_paths,unchanged_path_successes,possible_v2_successes_lower,possible_v2_successes_upper
+execution_feedback,1000,6,6,6,15,638,0,638,638,644
+self_debugging,1000,4,4,4,11,634,0,634,634,638

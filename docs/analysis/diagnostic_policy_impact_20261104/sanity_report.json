@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "missing": 0,
+  "duplicates": 0,
+  "unverified_consumed_prompts": 0,
+  "source_hashes_verified": true,
+  "status": "verified_impact_only",
+  "new_diagnostic_version": "diagnostic_policy_v2_structure_qubits",
+  "old_diagnostic_version": "legacy_refine_diagnose_with_measurement_ban_v1",
+  "reachable_FD_paths": 2000,
+  "reachable_FD_rounds": 4748,
+  "consumed_feedback_inputs_verified": 2748,
+  "prompt_evidence": {
+    "archived_function_and_original_values_verified_hash; not_packet_capture": 2101,
+    "captured_suffix_request": 647
+  },
+  "changed_saved_output_diagnostics": 32,
+  "diagnostic_change_reasons": {
+    "qubit_category_mismatch": 32
+  },
+  "changed_actually_consumed_prompts": 24,
+  "changed_terminal_diagnostics_without_generation_effect": 8,
+  "affected_paths": 10,
+  "affected_unique_initial_groups": 6,
+  "minimum_new_requests": 10,
+  "maximum_new_requests": 26,
+  "old_saved_suffix_rounds_not_reusable_as_v2": 26,
+  "conditions": [
+    {
+      "condition_id": "execution_feedback",
+      "paths": 1000,
+      "affected_paths": 6,
+      "affected_initial_groups": 6,
+      "minimum_new_requests": 6,
+      "maximum_new_requests": 15,
+      "historical_final_successes": 638,
+      "historical_successes_on_affected_paths": 0,
+      "unchanged_path_successes": 638,
+      "possible_v2_successes_lower": 638,
+      "possible_v2_successes_upper": 644
+    },
+    {
+      "condition_id": "self_debugging",
+      "paths": 1000,
+      "affected_paths": 4,
+      "affected_initial_groups": 4,
+      "minimum_new_requests": 4,
+      "maximum_new_requests": 11,
+      "historical_final_successes": 634,
+      "historical_successes_on_affected_paths": 0,
+      "unchanged_path_successes": 634,
+      "possible_v2_successes_lower": 634,
+      "possible_v2_successes_upper": 638
+    }
+  ],
+  "new_model_requests": 0,
+  "generated_code_executions": 0,
+  "rescoring": false,
+  "evaluator_changed": false,
+  "historical_sources_unchanged": true,
+  "old_success_counts_preserved": true,
+  "v2_final_success_counts": "not_observed",
+  "initial_B_R_P_B4_unchanged": true,
+  "runtime_or_reconstruction_failures": 0,
+  "scope": "Current measurement-corrected reachable paths only. Removed original suffixes are excluded. Changed diagnostics after the first branch are hypothetical on old outputs, not v2 trajectories."
+}

@@ -28,6 +28,7 @@ from harness.experiment import (
 )
 from harness.llm_clients import make_client
 from harness.measurement_evaluator import EVALUATOR_VERSION
+from harness.diagnostic_policy import DIAGNOSTIC_VERSION
 from harness.runner import generate_initial, run_intervention, run_one
 from scripts.sanity_check import check_results, write_sanity_report
 from scripts.analyze_interventions import write_analysis_outputs
@@ -44,6 +45,10 @@ def _check_evaluator_resume(manifest, v, existing_keys):
                 for model, task, seed in v['pair_keys'] for c in v['conditions']}
     if existing_keys and expected - existing_keys and manifest.get('evaluator_version') != EVALUATOR_VERSION:
         raise ValueError('Existing run uses a different evaluator; use --new-run through the automation wrapper or a new output_dir.')
+    if (existing_keys and expected - existing_keys
+            and any(getattr(c,'intervention',c.id) in {'execution_feedback','self_debugging'} for c in v['conditions'])
+            and manifest.get('diagnostic_policy_version') != DIAGNOSTIC_VERSION):
+        raise ValueError('Existing run uses a different diagnostic policy; preserve it and use --new-run or an archived runner.')
 
 def _find_baseline(existing_rows, experiment_id, model_spec, task_id, seed):
     for rec in existing_rows:
@@ -147,6 +152,9 @@ def _execute(config, v, repo_root, output_root, raw_path, manifest_path,
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         if manifest.get("config_hash") != config_hash(config):
             raise ValueError("Existing manifest has a different config; use a new output_dir.")
+        if not existing_keys:
+            # No saved generations: identify the policy actually used from now on.
+            manifest = build_manifest(config, repo_root)
     else:
         manifest = build_manifest(config, repo_root)
     _check_evaluator_resume(manifest, v, existing_keys)

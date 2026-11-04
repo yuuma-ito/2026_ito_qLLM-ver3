@@ -1,0 +1,9 @@
+診断修正v2の後続生成への影響調査（新規生成なし）
+評価器と合否は変更していない。旧固定集計・raw・生成履歴を保持した。
+F/Dの4748到達round・2,000経路を調べ、後続に渡った2,748要求を旧診断で照合した。
+診断差分32箇所、うち後続に渡った差分24箇所。
+最初の分岐を持つ10条件経路・6初期組で継続生成が必要となる。
+追加要求の必要範囲は最少10〜最大26。今回は0要求。
+分岐後の旧コードを修正版診断で生成された結果と扱わない。v2の成功数は未観測。
+{'condition_id': 'execution_feedback', 'paths': 1000, 'affected_paths': 6, 'affected_initial_groups': 6, 'minimum_new_requests': 6, 'maximum_new_requests': 15, 'historical_final_successes': 638, 'historical_successes_on_affected_paths': 0, 'unchanged_path_successes': 638, 'possible_v2_successes_lower': 638, 'possible_v2_successes_upper': 644}
+{'condition_id': 'self_debugging', 'paths': 1000, 'affected_paths': 4, 'affected_initial_groups': 4, 'minimum_new_requests': 4, 'maximum_new_requests': 11, 'historical_final_successes': 634, 'historical_successes_on_affected_paths': 0, 'unchanged_path_successes': 634, 'possible_v2_successes_lower': 634, 'possible_v2_successes_upper': 638}
