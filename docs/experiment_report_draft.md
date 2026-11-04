@@ -571,3 +571,12 @@ B4の1経路は旧round 1での停止が無効になり、round 2以降の生成
 
 [報告](analysis/measurement_ban_impact_20261104/report.txt)、[条件別集計](analysis/measurement_ban_impact_20261104/condition_summary.csv)、[未生成の継続](analysis/measurement_ban_impact_20261104/pending_generation.csv)、[sanity](analysis/measurement_ban_impact_20261104/sanity_report.json)を別保存した。位相・全ユニタリ等の追加条件は使わず、新規モデル要求0、未解決の実行障害0。旧固定CSV・生成履歴・成功数の記録は上書きしていない。
 <!-- measurement-ban-impact:20261104:end -->
+
+
+## 測定禁止修正版の一経路継続と最終固定（2026-11-04）
+
+上の影響調査後に承認されたB4の1経路を継続した。C7・DJ constant・seed 3のround 2で追加1要求・408 tokensを消費し，L3成功時に停止した。round 3は生成せず，未完了経路は0。原課題の回路内測定禁止のみを追加し，より強い厳格評価は主L3に含めない。
+
+修正版の最終成功はB455，P473，R551，F638，D634，B4 671（全1,000初期組）。初期失敗545組からの追加成功はR96，F183，D179，B4 216。F/D共通139，Fのみ44，Dのみ40，双方未救済322，片側84組・168履歴・404遷移。B4累計1,343追加要求・996,223 tokens。
+
+[最終固定集計](analysis/measurement_ban_corrected_20261104/README.md)・[追試設定](analysis/measurement_ban_corrected_20261104/followup_manifest.json)・[実測結果](analysis/measurement_ban_corrected_20261104/followup_public_result.json)・[独立照合](analysis/measurement_ban_followup_review_20261104.json)を保存した。旧固定集計・raw・生成履歴は上書きしていない。自動更新部と以前の固定値は元評価の記録として保持し，この修正版と区別する。後日継続した1要求を含み，全条件の初回からの新規生成実験とは位置づけない。

@@ -1,5 +1,5 @@
 {
-  "built_at_utc": "2026-10-28T12:16:50.911498+00:00",
+  "built_at_utc": "2026-11-04T12:12:00.703771+00:00",
   "title": "量子LLM支援プログラミングにおける失敗類型と介入カタログの実証研究",
   "main_slides": 13,
   "appendix_slides": 4,
@@ -31,40 +31,40 @@
       "slide": 4,
       "title": "対象は1,000初期組．出典を揃えて比較する",
       "appendix": false,
-      "source": "[3] 現行到達経路 ／ [4] B4追加対照（10/22固定）",
+      "source": "[3] 現行到達経路 ／ [4] B4追加対照（11/4修正版）",
       "duration_seconds": 60
     },
     {
       "slide": 5,
       "title": "救済率の分母は，初期失敗545組",
       "appendix": false,
-      "source": "[3] 現行到達経路：10/16固定",
+      "source": "[3] 現行到達経路：11/4修正版",
       "duration_seconds": 45
     },
     {
       "slide": 6,
       "title": "FとDは初期失敗の約3分の1を救済",
       "appendix": false,
-      "source": "[3] 現行到達経路：10/16固定",
+      "source": "[3] 現行到達経路：11/4修正版",
       "duration_seconds": 60
     },
     {
       "slide": 7,
       "title": "救済数が近くても，救済する対象は異なる",
       "appendix": false,
-      "source": "[3] 現行到達経路：10/16固定",
+      "source": "[3] 現行到達経路：11/4修正版",
       "duration_seconds": 55
     },
     {
       "slide": 8,
       "title": "初期失敗類型によって，FとDの関係が変わる",
       "appendix": false,
-      "source": "[3] 現行到達経路：10/16固定",
+      "source": "[3] 現行到達経路：11/4修正版",
       "duration_seconds": 55
     },
     {
       "slide": 9,
-      "title": "独立再生成B4では217組が追加成功した",
+      "title": "独立再生成B4では216組が追加成功した",
       "appendix": false,
       "source": "[3] R/F/D再構成値 ／ [4] B4完了集計",
       "duration_seconds": 60
@@ -80,14 +80,14 @@
       "slide": 11,
       "title": "3回目にも救済がある．停止回数も検討対象",
       "appendix": false,
-      "source": "[3] 現行到達経路：10/16固定",
+      "source": "[3] 現行到達経路：11/4修正版",
       "duration_seconds": 50
     },
     {
       "slide": 12,
       "title": "介入カタログには，適用範囲と限界を併記する",
       "appendix": false,
-      "source": "[3] 現行到達経路：10/16固定",
+      "source": "[3] 現行到達経路：11/4修正版",
       "duration_seconds": 45
     },
     {
@@ -127,13 +127,13 @@
     }
   ],
   "source_sha256": {
-    "docs/winf2026/results_snapshot_20261028.json": "8093bfd06554c7c417feec037a3bd6fdc58a8b757c4f36267d5fb6aaccef6da2",
-    "docs/winf2026/paper.tex": "f9ad910e8c886074634cae5c46306519677aa8792a7b525723dffb4f5373eaed",
-    "docs/analysis/independent_4_completed_20261022/summary.csv": "4ff68c4fb0f8d6f94bfd6c1eabe8018e14b29b97435ed028305550823b391344",
-    "docs/analysis/independent_4_completed_20261022/first_success.csv": "ec169e95e89d4fb0b6b04dad716d45b10b9ca983e935fabff5476a042a697a6c",
-    "docs/analysis/independent_4_completed_20261022/pairwise.csv": "e7a75ee9ad716f6773d7a342c2ac95f9983f877bd4493df622492c02a5e6132c",
-    "docs/analysis/independent_4_completed_20261022/source_manifest.json": "290111e0da3613e85018c47a0d1f09c30b1d8c0728727ef5d6fabbda2bca5d66",
-    "docs/analysis/reachable_rescues_20261016/core/repair_summary.csv": "84e419e1c5eefea2db337e3f14027ec3dd2ad4d21a4bed980b785630c7c24497"
+    "docs/winf2026/results_snapshot_20261104.json": "5dbc44e97415208a1f66601de2e5f31473712ac09c64f2636f5765488650efac",
+    "docs/winf2026/paper.tex": "24c5ef678780be8ea2100ce857909b56e464c6b1fe04510c0cb86b012f61a39f",
+    "docs/analysis/measurement_ban_corrected_20261104/summary.csv": "084a805a6f31979be7aae9ff338728c962aed53ae9309de62185775e9996c1eb",
+    "docs/analysis/measurement_ban_corrected_20261104/first_success.csv": "cf8871253a1f635adb8d1eba345f9cc0e7476853a09ff5407a2cbb6b0be4792b",
+    "docs/analysis/measurement_ban_corrected_20261104/pairwise.csv": "d5fdfb74c17069858df29298c1f70cccef01be67cab8e79e895d16d186879421",
+    "docs/analysis/measurement_ban_corrected_20261104/source_manifest.json": "11cab5cee61493d6439dcc99d4acb38f46837d310c259be18811c9c9705074b5",
+    "docs/analysis/measurement_ban_corrected_20261104/core/repair_summary.csv": "c1de940046e692542409f587cf6b4a338cb4ab6331a3756e68b7f8869a964ed1"
   },
   "new_generations": 0,
   "generated_code_executions": 0

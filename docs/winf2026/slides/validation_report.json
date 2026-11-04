@@ -1,5 +1,5 @@
 {
-  "validated_at_utc": "2026-10-28T12:17:27.747219+00:00",
+  "validated_at_utc": "2026-11-04T12:12:34.893287+00:00",
   "automated_checks_passed": true,
   "checks": {
     "sources_unchanged": true,
@@ -12,7 +12,9 @@
     "all_elements_inside_slide": true,
     "all_pages_16_9": true,
     "fonts_embedded": true,
-    "headline_counts_match_snapshot": true
+    "headline_counts_match_snapshot": true,
+    "FD_overlap_matches_corrected_snapshot": true,
+    "all_failure_type_cells_match_corrected_csv": true
   },
   "missing_text": [],
   "offpage_elements": [],
@@ -121,22 +123,16 @@
     }
   ],
   "artifact_sha256": {
-    "slides.pptx": "ed0d52d264d65772f930c44bdf8ae478de1a7cf319a7a4c1f80a5f49555f3771",
-    "slides.pdf": "999ea0ccda8c0bc3769902eeb1d97f3ed147605e3ab3c9d01c6cbdaac4cee3ab",
-    "speaker_notes.txt": "aa69122f459345cb322fe64d0c4452e1d3c0c8245d32f2f2fcbbe432e1422da6",
-    "source_manifest.json": "385a8cf6f0209b5fcd18ee6bd21e282c5d65f3239d45c099c524114f1e419542",
-    "build.py": "b8b018b9bb2f927ab20d4ba573c6e833d93ec0e9c97ea84f37dd6f86c45def62",
-    "validate.py": "e6ab173cc2b19060de6fed7ee9b74804b9ba8848598a73a494b64bd7d2fc4de3"
+    "slides.pptx": "9958a28dae45f4b1d734e4ad6a8989555d44b1767e6c4ed1ec6e40466422c092",
+    "slides.pdf": "afa678a32cc49e78aa521761cb547c4d47874ea13b0f3e5e50ecbe8636add13a",
+    "speaker_notes.txt": "952f43f25fb3537ba9d780bf3ecaaf4b2416d47064b13b7d8375164bb053a8f8",
+    "source_manifest.json": "e35ffbb51debb58c10a6a03d788a329e2ed6708717e13c79838336d4577ecd3b",
+    "build.py": "3252c458203cf266e8aa02fcdef5feb50bcb5f559ce76e62251035e48fa144d2",
+    "validate.py": "b4124ef873de6f5b6addf5cbb79cb66a8a69928c31235f17efab91680634afbd"
   },
   "visual_review": {
-    "status": "reviewed_changed_pages",
-    "reviewed_at_utc": "2026-10-28T12:19:14.143721+00:00",
-    "pages_reviewed": [
-      5,
-      12,
-      16
-    ],
-    "method": "用語修正を含む3ページの再出力画像を確認。他ページは自動検証で全PowerPointテキストのPDF収録・はみ出しなしを確認。"
+    "status": "pending",
+    "preview_directory": ".cache/winf_slides_20261104"
   },
   "scope": "資料作成のみ。新規生成・生成コード実行0。"
 }

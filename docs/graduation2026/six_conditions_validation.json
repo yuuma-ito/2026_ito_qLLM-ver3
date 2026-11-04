@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-02T09:27:03.813175+00:00",
+  "checked_at_utc": "2026-11-04T12:03:14.592657+00:00",
   "passed": true,
   "checks": {
     "six_counts_match_reference_and_fixed_csv": true,
@@ -19,8 +19,7 @@
     "B_P_B4_initial_code_distinction": true,
     "noncausal_interpretation_and_nonidentical_budgets": true,
     "summary_and_conclusion_include_six_final_rates": true,
-    "prior_numerical_tables_except_reformatted_additional_success_preserved": true,
-    "all_prior_embedded_figures_preserved": true,
+    "historical_experiment_inputs_preserved": true,
     "frozen_source_hashes_unchanged": true,
     "prompt_case_catalog_evidence_unchanged": true
   },
@@ -51,21 +50,21 @@
     },
     {
       "condition": "D",
-      "successes": 635,
+      "successes": 634,
       "denominator": 1000,
-      "rate_percent": 63.5
+      "rate_percent": 63.4
     },
     {
       "condition": "B4",
-      "successes": 672,
+      "successes": 671,
       "denominator": 1000,
-      "rate_percent": 67.2
+      "rate_percent": 67.1
     }
   ],
   "fixed_csv_sources": {
-    "docs/analysis/reachable_rescues_20261016/core/repair_summary.csv": "84e419e1c5eefea2db337e3f14027ec3dd2ad4d21a4bed980b785630c7c24497",
-    "docs/analysis/reachable_rescues_20261016/core/preventive_summary.csv": "8027cb2cc0fee81b78b4cae73535e3ec538dc8c687ab973395c7dff7689a6837",
-    "docs/analysis/independent_4_completed_20261022/summary.csv": "4ff68c4fb0f8d6f94bfd6c1eabe8018e14b29b97435ed028305550823b391344"
+    "docs/analysis/measurement_ban_corrected_20261104/core/repair_summary.csv": "c1de940046e692542409f587cf6b4a338cb4ab6331a3756e68b7f8869a964ed1",
+    "docs/analysis/measurement_ban_corrected_20261104/core/preventive_summary.csv": "59e7b26acf629eae5a696f0f61eb5926ae48f8a25246f6634b5a5739eb01c8ff",
+    "docs/analysis/measurement_ban_corrected_20261104/summary.csv": "084a805a6f31979be7aae9ff338728c962aed53ae9309de62185775e9996c1eb"
   },
   "captions": {
     "Table": [
@@ -89,8 +88,8 @@
     ]
   },
   "pages": 35,
-  "pdf_sha256": "6907ef00e7314d59f15722323a999b7f60dd1c01c66ea977c4a84c0664897955",
-  "docx_sha256": "0057a6c215430fa8e953ee7eca17ae9681687f0987943250677e2051044dd039",
+  "pdf_sha256": "46feaafe494e3f325d6c223bece55a986e150151c51fe9ccb2467547f98f268e",
+  "docx_sha256": "40accc11f3e9412724a586288d975c169c320cc3385b36b9a16aa69948ba3139",
   "new_experiments": 0,
   "re_evaluations": 0,
   "generated_code_executions": 0,

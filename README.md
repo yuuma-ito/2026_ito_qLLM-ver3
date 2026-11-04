@@ -3,28 +3,29 @@
 <!-- reachable-rescues:20261016 -->
 ## 卒論の現行結果と再現資料
 
-測定禁止条件だけを追加した[2026-11-04の影響調査](docs/analysis/measurement_ban_impact_20261104/report.txt)は完了した。旧停止コードの再採点はD 635→634、B4 672→670。B4の1経路は未生成の継続が残るため、新プロトコルの最終成功数は未確定である。以下の表は元のv4固定結果として保持し、新規生成・部分追試は行っていない。
+共通systemの回路内測定禁止の評価漏れを修正し，[2026-11-04修正版の固定集計](docs/analysis/measurement_ban_corrected_20261104/README.md)へ更新した。原課題より強い参照適合性検査は主L3に追加していない。
 
-2026-11-04の[整合性点検と修正記録](docs/analysis/consistency_check_20261104/resolution.txt)では主要集計の一致を確認し、[評価の射程と別仕様の参照適合性検査](docs/reference_conformance.txt)、[B4実装・固定出典の再現手順](docs/independent_4_reproduction.txt)を整理した。現行v4の測定・変換seedは42固定であり、固定分析READMEに残る「未固定の測定乱数」は[訂正](docs/analysis/reachable_rescues_20261016/CORRECTIONS_20261104.txt)を参照する。既存成功数を新仕様で再採点した結果ではない。
+旧L3成功1,561コード×タスクの確認で測定違反4組を検出した。現在の経路に影響するのはDの1経路・B4の2経路。後続生成が必要だったB4の1経路だけを承認後に継続し，round 2の追加1要求・408 tokensで成功時停止した。未完了経路は0。旧固定集計と生成履歴は保持し，修正版を別保存している。
 
-卒論の主要結果は、評価器修正後の[2026-10-16固定の救済経路分析](docs/analysis/reachable_rescues_20261016/README.md)と、[2026-10-22固定のB4追加実験](docs/analysis/independent_4_completed_20261022/README.md)です。共有初期1,000組のうち初期成功455組、初期失敗545組を対象とします。
+| 条件 | 最終L3成功 / 1,000 | 初期失敗545組からの追加成功 |
+| --- | ---: | ---: |
+| B（初回のみ） | 455 | 0 |
+| P（注意事項付き独立生成） | 473 | 124（独立1回生成） |
+| R（自己見直し） | 551 | 96（17.6%） |
+| F（実行結果提示） | 638 | 183（33.6%） |
+| D（自己デバッグ） | 634 | 179（32.8%） |
+| B4（独立再生成） | 671 | 216（39.6%） |
 
-| 条件 | 初期失敗545組からの追加成功 | 固定出典 |
-| --- | --- | --- |
-| R（自己修正） | 96組（17.6%） | [10月16日固定出典](docs/presentation_sources/20261016T_reachable_rescues/README.md) |
-| F（実行フィードバック） | 183組（33.6%） | 同上 |
-| D（自己デバッグ） | 180組（33.0%） | 同上 |
-| B4（独立再生成） | 217組（39.8%） | [10月22日固定CSV](docs/analysis/independent_4_completed_20261022/summary.csv) |
+F/D共通139組，Fのみ44組，Dのみ40組，双方未救済322組。片側84組の168履歴・404遷移を静的集計した。B4の累計追加消費は1,343要求・996,223 tokens，追加成功1組あたり4,612.1 tokensである。共有初期を除き，未成功例への消費を含む。
 
-R/F/Dは検証済み到達経路の再構成値です。B4は共有初期コードから追加最大3回の独立再生成を行う対照条件で、追加1,342要求・995,815 tokensを消費しました。追加tokensは共有初期生成を除き、未成功例への消費を含みます。最大生成回数が同じでも入力情報・tokens・seed規則・実行時期などは異なり、因果効果や一般的な優劣は確定しません。
+最大生成回数が同じでも入力情報・tokens・seed規則・実行時期は異なる。後日継続した1要求を含み，全条件を初回から新生成した実験ではない。因果効果や一般的優劣は断定しない。
 
-- [卒論本文・検証記録の案内](docs/graduation2026/README.md)
-- B4の[保存設定](docs/analysis/independent_4_completed_20261022/runner_experiment_config.json)・[sanity report](docs/analysis/independent_4_completed_20261022/sanity_report.json)・[出典とSHA-256](docs/analysis/independent_4_completed_20261022/source_manifest.json)
-- 卒論の[介入カタログCSV](docs/graduation2026/intervention_catalog.csv)：import失敗・回路構築失敗・出力不一致の3行×9列。分類キー・表示名・初期失敗数と、F/D/B4の追加成功数・率を収録しています。介入の自動選択方策の有効性は未検証です。
-- [固定ファイルの照合記録（2026-11-02）](docs/analysis/public_evidence_check_20261102.json)：B4の成功数・要求数・tokens、固定出典の9ファイルのhash、カタログの全行の件数・率を照合。ローカルファイル間の整合性確認であり、GitHubの現在の公開状態や採点の独立監査を示すものではありません。
+- [卒論本文と検証記録](docs/graduation2026/README.md)，[授業報告用の2本のスライド](docs/course_reports2026/README.md)
+- [修正版集計CSV](docs/analysis/measurement_ban_corrected_20261104/summary.csv)，[追試設定](docs/analysis/measurement_ban_corrected_20261104/followup_manifest.json)，[sanity](docs/analysis/measurement_ban_corrected_20261104/sanity_report.json)，[出典hash](docs/analysis/measurement_ban_corrected_20261104/manifest.json)
+- [介入カタログ](docs/graduation2026/intervention_catalog.csv)：3類型の件数・観測率。自動選択の有効性は未検証。
+- [旧v4の10月16日集計](docs/analysis/reachable_rescues_20261016/README.md)，[旧B4の10月22日集計](docs/analysis/independent_4_completed_20261022/README.md)，[測定禁止の影響調査](docs/analysis/measurement_ban_impact_20261104/report.txt)は各時点の証拠として保持する。旧D180/B4 217救済と現在のD179/B4 216救済を混同しない。
 
-**下記の10月13〜14日版にあるF191・D191は旧評価の保存結果です。卒論の現行値F183・D180とは評価時点・到達履歴の扱いが異なるため、現行結果の引用には上記の固定出典を使ってください。**
-
+下記の10月13〜14日版も当時の保存結果であり，現行値の引用には上記の修正版固定出典を使用する。
 
 ## フォルダ構成
 

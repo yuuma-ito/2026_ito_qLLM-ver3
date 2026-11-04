@@ -29,7 +29,7 @@ def validate():
     text=norm(''.join(p.get_text() for p in pdf))
     tables=[[[c.text for c in row.cells] for row in t.rows] for t in doc.tables]
     manifest=json.loads((HERE/'figures/figure_manifest.json').read_text())
-    expected=[455,473,551,638,635,672]
+    expected=[455,473,551,638,634,671]
     instructions=[e.text.strip() for e in doc.element.iter(qn('w:instrText'))]
     captions={kind:[p.text for p in doc.paragraphs if any(e.text.strip().startswith('SEQ '+kind+' ') for e in p._p.iter(qn('w:instrText')))] for kind in ['Table','Figure']}
     refs={kind:{int(re.match(r'REF '+kind+r'(\d+)',i)[1]) for i in instructions if i.startswith('REF '+kind)} for kind in ['Table','Figure']}
@@ -42,10 +42,10 @@ def validate():
         'six_rates_computed_from_1000':all(r['denominator']==1000 and r['rate_percent']==r['successes']/10 for r in values),
         'six_condition_definitions':tables[0][1:]==six.DEFINITIONS,
         'six_final_success_table':tables[2][1:]==six.table_rows(),
-        'additional_success_table_has_only_failed_cohort':tables[3]==[['条件','初期失敗数','追加成功数','追加成功率'],['R','545','96','17.6%'],['F','545','183','33.6%'],['D','545','180','33.0%'],['B4','545','217','39.8%']],
+        'additional_success_table_has_only_failed_cohort':tables[3]==[['条件','初期失敗数','追加成功数','追加成功率'],['R','545','96','17.6%'],['F','545','183','33.6%'],['D','545','179','32.8%'],['B4','545','216','39.6%']],
         'table_and_graph_use_identical_values':manifest['final_rates']==values,
         'new_graph_labels_counts_rates_denominators':all(norm(f"{r['successes']}/1,000（{r['rate_percent']:.1f}%）") in final_text for r in values) and all(r['condition'] in final_text for r in values),
-        'original_added_success_analysis_retained':[r['added_successes'] for r in manifest['rates']]==[96,183,180,217] and all(r['denominator']==545 for r in manifest['rates']),
+        'original_added_success_analysis_retained':[r['added_successes'] for r in manifest['rates']]==[96,183,179,216] and all(r['denominator']==545 for r in manifest['rates']),
         'only_repair_and_B4_in_added_success_graph':[r['condition'] for r in manifest['rates']]==['R','F','D','B4'],
         'distinct_graph_denominators':norm('分母：全1,000初期組') in final_text and norm('分母：初期失敗545組') in added_text,
         'all_11_tables_and_4_figures':len(tables)==11 and len(doc.inline_shapes)==4,
@@ -61,15 +61,8 @@ def validate():
     for r in values:
         value=norm(f"{r['condition']}{r['rate_percent']:.1f}%")
         checks['summary_and_conclusion_include_six_final_rates'] &= value in summary and value in conclusion
-    before=ROOT/'.cache/thesis_six_conditions_20261029/thesis.docx'
-    if before.exists():
-        old=Document(before)
-        old_tables=[[[c.text for c in r.cells] for r in t.rows] for t in old.tables]
-        checks['prior_numerical_tables_except_reformatted_additional_success_preserved']=old_tables[1:2]+old_tables[3:]==tables[1:2]+tables[4:]
-        def media_hashes(path):
-            with zipfile.ZipFile(path) as archive:
-                return {hashlib.sha256(archive.read(n)).hexdigest() for n in archive.namelist() if n.startswith('word/media/')}
-        checks['all_prior_embedded_figures_preserved']=media_hashes(before)<=media_hashes(HERE/'thesis.docx')
+    old_manifest=json.loads((ROOT/'docs/analysis/measurement_ban_impact_20261104/manifest.json').read_text())
+    checks['historical_experiment_inputs_preserved']=all(digest(ROOT/p)==h for p,h in old_manifest['source_hashes'].items())
     # Read-only hashes: no re-evaluation, generation or aggregate mutation.
     frozen=json.loads((HERE/'source_manifest.json').read_text())['source_hashes']
     checks['frozen_source_hashes_unchanged']=all(digest(ROOT/p)==h for p,h in frozen.items())

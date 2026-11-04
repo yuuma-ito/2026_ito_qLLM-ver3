@@ -23,11 +23,11 @@ from pptx.enum.shapes import MSO_SHAPE
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
-SOURCE = ROOT / 'docs/presentation_sources/20261016T_reachable_rescues'
-ANALYSIS = ROOT / 'docs/analysis/reachable_rescues_20261016'
+SOURCE = ROOT / 'docs/analysis/measurement_ban_corrected_20261104'
+ANALYSIS = ROOT / 'docs/analysis/measurement_ban_corrected_20261104'
 SNAP = json.loads((SOURCE/'results_snapshot.json').read_text())
 ROWS = list(csv.DictReader((ANALYSIS/'core/repair_summary.csv').open()))
-B4_SOURCE = ROOT / 'docs/analysis/independent_4_completed_20261022'
+B4_SOURCE = ROOT / 'docs/analysis/measurement_ban_corrected_20261104'
 B4_ROWS = list(csv.DictReader((B4_SOURCE/'summary.csv').open()))
 
 def b4_rows(grouping, value='all'):
@@ -39,22 +39,17 @@ TITLE = '量子LLM支援プログラミングにおける失敗類型と介入�
 TITLE_EN = 'An Empirical Study of Failure Types and an Intervention Catalog in Quantum LLM-Assisted Programming'
 FONT = 'IPAexMincho'
 GOTHIC = 'IPAexGothic'
-FIXED_SOURCE_COMMIT = 'b4c0ba79b308e7b12ab88413714746a5620424b5'
+FIXED_SOURCE_COMMIT = '72c03f843f0ca91b1d6dc06dedfb274d022316a7'
 FIXED_SOURCE_URL = 'https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/' + FIXED_SOURCE_COMMIT
-FIXED_SOURCE_LABEL = '公開固定版（b4c0ba7）'
+FIXED_SOURCE_LABEL = '公開固定版（72c03f8）'
 REFS = [
  'A. Madaan et al.：Self-Refine: Iterative Refinement with Self-Feedback，arXiv:2303.17651v2（2023）．https://arxiv.org/abs/2303.17651v2',
  'X. Chen，M. Lin，N. Schärli，D. Zhou：Teaching Large Language Models to Self-Debug，arXiv:2304.05128v2（2023）．https://arxiv.org/abs/2304.05128v2',
- ('伊藤悠真：現行救済経路の固定発表出典（2026-10-16版）．\n'
-  '固定出典：docs/presentation_sources/20261016T_reachable_rescues/\n'
-  '参照ファイル：results_snapshot.json，source_manifest.json および対応CSV．\n'
-  'B4追加実験（2026-10-22固定）．\n'
-  '固定出典：docs/analysis/independent_4_completed_20261022/\n'
-  '参照資料：保存設定・manifest・sanity・集計CSV．\n'
-  '公開リポジトリ：https://github.com/yuuma-ito/2026_ito_qLLM-ver3\n'
-  '両出典を収録する固定commit：b4c0ba79b308e7b12ab88413714746a5620424b5\n'
-  '固定版：https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/b4c0ba79b308e7b12ab88413714746a5620424b5\n'
-  '上記固定版内の各パスを参照（2026年10月30日確認）．'),
+ ('伊藤悠真：測定禁止修正版の固定集計（2026-11-04）．\n'
+  '固定出典：docs/analysis/measurement_ban_corrected_20261104/．\n'
+  '共通systemの回路内測定禁止を補い，B4の1経路を追加1要求で継続した．\n'
+  '旧固定集計・生成履歴は保持した．参照ファイル：manifest，sanity，集計CSV．\n'
+  '固定版：' + FIXED_SOURCE_URL + '（2026年11月4日固定）．'),
 ]
 
 def row(group, value, condition):
@@ -181,14 +176,14 @@ def table(d,caption,headers,rows,size=10.5,widths=None):
     setfont(end.add_run(''),2)
     return t
 
-JA_SUMMARY='''LLMによる量子回路コード生成では，APIの誤用や回路構築の失敗に加え，実行できても期待した出力を返さない失敗が生じる．本研究では，Qiskitを用いた量子回路コード生成において，初期失敗に対する修正介入と独立再生成を比較し，追加成功数，成功対象および計算コストを分析した．自己見直しR，実行結果提示F，説明・原因分析を促す自己デバッグDと，独立再生成B4を，同じ初期コードを起点として比較した．生成前注意事項Pは独立生成として扱った．全1,000初期組の最終L3成功率はB45.5%，P47.3%，R55.1%，F63.8%，D63.5%，B4 67.2%であった．
-対象は5モデル，10タスク，seed 0〜19の1,000初期組，5,000条件記録である．検証済み保存prefixと必要な部分追試suffixを組み合わせた到達可能な経路を採用した．成功は指定入力の出力一致と所定の構造要件を含むL3で判定した．初期失敗545組の救済はR96組（17.6%），F183組（33.6%），D180組（33.0%）であった．FとDの共通救済は140組，Fのみ43組，Dのみ40組であり，救済数が近くても対象は異なった．Fのみ・Dのみの救済計83組について，両条件166履歴・398修正遷移を静的に確認した．
-独立再生成B4では同じ初期コードを保持し，初期失敗に対して最大3回，前回コードや診断を与えず再生成した．B4は217/545組（39.8%）で成功し，最終成功は672/1,000組（67.2%）であった．追加1,342要求，995,815 tokens，追加tokens／追加成功は4,589.0であった．最大生成回数が同じでも入力情報・seed規則・実行時期が異なり，因果効果は断定しない．
-未救済例への消費を含む追加tokens／救済はR18,852.6，F9,333.8，D10,976.6であった．3回目の修正はFで28組，Dで33組を追加救済した．これらは保存記録と部分追試を組み合わせた計算値であり，全件新実験の実測コストではない．結果は今回のモデル・タスクと指定入力での評価に限られ，介入の一般的優劣，因果効果，統計的有意差を主張しない．今後は介入選択・停止方策を事前固定し，別seed・タスクで検証する必要がある．'''
+JA_SUMMARY='''LLMによる量子回路コード生成では，APIの誤用や回路構築の失敗に加え，実行できても期待した出力を返さない失敗が生じる．本研究では，Qiskitを用いた量子回路コード生成において，初期失敗に対する修正介入と独立再生成を比較し，追加成功数，成功対象および計算コストを分析した．自己見直しR，実行結果提示F，説明・原因分析を促す自己デバッグDと，独立再生成B4を，同じ初期コードを起点として比較した．生成前注意事項Pは独立生成として扱った．全1,000初期組の最終L3成功率はB45.5%，P47.3%，R55.1%，F63.8%，D63.4%，B4 67.1%であった．
+対象は5モデル，10タスク，seed 0〜19の1,000初期組，5,000条件記録である．検証済み保存prefixと必要な部分追試suffixを組み合わせた到達可能な経路を採用した．成功は指定出力・構造要件・共通systemの回路内測定禁止を含むL3で判定した．初期失敗545組の救済はR96組（17.6%），F183組（33.6%），D179組（32.8%）であった．FとDの共通救済は139組，Fのみ44組，Dのみ40組であり，救済数が近くても対象は異なった．Fのみ・Dのみの救済計84組について，両条件168履歴・404修正遷移を静的に確認した．
+独立再生成B4では同じ初期コードを保持し，初期失敗に対して最大3回，前回コードや診断を与えず再生成した．B4は216/545組（39.6%）で成功し，最終成功は671/1,000組（67.1%）であった．追加1,343要求，996,223 tokens，追加tokens／追加成功は4,612.1であった．最大生成回数が同じでも入力情報・seed規則・実行時期が異なり，因果効果は断定しない．
+未救済例への消費を含む追加tokens／救済はR18,852.6，F9,333.8，D11,037.9であった．3回目の修正はFで28組，Dで33組を追加救済した．これらは保存記録と部分追試を組み合わせた計算値であり，全件新実験の実測コストではない．結果は今回のモデル・タスクと指定入力での評価に限られ，介入の一般的優劣，因果効果，統計的有意差を主張しない．今後は介入選択・停止方策を事前固定し，別seed・タスクで検証する必要がある．'''
 EN_SUMMARY='''Large language models can produce Qiskit code that fails during import or circuit construction, or produces an unexpected output despite executing successfully. This study examines how often repair interventions rescue initial failures and whether different interventions rescue the same cases. We compare self-review (R), execution feedback (F), and self-debugging with explanation and cause analysis (D), starting from shared initial code. Preventive instructions (P) are treated as independent generation.
-The analysis covers 1,000 initial groups and 5,000 condition records across five models, ten tasks, and seeds 0–19. The primary paths combine verified saved prefixes with necessary suffixes from partial reruns. Success requires the expected output for the specified input and predefined structural constraints. Of 545 initial failures, R rescued 96 (17.6%), F rescued 183 (33.6%), and D rescued 180 (33.0%). F and D shared 140 rescued cases; 43 were rescued only by F and 40 only by D. All 166 condition histories and 398 repair transitions for these 83 discordant cases were inspected statically.
-An additional independent-regeneration control (B4) retained the shared initial code and generated up to three new candidates from the task specification without previous code or diagnostic feedback. B4 succeeded on 217 of 545 initial failures (39.8%), yielding 672 successes out of 1,000 groups (67.2%). It used 1,342 additional requests and 995,815 tokens, or 4,589.0 tokens per added success. Equal maximum generation counts do not equalize input information, seed rules, or execution periods.
-Additional input and output tokens per rescue, including consumption on unresolved cases, were 18,852.6 for R, 9,333.8 for F, and 10,976.6 for D. The third repair added 28 rescues for F and 33 for D. These costs describe reconstructed paths, rather than a fully regenerated experiment. The findings are limited to the selected models, tasks, inputs, and evaluation policy. They do not establish general superiority, causal effects, or statistical significance. Future work should predefine intervention selection and stopping policies and evaluate them on separate seeds and tasks.'''
+The analysis covers 1,000 initial groups and 5,000 condition records across five models, ten tasks, and seeds 0–19. The primary paths combine verified saved prefixes with necessary suffixes from partial reruns. Success requires the specified output, predefined structural constraints, and the original system prohibition of in-circuit measurements. The missing measurement check was added, and one affected B4 path was continued with one request (408 tokens). Stronger reference-conformance tests are excluded. Of 545 initial failures, R rescued 96 (17.6%), F rescued 183 (33.6%), and D rescued 179 (32.8%). F and D shared 139 rescued cases; 44 were rescued only by F and 40 only by D. All 168 condition histories and 404 repair transitions for these 84 discordant cases were inspected statically.
+An additional independent-regeneration control (B4) retained the shared initial code and generated up to three new candidates from the task specification without previous code or diagnostic feedback. B4 succeeded on 216 of 545 initial failures (39.6%), yielding 671 successes out of 1,000 groups (67.1%). It used 1,343 additional requests and 996,223 tokens, or 4,612.1 tokens per added success. Equal maximum generation counts do not equalize input information, seed rules, or execution periods.
+Additional input and output tokens per rescue, including consumption on unresolved cases, were 18,852.6 for R, 9,333.8 for F, and 11,037.9 for D. The third repair added 28 rescues for F and 33 for D. These costs describe reconstructed paths, rather than a fully regenerated experiment. The findings are limited to the selected models, tasks, inputs, and evaluation policy. They do not establish general superiority, causal effects, or statistical significance. Future work should predefine intervention selection and stopping policies and evaluate them on separate seeds and tasks.'''
 
 # Each chapter has substantive prose and tables; no invented experiments or results.
 CHAPTERS=[
@@ -202,9 +197,9 @@ CHAPTERS=[
 'RQ1（追加成功）　修正介入R/F/Dと独立再生成B4では，同じ初期失敗のうち，どれだけの事例が追加の生成によってL3に到達するか．',
 'RQ2（救済対象）　救済数が近い介入は，同じ初期失敗事例を救済するか．',
 'RQ3（追加計算コストと修正回数）　未救済例も含む追加計算コストと修正回数は，救済数とどのように対応するか．',
-'本研究の貢献は，共有初期コードを用いた修正介入と独立再生成の追加成功率の比較，初期失敗類型・モデル・タスク別の分母を伴う分析，FとDの片側救済全83組の履歴整理，および追加修正コストと3回目の寄与の記述である．介入の最適な選択方策を既に実証したとは主張しない．']),
+'本研究の貢献は，共有初期コードを用いた修正介入と独立再生成の追加成功率の比較，初期失敗類型・モデル・タスク別の分母を伴う分析，FとDの片側救済全84組の履歴整理，および追加修正コストと3回目の寄与の記述である．介入の最適な選択方策を既に実証したとは主張しない．']),
 ('論文の構成と対象範囲',[
-'第2章で関連研究と本研究の位置づけを述べ，第3章で介入と指標を定義する．第4章では評価・記録の実装を説明し，第5章で設定と出典を整理する．第6章で結果，第7章で考察と限界，第8章で結論と今後の課題を述べる．本研究の分析には，保存済みの実験結果と必要な部分追試を用いた．B/R/F/D/Pは2026-10-16版，B4は2026-10-22固定の追加実験結果 [3] に基づく．'])]),
+'第2章で関連研究と本研究の位置づけを述べ，第3章で介入と指標を定義する．第4章では評価・記録の実装を説明し，第5章で設定と出典を整理する．第6章で結果，第7章で考察と限界，第8章で結論と今後の課題を述べる．本研究の分析には，保存済みの実験結果と必要な部分追試を用いた．B/R/F/D/Pは2026-11-04修正版，B4は2026-11-04修正版の追加実験結果 [3] に基づく．'])]),
 ('関連研究と本研究の位置づけ',[
 ('自己フィードバックによる修正',[
 'Self-Refine [1] は，同じLLMによる生成，フィードバック，修正の反復を扱う．本研究のRは，前回コードと課題仕様を与えて自己点検を求める条件であり，外部評価の診断内容を与えない．自己点検だけで救済できる範囲を確認する比較条件として用いる．',
@@ -241,7 +236,7 @@ CHAPTERS=[
 '部分追試は293ケースで，部分追試で生成した後半履歴は647ラウンドである．分岐後に到達できない旧保存suffixを現在の経路に流用しない．初期生成から全件を新評価で生成し直した実験とは区別する．現行の到達roundは9,249であり，5,000条件記録とは集計単位が異なる．']),
 ('集計の整合性と静的履歴分析',[
 '固定集計では全5,000条件の対応，欠落・重複・予定外記録，共有初期の一致，成功時停止，層別分母の合計，出典と到達コードのhashを検査した．固定sanity reportは成功しており，欠落・重複・予定外記録・共有初期不一致は0である．本稿の表は公開CSVから取得し，旧値を転記して混在させない．',
-'片側救済83組については両条件166履歴，398修正遷移をコード文字列として静的確認した．import/API，回路構築・インターフェース，量子ゲート等のテキスト，測定・出力取得を複数該当可で注記した．生成コードを実行しない分析であり，変更の意味や因果的寄与は別の検証を要する．'])]),
+'片側救済84組については両条件168履歴，404修正遷移をコード文字列として静的確認した．import/API，回路構築・インターフェース，量子ゲート等のテキスト，測定・出力取得を複数該当可で注記した．生成コードを実行しない分析であり，変更の意味や因果的寄与は別の検証を要する．'])]),
 ('実験設定と出典',[
 ('対象モデルと課題',[
 '対象はQ4，G4，Q9，C7，G3の5モデルである．正式なモデルタグは表5.1に示す．タグ中の数値を厳密なパラメータ数とみなさず，モデル識別子として扱う．各モデル200初期組であり，10タスクとseed 0〜19を含む．',
@@ -249,27 +244,27 @@ CHAPTERS=[
 ('生成条件と元実験の区別',[
 'temperatureは0.7，1要求の生成上限は1,024 tokens，最大修正回数は3回である．保存設定ではreasoning_effortはnone，timeout_secは600，parallel_requestsは1である．実際に生成された長さは可変であり，上限の同一性は消費量の同一性を意味しない．',
 '元実験は，3モデルseed 0〜9の1,500条件記録，5モデルseed 10〜19の2,500条件記録，残り2モデルseed 0〜9の1,000条件記録に分かれる．schemaや診断文処理の差を保持したうえで，初期組と条件を対応づける．元実験IDと保存設定の参照先は付録Aに示す．',
-'旧120件は2モデル，seed 0〜2，2条件，L2終了の既報であり，現行のL3による5,000条件記録へ合算しない．旧評価，保存コードの再採点，部分追試を三つの独立した主結果として並べない．R/F/D/PおよびBの主集計には2026年10月16日版の固定スナップショットを用い，B4については2026年10月22日版の追加実験結果を用いる [3]．']),
+'旧120件は2モデル，seed 0〜2，2条件，L2終了の既報であり，現行のL3による5,000条件記録へ合算しない．旧評価，保存コードの再採点，部分追試を三つの独立した主結果として並べない．主集計には元の到達履歴とB4追加実験を測定禁止条件で確認し，B4の必要な1経路を継続した2026年11月4日の固定スナップショットを用いる [3]．']),
 ('追加コストと修正回数の集計方針',[
 '追加修正コストは共有初期生成を除き，失敗した修正への消費を含めた入力＋出力tokensの合計である．tokens／救済は総追加tokensを救済組数で割る．要求時間は保存されたelapsed_secの合計であり，評価時間や全工程の所要時間ではない．',
 '保存履歴の前半の記録値と，部分追試による後半の実測値を分けて保持する．合計は再構成した経路に対する計算値である．金銭単価を測定していないため，金銭費用の削減とは呼ばない．修正上限別の集計も同じ最大3修正の観測履歴を区切ったものであり，上限ごとに独立実験した結果ではない．'])]),
 ('結果',[
 ('全体の救済率',[
-'1,000初期組中，初期成功455組，初期失敗545組であった．表6.1に条件別の救済を示す．Rは96組（17.6%），Fは183組（33.6%），Dは180組（33.0%）を救済した．FとDは本対象の初期失敗のおよそ3分の1を救済し，Rを上回った．全体率は545組を分母とする合算値であり，モデル率の単純平均ではない．',
-'R/F/Dの最終成功は551，638，635組で，初期成功455組の無修正保持を含む．FとDの最終成功差は3組だが，これは同じ対象を救済したことを意味しない．集計単位と分母をそろえ，件数と率を併記して解釈する．']),
+'1,000初期組中，初期成功455組，初期失敗545組であった．表6.1に条件別の救済を示す．Rは96組（17.6%），Fは183組（33.6%），Dは179組（32.8%）を救済した．FとDは本対象の初期失敗のおよそ3分の1を救済し，Rを上回った．全体率は545組を分母とする合算値であり，モデル率の単純平均ではない．',
+'R/F/Dの最終成功は551，638，634組で，初期成功455組の無修正保持を含む．FとDの最終成功差は4組だが，これは同じ対象を救済したことを意味しない．集計単位と分母をそろえ，件数と率を併記して解釈する．']),
 ('モデル別・初期失敗類型別の結果',[
-'表6.2のモデル別集計では，G4でF48/62組，D38/62組に対し，Q4ではF78/162組，D90/162組と大小が入れ替わる．C7は両条件23/65組，G3は両条件1/190組であった．モデルごとの初期失敗数は異なるため，救済数だけを比較しない．G3の190失敗組も全体分母に含める．',
-'表6.3ではimport失敗に対してF58/271組（21.4%），D72/271組（26.6%），回路構築失敗に対してF76/126組（60.3%），D68/126組（54.0%）であった．出力不一致はF24/65組，D18/65組である．初期分類とモデル・タスクの関連があるため，この表だけから最適な介入選択を決めない．少数分母の率は参考値として扱う．']),
+'表6.2のモデル別集計では，G4でF48/62組，D38/62組に対し，Q4ではF78/162組，D89/162組と大小が入れ替わる．C7は両条件23/65組，G3は両条件1/190組であった．モデルごとの初期失敗数は異なるため，救済数だけを比較しない．G3の190失敗組も全体分母に含める．',
+'表6.3ではimport失敗に対してF58/271組（21.4%），D72/271組（26.6%），回路構築失敗に対してF76/126組（60.3%），D68/126組（54.0%）であった．出力不一致はF24/65組，D17/65組である．初期分類とモデル・タスクの関連があるため，この表だけから最適な介入選択を決めない．少数分母の率は参考値として扱う．']),
 ('タスク・難度別の結果',[
 '表6.4に全10タスクの分母と件数を示す．BellはF10/34組・D12/34組，GHZは12/35組・13/35組，QFTは34/67組・34/67組，QPEは13/94組・11/94組であった．同じ救済数でも分母が異なる場合がある．また同じタスク内にモデルとseedの違いが含まれる．',
 'ハーネス難度別では易がF22/69組・D25/69組，中が79/225組・79/225組，難が82/251組・76/251組であった．難度間の差にはタスク構成の違いが含まれる．モデル×タスクや元実験別・seedブロック別の分母は固定CSVに保持しており，集約値だけを根拠に一般化しない．']),
 ('FとDの救済対象の重なり',[
-'表6.5のとおり，FとDの共通救済は140組，Fのみ43組，Dのみ40組，双方未救済322組であった．片側だけで救済された組は合計83組である．少なくとも一方が救済した223/545組（40.9%）は，両条件の結果を見て作った集合である．実行前の選択方策の成功率として扱わない．',
-'全83組の両履歴を確認したところ，初期import失敗はFのみ8組・Dのみ22組，回路構築失敗は19組・11組であった．救済側の履歴でimport/API関係の変更がFのみ28/83組・Dのみ34/83組，回路構築・インターフェース関係が24/83組・32/83組，量子ゲート等のテキスト変更が38/83組・32/83組，測定・出力関係が11/83組・16/83組に認められた．重複を許す全83組に対する注記である．',
+'表6.5のとおり，FとDの共通救済は139組，Fのみ44組，Dのみ40組，双方未救済322組であった．片側だけで救済された組は合計84組である．少なくとも一方が救済した223/545組（40.9%）は，両条件の結果を見て作った集合である．実行前の選択方策の成功率として扱わない．',
+'全84組の両履歴を確認したところ，初期import失敗はFのみ8組・Dのみ22組，回路構築失敗は19組・11組であった．救済側の履歴でimport/API関係の変更がFのみ29/84組・Dのみ34/84組，回路構築・インターフェース関係が25/84組・32/84組，量子ゲート等のテキスト変更が39/84組・32/84組，測定・出力関係が12/84組・16/84組に認められた．重複を許す全84組に対する注記である．',
 '静的変更は失敗側にも現れ得る．同じ遷移で複数箇所が変わるため，特定の変更を成功原因と断定しない．全例を除外なく記録し，該当なしや最後まで失敗した履歴もCSVに含めた．']),
 ('追加消費と3回目の修正',[
-'表6.6の追加tokens／救済はR18,852.6，F9,333.8，D10,976.6であった．総追加tokensはR1,809,845，F1,708,086，D1,975,782である．そのうち最終的な未救済例への消費はR1,618,684，F1,374,240，D1,605,388 tokensを占める．成功例だけに消費が発生するわけではない．',
-'round別救済はRが57，20，19組，Fが112，43，28組，Dが108，39，33組であった．表6.7に3回目の分母と消費を示す．Fは2回後未救済390組から28組（7.2%），Dは398組から33組（8.3%）を追加救済した．2回で区切ると，3回までに救済できたうちF15.3%，D18.3%を失う．',
+'表6.6の追加tokens／救済はR18,852.6，F9,333.8，D11,037.9であった．総追加tokensはR1,809,845，F1,708,086，D1,975,782である．そのうち最終的な未救済例への消費はR1,618,684，F1,374,240，D1,610,227 tokensを占める．成功例だけに消費が発生するわけではない．',
+'round別救済はRが57，20，19組，Fが112，43，28組，Dが108，39，32組であった．表6.7に3回目の分母と消費を示す．Fは2回後未救済390組から28組（7.2%），Dは398組から32組（8.0%）を追加救済した．2回で区切ると，3回までに救済できたうちF15.3%，D17.9%を失う．',
 '3回目の消費はF491,676，D588,970 tokensであり，最後まで失敗した例への消費も含む．救済を失う割合と追加消費を併記することで，対象範囲で停止方策を検討する材料になる．一般的に2回か3回のどちらが最適かは，この結果だけでは決められない．']),
 ('Pの独立生成としての比較',[
 'PはBの初期失敗に対応する成功124/545組（22.8%）と，初期成功に対応する失敗106/455組（23.3%）を生じ，最終成功は473/1,000組であった．Bとの差18組には改善と悪化の双方が含まれる．R/F/Dと異なり，同じ初期コードの修正効果を表す指標ではない．',
@@ -277,7 +272,7 @@ CHAPTERS=[
 ('考察と限界',[
 ('介入で何が変わったか',[
 '本対象では，実行結果を使うFとDが，外部診断を与えないRより多くの初期失敗を救済した．これは，課題仕様だけでなく実行に基づく診断を使う条件が有用だったという観測である．ただしFとDにはプロンプト構成や出力消費の違いもあり，情報の各要素の寄与を分離した実験ではない．',
-'FとDの全体差3組に対し片側救済は83組であった．全体率の近さは，救済する対象の同一性を意味しない．G4とQ4で大小が入れ替わり，import失敗と回路構築失敗でも傾向が異なる．介入を選ぶには，全体率に加え，対象の失敗構成と適用範囲を確認する必要がある．']),
+'FとDの全体差4組に対し片側救済は84組であった．全体率の近さは，救済する対象の同一性を意味しない．G4とQ4で大小が入れ替わり，import失敗と回路構築失敗でも傾向が異なる．介入を選ぶには，全体率に加え，対象の失敗構成と適用範囲を確認する必要がある．']),
 ('介入カタログへ向けた解釈',[
 '初期失敗類型別の結果は，介入カタログの候補を作る根拠になる．例えばimport失敗と回路構築失敗ではF/Dの観測された救済率が異なる．しかし，同じ類型でもモデルやタスクの構成が異なり，類型だけを入力にした選択規則の有効性は未検証である．',
 'F/Dの和集合223組は事後的に得られる上限的な参照集合である．実行時に正解の介入を事前に選べるわけではない．両方を実行する方策を検討する場合も，追加消費や停止条件を含めた独立の評価が必要になる．']),
@@ -286,11 +281,11 @@ CHAPTERS=[
 '現行経路は検証済み保存prefixと必要な新suffixの組合せである．停止やフィードバックの影響を受ける部分は追試しているが，全件の新生成とは異なる．古い要求ログが完全には残らない出典もあり，負荷・待機・再送の影響を完全には分離できない．コストはこの再構成経路の記録に限った計算値である．']),
 ('評価範囲・一般化・静的分析の限界',[
 'L3は指定入力の出力と所定の構造要件に限定される．全入力の正しさ，すべての自然言語指示，等価なアルゴリズム実装を保証するものではない．有限shots・指定入力による評価範囲の制約，生成長上限による出力制約，モデルdigest・量子化・サーバ負荷の影響も考慮する必要がある．',
-'片側救済83組を全件確認しても，静的差分だけで変更の意味的寄与は特定できない．ゲート名の増減は量子論理の訂正の証拠にはならず，複数同時変更がある．さらに，今回の5モデルと10タスクから，モデルの一般的優劣や介入の普遍的優位を断定しない．本研究では因果効果や統計的有意差を主張しない．'])]),
+'片側救済84組を全件確認しても，静的差分だけで変更の意味的寄与は特定できない．ゲート名の増減は量子論理の訂正の証拠にはならず，複数同時変更がある．さらに，今回の5モデルと10タスクから，モデルの一般的優劣や介入の普遍的優位を断定しない．本研究では因果効果や統計的有意差を主張しない．'])]),
 ('おわりに',[
 ('研究成果',[
-'本研究では，LLMが生成したQiskit量子回路コードの初期失敗を，修正介入がどれだけ，どの対象で救済するかを分析した．1,000初期組のうち失敗545組に対し，R96組，F183組，D180組を救済した．今回の対象ではFとDがRより多くを救済した．',
-'FとDの救済数は近かったが，共通140組，Fのみ43組，Dのみ40組であり，片側救済83組を認めた．全83組の166履歴と398遷移を静的に整理した．追加消費は未救済例も含め，3回目の追加救済と停止回数を減らした際の損失を明示した．']),
+'本研究では，LLMが生成したQiskit量子回路コードの初期失敗を，修正介入がどれだけ，どの対象で救済するかを分析した．1,000初期組のうち失敗545組に対し，R96組，F183組，D179組を救済した．今回の対象ではFとDがRより多くを救済した．',
+'FとDの救済数は近かったが，共通139組，Fのみ44組，Dのみ40組であり，片側救済84組を認めた．全84組の168履歴と404遷移を静的に整理した．追加消費は未救済例も含め，3回目の追加救済と停止回数を減らした際の損失を明示した．']),
 ('今後の課題',[
 '第一に，介入の選び方と停止条件を事前固定し，別seed・タスクで検証する．その際，事後的に最も良い結果を選ぶ評価と区別し，追加要求数と消費を含めて報告する必要がある．第二に，静的変更の意味を人手で確認し，複数同時変更の寄与を分ける検証方法を設計する．',
 '第三に，測定乱数，生成長の上限，モデルdigestや実行負荷への感度を調べる．L3を拡張する場合は，過去の成功時停止とフィードバックへの影響を監査する．同じ保存設定と出典を保持し，必要な追試を明示的に計画する．これらは今後の検証課題である．']),
@@ -302,13 +297,13 @@ CHAPTERS=[
 # B4 is a separate completed experiment, sharing the initial cohort only.
 CHAPTERS[5][1].append(('独立再生成B4との比較',[
 'B4実験 independent_4_full_20261020T185811381595Z は2026年10月21日に全1,000組を完了した．欠落・重複・予定外記録はいずれも0で，sanity検証は成功した．追加roundでは未定義変数による実行時エラーが2件あり，いずれも生成コード内のNameErrorであり，API接続障害ではない．',
-'B4は初期失敗545組中217組（39.8%）で成功し，最終成功は672/1,000組（67.2%）であった．表6.8，表6.9，表6.10に全体・モデル・初期失敗類型別の比較を示す．R96組（17.6%），F183組（33.6%），D180組（33.0%）に対し，B4の成功数はFより34組，Dより37組多かった．この観測により，修正条件と単回生成だけの比較から介入自体の効果を論じることはできない．',
-'B4とFの共通成功は131組，B4のみ86組，Fのみ52組，双方未成功276組であった．B4とDでは共通120組，B4のみ97組，Dのみ60組，双方未成功268組であった．独立再生成が多く成功しても，修正介入だけが成功する対象も残る．事後的な和集合を事前の選択成功率とは扱わない．',
-'B4の追加要求は1,342回，追加tokensは995,815，追加tokens／追加成功は4,589.0であった．共有初期は一度だけ数え，追加消費から除外し，最後まで未成功の例への消費を含めた．R/F/Dは過去の保存prefixと必要なsuffixの再構成値であり，B4との要求時間・tokens差を同時期の同一入力条件の実測費用差とは解釈しない．']))
+'B4は初期失敗545組中216組（39.6%）で成功し，最終成功は671/1,000組（67.1%）であった．表6.8，表6.9，表6.10に全体・モデル・初期失敗類型別の比較を示す．R96組（17.6%），F183組（33.6%），D179組（32.8%）に対し，B4の成功数はFより33組，Dより37組多かった．この観測により，修正条件と単回生成だけの比較から介入自体の効果を論じることはできない．',
+'B4とFの共通成功は130組，B4のみ86組，Fのみ53組，双方未成功276組であった．B4とDでは共通118組，B4のみ98組，Dのみ61組，双方未成功268組であった．独立再生成が多く成功しても，修正介入だけが成功する対象も残る．事後的な和集合を事前の選択成功率とは扱わない．',
+'B4の追加要求は1,343回，追加tokensは996,223，追加tokens／追加成功は4,612.1であった．共有初期は一度だけ数え，追加消費から除外し，最後まで未成功の例への消費を含めた．R/F/Dは過去の保存prefixと必要なsuffixの再構成値であり，B4との要求時間・tokens差を同時期の同一入力条件の実測費用差とは解釈しない．']))
 CHAPTERS[6][1].insert(0,('再生成対照を含む解釈',[
-'本対象ではB4の初期失敗からの成功率39.8%がF33.6%，D33.0%を上回った．したがって，実行結果を与える修正が独立再生成より常に有用であるとは結論づけられない．一方でFのみ52組，Dのみ60組があり，再生成だけで全介入の成功を包含しない．介入カタログには独立再生成，対象分母，入力情報，追加消費も記載する．',
+'本対象ではB4の初期失敗からの成功率39.6%がF33.6%，D32.8%を上回った．したがって，実行結果を与える修正が独立再生成より常に有用であるとは結論づけられない．一方でFのみ53組，Dのみ61組があり，再生成だけで全介入の成功を包含しない．介入カタログには独立再生成，対象分母，入力情報，追加消費も記載する．',
 'B4は初回込み最大4回という生成機会の上限を合わせた比較である．成功時停止による実要求数，入力tokens，専用seed規則，実行時期，保存・追試経路の違いが残る．診断情報の因果効果や統計的有意差をこの集計から認定しない．次は同時期・同一評価設定で方策を事前固定し，別seed・タスクで比較する必要がある．']))
-CHAPTERS[7][1][0][1].append('独立再生成B4は同じ初期失敗545組中217組（39.8%）で成功し，最終成功は672組となった．F/Dのみが成功する組も残り，独立再生成を含む選択・停止方策の検証を今後の課題とする．')
+CHAPTERS[7][1][0][1].append('独立再生成B4は同じ初期失敗545組中216組（39.6%）で成功し，最終成功は671組となった．F/Dのみが成功する組も残り，独立再生成を含む選択・停止方策の検証を今後の課題とする．')
 
 
 # Expand thesis prose without changing the frozen experimental results.
@@ -322,7 +317,7 @@ enrich_thesis(CHAPTERS)
 from thesis_language import polish, DEFINITIONS
 JA_SUMMARY = polish(JA_SUMMARY)
 JA_SUMMARY = JA_SUMMARY.replace('対象は5モデル，10タスク，seed 0〜19の1,000初期組，5,000条件記録である．', '対象は5モデル，10タスク，seed 0〜19である．モデル・タスク・seedの組合せを初期組と呼び，B/R/F/D/Pの1,000初期組・5,000条件記録を対象とし，B4の追加実験を別に集計する．')
-JA_SUMMARY = JA_SUMMARY.replace('成功は指定入力の出力一致と所定の構造要件を含むL3で判定した．', '本研究における最終評価水準（L3）は，指定入力の出力一致と所定の構造要件を含む成功基準である．')
+JA_SUMMARY = JA_SUMMARY.replace('成功は指定出力・構造要件・共通systemの回路内測定禁止を含むL3で判定した．', '本研究における最終評価水準（L3）は，指定出力・構造要件・共通systemの回路内測定禁止を含む成功基準である．')
 JA_SUMMARY = JA_SUMMARY.replace('組み合わせた到達履歴を採用した．', '組み合わせ，現行評価器の停止・修正規則に従って到達可能な生成履歴（以下，到達履歴）を採用した．')
 CHAPTERS[0][1][0][1].append(DEFINITIONS)
 for _chapter_index, (_chapter_title, _sections) in enumerate(CHAPTERS):
@@ -361,7 +356,7 @@ def thesis_tables(d, chapter):
                 rs={r['condition']:r for r in b4_rows(grouping,value)}
                 data.append([label,rs['B4']['initial_failures']]+[rs[c]['successes_from_initial_failure'] for c in ['R','F','D','B4']])
             table(d,f'表6.{number}　{title}の追加成功数',['対象','分母','R','F','D','B4'],data,widths=widths)
-        table(d,'表6.5　F/Dの救済対象（初期失敗545組）',['共通','Fのみ','Dのみ','双方未救済'],[[140,43,40,322]])
+        table(d,'表6.5　F/Dの救済対象（初期失敗545組）',['共通','Fのみ','Dのみ','双方未救済'],[[SNAP['primary']['fd_overlap'][k] for k in ['both','F_only','D_only','neither']]])
         table(d,'表6.6　共有初期を除く追加消費（未成功への消費を含む）',['条件','追加要求','追加tokens','tokens／追加成功'],[
             [c,overall[c]['additional_requests'],f"{int(overall[c]['additional_tokens']):,}",f"{float(overall[c]['tokens_per_added_success']):,.1f}"] for c in ['R','F','D','B4']],widths=[18,30,54,58])
         third={r['condition_id']:r for r in SNAP['third_round']}
@@ -379,7 +374,7 @@ THESIS_TASKS=[('Bell','T1_Bell'),('GHZ','T2_GHZ'),('DJ constant','T3a_DJ_constan
 
 def legacy_thesis():
     d=setup();
-    for text,size in [('卒　業　論　文',22),('',10), (TITLE,20),('',10),('2023TC011　伊藤 悠真',14),('指導教員　横山 哲郎',14),('',10),('提出年月：要確認',12),('南山大学 理工学部電子情報工学科',14),('草稿｜2026-10-16版固定集計に基づく',10)]:
+    for text,size in [('卒　業　論　文',22),('',10), (TITLE,20),('',10),('2023TC011　伊藤 悠真',14),('指導教員　横山 哲郎',14),('',10),('提出年月：要確認',12),('南山大学 理工学部電子情報工学科',14),('草稿｜2026-11-04測定禁止修正版集計に基づく',10)]:
         p=para(d,text,size,center=True);p.paragraph_format.space_after=Pt(18)
     d.add_page_break()
     for text,size in [('Graduation Thesis',22),('',10),(TITLE_EN,19),('',10),('2023TC011　伊藤 悠真',14),('Supervisor: 横山 哲郎',14),('Submission month and English name forms: to be confirmed',10),('',10),('Department of Electronics and Communication Technology',12),('Faculty of Science and Technology',12),('Nanzan University',14)]:
@@ -440,10 +435,10 @@ def legacy_thesis():
         para(d,f"保存schema：{s['schema_version']}．ハーネスcommit：{s['git_commit']}．モデルdigestとプロンプト関数hashは元manifestに保持．",10,indent=False)
     heading(d,'A.4　固定集計と公開範囲',2)
     for text in ['固定集計時点（UTC）：'+SNAP['captured_at_utc'],
-       '主出典：docs/presentation_sources/20261016T_reachable_rescues/results_snapshot.json',
-       'B4追加実験：independent_4_full_20261020T185811381595Z．固定出典：docs/analysis/independent_4_completed_20261022/．runner_experiment_config.json，runner_manifest.json，summary.csv，pairwise.csv，sanity_report.json，source_manifest.jsonを参照．',
-       '全分母：docs/analysis/reachable_rescues_20261016/core/repair_summary.csv',
-       '追加計算コストの保存先：docs/analysis/reachable_rescues_20261016/',
+       '主出典：docs/analysis/measurement_ban_corrected_20261104/results_snapshot.json',
+       'B4追加実験：independent_4_full_20261020T185811381595Z．固定出典：docs/analysis/measurement_ban_corrected_20261104/．runner_experiment_config.json，runner_manifest.json，summary.csv，pairwise.csv，sanity_report.json，source_manifest.jsonを参照．',
+       '全分母：docs/analysis/measurement_ban_corrected_20261104/core/repair_summary.csv',
+       '追加計算コストの保存先：docs/analysis/measurement_ban_corrected_20261104/',
        '参照ファイル：cost_by_cap_and_stratum.csv，third_round_summary.csv',
        '片側救済全履歴：discordant_cases.csvとdiscordant_transitions.csv',
        '検証：core/sanity_report.json，sanity_report.json，validation_report.json',
@@ -477,13 +472,13 @@ def slides():
 
 
 def source_record():
-    sources=list(B4_SOURCE.glob('*.json'))+list(B4_SOURCE.glob('*.csv'))+[SOURCE/'results_snapshot.json',SOURCE/'validation_report.json',ANALYSIS/'manifest.json',ANALYSIS/'core/repair_summary.csv',ANALYSIS/'core/sanity_report.json',ANALYSIS/'sanity_report.json',ANALYSIS/'core/fd_overlap_summary.csv',ROOT/'harness/evaluator.py',ROOT/'harness/readout.py',ROOT/'tasks/__init__.py']
+    sources=list(B4_SOURCE.glob('*.json'))+list(B4_SOURCE.glob('*.csv'))+[SOURCE/'results_snapshot.json',SOURCE/'validation_report.json',ANALYSIS/'manifest.json',ANALYSIS/'core/repair_summary.csv',ANALYSIS/'core/sanity_report.json',ANALYSIS/'sanity_report.json',ANALYSIS/'core/fd_overlap_summary.csv',ROOT/'harness/evaluator.py',ROOT/'harness/measurement_evaluator.py',ROOT/'harness/measurement_isolation.py',ROOT/'harness/measurement_worker.py',ROOT/'harness/readout.py',ROOT/'tasks/__init__.py']
     from six_conditions import SOURCES as SIX_SOURCES
     sources += SIX_SOURCES
     sources += [HERE/n for n in ['intervention_catalog.csv','case_studies.json','experiment_prompts.json','enrichment_manifest.json']]
     data={'created_at_utc':datetime.now(timezone.utc).isoformat(),'status':'draft','source_snapshot_at_utc':SNAP['captured_at_utc'],
       'source_hashes':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},
-      'B4_experiment_id':'independent_4_full_20261020T185811381595Z','B4_snapshot':'docs/analysis/independent_4_completed_20261022','new_experiments':0,'new_model_requests':0,'generated_code_executions':0,
+      'B4_experiment_id':'independent_4_full_20261020T185811381595Z','B4_snapshot':'docs/analysis/measurement_ban_corrected_20261104','underlying_followup_model_requests':1,'underlying_followup_tokens':408,'scope':'資料生成処理の新規モデル要求0。集計に承認済みの後日継続1要求を含む。','new_experiments':0,'new_model_requests':0,'generated_code_executions':0,
       'literature_checked':[r['url'] for r in json.loads((HERE/'bibliography_sources.json').read_text())['references'] if 'url' in r],
       'thesis_expanded_on':'2026-10-28','thesis_expansion_scope':'固定集計を維持した本文の大幅拡充。新規生成・生成コード実行なし。',
       'pending':['提出年月','英語の著者・教員・所属の正式表記','指導教員による内容と書式の確認','剽窃チェック・類似レポート（審査用と最終版）','Microsoft Word・PowerPoint上での最終レイアウト確認・6分リハーサル']}

@@ -1,0 +1,211 @@
+{
+  "validated_at_utc": "2026-11-04T12:07:43.892255+00:00",
+  "passed": false,
+  "layout_and_content_passed": true,
+  "font_request": {
+    "word_specification_passed": true,
+    "pdf_font_requirement_met": false,
+    "japanese_heading": "ＭＳ Ｐゴシック",
+    "japanese_body": "ＭＳ Ｐ明朝",
+    "latin_and_digits": "Times New Roman",
+    "limitation": "指定フォントがサーバーに存在しないため，PDFは代替フォントによる確認版．指定フォントを備えた環境で再生成と再検証が必要．"
+  },
+  "pdfs": [
+    {
+      "path": "docs/midterm2026/paper.pdf",
+      "sha256": "d5f849077fe39a44dd0a000f8a3b94c7650bace059afb9549ba3e42159d4bc14",
+      "pages": [
+        {
+          "page": 1,
+          "size_mm": [
+            210.0,
+            297.0
+          ],
+          "font_sizes_pt": [
+            11.0
+          ],
+          "page_number": 1,
+          "content_within_margins": true,
+          "printed_ink_bounds_mm": [
+            18.109,
+            21.637,
+            191.794,
+            271.639
+          ],
+          "both_columns_have_text": true
+        },
+        {
+          "page": 2,
+          "size_mm": [
+            210.0,
+            297.0
+          ],
+          "font_sizes_pt": [
+            11.0
+          ],
+          "page_number": 2,
+          "content_within_margins": true,
+          "printed_ink_bounds_mm": [
+            18.109,
+            18.227,
+            191.676,
+            243.299
+          ],
+          "both_columns_have_text": true
+        }
+      ],
+      "actual_pdf_fonts": [
+        "IPAPGothic",
+        "IPAPMincho",
+        "NimbusRoman-Bold",
+        "NimbusRoman-Regular"
+      ],
+      "requested_font_families_present": false,
+      "complete_paragraphs_and_references": true,
+      "tables_match_source_csv": true,
+      "all_fonts_embedded": true,
+      "black_text_only": true
+    },
+    {
+      "path": ".cache/measurement_ban_materials/abstract/word/paper.pdf",
+      "sha256": "9b18ac75e6d90271031e241ffc82feb3c7ad78bb578e3acfc0ec3f83b31332b3",
+      "pages": [
+        {
+          "page": 1,
+          "size_mm": [
+            210.01,
+            297.0
+          ],
+          "font_sizes_pt": [
+            11.0
+          ],
+          "page_number": 1,
+          "content_within_margins": true,
+          "printed_ink_bounds_mm": [
+            18.109,
+            18.697,
+            191.911,
+            271.992
+          ],
+          "both_columns_have_text": true
+        },
+        {
+          "page": 2,
+          "size_mm": [
+            210.01,
+            297.0
+          ],
+          "font_sizes_pt": [
+            11.0
+          ],
+          "page_number": 2,
+          "content_within_margins": true,
+          "printed_ink_bounds_mm": [
+            17.992,
+            18.932,
+            191.676,
+            261.644
+          ],
+          "both_columns_have_text": true
+        }
+      ],
+      "actual_pdf_fonts": [
+        "IPAGothic",
+        "NimbusRoman-Bold",
+        "NimbusRoman-Regular",
+        "UMingCN"
+      ],
+      "requested_font_families_present": false,
+      "complete_paragraphs_and_references": true,
+      "tables_match_source_csv": true,
+      "all_fonts_embedded": true,
+      "black_text_only": true
+    }
+  ],
+  "numeric_checks": {
+    "overall_rescues": [
+      96,
+      183,
+      179
+    ],
+    "initial_failure_denominator": 545,
+    "model_and_error_table_totals_reconciled": true,
+    "fd_overlap_reconciled": true,
+    "all_84_cases_and_404_transitions_checked": true,
+    "cost_and_third_round_checked": true,
+    "independent_generation_P_checked": true,
+    "B4_initial_failure_successes": 216,
+    "B4_final_successes": 671,
+    "B4_additional_requests": 1343,
+    "B4_additional_tokens": 996223
+  },
+  "word_structure_checked": true,
+  "margins_mm": {
+    "left": 18,
+    "right": 18,
+    "top": 18,
+    "bottom": 24
+  },
+  "body_and_tables_pt": 11,
+  "latex_no_overfull_or_missing_characters": true,
+  "seven_sections_and_all_citations_checked": true,
+  "evaluation_definition_review": {
+    "L0": "構文・importを含むコード読込みと必須関数への適合",
+    "L1": "回路構築と出力評価処理の実行",
+    "L2": "指定入力での出力距離が0.05未満",
+    "primary_L3": "L0 and L1 and L2 and structure_match．全入力の同値性を保証しない．",
+    "structural_instruction_count_excludes": [
+      "measure",
+      "barrier"
+    ],
+    "shots": 8192,
+    "simulator_seed": 42,
+    "transpiler_seed": 42,
+    "definition_source": "harness/evaluator.pyおよび固定追試のpartial_evaluation_profile.jsonを照合",
+    "old_120_records_included_in_primary": false
+  },
+  "source_and_artifact_sha256": {
+    "docs/analysis/measurement_ban_corrected_20261104/followup_public_result.json": "7f03a897e9f542714a84b9a934dfcbe8af136449bcaf853266990d31df5246f4",
+    "docs/analysis/measurement_ban_corrected_20261104/source_manifest.json": "11cab5cee61493d6439dcc99d4acb38f46837d310c259be18811c9c9705074b5",
+    "docs/analysis/measurement_ban_corrected_20261104/manifest.json": "11cab5cee61493d6439dcc99d4acb38f46837d310c259be18811c9c9705074b5",
+    "docs/analysis/measurement_ban_corrected_20261104/sanity_report.json": "260df539b25c3ff2cfbd40f3ad4b3b69b088d09077b093356668dce0cde31344",
+    "docs/analysis/measurement_ban_corrected_20261104/runner_experiment_config.json": "a23720130eb78dbdf8ba5afc4df94a2140895a9b2df53abab0e95202913db965",
+    "docs/analysis/measurement_ban_corrected_20261104/validation_report.json": "260df539b25c3ff2cfbd40f3ad4b3b69b088d09077b093356668dce0cde31344",
+    "docs/analysis/measurement_ban_corrected_20261104/runner_manifest.json": "ab291d563bfd6802fd701c79a27be551209fd8f37f197563ee9f54dd01918501",
+    "docs/analysis/measurement_ban_corrected_20261104/followup_manifest.json": "0a8d98e1b1456db633bd53333ff863df7c2b15e1ad60ab4a3bb721a0929362ee",
+    "docs/analysis/measurement_ban_corrected_20261104/results_snapshot.json": "ceb412ab801b350c52a12b0106818d92ef4dce7529ce516fea984b7188dcc68c",
+    "docs/analysis/measurement_ban_corrected_20261104/experiment_prompts.json": "b4c619a2009bfe84e9daa37d387fa8b9d8664b56880093259bffce0f4ba61787",
+    "docs/analysis/measurement_ban_corrected_20261104/case_studies.json": "4ff23031b9c58f3b054d4db7ffd903b75661074301277026f0f68a65177b8dcb",
+    "docs/analysis/measurement_ban_corrected_20261104/discordant_transitions.csv": "db3e959ec2c2f3851f1abe3e55f0b14552011e6ddd2acd3f3cd9f7cddb184ca3",
+    "docs/analysis/measurement_ban_corrected_20261104/reachable_rounds.csv": "946014a1208a91f47e0e5f3b73d62e436dec3547ec5c98062847b1b44034cb1f",
+    "docs/analysis/measurement_ban_corrected_20261104/pairwise.csv": "d5fdfb74c17069858df29298c1f70cccef01be67cab8e79e895d16d186879421",
+    "docs/analysis/measurement_ban_corrected_20261104/discordant_summary.csv": "1ec5fe851f82be5bdc9574cf4bf1eb4c2b822a959f744df4ab2c569e0441ecb0",
+    "docs/analysis/measurement_ban_corrected_20261104/discordant_cases.csv": "d36663d16e62f9a00a6018537855ad0db2dc460e059a12878b75dd78a40c57ff",
+    "docs/analysis/measurement_ban_corrected_20261104/repetitions.csv": "a5fda974d9384969e3e6c525db92c41e05f0fd1cf04d5d3b06573d8fd6a16224",
+    "docs/analysis/measurement_ban_corrected_20261104/overlap.csv": "6e3b76aeef6e2221a1f368a64d02ed93954c57eff4a3565e4ae3e49ed535040b",
+    "docs/analysis/measurement_ban_corrected_20261104/first_success.csv": "cf8871253a1f635adb8d1eba345f9cc0e7476853a09ff5407a2cbb6b0be4792b",
+    "docs/analysis/measurement_ban_corrected_20261104/third_round_summary.csv": "9dcb7dd4ebfa41b8809ba8194cac25e7669c916080c33aecb34ca8f0dd0f5b51",
+    "docs/analysis/measurement_ban_corrected_20261104/intervention_catalog.csv": "0a8b3d38addd73121a396a6e2fc3f8dc3fc7ff050ff60053f755066069b1fae5",
+    "docs/analysis/measurement_ban_corrected_20261104/summary.csv": "084a805a6f31979be7aae9ff338728c962aed53ae9309de62185775e9996c1eb",
+    "docs/analysis/measurement_ban_corrected_20261104/cost_by_cap_and_stratum.csv": "5efae00f2b1f6de521a92903b04aecc28cc02e4bceab3dce78e7cc38b497218c",
+    "docs/analysis/measurement_ban_corrected_20261104/core/repair_summary.csv": "c1de940046e692542409f587cf6b4a338cb4ab6331a3756e68b7f8869a964ed1",
+    "docs/midterm2026/build_abstract.py": "4c42e596be6af5308efa3a49da5ba0a06e45924dd7ef3b8dcaaa68768c608dda",
+    "docs/midterm2026/validate_abstract.py": "dde0822d503e8a7a94c54ff662e82ab3c219d44435f3eea9d79361dc6ba79f82",
+    "docs/midterm2026/paper.tex": "3b7014b450894ef97066d0b1dabe6b3eb9c2deeebafb49f50b59f75d8bd67f02",
+    "docs/midterm2026/paper.docx": "feb42195d59c18009343f4bbf2516541bc74ce2b26cffd486dc54a95a09033a0",
+    "docs/midterm2026/bibliography_sources.json": "cada1124948e94ae6c70eaeb15c082640424b735c1c05b029a36b340844901a2",
+    "harness/evaluator.py": "f90faf3d4ac034e057b07752e7972fe4d2bd4353a6d91a077294a01343e25bf7",
+    "harness/readout.py": "ec7b447997600e0391abf9744a4fbeff0eed69d8b43b0567d519a45cdcff1a4e",
+    "tasks/__init__.py": "9f3a509f452d08e9b63e75701bcddfe27db3c86fa941c3636e6c4bc656f7efe9",
+    "docs/analysis/reevaluation_followup_20261015/partial_evaluation_profile.json": "d0c874fe67b6999323fd76580ae913a41022928eeb5188d095ae305f4c2eaeea"
+  },
+  "visual_review": {
+    "status": "pending",
+    "scope": "both pages of LaTeX and Word-export PDFs"
+  },
+  "word_layout_note": "LibreOfficeで検証．Microsoft Wordで編集後は再ページ割付を確認する．",
+  "experiment_actions": {
+    "new_generations": 0,
+    "generated_code_executions": 0
+  }
+}

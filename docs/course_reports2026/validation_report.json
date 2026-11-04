@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-02T11:24:30.887789+00:00",
+  "checked_at_utc": "2026-11-04T12:12:31.407599+00:00",
   "passed": true,
   "checks": {
     "original_files_unchanged": true,
@@ -25,8 +25,8 @@
       "data_rows": 11,
       "figures": 1,
       "references": 9,
-      "PDF_links": 10,
-      "reused_paragraphs": 162,
+      "PDF_links": 9,
+      "reused_paragraphs": 165,
       "additional_paragraphs": 5,
       "checks": {
         "independent_cover_identity": true,
@@ -55,8 +55,8 @@
       "missing_paragraphs": [],
       "missing_additions": [],
       "overflow": [],
-      "pdf_sha256": "3d36bbf82cd954e1b05f2822edaaf77f3c95b9e4ea72a7e785d719247256fc81",
-      "docx_sha256": "1c49d83f970f7d882a45c83944d4f95ee09ddbdeb3fa3004f19ccbbabbf4c4ec"
+      "pdf_sha256": "bbaf5571c17874e36f476eb358ccc34ba1743429dd4ebf34a8417976df1815a5",
+      "docx_sha256": "de48ada27f23f7eedef3457b72ad98aef810cf72555239bca446c9d9b869f516"
     },
     "progress": {
       "pdf": "卒業研究_進捗成果報告.pdf",
@@ -74,8 +74,8 @@
       "data_rows": 43,
       "figures": 3,
       "references": 3,
-      "PDF_links": 4,
-      "reused_paragraphs": 96,
+      "PDF_links": 3,
+      "reused_paragraphs": 100,
       "additional_paragraphs": 7,
       "checks": {
         "independent_cover_identity": true,
@@ -105,8 +105,8 @@
       "missing_paragraphs": [],
       "missing_additions": [],
       "overflow": [],
-      "pdf_sha256": "e56717332ccf6d369fcddfcf8888c9dfab106066ba9dd1e84dc37ce060747720",
-      "docx_sha256": "2a071c7003dc0db8c1b751736de3e07334c8cca2f35398190694646bea702622"
+      "pdf_sha256": "9ac8309e1d09b141dce3616445a6aa2ccf6a4f781ecd2c2ff432b642c5112144",
+      "docx_sha256": "b5b02e8c3e9d98d1ca0ab0c3e45cd2649563524506e80418ea8d14604103c6d3"
     }
   },
   "new_experiments": 0,

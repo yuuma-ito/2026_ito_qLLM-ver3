@@ -17,7 +17,7 @@ def validate():
     pptx = Presentation(HERE / 'slides.pptx')
     pdf = pymupdf.open(HERE / 'slides.pdf')
     thesis = pymupdf.open(HERE / 'thesis.pdf')
-    manifest = json.loads((HERE / 'slides_source_manifest_20261102.json').read_text())
+    manifest = json.loads((HERE / 'slides_source_manifest_20261104.json').read_text())
     digest = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
     norm = lambda t: re.sub(r'\s+', '', t)
     slide_text = lambda n: '\n'.join(s.text for s in pptx.slides[n-1].shapes if s.has_text_frame)
@@ -58,6 +58,8 @@ def validate():
         at(7,2,2.95+i*.67)==f"{int(row(c)['additional_tokens']):,}"
         and at(7,4.8,2.95+i*.67)==f"{float(row(c)['tokens_per_added_success']):,.1f}"
         for i,c in enumerate(('R','F','D','B4')))
+    third=next(r for r in csv.DictReader((B4/'third_round_summary.csv').open()) if r['scope']=='pooled' and r['grouping']=='overall' and r['condition_id']=='self_debugging')
+    checks['third_round_D_count_matches_corrected_csv']=f"D：{third['additional_rescues']}組" in slide_text(7)
     models=['qwen3.5:4b','gemma4:e4b-it-qat','qwen3.5:9b','qwen2.5-coder:7b','gemma3:4b']
     checks['all_model_success_cells_match_fixed_csv']=all(
         at(9,x,2.9+i*.52)==row(c,'model','ollama:'+model)['successes_from_initial_failure']
@@ -72,8 +74,8 @@ def validate():
         'https://arxiv.org/abs/2310.01798v2','https://arxiv.org/abs/2406.14712',
         'https://quantum.cloud.ibm.com/docs/en/guides/construct-circuits',
         'https://qiskit.github.io/qiskit-aer/', FIXED,
-        FIXED+'/docs/presentation_sources/20261016T_reachable_rescues',
-        FIXED+'/docs/analysis/independent_4_completed_20261022'}
+        FIXED+'/docs/analysis/measurement_ban_corrected_20261104',
+        FIXED+'/docs/analysis/measurement_ban_corrected_20261104'}
     overflow=[]
     for i,p in enumerate(pdf,1):
         for b in p.get_text('dict')['blocks']:
@@ -89,7 +91,7 @@ def validate():
             ['thesis.pdf','slides.pptx','slides.pdf','speaker_notes.txt','graduation_slides.py','convert_slides.py','validate_slides.py']},
             'scope':'最新卒論PDFを出典にしたスライドの値・注記・PDF収録・リンク・境界・ノートの照合。独立査読と実際の発表時間の検証ではない。',
             'new_model_requests':0,'generated_code_executions':0}
-    (HERE/'slides_validation_20261102.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+    (HERE/'slides_validation_20261104.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps({'passed':report['passed'],'failed':[k for k,v in checks.items() if not v]},ensure_ascii=False))
     if not report['passed']:raise SystemExit(1)
 

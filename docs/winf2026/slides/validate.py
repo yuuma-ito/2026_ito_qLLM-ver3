@@ -13,7 +13,7 @@ from pptx import Presentation
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
-CACHE = ROOT/'.cache/winf_slides_20261028'
+CACHE = ROOT/'.cache/winf_slides_20261104'
 CACHE.mkdir(parents=True,exist_ok=True)
 manifest=json.loads((HERE/'source_manifest.json').read_text())
 prs=Presentation(HERE/'slides.pptx'); pdf=fitz.open(HERE/'slides.pdf')
@@ -51,8 +51,18 @@ checks['all_elements_inside_slide']=not offpage
 checks['all_pages_16_9']=all(abs(p.rect.width/p.rect.height-16/9)<.002 for p in pdf)
 checks['fonts_embedded']=all(pdf.extract_font(f[0])[3] for p in pdf for f in p.get_fonts() if f[1]!='n/a')
 # Reconcile the headline numbers directly with CSV-derived frozen source values.
-snap=json.loads((HERE.parent/'results_snapshot_20261028.json').read_text())
+snap=json.loads((HERE.parent/'results_snapshot_20261104.json').read_text())
 checks['headline_counts_match_snapshot']=all(str(snap['overall'][c]['successes_from_initial_failure']) in normalize(pdf[5 if c!='B4' else 8].get_text()) for c in ['R','F','D','B4'])
+corrected=json.loads((ROOT/'docs/analysis/measurement_ban_corrected_20261104/results_snapshot.json').read_text())
+checks['FD_overlap_matches_corrected_snapshot']=all(str(corrected['primary']['fd_overlap'][key])+'組' in normalize(pdf[6].get_text()) for key in ['both','F_only','D_only'])
+with (ROOT/'docs/analysis/measurement_ban_corrected_20261104/summary.csv').open() as stream:
+    import csv
+    summary=list(csv.DictReader(stream))
+expected=[]
+for label,key in [('import失敗','import_error'),('回路構築失敗','build_error'),('出力不一致','wrong_output')]:
+    rr=[next(r for r in summary if r['condition']==c and r['generation_cap']=='4' and r['grouping']=='initial_failure' and r['group']==key) for c in ['R','F','D']]
+    expected.append([label,rr[0]['initial_failures'],*[f"{r['successes_from_initial_failure']} ({100*float(r['success_from_initial_failure_rate']):.1f}%)" for r in rr]])
+checks['all_failure_type_cells_match_corrected_csv']=[[cell.text for cell in rr.cells] for shape in prs.slides[7].shapes if shape.has_table for rr in shape.table.rows][1:]==expected
 # Contact sheets: four slides each, for full visual inspection.
 for start in range(1,18,4):
     contact=Image.new('RGB',(1600,960),'#DCE5EB');draw=ImageDraw.Draw(contact)

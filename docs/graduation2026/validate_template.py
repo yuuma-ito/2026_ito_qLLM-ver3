@@ -73,7 +73,7 @@ def validate():
             rr={r['condition']:r for r in template.content.b4_rows(grouping,value)}
             expected.append([label,rr['B4']['initial_failures']]+[rr[c]['successes_from_initial_failure'] for c in ['R','F','D','B4']])
         checks[grouping+'_table_matches_frozen_csv'] = tables[index][1:] == expected
-    checks['overlap_table_matches_counts'] = tables[7][1:] == [['140','43','40','322']]
+    checks['overlap_table_matches_counts'] = tables[7][1:] == [[str(template.content.SNAP['primary']['fd_overlap'][k]) for k in ['both','F_only','D_only','neither']]]
     checks['additional_cost_table_matches_csv'] = tables[8][1:] == [[c,overall[c]['additional_requests'],f"{int(overall[c]['additional_tokens']):,}",f"{float(overall[c]['tokens_per_added_success']):,.1f}"] for c in ['R','F','D','B4']]
     third={r['condition_id']:r for r in template.content.SNAP['third_round']}
     checks['third_round_table_matches_snapshot'] = tables[9][1:] == [[c,f"{third[k]['additional_rescues']}/{third[k]['at_risk_after_2']}",f"{third[k]['third_round_tokens']:,}",f"{third[k]['third_round_seconds']:,.1f}",f"{third[k]['loss_if_stop_at_2']*100:.1f}%"] for c,k in template.content.CONDITIONS]
@@ -81,12 +81,12 @@ def validate():
     checks['catalog_table_matches_frozen_counts'] = tables[10][1:] == catalog_rows()
     checks['tables_not_justified'] = all(p.alignment in [0,1,2] for t in d.tables for r in t.rows for c in r.cells for p in c.paragraphs)
     checks['body_left_aligned'] = all(p.alignment == 0 for p in d.paragraphs if p.text.strip() and p.style.name == 'Normal' and not any('SEQ Table' in e.text or 'SEQ Figure' in e.text for e in p._p.iter(qn('w:instrText'))) and '\t' not in p.text and not any(t in p.text.replace('\n','') for t in ['卒　業　論　文',template.content.TITLE,'2023TC011','指導教員','2027年1月','南山大学 理工学部']))
-    checks['B4_pairwise_counts_match_prose'] = {r['comparator']:[int(r.get(k) or 0) for k in ['both','B4_only',r['comparator']+'_only','neither']] for r in template.content.csv.DictReader((template.content.B4_SOURCE/'pairwise.csv').open())} == {'R':[69,148,27,301],'F':[131,86,52,276],'D':[120,97,60,268]}
+    checks['B4_pairwise_counts_match_prose'] = {r['comparator']:[int(r.get(k) or 0) for k in ['both','B4_only',r['comparator']+'_only','neither']] for r in template.content.csv.DictReader((template.content.B4_SOURCE/'pairwise.csv').open())} == {'R':[69,147,27,302],'F':[130,86,53,276],'D':[118,98,61,268]}
     checks['B4_sanity_passed'] = json.loads((template.content.B4_SOURCE/'sanity_report.json').read_text())['passed']
     norm=lambda text:''.join(text.split())
     texts=[p.get_text() for p in pdf]
     checks['cover_identity_date']=all(norm(value) in norm(texts[0]) for value in ['卒業論文',template.content.TITLE,'2023TC011 伊藤 悠真','横山 哲郎','2027年1月'])
-    checks['summary_second_page']=all(norm(value) in norm(texts[1]) for value in ['南山大学 理工学部 電子情報学科','要約','545','183','180'])
+    checks['summary_second_page']=all(norm(value) in norm(texts[1]) for value in ['南山大学 理工学部 電子情報学科','要約','545','183','179'])
     label_lines=[]
     for page in pdf:
         lines=[''.join(sp['text'] for sp in line['spans']) for b in page.get_text('dict')['blocks'] for line in b.get('lines',[])]

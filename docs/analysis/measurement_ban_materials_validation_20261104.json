@@ -1,0 +1,95 @@
+{
+  "checked_at_utc": "2026-11-04T12:15:23.886131+00:00",
+  "passed": true,
+  "checks": {
+    "corrected_fixed_outputs_unchanged": true,
+    "historical_inputs_and_checkpoints_unchanged": true,
+    "pending_paths_zero": true,
+    "followup_exactly_one_request_408_tokens": true,
+    "docs/graduation2026/thesis.pdf": true,
+    "docs/graduation2026/abstract.pdf": true,
+    "docs/midterm2026/paper.pdf": true,
+    "docs/winf2026/paper.pdf": true,
+    "docs/graduation2026/slides.pdf": true,
+    "docs/midterm2026/slides/slides.pdf": true,
+    "docs/winf2026/slides/slides.pdf": true,
+    "docs/course_reports2026/卒業研究_調査設計報告.pdf": true,
+    "docs/course_reports2026/卒業研究_進捗成果報告.pdf": true,
+    "docs/course_reports2026/slides/調査設計報告_スライド.pdf": true,
+    "docs/course_reports2026/slides/進捗成果報告_スライド.pdf": true,
+    "docs/graduation2026/thesis.pdf_corrected_results": true,
+    "docs/course_reports2026/卒業研究_進捗成果報告.pdf_corrected_results": true,
+    "WiNF_wrong_output_D_prose_matches_corrected_count": true,
+    "Word_added_success_table_matches_corrected_csv": true,
+    "docs/graduation2026/slides.pptx_no_stale_correlated_counts": true,
+    "docs/winf2026/slides/slides.pptx_no_stale_correlated_counts": true,
+    "docs/course_reports2026/slides/進捗成果報告_スライド.pptx_no_stale_correlated_counts": true,
+    "docs/course_reports2026/slides/調査設計報告_スライド.pptx_no_stale_correlated_counts": true
+  },
+  "pdfs": {
+    "docs/graduation2026/thesis.pdf": {
+      "pages": 35,
+      "sha256": "46feaafe494e3f325d6c223bece55a986e150151c51fe9ccb2467547f98f268e",
+      "title_and_no_replacement_glyph": true
+    },
+    "docs/graduation2026/abstract.pdf": {
+      "pages": 2,
+      "sha256": "d5f849077fe39a44dd0a000f8a3b94c7650bace059afb9549ba3e42159d4bc14",
+      "title_and_no_replacement_glyph": true
+    },
+    "docs/midterm2026/paper.pdf": {
+      "pages": 2,
+      "sha256": "d5f849077fe39a44dd0a000f8a3b94c7650bace059afb9549ba3e42159d4bc14",
+      "title_and_no_replacement_glyph": true
+    },
+    "docs/winf2026/paper.pdf": {
+      "pages": 2,
+      "sha256": "11b2141ac54291f5942e5938dbf8a41b15dec6ea8d5a726b2959121ac310a405",
+      "title_and_no_replacement_glyph": true
+    },
+    "docs/graduation2026/slides.pdf": {
+      "pages": 12,
+      "sha256": "f7b0a59ff1015f05511f044949e17f5072ede80bf6438c51e5a12a9f75cb3cc1",
+      "title_and_no_replacement_glyph": true
+    },
+    "docs/midterm2026/slides/slides.pdf": {
+      "pages": 11,
+      "sha256": "313851bc190e8a4b1a2988da37e6c16269b0f03f80c8a17fa7b5b4335ffcca32",
+      "title_and_no_replacement_glyph": true
+    },
+    "docs/winf2026/slides/slides.pdf": {
+      "pages": 17,
+      "sha256": "afa678a32cc49e78aa521761cb547c4d47874ea13b0f3e5e50ecbe8636add13a",
+      "title_and_no_replacement_glyph": true
+    },
+    "docs/course_reports2026/卒業研究_調査設計報告.pdf": {
+      "pages": 17,
+      "sha256": "bbaf5571c17874e36f476eb358ccc34ba1743429dd4ebf34a8417976df1815a5",
+      "title_and_no_replacement_glyph": true
+    },
+    "docs/course_reports2026/卒業研究_進捗成果報告.pdf": {
+      "pages": 14,
+      "sha256": "9ac8309e1d09b141dce3616445a6aa2ccf6a4f781ecd2c2ff432b642c5112144",
+      "title_and_no_replacement_glyph": true
+    },
+    "docs/course_reports2026/slides/調査設計報告_スライド.pdf": {
+      "pages": 10,
+      "sha256": "8b83e76ac54471627bd91c762fefaa053f0840fd43fad1edf60a20fe8e896b97",
+      "title_and_no_replacement_glyph": true
+    },
+    "docs/course_reports2026/slides/進捗成果報告_スライド.pdf": {
+      "pages": 10,
+      "sha256": "ffc9ad2db31351816509f2054b49ebf7a6f3ab43aeba902cbc8e730896a4a3fb",
+      "title_and_no_replacement_glyph": true
+    }
+  },
+  "evaluator_version": "evaluation_policy_v4_measurement_ban_v1",
+  "scope": "固定出典hash・旧入力不変・出力PDF題目/ページ/修正版数値・Word主要表・スライド本文/ノートの旧数値を照合。独立した章査読は別記録。",
+  "new_model_requests_in_validation": 0,
+  "generated_code_executions_in_validation": 0,
+  "limits": [
+    "API側消費の独立検証なし",
+    "指定MSフォント不足のため卒論・要旨PDFは代替フォント確認版",
+    "発表時間の実測なし"
+  ]
+}

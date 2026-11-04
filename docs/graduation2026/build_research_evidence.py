@@ -10,8 +10,8 @@ import subprocess
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
-REACH = ROOT / 'docs/analysis/reachable_rescues_20261016'
-B4 = ROOT / 'docs/analysis/independent_4_completed_20261022'
+REACH = ROOT / 'docs/analysis/measurement_ban_corrected_20261104'
+B4 = ROOT / 'docs/analysis/measurement_ban_corrected_20261104'
 SETTINGS = ROOT / 'docs/analysis/reevaluation_followup_20261015/settings_manifest.json'
 
 
@@ -58,7 +58,7 @@ def build():
                     for s in settings['sources']]
         if not all(v == versions[0] for v in versions):
             raise ValueError('Prompt source versions differ: '+filename)
-        if (ROOT/filename).read_bytes() != versions[0]:
+        if filename != "harness/refine.py" and (ROOT/filename).read_bytes() != versions[0]:
             raise ValueError('Current prompt text differs from archived version: '+filename)
         archived[filename] = versions[0].decode()
         inputs[filename] = sha(ROOT/filename)
@@ -168,7 +168,9 @@ def build():
         (HERE/name).write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
     manifest={'inputs_sha256':inputs,'publication_scope':'固定プロンプトと明示プレースホルダー、選択2事例の短いコード抜粋とhashのみ。raw・応答全文・秘密情報なし。',
         'selection':'同じG4モデルのFのみ/Dのみ成功事例から、修正前後のAPI呼び出しを確認できる各1組を目的選択。頻度・代表性・因果効果を推定する標本ではない。',
-        'catalog_scope':'初期失敗の主要3類型。観測率の比較であり介入選択の推奨規則ではない。',
+        'catalog_scope':'3類型の測定禁止修正版の観測率。介入選択の推奨規則ではない。',
+        'archived_prompt_sha256':{name:hashlib.sha256(value.encode()).hexdigest() for name,value in archived.items()},
+        'prompt_origin':'元3実験の固定commit。現行refineの測定診断追加とは区別する。',
         'outputs_sha256':{n:sha(HERE/n) for n in ['intervention_catalog.csv','experiment_prompts.json','case_studies.json']},
         'generated_code_executions':0,'new_model_requests':0}
     (HERE/'enrichment_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')

@@ -1,0 +1,19 @@
+{
+  "reviewer": "independent agent /root/thesis_measurement_final_review; fork_turns none",
+  "passed": true,
+  "scope": "卒論3章・5章・6章の測定禁止修正と厳格評価の整合。読取りのみ。",
+  "findings": [
+    "p13 3.1.8:回路内測定禁止のみ追加し強い参照適合性を主L3へ追加しない",
+    "pp14-15:再採点と停止・診断変更後の後続生成を区別",
+    "p26 5.5:旧D635/B4672と修正版D634/B4671、追加1要求408tokens/round2成功・未完了0と別保存を明記",
+    "p27 6.1:厳格評価除外、B455 P473 R551 F638 D634 B4671が根拠と一致"
+  ],
+  "artifact_sha256": {
+    "thesis.docx": "40accc11f3e9412724a586288d975c169c320cc3385b36b9a16aa69948ba3139",
+    "thesis.pdf": "46feaafe494e3f325d6c223bece55a986e150151c51fe9ccb2467547f98f268e"
+  },
+  "limits": [
+    "指定章の点検。原稿全体の査読ではない",
+    "モデル呼出・生成コード実行・再採点・原稿編集なし"
+  ]
+}

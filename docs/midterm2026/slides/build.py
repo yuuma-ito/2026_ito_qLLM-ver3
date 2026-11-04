@@ -9,7 +9,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
-SOURCE = ROOT / "docs/presentation_sources/20261016T_reachable_rescues"
+SOURCE = ROOT / "docs/analysis/measurement_ban_corrected_20261104"
 BUILD = ROOT / ".cache/midterm_slides_20261016"
 
 
@@ -18,7 +18,7 @@ def sha(path):
 
 
 def rows(name):
-    with (SOURCE / name).open(newline="", encoding="utf-8") as f:
+    with (SOURCE / ("core/"+name if name in ["repair_summary.csv","fd_overlap_summary.csv","preventive_summary.csv"] else name)).open(newline="", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
@@ -34,16 +34,16 @@ def main():
         r["condition_id"]: r for r in repair
         if r["scope"] == "pooled" and r["grouping"] == "overall"
     }
-    assert [int(overall[c]["rescued"]) for c in conditions] == [96, 183, 180]
+    assert [int(overall[c]["rescued"]) for c in conditions] == [96, 183, 179]
     assert all(int(overall[c]["initial_failures"]) == 545 for c in conditions)
     assert all(int(overall[c]["initial_successes"]) == 455 for c in conditions)
     overlap = next(r for r in rows("fd_overlap_summary.csv") if r["scope"] == "pooled" and r["grouping"] == "overall")
-    assert [int(overlap[k]) for k in ("both", "F_only", "D_only", "neither")] == [140, 43, 40, 322]
+    assert [int(overlap[k]) for k in ("both", "F_only", "D_only", "neither")] == [139, 44, 40, 322]
     snapshot = json.loads((SOURCE / "results_snapshot.json").read_text())
-    assert [snapshot[k] for k in ("discordant_pairs", "discordant_condition_paths", "discordant_transitions")] == [83, 166, 398]
+    assert [snapshot[k] for k in ("discordant_pairs", "discordant_condition_paths", "discordant_transitions")] == [84, 168, 404]
     third = {r["condition_id"]: r for r in rows("third_round_summary.csv") if r["scope"] == "pooled" and r["grouping"] == "overall"}
-    assert [int(third[c]["additional_rescues"]) for c in conditions] == [19, 28, 33]
-    assert [f'{100 * float(third[c]["loss_if_stop_at_2"]):.1f}' for c in conditions] == ["19.8", "15.3", "18.3"]
+    assert [int(third[c]["additional_rescues"]) for c in conditions] == [19, 28, 32]
+    assert [f'{100 * float(third[c]["loss_if_stop_at_2"]):.1f}' for c in conditions] == ["19.8", "15.3", "17.9"]
     for category, expected in [("import_error", [271, 58, 72]), ("build_error", [126, 76, 68])]:
         by_error = {r["condition_id"]: r for r in repair if r["scope"] == "pooled" and r["grouping"] == "baseline_error" and r["baseline_error_category"] == category}
         assert [int(by_error[conditions[1]]["initial_failures"]), int(by_error[conditions[1]]["rescued"]), int(by_error[conditions[2]]["rescued"])] == expected
@@ -90,7 +90,7 @@ def main():
         "eleven_pages_eight_main_three_appendix": bool(re.search(r"Pages:\s+11\b", info)),
         "six_minute_timing": sum([15, 35, 55, 45, 60, 50, 55, 45]) == 360,
         "no_overflow_missing_glyphs_or_unresolved_refs": not bool(re.search(r"Overfull|Missing character|undefined references|undefined on input", log, re.I)),
-        "main_counts_in_pdf": all(s in text for s in ["96/545", "183/545", "180/545", "17.6%", "33.6%", "33.0%", "18,852.6", "9,333.8", "10,976.6"]),
+        "main_counts_in_pdf": all(s in text for s in ["96/545", "183/545", "179/545", "17.6%", "33.6%", "32.8%", "18,852.6", "9,333.8", "11,037.9"]),
         "fonts_embedded": all(bool(re.search(r"\byes\s+(?:yes|no)\s+(?:yes|no)\s+\d+\s+\d+\s*$", line)) for line in fonts.splitlines()[2:]),
         "fixed_source_sanity_passed": True,
         "source_csv_counts_match_slides": True,
@@ -99,7 +99,7 @@ def main():
     (BUILD / "pdfinfo.txt").write_text(info)
     (BUILD / "pdffonts.txt").write_text(fonts)
     source_names = ["results_snapshot.json", "repair_summary.csv", "fd_overlap_summary.csv", "third_round_summary.csv", "cost_by_cap_and_stratum.csv", "discordant_transitions.csv", "preventive_summary.csv", "source_manifest.json", "sanity_report.json", "validation_report.json"]
-    source_paths = [SOURCE / n for n in source_names] + [
+    source_paths = [SOURCE / ("core/"+n if n in ["repair_summary.csv","fd_overlap_summary.csv","preventive_summary.csv"] else n) for n in source_names] + [
         ROOT / "docs/midterm2026/paper.tex",
         ROOT / "docs/analysis/reevaluation_followup_20261015/specification_review.md",
         ROOT / "docs/analysis/reevaluation_followup_20261015/partial_rerun_sanity_report.json",

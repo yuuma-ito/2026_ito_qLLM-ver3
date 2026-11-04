@@ -14,9 +14,9 @@ import sys
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 FIG_DIR = HERE/'figures'
-DATA = ROOT/'docs/analysis/independent_4_completed_20261022/summary.csv'
-OVERLAP = ROOT/'docs/analysis/reachable_rescues_20261016/core/fd_overlap_summary.csv'
-SNAPSHOT = ROOT/'docs/presentation_sources/20261016T_reachable_rescues/results_snapshot.json'
+DATA = ROOT/'docs/analysis/measurement_ban_corrected_20261104/summary.csv'
+OVERLAP = ROOT/'docs/analysis/measurement_ban_corrected_20261104/core/fd_overlap_summary.csv'
+SNAPSHOT = ROOT/'docs/analysis/measurement_ban_corrected_20261104/results_snapshot.json'
 from six_conditions import SOURCES as SIX_SOURCES, values as six_values
 
 FIGURES = [
@@ -43,8 +43,8 @@ def values():
     for r in rates:r['rate_percent']=100*r['added_successes']/r['denominator']
     overlap=next(r for r in csv.DictReader(OVERLAP.open()) if r['scope']=='pooled' and r['grouping']=='overall')
     parts={k:int(overlap[k]) for k in ['F_only','both','D_only','neither']}
-    assert [r['added_successes'] for r in rates]==[96,183,180,217]
-    assert sum(parts.values())==545 and parts['F_only']+parts['both']==183 and parts['D_only']+parts['both']==180
+    assert [r['added_successes'] for r in rates]==[96,183,179,216]
+    assert sum(parts.values())==545 and parts['F_only']+parts['both']==183 and parts['D_only']+parts['both']==179
     return rates,parts
 
 

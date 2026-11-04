@@ -24,8 +24,8 @@ HERE = Path(__file__).resolve().parents[1]
 ROOT = HERE.parents[1]
 OUT = HERE / 'slides'
 TITLE = '量子LLM支援プログラミングにおける失敗類型と介入カタログの実証研究'
-FIXED = 'https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/b4c0ba79b308e7b12ab88413714746a5620424b5'
-SUMMARY = ROOT / 'docs/analysis/independent_4_completed_20261022/summary.csv'
+FIXED = 'https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/72c03f843f0ca91b1d6dc06dedfb274d022316a7'
+SUMMARY = ROOT / 'docs/analysis/measurement_ban_corrected_20261104/summary.csv'
 CATALOG = ROOT / 'docs/graduation2026/intervention_catalog.csv'
 FONT = 'IPAexGothic'
 NAVY, TEAL, GRAY = '16324F', '007F86', '566477'
@@ -157,11 +157,11 @@ def design():
     s = d.slide('成功は，実行・期待出力・構造要件で判定', 55, '9–11', ['L3は指定入力に対する所定検査への適合。', '測定結果は量子ビットと古典ビットの対応を反映して比較する。', '全入力のアルゴリズム同値性や実機動作は保証しない。'])
     d.table(s,['段階','確認する内容'],[['L0','読込み・import・必須インターフェース'],['L1','回路構築・評価処理の実行'],['L2','指定入力で期待出力と一致'],['L3','L0・L1・L2と構造要件のすべて']], [1.7,9.8],y=1.6,height=.65)
     d.text(s,.9,5.05,11.6,1.1,'分布：8,192 shots，全変動距離0.05未満\n状態：大域位相を整合した距離0.05未満',22)
-    d.text(s,.9,6.23,11.6,.5,'指定入力を評価。測定禁止を含む全指示の遵守は保証しない。',20,True,TEAL)
-    s = d.slide('5モデル・10タスク・20 seedを対応づける', 50, '12–15', ['5,000条件記録とB4追加1,000組を区別する。', '保存コード再採点と部分追試293ケースに基づく到達履歴の再構成を含む。', '旧120件は合算しない。'])
+    d.text(s,.9,6.23,11.6,.5,'指定入力を評価。回路内測定禁止を明示検査。全入力の同値性は保証しない。',20,True,TEAL)
+    s = d.slide('5モデル・10タスク・20 seedを対応づける', 50, '12–15', ['5,000条件記録とB4追加1,000組を区別する。', '保存コード再採点と部分追試293ケースに基づく到達履歴の再構成を含む。', '測定禁止修正後，B4の1経路を追加1要求・408 tokensで完了。旧120件は合算しない。'])
     d.text(s,.9,1.65,11.5,.8,'5 × 10 × seed 0〜19 ＝ 1,000初期組',32,True,TEAL)
     d.text(s,.9,2.75,11.5,1.2,'qwen3.5:4b ／ gemma4:e4b-it-qat ／ qwen3.5:9b\nqwen2.5-coder:7b ／ gemma3:4b',23)
-    d.text(s,.9,4.2,11.5,1.3,'B/R/F/D/P：5,000条件記録（2026-10-16版）\nB4：追加1,000組（2026-10-22固定）',24,True)
+    d.text(s,.9,4.2,11.5,1.3,'B/R/F/D/P：5,000条件記録（2026-11-04修正版）\nB4：追加1,000組（2026-11-04修正版）',24,True)
     d.text(s,.9,5.9,11.5,.8,'保存済み履歴＋部分追試を利用。全件の新規生成ではない。',23)
     s = d.slide('追加成功率と最終成功率では分母が異なる', 50, '11–12, 16', ['初期失敗類型はBの時点で固定し，途中で類型が変わっても分母を動かさない。', 'コストは共有初期を除く入力と出力tokensで，未成功への消費も含む。'])
     d.box(s,.85,1.8,5.6,2)
@@ -176,7 +176,7 @@ def design():
     s = d.slide('補足　再現設定と分析範囲', None, '9–15', ['質疑用。保存設定と固定出典を参照する。'])
     d.lines(s,[('生成設定','temperature 0.7 ／ max_tokens 1,024 ／ timeout 600秒'),('評価と乱数','測定・変換seed 42。B4の追加生成は専用seed規則。'),('制約','有限shots・指定入力・独自10タスク。一般的優劣は断定しない。')])
     s = d.slide('補足　参考文献・固定出典', None, '17', ['元報告の文献番号を使用。リンク先の新規照合は今回の作業範囲に含まない。'])
-    refs=[('[1] Madaan et al. Self-Refine (2023)','https://arxiv.org/abs/2303.17651v2'),('[2] Chen et al. Teaching Large Language Models to Self-Debug (2023)','https://arxiv.org/abs/2304.05128v2'),('[3] 固定公開出典：commit b4c0ba7',FIXED),('[8] IBM Quantum: Construct circuits','https://quantum.cloud.ibm.com/docs/en/guides/construct-circuits'),('[9] Qiskit Aer documentation','https://qiskit.github.io/qiskit-aer/')]
+    refs=[('[1] Madaan et al. Self-Refine (2023)','https://arxiv.org/abs/2303.17651v2'),('[2] Chen et al. Teaching Large Language Models to Self-Debug (2023)','https://arxiv.org/abs/2304.05128v2'),('[3] 固定公開出典：commit 72c03f8',FIXED),('[8] IBM Quantum: Construct circuits','https://quantum.cloud.ibm.com/docs/en/guides/construct-circuits'),('[9] Qiskit Aer documentation','https://qiskit.github.io/qiskit-aer/')]
     for i,(t,u) in enumerate(refs):d.text(s,.9,1.7+i*.83,11.5,.65,t,21,url=u)
     d.text(s,.9,6,11.5,.65,'文献番号は元報告に対応。その他の関連研究は元報告p.17を参照。',18,color=GRAY)
     return d
@@ -185,15 +185,15 @@ def design():
 def progress():
     d = Deck('進捗成果報告_スライド', '進捗・成果報告', HERE / '卒業研究_進捗成果報告.pdf')
     d.cover(['修正と独立再生成の結果と，卒論完成に向けた残る作業を報告する。'])
-    s = d.slide('同じ初期失敗545組から，追加成功を比較', 45, '3–5', ['初期成功455組を保持する。5モデル，10タスク，seed 0〜19の1,000初期組。', 'R/F/Dは検証済み保存履歴と部分追試293ケースから再構成した。B4は追加実験。', 'L3は指定入力の出力と構造要件への適合であり，全入力の同値性を保証しない。'])
+    s = d.slide('同じ初期失敗545組から，追加成功を比較', 45, '3–5', ['初期成功455組を保持する。5モデル，10タスク，seed 0〜19の1,000初期組。', 'R/F/Dは検証済み保存履歴と部分追試293ケースから再構成した。B4は追加実験。', 'L3は指定出力・構造要件・回路内測定禁止への適合であり，全入力の同値性を保証しない。'])
     d.lines(s,[('実施済み','評価ハーネス開発・再採点・部分追試・公開集計・履歴分析'),('比較条件','R：自己見直し ／ F：実行診断 ／ D：診断＋説明・原因分析'),('独立再生成 B4','前回コード・診断を渡さず追加最大3回。L3成功時停止。')])
-    s = d.slide('今回の追加成功数は，B4が217組で最多', 55, '4–5', ['追加成功率の分母は545組。全1,000組の最終成功率と分けて示す。', 'Pは注意事項付き独立1回生成であり，初期失敗への修正と区別する。', '最大回数は同じでも入力情報，tokens予算，seed規則，時期は一致しない。'])
+    s = d.slide('今回の追加成功数は，B4が216組で最多', 55, '4–5', ['追加成功率の分母は545組。全1,000組の最終成功率と分けて示す。', 'Pは注意事項付き独立1回生成であり，初期失敗への修正と区別する。', '最大回数は同じでも入力情報，tokens予算，seed規則，時期は一致しない。'])
     for i,c in enumerate(('R','F','D','B4')):
         r=row(c); n=int(r['successes_from_initial_failure']); y=1.85+i*.87
         d.text(s,.9,y,.8,.55,c,26,True)
         d.box(s,1.9,y+.08,n/545*12,.36,TEAL if c=='B4' else '91ADB9')
         d.text(s,7.05,y,5.2,.6,f'{n}/545組　{n/545*100:.1f}%',26,True)
-    d.text(s,.9,5.65,11.5,.9,'最終成功率（分母1,000組）：B 45.5% ／ P 47.3%\nR 55.1% ／ F 63.8% ／ D 63.5% ／ B4 67.2%',21)
+    d.text(s,.9,5.65,11.5,.9,'最終成功率（分母1,000組）：B 45.5% ／ P 47.3%\nR 55.1% ／ F 63.8% ／ D 63.4% ／ B4 67.1%',21)
     s = d.slide('モデルごとに，最多の条件は異なる', 40, '5', ['Q4ではD，他の4モデルではB4が最多。', '分母と失敗類型の構成が違うため，一般的なモデル順位を表す表ではない。'])
     tags=['qwen3.5:4b','gemma4:e4b-it-qat','qwen3.5:9b','qwen2.5-coder:7b','gemma3:4b']
     rows=[]
@@ -201,30 +201,30 @@ def progress():
         rows.append([label,row('B4','model','ollama:'+tag)['initial_failures'],*[row(c,'model','ollama:'+tag)['successes_from_initial_failure'] for c in ('R','F','D','B4')]])
     d.table(s,['モデル','初期失敗','R','F','D','B4'],rows,[2.5,2.3,1.7,1.7,1.7,1.6],height=.63)
     d.text(s,.9,5.95,11.5,.85,'Q4=qwen3.5:4b ／ G4=gemma4:e4b-it-qat ／ Q9=qwen3.5:9b\nC7=qwen2.5-coder:7b ／ G3=gemma3:4b',18)
-    s = d.slide('FとDは成功数が近くても，対象は一致しない', 50, '7–8', ['F183組，D180組で差は3組だが，片側のみの成功は83組。', '全83組の両条件166履歴・398修正遷移を静的に確認した。', '複数箇所が同時に変わり，変更の因果的寄与は分離できない。'])
-    for x,n,label in [(.85,43,'Fのみ'),(4.8,140,'F/D共通'),(8.75,40,'Dのみ')]:
+    s = d.slide('FとDは成功数が近くても，対象は一致しない', 50, '7–8', ['F183組，D179組で差は4組だが，片側のみの成功は84組。', '全84組の両条件168履歴・404修正遷移を静的に確認した。', '複数箇所が同時に変わり，変更の因果的寄与は分離できない。'])
+    for x,n,label in [(.85,44,'Fのみ'),(4.8,139,'F/D共通'),(8.75,40,'Dのみ')]:
         d.box(s,x,1.9,3.65,2)
         d.text(s,x+.2,2.15,3.2,.85,f'{n}組',42,True,TEAL)
         d.text(s,x+.2,3.15,3.2,.55,label,25,True)
-    d.text(s,.9,4.4,11.5,.7,'片側救済83組 ／ 双方未救済322組',28,True)
+    d.text(s,.9,4.4,11.5,.7,'片側救済84組 ／ 双方未救済322組',28,True)
     d.text(s,.9,5.45,11.5,1.1,'和集合223組は，結果を見て分かる事後的な集合。\n実行前に選べる方策の成功数として扱わない。',23)
     s = d.slide('失敗段階ごとの観測を介入カタログへ整理', 55, '6, 10, 13', ['初期失敗類型はBの段階で固定する。', '3行は異なる失敗段階の比較であり，頻度上位3類型という意味ではない。', '分類は最初に露見した段階であり，根本原因を完全に認定したものではない。'])
     rows=[[r['label'],r['initial_failures'],*[r[c+'_rate_percent']+'%' for c in ('F','D','B4')]] for r in read_csv(CATALOG)]
     d.table(s,['初期失敗類型','分母','F','D','B4'],rows,[3.6,1.8,2.1,2.1,1.9],height=.83)
     d.text(s,.9,5.4,11.5,1.15,'importではD，回路構築・出力不一致ではB4が最多。\n自動選択方策による性能改善は未検証。',25,True)
-    s = d.slide('成功数と，未成功例を含む追加tokensを見る', 55, '8–9', ['共有初期生成を除く入力と出力tokens。未成功への消費も含む。', 'Fの3回目は28組，Dの3回目は33組を追加救済した。', '同じ履歴の打切り比較であり，上限別の独立実験ではない。'])
+    s = d.slide('成功数と，未成功例を含む追加tokensを見る', 55, '8–9', ['共有初期生成を除く入力と出力tokens。未成功への消費も含む。', 'Fの3回目は28組，Dの3回目は32組を追加救済した。', '同じ履歴の打切り比較であり，上限別の独立実験ではない。'])
     rows=[]
     for c in ('R','F','D','B4'):
         r=row(c)
         rows.append([c,f"{int(r['additional_tokens']):,}",f"{float(r['tokens_per_added_success']):,.1f}"])
     d.table(s,['条件','追加tokens','tokens／追加成功'],rows,[2,4.6,4.9],height=.66)
-    d.text(s,.9,5.45,11.5,1.15,'3回目の追加救済：F 28組 ／ D 33組\n入力情報・実行時期が異なる。資源効率は一般化しない。',23)
+    d.text(s,.9,5.45,11.5,1.15,'3回目の追加救済：F 28組 ／ D 32組\n入力情報・実行時期が異なる。資源効率は一般化しない。',23)
     s = d.slide('成果をまとめ，卒論提出と次の検証へ進む', 45, '11–13', ['選択・停止規則の性能検証は未実施。', '有限タスク・指定入力・出典時期の違いを限界として残す。', '提出準備と，新しいseedやタスクでの研究上の追試は別の作業。'])
     d.lines(s,[('得られた成果','追加成功・成功対象・計算コストを整理し，カタログ化した。'),('卒論完成に向けた作業','RQと結論・固定集計・図表参照・引用・体裁を最終確認する。'),('次の研究課題','選択・停止規則を事前固定し，別seed・タスクで検証する。')])
     s = d.slide('補足　Pの成績と検証状態', None, '4–5, 9', ['質疑用。Pの独立生成を修正による救済と混同しない。'])
-    d.lines(s,[('P：注意事項付き独立1回生成','B失敗に対応する成功124/545，B成功に対応する失敗106/455。'),('B4：1,000組の完備性を確認済み','欠落・重複・予定外0，sanity成功。コード側NameError 2件。'),('主L3の評価範囲','測定禁止を含む全指示の遵守・任意入力の同値性は保証しない。')])
+    d.lines(s,[('P：注意事項付き独立1回生成','B失敗に対応する成功124/545，B成功に対応する失敗106/455。'),('B4：1,000組の完備性を確認済み','欠落・重複・予定外0，sanity成功。コード側NameError 2件。'),('主L3の評価範囲','回路内測定禁止を明示検査する。任意入力の同値性は保証しない。')])
     s = d.slide('補足　元報告と固定出典', None, '14', ['文献番号は進捗・成果報告に対応する。リンク先の新規照合は今回行っていない。'])
-    for i,(t,u) in enumerate([('[1] 固定公開出典：commit b4c0ba7',FIXED),('[1] B/R/F/D/P：2026-10-16版',FIXED+'/docs/presentation_sources/20261016T_reachable_rescues'),('[1] B4：2026-10-22固定',FIXED+'/docs/analysis/independent_4_completed_20261022'),('[2] IBM Quantum: Construct circuits','https://quantum.cloud.ibm.com/docs/en/guides/construct-circuits'),('[3] Qiskit Aer documentation','https://qiskit.github.io/qiskit-aer/')]):
+    for i,(t,u) in enumerate([('[1] 固定公開出典：commit 72c03f8',FIXED),('[1] B/R/F/D/P：2026-11-04修正版',FIXED+'/docs/analysis/measurement_ban_corrected_20261104'),('[1] B4：2026-11-04修正版',FIXED+'/docs/analysis/measurement_ban_corrected_20261104'),('[2] IBM Quantum: Construct circuits','https://quantum.cloud.ibm.com/docs/en/guides/construct-circuits'),('[3] Qiskit Aer documentation','https://qiskit.github.io/qiskit-aer/')]):
         d.text(s,.9,1.65+i*.85,11.5,.65,t,22,url=u)
     d.text(s,.9,6.1,11.5,.6,'カタログ・保存事例・固定プロンプト：固定版 docs/graduation2026/',18,color=GRAY)
     return d
@@ -269,6 +269,8 @@ def validate(decks):
             'source_contains_key_counts':all(norm(t) in source_text for t in ['1,000','545','455']),
         }
         if d.name.startswith('進捗'):
+            third=next(r for r in read_csv(SUMMARY.parent/'third_round_summary.csv') if r['scope']=='pooled' and r['grouping']=='overall' and r['condition_id']=='self_debugging')
+            checks[d.name]['third_round_D_count_matches_corrected_csv']=f"D{third['additional_rescues']}組" in norm(texts[6])
             checks[d.name]['additional_counts_match_report_and_csv']=all(f"{row(c)['successes_from_initial_failure']}/545組" in texts[2] and row(c)['successes_from_initial_failure'] in source_text for c in ('R','F','D','B4'))
         pdf.close()
         source.close()

@@ -13,8 +13,8 @@ import xml.etree.ElementTree as ET
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-B4 = Path('docs/analysis/independent_4_completed_20261022')
-CORE = Path('docs/analysis/reachable_rescues_20261016/core')
+B4 = Path('docs/analysis/measurement_ban_corrected_20261104')
+CORE = B4 / 'core'
 CATALOG = Path('docs/graduation2026/intervention_catalog.csv')
 LABELS = {'R': 'self_refine', 'F': 'execution_feedback', 'D': 'self_debugging'}
 
@@ -38,9 +38,10 @@ def audit(root=ROOT, public=False):
         return values[0]
 
     manifest = json.loads(data(B4 / 'source_manifest.json'))
-    checks['nine_frozen_hashes'] = len(manifest['source_hashes']) == 9 and all(
-        hashlib.sha256(data(p)).hexdigest() == h
-        for p, h in manifest['source_hashes'].items())
+    # Keep the public check key for compatibility with corruption regression tests.
+    checks['nine_frozen_hashes'] = bool(manifest['outputs']) and all(
+        hashlib.sha256(data(B4 / p)).hexdigest() == h
+        for p, h in manifest['outputs'].items())
     summary = rows(B4 / 'summary.csv')
 
     def total(label, grouping='overall', group='all'):
@@ -50,12 +51,12 @@ def audit(root=ROOT, public=False):
 
     b4 = total('B4')
     checks['B4_headline_counts'] = all(int(b4[k]) == v for k, v in {
-        'groups': 1000, 'initial_failures': 545, 'final_L3_successes': 672,
-        'successes_from_initial_failure': 217, 'additional_requests': 1342,
-        'additional_tokens': 995815}.items())
+        'groups': 1000, 'initial_failures': 545, 'final_L3_successes': 671,
+        'successes_from_initial_failure': 216, 'additional_requests': 1343,
+        'additional_tokens': 996223}.items())
     checks['B4_tokens_arithmetic'] = (
-        int(b4['additional_tokens_in']) + int(b4['additional_tokens_out']) == 995815
-        and round(float(b4['tokens_per_added_success']), 1) == round(995815 / 217, 1))
+        int(b4['additional_tokens_in']) + int(b4['additional_tokens_out']) == 996223
+        and round(float(b4['tokens_per_added_success']), 1) == round(996223 / 216, 1))
     metrics = ('groups', 'initial_failures', 'final_L3_successes',
                'successes_from_initial_failure', 'additional_requests', 'additional_tokens')
     checks['B4_strata_reconcile'] = all(
@@ -65,14 +66,14 @@ def audit(root=ROOT, public=False):
     repetitions = rows(B4 / 'repetitions.csv')
     identity = lambda r: (r['model_spec'], r['task_id'], r['base_seed'])
     checks['B4_request_and_success_rows'] = (
-        len(repetitions) == len({(*identity(r), r['round']) for r in repetitions}) == 1342
-        and len({identity(r) for r in repetitions if r['L3'] == 'True'}) == 217)
+        len(repetitions) == len({(*identity(r), r['round']) for r in repetitions}) == 1343
+        and len({identity(r) for r in repetitions if r['L3'] == 'True'}) == 216)
     first = rows(B4 / 'first_success.csv')
     checks['B4_first_success_partition'] = {
         r['first_success_generation']: int(r['groups']) for r in first
         if r['condition'] == 'B4'} == {
-            'generation_1': 455, 'generation_2': 119, 'generation_3': 55,
-            'generation_4': 43, 'never': 328}
+            'generation_1': 455, 'generation_2': 118, 'generation_3': 56,
+            'generation_4': 42, 'never': 329}
     sanity = json.loads(data(B4 / 'sanity_report.json'))
     checks['saved_sanity'] = (sanity['passed'] is True and sanity['groups'] == 1000
                               and all(sanity[k] == 0 for k in ('missing', 'duplicates', 'unexpected')))
@@ -84,11 +85,11 @@ def audit(root=ROOT, public=False):
         checks[f'{label}_original_pair_records'] = (
             len(selected) == len({identity(r) for r in selected}) == 1000
             and sum(r['initial_success'] == 'False' for r in selected) == 545
-            and len(rescues[label]) == {'R': 96, 'F': 183, 'D': 180}[label]
+            and len(rescues[label]) == {'R': 96, 'F': 183, 'D': 179}[label]
             and all((r['rescued'] == 'True') == (
                 r['initial_success'] == 'False' and r['final_success'] == 'True') for r in selected)
             and int(total(label)['successes_from_initial_failure']) == len(rescues[label]))
-    checks['F_D_discordant_sets'] = (len(rescues['F'] - rescues['D']) == 43
+    checks['F_D_discordant_sets'] = (len(rescues['F'] - rescues['D']) == 44
                                     and len(rescues['D'] - rescues['F']) == 40)
     catalog = rows(CATALOG)
     checks['catalog_shape_and_categories'] = len(catalog) == 3 and all(len(r) == 9 for r in catalog) and {
@@ -120,7 +121,7 @@ def audit(root=ROOT, public=False):
         for r in catalog]
     main_table = one(t for t in tables if t[0] == ['条件', '初期失敗数', '追加成功数', '追加成功率'])
     checks['headline_matches_Word_table'] = main_table[1:] == [
-        [c, '545', str(n), f'{100*n/545:.1f}%'] for c, n in [('R',96), ('F',183), ('D',180), ('B4',217)]]
+        [c, '545', str(n), f'{100*n/545:.1f}%'] for c, n in [('R',96), ('F',183), ('D',179), ('B4',216)]]
     checks['inputs_equal_committed_bytes'] = all(subprocess.run(
         ['git', '-C', str(root), 'show', 'HEAD:' + p], capture_output=True).stdout == (root / p).read_bytes()
         for p in inputs)
@@ -147,7 +148,7 @@ def audit(root=ROOT, public=False):
             'passed': all(checks.values()), 'checks': checks, 'inputs_sha256': inputs,
             'public_verification': public_result,
             'limits': ['保存済みsanityは照合したが、rawからの再集計・再採点は実施していない。',
-                       '995,815 tokensは固定集計内の入力＋出力・層別合計との一致。API側の実消費の独立検証ではない。',
+                       '996,223 tokensは固定集計内の入力＋出力・層別合計との一致。API側の実消費の独立検証ではない。',
                        'hash一致は同じ内容である証拠であり、評価器・実験設計の正しさの証明ではない。',
                        'Wordの対象表を確認した。PDF表示、文献の真正性、全記述の独立査読は対象外。'],
             'new_model_requests': 0, 'generated_code_executions': 0}

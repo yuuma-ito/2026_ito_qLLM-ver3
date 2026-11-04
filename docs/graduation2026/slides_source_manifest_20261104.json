@@ -1,0 +1,80 @@
+{
+  "created_at_utc": "2026-11-04T12:06:34.768422+00:00",
+  "basis": "最新の卒論thesis.pdfと同じ固定CSV",
+  "main_slides": 8,
+  "supplemental_slides": 4,
+  "planned_seconds": 360,
+  "notes": [
+    {
+      "slide": 1,
+      "seconds": 15,
+      "text": "目安：0:00–0:15（15秒）\n話す要点\n・対象はLLMが生成するQiskitコード\n・修正R/F/Dと独立再生成B4を比較する"
+    },
+    {
+      "slide": 2,
+      "seconds": 35,
+      "text": "目安：0:15–0:50（35秒）\n話す要点\n・単に動くかと期待出力が正しいかを区別する\n・自己点検と実行診断を用いる修正を背景に，修正と再生成を比べる"
+    },
+    {
+      "slide": 3,
+      "seconds": 50,
+      "text": "目安：0:50–1:40（50秒）\n話す要点\n・1要求の生成上限は1,024 tokens\n・初期成功455組を保持し，初期失敗545組で追加成功を比較する\n・R/F/Dは保存履歴と部分追試の再構成。測定禁止修正後，B4の1経路は追加1要求・408 tokensで完了。強い厳格評価は含めない\n・最大4回でも入力情報・実要求数・tokens・seed規則・実行時期は一致しない"
+    },
+    {
+      "slide": 4,
+      "seconds": 60,
+      "text": "目安：1:40–2:40（60秒）\n話す要点\n・左は全1,000組の最終L3成功率で，BとPも含む\n・右は初期失敗545組からの追加成功で，R96・F183・D179・B4216組\n・B4の39.6%と最終67.1%を混ぜない\n・観測差を因果効果や一般的優劣と断定しない"
+    },
+    {
+      "slide": 5,
+      "seconds": 40,
+      "text": "目安：2:40–3:20（40秒）\n話す要点\n・共通139にFのみ44，Dのみ40を足して各条件の成功集合を説明する\n・84組の全履歴確認と変更の因果効果の実証は区別する"
+    },
+    {
+      "slide": 6,
+      "seconds": 50,
+      "text": "目安：3:20–4:10（50秒）\n話す要点\n・importではD，構築・出力ではB4が最多\n・件数上位3類型という意味ではない\n・CSVは分類キー・表示名・分母・F/D/B4の成功数と率の9列\n・モデル別でもQ4はD，他の4モデルはB4が最多。補足Aに示す"
+    },
+    {
+      "slide": 7,
+      "seconds": 55,
+      "text": "目安：4:10–5:05（55秒）\n話す要点\n・B4は996,223 tokensを216組で割り4,612.1 tokens／追加成功\n・金銭費用ではなく，失敗要求への消費を含む\n・Fの28組とDの32組は3回目で初めて救済された。停止で失う成功も考慮する"
+    },
+    {
+      "slide": 8,
+      "seconds": 55,
+      "text": "目安：5:05–6:00（55秒）\n話す要点\n・全体の観測と層別の違いを合わせて三つの知見を述べる\n・指定入力・有限タスクでの探索的な記述で，有意差や因果効果は主張しない\n・tokens予算も揃えた比較を今後の課題とする"
+    },
+    {
+      "slide": 9,
+      "seconds": null,
+      "text": "目安：質疑用（本編6分には含めない）\n話す要点\n・Q4ではD89組，他の4モデルではB4が最多\n・失敗数やタスク構成の違いを伴い，一般的なモデルランキングではない"
+    },
+    {
+      "slide": 10,
+      "seconds": null,
+      "text": "目安：質疑用（本編6分には含めない）\n話す要点\n・初期成功の保持と成功時停止により退行0となる\n・現行v4の測定・変換seedは42固定。別seedへの感度は未検証\n・有限shots，1,024 tokens上限，診断文や負荷の差が残る\n・回路内測定禁止は主L3で明示検査する。原課題より強い厳格評価は含めない\n・部分追試647生成中120生成はlength終了。Dの説明指示の効果と出力枠の影響を分離しない"
+    },
+    {
+      "slide": 11,
+      "seconds": null,
+      "text": "目安：質疑用（本編6分には含めない）\n話す要点\n・本編では設計の背景として[1][2]，実験の一次資料として[3]を引用\n・卒論の参考文献番号と版を保持。背景文献[4][5]も対応づける"
+    },
+    {
+      "slide": 12,
+      "seconds": null,
+      "text": "目安：質疑用（本編6分には含めない）\n話す要点\n・リンクから固定commit内の出典に移動できる\n・参考文献の真正性と引用の範囲は卒論PDFの確認記録に基づく"
+    }
+  ],
+  "source_sha256": {
+    "docs/graduation2026/thesis.pdf": "46feaafe494e3f325d6c223bece55a986e150151c51fe9ccb2467547f98f268e",
+    "docs/graduation2026/intervention_catalog.csv": "0a8b3d38addd73121a396a6e2fc3f8dc3fc7ff050ff60053f755066069b1fae5",
+    "docs/analysis/measurement_ban_corrected_20261104/core/repair_summary.csv": "c1de940046e692542409f587cf6b4a338cb4ab6331a3756e68b7f8869a964ed1",
+    "docs/analysis/measurement_ban_corrected_20261104/core/preventive_summary.csv": "59e7b26acf629eae5a696f0f61eb5926ae48f8a25246f6634b5a5739eb01c8ff",
+    "docs/analysis/measurement_ban_corrected_20261104/core/fd_overlap_summary.csv": "595a8ade4a5337a2e3957bdf4006d0d96a8ec555b0be20d5a4ec94fbe23e97a4",
+    "docs/analysis/measurement_ban_corrected_20261104/summary.csv": "084a805a6f31979be7aae9ff338728c962aed53ae9309de62185775e9996c1eb",
+    "docs/analysis/measurement_ban_corrected_20261104/source_manifest.json": "11cab5cee61493d6439dcc99d4acb38f46837d310c259be18811c9c9705074b5"
+  },
+  "new_model_requests": 0,
+  "generated_code_executions": 0
+}

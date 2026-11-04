@@ -3,8 +3,8 @@ from pathlib import Path
 import csv
 
 ROOT = Path(__file__).resolve().parents[2]
-CORE = ROOT/'docs/analysis/reachable_rescues_20261016/core'
-B4 = ROOT/'docs/analysis/independent_4_completed_20261022/summary.csv'
+CORE = ROOT/'docs/analysis/measurement_ban_corrected_20261104/core'
+B4 = ROOT/'docs/analysis/measurement_ban_corrected_20261104/summary.csv'
 SOURCES = [CORE/'repair_summary.csv', CORE/'preventive_summary.csv', B4]
 DEFINITIONS = [
     ['B','初回生成のみ','1','基準条件'],

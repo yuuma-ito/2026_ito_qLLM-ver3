@@ -1,13 +1,11 @@
 {
   "source_files": {
-    "docs/graduation2026/thesis.docx": "0057a6c215430fa8e953ee7eca17ae9681687f0987943250677e2051044dd039",
-    "docs/graduation2026/thesis.pdf": "6907ef00e7314d59f15722323a999b7f60dd1c01c66ea977c4a84c0664897955",
-    "docs/graduation2026/slides.pptx": "0584c6514dc3337f7ead00ae18c31284959065c33121e2e2fa75c1a245245748",
-    "docs/graduation2026/slides.pdf": "4ea901659cad442b3a58cdfaab31a471422d8861a7c8b2e86519bd0df365a151",
-    "docs/graduation2026/build.py": "5c636f6c34a69714f29c75bd3e7fd5308d314f331d6279ac6bc8a5ea61cdd11b",
+    "docs/graduation2026/thesis.docx": "40accc11f3e9412724a586288d975c169c320cc3385b36b9a16aa69948ba3139",
+    "docs/graduation2026/thesis.pdf": "46feaafe494e3f325d6c223bece55a986e150151c51fe9ccb2467547f98f268e",
+    "docs/graduation2026/build.py": "397bea0ec4ca502810468e66f28fd180b487e85abe3ffb91cf492b3b3a8d3c55",
     "docs/graduation2026/template_thesis.py": "43d9da3cbaf633371e2f37c95ab7bdcf9e22f110f286fcca6c0762d5468a21f4"
   },
-  "source_commit": "8f2da55a1df461a955ea07cbc68f644e8710688f",
+  "source_commit": "72c03f843f0ca91b1d6dc06dedfb274d022316a7",
   "source_pdf_pages": 35,
   "new_experiments": 0,
   "rescoring": false,
@@ -24,5 +22,8 @@
     }
   },
   "builder_sha256": "8be8ae332617b8952175d2eba9605bd437ed49fb66fe9bbadea8a27c80ca553f",
-  "git_authorization": "作成完了後のユーザーのpush指示に基づく．対象はdocs/course_reports2026のみ．"
+  "git_authorization": "作成完了後のユーザーのpush指示に基づく．対象はdocs/course_reports2026のみ．",
+  "source_artifact_state": "修正版固定集計を反映した作業版。本文・スライドはmanifestのhashで固定。",
+  "updated_at_utc": "2026-11-04",
+  "source_scope": "再利用した卒論本文と生成元のみ。卒研発表スライドは報告書の入力に用いない。"
 }

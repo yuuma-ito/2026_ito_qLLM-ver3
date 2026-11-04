@@ -1,5 +1,5 @@
 {
-  "created_at_utc": "2026-10-28T12:08:07.571961+00:00",
+  "created_at_utc": "2026-11-04T12:13:44.107063+00:00",
   "status": "automated_checks_passed_pending_visual_review",
   "checks": {
     "eleven_pages_eight_main_three_appendix": true,
@@ -23,37 +23,29 @@
     55,
     45
   ],
-  "fixed_snapshot_captured_at_utc": "2026-10-15T15:20:18.335286+00:00",
+  "fixed_snapshot_captured_at_utc": "2026-11-04T11:49:57.181940+00:00",
   "new_model_requests": 0,
   "generated_code_executions": 0,
   "sources_sha256": {
-    "docs/presentation_sources/20261016T_reachable_rescues/results_snapshot.json": "67df2972c197f90117c30541fd646d72ec64f4023df66d705c51010b392ea35d",
-    "docs/presentation_sources/20261016T_reachable_rescues/repair_summary.csv": "84e419e1c5eefea2db337e3f14027ec3dd2ad4d21a4bed980b785630c7c24497",
-    "docs/presentation_sources/20261016T_reachable_rescues/fd_overlap_summary.csv": "48e9b1aad2e0003e4331c0c84d976d835064aaed89aa5c2f449f388d933ef67e",
-    "docs/presentation_sources/20261016T_reachable_rescues/third_round_summary.csv": "f08b55c8a0d2e49244d37b4c146cfd7a53176896e2541169a9a05f20a6abc7b4",
-    "docs/presentation_sources/20261016T_reachable_rescues/cost_by_cap_and_stratum.csv": "94075182d9f66f7997621c62427b06dcc43e4f147740a03943b14157992c0b89",
-    "docs/presentation_sources/20261016T_reachable_rescues/discordant_transitions.csv": "6c07410a9c1d71aade0171978d114449ed35e58ac2a8c26951a846e47a0791fb",
-    "docs/presentation_sources/20261016T_reachable_rescues/preventive_summary.csv": "8027cb2cc0fee81b78b4cae73535e3ec538dc8c687ab973395c7dff7689a6837",
-    "docs/presentation_sources/20261016T_reachable_rescues/source_manifest.json": "53586c59f33572fe8233c894fe0ef4f67308e7746ff08d1bb42cc9afd9acc089",
-    "docs/presentation_sources/20261016T_reachable_rescues/sanity_report.json": "c9543cc1f437755ef491a844874248414e5fee73eebaa83a0b53db3d7e896d81",
-    "docs/presentation_sources/20261016T_reachable_rescues/validation_report.json": "266b4ceb66c70f9d1e3cef98a7f573bd81885d3cc49b1509828841c3b69fca1d",
-    "docs/midterm2026/paper.tex": "988d6eb6811ac067571efa2059db7e54347ed66a7010e7d370e7979045eef071",
+    "docs/analysis/measurement_ban_corrected_20261104/results_snapshot.json": "ceb412ab801b350c52a12b0106818d92ef4dce7529ce516fea984b7188dcc68c",
+    "docs/analysis/measurement_ban_corrected_20261104/core/repair_summary.csv": "c1de940046e692542409f587cf6b4a338cb4ab6331a3756e68b7f8869a964ed1",
+    "docs/analysis/measurement_ban_corrected_20261104/core/fd_overlap_summary.csv": "595a8ade4a5337a2e3957bdf4006d0d96a8ec555b0be20d5a4ec94fbe23e97a4",
+    "docs/analysis/measurement_ban_corrected_20261104/third_round_summary.csv": "9dcb7dd4ebfa41b8809ba8194cac25e7669c916080c33aecb34ca8f0dd0f5b51",
+    "docs/analysis/measurement_ban_corrected_20261104/cost_by_cap_and_stratum.csv": "5efae00f2b1f6de521a92903b04aecc28cc02e4bceab3dce78e7cc38b497218c",
+    "docs/analysis/measurement_ban_corrected_20261104/discordant_transitions.csv": "db3e959ec2c2f3851f1abe3e55f0b14552011e6ddd2acd3f3cd9f7cddb184ca3",
+    "docs/analysis/measurement_ban_corrected_20261104/core/preventive_summary.csv": "59e7b26acf629eae5a696f0f61eb5926ae48f8a25246f6634b5a5739eb01c8ff",
+    "docs/analysis/measurement_ban_corrected_20261104/source_manifest.json": "11cab5cee61493d6439dcc99d4acb38f46837d310c259be18811c9c9705074b5",
+    "docs/analysis/measurement_ban_corrected_20261104/sanity_report.json": "260df539b25c3ff2cfbd40f3ad4b3b69b088d09077b093356668dce0cde31344",
+    "docs/analysis/measurement_ban_corrected_20261104/validation_report.json": "260df539b25c3ff2cfbd40f3ad4b3b69b088d09077b093356668dce0cde31344",
+    "docs/midterm2026/paper.tex": "3b7014b450894ef97066d0b1dabe6b3eb9c2deeebafb49f50b59f75d8bd67f02",
     "docs/analysis/reevaluation_followup_20261015/specification_review.md": "05722fbfdffaf9f18f483c2f553a390273a1c4d6b922f56a43b25824911abfb9",
     "docs/analysis/reevaluation_followup_20261015/partial_rerun_sanity_report.json": "9d13305c47dc75807ca455f73cde80d0c269e705f7ff5da19e2b37dca75635e1"
   },
   "artifacts_sha256": {
-    "slides.tex": "13c6f1a0da835eda3c83b0bc8aa8a3cd690adfcbdb6f9825b866694676412405",
-    "data.tex": "6ac7b107c79c100f6693340547bc86823d2d57ccd30c5b1993c15031d1baa4a2",
-    "slides.pdf": "4d0b589687cf4a8a18ccfded0e1892c1936dc6dda542eed30e98de775ee14e1a",
+    "slides.tex": "f568f5d3dba80d8ca0827c9facff990ed8b48f222e20f9139bc01509a92ef8bf",
+    "data.tex": "a7b6265103cae829fcbaf8ccbf9405231338fbc8d95ab64b20e5b49ae561ae2c",
+    "slides.pdf": "313851bc190e8a4b1a2988da37e6c16269b0f03f80c8a17fa7b5b4335ffcca32",
     "speaker_notes.txt": "d74bd1c627571c3c811cbde9164e8e36f0c64ae7c8c9b25bf1d36ca3f25272f1",
-    "build.py": "ffcc7ea54558c1e5a91d311759089f0c0d07f722929a8d999b23eccd5b99e594"
-  },
-  "visual_review": {
-    "status": "reviewed_changed_pages",
-    "pages_reviewed": [
-      4,
-      11
-    ],
-    "method": "L3定義と結果式を含む修正ページをPNGで確認。全11ページのフォント埋込み・はみ出し・固定件数はビルド時に自動検証。"
+    "build.py": "cc672468d9164f4f3be02157f62785f16702072149a90bc3ec810911523139dc"
   }
 }

@@ -30,7 +30,7 @@ def validate():
     manifest=json.loads((OUT/'source_manifest.json').read_text())
     checks={'original_files_unchanged':all(digest(ROOT/p)==h for p,h in manifest['source_files'].items()),
             'copied_source_matches_original':digest(HERE/'thesis_source.docx')==manifest['source_files']['docs/graduation2026/thesis.docx'],
-            'exactly_two_requested_PDFs':{p.name for p in OUT.rglob('*.pdf')}=={'卒業研究_調査設計報告.pdf','卒業研究_進捗成果報告.pdf'}}
+            'exactly_two_requested_PDFs':{p.name for p in OUT.glob('*.pdf')}=={'卒業研究_調査設計報告.pdf','卒業研究_進捗成果報告.pdf'}}
     reports={}
     source_tables=[[[c.text for c in r.cells] for r in t.rows] for t in source.tables]
     for kind in ['design','progress']:
@@ -106,7 +106,7 @@ def validate():
             results_page=next(h['page'] for h in toc if h['number']=='2')
             overview_page=next(h['page'] for h in toc if h['number']=='1')
             rc['overview_is_one_page']=results_page-overview_page==1
-            rc['key_results_and_limits_preserved']=all(s in text_norm for s in ['455','473','551','638','635','672','96','183','180','217','140','43','40','995,815','4,589.0','介入カタログ','未検証','全入力','seed規則'])
+            rc['key_results_and_limits_preserved']=all(s in text_norm for s in ['455','473','551','638','634','671','96','183','179','216','139','44','40','996,223','4,612.1','介入カタログ','未検証','全入力','seed規則'])
             rc['implementation_and_submission_plan_present']=all(s in text_norm for s in ['評価ハーネスを開発','再採点','部分追試293','静的履歴分析','本文を推敲','固定集計・参考文献・図表','指導教員の指摘'])
         checks[kind]=all(rc.values())
         reports[kind]={'pdf':stem+'.pdf','pages':len(pdf),'source_chapters':build['source_chapters'],

@@ -13,8 +13,8 @@ from docx.oxml.ns import qn
 import build_abstract as b
 
 HERE, ROOT = b.HERE, b.ROOT
-CACHE = ROOT / '.cache/midterm_abstract_20261021'
-ANALYSIS = ROOT / 'docs/analysis/reachable_rescues_20261016'
+CACHE = ROOT / '.cache/measurement_ban_materials/abstract'
+ANALYSIS = ROOT / 'docs/analysis/measurement_ban_corrected_20261104'
 
 
 def sha(path):
@@ -97,34 +97,34 @@ def validate_pdf(path):
 def validate_numbers():
     snap = b.SNAP
     overall = {r['condition_id']: r for r in snap['primary']['overall']}
-    assert [(overall[c]['rescued'], overall[c]['initial_failures']) for c in b.CONDITIONS] == [(96, 545), (183, 545), (180, 545)]
-    assert [round(overall[c]['rescue_rate'] * 100, 1) for c in b.CONDITIONS] == [17.6, 33.6, 33.0]
+    assert [(overall[c]['rescued'], overall[c]['initial_failures']) for c in b.CONDITIONS] == [(96, 545), (183, 545), (179, 545)]
+    assert [round(overall[c]['rescue_rate'] * 100, 1) for c in b.CONDITIONS] == [17.6, 33.6, 32.8]
     for table in b.TABLES[:2]:
-        assert sum(int(r[5]) for r in table[2]) == 217
+        assert sum(int(r[5]) for r in table[2]) == 216
         assert sum(int(r[1]) for r in table[2]) == 545
-        assert [sum(int(r[i]) for r in table[2]) for i in [2, 3, 4]] == [96, 183, 180]
+        assert [sum(int(r[i]) for r in table[2]) for i in [2, 3, 4]] == [96, 183, 179]
     assert 455 + 545 == snap['primary']['initial_groups'] == 1000
     assert snap['primary']['condition_records'] == 5000
     overlap = snap['primary']['fd_overlap']
-    assert (overlap['both'], overlap['F_only'], overlap['D_only'], overlap['neither']) == (140, 43, 40, 322)
-    assert sum([140, 43, 40, 322]) == 545
-    assert 140 + 43 == 183 and 140 + 40 == 180 and 43 + 40 == 83
-    assert round((140 + 43 + 40) / 545 * 100, 1) == 40.9
+    assert (overlap['both'], overlap['F_only'], overlap['D_only'], overlap['neither']) == (139, 44, 40, 322)
+    assert sum([139, 44, 40, 322]) == 545
+    assert 139 + 44 == 183 and 139 + 40 == 179 and 44 + 40 == 84
+    assert round((139 + 44 + 40) / 545 * 100, 1) == 40.9
     cases = list(csv.DictReader((ANALYSIS / 'discordant_cases.csv').open()))
     rescued = [r for r in cases if r['rescued'] == 'True']
-    assert len(cases) == 166 and len(rescued) == 83
-    for cohort, counts in [('F_only', (8, 19, 28, 24)), ('D_only', (22, 11, 34, 32))]:
+    assert len(cases) == 168 and len(rescued) == 84
+    for cohort, counts in [('F_only', (8, 19, 29, 25)), ('D_only', (22, 11, 34, 32))]:
         rr = [r for r in rescued if r['cohort'] == cohort]
         got = (sum(r['baseline_error_category'] == 'import_error' for r in rr),
                sum(r['baseline_error_category'] == 'build_error' for r in rr),
                sum(r['any_changed_import_API'] == 'True' for r in rr),
                sum(r['any_changed_circuit_interface'] == 'True' for r in rr))
         assert got == counts, (cohort, got)
-    assert len(list(csv.DictReader((ANALYSIS / 'discordant_transitions.csv').open()))) == 398
+    assert len(list(csv.DictReader((ANALYSIS / 'discordant_transitions.csv').open()))) == 404
     costs = {r['condition_id']: r for r in snap['overall_costs'] if r['cap'] == 3}
-    assert [round(costs[c]['tokens_per_rescue'], 1) for c in b.CONDITIONS] == [18852.6, 9333.8, 10976.6]
+    assert [round(costs[c]['tokens_per_rescue'], 1) for c in b.CONDITIONS] == [18852.6, 9333.8, 11037.9]
     third = {r['condition_id']: r for r in snap['third_round']}
-    for c, expected in [('execution_feedback', (28, 390, 7.2, 15.3)), ('self_debugging', (33, 398, 8.3, 18.3))]:
+    for c, expected in [('execution_feedback', (28, 390, 7.2, 15.3)), ('self_debugging', (32, 398, 8.0, 17.9))]:
         r = third[c]
         got = (r['additional_rescues'], r['at_risk_after_2'],
                round(r['additional_rescues']/r['at_risk_after_2']*100, 1), round(r['loss_if_stop_at_2']*100, 1))
@@ -135,12 +135,12 @@ def validate_numbers():
     assert 455-106+124 == 473
     assert json.loads((ANALYSIS / 'sanity_report.json').read_text())['passed']
     b4 = next(r for r in b.B4_ROWS if r['condition']=='B4' and r['generation_cap']=='4' and r['grouping']=='overall')
-    assert [int(b4[k]) for k in ['groups','initial_failures','successes_from_initial_failure','final_L3_successes','additional_requests','additional_tokens']] == [1000,545,217,672,1342,995815]
+    assert [int(b4[k]) for k in ['groups','initial_failures','successes_from_initial_failure','final_L3_successes','additional_requests','additional_tokens']] == [1000,545,216,671,1343,996223]
     assert json.loads((b.B4_SOURCE/'sanity_report.json').read_text())['passed']
-    return {'overall_rescues': [96, 183, 180], 'initial_failure_denominator': 545,
+    return {'overall_rescues': [96, 183, 179], 'initial_failure_denominator': 545,
             'model_and_error_table_totals_reconciled': True, 'fd_overlap_reconciled': True,
-            'all_83_cases_and_398_transitions_checked': True, 'cost_and_third_round_checked': True,
-            'independent_generation_P_checked': True, 'B4_initial_failure_successes': 217, 'B4_final_successes': 672, 'B4_additional_requests': 1342, 'B4_additional_tokens': 995815}
+            'all_84_cases_and_404_transitions_checked': True, 'cost_and_third_round_checked': True,
+            'independent_generation_P_checked': True, 'B4_initial_failure_successes': 216, 'B4_final_successes': 671, 'B4_additional_requests': 1343, 'B4_additional_tokens': 996223}
 
 
 def main():
@@ -189,7 +189,7 @@ def main():
              ROOT / 'tasks/__init__.py',
              ROOT / 'docs/analysis/reevaluation_followup_20261015/partial_evaluation_profile.json']
     visual = {'status': 'pending', 'scope': 'both pages of LaTeX and Word-export PDFs'}
-    visual_path = HERE / 'visual_review_20261022.json'
+    visual_path = HERE / 'visual_review_20261104.json'
     if visual_path.exists():
         candidate = json.loads(visual_path.read_text())
         if all(candidate.get('reviewed_pdf_sha256', {}).get(r['path']) == r['sha256'] for r in reports):
@@ -218,7 +218,7 @@ def main():
               'visual_review': visual,
               'word_layout_note': 'LibreOfficeで検証．Microsoft Wordで編集後は再ページ割付を確認する．',
               'experiment_actions': {'new_generations': 0, 'generated_code_executions': 0}}
-    (HERE / 'validation_report_20261022.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
+    (HERE / 'validation_report_20261104.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
     print('Layout/content passed: both PDFs 2 pages, A4, margins, 11pt, page numbers, complete prose, tables and frozen numbers.')
     print('Word font specification passed. PDF requested fonts: ' + ('passed.' if fonts_met else 'NOT MET; substitute-font preview only.'))
 
