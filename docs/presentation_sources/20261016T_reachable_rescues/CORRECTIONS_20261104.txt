@@ -1,0 +1,7 @@
+2026-11-04 訂正への案内
+
+元分析のREADMEに残る「未固定の測定乱数」は現行v4には当てはまらない。測定・変換seedは42固定であり、別seedへの感度が未検証である。
+詳細：docs/analysis/reachable_rescues_20261016/CORRECTIONS_20261104.txt
+
+この発表出典のmanifest.jsonは元分析のコピーであり、outputsの相対パスはsource_manifest.jsonのsource_analysisを基準に解決する。公開コピーの配置を基準にしない。
+固定CSV・元manifest・当時の原稿hashは変更していない。現行原稿の検証には各原稿の現在の検証記録を使用する。

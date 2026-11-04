@@ -57,6 +57,9 @@ def resolve_config(path: Path, latest: bool, root: Path = ROOT):
 
 
 def snapshot(config: dict, root: Path = ROOT):
+    if config.get('condition_id') == 'independent_4':
+        from scripts.independent_4_progress import snapshot as independent_snapshot
+        return independent_snapshot(config, root)
     plan = validate_config(config)
     output = root / config.get("output_dir", f"results/{config['experiment_id']}")
     raw = output / "raw.jsonl"
@@ -122,12 +125,13 @@ def message(progress: dict, timezone: str):
     recorded, planned = progress["recorded"], progress["planned"]
     percent = 100 * recorded / planned if planned else 0
     updated = progress["last_update"]
+    level = progress.get('primary_level', 'L2')
     lines = [
         f"実験進捗 {datetime.now(zone):%Y-%m-%d %H:%M %Z}",
         f"実験: {html.escape(progress['experiment_id'])}",
         f"状態: {progress['state']}",
         f"記録: {recorded}/{planned} ({percent:.1f}%)・残り {planned - recorded}件",
-        f"L2成功: {progress['passed_L2']}件・L2失敗: {progress['failed_L2']}件",
+        f"{level}成功: {progress['passed_'+level]}件・{level}失敗: {progress['failed_'+level]}件",
         f"API接続・タイムアウト障害を含む記録: {progress['api_failures']}件",
         f"未分類の評価エラーを含む記録: {progress.get('unknown_failures', 0)}件",
         f"重複: {progress['duplicates']}件・予定外: {progress['unexpected']}件",

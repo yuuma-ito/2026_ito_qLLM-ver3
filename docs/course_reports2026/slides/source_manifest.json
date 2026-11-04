@@ -1,12 +1,12 @@
 {
-  "created_at_utc": "2026-11-04T01:31:22.342014+00:00",
+  "created_at_utc": "2026-11-04T02:36:39.791174+00:00",
   "title": "量子LLM支援プログラミングにおける失敗類型と介入カタログの実証研究",
   "source_sha256": {
     "docs/course_reports2026/卒業研究_調査設計報告.pdf": "3d36bbf82cd954e1b05f2822edaaf77f3c95b9e4ea72a7e785d719247256fc81",
     "docs/course_reports2026/卒業研究_進捗成果報告.pdf": "e56717332ccf6d369fcddfcf8888c9dfab106066ba9dd1e84dc37ce060747720",
     "docs/analysis/independent_4_completed_20261022/summary.csv": "4ff68c4fb0f8d6f94bfd6c1eabe8018e14b29b97435ed028305550823b391344",
     "docs/graduation2026/intervention_catalog.csv": "7f231af5fa18e70a748f6a7266f928ea3441425772cf4f48746939fe917afaf6",
-    "docs/course_reports2026/source/build_slides.py": "f082bdca56716728095a23e6aeee296bd42d7bf9576c216913fd91827e033644"
+    "docs/course_reports2026/source/build_slides.py": "394a094e72569e02c06ab6f73bf6cd876e07a2f6c17c3cded24545494622a153"
   },
   "decks": [
     {

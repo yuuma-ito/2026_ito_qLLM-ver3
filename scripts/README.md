@@ -1,5 +1,9 @@
 # 実行・集計・運用スクリプト（scripts）
 
+B4は専用入口[run_independent_4.py](run_independent_4.py)を使用する．既定コマンドは読取り・計画作成のみで，実行には承認hashと`--execute`および`--new-run`か`--resume`が必要．[analyze_independent_4.py](analyze_independent_4.py)で保存後の比較を行う．既存の自動commit・pushは呼ばない．完了実験の保存設定と必要ファイルは[実装・再現手順](../docs/independent_4_reproduction.txt)を参照する．
+
+[summarize_generation_limits.py](summarize_generation_limits.py)は公開CSVの部分追試647生成について終了理由を条件別に集計する．保存モデルコードやAPIにはアクセスしない．結果を全実験の打切り率や説明指示の因果効果と解釈しない．
+
 実験の実行、結果の検証・集計、評価器監査、通知、資料更新の入口となる Python スクリプトを保存するフォルダです。処理本体は主に [harness](../harness/README.md)、実行設定は [configs](../configs/README.md) にあります。
 
 <!-- reachable-rescues:20261016 -->

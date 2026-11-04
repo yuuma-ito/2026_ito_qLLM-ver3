@@ -1,0 +1,99 @@
+{
+  "checked_at_utc": "2026-11-04T02:09:07.055589+00:00",
+  "passed": true,
+  "checks": {
+    "original_5000_raw_records_hashes": {
+      "passed": true,
+      "records": 5000,
+      "errors": []
+    },
+    "all_repair_summary_rows": {
+      "passed": true,
+      "rows": 1332,
+      "errors": []
+    },
+    "all_preventive_summary_rows": {
+      "passed": true,
+      "rows": 444,
+      "errors": []
+    },
+    "all_FD_overlap_summary_rows": {
+      "passed": true,
+      "rows": 394,
+      "errors": []
+    },
+    "all_paired_records": {
+      "passed": true,
+      "rows": 4000,
+      "errors": []
+    },
+    "reachable_9249_rounds_match_raw_and_checkpoints": {
+      "passed": true,
+      "rounds": 9249,
+      "errors": [],
+      "checkpoint_hash_errors": []
+    },
+    "all_reconstructed_cost_rows": {
+      "passed": true,
+      "rows": 4440,
+      "errors": []
+    },
+    "all_third_round_summary_rows": {
+      "passed": true,
+      "rows": 1332,
+      "errors": []
+    },
+    "B4_raw_hash_matches_fixed": {
+      "passed": true
+    },
+    "all_B4_summary_rows_from_individual_histories": {
+      "passed": true,
+      "rows": 486,
+      "groups": 1000,
+      "stopping_errors": []
+    },
+    "B4_overlap_pairwise_first_success_recomputed": {
+      "passed": true
+    },
+    "mutation_control": {
+      "passed": true,
+      "altered_success_count_detected": true
+    }
+  },
+  "manifest_verification": {
+    "docs/analysis/reachable_rescues_20261016": {
+      "output_root": "docs/analysis/reachable_rescues_20261016",
+      "hash_mismatches": [],
+      "missing_files": []
+    },
+    "docs/analysis/reachable_rescues_20261016/core": {
+      "output_root": "docs/analysis/reachable_rescues_20261016/core",
+      "hash_mismatches": [],
+      "missing_files": []
+    },
+    "docs/analysis/independent_4_completed_20261022": {
+      "output_root": "docs/analysis/independent_4_completed_20261022",
+      "hash_mismatches": [],
+      "missing_files": []
+    },
+    "docs/presentation_sources/20261016T_reachable_rescues": {
+      "output_root": "docs/analysis/reachable_rescues_20261016",
+      "hash_mismatches": [],
+      "missing_files": []
+    }
+  },
+  "partial_rerun_finish_reasons": {
+    "stop": 527,
+    "length": 120
+  },
+  "audit_script_sha256": "2ace68af51fb9f9b9661a171400193ddeb4d448cecea75d5e439dadfc4522ed6",
+  "helper_script_sha256": {
+    "scripts/analyze_verified_rescues.py": "635bd8a3ff83ef86ef1721b3e37bf35b7ab5cd962c96a22357b64676238ba246",
+    "scripts/analyze_reachable_rescue_history.py": "1d53e79df6947417458a939f3594641479c9a8d9770ecb5a36cd2f1df1bff561"
+  },
+  "notes": [
+    "No model API calls, generated-code execution, rescoring, original artifact edits, or git operations.",
+    "Recomputed saved outcomes; this does not independently validate all scoring judgments.",
+    "B4 summary independently summed from private B4 records and frozen reachable comparator histories."
+  ]
+}

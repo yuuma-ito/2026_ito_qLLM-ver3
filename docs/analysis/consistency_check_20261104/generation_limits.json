@@ -1,0 +1,30 @@
+{
+  "scope": "selected_partial_followup_293_cases_only",
+  "total_generations": 647,
+  "conditions": [
+    {
+      "condition_id": "execution_feedback",
+      "generations": 322,
+      "finish_reasons": {
+        "length": 52,
+        "stop": 270
+      },
+      "length_count": 52,
+      "length_rate": 0.16149068322981366
+    },
+    {
+      "condition_id": "self_debugging",
+      "generations": 325,
+      "finish_reasons": {
+        "length": 68,
+        "stop": 257
+      },
+      "length_count": 68,
+      "length_rate": 0.20923076923076922
+    }
+  ],
+  "causal_effect_identified": false,
+  "interpretation": "出力枠への依存を記述する。全実験の打切り率・説明指示の因果効果・打切りが誤答原因だったことは示さない。",
+  "source": "docs/analysis/reevaluation_followup_20261015/partial_new_rounds.csv",
+  "source_sha256": "23002b1e318cbc79616b3d153fc58df0d4ac050c2a843ff87038c066f0b3b35d"
+}

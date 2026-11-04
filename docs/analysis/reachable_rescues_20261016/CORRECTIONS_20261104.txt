@@ -1,0 +1,9 @@
+2026-11-04 訂正・補足
+
+README.md「方法の補足と限界」の「未固定の測定乱数」は、現行evaluation_policy_v4による再採点・部分追試には当てはまらない。現行v4のsimulator seed・transpiler seedはともに42に固定されている。有限shotsと別seedへの合否の感度は残る。旧生成時の未固定設定と、現行判定に使用した設定を区別する。
+
+根拠：harness/evaluator.pyの_run_distribution、docs/analysis/reevaluation_followup_20261015/partial_evaluation_profile.jsonのsampling。
+
+固定README・集計・manifestは当時のhashと再現性を保つため上書きせず、この訂正を併読する。現行v4は指定入力と所定構造条件への適合を判定し、測定禁止など課題文全条件の遵守や任意入力の算法同値性を保証しない。測定を含む主L3成功例は同followup/specification_review.mdに記録されている。
+
+reference_conformance_v1は2026-11-04に追加した別仕様の検査であり、本固定結果の評価器ではない。保存生成コードの厳格再採点と追加モデル生成は今回行っていない。成功数・tokens・停止経路は変更していない。

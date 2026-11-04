@@ -1,0 +1,31 @@
+B4追加実験の実装・再現資料（2026-11-04）
+
+既存完了実験：independent_4_full_20261020T185811381595Z
+固定結果：docs/analysis/independent_4_completed_20261022/
+保存設定：同ディレクトリのrunner_experiment_config.json
+保存実装hash：同runner_manifest.jsonのimplementation
+
+今回収録する実装
+harness/independent_4.py
+scripts/run_independent_4.py
+scripts/analyze_independent_4.py
+scripts/independent_4_progress.py
+scripts/notify_progress.pyのB4対応
+configs/independent_4_full.json
+tests/test_independent_4.py
+
+実行・集計の3ファイルは保存manifestのhashと一致する。既存完了実験の採点仕様や入力を変更しない。reference_conformance_v1はB4当時の評価器に含まれない。
+
+モデル要求を行わない確認
+.venv/bin/python -m pytest -q tests/test_independent_4.py
+PYTHONPATH=.cache/graduation_tools .venv/bin/python docs/analysis/consistency_check_20261104/audit_saved_results.py
+
+後者は元3実験のrawと部分追試checkpoint、B4のrawが必要。公開資料のみでは、非公開の生成コードやAPI応答の真正性まで再確認できない。生コード・raw・秘密情報は収録しない。
+
+専用実行入口
+.venv/bin/python -m scripts.run_independent_4 --help
+
+既定動作は計画作成のみであり、--executeと承認済み計画hash、--new-runまたは--resumeが揃わなければモデル生成を行わない。保存済みの完了実験を今回の修正作業で再開しない。過去の承認hashを新しい計画へ使い回さず、専用出力先と共有ロックで既存実験から分離する。実際の新規追試は今回のユーザー指定範囲に含まれない。
+
+実験の現在状態
+元の事前計画・runner_manifestのprepared_not_authorizedは計画作成時の状態として保持する。既存完了実験の現在状態は固定sanity reportと全1,000組の記録で確認し、事前計画の状態文字列だけで未開始と判断しない。

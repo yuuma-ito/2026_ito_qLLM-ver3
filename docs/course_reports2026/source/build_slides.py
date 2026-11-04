@@ -157,7 +157,7 @@ def design():
     s = d.slide('成功は，実行・期待出力・構造要件で判定', 55, '9–11', ['L3は指定入力に対する所定検査への適合。', '測定結果は量子ビットと古典ビットの対応を反映して比較する。', '全入力のアルゴリズム同値性や実機動作は保証しない。'])
     d.table(s,['段階','確認する内容'],[['L0','読込み・import・必須インターフェース'],['L1','回路構築・評価処理の実行'],['L2','指定入力で期待出力と一致'],['L3','L0・L1・L2と構造要件のすべて']], [1.7,9.8],y=1.6,height=.65)
     d.text(s,.9,5.05,11.6,1.1,'分布：8,192 shots，全変動距離0.05未満\n状態：大域位相を整合した距離0.05未満',22)
-    d.text(s,.9,6.23,11.6,.5,'指定入力での一致を評価。任意入力に対する同値性は未検証。',20,True,TEAL)
+    d.text(s,.9,6.23,11.6,.5,'指定入力を評価。測定禁止を含む全指示の遵守は保証しない。',20,True,TEAL)
     s = d.slide('5モデル・10タスク・20 seedを対応づける', 50, '12–15', ['5,000条件記録とB4追加1,000組を区別する。', '保存コード再採点と部分追試293ケースに基づく到達履歴の再構成を含む。', '旧120件は合算しない。'])
     d.text(s,.9,1.65,11.5,.8,'5 × 10 × seed 0〜19 ＝ 1,000初期組',32,True,TEAL)
     d.text(s,.9,2.75,11.5,1.2,'qwen3.5:4b ／ gemma4:e4b-it-qat ／ qwen3.5:9b\nqwen2.5-coder:7b ／ gemma3:4b',23)
@@ -222,7 +222,7 @@ def progress():
     s = d.slide('成果をまとめ，卒論提出と次の検証へ進む', 45, '11–13', ['選択・停止規則の性能検証は未実施。', '有限タスク・指定入力・出典時期の違いを限界として残す。', '提出準備と，新しいseedやタスクでの研究上の追試は別の作業。'])
     d.lines(s,[('得られた成果','追加成功・成功対象・計算コストを整理し，カタログ化した。'),('卒論完成に向けた作業','RQと結論・固定集計・図表参照・引用・体裁を最終確認する。'),('次の研究課題','選択・停止規則を事前固定し，別seed・タスクで検証する。')])
     s = d.slide('補足　Pの成績と検証状態', None, '4–5, 9', ['質疑用。Pの独立生成を修正による救済と混同しない。'])
-    d.lines(s,[('P：注意事項付き独立1回生成','B失敗に対応する成功124/545，B成功に対応する失敗106/455。'),('B4：1,000組の完備性を確認済み','欠落・重複・予定外0，sanity成功。コード側NameError 2件。'),('解釈上の限界','一般的優劣・有意差・因果効果・自動選択性能は断定しない。')])
+    d.lines(s,[('P：注意事項付き独立1回生成','B失敗に対応する成功124/545，B成功に対応する失敗106/455。'),('B4：1,000組の完備性を確認済み','欠落・重複・予定外0，sanity成功。コード側NameError 2件。'),('主L3の評価範囲','測定禁止を含む全指示の遵守・任意入力の同値性は保証しない。')])
     s = d.slide('補足　元報告と固定出典', None, '14', ['文献番号は進捗・成果報告に対応する。リンク先の新規照合は今回行っていない。'])
     for i,(t,u) in enumerate([('[1] 固定公開出典：commit b4c0ba7',FIXED),('[1] B/R/F/D/P：2026-10-16版',FIXED+'/docs/presentation_sources/20261016T_reachable_rescues'),('[1] B4：2026-10-22固定',FIXED+'/docs/analysis/independent_4_completed_20261022'),('[2] IBM Quantum: Construct circuits','https://quantum.cloud.ibm.com/docs/en/guides/construct-circuits'),('[3] Qiskit Aer documentation','https://qiskit.github.io/qiskit-aer/')]):
         d.text(s,.9,1.65+i*.85,11.5,.65,t,22,url=u)
@@ -272,7 +272,7 @@ def validate(decks):
             checks[d.name]['additional_counts_match_report_and_csv']=all(f"{row(c)['successes_from_initial_failure']}/545組" in texts[2] and row(c)['successes_from_initial_failure'] in source_text for c in ('R','F','D','B4'))
         pdf.close()
         source.close()
-    sources=[d.source for d in decks]+[SUMMARY,CATALOG,Path(__file__)]
+    sources=[d.source for d in decks]+[SUMMARY,CATALOG,Path(__file__).resolve()]
     manifest={'created_at_utc':datetime.now(timezone.utc).isoformat(),'title':TITLE,'source_sha256':{str(p.relative_to(ROOT)):digest(p) for p in sources},'decks':[{'name':d.name,'main_slides':8,'supplemental_slides':2,'notes':d.notes} for d in decks],'new_experiments':False,'scope':'元報告の要約と固定CSVからの転記。参考文献の再調査・独立査読・発表時間の実測は未実施。'}
     (OUT/'source_manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
     report={'passed':all(all(c.values()) for c in checks.values()),'checks':checks,'artifact_sha256':{p.name:digest(p) for p in OUT.iterdir() if p.suffix in ('.pdf','.pptx','.txt')},'visual_review':'別途visual_review.jsonを参照'}

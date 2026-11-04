@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-02T10:16:38.488479+00:00",
+  "checked_at_utc": "2026-11-04T02:35:41.251794+00:00",
   "passed": true,
   "checks": {
     "twelve_slides_in_pptx_and_pdf": true,
@@ -38,10 +38,10 @@
   ],
   "artifact_sha256": {
     "thesis.pdf": "6907ef00e7314d59f15722323a999b7f60dd1c01c66ea977c4a84c0664897955",
-    "slides.pptx": "0584c6514dc3337f7ead00ae18c31284959065c33121e2e2fa75c1a245245748",
-    "slides.pdf": "4ea901659cad442b3a58cdfaab31a471422d8861a7c8b2e86519bd0df365a151",
-    "speaker_notes.txt": "7c2f533687e7366d4094e5eb5ef342e8f8c173eba0bc4b359581492af0aa1137",
-    "graduation_slides.py": "49e8695e7e07f23e94cbbd8d59a9469920bee2791e7aa49bf33a7dfb57be9277",
+    "slides.pptx": "c4704a9418a7c48414b2b6d899e13c0599c28e362b8bacb72071e13fa4f82a46",
+    "slides.pdf": "2071f41cd2b3a5b730f6e5bb48f66163b94bb976ec42015c0285a88044f34c20",
+    "speaker_notes.txt": "47e9043017cec45952e1c5bb78c01fc138f5c6f1a037cf9e05152d92426fc32e",
+    "graduation_slides.py": "2d8c4505e4f69e1f953264855ea1917e0c2b191c84f07556323bd5b1b424c0cd",
     "convert_slides.py": "c520f9404fe397d091a4f765c4e89213c3a0baac4fbd788d9ea2e3f0eb081f7f",
     "validate_slides.py": "b574d86ce950d978ab18f5dc1794443ba61d0ec23777a69893d50bdd3a6f881b"
   },

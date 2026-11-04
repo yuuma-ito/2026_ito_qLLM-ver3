@@ -1,5 +1,7 @@
 # 検証用テスト（tests）
 
+[test_independent_4.py](test_independent_4.py)はB4の初回再利用・履歴非混入・seed・停止・階層・コスト・欠落重複・未承認起動・再開を検証する．実モデルへの要求は行わない．[test_reference_conformance.py](test_reference_conformance.py)は手書き回路と作成者のmockで全10タスクの新参照仕様を検証する．[test_generation_limits.py](test_generation_limits.py)は終了理由と分母の集計を検証する．[修正・検証記録](../docs/analysis/consistency_check_20261104/resolution.txt)を参照する．
+
 pytestで実行する、実験ハーネス・集計・運用処理の回帰テストを保存するフォルダです。
 
 | 対象 | 主なファイル |

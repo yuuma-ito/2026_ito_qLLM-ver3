@@ -46,4 +46,4 @@
 | 5,000件の本再評価、起動・中断・後続計画の記録 | [reevaluation_full_20261014T141718Z](reevaluation_full_20261014T141718Z/README.md) |
 | 後続の仕様確認・影響監査・追試の記録 | [reevaluation_followup_20261015](reevaluation_followup_20261015/README.md) |
 
-この索引の追加では再評価や検証を実行していません。実行状況や確定件数は各フォルダのレポートを確認してください。
+2026-11-04の[整合性点検](consistency_check_20261104/findings.txt)と[修正記録](consistency_check_20261104/resolution.txt)では、主要集計を個別履歴から再計算した。[測定seedの訂正](reachable_rescues_20261016/CORRECTIONS_20261104.txt)は固定ファイルの内容を保った別記録である。各分析の実行状況と確定件数は、その保存設定・固定日・検証記録を確認する。

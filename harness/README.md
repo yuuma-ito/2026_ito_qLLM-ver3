@@ -1,5 +1,7 @@
 # 実験・評価の処理本体（harness）
 
+[independent_4.py](independent_4.py)は保存Bの初回を共有する独立再生成B4の専用処理．通常baselineプロンプトだけで最大3回追加し，主L3成功で停止する．既存の5条件・評価器・修正処理の挙動を変更しない．保存設定と必要ファイルは[実装・再現手順](../docs/independent_4_reproduction.txt)を参照する．
+
 LLMによるQiskitコード生成、介入による修正、生成コードの評価、実験状態の保存を実装する Python パッケージです。実行の入口は [scripts](../scripts/README.md) にあります。
 
 | ファイル | 役割 |
@@ -15,5 +17,8 @@ LLMによるQiskitコード生成、介入による修正、生成コードの�
 | [run_state.py](run_state.py) | 実行状態・共有ロックの管理 |
 | [reevaluation_plan.py](reevaluation_plan.py)・[reevaluation_checkpoint.py](reevaluation_checkpoint.py) | 保存コード再評価の計画と再開情報 |
 | [supplementary.py](supplementary.py) | 補助的な評価情報の取得 |
+| [reference_conformance.py](reference_conformance.py) | 別仕様の測定禁止・純粋状態／全ユニタリ参照適合性。v4主判定には組み込まない |
 
 評価の仕様と保存形式は [ハーネス仕様](../docs/new_harness_spec.md)、評価器の版と出力表現は [評価仕様](../docs/evaluator_readout.md) を参照してください。変更時の検証対象は [tests](../tests/README.md) で確認できます。
+
+参照適合性検査の対象・全入力距離の意味・未実施の全件適用は[仕様](../docs/reference_conformance.txt)に記載した。信頼できる構築済み回路用の関数であり、保存モデルコードや信頼できないQPYを直接実行・読込みする入口ではない。

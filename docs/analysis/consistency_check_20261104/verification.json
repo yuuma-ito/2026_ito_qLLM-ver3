@@ -1,0 +1,43 @@
+{
+  "verified_at_utc": "2026-11-04T02:38:49.012209+00:00",
+  "passed": true,
+  "tests": {
+    "tests": 114,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "test_command": ".venv/bin/python -m pytest -q tests/test_reference_conformance.py tests/test_generation_limits.py tests/test_independent_4.py tests/test_notify_progress.py tests/test_evaluator.py tests/test_canonical_readout.py",
+  "historical_evaluator_profile_unchanged": true,
+  "historical_B4_implementation_hashes_match": {
+    "harness/independent_4.py": true,
+    "scripts/run_independent_4.py": true,
+    "scripts/analyze_independent_4.py": true,
+    "prompts/system.txt": true,
+    "harness/llm_clients.py": true,
+    "harness/interventions/prompts.py": true,
+    "scripts/independent_4_progress.py": true,
+    "scripts/notify_progress.py": true
+  },
+  "new_file_sha256": {
+    "harness/reference_conformance.py": "de9c8762534ed5707e13f5ac8a42b8848f25954de10e7cc17bae6cba0f4c049b",
+    "tests/test_reference_conformance.py": "f4257b7d92de568578af47b771720a6b240caeadedea66048efe00d6069c3ea7",
+    "scripts/summarize_generation_limits.py": "e3cb5aab6dbcc60947bc973b17b8472bde2434c16a936f421a7a3b88c4ed0b39",
+    "tests/test_generation_limits.py": "6ab63de0fd6f0483c7a46efb0c580a89fc1fe9cde8ff7f144cddf29711cc65a9"
+  },
+  "independent_review": {
+    "performed": true,
+    "scope": "new reference-conformance module; independent agent without authoring history",
+    "initial_findings": [
+      "Bell/GHZ branch missing unitary validation",
+      "QiskitError escaping lazy definition traversal"
+    ],
+    "fixed_and_rechecked": true,
+    "remaining_major_findings": 0
+  },
+  "new_model_requests": 0,
+  "saved_model_code_executions": 0,
+  "rescoring_performed": false,
+  "full_research_comparison_validated": false,
+  "limitations": "New reference policy is opt-in for trusted constructed circuits; full saved-code evaluation requires a separate isolated worker/profile and is outside this request. Budget/time confounding remains a research limitation."
+}

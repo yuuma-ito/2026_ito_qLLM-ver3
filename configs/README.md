@@ -6,6 +6,8 @@
 
 ## 今後の実験に使う設定
 
+独立再生成B4の設定は[independent_4_full.json](independent_4_full.json)．既存実験は全1,000組完了しており，採用する設定は[固定結果内の保存設定](../docs/analysis/independent_4_completed_20261022/runner_experiment_config.json)である．専用入口`.venv/bin/python -m scripts.run_independent_4`の既定動作は計画作成のみ．標準の自動commit・pushラッパーへ渡さず，[実装・再現手順](../docs/independent_4_reproduction.txt)に従う．新規追試は別の計画・出力先を使用する．
+
 | ファイル | 用途 |
 | --- | --- |
 | [shared_five_models_quick.json](shared_five_models_quick.json) | 5モデルの小規模確認。1コマンド自動実行の標準設定 |

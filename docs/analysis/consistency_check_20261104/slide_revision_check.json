@@ -1,0 +1,27 @@
+{
+  "checked_at_utc": "2026-11-04T02:37:25.443747+00:00",
+  "files": {
+    "docs/graduation2026/slides.pdf": {
+      "pages": 12,
+      "pixel_changed_pages": [],
+      "text_overlap_pages": [],
+      "sha256": "2071f41cd2b3a5b730f6e5bb48f66163b94bb976ec42015c0285a88044f34c20"
+    },
+    "docs/course_reports2026/slides/調査設計報告_スライド.pdf": {
+      "pages": 10,
+      "pixel_changed_pages": [
+        5
+      ],
+      "text_overlap_pages": [],
+      "sha256": "9e87b304fffc279ce9085558fac1a6d837dc96a6df022fa4768eb1839b28d6d6"
+    },
+    "docs/course_reports2026/slides/進捗成果報告_スライド.pdf": {
+      "pages": 10,
+      "pixel_changed_pages": [
+        9
+      ],
+      "text_overlap_pages": [],
+      "sha256": "3f6828ced5cab103de0205163bfa4f3707699e86a79c88bf5e1a2f98b1acdbd0"
+    }
+  }
+}
