@@ -1,0 +1,9 @@
+condition,round,finish_reason,requests
+A,1,length,11
+A,1,stop,89
+B,1,length,8
+B,1,stop,92
+C,1,length,10
+C,1,stop,90
+D,1,length,14
+D,1,stop,86

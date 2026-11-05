@@ -1,0 +1,77 @@
+B4と修正介入の差に関する予備実験：最大3回
+実験ID: factorial_pilot_20261104T155653697245Z
+固定計画hash: a3a2250486fb905c965f9251bdac9d8b010fe722822d322a3aeacab03a9e7546
+A/B/C/Dは新規の要因分析条件であり、既存B4/R/F/Dと同一の実装・成績とは扱わない。
+対象100初期失敗組は事前固定。少数モデル×失敗類型を含む不均等抽出であり、率はこの標本内の値。
+
+条件別成功率・消費・構造の反復
+A: 34/100 (34.0%)、256要求、195598 tokens、tokens/成功=5752.882352941177、失敗要求tokens=173848、同じ失敗AST=2/210有効対、length終了=28、出力1024到達=28
+B: 18/100 (18.0%)、272要求、298920 tokens、tokens/成功=16606.666666666668、失敗要求tokens=281625、同じ失敗AST=167/243有効対、length終了=17、出力1024到達=17
+C: 33/100 (33.0%)、254要求、309301 tokens、tokens/成功=9372.757575757576、失敗要求tokens=275940、同じ失敗AST=101/221有効対、length終了=21、出力1024到達=21
+D: 34/100 (34.0%)、247要求、349806 tokens、tokens/成功=10288.411764705883、失敗要求tokens=310214、同じ失敗AST=102/206有効対、length終了=29、出力1024到達=29
+
+対応比較（同じ100組）
+A対B: 共通成功14、左のみ20、右のみ4、双方失敗62、右−左=-16.0ポイント
+B対C: 共通成功14、左のみ4、右のみ19、双方失敗63、右−左=15.0ポイント
+C対D: 共通成功26、左のみ7、右のみ8、双方失敗59、右−左=1.0ポイント
+
+モデル別・失敗類型別・タスク別
+全層をsummary.csvとpaired_success.csvに保存。10組未満の層はsmall_stratum=Trueとし、一般化や有意差を断定しない。
+model_spec / ollama:gemma3:4b / A: 4/33
+model_spec / ollama:gemma3:4b / B: 0/33
+model_spec / ollama:gemma3:4b / C: 0/33
+model_spec / ollama:gemma3:4b / D: 0/33
+model_spec / ollama:gemma4:e4b-it-qat / A: 7/12
+model_spec / ollama:gemma4:e4b-it-qat / B: 5/12
+model_spec / ollama:gemma4:e4b-it-qat / C: 9/12
+model_spec / ollama:gemma4:e4b-it-qat / D: 7/12
+model_spec / ollama:qwen2.5-coder:7b / A: 10/13
+model_spec / ollama:qwen2.5-coder:7b / B: 3/13
+model_spec / ollama:qwen2.5-coder:7b / C: 4/13
+model_spec / ollama:qwen2.5-coder:7b / D: 6/13
+model_spec / ollama:qwen3.5:4b / A: 5/29
+model_spec / ollama:qwen3.5:4b / B: 6/29
+model_spec / ollama:qwen3.5:4b / C: 15/29
+model_spec / ollama:qwen3.5:4b / D: 16/29
+model_spec / ollama:qwen3.5:9b / A: 8/13
+model_spec / ollama:qwen3.5:9b / B: 4/13
+model_spec / ollama:qwen3.5:9b / C: 5/13
+model_spec / ollama:qwen3.5:9b / D: 5/13
+initial_error / build_error / A: 11/23
+initial_error / build_error / B: 7/23
+initial_error / build_error / C: 12/23
+initial_error / build_error / D: 15/23
+initial_error / import_error / A: 11/44
+initial_error / import_error / B: 5/44
+initial_error / import_error / C: 12/44
+initial_error / import_error / D: 13/44
+initial_error / interface_mismatch / A: 0/3
+initial_error / interface_mismatch / B: 0/3
+initial_error / interface_mismatch / C: 0/3
+initial_error / interface_mismatch / D: 0/3
+initial_error / qubit_count_mismatch / A: 0/1
+initial_error / qubit_count_mismatch / B: 0/1
+initial_error / qubit_count_mismatch / C: 0/1
+initial_error / qubit_count_mismatch / D: 0/1
+initial_error / syntax / A: 4/13
+initial_error / syntax / B: 4/13
+initial_error / syntax / C: 4/13
+initial_error / syntax / D: 3/13
+initial_error / unknown_error / A: 0/1
+initial_error / unknown_error / B: 0/1
+initial_error / unknown_error / C: 1/1
+initial_error / unknown_error / D: 0/1
+initial_error / wrong_output / A: 8/15
+initial_error / wrong_output / B: 2/15
+initial_error / wrong_output / C: 4/15
+initial_error / wrong_output / D: 3/15
+
+B4優位の説明と限界
+A-Bは前回コード提示を含む新しい入力条件の差、B-Cは診断追加、C-Dは説明指示追加の対応観測。差の向きは対応表のとおり報告する。
+AST反復と成功の関連、tokens、終了理由を併記するが、反復が失敗を引き起こした機構の確定ではない。AST一致は意味的同値性ではない。
+独立再生成が必ず優れるという結論を前提にしない。この100組の結果から旧1000組でのB4優位の原因全体や一般的優劣を確定しない。
+条件ごとに後続コードが異なり、累積差は単一要素だけの直接的・機構的因果効果ではない。
+終了理由lengthとtokens_out=1024を別指標で示す。seed対応とAPIでの設定受理は乱数列や内部実装の完全一致の証明ではない。
+小さな差の確証、他のseed・モデル・タスクへの再現性、同tokens予算での比較は未解明。追加検証が必要であり、本実験では予算・条件を事後変更しない。
+旧初期生成tokensは新規消費に加えない。失敗要求への消費と最後まで未救済の経路への消費を分けて保存した。
+既存主結果・卒論本文・図表・要旨は変更せず、コミット・pushは行わない。

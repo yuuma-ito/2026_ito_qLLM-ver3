@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "stage": 1,
+  "cases": 100,
+  "condition_paths": 400,
+  "actual_requests": 400,
+  "missing": 0,
+  "duplicates": 0,
+  "unexpected": 0,
+  "shared_initials_verified": true,
+  "own_history_and_prompts_verified": true,
+  "seeds_and_stop_verified": true,
+  "strata_and_token_totals_verified": true,
+  "records_fingerprint": "5b05d6a835dad16e9be287da499be04ac666225956cbc0094954e7689d6dff90",
+  "protected_sources_unchanged": true,
+  "model_digests_verified": true,
+  "parameter_acceptance_evidence": "400 exact wire requests and successful API responses"
+}

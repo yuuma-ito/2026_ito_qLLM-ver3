@@ -1,0 +1,21 @@
+{
+  "created_at_utc": "2026-11-05T09:47:03.837960+00:00",
+  "stage": 3,
+  "plan_sha256": "a3a2250486fb905c965f9251bdac9d8b010fe722822d322a3aeacab03a9e7546",
+  "records_fingerprint": "fb97d9320232a173521c11d90121a30a635e5c492c87d883c1e4285c3de0c1a3",
+  "requests": 1029,
+  "outputs": {
+    "actual_positions.csv": "912117ed2a8028d5511e6d5c9b173bb32da86a53ec44bb8d20cc405ede746fe4",
+    "validation_report.json.integrity.json": "a19d6e75548224d7a9d9b11495bd24a6e2083c312fa86eefb52bf5e8ee1ee2d4",
+    "paths.csv": "fde5f475e166a891ee512d4137431671431625f56a28778a894bba9b47ca7160",
+    "report.txt": "5b533028b58f4a8354666fbd9254c49ff417da36a7a5cd1c2deafa04b9bc4bda",
+    "validation_report.json": "be3099b98f1976ed72e3ee06be83805067c4479e6bacc8c56bd086001dc0e33d",
+    "error_transitions.csv": "91d10610861d67218f09b6dc1b5ae67e5dc96727a99d121c812f8b494e4cedc2",
+    "paired_success.csv": "6b938be06038a0f0f578cc6c7dda9eaa33fd7e260d4b36cbcfc2da375b15b227",
+    "structural_stagnation.csv": "45a11b34ffb9d3435430f60a972d5176eaa748737e73dfe5a9bbe00b632c8bc0",
+    "finish_reasons.csv": "74d1a339bed177c683495ceac2160b61488c1449c10923b946bbbc44e2f40b88",
+    "success_overlap.csv": "7ae65503e6cd4a2468d88399812c13e6949fa3171b9dfdf1c03db97b1241f7b5",
+    "summary.csv": "1f078536dc99e2721db9c190aefb79bffecd336c33899d9c44797e2e056d6ad5"
+  },
+  "status": "completed_verified"
+}

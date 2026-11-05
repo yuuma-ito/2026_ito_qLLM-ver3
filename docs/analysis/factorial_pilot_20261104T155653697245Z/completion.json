@@ -1,0 +1,19 @@
+{
+  "status": "completed_verified",
+  "run_id": "factorial_pilot_20261104T155653697245Z",
+  "actual_requests": 1029,
+  "stage1_requests": 400,
+  "tokens_in": 746032,
+  "tokens_out": 407593,
+  "successful_paths": {
+    "A": 34,
+    "B": 18,
+    "C": 33,
+    "D": 34
+  },
+  "old_results_unchanged": true,
+  "git_operations_performed": false,
+  "thesis_updated": false,
+  "plan_sha256": "a3a2250486fb905c965f9251bdac9d8b010fe722822d322a3aeacab03a9e7546",
+  "final_manifest_sha256": "2f87554ae0532bfae67ceacd29e24dbe057fdbdb6d90e467e35ef3189f6aa476"
+}

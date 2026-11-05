@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "stage": 3,
+  "cases": 100,
+  "condition_paths": 400,
+  "actual_requests": 1029,
+  "missing": 0,
+  "duplicates": 0,
+  "unexpected": 0,
+  "shared_initials_verified": true,
+  "own_history_and_prompts_verified": true,
+  "seeds_and_stop_verified": true,
+  "strata_and_token_totals_verified": true,
+  "records_fingerprint": "fb97d9320232a173521c11d90121a30a635e5c492c87d883c1e4285c3de0c1a3",
+  "protected_sources_unchanged": true,
+  "model_digests_verified": true,
+  "planned_slots": 1200,
+  "skipped_after_success": 171,
+  "stage1_unchanged": true,
+  "api_failures": 0,
+  "runtime_failures": 0
+}
