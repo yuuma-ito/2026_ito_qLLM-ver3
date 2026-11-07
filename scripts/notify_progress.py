@@ -34,9 +34,12 @@ def has_active_experiments(root: Path = ROOT):
     """Allow periodic cron to stay armed while remaining quiet between runs."""
     results = (root / "results").resolve()
     for path in sorted((root / ".cache/run_states").glob("*.json")):
-        runtime = json.loads(path.read_text(encoding="utf-8"))
-        if Path(runtime["output"]).resolve().is_relative_to(results) and observation(runtime) in ACTIVE:
-            return True
+        try:
+            runtime = json.loads(path.read_text(encoding="utf-8"))
+            if Path(runtime["output"]).resolve().is_relative_to(results) and observation(runtime) in ACTIVE:
+                return True
+        except (OSError, ValueError, KeyError, TypeError):
+            continue
     return False
 
 
@@ -157,53 +160,43 @@ def message(progress: dict, timezone: str):
     return "\n".join(lines)
 
 
-def overview(timezone: str, root: Path = ROOT):
-    """Include live runs and unresolved results across all experiment families."""
-    reviewed_path = root / "configs" / "reviewed_experiments.json"
-    reviewed = json.loads(reviewed_path.read_text(encoding="utf-8")) if reviewed_path.exists() else {}
-    candidates = {}
-    results = (root / "results").resolve()
-    for saved in results.glob("*/experiment_config.json"):
-        config = load_config(saved)
-        output = (root / config.get("output_dir", f"results/{config['experiment_id']}")).resolve()
-        if output != saved.parent:
-            continue
-        candidates[output] = snapshot(config, root)
-    # A starting run may not have written its saved configuration yet.
-    starting = []
-    for path in sorted((root / ".cache" / "run_states").glob("*.json")):
-        runtime = json.loads(path.read_text(encoding="utf-8"))
-        output = Path(runtime["output"]).resolve()
-        if not output.is_relative_to(results) or output in candidates:
-            continue
-        status = observation(runtime)
-        if status in ACTIVE:
-            starting.append(f"実験: {html.escape(runtime['experiment_id'])}\n状態: {status}"
-                            f"\n段階: {runtime.get('phase', 'unknown')}\n記録: 保存設定作成前")
-    # Acknowledged historical runs stay in the results, but leave the overview.
-    # If one is resumed, show its live progress again.
-    progresses = [p for p in candidates.values()
-                  if p["experiment_id"] not in reviewed or p["runtime_status"] in ACTIVE]
-    active = [p for p in progresses if p["runtime_status"] in ACTIVE]
-    attention = [p for p in progresses if p not in active and (
-        p["runtime_status"] in {"failed", "interrupted"} or p["recorded"] < p["planned"]
-        or p["api_failures"] or p["unknown_failures"] or p["duplicates"] or p["unexpected"] or p["pending_write"]
-        or p["state"] in {"記録完了・検証待ち", "記録完了・自動検証失敗"})]
+def overview_report(timezone: str, root: Path = ROOT):
+    """Render isolated experiment snapshots; return exactly the samples sent."""
+    from scripts.research_status import collect, read_history, trend_text
+    progresses = collect(root, previous=read_history(root, "notifications"))
+    visible = [p for p in progresses if not p["reviewed"] or p["runtime_status"] in ACTIVE]
+    active = [p for p in visible if p["runtime_status"] in ACTIVE]
+    attention = [p for p in visible if p not in active and p["issues"]]
     zone = ZoneInfo(timezone)
     sections = [f"実験状況 {datetime.now(zone):%Y-%m-%d %H:%M %Z}",
-                f"実行中: {len(active) + len(starting)}件・未完了／要確認: {len(attention)}件"]
-    if not active and not starting:
+                f"実行中: {len(active)}件・未完了／要確認: {len(attention)}件",
+                "前回比較は前回の定期報告がSMTP等に受理された時点との比較です。"]
+    if not active:
         sections.append("現在、実行中の実験はありません（実行状態の記録に基づく）。")
-    sections.extend(message(p, timezone) for p in active)
-    sections.extend(starting)
-    sections.extend(message(p, timezone) for p in attention)
-    completed = [p for p in progresses if p not in active and p not in attention]
+    completed = [p for p in visible if p not in active and p not in attention]
+    selected = active + attention
     if completed:
-        latest = max(completed, key=lambda p: p["last_update"].timestamp() if p["last_update"] else 0)
-        sections.append("直近の完了結果\n" + message(latest, timezone))
-    if not progresses and not starting:
+        selected.append(max(completed, key=lambda p: p["last_update"].timestamp() if p["last_update"] else 0))
+    for p in selected:
+        if "passed_L2" in p or "passed_L3" in p:
+            text = message(p, timezone)
+        else:
+            text = f"実験: {html.escape(p['experiment_id'])}\n状態: {p['state']}"
+            if p.get('identity'):
+                unit = '要求（上限）' if p.get('planned_is_upper_bound') else '件'
+                text += f"\n記録: {p['recorded']}/{p['planned']} {unit}"
+        checks = "・".join(f"{key}: {value}" for key, value in p['verification'].items()) or "未確認"
+        sections.append(text + "\n" + trend_text(p)
+                        + "\n検証: " + checks
+                        + "\n要確認: " + ("・".join(p['issues']) or "なし")
+                        + "\n結果: " + p['output'])
+    if not visible:
         sections.append("保存済みの実験はありません。")
-    return "\n\n".join(sections)
+    return "\n\n".join(sections), selected
+
+
+def overview(timezone: str, root: Path = ROOT):
+    return overview_report(timezone, root)[0]
 
 
 def send(webhook: str, text: str):
@@ -348,8 +341,9 @@ def main(argv=None):
             print("No active experiment; periodic notification skipped. It will resume automatically when an experiment starts.")
             return 0
         load_dotenv(ROOT / ".env")
+        samples = None
         if args.overview:
-            text = overview(args.timezone)
+            text, samples = overview_report(args.timezone, ROOT)
             experiment_id = "全実験の状況"
         else:
             progress = snapshot(resolve_config(ROOT / args.config, args.latest))
@@ -363,6 +357,9 @@ def main(argv=None):
         else:
             deliver(text, experiment_id, args.transport, args.channel)
             print("Slack progress notification sent.")
+        if samples is not None and not args.dry_run:
+            from scripts.research_status import save_history
+            save_history(samples, ROOT, "notifications")
         return 0
     except RuntimeError as exc:
         # RuntimeErrors here are sanitized by the delivery functions above.
