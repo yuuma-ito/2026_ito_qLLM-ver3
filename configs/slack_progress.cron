@@ -8,6 +8,8 @@
 */5 * * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.monitor_experiments --transport email --stalled-after 3600 --progress-interval 10800 >> /home/23tc011/2026_ito_qLLM-ver3/logs/experiment_monitor.log 2>&1
 # Refresh the local status index every 5 minutes; no model calls or notifications.
 */5 * * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.research_status >> /home/23tc011/2026_ito_qLLM-ver3/logs/research_status.log 2>&1
+# Refresh experiment provenance separately; this does not run experiments or verify claims.
+*/5 * * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.research_ledger >> /home/23tc011/2026_ito_qLLM-ver3/logs/research_ledger.log 2>&1
 # Refresh report counts and tables hourly at minute 0, preserving manually written prose.
 0 * * * * cd /home/23tc011/2026_ito_qLLM-ver3 && /home/23tc011/2026_ito_qLLM-ver3/.venv/bin/python -m scripts.update_experiment_report >> /home/23tc011/2026_ito_qLLM-ver3/logs/experiment_report_update.log 2>&1
 # Start Codex once after this saved five-model run finishes; share its progress draft via email.

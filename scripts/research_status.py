@@ -206,7 +206,10 @@ def markdown(items, now, root=ROOT):
         lines.append('| ' + ' | '.join((name, escape(p['state']), count,
                      escape(trend_text(p)), escape(checks), escape('・'.join(p['issues']) or 'なし'))) + ' |')
     lines += ['', '確認済みの過去実験もJSONには残します。実行完了、検証成功、Git公開は別の状態です。', '',
-              f'[実験レポート](<{root / "docs/experiment_report_draft.md"}>)', '']
+              f'[実験レポート](<{root / "docs/experiment_report_draft.md"}>)', '',
+              f'[実験台帳](<{root / ".cache/research_ledger/ledger.md"}>) / '
+              f'[論文の数値照合](<{root / ".cache/research_claims/report.md"}>) / '
+              f'[実験前チェック](<{root / ".cache/experiment_preflight/report.md"}>)', '']
     return '\n'.join(lines)
 
 

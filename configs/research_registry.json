@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "id": "diagnostic_policy_followup_20261104T140554094649Z",
+      "config": "results/diagnostic_policy_followup_20261104T140554094649Z/experiment_config.json",
+      "kind": "followup",
+      "purpose": "診断文v2による10履歴の後半継続",
+      "hypothesis": null,
+      "parents": [
+        "measurement_ban_corrected_20261104"
+      ],
+      "materials": [],
+      "notes": [
+        "目的は既存の実験種別を記述。事前仮説は記録から確認できず未登録。"
+      ]
+    },
+    {
+      "id": "factorial_pilot_20261104T155653697245Z",
+      "config": "results/factorial_pilot_20261104T155653697245Z/experiment_config.json",
+      "kind": "generation",
+      "purpose": "要因分析の予備実験",
+      "hypothesis": null,
+      "parents": [
+        "measurement_ban_corrected_20261104"
+      ],
+      "materials": [],
+      "notes": [
+        "目的は既存の実験種別を記述。事前仮説は記録から確認できず未登録。"
+      ]
+    },
+    {
+      "id": "independent_4_full_20261020T185811381595Z",
+      "config": "results/independent_4_full_20261020T185811381595Z/experiment_config.json",
+      "kind": "generation",
+      "purpose": "初期失敗を対象とする独立再生成B4",
+      "hypothesis": null,
+      "parents": [],
+      "materials": [],
+      "notes": [
+        "目的は既存の実験種別を記述。事前仮説は記録から確認できず未登録。"
+      ]
+    },
+    {
+      "id": "measurement_ban_followup_20261104T113338413073Z",
+      "config": "results/measurement_ban_followup_20261104T113338413073Z/experiment_config.json",
+      "kind": "followup",
+      "purpose": "回路内測定禁止を補った評価での1履歴の継続",
+      "hypothesis": null,
+      "parents": [
+        "independent_4_full_20261020T185811381595Z"
+      ],
+      "materials": [],
+      "notes": [
+        "目的は既存の実験種別を記述。事前仮説は記録から確認できず未登録。"
+      ]
+    },
+    {
+      "id": "notification_ablation_20261105T164644282604Z",
+      "config": "results/notification_ablation_20261105T164644282604Z/experiment_config.json",
+      "kind": "generation",
+      "purpose": "通知文のアブレーション実験",
+      "hypothesis": null,
+      "parents": [
+        "measurement_ban_corrected_20261104"
+      ],
+      "materials": [],
+      "notes": [
+        "目的は既存の実験種別を記述。事前仮説は記録から確認できず未登録。"
+      ]
+    },
+    {
+      "id": "shared_five_models_full_20261010T041019864060Z",
+      "config": "results/shared_five_models_full_20261010T041019864060Z/experiment_config.json",
+      "kind": "generation",
+      "purpose": "5モデル追加実験（seed 10〜19）",
+      "hypothesis": null,
+      "parents": [],
+      "materials": [],
+      "notes": [
+        "目的は既存の実験種別を記述。事前仮説は記録から確認できず未登録。"
+      ]
+    },
+    {
+      "id": "shared_five_models_pooled_seed0_19",
+      "config": "results/shared_five_models_pooled_seed0_19/experiment_config.json",
+      "kind": "pooled",
+      "purpose": "既存出典の5モデル・seed 0〜19の統合",
+      "hypothesis": null,
+      "parents": [
+        "shared_three_models_full_20261008T103231611899Z",
+        "shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "shared_five_models_full_20261010T041019864060Z"
+      ],
+      "materials": [],
+      "notes": [
+        "目的は既存の実験種別を記述。事前仮説は記録から確認できず未登録。"
+      ]
+    },
+    {
+      "id": "shared_three_models_full_20261007T145103982885Z",
+      "config": "results/shared_three_models_full_20261007T145103982885Z/experiment_config.json",
+      "kind": "generation",
+      "purpose": "3モデル旧本実験（API障害を含む参考記録）",
+      "hypothesis": null,
+      "parents": [],
+      "materials": [],
+      "notes": [
+        "目的は既存の実験種別を記述。事前仮説は記録から確認できず未登録。"
+      ]
+    },
+    {
+      "id": "shared_three_models_full_20261008T103231611899Z",
+      "config": "results/shared_three_models_full_20261008T103231611899Z/experiment_config.json",
+      "kind": "generation",
+      "purpose": "3モデル本実験（seed 0〜9）",
+      "hypothesis": null,
+      "parents": [],
+      "materials": [],
+      "notes": [
+        "目的は既存の実験種別を記述。事前仮説は記録から確認できず未登録。"
+      ]
+    },
+    {
+      "id": "shared_two_models_seed0_9_full_20261012T100658266051Z",
+      "config": "results/shared_two_models_seed0_9_full_20261012T100658266051Z/experiment_config.json",
+      "kind": "generation",
+      "purpose": "2モデル補完実験（seed 0〜9）",
+      "hypothesis": null,
+      "parents": [],
+      "materials": [],
+      "notes": [
+        "目的は既存の実験種別を記述。事前仮説は記録から確認できず未登録。"
+      ]
+    },
+    {
+      "id": "measurement_ban_corrected_20261104",
+      "kind": "frozen_reanalysis_with_followup",
+      "purpose": "回路内測定禁止を補った固定再分析と承認済み1要求の継続結果",
+      "hypothesis": null,
+      "manifest": "docs/analysis/measurement_ban_corrected_20261104/source_manifest.json",
+      "generation_manifest": "docs/analysis/measurement_ban_corrected_20261104/runner_manifest.json",
+      "parents": [
+        "shared_three_models_full_20261008T103231611899Z",
+        "shared_two_models_seed0_9_full_20261012T100658266051Z",
+        "shared_five_models_full_20261010T041019864060Z",
+        "independent_4_full_20261020T185811381595Z",
+        "measurement_ban_followup_20261104T113338413073Z"
+      ],
+      "materials": [
+        "docs/graduation2026/thesis.docx",
+        "docs/graduation2026/abstract.docx",
+        "docs/graduation2026/source_manifest.json"
+      ],
+      "primary_level": "L3",
+      "notes": [
+        "1,000初期組・5,000条件記録とB4を区別する。元の生成時評価と固定再分析の評価は同じではない。"
+      ]
+    },
+    {
+      "id": "diagnostic_policy_corrected_20261104",
+      "kind": "frozen_followup_analysis",
+      "purpose": "診断文v2で継続した10履歴の後半を置換した固定集計",
+      "hypothesis": null,
+      "manifest": "docs/analysis/diagnostic_policy_corrected_20261104/manifest.json",
+      "generation_manifest": "results/diagnostic_policy_followup_20261104T140554094649Z/manifest.json",
+      "parents": [
+        "measurement_ban_corrected_20261104",
+        "diagnostic_policy_followup_20261104T140554094649Z"
+      ],
+      "materials": [],
+      "primary_level": "L3",
+      "notes": [
+        "卒論本文の固定出典とは別。採用資料は未登録。"
+      ]
+    }
+  ]
+}

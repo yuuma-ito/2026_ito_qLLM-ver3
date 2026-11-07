@@ -289,6 +289,10 @@ Invoke-RestMethod http://127.0.0.1:11435/api/tags
 
 `.venv/bin/python -m scripts.research_status` で [ローカルの状況一覧](.cache/research_status/status.md) とJSONを更新できます。実行状態、前回からの増分、処理速度、記録完了までの概算、検証レポート、要確認事項を集約します。cronでは5分ごとに更新します。[操作と算出条件](docs/codex/research_status.md)を参照してください。
 
+### 実験台帳・数値照合・実験前チェック
+
+`scripts.research_ledger` は保存設定と `configs/research_registry.json` を統合し、元の生成実験・追試・固定再分析を区別した台帳を作成します。`scripts.check_research_claims` は固定CSVから卒論の登録済みの表・本文の数値を照合します。`scripts.experiment_preflight --config configs/shared_five_models_quick.json --new-run` は生成前に予定件数・要求上限・既存実験との重複・比較条件を確認します。いずれもモデル要求を行いません。[コマンド・対応範囲・終了コード](docs/codex/research_workflow.md)を参照してください。
+
 ### Slackへの定時進捗通知
 
 実験レポートの[下書き](docs/experiment_report_draft.md)と[集計スナップショット](docs/experiment_report_snapshot.json)は、`configs/slack_progress.cron` のレポート更新行で60分ごと（毎時0分）に更新します。手動更新は `.venv/bin/python -m scripts.update_experiment_report` です。対象はスナップショットに指定した実験で、時刻・本実験の件数・モデル別／条件別／タスク別／失敗類型別の表と検証状況を更新します。`<!-- auto:... -->` の範囲外に書いた考察は保持します。完了した簡易実験の結果が変わった場合や、重複・予定外・件数減少を検出した場合は更新を止めます。レポート更新はモデルへの生成要求・通知送信・Git操作を行いません。

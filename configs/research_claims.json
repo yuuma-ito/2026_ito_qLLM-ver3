@@ -1,0 +1,639 @@
+{
+  "schema_version": 1,
+  "scope": "卒論Wordの条件別追加成功表、失敗類型表、B4本文4箇所。未登録の本文・図・PDFは未確認。",
+  "snapshot_id": "measurement_ban_corrected_20261104",
+  "evaluator_version": "evaluation_policy_v4_measurement_ban_v1",
+  "sources": {
+    "docs/analysis/measurement_ban_corrected_20261104/source_manifest.json": "11cab5cee61493d6439dcc99d4acb38f46837d310c259be18811c9c9705074b5",
+    "docs/analysis/measurement_ban_corrected_20261104/summary.csv": "084a805a6f31979be7aae9ff338728c962aed53ae9309de62185775e9996c1eb",
+    "docs/graduation2026/intervention_catalog.csv": "0a8b3d38addd73121a396a6e2fc3f8dc3fc7ff050ff60053f755066069b1fae5"
+  },
+  "manifest_checks": [
+    {
+      "path": "docs/analysis/measurement_ban_corrected_20261104/source_manifest.json",
+      "mapping": "outputs",
+      "base": "docs/analysis/measurement_ban_corrected_20261104"
+    }
+  ],
+  "claims": [
+    {
+      "id": "headline_table",
+      "type": "table",
+      "document": "docs/graduation2026/thesis.docx",
+      "headers": [
+        "条件",
+        "初期失敗数",
+        "追加成功数",
+        "追加成功率"
+      ],
+      "rows": [
+        [
+          "R",
+          {
+            "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+            "where": {
+              "condition": "R",
+              "generation_cap": "4",
+              "grouping": "overall",
+              "group": "all"
+            },
+            "column": "initial_failures"
+          },
+          {
+            "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+            "where": {
+              "condition": "R",
+              "generation_cap": "4",
+              "grouping": "overall",
+              "group": "all"
+            },
+            "column": "successes_from_initial_failure"
+          },
+          {
+            "ratio": [
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "R",
+                  "generation_cap": "4",
+                  "grouping": "overall",
+                  "group": "all"
+                },
+                "column": "successes_from_initial_failure"
+              },
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "R",
+                  "generation_cap": "4",
+                  "grouping": "overall",
+                  "group": "all"
+                },
+                "column": "initial_failures"
+              }
+            ],
+            "scale": 100,
+            "digits": 1,
+            "suffix": "%"
+          }
+        ],
+        [
+          "F",
+          {
+            "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+            "where": {
+              "condition": "F",
+              "generation_cap": "4",
+              "grouping": "overall",
+              "group": "all"
+            },
+            "column": "initial_failures"
+          },
+          {
+            "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+            "where": {
+              "condition": "F",
+              "generation_cap": "4",
+              "grouping": "overall",
+              "group": "all"
+            },
+            "column": "successes_from_initial_failure"
+          },
+          {
+            "ratio": [
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "F",
+                  "generation_cap": "4",
+                  "grouping": "overall",
+                  "group": "all"
+                },
+                "column": "successes_from_initial_failure"
+              },
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "F",
+                  "generation_cap": "4",
+                  "grouping": "overall",
+                  "group": "all"
+                },
+                "column": "initial_failures"
+              }
+            ],
+            "scale": 100,
+            "digits": 1,
+            "suffix": "%"
+          }
+        ],
+        [
+          "D",
+          {
+            "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+            "where": {
+              "condition": "D",
+              "generation_cap": "4",
+              "grouping": "overall",
+              "group": "all"
+            },
+            "column": "initial_failures"
+          },
+          {
+            "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+            "where": {
+              "condition": "D",
+              "generation_cap": "4",
+              "grouping": "overall",
+              "group": "all"
+            },
+            "column": "successes_from_initial_failure"
+          },
+          {
+            "ratio": [
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "D",
+                  "generation_cap": "4",
+                  "grouping": "overall",
+                  "group": "all"
+                },
+                "column": "successes_from_initial_failure"
+              },
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "D",
+                  "generation_cap": "4",
+                  "grouping": "overall",
+                  "group": "all"
+                },
+                "column": "initial_failures"
+              }
+            ],
+            "scale": 100,
+            "digits": 1,
+            "suffix": "%"
+          }
+        ],
+        [
+          "B4",
+          {
+            "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+            "where": {
+              "condition": "B4",
+              "generation_cap": "4",
+              "grouping": "overall",
+              "group": "all"
+            },
+            "column": "initial_failures"
+          },
+          {
+            "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+            "where": {
+              "condition": "B4",
+              "generation_cap": "4",
+              "grouping": "overall",
+              "group": "all"
+            },
+            "column": "successes_from_initial_failure"
+          },
+          {
+            "ratio": [
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "B4",
+                  "generation_cap": "4",
+                  "grouping": "overall",
+                  "group": "all"
+                },
+                "column": "successes_from_initial_failure"
+              },
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "B4",
+                  "generation_cap": "4",
+                  "grouping": "overall",
+                  "group": "all"
+                },
+                "column": "initial_failures"
+              }
+            ],
+            "scale": 100,
+            "digits": 1,
+            "suffix": "%"
+          }
+        ]
+      ],
+      "scope": "同じ初期失敗集合を分母にした条件別成功数と率"
+    },
+    {
+      "id": "failure_catalog_table",
+      "type": "table",
+      "document": "docs/graduation2026/thesis.docx",
+      "headers": [
+        "初期失敗類型",
+        "初期失敗数",
+        "F救済率",
+        "D救済率",
+        "B4追加成功率"
+      ],
+      "rows": [
+        [
+          "import失敗",
+          {
+            "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+            "where": {
+              "condition": "F",
+              "generation_cap": "4",
+              "grouping": "initial_failure",
+              "group": "import_error"
+            },
+            "column": "initial_failures"
+          },
+          {
+            "ratio": [
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "F",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "import_error"
+                },
+                "column": "successes_from_initial_failure"
+              },
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "F",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "import_error"
+                },
+                "column": "initial_failures"
+              }
+            ],
+            "scale": 100,
+            "digits": 1,
+            "suffix": "%"
+          },
+          {
+            "ratio": [
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "D",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "import_error"
+                },
+                "column": "successes_from_initial_failure"
+              },
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "D",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "import_error"
+                },
+                "column": "initial_failures"
+              }
+            ],
+            "scale": 100,
+            "digits": 1,
+            "suffix": "%"
+          },
+          {
+            "ratio": [
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "B4",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "import_error"
+                },
+                "column": "successes_from_initial_failure"
+              },
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "B4",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "import_error"
+                },
+                "column": "initial_failures"
+              }
+            ],
+            "scale": 100,
+            "digits": 1,
+            "suffix": "%"
+          }
+        ],
+        [
+          "回路構築失敗",
+          {
+            "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+            "where": {
+              "condition": "F",
+              "generation_cap": "4",
+              "grouping": "initial_failure",
+              "group": "build_error"
+            },
+            "column": "initial_failures"
+          },
+          {
+            "ratio": [
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "F",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "build_error"
+                },
+                "column": "successes_from_initial_failure"
+              },
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "F",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "build_error"
+                },
+                "column": "initial_failures"
+              }
+            ],
+            "scale": 100,
+            "digits": 1,
+            "suffix": "%"
+          },
+          {
+            "ratio": [
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "D",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "build_error"
+                },
+                "column": "successes_from_initial_failure"
+              },
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "D",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "build_error"
+                },
+                "column": "initial_failures"
+              }
+            ],
+            "scale": 100,
+            "digits": 1,
+            "suffix": "%"
+          },
+          {
+            "ratio": [
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "B4",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "build_error"
+                },
+                "column": "successes_from_initial_failure"
+              },
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "B4",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "build_error"
+                },
+                "column": "initial_failures"
+              }
+            ],
+            "scale": 100,
+            "digits": 1,
+            "suffix": "%"
+          }
+        ],
+        [
+          "出力不一致",
+          {
+            "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+            "where": {
+              "condition": "F",
+              "generation_cap": "4",
+              "grouping": "initial_failure",
+              "group": "wrong_output"
+            },
+            "column": "initial_failures"
+          },
+          {
+            "ratio": [
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "F",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "wrong_output"
+                },
+                "column": "successes_from_initial_failure"
+              },
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "F",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "wrong_output"
+                },
+                "column": "initial_failures"
+              }
+            ],
+            "scale": 100,
+            "digits": 1,
+            "suffix": "%"
+          },
+          {
+            "ratio": [
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "D",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "wrong_output"
+                },
+                "column": "successes_from_initial_failure"
+              },
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "D",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "wrong_output"
+                },
+                "column": "initial_failures"
+              }
+            ],
+            "scale": 100,
+            "digits": 1,
+            "suffix": "%"
+          },
+          {
+            "ratio": [
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "B4",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "wrong_output"
+                },
+                "column": "successes_from_initial_failure"
+              },
+              {
+                "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+                "where": {
+                  "condition": "B4",
+                  "generation_cap": "4",
+                  "grouping": "initial_failure",
+                  "group": "wrong_output"
+                },
+                "column": "initial_failures"
+              }
+            ],
+            "scale": 100,
+            "digits": 1,
+            "suffix": "%"
+          }
+        ]
+      ],
+      "scope": "失敗類型別の分母とF/D/B4の観測率"
+    },
+    {
+      "id": "abstract_B4_success_fraction",
+      "type": "text",
+      "document": "docs/graduation2026/thesis.docx",
+      "pattern": "B4は(?P<value>[0-9,]+/[0-9,]+)組",
+      "value": {
+        "join": [
+          {
+            "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+            "where": {
+              "condition": "B4",
+              "generation_cap": "4",
+              "grouping": "overall",
+              "group": "all"
+            },
+            "column": "successes_from_initial_failure"
+          },
+          {
+            "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+            "where": {
+              "condition": "B4",
+              "generation_cap": "4",
+              "grouping": "overall",
+              "group": "all"
+            },
+            "column": "initial_failures"
+          }
+        ],
+        "separator": "/"
+      },
+      "occurrences": 1,
+      "scope": "登録した本文の数値と固定集計の照合"
+    },
+    {
+      "id": "abstract_B4_final_fraction",
+      "type": "text",
+      "document": "docs/graduation2026/thesis.docx",
+      "pattern": "B4は[0-9,]+/[0-9,]+組（[0-9.]+%）で成功し，最終成功は(?P<value>[0-9,]+/[0-9,]+)組",
+      "value": {
+        "join": [
+          {
+            "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+            "where": {
+              "condition": "B4",
+              "generation_cap": "4",
+              "grouping": "overall",
+              "group": "all"
+            },
+            "column": "final_L3_successes"
+          },
+          {
+            "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+            "where": {
+              "condition": "B4",
+              "generation_cap": "4",
+              "grouping": "overall",
+              "group": "all"
+            },
+            "column": "groups",
+            "digits": 0,
+            "thousands": true
+          }
+        ],
+        "separator": "/"
+      },
+      "occurrences": 1,
+      "scope": "登録した本文の数値と固定集計の照合"
+    },
+    {
+      "id": "abstract_B4_requests",
+      "type": "text",
+      "document": "docs/graduation2026/thesis.docx",
+      "pattern": "最終成功は[0-9,]+/[0-9,]+組（[0-9.]+%）であった．追加(?P<value>[0-9,]+)要求",
+      "value": {
+        "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+        "where": {
+          "condition": "B4",
+          "generation_cap": "4",
+          "grouping": "overall",
+          "group": "all"
+        },
+        "column": "additional_requests",
+        "digits": 0,
+        "thousands": true
+      },
+      "occurrences": 1,
+      "scope": "登録した本文の数値と固定集計の照合"
+    },
+    {
+      "id": "cost_B4_tokens",
+      "type": "text",
+      "document": "docs/graduation2026/thesis.docx",
+      "pattern": "B4の総追加(?P<value>[0-9,]+) tokens",
+      "value": {
+        "csv": "docs/analysis/measurement_ban_corrected_20261104/summary.csv",
+        "where": {
+          "condition": "B4",
+          "generation_cap": "4",
+          "grouping": "overall",
+          "group": "all"
+        },
+        "column": "additional_tokens",
+        "digits": 0,
+        "thousands": true
+      },
+      "occurrences": 1,
+      "scope": "登録した本文の数値と固定集計の照合"
+    }
+  ]
+}
