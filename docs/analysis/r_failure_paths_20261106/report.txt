@@ -1,0 +1,67 @@
+Rの低成績を調べる既存545初期失敗組の記述分析
+
+診断v2修正後の到達可能履歴を保存記録から再構成。新規生成・生成コード実行・再採点なし。
+成功基準は保存された主L3。初期成功455組を除く545組が分母。4条件で初期コードを共有する。
+R/F/Dの旧prefixと追試suffix、別時期に生成されたB4を含み、同時期の無作為比較ではない。
+
+1. Rの経路分類（初期コードを含む。排他的）
+{'initial_failures': 545, 'R_successes': 96, 'F_successes': 186, 'D_successes': 179, 'B4_successes': 216, 'rescued': 96, 'unchanged_text': 137, 'unchanged_ast_only': 20, 'changed_ast_still_failed': 221, 'ast_incomplete': 71, 'small_stratum': False}
+rescued=追加成功。unchanged_text=全roundで完全に同じコード。
+unchanged_ast_only=文字列は変わったが全roundでAST一致。
+changed_ast_still_failed=全roundを構文解析でき、構造が変化したが最終失敗。
+ast_incomplete=文字列の変化があり、少なくとも1roundを解析できず、全経路の構造比較は不完全。
+AST一致はコメント・書式・位置を除いた構造一致。意味的同値性や誤りの根本原因は認定しない。
+
+2. 同じ初期組でのRとの対応比較
+{'comparator': 'B4', 'outcome': 'both', 'cases': 69, 'r_any_prior_ast_repeat': 17, 'rescued': 69, 'unchanged_text': 0, 'unchanged_ast_only': 0, 'changed_ast_still_failed': 0, 'ast_incomplete': 0}
+{'comparator': 'B4', 'outcome': 'R_only', 'cases': 27, 'r_any_prior_ast_repeat': 4, 'rescued': 27, 'unchanged_text': 0, 'unchanged_ast_only': 0, 'changed_ast_still_failed': 0, 'ast_incomplete': 0}
+{'comparator': 'B4', 'outcome': 'other_only', 'cases': 147, 'r_any_prior_ast_repeat': 124, 'rescued': 0, 'unchanged_text': 39, 'unchanged_ast_only': 7, 'changed_ast_still_failed': 77, 'ast_incomplete': 24}
+{'comparator': 'B4', 'outcome': 'neither', 'cases': 302, 'r_any_prior_ast_repeat': 251, 'rescued': 0, 'unchanged_text': 98, 'unchanged_ast_only': 13, 'changed_ast_still_failed': 144, 'ast_incomplete': 47}
+{'comparator': 'F', 'outcome': 'both', 'cases': 76, 'r_any_prior_ast_repeat': 16, 'rescued': 76, 'unchanged_text': 0, 'unchanged_ast_only': 0, 'changed_ast_still_failed': 0, 'ast_incomplete': 0}
+{'comparator': 'F', 'outcome': 'R_only', 'cases': 20, 'r_any_prior_ast_repeat': 5, 'rescued': 20, 'unchanged_text': 0, 'unchanged_ast_only': 0, 'changed_ast_still_failed': 0, 'ast_incomplete': 0}
+{'comparator': 'F', 'outcome': 'other_only', 'cases': 110, 'r_any_prior_ast_repeat': 90, 'rescued': 0, 'unchanged_text': 26, 'unchanged_ast_only': 8, 'changed_ast_still_failed': 55, 'ast_incomplete': 21}
+{'comparator': 'F', 'outcome': 'neither', 'cases': 339, 'r_any_prior_ast_repeat': 285, 'rescued': 0, 'unchanged_text': 111, 'unchanged_ast_only': 12, 'changed_ast_still_failed': 166, 'ast_incomplete': 50}
+{'comparator': 'D', 'outcome': 'both', 'cases': 75, 'r_any_prior_ast_repeat': 18, 'rescued': 75, 'unchanged_text': 0, 'unchanged_ast_only': 0, 'changed_ast_still_failed': 0, 'ast_incomplete': 0}
+{'comparator': 'D', 'outcome': 'R_only', 'cases': 21, 'r_any_prior_ast_repeat': 3, 'rescued': 21, 'unchanged_text': 0, 'unchanged_ast_only': 0, 'changed_ast_still_failed': 0, 'ast_incomplete': 0}
+{'comparator': 'D', 'outcome': 'other_only', 'cases': 104, 'r_any_prior_ast_repeat': 91, 'rescued': 0, 'unchanged_text': 27, 'unchanged_ast_only': 8, 'changed_ast_still_failed': 55, 'ast_incomplete': 14}
+{'comparator': 'D', 'outcome': 'neither', 'cases': 345, 'r_any_prior_ast_repeat': 284, 'rescued': 0, 'unchanged_text': 110, 'unchanged_ast_only': 12, 'changed_ast_still_failed': 166, 'ast_incomplete': 57}
+
+3. 初期失敗類型別
+{'initial_error': 'build_error', 'initial_failures': 126, 'R_successes': 32, 'F_successes': 76, 'D_successes': 68, 'B4_successes': 77, 'rescued': 32, 'unchanged_text': 12, 'unchanged_ast_only': 8, 'changed_ast_still_failed': 67, 'ast_incomplete': 7, 'small_stratum': False}
+{'initial_error': 'import_error', 'initial_failures': 271, 'R_successes': 24, 'F_successes': 59, 'D_successes': 72, 'B4_successes': 66, 'rescued': 24, 'unchanged_text': 109, 'unchanged_ast_only': 12, 'changed_ast_still_failed': 118, 'ast_incomplete': 8, 'small_stratum': False}
+{'initial_error': 'interface_mismatch', 'initial_failures': 11, 'R_successes': 1, 'F_successes': 0, 'D_successes': 1, 'B4_successes': 2, 'rescued': 1, 'unchanged_text': 2, 'unchanged_ast_only': 0, 'changed_ast_still_failed': 8, 'ast_incomplete': 0, 'small_stratum': False}
+{'initial_error': 'qubit_count_mismatch', 'initial_failures': 3, 'R_successes': 2, 'F_successes': 2, 'D_successes': 0, 'B4_successes': 0, 'rescued': 2, 'unchanged_text': 0, 'unchanged_ast_only': 0, 'changed_ast_still_failed': 1, 'ast_incomplete': 0, 'small_stratum': True}
+{'initial_error': 'syntax', 'initial_failures': 68, 'R_successes': 21, 'F_successes': 25, 'D_successes': 21, 'B4_successes': 24, 'rescued': 21, 'unchanged_text': 0, 'unchanged_ast_only': 0, 'changed_ast_still_failed': 0, 'ast_incomplete': 47, 'small_stratum': False}
+{'initial_error': 'unknown_error', 'initial_failures': 1, 'R_successes': 0, 'F_successes': 0, 'D_successes': 0, 'B4_successes': 1, 'rescued': 0, 'unchanged_text': 0, 'unchanged_ast_only': 0, 'changed_ast_still_failed': 1, 'ast_incomplete': 0, 'small_stratum': True}
+{'initial_error': 'wrong_output', 'initial_failures': 65, 'R_successes': 16, 'F_successes': 24, 'D_successes': 17, 'B4_successes': 46, 'rescued': 16, 'unchanged_text': 14, 'unchanged_ast_only': 0, 'changed_ast_still_failed': 26, 'ast_incomplete': 9, 'small_stratum': False}
+
+4. モデル別
+{'model_spec': 'ollama:gemma3:4b', 'initial_failures': 190, 'R_successes': 5, 'F_successes': 4, 'D_successes': 1, 'B4_successes': 16, 'rescued': 5, 'unchanged_text': 90, 'unchanged_ast_only': 3, 'changed_ast_still_failed': 90, 'ast_incomplete': 2, 'small_stratum': False}
+{'model_spec': 'ollama:gemma4:e4b-it-qat', 'initial_failures': 62, 'R_successes': 30, 'F_successes': 48, 'D_successes': 38, 'B4_successes': 51, 'rescued': 30, 'unchanged_text': 0, 'unchanged_ast_only': 0, 'changed_ast_still_failed': 20, 'ast_incomplete': 12, 'small_stratum': False}
+{'model_spec': 'ollama:qwen2.5-coder:7b', 'initial_failures': 65, 'R_successes': 15, 'F_successes': 23, 'D_successes': 23, 'B4_successes': 46, 'rescued': 15, 'unchanged_text': 20, 'unchanged_ast_only': 0, 'changed_ast_still_failed': 30, 'ast_incomplete': 0, 'small_stratum': False}
+{'model_spec': 'ollama:qwen3.5:4b', 'initial_failures': 162, 'R_successes': 31, 'F_successes': 78, 'D_successes': 89, 'B4_successes': 66, 'rescued': 31, 'unchanged_text': 25, 'unchanged_ast_only': 15, 'changed_ast_still_failed': 61, 'ast_incomplete': 30, 'small_stratum': False}
+{'model_spec': 'ollama:qwen3.5:9b', 'initial_failures': 66, 'R_successes': 15, 'F_successes': 33, 'D_successes': 28, 'B4_successes': 37, 'rescued': 15, 'unchanged_text': 2, 'unchanged_ast_only': 2, 'changed_ast_still_failed': 20, 'ast_incomplete': 27, 'small_stratum': False}
+
+5. R失敗・F成功経路に実際に提示された診断
+対象110組・Fの追加要求187回。実際の保存要求文を確認できるのは47回。
+成功した最終要求の診断文を確認できるのは28組。
+旧prefixの入力文は未保存。再構成した診断を実際に提示した文と同一視せず、unknownとして扱う。
+例外・分布・構造等の診断フラグは文面の記述特徴であり、診断が成功原因だったことは示さない。
+確認できた成功要求における診断フラグ（重複あり）: {'mentions_exception': 18, 'mentions_expected_distribution': 6, 'mentions_actual_distribution': 6, 'mentions_structure': 0, 'mentions_qubit_count': 1, 'mentions_measurement_ban': 0}
+診断の詳細はf_diagnostics_when_r_failed.csv。生の要求・コード・例外メッセージは公開表に含めない。
+
+6. 解釈と次の検証
+R最終失敗449組のうち、全roundで同じASTは157組（完全同一コード137、コメント等のみ変化20）。
+構造を変えても失敗した221組、構文解析が不完全な71組もあり、反復だけでは低成績を説明できない。
+R失敗・F成功110組では90組に途中のAST反復があるが、最初から最後まで同じASTは34組。55組は構造を変えてもRが失敗、21組は解析不完全。
+初期失敗類型別のR失敗・F成功組数: {'import_error': 41, 'build_error': 47, 'wrong_output': 13, 'syntax': 9}
+このうちimport/構築失敗は88/110組。これは差が生じた層の特定であり、診断が効いた原因の寄与率ではない。
+Gemma3ではR=5/190、F=4/190で、外部診断を加える方式が全モデルで一律に高いわけではない。
+Rのコード反復と失敗の関連は観測できるが、失敗通知の欠如、前回コード提示、自己点検指示のどれが原因かは未特定。
+構造を変更しても失敗した経路と、Rだけ成功した反例を併記し、反復だけで全体を説明しない。
+Rは成功までの停止制御に外部評価を使うが、その診断をモデルへ提示しない条件。モデルの内的判断は観測できない。
+Rの旧要求では終了理由が未保存。tokens_out=1024を終了理由lengthと同一視しない。
+実例は各分類の先頭1組を目的選択した説明例。代表性・原因の確定は主張しない。
+失敗を認識できなかったという仮説を確かめるなら、既存Rを保持して失敗通知だけを追加する条件との比較を事前設計する。
+診断の効果を分離するなら、共通指示を固定し失敗通知のみ／詳細診断ありを比較する別設計が必要。
+これらの追試は本分析では開始しない。既存545組と予備実験100組を独立な645組として合算しない。

@@ -1,0 +1,531 @@
+[
+  {
+    "selection_class": "R_only_against_F",
+    "case": {
+      "case_id": "46c51e61d46df29d16c60a761463e2b69c8ac1e1be99bee0973006c50a7eb4b9",
+      "model_spec": "ollama:gemma3:4b",
+      "task_id": "T3b_DJ_balanced",
+      "base_seed": 4,
+      "initial_error": "interface_mismatch",
+      "r_pattern": "rescued",
+      "r_final_error": "ok",
+      "r_any_prior_ast_repeat": false,
+      "r_all_errors_same": false,
+      "r_any_output_at_1024": false,
+      "R_success": true,
+      "F_success": false,
+      "D_success": false,
+      "B4_success": false
+    },
+    "paths": {
+      "R": [
+        {
+          "round": 0,
+          "error": "interface_mismatch",
+          "success": false,
+          "code_sha256": "a9896205fd4dadf8029b6fa0e38b48e985bb29114cfff7c21327ce9df959b183"
+        },
+        {
+          "round": 1,
+          "error": "interface_mismatch",
+          "success": false,
+          "code_sha256": "b368961e8851652d09daa4755bf063e33d630337a3355519dbafb9ae6ead7215"
+        },
+        {
+          "round": 2,
+          "error": "ok",
+          "success": true,
+          "code_sha256": "6f66069696a0b4224cf3f978a06c83af29f9924f5b30909d0719cbe9ca3f8cf3"
+        }
+      ],
+      "F": [
+        {
+          "round": 0,
+          "error": "interface_mismatch",
+          "success": false,
+          "code_sha256": "a9896205fd4dadf8029b6fa0e38b48e985bb29114cfff7c21327ce9df959b183"
+        },
+        {
+          "round": 1,
+          "error": "interface_mismatch",
+          "success": false,
+          "code_sha256": "4bb0127e053d78ec669faa784af779013efad6838651352540014f90fc6a795f"
+        },
+        {
+          "round": 2,
+          "error": "interface_mismatch",
+          "success": false,
+          "code_sha256": "4bb0127e053d78ec669faa784af779013efad6838651352540014f90fc6a795f"
+        },
+        {
+          "round": 3,
+          "error": "interface_mismatch",
+          "success": false,
+          "code_sha256": "4bb0127e053d78ec669faa784af779013efad6838651352540014f90fc6a795f"
+        }
+      ],
+      "D": [
+        {
+          "round": 0,
+          "error": "interface_mismatch",
+          "success": false,
+          "code_sha256": "a9896205fd4dadf8029b6fa0e38b48e985bb29114cfff7c21327ce9df959b183"
+        },
+        {
+          "round": 1,
+          "error": "interface_mismatch",
+          "success": false,
+          "code_sha256": "a9896205fd4dadf8029b6fa0e38b48e985bb29114cfff7c21327ce9df959b183"
+        },
+        {
+          "round": 2,
+          "error": "interface_mismatch",
+          "success": false,
+          "code_sha256": "a9896205fd4dadf8029b6fa0e38b48e985bb29114cfff7c21327ce9df959b183"
+        },
+        {
+          "round": 3,
+          "error": "interface_mismatch",
+          "success": false,
+          "code_sha256": "a9896205fd4dadf8029b6fa0e38b48e985bb29114cfff7c21327ce9df959b183"
+        }
+      ],
+      "B4": [
+        {
+          "round": 0,
+          "error": "interface_mismatch",
+          "success": false,
+          "code_sha256": "a9896205fd4dadf8029b6fa0e38b48e985bb29114cfff7c21327ce9df959b183"
+        },
+        {
+          "round": 1,
+          "error": "build_error",
+          "success": false,
+          "code_sha256": "82224ba4e3752187dca289710f93d676d50508ad1ee58575c5ad7f04fb252df7"
+        },
+        {
+          "round": 2,
+          "error": "syntax",
+          "success": false,
+          "code_sha256": "7a0059b1854630b23783521a18d6044cf3cc3a69f925ecd5dcd91536a4dec068"
+        },
+        {
+          "round": 3,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "003446b35ff6c92fe4ed5131dcd4d47ad5f6496bffb3ece0b6eeb4d31ede7d1b"
+        }
+      ]
+    }
+  },
+  {
+    "selection_class": "changed_ast_still_failed",
+    "case": {
+      "case_id": "854689f91d9dc446a64f6dc6c1b78d01108e1781f70672f71bfba281f0ea31ae",
+      "model_spec": "ollama:gemma3:4b",
+      "task_id": "T4_BV_011",
+      "base_seed": 18,
+      "initial_error": "import_error",
+      "r_pattern": "changed_ast_still_failed",
+      "r_final_error": "wrong_output",
+      "r_any_prior_ast_repeat": false,
+      "r_all_errors_same": false,
+      "r_any_output_at_1024": false,
+      "R_success": false,
+      "F_success": true,
+      "D_success": false,
+      "B4_success": false
+    },
+    "paths": {
+      "R": [
+        {
+          "round": 0,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "591394513bc5639f8997e1a6cfe588ebe545a4c201ee33b84428df40a629b6be"
+        },
+        {
+          "round": 1,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "fc35061c8557caf9da64a4cad28a09b799babfcac92ede92cbf27dc56c964d5f"
+        },
+        {
+          "round": 2,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "f763c93b7bec0e71ec951e2d0f06c98c647ed98872c7bf0803c8e39abda009a9"
+        },
+        {
+          "round": 3,
+          "error": "wrong_output",
+          "success": false,
+          "code_sha256": "b45b7c5c2061187d3d9939a27919a123f034a92f37e0ab4dbc75d5844e69b758"
+        }
+      ],
+      "F": [
+        {
+          "round": 0,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "591394513bc5639f8997e1a6cfe588ebe545a4c201ee33b84428df40a629b6be"
+        },
+        {
+          "round": 1,
+          "error": "qubit_count_mismatch",
+          "success": false,
+          "code_sha256": "dffd3a6c210ab0628e6661391cd1d530930df79cb2e8b138103cbe32480ac4f5"
+        },
+        {
+          "round": 2,
+          "error": "ok",
+          "success": true,
+          "code_sha256": "45a2e1297ad6977813d00d36ccff9cfee22f405f2ae372926bd6c6557fa39607"
+        }
+      ],
+      "D": [
+        {
+          "round": 0,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "591394513bc5639f8997e1a6cfe588ebe545a4c201ee33b84428df40a629b6be"
+        },
+        {
+          "round": 1,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "d31055f164f1bc2f768f12a521b6fb833275889252b7c83bcbbfef8037e98d22"
+        },
+        {
+          "round": 2,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "d31055f164f1bc2f768f12a521b6fb833275889252b7c83bcbbfef8037e98d22"
+        },
+        {
+          "round": 3,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "d31055f164f1bc2f768f12a521b6fb833275889252b7c83bcbbfef8037e98d22"
+        }
+      ],
+      "B4": [
+        {
+          "round": 0,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "591394513bc5639f8997e1a6cfe588ebe545a4c201ee33b84428df40a629b6be"
+        },
+        {
+          "round": 1,
+          "error": "interface_mismatch",
+          "success": false,
+          "code_sha256": "aba8c0fa275fd1d15659440bbd97a44db1b5231b993705ef0691dbbf536572f8"
+        },
+        {
+          "round": 2,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "39cf7953e4b19bba19ec672b8d9856dfc26cdb0270c6db739c39d307f4080003"
+        },
+        {
+          "round": 3,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "38987080baf5bf367bc1481782981a9a3ee85d252fa6278cc8e15dcd3eda0c29"
+        }
+      ]
+    }
+  },
+  {
+    "selection_class": "ast_incomplete",
+    "case": {
+      "case_id": "3c080b7ca989e4ad1ea8ac6b1b62edeb4e708386822b4d9298425c8b38eca404",
+      "model_spec": "ollama:gemma4:e4b-it-qat",
+      "task_id": "T4_BV_011",
+      "base_seed": 11,
+      "initial_error": "import_error",
+      "r_pattern": "ast_incomplete",
+      "r_final_error": "import_error",
+      "r_any_prior_ast_repeat": false,
+      "r_all_errors_same": false,
+      "r_any_output_at_1024": true,
+      "R_success": false,
+      "F_success": true,
+      "D_success": true,
+      "B4_success": true
+    },
+    "paths": {
+      "R": [
+        {
+          "round": 0,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "22007d9b144ec1fb0c7e0fef3548e1bc69ce13e5a122c501bcdffb651374776b"
+        },
+        {
+          "round": 1,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "ab9d7fcbe063200e72e2d11be6f5a154491358b106f3358c5db879a8b77ce2c3"
+        },
+        {
+          "round": 2,
+          "error": "syntax",
+          "success": false,
+          "code_sha256": "6ef6dfa7132e7679120f3b40504db1e60fa3a5a5f4ee97d541e358db399373b4"
+        },
+        {
+          "round": 3,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "3b918f3428e9f26bdf0a517fd535490280459e9b6f37556d4e4ccd99fc929cb9"
+        }
+      ],
+      "F": [
+        {
+          "round": 0,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "22007d9b144ec1fb0c7e0fef3548e1bc69ce13e5a122c501bcdffb651374776b"
+        },
+        {
+          "round": 1,
+          "error": "ok",
+          "success": true,
+          "code_sha256": "3e8e8fecd6a84503b8b4eca0453e33304a4ad0506484c8f8c46ce51f82a923e8"
+        }
+      ],
+      "D": [
+        {
+          "round": 0,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "22007d9b144ec1fb0c7e0fef3548e1bc69ce13e5a122c501bcdffb651374776b"
+        },
+        {
+          "round": 1,
+          "error": "ok",
+          "success": true,
+          "code_sha256": "47372836e87f3d288dced14ef65e19078fe1a7ae69e78fd8f4c1803ace68e364"
+        }
+      ],
+      "B4": [
+        {
+          "round": 0,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "22007d9b144ec1fb0c7e0fef3548e1bc69ce13e5a122c501bcdffb651374776b"
+        },
+        {
+          "round": 1,
+          "error": "ok",
+          "success": true,
+          "code_sha256": "8516424945e4ee694d72af9db5dda1de5ca30ead7f3a21a75fc6ae920bd01408"
+        }
+      ]
+    }
+  },
+  {
+    "selection_class": "unchanged_text",
+    "case": {
+      "case_id": "2cceb690f3a343ad5ef2b55ee52868ff31711ac2b3fbb9e6624222b30e9fae04",
+      "model_spec": "ollama:qwen2.5-coder:7b",
+      "task_id": "T3b_DJ_balanced",
+      "base_seed": 4,
+      "initial_error": "build_error",
+      "r_pattern": "unchanged_text",
+      "r_final_error": "build_error",
+      "r_any_prior_ast_repeat": true,
+      "r_all_errors_same": true,
+      "r_any_output_at_1024": false,
+      "R_success": false,
+      "F_success": true,
+      "D_success": true,
+      "B4_success": true
+    },
+    "paths": {
+      "R": [
+        {
+          "round": 0,
+          "error": "build_error",
+          "success": false,
+          "code_sha256": "72c1a57450171812c764c0c2fda97bd2b658a91f895fce269e44de84880d324d"
+        },
+        {
+          "round": 1,
+          "error": "build_error",
+          "success": false,
+          "code_sha256": "72c1a57450171812c764c0c2fda97bd2b658a91f895fce269e44de84880d324d"
+        },
+        {
+          "round": 2,
+          "error": "build_error",
+          "success": false,
+          "code_sha256": "72c1a57450171812c764c0c2fda97bd2b658a91f895fce269e44de84880d324d"
+        },
+        {
+          "round": 3,
+          "error": "build_error",
+          "success": false,
+          "code_sha256": "72c1a57450171812c764c0c2fda97bd2b658a91f895fce269e44de84880d324d"
+        }
+      ],
+      "F": [
+        {
+          "round": 0,
+          "error": "build_error",
+          "success": false,
+          "code_sha256": "72c1a57450171812c764c0c2fda97bd2b658a91f895fce269e44de84880d324d"
+        },
+        {
+          "round": 1,
+          "error": "ok",
+          "success": true,
+          "code_sha256": "4998ea8b8bc94ee0656aeb2383aea8389247a0d440329fb14a28db31eea9f585"
+        }
+      ],
+      "D": [
+        {
+          "round": 0,
+          "error": "build_error",
+          "success": false,
+          "code_sha256": "72c1a57450171812c764c0c2fda97bd2b658a91f895fce269e44de84880d324d"
+        },
+        {
+          "round": 1,
+          "error": "ok",
+          "success": true,
+          "code_sha256": "4998ea8b8bc94ee0656aeb2383aea8389247a0d440329fb14a28db31eea9f585"
+        }
+      ],
+      "B4": [
+        {
+          "round": 0,
+          "error": "build_error",
+          "success": false,
+          "code_sha256": "72c1a57450171812c764c0c2fda97bd2b658a91f895fce269e44de84880d324d"
+        },
+        {
+          "round": 1,
+          "error": "ok",
+          "success": true,
+          "code_sha256": "5b7f6354b07a23b078f2f4b388e0616a14bf8acc622464aa26c92ef44abb0932"
+        }
+      ]
+    }
+  },
+  {
+    "selection_class": "unchanged_ast_only",
+    "case": {
+      "case_id": "8888522bf9bcc54d920a1c1a439e1c44eec7ad50809eafb12b17c9420475a152",
+      "model_spec": "ollama:qwen3.5:4b",
+      "task_id": "T3a_DJ_constant",
+      "base_seed": 5,
+      "initial_error": "import_error",
+      "r_pattern": "unchanged_ast_only",
+      "r_final_error": "import_error",
+      "r_any_prior_ast_repeat": true,
+      "r_all_errors_same": true,
+      "r_any_output_at_1024": false,
+      "R_success": false,
+      "F_success": true,
+      "D_success": true,
+      "B4_success": false
+    },
+    "paths": {
+      "R": [
+        {
+          "round": 0,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "65c6cbb7de7b87fb94b6a87e9e40c789bf9531f780598686ab7dde86eb670728"
+        },
+        {
+          "round": 1,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "f97a1a4ca5c8b981a9bb61bcf3e3f1a00bc5c0b48d2ad8457b255234d3388805"
+        },
+        {
+          "round": 2,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "ab41eec58736c31619c6a2fcd174afbf7b36e8c4ca5a92294ba68c2c74f35e10"
+        },
+        {
+          "round": 3,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "72dde318ef17dcc8c2d82421c76a313ee4b5ed58620b6d51244b5dde156660cc"
+        }
+      ],
+      "F": [
+        {
+          "round": 0,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "65c6cbb7de7b87fb94b6a87e9e40c789bf9531f780598686ab7dde86eb670728"
+        },
+        {
+          "round": 1,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "b75272a4bac1fab2d034a08066a1f21aa19eea2dceeb83be5ba221aeed7d31f6"
+        },
+        {
+          "round": 2,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "135da3d6cc9180474f1adcc99118b47004652d133a35b39e7b9355a50a6caeb7"
+        },
+        {
+          "round": 3,
+          "error": "ok",
+          "success": true,
+          "code_sha256": "7ca325a77d44add4ec20e190654d7a9938cd2b69036952a08fb40f8051f23b02"
+        }
+      ],
+      "D": [
+        {
+          "round": 0,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "65c6cbb7de7b87fb94b6a87e9e40c789bf9531f780598686ab7dde86eb670728"
+        },
+        {
+          "round": 1,
+          "error": "ok",
+          "success": true,
+          "code_sha256": "27d7e02ac7faa4e9162785022a3032a2f1b3926105a8579bc9c492781a6a8fea"
+        }
+      ],
+      "B4": [
+        {
+          "round": 0,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "65c6cbb7de7b87fb94b6a87e9e40c789bf9531f780598686ab7dde86eb670728"
+        },
+        {
+          "round": 1,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "7cf65f7c84687f79e33aeaedd4d020a82bcf04ef177e858f49827f62d52a56fd"
+        },
+        {
+          "round": 2,
+          "error": "import_error",
+          "success": false,
+          "code_sha256": "17ba717cb8531bf4a3c564beb1937afc71e956a8184a854e6d3427af13c11eb9"
+        },
+        {
+          "round": 3,
+          "error": "unknown_error",
+          "success": false,
+          "code_sha256": "95d6f794832876fd23e4836eca502044b4c29bd2b561c50038ac5a035c8b2e63"
+        }
+      ]
+    }
+  }
+]

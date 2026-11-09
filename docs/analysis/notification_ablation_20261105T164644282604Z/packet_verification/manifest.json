@@ -1,0 +1,12 @@
+{
+  "plan_sha256": "1ece1b5a62cd0a2dced905f2f62369b492d85cb7cae0e6fcfe850c7660b8931b",
+  "status": "completed_verified",
+  "outputs": {
+    "sanity_report.json.integrity.json": "e789ecb1635cecb94ee5df48c97878b440ee29ed9ccd3a48dc835c288bd1af28",
+    "sanity_report.json": "46ef95c965c6cd4a79d1967d52f7b32de7596f14394bc68a1d912ce6e756fc26",
+    "report.txt": "f4703156bbfadd2e20de148373695d747d89983f4de68bd2a3e51bf7e3468195",
+    "stage1_and_final_summary.csv": "14dc03516182fce61c6cba99cb6bd03ba3f138e438ef805dba40bc2cee86b726",
+    "paired_success.csv": "2dce1ab0723460b5c66e6dff21eda3f5f70417edee28d12aece45096a1e7740b",
+    "structural_checks.csv": "5b465c467206d84af82516f02fbf0dbe8b72641606229e687f8848f7f9bac440"
+  }
+}

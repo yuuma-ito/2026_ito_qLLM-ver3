@@ -1,0 +1,8 @@
+initial_error,initial_failures,R_successes,F_successes,D_successes,B4_successes,rescued,unchanged_text,unchanged_ast_only,changed_ast_still_failed,ast_incomplete,small_stratum
+build_error,126,32,76,68,77,32,12,8,67,7,False
+import_error,271,24,59,72,66,24,109,12,118,8,False
+interface_mismatch,11,1,0,1,2,1,2,0,8,0,False
+qubit_count_mismatch,3,2,2,0,0,2,0,0,1,0,True
+syntax,68,21,25,21,24,21,0,0,0,47,False
+unknown_error,1,0,0,0,1,0,0,0,1,0,True
+wrong_output,65,16,24,17,46,16,14,0,26,9,False

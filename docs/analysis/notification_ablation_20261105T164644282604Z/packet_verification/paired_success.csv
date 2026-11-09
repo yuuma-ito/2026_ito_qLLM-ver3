@@ -1,0 +1,5 @@
+stage,left,right,both,left_only,right_only,neither
+1,R0,R1,38,15,21,471
+1,R1,R2,43,16,55,431
+3,R0,R1,60,26,33,426
+3,R1,R2,71,22,102,350

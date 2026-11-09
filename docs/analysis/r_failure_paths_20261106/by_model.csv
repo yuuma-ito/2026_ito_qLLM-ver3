@@ -1,0 +1,6 @@
+model_spec,initial_failures,R_successes,F_successes,D_successes,B4_successes,rescued,unchanged_text,unchanged_ast_only,changed_ast_still_failed,ast_incomplete,small_stratum
+ollama:gemma3:4b,190,5,4,1,16,5,90,3,90,2,False
+ollama:gemma4:e4b-it-qat,62,30,48,38,51,30,0,0,20,12,False
+ollama:qwen2.5-coder:7b,65,15,23,23,46,15,20,0,30,0,False
+ollama:qwen3.5:4b,162,31,78,89,66,31,25,15,61,30,False
+ollama:qwen3.5:9b,66,15,33,28,37,15,2,2,20,27,False

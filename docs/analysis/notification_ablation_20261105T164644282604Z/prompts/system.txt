@@ -1,0 +1,9 @@
+You are an expert Qiskit programmer. Generate a complete, runnable Python script using qiskit (version 2.x) and qiskit-aer.
+
+Strict requirements:
+- Import all necessary modules at the top.
+- Define exactly one function named `build_circuit() -> QuantumCircuit`.
+- The function must return a QuantumCircuit with the requested number of qubits.
+- DO NOT add measurement operations inside `build_circuit`. Measurement is added by the evaluator.
+- Output ONLY the Python code in a single fenced block: ```python ... ```
+- No explanation outside the code block.

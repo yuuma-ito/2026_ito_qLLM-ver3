@@ -1,0 +1,2 @@
+initial_failures,R_successes,F_successes,D_successes,B4_successes,rescued,unchanged_text,unchanged_ast_only,changed_ast_still_failed,ast_incomplete,small_stratum
+545,96,186,179,216,96,137,20,221,71,False

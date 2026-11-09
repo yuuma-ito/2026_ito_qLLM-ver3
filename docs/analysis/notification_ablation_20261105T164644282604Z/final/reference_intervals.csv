@@ -1,0 +1,3 @@
+stage,left,right,seed_blocks,resamples,resampling_seed,observed_difference,reference_percentile_025,reference_percentile_975,interpretation
+3,R0,R1,20,5000,20261106,0.012844036697247707,-0.016544117647058824,0.04212454212454213,descriptive base_seed-block stability; not a population or internal-RNG confidence interval
+3,R1,R2,20,5000,20261106,0.14678899082568808,0.1125,0.18333333333333332,descriptive base_seed-block stability; not a population or internal-RNG confidence interval

@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "plan_sha256": "1ece1b5a62cd0a2dced905f2f62369b492d85cb7cae0e6fcfe850c7660b8931b",
+  "cases": 545,
+  "models": 5,
+  "tasks": 10,
+  "unique_new_seeds": 1635,
+  "planned_slots": 4905,
+  "new_model_requests": 0
+}

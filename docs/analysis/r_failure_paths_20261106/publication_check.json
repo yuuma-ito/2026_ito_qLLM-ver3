@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "csv_outcomes_independently_recounted": true,
+  "all_paired_strata_reconciled": true,
+  "manifest_outputs_verified": 13,
+  "altered_output_rejected": true,
+  "secret_pattern_scan_passed": true,
+  "targeted_tests": {
+    "command": ".venv/bin/python -m pytest -q tests/test_r_failure_paths.py",
+    "passed": 8
+  },
+  "note": "Independent recount uses exported case-level CSV; raw reconstruction is performed by the analysis script."
+}

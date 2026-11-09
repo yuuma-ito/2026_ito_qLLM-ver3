@@ -1,0 +1,13 @@
+comparator,outcome,cases,r_any_prior_ast_repeat,rescued,unchanged_text,unchanged_ast_only,changed_ast_still_failed,ast_incomplete
+B4,both,69,17,69,0,0,0,0
+B4,R_only,27,4,27,0,0,0,0
+B4,other_only,147,124,0,39,7,77,24
+B4,neither,302,251,0,98,13,144,47
+F,both,76,16,76,0,0,0,0
+F,R_only,20,5,20,0,0,0,0
+F,other_only,110,90,0,26,8,55,21
+F,neither,339,285,0,111,12,166,50
+D,both,75,18,75,0,0,0,0
+D,R_only,21,3,21,0,0,0,0
+D,other_only,104,91,0,27,8,55,14
+D,neither,345,284,0,110,12,166,57

@@ -1,0 +1,18 @@
+{
+  "status": "completed_verified",
+  "run_id": "notification_ablation_20261105T164644282604Z",
+  "actual_requests": 4406,
+  "stage1_requests": 1635,
+  "tokens_in": 3728308,
+  "tokens_out": 1709549,
+  "successful_paths": {
+    "R0": 86,
+    "R1": 93,
+    "R2": 173
+  },
+  "old_results_unchanged": true,
+  "git_operations_performed": false,
+  "thesis_updated": false,
+  "plan_sha256": "1ece1b5a62cd0a2dced905f2f62369b492d85cb7cae0e6fcfe850c7660b8931b",
+  "final_manifest_sha256": "94e0fc02b6098ac1522b44cede64cb2f6e42f177ce1bd51d4cc214ed4131c71f"
+}

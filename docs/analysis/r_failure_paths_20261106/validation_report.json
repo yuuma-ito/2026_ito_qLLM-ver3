@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "initial_failure_cases": 545,
+  "condition_paths": 2180,
+  "missing": 0,
+  "duplicates": 0,
+  "unexpected": 0,
+  "partition_totals_reconciled": true,
+  "R_additional_requests": 1501,
+  "F_success_R_failure_cases": 110,
+  "F_requests_in_these_paths": 187,
+  "actual_F_requests_available": 47,
+  "actual_F_requests_unavailable": 140,
+  "actual_successful_F_requests_available": 28,
+  "new_model_requests": 0,
+  "generated_code_executions": 0,
+  "rescoring": false,
+  "scope": "Saved-verdict descriptive analysis; not a new experiment or causal identification."
+}

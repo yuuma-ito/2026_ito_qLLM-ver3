@@ -1,0 +1,11 @@
+task_id,initial_failures,R_successes,F_successes,D_successes,B4_successes,rescued,unchanged_text,unchanged_ast_only,changed_ast_still_failed,ast_incomplete,small_stratum
+T1_Bell,34,2,10,12,13,2,26,0,6,0,False
+T2_GHZ,35,9,12,13,14,9,16,0,10,0,False
+T3a_DJ_constant,42,6,12,16,15,6,8,2,24,2,False
+T3b_DJ_balanced,48,7,25,24,19,7,16,0,23,2,False
+T4_BV_011,62,13,22,24,31,13,10,3,31,5,False
+T5_Grover_11,73,14,23,14,36,14,11,1,23,24,False
+T6_QFT_001,67,21,34,34,30,21,7,5,33,1,False
+T7_IQFT_001,50,3,17,15,22,3,16,6,21,4,False
+T8_QPE_001,94,10,13,11,12,10,11,3,37,33,False
+T9_Ansatz_001,40,11,18,16,24,11,16,0,13,0,False
