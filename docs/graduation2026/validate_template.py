@@ -49,7 +49,7 @@ def validate():
     checks['toc_dot_leaders_and_right_tabs']=all(
         p.paragraph_format.tab_stops[0].alignment==2 and p.paragraph_format.tab_stops[0].leader==1
         for p in d.paragraphs if '\t' in p.text)
-    checks['sequential_table_fields']=sum(i.startswith('SEQ Table ') for i in instructions)==len(d.tables)==11
+    checks['sequential_table_fields']=sum(i.startswith('SEQ Table ') for i in instructions)==len(d.tables)==12
     checks['editable_table_references']=any(i.startswith('REF Table') for i in instructions)
     checks['four_figures_with_sequential_fields'] = len(d.inline_shapes) == sum(i.startswith('SEQ Figure ') for i in instructions) == 4
     checks['editable_figure_references'] = all(any(i.startswith('REF Figure'+str(n)+' ') for i in instructions) for n in [1,2,3,4])
@@ -78,7 +78,9 @@ def validate():
     third={r['condition_id']:r for r in template.content.SNAP['third_round']}
     checks['third_round_table_matches_snapshot'] = tables[9][1:] == [[c,f"{third[k]['additional_rescues']}/{third[k]['at_risk_after_2']}",f"{third[k]['third_round_tokens']:,}",f"{third[k]['third_round_seconds']:,.1f}",f"{third[k]['loss_if_stop_at_2']*100:.1f}%"] for c,k in template.content.CONDITIONS]
     from thesis_enrichment import catalog_rows
-    checks['catalog_table_matches_frozen_counts'] = tables[10][1:] == catalog_rows()
+    checks['catalog_table_matches_frozen_counts'] = tables[11][1:] == catalog_rows()
+    from notification_supplement import table_rows as notification_rows
+    checks['notification_supplement_matches_published_csv'] = tables[10][1:] == notification_rows()
     checks['tables_not_justified'] = all(p.alignment in [0,1,2] for t in d.tables for r in t.rows for c in r.cells for p in c.paragraphs)
     checks['body_left_aligned'] = all(p.alignment == 0 for p in d.paragraphs if p.text.strip() and p.style.name == 'Normal' and not any('SEQ Table' in e.text or 'SEQ Figure' in e.text for e in p._p.iter(qn('w:instrText'))) and '\t' not in p.text and not any(t in p.text.replace('\n','') for t in ['卒　業　論　文',template.content.TITLE,'2023TC011','指導教員','2027年1月','南山大学 理工学部']))
     checks['B4_pairwise_counts_match_prose'] = {r['comparator']:[int(r.get(k) or 0) for k in ['both','B4_only',r['comparator']+'_only','neither']] for r in template.content.csv.DictReader((template.content.B4_SOURCE/'pairwise.csv').open())} == {'R':[69,147,27,302],'F':[130,86,53,276],'D':[118,98,61,268]}

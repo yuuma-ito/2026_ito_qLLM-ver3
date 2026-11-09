@@ -186,7 +186,7 @@ def remap(text):
     mappings = {'表3.1': '表1', '表5.1': '表2'}
     mappings.update({f'表6.{i}': f'表{i+3}' for i in range(1, 11)})
     mappings['表6.0'] = '表3'
-    mappings['表7.1'] = '表11'
+    mappings['表7.1'] = '表12'
     for old, new in sorted(mappings.items(), key=lambda item: -len(item[0])):
         text = text.replace(old, new)
     text = text.replace('付録A', '付録（8.1節）').replace('付録B', '付録（8.2節）')

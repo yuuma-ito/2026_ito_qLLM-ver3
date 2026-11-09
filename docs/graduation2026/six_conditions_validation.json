@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-04T12:03:14.592657+00:00",
+  "checked_at_utc": "2026-11-09T08:00:43.393968+00:00",
   "passed": true,
   "checks": {
     "six_counts_match_reference_and_fixed_csv": true,
@@ -12,7 +12,7 @@
     "original_added_success_analysis_retained": true,
     "only_repair_and_B4_in_added_success_graph": true,
     "distinct_graph_denominators": true,
-    "all_11_tables_and_4_figures": true,
+    "all_12_tables_and_4_figures": true,
     "captions_numbered_in_order": true,
     "all_caption_numbers_referenced": true,
     "six_comparison_precedes_added_successes": true,
@@ -78,7 +78,8 @@
       "表8 F/Dの救済対象（初期失敗545組）",
       "表9 共有初期を除く追加計算コスト（未成功への消費を含む）",
       "表10 3回目の追加救済と消費",
-      "表11 介入カタログ（収録3類型の観測率）"
+      "表11 補足実験の追加1回によるL3成功（初期失敗545組）",
+      "表12 介入カタログ（収録3類型の観測率）"
     ],
     "Figure": [
       "図1 共有初期コードを起点とする比較手順",
@@ -88,8 +89,8 @@
     ]
   },
   "pages": 35,
-  "pdf_sha256": "46feaafe494e3f325d6c223bece55a986e150151c51fe9ccb2467547f98f268e",
-  "docx_sha256": "40accc11f3e9412724a586288d975c169c320cc3385b36b9a16aa69948ba3139",
+  "pdf_sha256": "b77356209a0bf4a57c371b8b3153da2cd6479ac82bef1f363e599cd44b84154c",
+  "docx_sha256": "8b77ffe776deb406597adcdcfcccfca474705a34a286264c0e361ed27b33f5d9",
   "new_experiments": 0,
   "re_evaluations": 0,
   "generated_code_executions": 0,

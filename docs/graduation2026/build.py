@@ -312,6 +312,8 @@ expand_thesis(CHAPTERS, REFS)
 from thesis_enrichment import ensure as ensure_enrichment, apply as enrich_thesis
 ensure_enrichment()
 enrich_thesis(CHAPTERS)
+from notification_supplement import apply as add_notification_supplement
+add_notification_supplement(CHAPTERS)
 
 # Use the same plain-language vocabulary in the abstract and generated body.
 from thesis_language import polish, DEFINITIONS
@@ -410,6 +412,11 @@ def legacy_thesis():
             # Insert each table near its first textual reference.
             if (n,j)==(3,1):thesis_tables(d,3)
             if (n,j)==(5,1):thesis_tables(d,5)
+            if n == 6 and subtitle == '補足実験：失敗通知と詳細診断の比較':
+                from notification_supplement import table_rows as notification_rows
+                table(d, '表6.8　補足実験の追加1回によるL3成功（初期失敗545組）',
+                      ['条件', '追加する結果情報', '成功数', '分母', '成功率'],
+                      notification_rows(), widths=[16, 66, 24, 24, 30])
             if n==6:
                 # Tables collected after result subsections are ordered and explicitly referenced.
                 pass
