@@ -89,6 +89,9 @@ def validate():
     texts=[p.get_text() for p in pdf]
     checks['cover_identity_date']=all(norm(value) in norm(texts[0]) for value in ['卒業論文',template.content.TITLE,'2023TC011 伊藤 悠真','横山 哲郎','2027年1月'])
     checks['summary_second_page']=all(norm(value) in norm(texts[1]) for value in ['南山大学 理工学部 電子情報学科','要約','545','183','179'])
+    checks['summary_third_round_counts_match_snapshot'] = all(
+        norm(f"{c}で{third[k]['additional_rescues']}組") in norm(texts[1])
+        for c, k in template.content.CONDITIONS if c in ('F', 'D'))
     label_lines=[]
     for page in pdf:
         lines=[''.join(sp['text'] for sp in line['spans']) for b in page.get_text('dict')['blocks'] for line in b.get('lines',[])]
@@ -145,6 +148,11 @@ def validate():
             elif active:result.append(p.text)
         return '\n'.join(result)
     questions=subsection('研究目的と研究課題')
+    structure=subsection('論文の構成と対象範囲')
+    checks['introduction_distinguishes_experiment_timing_and_final_source_version'] = all(
+        t in structure for t in ['元実験，必要な部分追試，B4の追加実験は実施時期が異なる',
+                                '2026年11月4日の測定禁止修正版の固定集計']) and all(
+        t not in structure for t in ['2026-10-16版', '2026-10-22固定'])
     comparison=subsection('修正と独立再生成の比較から得られる知見')
     resources=subsection('資源制約と停止方策への含意')
     checks['RQ1_to_RQ3_explicit_in_introduction'] = all(f'RQ{i}（' in questions for i in [1,2,3])

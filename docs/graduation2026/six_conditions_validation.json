@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-09T08:00:43.393968+00:00",
+  "checked_at_utc": "2026-11-09T08:24:28.413028+00:00",
   "passed": true,
   "checks": {
     "six_counts_match_reference_and_fixed_csv": true,
@@ -89,8 +89,8 @@
     ]
   },
   "pages": 35,
-  "pdf_sha256": "b77356209a0bf4a57c371b8b3153da2cd6479ac82bef1f363e599cd44b84154c",
-  "docx_sha256": "8b77ffe776deb406597adcdcfcccfca474705a34a286264c0e361ed27b33f5d9",
+  "pdf_sha256": "2ed76bfe8b05a4ed111ff7e5631f7d33465ec0a7ac28c9923dcbdc6819510533",
+  "docx_sha256": "ee48cb0375245e3b8f39ba1147e9a7129464d4be4c255dd74b2dde1b367255e6",
   "new_experiments": 0,
   "re_evaluations": 0,
   "generated_code_executions": 0,

@@ -1,0 +1,42 @@
+{
+  "checked_at_utc": "2026-11-09T08:25:06.476240+00:00",
+  "passed": true,
+  "checks": {
+    "paragraph_count_unchanged": true,
+    "only_two_paragraphs_changed": true,
+    "summary_only_changes_33_to_32": true,
+    "source_paragraph_matches_approved_revision": true,
+    "all_twelve_tables_unchanged": true,
+    "all_four_figures_unchanged": true,
+    "pages_remain_35": true
+  },
+  "baseline_commit": "f9ec62ddd2180fe26720b63610e9207cc4b9ac6c",
+  "corrected_pages": [
+    2,
+    5
+  ],
+  "changed_rendered_pages": [
+    2,
+    5,
+    6,
+    16,
+    18,
+    24,
+    25
+  ],
+  "source_sha256": {
+    "docs/analysis/measurement_ban_corrected_20261104/results_snapshot.json": "ceb412ab801b350c52a12b0106818d92ef4dce7529ce516fea984b7188dcc68c",
+    "docs/analysis/measurement_ban_corrected_20261104/third_round_summary.csv": "9dcb7dd4ebfa41b8809ba8194cac25e7669c916080c33aecb34ca8f0dd0f5b51"
+  },
+  "artifact_sha256": {
+    "thesis.docx": "ee48cb0375245e3b8f39ba1147e9a7129464d4be4c255dd74b2dde1b367255e6",
+    "thesis.pdf": "2ed76bfe8b05a4ed111ff7e5631f7d33465ec0a7ac28c9923dcbdc6819510533",
+    "build.py": "129677b8acc0aebd0a776f077f2505beda1018b6c4711638fff8fc133ea550ff",
+    "template_thesis.py": "d7982cd2b2b8710e26502bf866f26444459abcd0f33fc9e6041696e81c05b858",
+    "validate_template.py": "c15acc125ace2dd7924ce5b41fa1fc7e44a9ffbb0cab1ba1a3c5aed96a7db44a"
+  },
+  "new_model_requests": 0,
+  "generated_code_executions": 0,
+  "re_evaluations": 0,
+  "scope": "要約のDの3回目救済数と第1.3節の出典版の説明のみ。個別生成コードの再採点・独立査読は未実施。"
+}

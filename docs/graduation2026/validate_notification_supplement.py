@@ -50,8 +50,9 @@ def validate():
         with zipfile.ZipFile(BytesIO(data)) as z:
             return {n: sha(z.read(n)) for n in z.namelist() if n.startswith('word/media/')}
     texts = [norm(p.get_text()) for p in pdf]
+    baseline_body = [(s, remap(t) if t.startswith('第2章で関連研究') else t) for s, t in body(previous)]
     checks = {
-        'only_approved_body_additions_and_catalog_reference_renumbering': retained == body(previous),
+        'only_approved_body_additions_source_version_correction_and_catalog_reference_renumbering': retained == baseline_body,
         'exactly_four_added_body_paragraphs': len(body(current)) - len(body(previous)) == 4,
         'eleven_existing_tables_unchanged': tables(previous) == tables(current)[:10] + tables(current)[11:],
         'four_existing_figures_unchanged': len(media(current_bytes)) == 4 and media(previous_bytes) == media(current_bytes),
