@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-09T09:13:05.776553+00:00",
+  "checked_at_utc": "2026-11-09T09:45:38.579610+00:00",
   "passed": true,
   "checks": {
     "main_conclusion_unchanged_except_catalog_reference_renumbering": true,
@@ -26,8 +26,8 @@
     "results/notification_ablation_20261105T164644282604Z/experiment_config.json": "9dd6118a1b8ed956a0c2d500f6cf23649c035dda447b7c01e17b67561d620a82"
   },
   "artifact_sha256": {
-    "thesis.docx": "a09d3ba31fd1ca8ca021344947e0117ba13dfa96cbfc4ebe79a51e03cc0acc59",
-    "thesis.pdf": "532224ac66075cd8f347fa0f74e45436ba0dac7ecb119af103839e143b4d90e1",
+    "thesis.docx": "3d08f702f972ea13348f22f55420103ad41f796a44a29100c97bb4f7c4b4b4c4",
+    "thesis.pdf": "f532c716e0d50ef790c09eee221515ab8e71f58bb335a924b79d70836be15145",
     "notification_supplement.py": "065112bb9559260360df00f5315fa20a43a8765028b725360d42ed077ab3e6cb",
     "validate_notification_supplement.py": "70756d1acc1e74f711bc3646501fb152ec6f22be0be02900dc7ce88fbef40ec7"
   },

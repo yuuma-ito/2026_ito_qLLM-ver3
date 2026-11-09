@@ -322,6 +322,11 @@ def build_thesis():
             p = d.add_paragraph()
             p.alignment = WD_ALIGN_PARAGRAPH.LEFT
             p.paragraph_format.widow_control = True
+            # A small, uniform tightening within the methods chapter prevents
+            # its final two paragraphs from occupying a nearly empty page.
+            # Old chapters 3–5 are combined into chapter 3 in this template.
+            if old_chapter in [3, 4, 5]:
+                p.paragraph_format.line_spacing = 0.98
             # The observed 3.47mm indent is not established as a universal rule;
             # retain no universal first-line indent until the source is present.
             text = remap(title)
@@ -424,6 +429,7 @@ def build_thesis():
         ],
         'pdf_font_limit': 'MS 明朝, MS Pゴシック and Century unavailable on server; PDF uses substitutes. Word fidelity requires original fonts and original template.',
         'body_alignment': 'left; avoid distributed spacing in mixed Japanese/Latin text',
+        'methods_body_line_spacing_multiple': 0.98,
         'prompt_math_symbol_font': 'DejaVu Serif for U+27E9 ket brackets, preserving the exact prompt text and PDF extraction order.',
         'source_snapshot': str(content.SOURCE.relative_to(content.ROOT)),
     }

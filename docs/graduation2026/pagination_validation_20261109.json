@@ -1,0 +1,34 @@
+{
+  "checked_at_utc": "2026-11-09T09:46:16.515312+00:00",
+  "passed": true,
+  "checks": {
+    "all_body_and_appendix_text_unchanged": true,
+    "cover_and_summary_unchanged": true,
+    "all_twelve_tables_unchanged": true,
+    "all_four_figures_unchanged": true,
+    "font_styles_unchanged": true,
+    "page_geometry_unchanged": true,
+    "all_body_paragraphs_present_in_pdf": true,
+    "all_table_rows_present_in_pdf": true,
+    "last_two_method_paragraphs_on_page_17": true,
+    "results_chapter_starts_on_page_18": true,
+    "total_pages_35": true
+  },
+  "baseline_commit": "c9840dc7c12c4938ccc40a2691a45729c2797559",
+  "previous_pdf_sha256": "532224ac66075cd8f347fa0f74e45436ba0dac7ecb119af103839e143b4d90e1",
+  "pages_before": 36,
+  "pages_after": 35,
+  "change": "第3章本文の行間だけを0.98倍へ調整。文字サイズ・余白・本文・図表は保持。",
+  "artifact_sha256": {
+    "thesis.docx": "3d08f702f972ea13348f22f55420103ad41f796a44a29100c97bb4f7c4b4b4c4",
+    "thesis.pdf": "f532c716e0d50ef790c09eee221515ab8e71f58bb335a924b79d70836be15145",
+    "template_thesis.py": "c63f2af97ed5b93639f4a64ad86adee150c3eea5f50d8dbed64758f15124dd30",
+    "format_spec.json": "1222b3c6e0ad47808a00549455ef026ab2a6c531506cf08b6cc05baa6f0f8ec0",
+    "toc_cache.json": "9a00c8619f67c16bc097f5ae4c149790ebc1a792a1f7756ccc0514deb7201578"
+  },
+  "new_experiments": 0,
+  "generated_code_executions": 0,
+  "limits": [
+    "LibreOfficeでのPDF表示を確認。Microsoft Wordでの最終表示は未確認。"
+  ]
+}
