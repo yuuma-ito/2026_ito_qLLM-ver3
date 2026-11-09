@@ -1,5 +1,17 @@
 # Qiskit LLM Code Generation Harness
 
+## 今回の実験結果 失敗通知と詳細診断の比較
+
+**[結果の要約とファイル案内](docs/analysis/notification_ablation_20261105T164644282604Z/README.md)** — 共通の初期失敗545組、実験完了・保存パケット照合成功。
+
+| 条件 | 追加1回の成功数と成功率（主評価） | 最大3回の成功数と成功率（副評価） |
+| --- | ---: | ---: |
+| R0：結果情報なし | 53 / 545（9.72%） | 86 / 545（15.78%） |
+| R1：失敗通知あり | 59 / 545（10.83%） | 93 / 545（17.06%） |
+| R2：失敗通知と詳細診断あり | 98 / 545（17.98%） | 173 / 545（31.74%） |
+
+[主評価のレポート](docs/analysis/notification_ablation_20261105T164644282604Z/stage1/report.txt)・[最大3回のレポート](docs/analysis/notification_ablation_20261105T164644282604Z/final/report.txt)・[検証結果](docs/analysis/notification_ablation_20261105T164644282604Z/packet_verification/report.txt)。下の卒論用R/F/D集計とは指示文が異なる別実験です。
+
 <!-- reachable-rescues:20261016 -->
 ## 卒論の現行結果と再現資料
 
