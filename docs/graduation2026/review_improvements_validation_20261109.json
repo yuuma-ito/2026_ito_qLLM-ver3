@@ -1,0 +1,114 @@
+{
+  "checked_at_utc": "2026-11-09T09:15:51.142818+00:00",
+  "passed": true,
+  "checks": {
+    "only_six_approved_paragraph_blocks_changed": true,
+    "summary_unchanged": true,
+    "conclusion_unchanged": true,
+    "fixed_prompt_appendix_unchanged": true,
+    "all_twelve_tables_unchanged": true,
+    "all_four_figures_unchanged": true,
+    "all_word_body_paragraphs_present_in_pdf": true,
+    "all_table_rows_present_in_pdf": true,
+    "evaluation_sources_and_fixed_prompts_unchanged": true
+  },
+  "baseline_commit": "4251db669c9ccf88382f403d8e9fab39dba5faae",
+  "pages": 36,
+  "approved_priority_levels": [
+    "high",
+    "medium"
+  ],
+  "approved_changes": [
+    {
+      "operation": "replace",
+      "before": [
+        "本研究では広範な量子APIの被覆率を最大化するのではなく，同じ初期失敗に複数の介入を適用し，その救済対象を対応づけることを優先した．そのため，課題数を増やした一般的なモデルランキングとは目的が異なる．課題の種類が少ないことは一般化の制約である一方，個々のタスク仕様や履歴を追いやすいという分析上の特徴がある．この特徴を利点だけとして述べず，被覆範囲の限定と合わせて示す．"
+      ],
+      "after": [
+        "本研究では広範な量子APIの被覆率を最大化するのではなく，同じ初期失敗に複数の介入を適用し，その救済対象を対応づけることを優先した．そのため，課題数を増やした一般的なモデルランキングとは目的が異なる．課題の種類が少ないことは一般化の制約である一方，個々のタスク仕様や履歴を追いやすいという分析上の特徴がある．"
+      ]
+    },
+    {
+      "operation": "replace",
+      "before": [
+        "状態ベクトル評価では，指定入力から得る複素振幅全体を，大域位相を整合して比較する．これは任意入力に対するユニタリ全体の同値性の検査ではない．混合状態やresetなどへの一般的な妥当性は別の検討を要し，今回の修正では新たな禁止条件として加えていない．"
+      ],
+      "after": [
+        "状態ベクトル評価では，指定入力から得る複素振幅全体を，大域位相を整合して比較する．既存の評価器は，入力状態の準備を含む回路をQiskitのOperatorへ変換し，ユニタリ性を確認したうえで，全ゼロ状態からの出力を計算する．したがって，resetやinitializeなどの非ユニタリ操作を含む回路の一般的な状態評価は対象外である．これは任意入力に対するユニタリ全体の同値性の検査ではない．",
+        "T6・T7・T9の期待状態とT8の期待分布は，課題別の参照コードが構築する回路をQiskitのStatevectorで計算したものである．期待値の生成と候補の評価に同じSDKを用いるため，得られた一致は参照回路とSDKに依存する．独立した数値実装による数学的検証とは区別する．"
+      ]
+    },
+    {
+      "operation": "replace",
+      "before": [
+        "固定集計では全5,000条件の対応，欠落・重複・予定外記録，共有初期の一致，成功時停止，層別分母の合計，出典と到達コードのhashを検査した．固定sanity reportは成功しており，欠落・重複・予定外記録・共有初期不一致は0である．本稿の表は公開CSVから取得し，旧値を転記して混在させない．"
+      ],
+      "after": [
+        "固定集計では全5,000条件の対応，欠落・重複・予定外記録，共有初期の一致，成功時停止，層別分母の合計，出典と到達コードのhashを検査した．固定sanity reportは成功しており，欠落・重複・予定外記録・共有初期不一致は0である．主分析の表は，2026年11月4日の測定禁止修正版の固定集計の公開CSVから作成した．"
+      ]
+    },
+    {
+      "operation": "replace",
+      "before": [
+        "本研究の分析対象は，保存済みの実験結果と必要な部分追試から再構成した生成履歴，および独立再生成B4の追加実験である．B/R/F/D/Pには2026-11-04修正版の固定集計，B4には2026-11-04修正版の完了集計を用いる．元実験，部分追試，B4は生成時期と入力情報が異なるため，それぞれの保存設定と由来を区別する．"
+      ],
+      "after": [
+        "本研究の主分析の対象は，保存済みの実験結果と必要な部分追試から再構成した生成履歴，および独立再生成B4の追加実験である．B/R/F/D/Pには2026-11-04修正版の固定集計，B4には2026-11-04修正版の完了集計を用いる．元実験，部分追試，B4は生成時期と入力情報が異なるため，それぞれの保存設定と由来を区別する．失敗通知と詳細診断を比較する補足実験R0/R1/R2は，別の保存設定と出典に基づき4.8節に示し，主分析の集計には合算しない．"
+      ]
+    },
+    {
+      "operation": "replace",
+      "before": [
+        "文献[1]，[2]，[4]〜[7]の書誌情報と本文で参照した主張の範囲は，原論文の公開ページで確認した．文献[8]，[9]はQiskitとQiskit Aerの公式資料である．既存文献の引用番号を保持し，追加文献には末尾の番号を付した．文献[3]は本研究の一次資料で，集計時点・保存設定・検証記録を固定している．"
+      ],
+      "after": [
+        "文献[1]，[2]，[4]〜[7]の書誌情報と本文で参照した主張の範囲は，原論文の公開ページで確認した．文献[8]，[9]はQiskitとQiskit Aerの公式資料である．文献[3]は本研究の一次資料で，集計時点・保存設定・検証記録を固定している．"
+      ]
+    },
+    {
+      "operation": "replace",
+      "before": [
+        "本節には，実験に用いたsystemメッセージ，課題仕様10種，修正条件R/F/Dと予防条件Pの固定文を掲載する．B4の追加生成にはBと同じ課題仕様だけを与え，前回コードや診断は渡さない．元3実験の保存commitで固定文が一致することを照合した．コード・診断が入る部分は明示的なプレースホルダーへ置き換えた．"
+      ],
+      "after": [
+        "本節には，主分析の元実験に用いたsystemメッセージ，課題仕様10種，修正条件R/F/Dと予防条件Pの固定文を掲載する．B4の追加生成にはBと同じ課題仕様だけを与え，前回コードや診断は渡さない．元3実験の保存commitで固定文が一致することを照合した．コード・診断が入る部分は明示的なプレースホルダーへ置き換えた．4.8節の補足実験R0/R1/R2の固定文は，同節の出典フォルダ内のprompts/に別途保存している．"
+      ]
+    }
+  ],
+  "source_sha256": {
+    "harness/evaluator.py": "f90faf3d4ac034e057b07752e7972fe4d2bd4353a6d91a077294a01343e25bf7",
+    "tasks/t6_qft.py": "91aa125cf945f588cd73ab9a4d7b9389d7f1be9a7b567769c5343a39d8fe95f7",
+    "tasks/t7_iqft.py": "a8cae9b1ae33a64ac1ad68eb94a104089db018dcef668202319bcd00c408bd04",
+    "tasks/t8_qpe.py": "cad2545b8e15c7bf69e536b0918e2c2e86306750372840e3f2e871da0189d6d0",
+    "tasks/t9_ansatz.py": "4eb50ac05c70ee77b8c8d1211df962522a56c449ea0c7b39d3f7b7ecb0be8acb",
+    "docs/analysis/measurement_ban_corrected_20261104/summary.csv": "084a805a6f31979be7aae9ff338728c962aed53ae9309de62185775e9996c1eb",
+    "docs/analysis/measurement_ban_corrected_20261104/results_snapshot.json": "ceb412ab801b350c52a12b0106818d92ef4dce7529ce516fea984b7188dcc68c",
+    "docs/graduation2026/experiment_prompts.json": "b4c619a2009bfe84e9daa37d387fa8b9d8664b56880093259bffce0f4ba61787",
+    "docs/graduation2026/intervention_catalog.csv": "0a8b3d38addd73121a396a6e2fc3f8dc3fc7ff050ff60053f755066069b1fae5",
+    "docs/analysis/notification_ablation_20261105T164644282604Z/prompts/system.txt": "b76e82b93808aff180580db3647711efa0a3a56cc39301cff4a7a44f108e9f9d",
+    "docs/analysis/notification_ablation_20261105T164644282604Z/prompts/R0.txt": "4f0ec691cf9e3f276b39bfa4e37670ab8b3ee7946366ffeb3c0d1508200d8f67",
+    "docs/analysis/notification_ablation_20261105T164644282604Z/prompts/R1.txt": "99534dafd78334d31c0c296654b8a37db1f75bae0c17e0c3d66ba2f0bb2d60d6",
+    "docs/analysis/notification_ablation_20261105T164644282604Z/prompts/R2.txt": "b6b00c3c94e47dbc1151e5f90ce4c7b3521d928e81e37991b8c883d3269ca2a5"
+  },
+  "artifact_sha256": {
+    "thesis.docx": "a09d3ba31fd1ca8ca021344947e0117ba13dfa96cbfc4ebe79a51e03cc0acc59",
+    "thesis.pdf": "532224ac66075cd8f347fa0f74e45436ba0dac7ecb119af103839e143b4d90e1",
+    "build.py": "598f9e5552c575e9de351c983006524529da3854b2c0463a596d8b271cf7f463",
+    "thesis_expansion.py": "6b36a9696c77b87d55e39195584eb51e143acbafed3d1e64dc7d7a7c7ea6fe61",
+    "thesis_enrichment.py": "789c2408505b00aa4598398dc30ef4e38dc6df5a4521755617afe61a50c00231",
+    "validate_template.py": "847e01b7e262d2e66148795fce400c115387286a1ebfd087483d098cc22784e6",
+    "validate_notification_supplement.py": "70756d1acc1e74f711bc3646501fb152ec6f22be0be02900dc7ce88fbef40ec7"
+  },
+  "independent_rechecks": {
+    "language": "指定5箇所を再確認し、高重要度2項目の解消と新たな高・中問題なしを確認。",
+    "quantum": "第3.1.7節の記述を評価器・課題実装・PDF画像と照合し、中重要度2点の解消と新たな技術的誤りなしを確認。"
+  },
+  "new_experiments": 0,
+  "new_model_requests": 0,
+  "re_evaluations": 0,
+  "generated_code_executions": 0,
+  "limits": [
+    "修正箇所の独立再点検であり、全36ページの新規独立査読ではない。",
+    "指定フォントを備えたMicrosoft Wordでの表示と原本テンプレート照合は未実施。"
+  ]
+}

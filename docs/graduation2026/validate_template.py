@@ -168,6 +168,18 @@ def validate():
         '初期失敗数とF/Dによる修正の救済率，B4による独立再生成の追加成功率',
         '自動選択方策の有効性を実証したものではない'])
     limitations=subsection('妥当性と限界')
+    scope=subsection('分析対象と固定出典の範囲')
+    evaluation=subsection('出力距離・測定順序・構造要件の詳細')
+    checks['main_and_supplemental_analysis_scopes_distinguished'] = all(t in scope for t in [
+        '主分析の対象', '補足実験R0/R1/R2', '主分析の集計には合算しない'])
+    checks['statevector_evaluator_and_reference_sdk_limits_explicit'] = all(t in evaluation for t in [
+        'QiskitのOperatorへ変換', 'ユニタリ性を確認', '全ゼロ状態からの出力',
+        'resetやinitialize', 'T6・T7・T9の期待状態とT8の期待分布',
+        '独立した数値実装による数学的検証とは区別する'])
+    checks['appendix_separates_supplemental_prompts'] = all(t in '\n'.join(p.text for p in d.paragraphs) for t in [
+        '主分析の元実験に用いたsystemメッセージ', '出典フォルダ内のprompts/に別途保存'])
+    checks['editorial_instructions_removed'] = all(t not in alltext for t in [
+        'この特徴を利点だけとして述べず', '旧値を転記して混在させない', '既存文献の引用番号を保持'])
     checks['critical_limitations_retained'] = all(t in limitations for t in [
         'L3は指定入力の出力と構造要件への適合', '実行時期などの交絡は残る',
         '量子変換の意味的差を測定していない', '複数同時変更の寄与も分離できない']) and all(t in comparison for t in [

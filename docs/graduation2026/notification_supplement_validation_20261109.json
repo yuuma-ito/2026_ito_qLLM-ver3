@@ -1,16 +1,15 @@
 {
-  "checked_at_utc": "2026-11-09T08:24:30.394396+00:00",
+  "checked_at_utc": "2026-11-09T09:13:05.776553+00:00",
   "passed": true,
   "checks": {
-    "only_approved_body_additions_source_version_correction_and_catalog_reference_renumbering": true,
-    "exactly_four_added_body_paragraphs": true,
+    "main_conclusion_unchanged_except_catalog_reference_renumbering": true,
+    "supplement_section_heading_appears_once": true,
     "eleven_existing_tables_unchanged": true,
     "four_existing_figures_unchanged": true,
     "supplement_table_matches_csv": true,
     "all_added_prose_in_word_and_pdf": true,
-    "result_on_page_23": true,
-    "discussion_on_page_24": true,
-    "total_pages_35": true,
+    "result_on_page_named_in_toc": true,
+    "discussion_on_page_named_in_toc": true,
     "all_138_summary_rows_recounted_from_unique_case_csvs": true,
     "fixed_sources_match_published_commit": true
   },
@@ -27,10 +26,10 @@
     "results/notification_ablation_20261105T164644282604Z/experiment_config.json": "9dd6118a1b8ed956a0c2d500f6cf23649c035dda447b7c01e17b67561d620a82"
   },
   "artifact_sha256": {
-    "thesis.docx": "ee48cb0375245e3b8f39ba1147e9a7129464d4be4c255dd74b2dde1b367255e6",
-    "thesis.pdf": "2ed76bfe8b05a4ed111ff7e5631f7d33465ec0a7ac28c9923dcbdc6819510533",
+    "thesis.docx": "a09d3ba31fd1ca8ca021344947e0117ba13dfa96cbfc4ebe79a51e03cc0acc59",
+    "thesis.pdf": "532224ac66075cd8f347fa0f74e45436ba0dac7ecb119af103839e143b4d90e1",
     "notification_supplement.py": "065112bb9559260360df00f5315fa20a43a8765028b725360d42ed077ab3e6cb",
-    "validate_notification_supplement.py": "4895d55cd7c8a84a5a5bfd1e5028dc41c4ed853c883d0d835fa1d6cb786ca1d9"
+    "validate_notification_supplement.py": "70756d1acc1e74f711bc3646501fb152ec6f22be0be02900dc7ce88fbef40ec7"
   },
   "new_model_requests": 0,
   "generated_code_executions": 0,
