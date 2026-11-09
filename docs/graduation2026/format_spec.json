@@ -1,5 +1,6 @@
 {
-  "basis": "User-transcribed analysis of 卒論テンプレート_ver.1.2_260430.doc",
+  "basis": "User-approved Word typography matching abstract.docx on 2026-11-09; single-column thesis with existing margins and heading hierarchy retained.",
+  "previous_basis": "User-transcribed analysis of 卒論テンプレート_ver.1.2_260430.doc",
   "original_received": false,
   "paper": {
     "width_mm": 210,
@@ -14,20 +15,22 @@
   },
   "fonts": {
     "body": [
-      "MS 明朝",
-      "Century"
+      "ＭＳ Ｐ明朝",
+      "Times New Roman"
     ],
     "heading": [
-      "MS Pゴシック",
-      "Arial"
+      "ＭＳ Ｐゴシック",
+      "Times New Roman"
     ]
   },
-  "body_pt": 10.5,
+  "body_pt": 11,
   "heading_pt": [
     18,
     14,
     12
   ],
+  "typography_reference": "docs/graduation2026/abstract.docx (Normal style); Japanese manuscript punctuation ， and ．; literal experiment prompts retained.",
+  "layout_scope": "User explicitly retained one column; abstract two-column layout and abstract margins are not applied to the thesis.",
   "provided_identity": {
     "student": "2023TC011 伊藤 悠真",
     "supervisor": "横山 哲郎",
@@ -49,11 +52,11 @@
     "No universal 3.47mm first-line indent; description did not establish this for all paragraphs.",
     "Heading bold off, left indent 0, keep-with-next; lower-level spacing before 8pt / after 6pt.",
     "TOC cache 9pt single-spaced, 4mm indent per level, right tab 169mm; automatic TOC remains editable.",
-    "Tables use 160mm total width, explicit column proportions, left-aligned labels and right-aligned numeric cells at 10.5pt.",
+    "Tables use 160mm total width, explicit column proportions, left-aligned labels and right-aligned numeric cells at 11pt.",
     "TOC may span multiple pages; the next page begins the body without a blank sheet.",
     "Appendix subsection 8.2 starts a new page to avoid a lone final subsection on its own page."
   ],
-  "pdf_font_limit": "MS 明朝, MS Pゴシック and Century unavailable on server; PDF uses substitutes. Word fidelity requires original fonts and original template.",
+  "pdf_font_limit": "MS PMincho, MS PGothic and Times New Roman are specified in Word; PDF may use substitute fonts on this server. Final Microsoft Word rendering remains unverified.",
   "body_alignment": "left; avoid distributed spacing in mixed Japanese/Latin text",
   "methods_body_line_spacing_multiple": 0.98,
   "prompt_math_symbol_font": "DejaVu Serif for U+27E9 ket brackets, preserving the exact prompt text and PDF extraction order.",

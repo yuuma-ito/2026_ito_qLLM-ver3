@@ -1,4 +1,4 @@
-"""Validate the transcribed-template thesis without claiming original fidelity."""
+"""Validate the user-approved Word thesis style without claiming formal certification."""
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -30,7 +30,7 @@ def validate():
     checks['page_field_right_aligned_including_cover'] = all(
         not s.different_first_page_header_footer and s.footer.paragraphs[0].alignment==2 and
         any(e.text.strip()=='PAGE' for e in s.footer._element.iter(qn('w:instrText'))) for s in d.sections)
-    for style,size,jp,latin in [('Normal',10.5,'MS 明朝','Century'),('Heading 1',18,'MS Pゴシック','Arial'),('Heading 2',14,'MS Pゴシック','Arial'),('Heading 3',12,'MS Pゴシック','Arial')]:
+    for style,size,jp,latin in [('Normal',11,'ＭＳ Ｐ明朝','Times New Roman'),('Heading 1',18,'ＭＳ Ｐゴシック','Times New Roman'),('Heading 2',14,'ＭＳ Ｐゴシック','Times New Roman'),('Heading 3',12,'ＭＳ Ｐゴシック','Times New Roman')]:
         st=d.styles[style];rf=st.element.rPr.rFonts
         checks[style+'_font'] = near(st.font.size.pt,size) and rf.get(qn('w:eastAsia'))==jp and rf.get(qn('w:ascii'))==latin
     checks['normal_spacing_not_fixed'] = d.styles['Normal'].element.pPr.find(qn('w:spacing')) is None
@@ -192,13 +192,13 @@ def validate():
         'automated_checks_passed':all(checks.values()),'checks':checks,
         'documents':{'thesis':{'pages':len(pdf),'pdf_bytes':(HERE/'thesis.pdf').stat().st_size,'pdf_sha256':digest(HERE/'thesis.pdf')}},
         'visual_review':visual if visual_current else {'status':'pending_or_stale'},
-        'original_template_comparison':'not performed; original .doc not accessible',
+        'original_template_comparison':'LaTeX samples are reference only per user; Word body typography follows abstract.docx while the thesis retains one column and existing margins.',
         'font_fidelity':'DOCX specifies requested fonts; LibreOffice PDF uses substitutes. Final Microsoft Word rendering unverified.',
         'format_spec':'format_spec.json', 'source_snapshot_at_utc':manifest['source_snapshot_at_utc'],
         'new_experiments':0, 'new_model_requests':0,'generated_code_executions':0,
         'artifact_sha256':{name:digest(HERE/name) for name in ['thesis.docx','thesis.pdf','build.py','template_thesis.py','thesis_expansion.py','thesis_language.py','thesis_figures.py','validate_figures.py','figure_validation_report_20261028.json','figures/figure_manifest.json','convert_thesis.py','validate_template.py','validate_expansion.py','thesis_headings.json','toc_cache.json','format_spec.json','source_manifest.json','bibliography_sources.json','expansion_report_20261028.json','revision_report_20261028.json','work_notes.txt','thesis_visual_review.json','README.md','build_research_evidence.py','thesis_enrichment.py','validate_enrichment.py','intervention_catalog.csv','case_studies.json','experiment_prompts.json','enrichment_manifest.json','enrichment_validation_report.json','MANUSCRIPT_STATE.md','skill_edit_report_20261029.json','prompt_layout_revision_20261029.json','six_conditions.py','six_conditions_validation.json','validate_six_conditions.py','rq_revision_validation.json']},
         'out_of_margin_spans':margin,
-        'pending':['Original template comparison, especially cover coordinates and inherited paragraph styles','Formal approval of thesis title','Final rendering and updated fields in Microsoft Word with the specified fonts','Supervisor review of content and references']}
+        'pending':['Formal approval of thesis title','Final rendering and updated fields in Microsoft Word with the specified fonts','Supervisor review of content and references']}
     (HERE/'validation_report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps({'passed':all(checks.values()),'failed':[k for k,v in checks.items() if not v],'pages':len(pdf),'visual_review_current':visual_current},ensure_ascii=False))
     if not all(checks.values()):raise SystemExit(1)

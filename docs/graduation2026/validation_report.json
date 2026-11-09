@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-09T09:47:01.401271+00:00",
+  "checked_at_utc": "2026-11-09T10:34:27.967616+00:00",
   "scope": "thesis.docx and thesis.pdf only; separate abstract and slides retained",
   "automated_checks_passed": true,
   "checks": {
@@ -76,16 +76,16 @@
   },
   "documents": {
     "thesis": {
-      "pages": 35,
-      "pdf_bytes": 1697003,
-      "pdf_sha256": "f532c716e0d50ef790c09eee221515ab8e71f58bb335a924b79d70836be15145"
+      "pages": 38,
+      "pdf_bytes": 1685465,
+      "pdf_sha256": "04cdd6b9dc306bb941d2b09cfcce0780d5263cafdfd5b7d70fb84d3e89f1e656"
     }
   },
   "visual_review": {
-    "reviewed_at_utc": "2026-11-09T09:46:55.599687+00:00",
+    "reviewed_at_utc": "2026-11-09T10:34:22.222038+00:00",
     "status": "reviewed",
-    "pdf_sha256": "f532c716e0d50ef790c09eee221515ab8e71f58bb335a924b79d70836be15145",
-    "previous_pdf_sha256": "532224ac66075cd8f347fa0f74e45436ba0dac7ecb119af103839e143b4d90e1",
+    "pdf_sha256": "04cdd6b9dc306bb941d2b09cfcce0780d5263cafdfd5b7d70fb84d3e89f1e656",
+    "previous_pdf_sha256": "f532c716e0d50ef790c09eee221515ab8e71f58bb335a924b79d70836be15145",
     "pages_reviewed": [
       1,
       2,
@@ -121,26 +121,31 @@
       32,
       33,
       34,
-      35
+      35,
+      36,
+      37,
+      38
     ],
-    "method": "全35ページの一覧画像を確認し、17・18ページを拡大して第3章末尾と第4章冒頭の配置を確認した。",
+    "method": "全38ページの一覧画像で配置・改ページを確認し、2・19・25ページを拡大して要約、第3章末尾、補足実験の表示を確認した。",
     "detail_pages_reviewed": [
-      17,
-      18
+      2,
+      19,
+      25
     ],
     "findings": [
-      "第3.3.6節の末尾2段落が17ページに収まり、第4章は18ページから開始する。",
-      "第3章本文の行間を約2%調整し、文字サイズとページ余白は保持した。",
-      "全35ページ・12表・4図。本文・図表・固定プロンプトの内容は修正前と同一。",
-      "対象ページに文字切れ・重なり・余白からのはみ出しなし。"
+      "本文は要旨と同じ11pt・和文ＭＳ Ｐ明朝・欧文Times New Romanを指定。",
+      "本文は1段組、上下30mm・左右20mmの余白と章見出し階層を保持。",
+      "第3章末尾は19ページにまとまり、2段落だけのほぼ空白のページは生じていない。",
+      "全38ページ・12表・4図。本文・図表の内容は変更前と同一。",
+      "対象箇所に文字切れ・重なり・余白からのはみ出しなし。"
     ],
     "limits": [
       "一覧画像は全ページ本文の詳細な目視校正ではない。",
-      "Microsoft Wordでの最終表示と原本テンプレート照合は未実施。",
-      "今回は体裁調整であり、内容の新たな独立査読・再採点は行っていない。"
+      "サーバーPDFは代替フォントの場合があり、指定フォントを備えたMicrosoft Wordでの最終表示は未確認。",
+      "今回は文字書式の変更であり、新たな内容査読・再採点は行っていない。"
     ]
   },
-  "original_template_comparison": "not performed; original .doc not accessible",
+  "original_template_comparison": "LaTeX samples are reference only per user; Word body typography follows abstract.docx while the thesis retains one column and existing margins.",
   "font_fidelity": "DOCX specifies requested fonts; LibreOffice PDF uses substitutes. Final Microsoft Word rendering unverified.",
   "format_spec": "format_spec.json",
   "source_snapshot_at_utc": "2026-11-04T11:49:57.181940+00:00",
@@ -148,10 +153,10 @@
   "new_model_requests": 0,
   "generated_code_executions": 0,
   "artifact_sha256": {
-    "thesis.docx": "3d08f702f972ea13348f22f55420103ad41f796a44a29100c97bb4f7c4b4b4c4",
-    "thesis.pdf": "f532c716e0d50ef790c09eee221515ab8e71f58bb335a924b79d70836be15145",
+    "thesis.docx": "7f94fdf9098dba30ffcc6eee8cb765a04e6da33c31288e92702d0cc67fc76376",
+    "thesis.pdf": "04cdd6b9dc306bb941d2b09cfcce0780d5263cafdfd5b7d70fb84d3e89f1e656",
     "build.py": "598f9e5552c575e9de351c983006524529da3854b2c0463a596d8b271cf7f463",
-    "template_thesis.py": "c63f2af97ed5b93639f4a64ad86adee150c3eea5f50d8dbed64758f15124dd30",
+    "template_thesis.py": "865448bd270aabb3dc72c55ba337597ec84ce88b07cdf130955e87557726ed2f",
     "thesis_expansion.py": "6b36a9696c77b87d55e39195584eb51e143acbafed3d1e64dc7d7a7c7ea6fe61",
     "thesis_language.py": "98e356081814fb97195c44481f4dae95f3a1f4dc155c428aec433d39c1becb11",
     "thesis_figures.py": "c9f35f486aa15c626240ae45068ddea8de0da42bc52badccf7dbd44c9b8ff7be",
@@ -159,18 +164,18 @@
     "figure_validation_report_20261028.json": "6efbfc1557b7d3158abd05219c2671175bc21ed39f0cb18430ee84e7946f2379",
     "figures/figure_manifest.json": "16787c6ed6f45115f5cfd5f091274c8a4d479934ec96298282b8f87fd8256f66",
     "convert_thesis.py": "eefec30813ecce333af8f6267fa10eb525ddf87967f01d1f667438e2317cb882",
-    "validate_template.py": "847e01b7e262d2e66148795fce400c115387286a1ebfd087483d098cc22784e6",
+    "validate_template.py": "9577c0d0377661f932df743cf120dbdfd8dbd8ea943e1b82e9bbf70e09411a8c",
     "validate_expansion.py": "735eb8bbee626b4ef9396e87be6f9d8bce7312a31d0838575aa4d34714f89fd9",
     "thesis_headings.json": "4f47803797ccc44cb3735053e92f940883583f2261b81555c1154826706d915c",
-    "toc_cache.json": "9a00c8619f67c16bc097f5ae4c149790ebc1a792a1f7756ccc0514deb7201578",
-    "format_spec.json": "1222b3c6e0ad47808a00549455ef026ab2a6c531506cf08b6cc05baa6f0f8ec0",
+    "toc_cache.json": "cef9434a861edee91129e5410b3bb74264635289eb49d4d4c038caa2c1a0ef8c",
+    "format_spec.json": "9ffc4f7270b402e30fec98138f13bb6a56729789771b1a6cb11ea49b0a1aeb26",
     "source_manifest.json": "3c3b39e94cc2e249bb0a912086811c4da41a14302402587826bd813199dd57c9",
     "bibliography_sources.json": "5cd95fe5e5791720cf0fc12267b70586b41af83a84ac32c53ff6dd845b4d88c8",
     "expansion_report_20261028.json": "2f823a5d17b4877219b3be9372c2eaf60f35b817a44c66cd44443e11829ff85f",
     "revision_report_20261028.json": "25a2da76f653df42bbdecb155277df0a3dc96e7604b11e47682efe48d02ca0e2",
     "work_notes.txt": "9ff757e5d34c866bf47360698cd99cbd99cb09936e1f20b2fc61bc7e886d7fb8",
-    "thesis_visual_review.json": "6309bef30c0be44a9979b776cf3c5f60b06ecd84facd1a6a4447d9973abec4ca",
-    "README.md": "ef2ffafba570ee0e768dcb56e16cf3cef80f14f15d1138cb1bbea51808a42b26",
+    "thesis_visual_review.json": "4bc114ebf07ed1b2b9ac59095b2e348cc7fe42a50fb02faad76b8935e97963cc",
+    "README.md": "fa3fb6be30e9d78abad0a77a1aecc0416f7d35af132956f3fe5fb08e3612356b",
     "build_research_evidence.py": "0910f235f75059e782f8aab9d861a512337fe54b5c10c682fcf82a5ddc8d5df3",
     "thesis_enrichment.py": "789c2408505b00aa4598398dc30ef4e38dc6df5a4521755617afe61a50c00231",
     "validate_enrichment.py": "cf150f48e3a88e84d9442e489a43f0ae64018c84319974f65ffba157f1aedc79",
@@ -179,17 +184,16 @@
     "experiment_prompts.json": "b4c619a2009bfe84e9daa37d387fa8b9d8664b56880093259bffce0f4ba61787",
     "enrichment_manifest.json": "68a7053b97638b767e1856ad742267ca39879519f33f3207d5c10918a1d4a87e",
     "enrichment_validation_report.json": "5982816b6d082ba30ed8c4c43f41ef428dcf5c6540ecc80454dc5f39811adabb",
-    "MANUSCRIPT_STATE.md": "8655e823e23b6da4083ba597b07dce34dc74204cdeb4ab9d92a82e6bf175ccc1",
+    "MANUSCRIPT_STATE.md": "6bd29635231574f023f43498bd505a4e89313f9aa2a36b6a09e24bb6bddbbe30",
     "skill_edit_report_20261029.json": "023cc5cb2bb2c5f070778ff3f57b02f48b03316644f91aea949a3c5e172b842c",
     "prompt_layout_revision_20261029.json": "0d8e8f5c78ae7890db598d6925be61770761f31806224c5186f234fff975a182",
     "six_conditions.py": "dd623de8b00cf72a375617585e105bb4a6e6da2b1157a9d4b29da1165cf40874",
-    "six_conditions_validation.json": "03247c48eef34750239f7693904768a127201da3a50f3ad55c17a83a8b84ca36",
+    "six_conditions_validation.json": "098f480789ca8fd2545a4830a6de61284736ba444b92f22c257867106c1afec7",
     "validate_six_conditions.py": "86ba76176a6a19d7c3a6a1962072e7b476ffef0f148e8afd9647026bfa32caad",
     "rq_revision_validation.json": "a96808ad067880d69a8b380cbc94e184162cfc5f146974b9fe08a3d06ff030ef"
   },
   "out_of_margin_spans": [],
   "pending": [
-    "Original template comparison, especially cover coordinates and inherited paragraph styles",
     "Formal approval of thesis title",
     "Final rendering and updated fields in Microsoft Word with the specified fonts",
     "Supervisor review of content and references"

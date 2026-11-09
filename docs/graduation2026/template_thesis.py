@@ -1,7 +1,7 @@
-"""Apply the user-transcribed template to the existing, sourced thesis draft.
+"""Apply user-approved Word typography to the sourced thesis draft.
 
-The original .doc has not been supplied. Unknown settings are documented in
-format_spec.json; this module does not assert institutional compliance.
+Body typography follows the abstract; the thesis retains one column and its
+existing margins and heading hierarchy. LaTeX samples are reference material.
 """
 from copy import deepcopy
 from pathlib import Path
@@ -18,8 +18,8 @@ from thesis_language import polish
 import thesis_figures
 
 HERE = Path(__file__).resolve().parent
-MARKER = 'user-transcribed-template-20261020'
-FONTS = {'body': ('MS 明朝', 'Century'), 'heading': ('MS Pゴシック', 'Arial')}
+MARKER = 'user-approved-word-abstract-typography-20261109'
+FONTS = {'body': ('ＭＳ Ｐ明朝', 'Times New Roman'), 'heading': ('ＭＳ Ｐゴシック', 'Times New Roman')}
 
 
 def element(tag, **attrs):
@@ -29,7 +29,7 @@ def element(tag, **attrs):
     return e
 
 
-def font(target, size=10.5, heading=False, bold=False):
+def font(target, size=11, heading=False, bold=False):
     jp, latin = FONTS['heading' if heading else 'body']
     target.font.name = latin
     target.font.size = Pt(size)
@@ -59,7 +59,7 @@ def configure(d):
     d.core_properties.title = content.TITLE
     d.core_properties.author = '伊藤 悠真'
     d.core_properties.category = MARKER
-    d.core_properties.comments = 'ユーザー転記仕様に基づく草稿。原本未照合。題目の正式承認とWord上の最終確認は未実施。'
+    d.core_properties.comments = 'ユーザー指定により本文の文字設定は要旨と共通。卒論は1段組と既存の余白・見出し階層を保持。Word上の最終表示確認は未実施。'
     sec = d.sections[0]
     sec.page_width, sec.page_height = Mm(210), Mm(297)
     sec.top_margin = sec.bottom_margin = Mm(30)
@@ -143,7 +143,7 @@ def numbering(d):
         pp.append(np)
 
 
-def paragraph(d, text, size=10.5, heading=False, center=False, bold=False):
+def paragraph(d, text, size=11, heading=False, center=False, bold=False):
     p = d.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER if center else WD_ALIGN_PARAGRAPH.LEFT
     font(p.add_run(text), size, heading, bold)
@@ -410,10 +410,13 @@ def build_thesis():
     d.save(HERE / 'thesis.docx')
     (HERE / 'thesis_headings.json').write_text(json.dumps(headings, ensure_ascii=False, indent=2)+'\n')
     spec = {
-        'basis': 'User-transcribed analysis of 卒論テンプレート_ver.1.2_260430.doc',
+        'basis': 'User-approved Word typography matching abstract.docx on 2026-11-09; single-column thesis with existing margins and heading hierarchy retained.',
+        'previous_basis': 'User-transcribed analysis of 卒論テンプレート_ver.1.2_260430.doc',
         'original_received': False,
         'paper': {'width_mm':210,'height_mm':297,'top_mm':30,'bottom_mm':30,'left_mm':20,'right_mm':20,'header_mm':0,'footer_mm':17.5,'columns':1},
-        'fonts': FONTS, 'body_pt':10.5, 'heading_pt':[18,14,12],
+        'fonts': FONTS, 'body_pt':11, 'heading_pt':[18,14,12],
+        'typography_reference': 'docs/graduation2026/abstract.docx (Normal style); Japanese manuscript punctuation ， and ．; literal experiment prompts retained.',
+        'layout_scope': 'User explicitly retained one column; abstract two-column layout and abstract margins are not applied to the thesis.',
         'provided_identity': {'student':'2023TC011 伊藤 悠真','supervisor':'横山 哲郎','date':'2027年1月','affiliation':'南山大学 理工学部 電子情報学科'},
         'title_status': 'Fixed research title specified by the user on 2026-10-25; retain across future revisions.',
         'implemented': ['Heading 1–3 linked multilevel numbering','TOC levels 1–3 with cached PDF-matched pages','decimal PAGE field including cover','SEQ captions and REF table references','no blank page between TOC and body','six body chapters followed by references and appendix'],
@@ -423,11 +426,11 @@ def build_thesis():
             'No universal 3.47mm first-line indent; description did not establish this for all paragraphs.',
             'Heading bold off, left indent 0, keep-with-next; lower-level spacing before 8pt / after 6pt.',
             'TOC cache 9pt single-spaced, 4mm indent per level, right tab 169mm; automatic TOC remains editable.',
-            'Tables use 160mm total width, explicit column proportions, left-aligned labels and right-aligned numeric cells at 10.5pt.',
+            'Tables use 160mm total width, explicit column proportions, left-aligned labels and right-aligned numeric cells at 11pt.',
             'TOC may span multiple pages; the next page begins the body without a blank sheet.',
             'Appendix subsection 8.2 starts a new page to avoid a lone final subsection on its own page.'
         ],
-        'pdf_font_limit': 'MS 明朝, MS Pゴシック and Century unavailable on server; PDF uses substitutes. Word fidelity requires original fonts and original template.',
+        'pdf_font_limit': 'MS PMincho, MS PGothic and Times New Roman are specified in Word; PDF may use substitute fonts on this server. Final Microsoft Word rendering remains unverified.',
         'body_alignment': 'left; avoid distributed spacing in mixed Japanese/Latin text',
         'methods_body_line_spacing_multiple': 0.98,
         'prompt_math_symbol_font': 'DejaVu Serif for U+27E9 ket brackets, preserving the exact prompt text and PDF extraction order.',

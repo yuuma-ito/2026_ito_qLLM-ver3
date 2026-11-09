@@ -1,0 +1,44 @@
+{
+  "checked_at_utc": "2026-11-09T10:33:29.720809+00:00",
+  "passed": true,
+  "checks": {
+    "body_size_matches_abstract_11pt": true,
+    "body_font_families_match_abstract": true,
+    "single_column_retained": true,
+    "thesis_page_geometry_retained": true,
+    "body_and_appendix_text_unchanged": true,
+    "cover_and_summary_text_unchanged": true,
+    "all_twelve_tables_unchanged": true,
+    "all_four_figures_unchanged": true,
+    "Japanese_manuscript_punctuation_consistent": true,
+    "all_body_paragraphs_present_in_pdf": true,
+    "all_table_rows_present_in_pdf": true
+  },
+  "baseline_commit": "18ec584706c298c796848124e69b3fb6c2a20cc3",
+  "user_scope": "本文は1段組のまま、文字・句読点などを要旨と合わせる。余白・章見出しの階層と大きさは保持。",
+  "typography_reference": {
+    "file": "docs/graduation2026/abstract.docx",
+    "sha256": "feb42195d59c18009343f4bbf2516541bc74ce2b26cffd486dc54a95a09033a0",
+    "body_pt": 11,
+    "fonts": {
+      "ascii": "Times New Roman",
+      "hAnsi": "Times New Roman",
+      "eastAsia": "ＭＳ Ｐ明朝",
+      "cs": "Times New Roman"
+    }
+  },
+  "page_count": 38,
+  "artifact_sha256": {
+    "thesis.docx": "7f94fdf9098dba30ffcc6eee8cb765a04e6da33c31288e92702d0cc67fc76376",
+    "thesis.pdf": "04cdd6b9dc306bb941d2b09cfcce0780d5263cafdfd5b7d70fb84d3e89f1e656",
+    "template_thesis.py": "865448bd270aabb3dc72c55ba337597ec84ce88b07cdf130955e87557726ed2f",
+    "format_spec.json": "9ffc4f7270b402e30fec98138f13bb6a56729789771b1a6cb11ea49b0a1aeb26",
+    "toc_cache.json": "cef9434a861edee91129e5410b3bb74264635289eb49d4d4c038caa2c1a0ef8c"
+  },
+  "new_experiments": 0,
+  "generated_code_executions": 0,
+  "limits": [
+    "Microsoft Wordでの最終表示は未確認。PDFはサーバーの代替フォントを用いる場合がある。",
+    "LaTeXサンプルへの厳密一致は要求しないというユーザー指定に基づく。"
+  ]
+}
