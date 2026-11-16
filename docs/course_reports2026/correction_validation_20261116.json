@@ -1,0 +1,24 @@
+{
+  "checked_at_utc": "2026-11-16T09:55:22.919553+00:00",
+  "passed": true,
+  "change": "進捗成果報告p.3第1.2節の片側救済集合を83組から84組へ訂正",
+  "basis": "同レポートp.7とスライド5：Fのみ44組＋Dのみ40組＝84組",
+  "method": "生成元・Wordを訂正。既存の変換環境に依存ライブラリ不足があるため、PDFは既存埋込フォントの数字グリフを用い該当content streamのみ訂正。全文再変換は未実施。",
+  "checks": {
+    "14_pages": true,
+    "only_expected_text_changed": true,
+    "only_one_decoded_content_stream_changed": true,
+    "other_13_pages_render_identically": true,
+    "corrected_paragraph_visually_checked": true,
+    "page3_render_unchanged_outside_corrected_digit": true,
+    "Word_only_expected_text_changed": true
+  },
+  "sha256": {
+    "docs/course_reports2026/卒業研究_進捗成果報告.pdf": "d3c63b390b92025f73c4f16702c057a3d4752c5132230f8e5f8199b2c656ca7e",
+    "docs/course_reports2026/source/卒業研究_進捗成果報告.docx": "acec3fb24745bfcf5d11e7bd66957b89d200fd9097ae8853e922f109ba7cde42",
+    "docs/course_reports2026/source/build_reports.py": "48ec4b102bebeeefee6640acab88193ef78fb8ff599bca71c0b549e0eca0076f",
+    "docs/course_reports2026/source/progress_build_record.json": "8724f2c2e79387ce632d348c6a490c852826a75f10120d0a6b4401287b678873"
+  },
+  "rescoring": false,
+  "scope": "訂正前後の全文・描画比較。旧検証の全項目再実行や独立査読ではない。"
+}

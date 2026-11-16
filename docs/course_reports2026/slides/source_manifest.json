@@ -3,7 +3,7 @@
   "title": "量子LLM支援プログラミングにおける失敗類型と介入カタログの実証研究",
   "source_sha256": {
     "docs/course_reports2026/卒業研究_調査設計報告.pdf": "bbaf5571c17874e36f476eb358ccc34ba1743429dd4ebf34a8417976df1815a5",
-    "docs/course_reports2026/卒業研究_進捗成果報告.pdf": "9ac8309e1d09b141dce3616445a6aa2ccf6a4f781ecd2c2ff432b642c5112144",
+    "docs/course_reports2026/卒業研究_進捗成果報告.pdf": "d3c63b390b92025f73c4f16702c057a3d4752c5132230f8e5f8199b2c656ca7e",
     "docs/analysis/measurement_ban_corrected_20261104/summary.csv": "084a805a6f31979be7aae9ff338728c962aed53ae9309de62185775e9996c1eb",
     "docs/graduation2026/intervention_catalog.csv": "0a8b3d38addd73121a396a6e2fc3f8dc3fc7ff050ff60053f755066069b1fae5",
     "docs/course_reports2026/source/build_slides.py": "5fb487f83aa7cddaf09fd16d771e255342a3d791cb6408bef0885df1ba379ec2"
@@ -125,5 +125,6 @@
     }
   ],
   "new_experiments": false,
-  "scope": "元報告の要約と固定CSVからの転記。参考文献の再調査・独立査読・発表時間の実測は未実施。"
+  "scope": "元報告の要約と固定CSVからの転記。参考文献の再調査・独立査読・発表時間の実測は未実施。",
+  "source_correction_20261116": "../correction_validation_20261116.json"
 }
