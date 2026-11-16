@@ -9,7 +9,9 @@
       "fonts_embedded": true,
       "notes_saved": true,
       "no_text_outside_page": true,
-      "source_contains_key_counts": true
+      "source_contains_key_counts": true,
+      "B4_control_and_input_explicit": true,
+      "B4_independence_limit_in_notes": true
     },
     "進捗成果報告_スライド": {
       "ten_slides": true,
@@ -20,17 +22,19 @@
       "notes_saved": true,
       "no_text_outside_page": true,
       "source_contains_key_counts": true,
+      "B4_control_and_input_explicit": true,
+      "B4_independence_limit_in_notes": true,
       "third_round_D_count_matches_corrected_csv": true,
       "additional_counts_match_report_and_csv": true
     }
   },
   "artifact_sha256": {
-    "調査設計報告_スライド_発表者ノート.txt": "c0d9453ea3f3a11445801191b0ae4f188ab4e94ab8f3e645dd2e63e6b0f60432",
-    "進捗成果報告_スライド_発表者ノート.txt": "0d43b5cf9ac7b23aa586800972fb9f5b885bc410f4b1ad4a43f36c9ea8538fa1",
-    "進捗成果報告_スライド.pdf": "ffc9ad2db31351816509f2054b49ebf7a6f3ab43aeba902cbc8e730896a4a3fb",
-    "進捗成果報告_スライド.pptx": "fd2502669a7027853b063adde91a8573c34abed5ea249ab2a6a9fea0a1d03d2c",
-    "調査設計報告_スライド.pptx": "921ca231341b50a0e5d6bd6eb55068a7268e57bec6108989329a2e945ff06381",
-    "調査設計報告_スライド.pdf": "8b83e76ac54471627bd91c762fefaa053f0840fd43fad1edf60a20fe8e896b97"
+    "調査設計報告_スライド_発表者ノート.txt": "9ac47ac29d434900fdff8c7fb8e68715d131adf245c0bf3d86bab0924b161f49",
+    "進捗成果報告_スライド_発表者ノート.txt": "1bc1a03303ed927c5e379faa05a431f4d9e39e48e6dc85eebaf7eedb81287511",
+    "進捗成果報告_スライド.pdf": "b5e96466d434654e705b35c0d8a72e335d53c99e00ec45fe2769f82a6e54905c",
+    "進捗成果報告_スライド.pptx": "18ff3d6754775ef1d78b8303dd721d3e4f9f176372abdbbf0f0d48bef59a416a",
+    "調査設計報告_スライド.pptx": "75b782f4c9b27f54539bda45ef815943208f44c41602a1c99bad8fccc3aac367",
+    "調査設計報告_スライド.pdf": "085fe13cc15cbdf432f3cba09e0d3d5d9bbc45a7408692f8da49fe0d98399cd6"
   },
   "visual_review": "別途visual_review.jsonを参照"
 }

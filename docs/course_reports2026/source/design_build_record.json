@@ -716,13 +716,13 @@
     {
       "source_chapter": 3,
       "source_text": "B4は初期1回を含む最大4回生成である．Bと同じ初期コード・L3判定を用い，初期成功455組は保持する．初期失敗545組のみ，前回コードと診断を与えず課題仕様から最大3回独立再生成し，L3成功時に停止する．初期失敗からの成功は修正介入による救済と区別する．",
-      "report_text": "B4は初期1回を含む最大4回生成である．Bと同じ初期コード・L3判定を用い，初期成功455組は保持する．初期失敗545組のみ，前回コードと診断を与えず課題仕様から最大3回独立再生成し，L3成功時に停止する．初期失敗からの成功は修正介入による救済と区別する．",
+      "report_text": "B4は，修正条件の改善を生成機会の追加による改善と比較する対照条件である．Bの初回コード・L3判定を再利用し，成功455組を保持する．失敗545組に限り，共通systemと元の課題仕様を毎回与え，専用seedを変えて追加最大3回生成する．前回コード・診断・失敗通知は渡さず，各回を評価してL3成功時に停止する．初回込み最大4回であり，新たに4回生成する条件ではない．",
       "kind": "paragraph"
     },
     {
       "source_chapter": 3,
       "source_text": "5モデル・10タスク・base seed 0〜19は従来と対応するが，追加生成はindependent_4_v1の専用seed規則を用いる．temperature 0.7，max_tokens 1,024，timeout 600秒，並列1，reasoning_effort noneで実行した．上限が同じでも入力情報・実要求数・tokens・実行時期・診断文・出典schemaは等しくない．",
-      "report_text": "5モデル・10タスク・base seed 0〜19は従来と対応するが，追加生成はindependent_4_v1の専用seed規則を用いる．temperature 0.7，max_tokens 1,024，timeout 600秒，並列1，reasoning_effort noneで実行した．上限が同じでも入力情報・実要求数・tokens・実行時期・診断文・出典schemaは等しくない．",
+      "report_text": "追加生成はindependent_4_v1の専用seed規則を用い，temperature 0.7，max_tokens 1,024，timeout 600秒，並列1，reasoning_effort noneで実行した．「独立」は過去の回答を次の生成へ入力しない手順を指し，統計的独立性の保証ではない．R/F/Dと初回込み最大4回の上限は揃うが，入力情報・実要求数・tokens消費・実行時期は等しくない．",
       "kind": "paragraph"
     },
     {

@@ -28,7 +28,8 @@ def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def validate():
     source=Document(HERE/'thesis_source.docx')
     manifest=json.loads((OUT/'source_manifest.json').read_text())
-    checks={'original_files_unchanged':all(digest(ROOT/p)==h for p,h in manifest['source_files'].items()),
+    historical_source_matches_current={p:digest(ROOT/p)==h for p,h in manifest['source_files'].items()}
+    checks={
             'copied_source_matches_original':digest(HERE/'thesis_source.docx')==manifest['source_files']['docs/graduation2026/thesis.docx'],
             'exactly_two_requested_PDFs':{p.name for p in OUT.glob('*.pdf')}=={'卒業研究_調査設計報告.pdf','卒業研究_進捗成果報告.pdf'}}
     reports={}
@@ -99,6 +100,9 @@ def validate():
             'no_text_outside_page':not overflow,
             'all_PDF_fonts_embedded':all(pdf.extract_font(font[0])[3] for p in pdf for font in p.get_fonts()),
         }
+        rc['B4_purpose_procedure_and_limits_present']=all(v in text_norm for v in [
+            '生成機会の追加による改善','共通systemと元の課題仕様','失敗通知は渡さず',
+            '初回込み最大4回','新たに4回生成する条件ではない','統計的独立性の保証ではない'])
         if kind=='design':
             rc['all_RQs_and_evaluation_axes_present']=all(s in text_norm for s in ['RQ1','RQ2','RQ3','追加成功率','成功対象の重なり','モデル別・初期失敗類型別','追加計算コスト'])
             rc['completed_experiments_not_presented_as_unperformed']='既に実施した実験へ適用した' in text_norm
@@ -115,9 +119,9 @@ def validate():
             'references':len(refs),'PDF_links':len(pdf_links),'reused_paragraphs':sum(bool(r['report_text']) for r in build['reused']),
             'additional_paragraphs':len(build['additional_paragraphs']),'checks':rc,'missing_paragraphs':missing,'missing_additions':additions_missing,
             'overflow':overflow,'pdf_sha256':digest(OUT/(stem+'.pdf')),'docx_sha256':digest(HERE/(stem+'.docx'))}
-    result={'checked_at_utc':datetime.now(timezone.utc).isoformat(),'passed':all(checks.values()),'checks':checks,'reports':reports,
-        'new_experiments':0,'new_model_requests':0,'rescoring':False,'original_artifacts_modified':False,
-        'scope':'章単位の再利用，参照・図表・主要数値・PDF収録・体裁の検証。原論文の再照合と原稿全体の独立査読は行わない。'}
+    result={'historical_source_matches_current':historical_source_matches_current,'checked_at_utc':datetime.now(timezone.utc).isoformat(),'passed':all(checks.values()),'checks':checks,'reports':reports,
+        'new_experiments':0,'new_model_requests':0,'rescoring':False,'original_artifact_preservation':'別途B4説明補強の検証記録を参照',
+        'scope':'固定した複製元に対する章単位の再利用，参照・図表・主要数値・PDF収録・体裁の検証。現行卒論とのhash一致は履歴情報として別記し，合否には含めない。原論文の再照合と原稿全体の独立査読は行わない。'}
     (OUT/'validation_report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps({'passed':result['passed'],'checks':checks,'failed':{k:[n for n,v in r['checks'].items() if not v] for k,r in reports.items()}},ensure_ascii=False))
     if not result['passed']:raise SystemExit(1)

@@ -136,9 +136,9 @@ def build(kind, toc_entries):
         overview = [
             '本研究は，LLMが生成したQiskit量子回路コードの初期失敗に対し，修正と独立再生成を比較し，追加成功数，成功対象，計算コストを整理する実証研究である．QiskitとQiskit Aerを用いて回路を構築・評価した[2][3]．研究の問いは，追加成功数の違い（RQ1），救済対象の重なり（RQ2），追加計算コストと修正回数の関係（RQ3）である．',
             '対象は5モデル・10タスク・seed 0〜19の1,000初期組である．略号はQ4=qwen3.5:4b，G4=gemma4:e4b-it-qat，Q9=qwen3.5:9b，C7=qwen2.5-coder:7b，G3=gemma3:4bとする．B/R/F/D/Pの5,000条件記録と，B4の追加実験1,000組を分けて集計した[1]．',
-            'Bは初回生成のみ，Pは生成前注意事項を加えた独立1回生成である．Rは課題仕様と前回コードによる自己見直し，Fは実行診断を用いる修正，Dは同じ評価方式の診断に加えて説明・原因分析を促す修正である．B4は初回結果を共有し，追加要求には前回コード・診断を渡さず専用seedで同じ課題から独立再生成する．R/F/D/B4は追加最大3回で成功時に停止する．',
+            'Bは初回生成のみ，Pは生成前注意事項を加えた独立1回生成である．Rは課題仕様と前回コードによる自己見直し，Fは実行診断を用いる修正，Dは同じ評価方式の診断に加えて説明・原因分析を促す修正である．B4は，修正条件の改善を生成機会の追加による改善と比較するための対照である．Bの初回コードと判定を再利用し，成功455組は保持する．失敗545組に限り，共通systemと元の課題仕様を毎回与え，専用seedを変えて追加最大3回生成する．前回コード・診断・失敗通知は渡さず，各回を評価してL3成功時に停止する．したがってB4は初回込み最大4回であり，新たに4回生成する条件ではない．R/F/Dも追加最大3回で成功時に停止する．',
             'L3成功は，読込み・import等と必須インターフェース（L0），回路構築・評価実行（L1），指定入力の期待出力との一致（L2），量子ビット数・回路命令数の範囲などの構造要件をすべて満たすことをいう．分布は8,192 shotsの全変動距離，状態ベクトルは大域位相を整合したユークリッド距離で比較し，距離0.05未満を出力一致とする．全入力のアルゴリズム同値性は保証しない．',
-            '初期成功は455組，初期失敗は545組である．追加成功率は，同じ初期失敗545組のうち追加生成でL3に到達した組の割合であり，全1,000組を分母とする最終成功率とは区別する．最大生成回数が同じでも，入力情報・tokens予算・seed規則・実行時期は等しくない．',
+            '初期成功は455組，初期失敗は545組である．追加成功率は，同じ初期失敗545組のうち追加生成でL3に到達した組の割合であり，全1,000組を分母とする最終成功率とは区別する．B4の「独立」は過去の回答を次の生成へ入力しない手順を指し，統計的独立性の保証ではない．最大生成回数が同じでも，入力情報・実要求数・tokens消費・seed規則・実行時期は等しくない．',
         ]
         for text in overview:add_text(doc,text);additions.append(text)
         heading(doc,'1.2','実施内容',2,headings)
@@ -169,6 +169,10 @@ def build(kind, toc_entries):
             headings.append({'number':number,'title':title,'level':level,'text':p.text})
         elif p is not None:
             if kind=='design':
+                if p.text.startswith('B4は初期1回を含む最大4回生成である'):
+                    p.text='B4は，修正条件の改善を生成機会の追加による改善と比較する対照条件である．Bの初回コード・L3判定を再利用し，成功455組を保持する．失敗545組に限り，共通systemと元の課題仕様を毎回与え，専用seedを変えて追加最大3回生成する．前回コード・診断・失敗通知は渡さず，各回を評価してL3成功時に停止する．初回込み最大4回であり，新たに4回生成する条件ではない．'
+                elif p.text.startswith('5モデル・10タスク・base seed 0〜19は従来と対応するが'):
+                    p.text='追加生成はindependent_4_v1の専用seed規則を用い，temperature 0.7，max_tokens 1,024，timeout 600秒，並列1，reasoning_effort noneで実行した．「独立」は過去の回答を次の生成へ入力しない手順を指し，統計的独立性の保証ではない．R/F/Dと初回込み最大4回の上限は揃うが，入力情報・実要求数・tokens消費・実行時期は等しくない．'
                 if p.text.startswith('第2章で関連研究を整理し'):
                     p.text='本報告は第1〜3章に研究背景，関連研究，評価・実験方法を収録し，第4章で実施済み実験の比較指標と評価計画を整理する．結果・考察・結論は別の進捗・成果報告にまとめる．本研究の分析には保存済みの実験結果と必要な部分追試を用いた．B/R/F/D/Pは2026-10-16版，B4は2026-10-22固定の追加実験結果[3]に基づく．'
                 replace_text(element,r'付録（8\.1節）','文献[3]の固定出典')
@@ -263,6 +267,8 @@ def locate_headings(pdf,headings):
 
 
 def main():
+    manifest=json.loads((OUT/'source_manifest.json').read_text())
+    original_hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in manifest['source_files']}
     for kind in KINDS:
         cache=HERE/(kind+'_toc.json')
         toc=json.loads(cache.read_text()) if cache.exists() else []
@@ -278,7 +284,8 @@ def main():
             cache.write_text(json.dumps(toc,ensure_ascii=False,indent=2)+'\n')
         else:raise RuntimeError('TOC did not converge: '+kind)
     manifest=json.loads((OUT/'source_manifest.json').read_text())
-    assert all(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==h for p,h in manifest['source_files'].items()),'Original source changed'
+    assert hashlib.sha256((HERE/'thesis_source.docx').read_bytes()).hexdigest()==manifest['source_files']['docs/graduation2026/thesis.docx'],'Frozen source changed'
+    assert all(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==h for p,h in original_hashes.items()),'Original source modified during build'
 
 
 if __name__=='__main__':main()

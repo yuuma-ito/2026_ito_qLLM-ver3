@@ -1,0 +1,49 @@
+{
+  "checked_at_utc": "2026-11-16T11:23:33.026430+00:00",
+  "passed": true,
+  "checks": {
+    "design_all_tables_unchanged": true,
+    "design_all_images_unchanged": true,
+    "design_paragraph_count_unchanged": true,
+    "design_only_two_explanation_paragraphs_changed": true,
+    "design_other_nine_slide_texts_unchanged": true,
+    "progress_all_tables_unchanged": true,
+    "progress_all_images_unchanged": true,
+    "progress_paragraph_count_unchanged": true,
+    "progress_only_two_explanation_paragraphs_changed": true,
+    "progress_other_nine_slide_texts_unchanged": true,
+    "current_thesis_source_files_unchanged_from_HEAD": true,
+    "reports_validation_passed": true,
+    "slides_validation_passed": true
+  },
+  "scope": "B4説明の補強、既存結果の保持と成果物の整合。新規実験・再採点・独立査読は行っていない。",
+  "changed_locations": {
+    "design_report_page": 9,
+    "progress_report_page": 3,
+    "design_slide": 4,
+    "progress_slide": 2
+  },
+  "runtime": "現在のPython向けライブラリと不足したLibreOffice共有ライブラリを/tmpに配置して再生成。既存の.cache内のPython拡張はPython3.12用のため、今回は/tmpの依存を先に読み込んだ。",
+  "sha256": {
+    "docs/course_reports2026/卒業研究_調査設計報告.pdf": "9011c6d55f545e90af929054b969c46e2d4e6fff4daaa779e2171cd90d79115f",
+    "docs/course_reports2026/卒業研究_進捗成果報告.pdf": "9eedacd4991ea79bca8bd57a2f80316b90861c61a1e93675c6d78b5d568537db",
+    "docs/course_reports2026/source/thesis_source.docx": "40accc11f3e9412724a586288d975c169c320cc3385b36b9a16aa69948ba3139",
+    "docs/course_reports2026/source/卒業研究_調査設計報告.docx": "5094f9672afbc87b02a6bcf777d37ae932e7e3d0045fc2096a6fc0530c6a92da",
+    "docs/course_reports2026/source/build_slides.py": "882f5635785367be18e19cbdfa7cacc74ea5f96bdc872143391da80688d4bcb2",
+    "docs/course_reports2026/source/build_reports.py": "067ba23385512e30a4eaf689a0efee01fcef98645f1f9d51e68f355d6d462f67",
+    "docs/course_reports2026/source/卒業研究_進捗成果報告.docx": "4f0fce25e0612a60dfa45482702f249e2720529a9ffd3bb7b64b94c6e604da33",
+    "docs/course_reports2026/source/validate_reports.py": "74fe4465d7281041b0e62cbb463d1114a229375ebc912d8596bc3f6ab64ac202",
+    "docs/course_reports2026/slides/調査設計報告_スライド_発表者ノート.txt": "9ac47ac29d434900fdff8c7fb8e68715d131adf245c0bf3d86bab0924b161f49",
+    "docs/course_reports2026/slides/進捗成果報告_スライド_発表者ノート.txt": "1bc1a03303ed927c5e379faa05a431f4d9e39e48e6dc85eebaf7eedb81287511",
+    "docs/course_reports2026/slides/進捗成果報告_スライド.pdf": "b5e96466d434654e705b35c0d8a72e335d53c99e00ec45fe2769f82a6e54905c",
+    "docs/course_reports2026/slides/進捗成果報告_スライド.pptx": "18ff3d6754775ef1d78b8303dd721d3e4f9f176372abdbbf0f0d48bef59a416a",
+    "docs/course_reports2026/slides/調査設計報告_スライド.pptx": "75b782f4c9b27f54539bda45ef815943208f44c41602a1c99bad8fccc3aac367",
+    "docs/course_reports2026/slides/調査設計報告_スライド.pdf": "085fe13cc15cbdf432f3cba09e0d3d5d9bbc45a7408692f8da49fe0d98399cd6"
+  },
+  "validation_files": [
+    "validation_report.json",
+    "slides/validation_report.json",
+    "visual_review.json",
+    "slides/visual_review.json"
+  ]
+}

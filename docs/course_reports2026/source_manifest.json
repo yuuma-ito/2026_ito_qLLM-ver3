@@ -13,17 +13,19 @@
   "created_at_utc": "2026-11-02T11:25:36.868040+00:00",
   "reports": {
     "design": {
-      "pdf_sha256": "3d36bbf82cd954e1b05f2822edaaf77f3c95b9e4ea72a7e785d719247256fc81",
-      "pages": 17
+      "pdf_sha256": "9011c6d55f545e90af929054b969c46e2d4e6fff4daaa779e2171cd90d79115f",
+      "pages": 17,
+      "docx_sha256": "5094f9672afbc87b02a6bcf777d37ae932e7e3d0045fc2096a6fc0530c6a92da"
     },
     "progress": {
-      "pdf_sha256": "e56717332ccf6d369fcddfcf8888c9dfab106066ba9dd1e84dc37ce060747720",
-      "pages": 14
+      "pdf_sha256": "9eedacd4991ea79bca8bd57a2f80316b90861c61a1e93675c6d78b5d568537db",
+      "pages": 14,
+      "docx_sha256": "4f0fce25e0612a60dfa45482702f249e2720529a9ffd3bb7b64b94c6e604da33"
     }
   },
-  "builder_sha256": "8be8ae332617b8952175d2eba9605bd437ed49fb66fe9bbadea8a27c80ca553f",
+  "builder_sha256": "067ba23385512e30a4eaf689a0efee01fcef98645f1f9d51e68f355d6d462f67",
   "git_authorization": "作成完了後のユーザーのpush指示に基づく．対象はdocs/course_reports2026のみ．",
-  "source_artifact_state": "修正版固定集計を反映した作業版。本文・スライドはmanifestのhashで固定。",
-  "updated_at_utc": "2026-11-04",
+  "source_artifact_state": "再利用元はthesis_source.docxに保持した固定版。現行卒論とのhash差は更新履歴であり、この再生成では現行卒論を入力へ置き換えていない。",
+  "updated_at_utc": "2026-11-16T11:23:33.026430+00:00",
   "source_scope": "再利用した卒論本文と生成元のみ。卒研発表スライドは報告書の入力に用いない。"
 }
