@@ -366,171 +366,177 @@
     "page": "30"
   },
   {
+    "number": "",
+    "title": "謝辞",
+    "level": 1,
+    "page": "31"
+  },
+  {
     "number": "7",
     "title": "参考文献",
     "level": 1,
-    "page": "31"
+    "page": "32"
   },
   {
     "number": "8",
     "title": "付録",
     "level": 1,
-    "page": "32"
+    "page": "33"
   },
   {
     "number": "8.1",
     "title": "出典と再現性",
     "level": 2,
-    "page": "32"
+    "page": "33"
   },
   {
     "number": "8.1.1",
     "title": "5モデル追加実験の保存設定",
     "level": 3,
-    "page": "32"
+    "page": "33"
   },
   {
     "number": "8.1.2",
     "title": "3モデル本実験の保存設定",
     "level": 3,
-    "page": "32"
+    "page": "33"
   },
   {
     "number": "8.1.3",
     "title": "2モデル補完実験の保存設定",
     "level": 3,
-    "page": "32"
+    "page": "33"
   },
   {
     "number": "8.1.4",
     "title": "固定集計と公開範囲",
     "level": 3,
-    "page": "32"
+    "page": "33"
   },
   {
     "number": "8.2",
     "title": "指標の読み方",
     "level": 2,
-    "page": "33"
+    "page": "34"
   },
   {
     "number": "8.2.1",
     "title": "集計単位",
     "level": 3,
-    "page": "33"
+    "page": "34"
   },
   {
     "number": "8.2.2",
     "title": "退行0の意味",
     "level": 3,
-    "page": "33"
+    "page": "34"
   },
   {
     "number": "8.2.3",
     "title": "静的変更の意味",
     "level": 3,
-    "page": "33"
+    "page": "34"
   },
   {
     "number": "8.2.4",
     "title": "コストの意味",
     "level": 3,
-    "page": "33"
+    "page": "34"
   },
   {
     "number": "8.3",
     "title": "実験プロンプト",
     "level": 2,
-    "page": "34"
+    "page": "35"
   },
   {
     "number": "8.3.1",
     "title": "共通systemメッセージ",
     "level": 3,
-    "page": "34"
+    "page": "35"
   },
   {
     "number": "8.3.2",
     "title": "課題仕様 T1_Bell",
     "level": 3,
-    "page": "34"
+    "page": "35"
   },
   {
     "number": "8.3.3",
     "title": "課題仕様 T2_GHZ",
     "level": 3,
-    "page": "34"
+    "page": "35"
   },
   {
     "number": "8.3.4",
     "title": "課題仕様 T3a_DJ_constant",
     "level": 3,
-    "page": "34"
+    "page": "35"
   },
   {
     "number": "8.3.5",
     "title": "課題仕様 T3b_DJ_balanced",
     "level": 3,
-    "page": "35"
+    "page": "36"
   },
   {
     "number": "8.3.6",
     "title": "課題仕様 T4_BV_011",
     "level": 3,
-    "page": "35"
+    "page": "36"
   },
   {
     "number": "8.3.7",
     "title": "課題仕様 T5_Grover_11",
     "level": 3,
-    "page": "35"
+    "page": "36"
   },
   {
     "number": "8.3.8",
     "title": "課題仕様 T6_QFT_001",
     "level": 3,
-    "page": "36"
+    "page": "37"
   },
   {
     "number": "8.3.9",
     "title": "課題仕様 T7_IQFT_001",
     "level": 3,
-    "page": "36"
+    "page": "37"
   },
   {
     "number": "8.3.10",
     "title": "課題仕様 T8_QPE_001",
     "level": 3,
-    "page": "36"
+    "page": "37"
   },
   {
     "number": "8.3.11",
     "title": "課題仕様 T9_Ansatz_001",
     "level": 3,
-    "page": "37"
+    "page": "38"
   },
   {
     "number": "8.3.12",
     "title": "修正テンプレート R：自己見直し",
     "level": 3,
-    "page": "37"
+    "page": "38"
   },
   {
     "number": "8.3.13",
     "title": "修正テンプレート F：実行結果提示",
     "level": 3,
-    "page": "37"
+    "page": "38"
   },
   {
     "number": "8.3.14",
     "title": "修正テンプレート D：自己デバッグ",
     "level": 3,
-    "page": "38"
+    "page": "39"
   },
   {
     "number": "8.3.15",
     "title": "Pの予防的注意事項",
     "level": 3,
-    "page": "38"
+    "page": "39"
   }
 ]

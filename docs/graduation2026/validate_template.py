@@ -39,7 +39,7 @@ def validate():
     checks['number_patterns'] = [e.find(qn('w:lvlText')).get(qn('w:val')) for e in definitions if e.tag==qn('w:lvl')]==['%1','%1.%2','%1.%2.%3']
     headings=[p for p in d.paragraphs if p.style.name.startswith('Heading ')]
     checks['heading_numbers_not_typed'] = all(not re.match(r'^(?:第\d|\d+\.|付録[A-Z])',p.text) for p in headings)
-    checks['chapter_order'] = [p.text for p in headings if p.style.name=='Heading 1']==['はじめに','関連研究','評価・実験方法','結果','考察','おわりに','参考文献','付録']
+    checks['chapter_order'] = [p.text for p in headings if p.style.name=='Heading 1']==['はじめに','関連研究','評価・実験方法','結果','考察','おわりに','謝辞','参考文献','付録']
     checks['heading_keep_with_next'] = all(d.styles[f'Heading {i}'].paragraph_format.keep_with_next for i in range(1,4))
     checks['chapter_page_breaks'] = d.styles['Heading 1'].paragraph_format.page_break_before
     instructions=[e.text.strip() for e in d.element.iter(qn('w:instrText'))]

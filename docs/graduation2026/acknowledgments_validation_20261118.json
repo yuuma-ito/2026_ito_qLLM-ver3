@@ -1,0 +1,25 @@
+{
+  "checks": {
+    "only_acknowledgments_added_to_body": true,
+    "tables_unchanged": true,
+    "figures_unchanged": true,
+    "acknowledgments_in_pdf": true
+  },
+  "passed": true,
+  "pages": 39,
+  "acknowledgments_page": [
+    31
+  ],
+  "text": [
+    "謝辞",
+    "本研究の遂行および本論文の作成にあたり，ご指導とご助言を賜りました南山大学の横山哲郎先生に深く感謝申し上げます．",
+    "本論文の作成では，OpenAIのCodexを原稿の下書き・推敲，資料作成および検証作業の補助に利用した．本論文の内容および結論に関する責任は著者にある．"
+  ],
+  "pdf_sha256": "6712b82ba6e62618349282493647663b7a7e81eb193393a879dac24541d75a35",
+  "visual_review": {
+    "pages_reviewed": [
+      31
+    ],
+    "status": "謝辞ページの表示確認済み．全ページの再目視確認は未実施．"
+  }
+}

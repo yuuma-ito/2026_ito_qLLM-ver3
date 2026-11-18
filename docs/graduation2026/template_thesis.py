@@ -175,7 +175,8 @@ def toc(d):
         p.paragraph_format.tab_stops.add_tab_stop(Mm(169), WD_TAB_ALIGNMENT.RIGHT, WD_TAB_LEADER.DOTS)
         p.paragraph_format.space_before = p.paragraph_format.space_after = Pt(0)
         p.paragraph_format.line_spacing = 1.0
-        font(p.add_run(f"{entry['number']} {entry['title']}\t{entry['page']}"), 9)
+        label = ' '.join(value for value in [entry['number'], entry['title']] if value)
+        font(p.add_run(f"{label}\t{entry['page']}"), 9)
     if not entries:
         font(p.add_run('目次はPDF生成後に更新します。'), 9)
     p.add_run()._r.append(element('fldChar', fldCharType='end'))
@@ -292,6 +293,8 @@ def build_thesis():
                     else:
                         title = {1:'はじめに', 2:'関連研究', 3:'評価・実験方法', 6:'結果', 7:'考察', 8:'おわりに'}[old_chapter]
                         level = 1
+                elif title == '謝辞':
+                    old_chapter, title, level = 0, '謝辞', 1
                 elif title == '参考文献':
                     old_chapter, title, level = 9, '参考文献', 1
                 elif title.startswith('付録A'):
@@ -440,6 +443,14 @@ def build_thesis():
 
 
 def add_heading(d, title, level, counters, headings):
+    if title == '謝辞':
+        p = d.add_paragraph(title, style='Heading 1')
+        # An unnumbered acknowledgment leaves the existing chapter references intact.
+        np = element('numPr')
+        np.append(element('numId', val='0'))
+        p._p.get_or_add_pPr().append(np)
+        headings.append({'number':'', 'title':title, 'level':1})
+        return p
     counters[level-1] += 1
     for i in range(level, 3):
         counters[i] = 0
