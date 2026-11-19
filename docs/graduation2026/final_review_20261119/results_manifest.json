@@ -10,7 +10,7 @@
   "reports_sha256": {
     "office_final_check_steps.txt": "ef9a0a45dfdf2e8dee2fbd6171b4ada94a9f01fadb1061bad644dc002ec6d257",
     "check_submission.py": "7a2d94b008716228b8cf2695c29c43b5003fa0d09da9af0a2d0515c4ba39cbc8",
-    "README.txt": "66c0d99c9f5e324c69f2d19207964f577f50c035016e9f909cd772e4bd9a116a",
+    "README.txt": "a518544104f692cedec5e107c9f2cd08abe378436f3e40866e8650d3588369f5",
     "independent_thesis_review.txt": "56b9b0fa5d3028c6b865c7b4f440653602cb0ca0a509ac61093192ba81b9f382",
     "input_manifest.json": "3795a1fdb59edd63d170d2561f4d155a69a58e05dc710b6dfdd1fec197e46404",
     "independent_slides_input_hashes.json": "43489f9568608c39e57bbe05a9bf8fa7187026ab1b3bb14bd8946774271bc93b",
@@ -18,21 +18,22 @@
     "office_sessions.json": "fdc687dec53f1b085a6ca7f1f6c97a2d65ef823943f8c76992b15826a3ce6ffb",
     "independent_slides_review.txt": "c53671cc320bd846cf19f741ee59cefa84d91bb42e8aa53310537ca576f0fc3a",
     "independent_abstract_review.txt": "23d3b8b8517dea9e719705a8e4b732d8567780be00ddb0c75cf654e79a8daccf",
-    "template_excerpt_check.json": "49fec769140759a99dd2daff7277afd4b3d268677e36e75641c0a1a302c4302c",
+    "template_excerpt_check.json": "8186d5444e7a77bda0525d097229b07366f6253bfb0a344aabec0ac6e82d97bf",
     "submission_checks.json": "2608d414d2854ed4d6c42655e6826778f9bdfc861c2bcc5edef4ee4d82565719",
     "official_sources.json": "56543dbc10b07f396c34bce665196f74ac621b92cedf296336ca162c7652b35b",
-    "provided_notice_comparison.json": "9cbba7ef5bb264c00cd235100b3ea68b1cf5a6a93527267f241d00a780948de8"
+    "provided_notice_comparison.json": "e70e08e8ee5ff362d6d7eaa56624c0e6182c4208961a3932289d8af38f788773"
   },
-  "updated_at_utc": "2026-11-19T05:46:55.899734+00:00",
+  "updated_at_utc": "2026-11-19T06:17:23.328670+00:00",
   "template_excerpt_received": true,
   "template_excerpt_scope": "thesis_body_only_user_confirmed",
-  "template_size_discrepancy": "thesis body template 10pt vs current 11pt; abstract unchanged",
+  "template_size_discrepancy": "user-reported actual Normal 10.5pt vs current 11pt; original .doc not reanalysed",
   "confirmed_format_discrepancies": [
-    "thesis_normal_size_11pt_vs_template_10pt",
-    "thesis_normal_no_first_line_indent_vs_template_indent_present"
+    "current_thesis_11pt_vs_user_reported_template_10_5pt",
+    "current_thesis_Times_New_Roman_vs_user_reported_Century",
+    "current_thesis_MS_PMincho_vs_user_reported_MS_Mincho"
   ],
   "provided_department_notice_compared": true,
   "linked_templates_verified": false,
   "formal_rule_violation_certified": false,
-  "template_excerpt_interpretation": "Current thesis differs from the supplied 10pt/indent template excerpt. The supplied 2026 notice specifies abstract size 10–11pt but no independent thesis-body size clause. Do not label the sample mismatch as a certified formal rule violation."
+  "template_excerpt_interpretation": "Later user-reported actual-style analysis supersedes the earlier 10pt prose excerpt. Template Normal has no first-line indentation, matching the current Normal on that point. The 197-twip indentation applies only to a sample abstract paragraph."
 }

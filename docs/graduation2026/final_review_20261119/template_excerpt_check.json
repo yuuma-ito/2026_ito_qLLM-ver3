@@ -197,12 +197,34 @@
     }
   },
   "assessment": {
-    "size": "卒論本文の現行Normalは11pt、提示テンプレートは10ptで不一致。要旨11ptは今回の抜粋による変更対象ではない。",
-    "indent": "卒論のNormalには段落頭インデントなし。テンプレートの標準スタイルに字下げありという記載とは不一致。字下げの具体的な幅は抜粋だけでは未確定。",
-    "latin_font": "現行はTimes New Roman。抜粋のTimes Romanが略記か別の正式フォント名かは未確定。",
+    "size": "最新ユーザー解析ではNormal10.5pt。現行卒論11ptとの差はあるが、必須規定違反や改稿指示とは断定しない。旧抜粋の10ptを確定値として適用しない。",
+    "indent": "最新ユーザー解析ではNormalの先頭行字下げ指定なし。現行卒論Normalの字下げなしはこの点で一致。要約サンプルの197twipsを全本文へ適用しない。",
+    "latin_font": "最新ユーザー解析では本文Century・和文MS 明朝。現行本文はTimes New Roman・ＭＳ Ｐ明朝。文献専用スタイルのTimes New Romanと本文スタイルを混同しない。",
     "frames": "現行docxにレイアウト枠や浮動表はない。レイアウト枠の位置設定をすべてのインライン数値表へ適用する根拠はない。",
     "vertical_position": "「垂直配置」「右」の組合せは通常の上下方向の位置指定と対応しないため、原本で項目を確認する必要がある。",
     "formal_requirement_scope": "追加提示された2026年度案内では要旨10〜11ptが明示され、卒論本文の形式はサンプルへのリンクのみ。本文用テンプレート抜粋と現行11ptの相違は確かだが、本文の必須サイズ10ptという独立条文の確認とは区別する。"
   },
-  "manuscripts_modified": false
+  "manuscripts_modified": false,
+  "latest_user_template_analysis": {
+    "received_at_utc": "2026-11-19T06:17:23.327874+00:00",
+    "template": "卒論テンプレート_ver.1.2_260430.doc",
+    "source_type": "user_reported_analysis_not_reparsed_here",
+    "normal": {
+      "size_pt": 10.5,
+      "latin_font": "Century",
+      "japanese_font": "MS 明朝",
+      "first_line_indent_specified": false
+    },
+    "abstract_sample_paragraph": {
+      "first_line_indent_mm_approx": 3.47,
+      "first_line_indent_twips": 197,
+      "not_a_global_requirement": true
+    },
+    "reference_style": {
+      "latin_font": "Times New Roman",
+      "numbering": "[1]",
+      "hanging_indent_example": true,
+      "strict_bibliography_standard": "unconfirmed"
+    }
+  }
 }
