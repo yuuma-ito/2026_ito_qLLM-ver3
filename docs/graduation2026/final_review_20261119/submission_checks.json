@@ -1,0 +1,192 @@
+{
+  "checked_at_utc": "2026-11-19T05:33:49.202866+00:00",
+  "portable_checks_passed": true,
+  "checks": {
+    "thesis.pdf_page_count": true,
+    "thesis.pdf_paper_size": true,
+    "thesis.pdf_fonts_embedded": true,
+    "thesis.pdf_no_characters_outside_page": true,
+    "thesis.pdf_title_present": true,
+    "abstract.pdf_page_count": true,
+    "abstract.pdf_paper_size": true,
+    "abstract.pdf_fonts_embedded": true,
+    "abstract.pdf_no_characters_outside_page": true,
+    "abstract.pdf_title_present": true,
+    "slides.pdf_page_count": true,
+    "slides.pdf_paper_size": true,
+    "slides.pdf_fonts_embedded": true,
+    "slides.pdf_no_characters_outside_page": true,
+    "slides.pdf_title_present": true,
+    "thesis_under_local_10MB_target": true,
+    "thesis_under_official_100MB_limit": true,
+    "abstract_mirrors_identical": true,
+    "thesis.docx_zip_integrity": true,
+    "thesis.docx_requested_body_fonts_declared": true,
+    "thesis.docx_body_11pt": true,
+    "abstract.docx_zip_integrity": true,
+    "abstract.docx_requested_body_fonts_declared": true,
+    "abstract.docx_body_11pt": true,
+    "pptx_zip_integrity": true,
+    "pptx_has_12_slides": true
+  },
+  "pdfs": {
+    "thesis.pdf": {
+      "pages": 40,
+      "bytes": 1590961,
+      "sha256": "68014ab413b11280bdab31ffe5cb057470a297bf790ec03804421c991c0c066a",
+      "fonts": [
+        "BAAAAA+DejaVuSans",
+        "CAAAAA+IPAGothic",
+        "DAAAAA+NimbusRoman-Regular",
+        "EAAAAA+DejaVuSans-Bold",
+        "FAAAAA+IPAGothic",
+        "GAAAAA+IPAGothic",
+        "HAAAAA+DejaVuSerif"
+      ],
+      "outside_page": []
+    },
+    "abstract.pdf": {
+      "pages": 2,
+      "bytes": 458947,
+      "sha256": "39b1b7712f05197675f698d584513ac9a22efaa1f3b5e0d5f2d4e97215e1861c",
+      "fonts": [
+        "FYNQWN+NimbusRoman-Regular",
+        "GOJHYM+NimbusRoman-Bold",
+        "IFWJVH+IPAPGothic",
+        "KZMWDT+IPAPMincho"
+      ],
+      "outside_page": []
+    },
+    "slides.pdf": {
+      "pages": 12,
+      "bytes": 239126,
+      "sha256": "6daa5e5d44a63b24b366afb5c0baaabfae2a9b116e81a0a55d92b07cedef654d",
+      "fonts": [
+        "BAAAAA+IPAexGothic",
+        "CAAAAA+IPAexGothic"
+      ],
+      "outside_page": []
+    }
+  },
+  "word": {
+    "thesis.docx": {
+      "normal_fonts": {
+        "ascii": "Times New Roman",
+        "hAnsi": "Times New Roman",
+        "cs": "Times New Roman",
+        "eastAsia": "ＭＳ Ｐ明朝"
+      },
+      "normal_half_points": "22",
+      "sections": [
+        {
+          "pgSz": {
+            "w": "11906",
+            "h": "16838"
+          },
+          "pgMar": {
+            "top": "1701",
+            "right": "1134",
+            "bottom": "1701",
+            "left": "1134",
+            "header": "0",
+            "footer": "992",
+            "gutter": "0"
+          },
+          "cols": {
+            "space": "720",
+            "num": "1"
+          }
+        }
+      ]
+    },
+    "abstract.docx": {
+      "normal_fonts": {
+        "ascii": "Times New Roman",
+        "hAnsi": "Times New Roman",
+        "eastAsia": "ＭＳ Ｐ明朝",
+        "cs": "Times New Roman"
+      },
+      "normal_half_points": "22",
+      "sections": [
+        {
+          "pgSz": {
+            "w": "11906",
+            "h": "16838"
+          },
+          "pgMar": {
+            "top": "1020",
+            "right": "1020",
+            "bottom": "1361",
+            "left": "1020",
+            "header": "720",
+            "footer": "680",
+            "gutter": "0"
+          },
+          "cols": {
+            "space": "720"
+          }
+        },
+        {
+          "pgSz": {
+            "w": "11906",
+            "h": "16838"
+          },
+          "pgMar": {
+            "top": "1020",
+            "right": "1020",
+            "bottom": "1361",
+            "left": "1020",
+            "header": "720",
+            "footer": "680",
+            "gutter": "0"
+          },
+          "cols": {
+            "space": "397",
+            "num": "2"
+          }
+        },
+        {
+          "pgSz": {
+            "w": "11906",
+            "h": "16838"
+          },
+          "pgMar": {
+            "top": "1020",
+            "right": "1020",
+            "bottom": "1361",
+            "left": "1020",
+            "header": "720",
+            "footer": "680",
+            "gutter": "0"
+          },
+          "cols": {
+            "space": "397",
+            "num": "1"
+          }
+        }
+      ]
+    }
+  },
+  "local_office_commands": {
+    "winword": null,
+    "WINWORD.EXE": null,
+    "powerpnt": null,
+    "POWERPNT.EXE": null,
+    "wine": null,
+    "powershell": null,
+    "pwsh": null
+  },
+  "requested_fonts_installed": {
+    "MS PMincho": false,
+    "MS PGothic": false,
+    "Times New Roman": false
+  },
+  "microsoft_office_rendering": "NOT_PERFORMED: this portable script does not render documents in Microsoft Office or query connected sessions; see office_sessions.json for the separately observed connection state.",
+  "formal_department_rules": "UNVERIFIED: user states the current instructions are WebClass-only; no authenticated course session or original template supplied.",
+  "department_format_basis": "User-specified repository settings are checked separately; they are not certification against the formal template.",
+  "limits": [
+    "Portable PDF and XML checks do not establish correct rendering in Microsoft Word or PowerPoint.",
+    "Formal department submission readiness is not certified.",
+    "No manuscripts, Office documents or PDFs are modified by this script."
+  ]
+}

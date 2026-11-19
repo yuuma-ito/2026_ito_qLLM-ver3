@@ -1,0 +1,9 @@
+{
+  "checked_at_utc": "2026-11-19T05:33:46.911296+00:00",
+  "tool": "Codex Document Control list_document_sessions",
+  "executors": [],
+  "status": "no_connected_document_sessions",
+  "local_application_check": "submission_checks.json",
+  "microsoft_word_rendering_performed": false,
+  "microsoft_powerpoint_rendering_performed": false
+}

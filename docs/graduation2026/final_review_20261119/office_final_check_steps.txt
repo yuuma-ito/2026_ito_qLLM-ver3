@@ -1,0 +1,17 @@
+Office上の最終表示確認（未実施の引継ぎ）
+
+現状：接続中のWord/PowerPoint文書セッションなし。ローカルにMicrosoft Office・指定フォントなし。
+この文書は実施手順であり、完了記録ではない。原稿を提出したり教員に送信したりする操作は含まない。
+
+1. GitHubの固定commit 60b68e29e0bfece77e11df201e0f92d9322f78d0 からthesis.docx、abstract.docx、slides.pptxを取得する。
+2. ＭＳ Ｐ明朝・ＭＳ Ｐゴシック・Times New Romanを備えたMicrosoft Wordで卒論と要旨を開く。フォント置換の有無を記録する。
+3. 元ファイルを保持したコピーで目次と図表の参照フィールドを更新し、参照エラー・番号の変化を確認する。卒論の表2（現行p17）と長い表、要旨の2段組・3表・参考文献URLを重点確認する。
+4. 指定フォントでPDFを出力し、現行40ページの卒論と2ページの要旨からの改ページ差、欠字、切れ、重なりを全ページ確認する。ページ数が変わっただけで不合格とはせず、参照と正式規定を確認する。
+5. Microsoft PowerPointで12枚を開き、表・リンク・発表者ノートの欠落を確認する。スライドショー表示で各ページの見切れを確認し、PDF出力も照合する。
+6. WebClassの当年度要領を確認し、表紙・所属表記・ページ番号・引用書式・要旨2ページ条件・ファイル名・形式・学科締切・提出先を照合する。大学の全学案内と学科内締切を混同しない。
+7. 確認記録にはOfficeの製品/バージョン、OS、実施日時、対象ファイルSHA-256、使用フォント、WordとPowerPointでの確認ページ、再出力PDFのhash、差分、残る問題を記載する。
+
+ダウンロード先（確認対象の固定版）
+https://github.com/yuuma-ito/2026_ito_qLLM-ver3/blob/60b68e29e0bfece77e11df201e0f92d9322f78d0/docs/graduation2026/thesis.docx
+https://github.com/yuuma-ito/2026_ito_qLLM-ver3/blob/60b68e29e0bfece77e11df201e0f92d9322f78d0/docs/graduation2026/abstract.docx
+https://github.com/yuuma-ito/2026_ito_qLLM-ver3/blob/60b68e29e0bfece77e11df201e0f92d9322f78d0/docs/graduation2026/slides.pptx

@@ -1,0 +1,39 @@
+{
+  "checked_at_utc": "2026-11-19T05:33:46.911562+00:00",
+  "sources": [
+    {
+      "url": "https://office.nanzan-u.ac.jp/KYOUMU/course-class/course06.html",
+      "title": "卒業論文等の提出方法について（学部のみ）",
+      "type": "大学公式の全学案内",
+      "checked": "2026年度秋学期のリンク先を確認"
+    },
+    {
+      "url": "https://office.nanzan-u.ac.jp/KYOUMU/course-class/item/2026fall_Graduation_Thesis_Announcement.pdf",
+      "title": "2026年度秋学期 卒業論文等の提出について",
+      "document_date": "2026-11-01",
+      "verified_requirements": {
+        "engineering_submission_window_jst": [
+          "2026-12-01 09:00:00",
+          "2027-01-30 17:00:00"
+        ],
+        "submission_portal": "PORTA",
+        "submission_items": [
+          "卒業論文等題目の入力",
+          "卒業論文等ファイルのアップロード"
+        ],
+        "maximum_file_size_MB": 100,
+        "manuscript_structure": "指導教員または学部・学科の指示に従う"
+      }
+    }
+  ],
+  "department_rules": {
+    "status": "not_accessed",
+    "user_response": "WebClass限定",
+    "template_original": "not_available",
+    "deadline_and_format_specific_to_department": "unverified"
+  },
+  "limits": [
+    "全学の提出経路・容量・受付期間の確認であり、学科内の提出締切や書式の認証ではない。",
+    "WebClassへのアクセス、提出操作、教員への送信は行っていない。"
+  ]
+}

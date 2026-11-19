@@ -1,0 +1,24 @@
+{
+  "created_at_utc": "2026-11-19T05:35:45.922877+00:00",
+  "reviewed_commit": "60b68e29e0bfece77e11df201e0f92d9322f78d0",
+  "task_3": "completed_independent_reviews",
+  "task_4": "portable_checks_completed_office_and_webclass_pending",
+  "manuscripts_modified": false,
+  "confirmed_corrections": 1,
+  "office_rendering_completed": false,
+  "formal_department_rules_verified": false,
+  "reports_sha256": {
+    "office_final_check_steps.txt": "e4ceea3e03b011556bd95da75ea7fa80274a34ccb77435ea022a7a4937f2d321",
+    "check_submission.py": "606f3393e5818b44b9d20ee9203daacd404bff80958cd4949d64109be19a24a3",
+    "README.txt": "ec7eb1030f261afb44e5265a6b94afe50491400bd466443067d6ee5e175c27e8",
+    "independent_thesis_review.txt": "56b9b0fa5d3028c6b865c7b4f440653602cb0ca0a509ac61093192ba81b9f382",
+    "input_manifest.json": "3795a1fdb59edd63d170d2561f4d155a69a58e05dc710b6dfdd1fec197e46404",
+    "independent_slides_input_hashes.json": "43489f9568608c39e57bbe05a9bf8fa7187026ab1b3bb14bd8946774271bc93b",
+    "confirmed_numeric_discrepancy.json": "a0d6cd0ce8f37c896fab9ae76fd44cb2567845be01ba7c1c3c34b211985e0ac4",
+    "office_sessions.json": "fdc687dec53f1b085a6ca7f1f6c97a2d65ef823943f8c76992b15826a3ce6ffb",
+    "independent_slides_review.txt": "c53671cc320bd846cf19f741ee59cefa84d91bb42e8aa53310537ca576f0fc3a",
+    "independent_abstract_review.txt": "23d3b8b8517dea9e719705a8e4b732d8567780be00ddb0c75cf654e79a8daccf",
+    "submission_checks.json": "15e35def92922f6e4739f74af05ab33a1a32675a94efaac8ba6d38f4f275f6b5",
+    "official_sources.json": "70e1e3c9984a06b2b1092a25ebdc61953122994169590cddacc6cc790e63ca61"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "document": "docs/graduation2026/thesis.pdf",
+  "page": 23,
+  "word_paragraphs": [
+    "難度別のF/Dの救済は，易22/69組・25/69組，中79/225組・79/225組，難82/251組・76/251組であった．難度はハーネスの事前区分であり，普遍的な難しさの尺度ではない．難の中には分布評価と状態評価の課題が混在するため，区分間の差を一つの認知的難度へ帰属しない．"
+  ],
+  "source": "docs/analysis/measurement_ban_corrected_20261104/core/paired_records.csv",
+  "source_rows": 4000,
+  "method": "condition_id=self_debugging and rescued=True, grouped by task_difficulty",
+  "recomputed_successes": {
+    "medium": 78,
+    "easy": 25,
+    "hard": 76
+  },
+  "expected_total": 179,
+  "observed_total": 179,
+  "finding": "中79/225組・79/225組の前者F=79は正しい。後者Dだけが78/225組であり、本文は中79/225組・78/225組への訂正が必要。",
+  "action": "原稿修正は行わず、査読結果として報告する。"
+}
