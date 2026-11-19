@@ -1,0 +1,207 @@
+{
+  "source": "ユーザーが本会話で提示したテンプレート本文の抜粋。原本ファイルは未取得。",
+  "excerpt": "標準スタイル(10pt，MSP明朝+Times Roman)。各段落は段落頭にインデント。レイアウト枠は幅自動・高さ自動・水平配置は段基準の左・垂直配置は余白基準の右。",
+  "applicable_document": "確認待ち",
+  "observed": {
+    "thesis.docx": {
+      "normal": {
+        "half_points": "22",
+        "fonts": {
+          "ascii": "Times New Roman",
+          "hAnsi": "Times New Roman",
+          "cs": "Times New Roman",
+          "eastAsia": "ＭＳ Ｐ明朝"
+        },
+        "style_indent": null
+      },
+      "text_frames": 0,
+      "floating_tables": 0,
+      "tables": [
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "9071"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        },
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "9071"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        },
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "9071"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        },
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "9071"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        },
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "9071"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        },
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "9071"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        },
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "9071"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        },
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "9071"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        },
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "9071"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        },
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "9071"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        },
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "9071"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        },
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "9071"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        },
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "9071"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        }
+      ]
+    },
+    "abstract.docx": {
+      "normal": {
+        "half_points": "22",
+        "fonts": {
+          "ascii": "Times New Roman",
+          "hAnsi": "Times New Roman",
+          "eastAsia": "ＭＳ Ｐ明朝",
+          "cs": "Times New Roman"
+        },
+        "style_indent": null
+      },
+      "text_frames": 0,
+      "floating_tables": 0,
+      "tables": [
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "4734"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        },
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "4734"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        },
+        {
+          "tblW": {
+            "type": "dxa",
+            "w": "4734"
+          },
+          "tblLayout": {
+            "type": "fixed"
+          },
+          "tblpPr": null
+        }
+      ]
+    }
+  },
+  "assessment": {
+    "size": "現在は11pt。提示抜粋の10ptとは相違。以前のユーザー指定は11ptなので、どの資料へ今回の抜粋を適用するか確認が必要。",
+    "indent": "卒論のNormalには字下げなし。要旨はNormalではなく各本文段落の直接指定で11pt字下げ。抜粋は標準スタイルでの設定を述べる。",
+    "latin_font": "現行はTimes New Roman。抜粋のTimes Romanが略記か別の正式フォント名かは未確定。",
+    "frames": "現行docxにレイアウト枠や浮動表はない。レイアウト枠の位置設定をすべてのインライン数値表へ適用する根拠はない。",
+    "vertical_position": "「垂直配置」「右」の組合せは通常の上下方向の位置指定と対応しないため、原本で項目を確認する必要がある。"
+  },
+  "manuscripts_modified": false
+}
