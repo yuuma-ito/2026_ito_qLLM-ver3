@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-19T03:49:54.668808+00:00",
+  "checked_at_utc": "2026-11-19T04:24:27.553425+00:00",
   "scope": "thesis.docx and thesis.pdf only; separate abstract and slides retained",
   "automated_checks_passed": true,
   "checks": {
@@ -68,7 +68,7 @@
     "RQ_answers_in_discussion": true,
     "RQ3_includes_B4_cost_from_frozen_csv": true,
     "order_of_metrics_explained": true,
-    "conclusion_states_catalog_and_no_policy_validation": true,
+    "conclusion_separates_catalog_achievement_and_policy_limits": true,
     "main_and_supplemental_analysis_scopes_distinguished": true,
     "statevector_evaluator_and_reference_sdk_limits_explicit": true,
     "appendix_separates_supplemental_prompts": true,
@@ -78,8 +78,8 @@
   "documents": {
     "thesis": {
       "pages": 40,
-      "pdf_bytes": 1589818,
-      "pdf_sha256": "390861588e98baf6e3a95611e7c1e6871d003796489a66f639aa5d61575cfd87"
+      "pdf_bytes": 1590937,
+      "pdf_sha256": "41aaff63061ee3579c47336e86f9b351db285b4a2d0a291af8d644aa3c21d68c"
     }
   },
   "visual_review": {
@@ -93,18 +93,18 @@
   "new_model_requests": 0,
   "generated_code_executions": 0,
   "artifact_sha256": {
-    "thesis.docx": "29f9f2466a0b3e3b158d8d55857477f7f3e03e8477cabd0f04d8e2bd14643772",
-    "thesis.pdf": "390861588e98baf6e3a95611e7c1e6871d003796489a66f639aa5d61575cfd87",
-    "build.py": "1e6f3c2f7a2f82de2d9f692bea4e6b6926dedf03632555fe91ed88c93433b8f5",
+    "thesis.docx": "3a47b2bc854ecc7edfcff49dac8e34f3d479107fb8079e7f6eb6fbab0ead18cd",
+    "thesis.pdf": "41aaff63061ee3579c47336e86f9b351db285b4a2d0a291af8d644aa3c21d68c",
+    "build.py": "a80447acbb4c9c641ddd10cc6b6988bf401011d587e1903a9e806b8320665a0a",
     "template_thesis.py": "9fef9e59a1a6acf04cb62c52dccce5adff4627e5dbe7fcd70908198a2777ac31",
-    "thesis_expansion.py": "0c394e1da93882e5bf5f48314f04208110e34b12ba02afaaa338ecf1798fcc54",
+    "thesis_expansion.py": "621945dc246b9f417cff7a1189e02e98b0b36025cd0d24adc867bf9b68672253",
     "thesis_language.py": "98e356081814fb97195c44481f4dae95f3a1f4dc155c428aec433d39c1becb11",
     "thesis_figures.py": "c9f35f486aa15c626240ae45068ddea8de0da42bc52badccf7dbd44c9b8ff7be",
     "validate_figures.py": "0e0f9d975fdec56ebfa19db6e65bf1f9e4d2e344c941faaf8f989b237b17415b",
     "figure_validation_report_20261028.json": "6efbfc1557b7d3158abd05219c2671175bc21ed39f0cb18430ee84e7946f2379",
     "figures/figure_manifest.json": "16787c6ed6f45115f5cfd5f091274c8a4d479934ec96298282b8f87fd8256f66",
     "convert_thesis.py": "eefec30813ecce333af8f6267fa10eb525ddf87967f01d1f667438e2317cb882",
-    "validate_template.py": "54520422eaa6edff185ca5373322761252bb5a3606427267bb2f229bda674499",
+    "validate_template.py": "1c1c2e49e394b5d969012b2541d6f8fbf53d9da84e46544d2c3a3fa01f211e1b",
     "validate_expansion.py": "735eb8bbee626b4ef9396e87be6f9d8bce7312a31d0838575aa4d34714f89fd9",
     "thesis_headings.json": "91621ba318b295c8a70957af66a32bf6d0c02cdeaef1414d5125c1116a43a099",
     "toc_cache.json": "7845a257dd57c885f3e09074d7f3630f72079895bba6854a489ee8ff6783c17a",
@@ -115,9 +115,9 @@
     "revision_report_20261028.json": "25a2da76f653df42bbdecb155277df0a3dc96e7604b11e47682efe48d02ca0e2",
     "work_notes.txt": "9ff757e5d34c866bf47360698cd99cbd99cb09936e1f20b2fc61bc7e886d7fb8",
     "thesis_visual_review.json": "4bc114ebf07ed1b2b9ac59095b2e348cc7fe42a50fb02faad76b8935e97963cc",
-    "README.md": "a8c8526b72452f4b0cff82e0788d76d0cea5f75a70b6524797e5051c75c6d91b",
+    "README.md": "a9620fa8c0b31399ae858515c1bbdd35688b67ec38082d6480dd85d08341e094",
     "build_research_evidence.py": "0910f235f75059e782f8aab9d861a512337fe54b5c10c682fcf82a5ddc8d5df3",
-    "thesis_enrichment.py": "a6284d2797b53325ccad634c89cb594826be2d34e2f67352c066f8cc776dadeb",
+    "thesis_enrichment.py": "ae8d9d1d01ba6ac90383f145f4cb583f2f240febabeacc893e841aa7a28a8453",
     "validate_enrichment.py": "cf150f48e3a88e84d9442e489a43f0ae64018c84319974f65ffba157f1aedc79",
     "intervention_catalog.csv": "0a8b3d38addd73121a396a6e2fc3f8dc3fc7ff050ff60053f755066069b1fae5",
     "case_studies.json": "4ff23031b9c58f3b054d4db7ffd903b75661074301277026f0f68a65177b8dcb",

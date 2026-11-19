@@ -165,10 +165,11 @@ def validate():
         f"追加成功{overall['B4']['successes_from_initial_failure']}組で割った値"])
     checks['order_of_metrics_explained'] = 'まず全対象の最終的な到達状況を比較し，次に初期成功の保持を除いて' in alltext
     conclusion=subsection('研究成果')
-    checks['conclusion_states_catalog_and_no_policy_validation'] = all(t in conclusion for t in [
+    future=subsection('今後の課題')
+    checks['conclusion_separates_catalog_achievement_and_policy_limits'] = all(t in conclusion for t in [
         '異なる失敗段階を比較するために選定した3類型（import失敗，回路構築失敗，出力不一致）',
         '初期失敗数とF/Dによる修正の救済率，B4による独立再生成の追加成功率',
-        '自動選択方策の有効性を実証したものではない'])
+        '観測結果を参照できる形に整理した']) and '介入選択方策の性能は未検証' in future
     limitations=subsection('妥当性と限界')
     scope=subsection('分析対象と固定出典の範囲')
     evaluation=subsection('出力距離・測定順序・構造要件の詳細')

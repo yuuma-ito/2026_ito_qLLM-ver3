@@ -40,7 +40,8 @@ TITLE_EN = 'An Empirical Study of Failure Types and an Intervention Catalog in Q
 FONT = 'IPAexMincho'
 GOTHIC = 'IPAexGothic'
 FIXED_SOURCE_COMMIT = '72c03f843f0ca91b1d6dc06dedfb274d022316a7'
-FIXED_SOURCE_URL = 'https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/' + FIXED_SOURCE_COMMIT
+REPOSITORY_URL = 'https://github.com/yuuma-ito/2026_ito_qLLM-ver3'
+FIXED_SOURCE_URL = REPOSITORY_URL + '/tree/' + FIXED_SOURCE_COMMIT
 FIXED_SOURCE_LABEL = '公開固定版（72c03f8）'
 REFS = [
  'A. Madaan et al.：Self-Refine: Iterative Refinement with Self-Feedback，arXiv:2303.17651v2（2023）．https://arxiv.org/abs/2303.17651v2',
@@ -49,7 +50,8 @@ REFS = [
   '固定出典：docs/analysis/measurement_ban_corrected_20261104/．\n'
   '共通systemの回路内測定禁止を補い，B4の1経路を追加1要求で継続した．\n'
   '旧固定集計・生成履歴は保持した．参照ファイル：manifest，sanity，集計CSV．\n'
-  '固定版：' + FIXED_SOURCE_URL + '（2026年11月4日固定）．'),
+  '公開リポジトリ：' + REPOSITORY_URL + '\n'
+  '固定版（2026年11月4日固定）：\n' + FIXED_SOURCE_URL),
 ]
 
 def row(group, value, condition):
@@ -90,7 +92,7 @@ def link_reference_urls(document, style_run=setfont):
         for match in re.finditer(r'https?://[A-Za-z0-9:/?=._#%&+~\-]+', text):
             style_run(paragraph.add_run(text[position:match.start()]))
             url = match.group()
-            label = FIXED_SOURCE_LABEL if url == FIXED_SOURCE_URL else url
+            label = url
             link = OxmlElement('w:hyperlink')
             link.set(qn('r:id'), paragraph.part.relate_to(url, RT.HYPERLINK, is_external=True))
             run = paragraph.add_run(label)
@@ -415,14 +417,14 @@ def legacy_thesis():
             if n == 4 and subtitle == '履歴再構成における分岐と到達性':
                 table(d, '表4.1　到達履歴の再構成を確認する手順',
                       ['段階', '照合する内容', '判定・扱い', '記録'], [
-                          ['初期の固定', '共有初期コードと初期判定', 'B/R/F/Dの出発点を揃える', 'B：到達履歴CSV'],
-                          ['評価版', '元設定と追試・修正版の評価設定', '評価版と実装hashを区別する', 'A・B：設定とmanifest'],
-                          ['分岐の判定', '旧・新の停止と診断の対応', '後続要求が変わる前まで保存履歴を使う', 'A：分岐監査CSV'],
-                          ['追試の開始', '分岐入力roundと保存前半round数', '分岐点から必要な後半だけ生成する', 'A：追試ケースCSV'],
-                          ['接続の照合', 'record_key・round・コードhash・由来', '保存前半と追試後半の対応を追う', 'A：追試round CSV／B：到達履歴CSV'],
-                          ['最終の集計', '停止round・成功判定・件数', '到達履歴と条件記録の単位を分ける', 'A：混合履歴CSV／B：sanity report'],
-                      ], widths=[23, 47, 57, 33])
-                para(d, '表のCSV名は，分岐監査：round_impact_audit.csv，追試ケース：partial_rerun_records.csv，追試round：partial_new_rounds.csv，混合履歴：mixed_path_records.csv，到達履歴：reachable_rounds.csvである．Bのcore/sanity_report.jsonとsanity_report.jsonはそれぞれ主分析とB4の検証記録である．')
+                          ['初期照合', '共有初期コードと初期判定', 'B/R/F/Dの出発点を揃える', 'B1'],
+                          ['評価版確認', '元設定と追試・修正版の評価設定', '評価版と実装hashを区別する', 'A1・B2'],
+                          ['分岐確認', '旧・新の停止と診断の対応', '後続要求が変わる前まで保存履歴を使う', 'A2'],
+                          ['追試開始', '分岐入力roundと保存前半round数', '分岐点から必要な後半だけ生成する', 'A3'],
+                          ['履歴接続', 'record_key・round・コードhash・由来', '保存前半と追試後半の対応を追う', 'A4・B1'],
+                          ['最終集計', '停止round・成功判定・件数', '到達履歴と条件記録の単位を分ける', 'A5・B3'],
+                      ], widths=[28, 49, 63, 20])
+                para(d, '記録欄の識別子は，本文で示した保存先A・Bと，次のファイルに対応する．A1：settings_manifest.jsonおよびpartial_evaluation_profile.json，A2：round_impact_audit.csv，A3：partial_rerun_records.csv，A4：partial_new_rounds.csv，A5：mixed_path_records.csv．B1：reachable_rounds.csv，B2：manifest.json，B3：core/sanity_report.jsonおよびsanity_report.json（それぞれ主分析とB4）．')
 
             if n == 6 and subtitle == '補足実験：失敗通知と詳細診断の比較':
                 from notification_supplement import table_rows as notification_rows

@@ -1,0 +1,41 @@
+{
+  "checked_at_utc": "2026-11-19T04:24:23.138877+00:00",
+  "passed": true,
+  "checks": {
+    "all_stage_labels_on_single_lines": true,
+    "record_column_only_short_ids": true,
+    "all_record_ids_on_single_lines": true,
+    "record_file_legend_visible": true,
+    "repository_and_fixed_urls_printed": true,
+    "repository_and_fixed_urls_clickable": true,
+    "duplicated_fixed_label_removed": true,
+    "catalog_scope_repetition_removed": true,
+    "conclusion_separates_achievements_and_future": true,
+    "all_12_other_tables_unchanged": true,
+    "table_2_content_columns_unchanged": true,
+    "embedded_figures_unchanged": true
+  },
+  "pages": 40,
+  "tables": 13,
+  "figures": 4,
+  "table_page": 17,
+  "reference_page": 33,
+  "artifact_sha256": {
+    "thesis.docx": "3a47b2bc854ecc7edfcff49dac8e34f3d479107fb8079e7f6eb6fbab0ead18cd",
+    "thesis.pdf": "41aaff63061ee3579c47336e86f9b351db285b4a2d0a291af8d644aa3c21d68c"
+  },
+  "scope": "表2・参考文献[3]の表示と5.2・6.1・6.2節の整理。ネットワーク接続や実験の再評価は行わない。",
+  "limits": [
+    "全ページの再目視確認とMicrosoft Word上の最終表示確認は未実施。"
+  ],
+  "visual_review": {
+    "pages_reviewed": [
+      17,
+      27,
+      28,
+      31,
+      33
+    ],
+    "status": "指定ページの画像確認済み。全ページの再目視確認は未実施。"
+  }
+}
