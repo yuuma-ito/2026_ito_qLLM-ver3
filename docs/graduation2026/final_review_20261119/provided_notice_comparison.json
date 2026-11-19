@@ -1,0 +1,160 @@
+{
+  "checked_at_utc": "2026-11-19T05:45:36.079176+00:00",
+  "source": {
+    "type": "ユーザーが本会話で提示した2026年度学科案内の本文",
+    "title": "卒業研究に関するお知らせ（2026年度）",
+    "original_url": "not_provided",
+    "scope": "提示された本文の要件を抽出した記録。原文全文の複製やリンク先サンプル原本の取得ではない。",
+    "older_attachment": "「卒業研究成果物についてのお願い」は2025年度版という注記あり。添付本文は未提示。"
+  },
+  "schedule": {
+    "title_submission": [
+      "2026-06-08",
+      "2026-06-26"
+    ],
+    "interim_presentation": "9月初旬〜10月中旬（別リンクの日程表は未提示）",
+    "graduation_presentation": "2027-01-23",
+    "university_thesis_submission_jst": [
+      "2026-12-01",
+      "2027-01-30 17:00:00"
+    ],
+    "abstract_collection_and_final_thesis_if_instructed": "2027-02-17",
+    "presentation_abstract_deadline": "個別日付は提示本文にない。年間スケジュール・WebClassで別途確認。"
+  },
+  "submission_routes": [
+    {
+      "stage": "題目提出",
+      "route": "WebClass 水曜日8限／卒業研究／題目提出",
+      "items": [
+        "卒業論文題目",
+        "副題（任意）"
+      ]
+    },
+    {
+      "stage": "卒業研究発表会の審査用提出",
+      "route": "WebClass 水曜日8限／卒業研究／○○発表会：要旨提出",
+      "items": [
+        "題目",
+        "副題（任意）",
+        "要旨PDF",
+        "指導教員が完成版と判断した審査用卒論PDF",
+        "提出版要旨に対応する類似レポート"
+      ],
+      "supervisor_check_required": true
+    },
+    {
+      "stage": "教務への卒論提出",
+      "route": "PORTA",
+      "items": [
+        "題目",
+        "卒論PDF"
+      ],
+      "receipt": "登録メールアドレスへ受付完了メール。メールアドレスと受付を確認する。",
+      "before_submission": "指導教員と相談し、発表会の指摘に対応したものを提出。"
+    },
+    {
+      "stage": "要旨集原稿・最終版",
+      "route": "WebClass 水曜日8限／卒業研究／要旨掲載原稿および卒業論文最終提出",
+      "items": [
+        "題目",
+        "副題（任意）",
+        "要旨PDF",
+        "要旨の類似レポート",
+        "卒論最終版（指導教員から指示がある場合）"
+      ],
+      "porta_required_for_this_stage": false
+    }
+  ],
+  "abstract_requirements": {
+    "single_author_pages": 2,
+    "group_maximum_pages": 4,
+    "paper": "A4",
+    "body_columns": 2,
+    "title_and_authors_columns": 1,
+    "text_area_mm_approx": [
+      174,
+      254
+    ],
+    "margins_mm": {
+      "left": 18,
+      "right": 18,
+      "top": 18,
+      "bottom": 24
+    },
+    "font_size_pt_range": [
+      10,
+      11
+    ],
+    "page_numbers": true,
+    "punctuation": [
+      "，",
+      "．"
+    ],
+    "figure_caption": "below",
+    "table_caption": "above",
+    "color": "原則白黒。カラー図表を使う場合も白黒で読めること。",
+    "supervisor_must_confirm": [
+      "LaTeXかWord等か",
+      "参考文献書式と番号付け"
+    ]
+  },
+  "presentation_requirements": {
+    "talk_minutes": 6,
+    "questions_minutes": 3,
+    "reading_a_manuscript_aloud": "not_allowed",
+    "format": "対面・オンライン・ハイブリッドは指導教員の指示",
+    "attendance": "中間発表・卒研発表とも必須。欠席時は所定の連絡と証明を指導教員へ。"
+  },
+  "current_comparison": [
+    {
+      "item": "要旨の2ページ・A4・本文2段・題目著者1段",
+      "status": "一致",
+      "evidence": "要旨2ページの画像、WordセクションXML、validation_report_20261119.json"
+    },
+    {
+      "item": "要旨の文字10〜11pt",
+      "status": "一致",
+      "observed": "現行11pt。10ptへの変更は要旨に不要。"
+    },
+    {
+      "item": "要旨の余白・ページ番号・句読点・表上側キャプション・白黒",
+      "status": "一致",
+      "evidence": "既存の両PDF全ページ検証と画像確認。",
+      "text_height_note": "297−18−24=255mmだが、案内の254mmは概ねという指定。1mm差を違反と断定しない。"
+    },
+    {
+      "item": "発表6分＋質疑3分",
+      "status": "計画は一致／実測未確認",
+      "observed": "本編8枚で360秒を配分。原稿読み上げを前提にしていない。"
+    },
+    {
+      "item": "審査用卒論PDF・要旨PDF",
+      "status": "ファイルあり／指導教員の完成版承認・提出は未確認"
+    },
+    {
+      "item": "要旨の類似レポート（審査版と最終版）",
+      "status": "未確認",
+      "note": "対象ファイルがリポジトリに見当たらず、実施済みとは確認できない。外部での実施の有無は未確認。"
+    },
+    {
+      "item": "LaTeX/Wordの選択と参考文献書式の指導教員確認",
+      "status": "未確認",
+      "note": "両形式を生成したことは、指導教員の承認の証拠ではない。"
+    },
+    {
+      "item": "卒論本文10pt・Normal字下げ",
+      "status": "先に提示された卒論本文用テンプレート抜粋とは不一致",
+      "note": "今回の案内本文の「卒業論文の形式」はサンプルへのリンクで、本文中に10ptを必須とする独立した条文はない。テンプレートとの差と正式規定違反を同一視しない。"
+    },
+    {
+      "item": "Microsoft Word/PowerPointの最終表示",
+      "status": "未実施",
+      "note": "接続文書セッション・アプリ・指定フォントなし。"
+    }
+  ],
+  "limits": [
+    "WebClassへのログイン、提出欄の公開状態、実際の提出日、担当教員の承認は確認していない。",
+    "リンク先サンプル、2025年度の成果物依頼、剽窃ソフトのマニュアル原本は取得していない。",
+    "原稿修正、剽窃検査、提出操作は行っていない。"
+  ]
+}

@@ -27,10 +27,10 @@
     }
   ],
   "department_rules": {
-    "status": "not_accessed",
-    "user_response": "WebClass限定",
-    "template_original": "not_available",
-    "deadline_and_format_specific_to_department": "unverified"
+    "status": "user_provided_2026_notice_compared",
+    "source": "User supplied notice text in this conversation; see provided_notice_comparison.json",
+    "template_original": "linked_samples_not_acquired",
+    "deadline_and_format_specific_to_department": "provided text compared; presentation abstract submission deadline date and instructor approval not confirmed"
   },
   "limits": [
     "全学の提出経路・容量・受付期間の確認であり、学科内の提出締切や書式の認証ではない。",

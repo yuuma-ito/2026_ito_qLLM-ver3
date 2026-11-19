@@ -2,15 +2,15 @@
   "created_at_utc": "2026-11-19T05:35:45.922877+00:00",
   "reviewed_commit": "60b68e29e0bfece77e11df201e0f92d9322f78d0",
   "task_3": "completed_independent_reviews",
-  "task_4": "portable_checks_completed_office_and_webclass_pending",
+  "task_4": "provided_notice_compared_portable_checks_completed_office_linked_templates_and_approvals_pending",
   "manuscripts_modified": false,
   "confirmed_corrections": 1,
   "office_rendering_completed": false,
   "formal_department_rules_verified": false,
   "reports_sha256": {
-    "office_final_check_steps.txt": "e4ceea3e03b011556bd95da75ea7fa80274a34ccb77435ea022a7a4937f2d321",
-    "check_submission.py": "606f3393e5818b44b9d20ee9203daacd404bff80958cd4949d64109be19a24a3",
-    "README.txt": "364b4db478aed7a9756a6eb4666e6a3a480741c02675213fde491516facf2264",
+    "office_final_check_steps.txt": "ef9a0a45dfdf2e8dee2fbd6171b4ada94a9f01fadb1061bad644dc002ec6d257",
+    "check_submission.py": "7a2d94b008716228b8cf2695c29c43b5003fa0d09da9af0a2d0515c4ba39cbc8",
+    "README.txt": "66c0d99c9f5e324c69f2d19207964f577f50c035016e9f909cd772e4bd9a116a",
     "independent_thesis_review.txt": "56b9b0fa5d3028c6b865c7b4f440653602cb0ca0a509ac61093192ba81b9f382",
     "input_manifest.json": "3795a1fdb59edd63d170d2561f4d155a69a58e05dc710b6dfdd1fec197e46404",
     "independent_slides_input_hashes.json": "43489f9568608c39e57bbe05a9bf8fa7187026ab1b3bb14bd8946774271bc93b",
@@ -18,16 +18,21 @@
     "office_sessions.json": "fdc687dec53f1b085a6ca7f1f6c97a2d65ef823943f8c76992b15826a3ce6ffb",
     "independent_slides_review.txt": "c53671cc320bd846cf19f741ee59cefa84d91bb42e8aa53310537ca576f0fc3a",
     "independent_abstract_review.txt": "23d3b8b8517dea9e719705a8e4b732d8567780be00ddb0c75cf654e79a8daccf",
-    "template_excerpt_check.json": "d769ff18da990381e61a50d5ba9fb13707292d583c239ee802a6faab2c57125b",
-    "submission_checks.json": "15e35def92922f6e4739f74af05ab33a1a32675a94efaac8ba6d38f4f275f6b5",
-    "official_sources.json": "70e1e3c9984a06b2b1092a25ebdc61953122994169590cddacc6cc790e63ca61"
+    "template_excerpt_check.json": "49fec769140759a99dd2daff7277afd4b3d268677e36e75641c0a1a302c4302c",
+    "submission_checks.json": "2608d414d2854ed4d6c42655e6826778f9bdfc861c2bcc5edef4ee4d82565719",
+    "official_sources.json": "56543dbc10b07f396c34bce665196f74ac621b92cedf296336ca162c7652b35b",
+    "provided_notice_comparison.json": "9cbba7ef5bb264c00cd235100b3ea68b1cf5a6a93527267f241d00a780948de8"
   },
-  "updated_at_utc": "2026-11-19T05:41:23.884584+00:00",
+  "updated_at_utc": "2026-11-19T05:46:55.899734+00:00",
   "template_excerpt_received": true,
   "template_excerpt_scope": "thesis_body_only_user_confirmed",
   "template_size_discrepancy": "thesis body template 10pt vs current 11pt; abstract unchanged",
   "confirmed_format_discrepancies": [
     "thesis_normal_size_11pt_vs_template_10pt",
     "thesis_normal_no_first_line_indent_vs_template_indent_present"
-  ]
+  ],
+  "provided_department_notice_compared": true,
+  "linked_templates_verified": false,
+  "formal_rule_violation_certified": false,
+  "template_excerpt_interpretation": "Current thesis differs from the supplied 10pt/indent template excerpt. The supplied 2026 notice specifies abstract size 10–11pt but no independent thesis-body size clause. Do not label the sample mismatch as a certified formal rule violation."
 }

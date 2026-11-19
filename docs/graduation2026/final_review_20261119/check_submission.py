@@ -83,7 +83,7 @@ def run():
     report={'checked_at_utc':datetime.now(timezone.utc).isoformat(),'portable_checks_passed':all(checks.values()),'checks':checks,'pdfs':pdfs,'word':word,
             'local_office_commands':commands,'requested_fonts_installed':font_installed,
             'microsoft_office_rendering':'NOT_PERFORMED: this portable script does not render documents in Microsoft Office or query connected sessions; see office_sessions.json for the separately observed connection state.',
-            'formal_department_rules':'UNVERIFIED: user states the current instructions are WebClass-only; no authenticated course session or original template supplied.',
+            'formal_department_rules':'PARTIAL: the user supplied the 2026 department notice text and it was compared in provided_notice_comparison.json. The linked sample originals, instructor approvals and actual WebClass submission state remain unverified.',
             'department_format_basis':'User-specified repository settings are checked separately; they are not certification against the formal template.',
             'limits':['Portable PDF and XML checks do not establish correct rendering in Microsoft Word or PowerPoint.','Formal department submission readiness is not certified.','No manuscripts, Office documents or PDFs are modified by this script.']}
     (HERE/'submission_checks.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')

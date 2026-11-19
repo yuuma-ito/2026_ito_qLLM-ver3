@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-19T05:33:49.202866+00:00",
+  "checked_at_utc": "2026-11-19T05:46:24.890190+00:00",
   "portable_checks_passed": true,
   "checks": {
     "thesis.pdf_page_count": true,
@@ -182,7 +182,7 @@
     "Times New Roman": false
   },
   "microsoft_office_rendering": "NOT_PERFORMED: this portable script does not render documents in Microsoft Office or query connected sessions; see office_sessions.json for the separately observed connection state.",
-  "formal_department_rules": "UNVERIFIED: user states the current instructions are WebClass-only; no authenticated course session or original template supplied.",
+  "formal_department_rules": "PARTIAL: the user supplied the 2026 department notice text and it was compared in provided_notice_comparison.json. The linked sample originals, instructor approvals and actual WebClass submission state remain unverified.",
   "department_format_basis": "User-specified repository settings are checked separately; they are not certification against the formal template.",
   "limits": [
     "Portable PDF and XML checks do not establish correct rendering in Microsoft Word or PowerPoint.",
