@@ -1,0 +1,29 @@
+{
+  "checked_at_utc": "2026-11-19T05:15:07.662977+00:00",
+  "reviewed_pdf_sha256": {
+    "docs/midterm2026/paper.pdf": "39b1b7712f05197675f698d584513ac9a22efaa1f3b5e0d5f2d4e97215e1861c",
+    ".cache/measurement_ban_materials/abstract/word/paper.pdf": "0553765b4753759f0fbcf9cf0275b783c8d7c6e97243469d2bfe7a844c167441"
+  },
+  "pages_reviewed": {
+    "docs/midterm2026/paper.pdf": [
+      1,
+      2
+    ],
+    ".cache/measurement_ban_materials/abstract/word/paper.pdf": [
+      1,
+      2
+    ]
+  },
+  "checks": {
+    "both_pdf_pages_checked": true,
+    "no_visible_overlap_or_clipping": true,
+    "tables_and_references_readable": true,
+    "three_tables_unchanged": true,
+    "graduation_abstract_mirrors_identical": true
+  },
+  "scope": "要旨のLaTeX PDFとWord変換PDFを全ページ画像確認。独立査読ではない。",
+  "limitations": [
+    "指定フォントがサーバーにないためPDFは代替フォントによる確認版。",
+    "Microsoft Wordでの最終表示と独立査読は未実施。"
+  ]
+}

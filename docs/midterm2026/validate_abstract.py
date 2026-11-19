@@ -137,7 +137,13 @@ def validate_numbers():
     b4 = next(r for r in b.B4_ROWS if r['condition']=='B4' and r['generation_cap']=='4' and r['grouping']=='overall')
     assert [int(b4[k]) for k in ['groups','initial_failures','successes_from_initial_failure','final_L3_successes','additional_requests','additional_tokens']] == [1000,545,216,671,1343,996223]
     assert json.loads((b.B4_SOURCE/'sanity_report.json').read_text())['passed']
+    followup = ROOT / 'docs/analysis/reevaluation_followup_20261015'
+    cases = list(csv.DictReader((followup/'partial_rerun_records.csv').open()))
+    rounds = list(csv.DictReader((followup/'partial_new_rounds.csv').open()))
+    assert len(cases) == len({r['record_key'] for r in cases}) == 293
+    assert len(rounds) == len({(r['record_key'],r['round']) for r in rounds}) == 647
     return {'overall_rescues': [96, 183, 179], 'initial_failure_denominator': 545,
+            'partial_followup_cases':293, 'partial_followup_rounds':647,
             'model_and_error_table_totals_reconciled': True, 'fd_overlap_reconciled': True,
             'all_84_cases_and_404_transitions_checked': True, 'cost_and_third_round_checked': True,
             'independent_generation_P_checked': True, 'B4_initial_failure_successes': 216, 'B4_final_successes': 671, 'B4_additional_requests': 1343, 'B4_additional_tokens': 996223}
@@ -146,8 +152,11 @@ def validate_numbers():
 def main():
     assert [text for kind, text in b.BLOCKS if kind == 'h'] == [
         'はじめに', '評価の枠組み', '関連研究・準備', '実験方法', '結果', '考察', 'おわりに']
+    prose = '\n'.join(text for kind,text in b.BLOCKS if kind == 'p')
+    assert all(value in prose for value in ['3類型を選定', '件数上位3類型ではない', '最適介入を推奨する規則ではない', '追加計算コストは類型別CSVへ含めず', '未検証の選択・停止方策'])
     refs = [text for kind, text in b.BLOCKS if kind == 'ref']
     assert len(refs) == 7
+    assert 'https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/72c03f843f0ca91b1d6dc06dedfb274d022316a7' in refs[-1]
     citations = [int(n) for kind, text in b.BLOCKS if kind == 'p' for n in re.findall(r'［(\d+)］', text)]
     assert sorted(set(citations)) == list(range(1, 8))
     bibliography = json.loads((HERE / 'bibliography_sources.json').read_text())
@@ -187,9 +196,12 @@ def main():
              HERE / 'build_abstract.py', HERE / 'validate_abstract.py', HERE / 'paper.tex', HERE / 'paper.docx',
              HERE / 'bibliography_sources.json', ROOT / 'harness/evaluator.py', ROOT / 'harness/readout.py',
              ROOT / 'tasks/__init__.py',
-             ROOT / 'docs/analysis/reevaluation_followup_20261015/partial_evaluation_profile.json']
+             ROOT / 'docs/analysis/reevaluation_followup_20261015/partial_evaluation_profile.json',
+             ROOT / 'docs/analysis/reevaluation_followup_20261015/partial_rerun_records.csv',
+             ROOT / 'docs/analysis/reevaluation_followup_20261015/partial_new_rounds.csv',
+             ROOT / 'docs/graduation2026/thesis.pdf', ROOT / 'docs/graduation2026/intervention_catalog.csv']
     visual = {'status': 'pending', 'scope': 'both pages of LaTeX and Word-export PDFs'}
-    visual_path = HERE / 'visual_review_20261104.json'
+    visual_path = HERE / 'visual_review_20261119.json'
     if visual_path.exists():
         candidate = json.loads(visual_path.read_text())
         if all(candidate.get('reviewed_pdf_sha256', {}).get(r['path']) == r['sha256'] for r in reports):
@@ -218,7 +230,7 @@ def main():
               'visual_review': visual,
               'word_layout_note': 'LibreOfficeで検証．Microsoft Wordで編集後は再ページ割付を確認する．',
               'experiment_actions': {'new_generations': 0, 'generated_code_executions': 0}}
-    (HERE / 'validation_report_20261104.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
+    (HERE / 'validation_report_20261119.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
     print('Layout/content passed: both PDFs 2 pages, A4, margins, 11pt, page numbers, complete prose, tables and frozen numbers.')
     print('Word font specification passed. PDF requested fonts: ' + ('passed.' if fonts_met else 'NOT MET; substitute-font preview only.'))
 
