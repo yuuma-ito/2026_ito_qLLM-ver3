@@ -9,7 +9,7 @@ import re
 from pptx import Presentation
 import pymupdf
 
-from graduation_slides import HERE, ROOT, TITLE, FIXED, B4
+from graduation_slides import HERE, ROOT, TITLE, FIXED, B4, REPOSITORY
 from six_conditions import values
 
 
@@ -65,17 +65,20 @@ def validate():
         at(9,x,2.9+i*.52)==row(c,'model','ollama:'+model)['successes_from_initial_failure']
         for i,model in enumerate(models) for x,c in zip([5.6,7,8.4,10],['R','F','D','B4']))
     checks['B4_method_and_scope_present']='前回コード・診断なし' in slide_text(3) and 'B4：追加1,000組' in slide_text(3)
-    checks['catalog_policy_unverified_explicit']='性能改善は未検証' in slide_text(6) and '有効性は未検証' in slide_text(8)
+    checks['catalog_role_and_future_validation_explicit']='観測結果を比較する資料' in slide_text(6) and '推奨する規則ではない' in slide_text(6) and '未検証の選択・停止方策' in slide_text(8)
+    checks['current_thesis_table_references']='卒論 表13' in slide_text(6) and '卒論 表2' in slide_text(10)
+    checks['reconstruction_round_count_and_notes_present']='647生成' in slide_text(10) and '非公開checkpointが必要' in manifest['notes'][9]['text']
+    checks['complete_source_urls_visible']=all(url in norm(pdf[11].get_text()) for url in [REPOSITORY,FIXED])
+    checks['reference_three_title_matches_thesis']='測定禁止修正版の固定集計（2026-11-04）' in slide_text(11)
     checks['reference_numbers_1_to_9_present']=all(f'[{i}]' in slide_text(11)+slide_text(12) for i in range(1,10))
     links={l['uri'] for p in pdf for l in p.get_links() if l.get('uri')}
-    checks['all_eleven_source_links_in_pdf']=links=={
+    checks['all_source_links_in_pdf']=links=={
         'https://arxiv.org/abs/2303.17651v2','https://arxiv.org/abs/2304.05128v2',
         'https://arxiv.org/abs/2107.03374v2','https://arxiv.org/abs/2108.07732',
         'https://arxiv.org/abs/2310.01798v2','https://arxiv.org/abs/2406.14712',
         'https://quantum.cloud.ibm.com/docs/en/guides/construct-circuits',
         'https://qiskit.github.io/qiskit-aer/', FIXED,
-        FIXED+'/docs/analysis/measurement_ban_corrected_20261104',
-        FIXED+'/docs/analysis/measurement_ban_corrected_20261104'}
+        REPOSITORY}
     overflow=[]
     for i,p in enumerate(pdf,1):
         for b in p.get_text('dict')['blocks']:

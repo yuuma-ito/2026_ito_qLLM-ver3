@@ -1,5 +1,5 @@
 {
-  "created_at_utc": "2026-11-04T12:06:34.768422+00:00",
+  "created_at_utc": "2026-11-19T05:06:14.604481+00:00",
   "basis": "最新の卒論thesis.pdfと同じ固定CSV",
   "main_slides": 8,
   "supplemental_slides": 4,
@@ -33,7 +33,7 @@
     {
       "slide": 6,
       "seconds": 50,
-      "text": "目安：3:20–4:10（50秒）\n話す要点\n・importではD，構築・出力ではB4が最多\n・件数上位3類型という意味ではない\n・CSVは分類キー・表示名・分母・F/D/B4の成功数と率の9列\n・モデル別でもQ4はD，他の4モデルはB4が最多。補足Aに示す"
+      "text": "目安：3:20–4:10（50秒）\n話す要点\n・importではD，構築・出力ではB4が最多\n・件数上位3類型という意味ではない\n・カタログは本実験条件での観測結果を比較する資料。未知の事例への推奨規則ではない\n・モデル別でもQ4はD，他の4モデルはB4が最多。補足Aに示す"
     },
     {
       "slide": 7,
@@ -53,7 +53,7 @@
     {
       "slide": 10,
       "seconds": null,
-      "text": "目安：質疑用（本編6分には含めない）\n話す要点\n・初期成功の保持と成功時停止により退行0となる\n・現行v4の測定・変換seedは42固定。別seedへの感度は未検証\n・有限shots，1,024 tokens上限，診断文や負荷の差が残る\n・回路内測定禁止は主L3で明示検査する。原課題より強い厳格評価は含めない\n・部分追試647生成中120生成はlength終了。Dの説明指示の効果と出力枠の影響を分離しない"
+      "text": "目安：質疑用（本編6分には含めない）\n話す要点\n・初期成功の保持と成功時停止により退行0となる\n・現行v4の測定・変換seedは42固定。別seedへの感度は未検証\n・有限shots，1,024 tokens上限，診断文や負荷の差が残る\n・回路内測定禁止は主L3で明示検査する。原課題より強い厳格評価は含めない\n・部分追試647生成中120生成はlength終了。Dの説明指示の効果と出力枠の影響を分離しない\n・卒論表2の手順：初期照合，評価版確認，分岐確認，追試開始，履歴接続，最終集計\n・公開CSVは分岐・由来・件数・hashの対応を示す。保存コードの再評価と完全な履歴再構成には非公開checkpointが必要"
     },
     {
       "slide": 11,
@@ -63,11 +63,11 @@
     {
       "slide": 12,
       "seconds": null,
-      "text": "目安：質疑用（本編6分には含めない）\n話す要点\n・リンクから固定commit内の出典に移動できる\n・参考文献の真正性と引用の範囲は卒論PDFの確認記録に基づく"
+      "text": "目安：質疑用（本編6分には含めない）\n話す要点\n・表示したURLは公開リポジトリと固定commit。固定集計はdocs/analysis/measurement_ban_corrected_20261104/にある\n・参考文献の真正性と引用の範囲は卒論PDFの確認記録に基づく"
     }
   ],
   "source_sha256": {
-    "docs/graduation2026/thesis.pdf": "46feaafe494e3f325d6c223bece55a986e150151c51fe9ccb2467547f98f268e",
+    "docs/graduation2026/thesis.pdf": "68014ab413b11280bdab31ffe5cb057470a297bf790ec03804421c991c0c066a",
     "docs/graduation2026/intervention_catalog.csv": "0a8b3d38addd73121a396a6e2fc3f8dc3fc7ff050ff60053f755066069b1fae5",
     "docs/analysis/measurement_ban_corrected_20261104/core/repair_summary.csv": "c1de940046e692542409f587cf6b4a338cb4ab6331a3756e68b7f8869a964ed1",
     "docs/analysis/measurement_ban_corrected_20261104/core/preventive_summary.csv": "59e7b26acf629eae5a696f0f61eb5926ae48f8a25246f6634b5a5739eb01c8ff",

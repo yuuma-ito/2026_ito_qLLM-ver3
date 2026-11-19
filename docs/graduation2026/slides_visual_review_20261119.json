@@ -1,0 +1,48 @@
+{
+  "checked_at_utc": "2026-11-19T05:07:10.201738+00:00",
+  "pdf_sha256": "6daa5e5d44a63b24b366afb5c0baaabfae2a9b116e81a0a55d92b07cedef654d",
+  "pages_reviewed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "enlarged_changed_pages": [
+    6,
+    8,
+    10,
+    11,
+    12
+  ],
+  "checks": {
+    "all_pages_visually_reviewed": true,
+    "fixed_title_and_presenter_visible": true,
+    "changed_text_no_overlap_or_clipping": true,
+    "catalog_table_readable": true,
+    "full_repository_and_fixed_urls_visible": true,
+    "unchanged_slides_preserved": true
+  },
+  "unchanged_slides": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    9
+  ],
+  "scope": "LibreOffice変換後の12枚を画像確認。独立査読ではない。",
+  "limits": [
+    "Microsoft PowerPoint上の最終表示と実際の発表時間は未確認。",
+    "文献の外部公開状態・原論文の書誌を今回再調査していない。"
+  ],
+  "render_source": ".cache/slides_sync_20261119/facts/png/"
+}

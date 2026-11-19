@@ -19,7 +19,8 @@ B4 = ROOT / 'docs/analysis/measurement_ban_corrected_20261104'
 CORE = ROOT / 'docs/analysis/measurement_ban_corrected_20261104/core'
 TITLE = '量子LLM支援プログラミングにおける失敗類型と介入カタログの実証研究'
 COMMIT = '72c03f843f0ca91b1d6dc06dedfb274d022316a7'
-FIXED = 'https://github.com/yuuma-ito/2026_ito_qLLM-ver3/tree/' + COMMIT
+REPOSITORY = 'https://github.com/yuuma-ito/2026_ito_qLLM-ver3'
+FIXED = REPOSITORY + '/tree/' + COMMIT
 FONT = 'IPAexGothic'
 SOURCES = [HERE / 'thesis.pdf', HERE / 'intervention_catalog.csv',
            CORE / 'repair_summary.csv', CORE / 'preventive_summary.csv',
@@ -156,7 +157,7 @@ def build_slides():
     text(s, .85, 5.35, 11.6, 1.2, '両条件168履歴・404修正遷移を静的に確認。双方未救済322組。\n同時に複数箇所が変わるため，成功原因は分離できない。\n和集合223組は，実行前に選べる方策の成績ではない。', 21)
     note(s, 40, ['共通139にFのみ44，Dのみ40を足して各条件の成功集合を説明する', '84組の全履歴確認と変更の因果効果の実証は区別する'])
 
-    s = slide('失敗類型により，追加成功率が最大の条件は変わる', '介入カタログ：異なる失敗段階を比較する3類型（卒論 表11）')
+    s = slide('失敗類型により，追加成功率が最大の条件は変わる', '介入カタログ：異なる失敗段階を比較する3類型（卒論 表13）')
     headers = ['初期失敗類型','分母','F救済率','D救済率','B4追加成功率']
     xs, widths = [.85,4.15,5.7,7.7,9.7], [3.1,1.35,1.8,1.8,2.7]
     box(s, .8, 2.2, 11.8, .6, 'DDDDDD')
@@ -165,8 +166,8 @@ def build_slides():
         y = 3.05+i*.85
         entries = [r['label'],r['initial_failures'],*(r[c+'_rate_percent']+'%' for c in ('F','D','B4'))]
         for x,w,v in zip(xs,widths,entries):text(s,x,y,w,.6,v,24)
-    text(s,.85,5.75,11.7,.9,'CSVは3行×9列。類型別の件数と観測率を整理したもの。\n自動選択方策による性能改善は未検証。',23)
-    note(s,50,['importではD，構築・出力ではB4が最多', '件数上位3類型という意味ではない', 'CSVは分類キー・表示名・分母・F/D/B4の成功数と率の9列', 'モデル別でもQ4はD，他の4モデルはB4が最多。補足Aに示す'])
+    text(s,.85,5.75,11.7,.9,'失敗段階ごとに，修正と再生成の観測結果を比較する資料。\n未知の事例への最適介入を推奨する規則ではない。',23)
+    note(s,50,['importではD，構築・出力ではB4が最多', '件数上位3類型という意味ではない', 'カタログは本実験条件での観測結果を比較する資料。未知の事例への推奨規則ではない', 'モデル別でもQ4はD，他の4モデルはB4が最多。補足Aに示す'])
 
     s = slide('追加成功と計算コストを併せて比較する', '共有初期生成を除く入力＋出力tokens。未成功例への消費も含む。')
     for x,w,v in [(.85,1.0,'条件'),(2,2.8,'追加tokens'),(4.8,2.6,'tokens／追加成功')]:text(s,x,2.15,w,.6,v,21,True)
@@ -186,7 +187,7 @@ def build_slides():
                   (3.0,'2','F/Dは成功対象が異なる：片側救済84組'),
                   (4.15,'3','モデル・初期失敗類型によって最多条件が変わる')]:
         text(s,.85,y,.5,.6,n,28,True);text(s,1.55,y,10.9,.8,v,26,True)
-    text(s,.85,5.5,11.6,1.2,'観測結果を介入カタログに整理。自動選択の有効性は未検証。\n今後：選択・停止規則を事前固定し，別seed・タスクで検証する。',23)
+    text(s,.85,5.5,11.6,1.2,'成果：3類型の観測結果を介入カタログに整理。\n今後：未検証の選択・停止方策を別seed・タスクで検証する。',23)
     note(s,55,['全体の観測と層別の違いを合わせて三つの知見を述べる', '指定入力・有限タスクでの探索的な記述で，有意差や因果効果は主張しない', 'tokens予算も揃えた比較を今後の課題とする'])
 
     s = slide('補足A　モデル別の追加成功数', '分母は各モデルの初期失敗数。全体の545組を各行の分母にしない。')
@@ -201,14 +202,14 @@ def build_slides():
     note(s,None,['Q4ではD89組，他の4モデルではB4が最多', '失敗数やタスク構成の違いを伴い，一般的なモデルランキングではない'])
 
     s = slide('補足B　評価と比較の範囲')
-    text(s,.85,1.75,11.6,4.9,'L3：L0〜L2・構造要件・回路内測定禁止を満たす\n分布評価：8,192 shots・全変動距離0.05未満\nR/F/D：検証済みの保存履歴＋部分追試293ケース\nB4：同じ初期1,000組からの追加条件として別に集計\nP：独立1回生成，最終成功473/1,000組\n旧120件は合算しない。全入力のアルゴリズム同値性は保証しない。\n最大4回でも，入力情報・実要求数・tokens・seed規則・実行時期は異なる。',22)
-    note(s,None,['初期成功の保持と成功時停止により退行0となる', '現行v4の測定・変換seedは42固定。別seedへの感度は未検証', '有限shots，1,024 tokens上限，診断文や負荷の差が残る', '回路内測定禁止は主L3で明示検査する。原課題より強い厳格評価は含めない', '部分追試647生成中120生成はlength終了。Dの説明指示の効果と出力枠の影響を分離しない'])
+    text(s,.85,1.75,11.6,4.9,'L3：L0〜L2・構造要件・回路内測定禁止を満たす\n分布評価：8,192 shots・全変動距離0.05未満\nR/F/D：保存履歴＋部分追試293ケース・647生成\n停止・診断の分岐とコードhashを照合（卒論 表2）\nB4：同じ初期1,000組からの追加条件として別に集計\nP：独立1回生成，最終成功473/1,000組\n旧120件は合算しない。全入力のアルゴリズム同値性は保証しない。\n最大4回でも，入力情報・実要求数・tokens・seed規則・実行時期は異なる。',22)
+    note(s,None,['初期成功の保持と成功時停止により退行0となる', '現行v4の測定・変換seedは42固定。別seedへの感度は未検証', '有限shots，1,024 tokens上限，診断文や負荷の差が残る', '回路内測定禁止は主L3で明示検査する。原課題より強い厳格評価は含めない', '部分追試647生成中120生成はlength終了。Dの説明指示の効果と出力枠の影響を分離しない', '卒論表2の手順：初期照合，評価版確認，分岐確認，追試開始，履歴接続，最終集計', '公開CSVは分岐・由来・件数・hashの対応を示す。保存コードの再評価と完全な履歴再構成には非公開checkpointが必要'])
 
     s = slide('補足C　参考文献 [1]–[5]（卒論と同じ番号）')
     refs=[
         (1,'A. Madaan et al.','Self-Refine: Iterative Refinement with Self-Feedback','arXiv:2303.17651v2 (2023)','https://arxiv.org/abs/2303.17651v2'),
         (2,'X. Chen, M. Lin, N. Schärli, D. Zhou','Teaching Large Language Models to Self-Debug','arXiv:2304.05128v2 (2023)','https://arxiv.org/abs/2304.05128v2'),
-        (3,'伊藤悠真','現行救済経路の固定発表出典（2026-11-04修正版）／B4追加実験（2026-11-04修正版）','公開固定版（72c03f8）',FIXED),
+        (3,'伊藤悠真','測定禁止修正版の固定集計（2026-11-04）','公開固定版（72c03f8）',FIXED),
         (4,'M. Chen et al.','Evaluating Large Language Models Trained on Code','arXiv:2107.03374v2 (2021)','https://arxiv.org/abs/2107.03374v2'),
         (5,'J. Austin et al.','Program Synthesis with Large Language Models','arXiv:2108.07732 (2021)','https://arxiv.org/abs/2108.07732'),
     ]
@@ -231,10 +232,9 @@ def build_slides():
         text(s,.8,y,11.9,.35,f'[{n}] {author}',16,True)
         text(s,.8,y+.34,11.9,.35,title,17)
         text(s,.8,y+.69,11.9,.32,label,16,url=url)
-    text(s,.8,5.8,11.9,.4,'文献[3]の固定commit：'+COMMIT,16)
-    text(s,.8,6.3,5.7,.4,'11月4日：修正版固定集計',18,url=FIXED+'/docs/analysis/measurement_ban_corrected_20261104')
-    text(s,6.5,6.3,5.9,.4,'11月4日：B4継続結果',18,url=FIXED+'/docs/analysis/measurement_ban_corrected_20261104')
-    note(s,None,['リンクから固定commit内の出典に移動できる', '参考文献の真正性と引用の範囲は卒論PDFの確認記録に基づく'])
+    text(s,.8,5.8,11.9,.4,REPOSITORY,18,url=REPOSITORY)
+    text(s,.8,6.3,11.9,.4,FIXED,16,url=FIXED)
+    note(s,None,['表示したURLは公開リポジトリと固定commit。固定集計はdocs/analysis/measurement_ban_corrected_20261104/にある', '参考文献の真正性と引用の範囲は卒論PDFの確認記録に基づく'])
 
     assert sum(n['seconds'] or 0 for n in notes)==360 and len(prs.slides)==12
     prs.save(HERE / 'slides.pptx')
