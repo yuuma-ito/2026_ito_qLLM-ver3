@@ -184,10 +184,10 @@ def toc(d):
 
 def remap(text):
     text = polish(text)
-    mappings = {'表3.1': '表1', '表5.1': '表2'}
-    mappings.update({f'表6.{i}': f'表{i+3}' for i in range(1, 11)})
-    mappings['表6.0'] = '表3'
-    mappings['表7.1'] = '表12'
+    mappings = {'表3.1': '表1', '表4.1': '表2', '表5.1': '表3'}
+    mappings.update({f'表6.{i}': f'表{i+4}' for i in range(1, 11)})
+    mappings['表6.0'] = '表4'
+    mappings['表7.1'] = '表13'
     for old, new in sorted(mappings.items(), key=lambda item: -len(item[0])):
         text = text.replace(old, new)
     text = text.replace('付録A', '付録（8.1節）').replace('付録B', '付録（8.2節）')
@@ -396,7 +396,7 @@ def build_thesis():
         elif started and child.tag == qn('w:tbl'):
             copy = deepcopy(child)
             body.insert(len(body)-1, copy)
-            if table_index == 3:
+            if table_index == 4:
                 add_figure(d, 2)
     # Clear legacy direct font/spacing settings in copied tables.
     for table in d.tables:

@@ -412,6 +412,18 @@ def legacy_thesis():
             # Insert each table near its first textual reference.
             if (n,j)==(3,1):thesis_tables(d,3)
             if (n,j)==(5,1):thesis_tables(d,5)
+            if n == 4 and subtitle == '履歴再構成における分岐と到達性':
+                table(d, '表4.1　到達履歴の再構成を確認する手順',
+                      ['段階', '照合する内容', '判定・扱い', '記録'], [
+                          ['初期の固定', '共有初期コードと初期判定', 'B/R/F/Dの出発点を揃える', 'B：到達履歴CSV'],
+                          ['評価版', '元設定と追試・修正版の評価設定', '評価版と実装hashを区別する', 'A・B：設定とmanifest'],
+                          ['分岐の判定', '旧・新の停止と診断の対応', '後続要求が変わる前まで保存履歴を使う', 'A：分岐監査CSV'],
+                          ['追試の開始', '分岐入力roundと保存前半round数', '分岐点から必要な後半だけ生成する', 'A：追試ケースCSV'],
+                          ['接続の照合', 'record_key・round・コードhash・由来', '保存前半と追試後半の対応を追う', 'A：追試round CSV／B：到達履歴CSV'],
+                          ['最終の集計', '停止round・成功判定・件数', '到達履歴と条件記録の単位を分ける', 'A：混合履歴CSV／B：sanity report'],
+                      ], widths=[23, 47, 57, 33])
+                para(d, '表のCSV名は，分岐監査：round_impact_audit.csv，追試ケース：partial_rerun_records.csv，追試round：partial_new_rounds.csv，混合履歴：mixed_path_records.csv，到達履歴：reachable_rounds.csvである．Bのcore/sanity_report.jsonとsanity_report.jsonはそれぞれ主分析とB4の検証記録である．')
+
             if n == 6 and subtitle == '補足実験：失敗通知と詳細診断の比較':
                 from notification_supplement import table_rows as notification_rows
                 table(d, '表6.8　補足実験の追加1回によるL3成功（初期失敗545組）',

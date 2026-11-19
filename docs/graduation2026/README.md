@@ -1,5 +1,20 @@
 # 卒業研究発表会用の原稿・発表資料
 
+## 2026年11月19日のカタログ・結論・再構成手順の改善
+
+レビューに基づき承認された3点を[Word](thesis.docx)・[PDF](thesis.pdf)へ反映した。第5.2節の冒頭で介入カタログの比較資料としての目的と推奨規則との区別を示し、CSV仕様はその後に置いた。第6.1節の「主要な初期失敗3類型」を、異なる失敗段階の比較のために選定した3類型という説明へ変更した。
+
+第3.2.6節の反復説明を整理し、初期固定・評価版・分岐・追試開始・コードhashによる接続・最終集計を対応づけた手順表（表2、17ページ）を追加した。公開記録A/Bの所在地とファイル名、非公開checkpointが必要な再構成の範囲を明記した。後続の表番号と本文参照を更新した。第5.2節の冒頭は27ページ、第6.1節は31ページとなる。
+
+現行版は40ページ・13表・4図。既存12表の全セル・4図・謝辞を保持した。公開CSV全行から293ケース・647追試round・9,249到達roundの件数と一意性を確認し、追試の開始round・件数と到達履歴に含まれる647コードhashを照合した。[修正の検証記録](review_revision_validation_20261119.json)と[書式・数値表の検証](validation_report.json)を参照。変更箇所の17・27・31ページは画像で確認した。全ページの再目視確認、Microsoft Word上の最終表示確認、原コードの再評価・sanityの再実行は未実施。新規実験・要旨・スライドの更新は行っていない。以下のページ数・表番号は各更新時点の記録である。
+
+この環境のPython 3.14では、従来の`.cache/graduation_tools`内のPython 3.12用拡張を利用できないため、今回の変換には既存の`.cache/acknowledgments_tools`を用いた。
+
+```bash
+PYTHONPATH=.cache/acknowledgments_tools:docs/graduation2026 .venv/bin/python -c 'import template_thesis, runpy; runpy.run_path("docs/graduation2026/convert_thesis.py", run_name="__main__")'
+PYTHONPATH=.cache/acknowledgments_tools .venv/bin/python docs/graduation2026/validate_template.py
+```
+
 ## 2026年11月18日の謝辞追加
 
 卒論の[Word](thesis.docx)・[PDF](thesis.pdf)の「おわりに」と参考文献の間に，番号なしの「謝辞」を追加した（31ページ）．横山哲郎先生への指導・助言に対する感謝と，OpenAIのCodexによる下書き・推敲，資料作成・検証作業の補助利用，論文内容と結論に対する著者の責任を記載した．

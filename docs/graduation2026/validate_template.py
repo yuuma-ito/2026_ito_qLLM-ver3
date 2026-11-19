@@ -49,7 +49,7 @@ def validate():
     checks['toc_dot_leaders_and_right_tabs']=all(
         p.paragraph_format.tab_stops[0].alignment==2 and p.paragraph_format.tab_stops[0].leader==1
         for p in d.paragraphs if '\t' in p.text)
-    checks['sequential_table_fields']=sum(i.startswith('SEQ Table ') for i in instructions)==len(d.tables)==12
+    checks['sequential_table_fields']=sum(i.startswith('SEQ Table ') for i in instructions)==len(d.tables)==13
     checks['editable_table_references']=any(i.startswith('REF Table') for i in instructions)
     checks['four_figures_with_sequential_fields'] = len(d.inline_shapes) == sum(i.startswith('SEQ Figure ') for i in instructions) == 4
     checks['editable_figure_references'] = all(any(i.startswith('REF Figure'+str(n)+' ') for i in instructions) for n in [1,2,3,4])
@@ -61,6 +61,8 @@ def validate():
     caption_ps=[p for p in d.paragraphs if any('SEQ Table' in e.text for e in p._p.iter(qn('w:instrText')))]
     checks['captions_before_table_and_kept_with_next']=all(p._p.getnext().tag==qn('w:tbl') and p.paragraph_format.keep_with_next for p in caption_ps)
     tables=[[[c.text for c in row.cells] for row in t.rows] for t in d.tables]
+    reconstruction_table = tables.pop(1)
+    checks['reconstruction_steps_present'] = len(reconstruction_table)==7 and reconstruction_table[0]==['段階', '照合する内容', '判定・扱い', '記録']
     from six_conditions import table_rows, DEFINITIONS
     checks['six_condition_table_matches_csv'] = tables[2][1:] == table_rows()
     checks['six_condition_definitions'] = tables[0][1:] == DEFINITIONS
@@ -96,7 +98,7 @@ def validate():
     for page in pdf:
         lines=[''.join(sp['text'] for sp in line['spans']) for b in page.get_text('dict')['blocks'] for line in b.get('lines',[])]
         for pos,line in enumerate(lines):
-            if norm(line) == norm('表6 初期失敗類型別の追加成功数'):
+            if norm(line) == norm('表7 初期失敗類型別の追加成功数'):
                 label_lines.extend(lines[pos+1:])
     checks['failure_labels_not_wrapped'] = all(any(norm(label) in norm(line) for line in label_lines) for label,_ in template.content.THESIS_ERRORS)
     checks['toc_third_page']='目次' in texts[2]
@@ -164,7 +166,7 @@ def validate():
     checks['order_of_metrics_explained'] = 'まず全対象の最終的な到達状況を比較し，次に初期成功の保持を除いて' in alltext
     conclusion=subsection('研究成果')
     checks['conclusion_states_catalog_and_no_policy_validation'] = all(t in conclusion for t in [
-        '主要な初期失敗3類型（import失敗，回路構築失敗，出力不一致）',
+        '異なる失敗段階を比較するために選定した3類型（import失敗，回路構築失敗，出力不一致）',
         '初期失敗数とF/Dによる修正の救済率，B4による独立再生成の追加成功率',
         '自動選択方策の有効性を実証したものではない'])
     limitations=subsection('妥当性と限界')

@@ -1,0 +1,44 @@
+{
+  "checked_at_utc": "2026-11-19T03:49:27.772387+00:00",
+  "scope": "承認された修正1〜3と公開CSVの対応。原データからの再採点ではない。",
+  "passed": true,
+  "checks": {
+    "existing_12_tables_unchanged": true,
+    "four_embedded_figures_unchanged": true,
+    "partial_cases_unique_293": true,
+    "partial_rounds_unique_647": true,
+    "reachable_rounds_unique_9249": true,
+    "partial_starts_and_counts_match": true,
+    "reachable_partial_hashes_match": true,
+    "audit_has_round_stop_feedback_hash_fields": true,
+    "catalog_purpose_precedes_csv_schema": true,
+    "ambiguous_major_three_removed": true,
+    "reconstruction_public_limits_explicit": true,
+    "new_content_in_pdf": true,
+    "acknowledgments_retained": true
+  },
+  "inputs_sha256": {
+    "docs/analysis/reevaluation_followup_20261015/partial_rerun_records.csv": "5de238c8935c9b79032f66aff8ea2f7a5614f9ebe2cb494d5457af15869c9f24",
+    "docs/analysis/reevaluation_followup_20261015/partial_new_rounds.csv": "23002b1e318cbc79616b3d153fc58df0d4ac050c2a843ff87038c066f0b3b35d",
+    "docs/analysis/measurement_ban_corrected_20261104/reachable_rounds.csv": "946014a1208a91f47e0e5f3b73d62e436dec3547ec5c98062847b1b44034cb1f",
+    "docs/analysis/reevaluation_followup_20261015/round_impact_audit.csv": "07cdb0542ab62759220f0efd03f25941553c6a3c5768fc59ebaad3dde3b5cfdb"
+  },
+  "matched_partial_rounds": 647,
+  "visual_pages_reviewed": [
+    17,
+    27,
+    31
+  ],
+  "pages": 40,
+  "tables": 13,
+  "figures": 4,
+  "artifact_sha256": {
+    "thesis.docx": "29f9f2466a0b3e3b158d8d55857477f7f3e03e8477cabd0f04d8e2bd14643772",
+    "thesis.pdf": "390861588e98baf6e3a95611e7c1e6871d003796489a66f639aa5d61575cfd87"
+  },
+  "limits": [
+    "原コードの再評価・sanityの再実行・新規生成は実施していない。",
+    "全ページの再目視確認とMicrosoft Word上の最終表示確認は未実施。",
+    "公開CSVと保存済み設定・検証記録の所在を照合した。hash一致は採点の正しさを保証しない。"
+  ]
+}
