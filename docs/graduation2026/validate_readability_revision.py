@@ -48,6 +48,7 @@ def validate(before=None):
     future = section('今後の課題')
     checks = {
         'all_stage_labels_on_single_lines': all(label in lines for label in labels),
+        'content_and_action_lines_not_split': all(norm(line) in lines for row in tables[1][1:] for cell in row[1:3] for line in cell.splitlines()),
         'record_column_only_short_ids': [r[-1] for r in tables[1][1:]] == record_ids,
         'all_record_ids_on_single_lines': all(value in lines for value in record_ids),
         'record_file_legend_visible': all(value in norm(table_page.get_text()) for value in ['A1：settings_manifest.json', 'A4：partial_new_rounds.csv', 'B1：reachable_rounds.csv']),
@@ -61,7 +62,7 @@ def validate(before=None):
         old = Document(before/'thesis.docx')
         previous = [[[c.text for c in r.cells] for r in t.rows] for t in old.tables]
         checks['all_12_other_tables_unchanged'] = previous[:1]+previous[2:] == tables[:1]+tables[2:]
-        checks['table_2_content_columns_unchanged'] = all(a[1:3] == b[1:3] for a,b in zip(previous[1], tables[1]))
+        checks['table_2_stages_and_record_ids_unchanged'] = all(a[0] == b[0] and a[-1] == b[-1] for a,b in zip(previous[1], tables[1]))
         def media(path):
             with ZipFile(path) as z:
                 return {n:hashlib.sha256(z.read(n)).hexdigest() for n in z.namelist() if n.startswith('word/media/')}

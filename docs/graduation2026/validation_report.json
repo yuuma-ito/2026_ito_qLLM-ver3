@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-19T04:24:27.553425+00:00",
+  "checked_at_utc": "2026-11-19T04:39:47.451371+00:00",
   "scope": "thesis.docx and thesis.pdf only; separate abstract and slides retained",
   "automated_checks_passed": true,
   "checks": {
@@ -78,8 +78,8 @@
   "documents": {
     "thesis": {
       "pages": 40,
-      "pdf_bytes": 1590937,
-      "pdf_sha256": "41aaff63061ee3579c47336e86f9b351db285b4a2d0a291af8d644aa3c21d68c"
+      "pdf_bytes": 1590961,
+      "pdf_sha256": "68014ab413b11280bdab31ffe5cb057470a297bf790ec03804421c991c0c066a"
     }
   },
   "visual_review": {
@@ -93,9 +93,9 @@
   "new_model_requests": 0,
   "generated_code_executions": 0,
   "artifact_sha256": {
-    "thesis.docx": "3a47b2bc854ecc7edfcff49dac8e34f3d479107fb8079e7f6eb6fbab0ead18cd",
-    "thesis.pdf": "41aaff63061ee3579c47336e86f9b351db285b4a2d0a291af8d644aa3c21d68c",
-    "build.py": "a80447acbb4c9c641ddd10cc6b6988bf401011d587e1903a9e806b8320665a0a",
+    "thesis.docx": "eae2e4ad07fbb6962d3a1585941157342242a3e8339294cc8071d76f06c3dcfe",
+    "thesis.pdf": "68014ab413b11280bdab31ffe5cb057470a297bf790ec03804421c991c0c066a",
+    "build.py": "624a3feafba8b197c86e1453a11950958665751b1e91ff5a722a0d1d2a247489",
     "template_thesis.py": "9fef9e59a1a6acf04cb62c52dccce5adff4627e5dbe7fcd70908198a2777ac31",
     "thesis_expansion.py": "621945dc246b9f417cff7a1189e02e98b0b36025cd0d24adc867bf9b68672253",
     "thesis_language.py": "98e356081814fb97195c44481f4dae95f3a1f4dc155c428aec433d39c1becb11",
@@ -115,7 +115,7 @@
     "revision_report_20261028.json": "25a2da76f653df42bbdecb155277df0a3dc96e7604b11e47682efe48d02ca0e2",
     "work_notes.txt": "9ff757e5d34c866bf47360698cd99cbd99cb09936e1f20b2fc61bc7e886d7fb8",
     "thesis_visual_review.json": "4bc114ebf07ed1b2b9ac59095b2e348cc7fe42a50fb02faad76b8935e97963cc",
-    "README.md": "a9620fa8c0b31399ae858515c1bbdd35688b67ec38082d6480dd85d08341e094",
+    "README.md": "826e4dce49b00aff64c44a1b3501de14d968f574c712918fa78480debf814631",
     "build_research_evidence.py": "0910f235f75059e782f8aab9d861a512337fe54b5c10c682fcf82a5ddc8d5df3",
     "thesis_enrichment.py": "ae8d9d1d01ba6ac90383f145f4cb583f2f240febabeacc893e841aa7a28a8453",
     "validate_enrichment.py": "cf150f48e3a88e84d9442e489a43f0ae64018c84319974f65ffba157f1aedc79",

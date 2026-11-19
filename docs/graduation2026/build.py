@@ -417,12 +417,12 @@ def legacy_thesis():
             if n == 4 and subtitle == '履歴再構成における分岐と到達性':
                 table(d, '表4.1　到達履歴の再構成を確認する手順',
                       ['段階', '照合する内容', '判定・扱い', '記録'], [
-                          ['初期照合', '共有初期コードと初期判定', 'B/R/F/Dの出発点を揃える', 'B1'],
-                          ['評価版確認', '元設定と追試・修正版の評価設定', '評価版と実装hashを区別する', 'A1・B2'],
-                          ['分岐確認', '旧・新の停止と診断の対応', '後続要求が変わる前まで保存履歴を使う', 'A2'],
-                          ['追試開始', '分岐入力roundと保存前半round数', '分岐点から必要な後半だけ生成する', 'A3'],
-                          ['履歴接続', 'record_key・round・コードhash・由来', '保存前半と追試後半の対応を追う', 'A4・B1'],
-                          ['最終集計', '停止round・成功判定・件数', '到達履歴と条件記録の単位を分ける', 'A5・B3'],
+                          ['初期照合', '共有初期コード\n初期判定', 'B/R/F/Dの\n出発点を揃える', 'B1'],
+                          ['評価版確認', '元実験の設定\n追試・修正版の評価設定', '評価版と実装hashを\n区別する', 'A1・B2'],
+                          ['分岐確認', '旧・新の停止判定\n診断の対応', '後続要求が変わる前まで\n保存履歴を使う', 'A2'],
+                          ['追試開始', '分岐入力round\n保存前半のround数', '分岐点から必要な\n後半だけを生成する', 'A3'],
+                          ['履歴接続', 'record_key・round\nコードhash・由来', '保存前半と追試後半の\n対応を追う', 'A4・B1'],
+                          ['最終集計', '停止round\n成功判定・件数', '到達履歴と条件記録の\n単位を分ける', 'A5・B3'],
                       ], widths=[28, 49, 63, 20])
                 para(d, '記録欄の識別子は，本文で示した保存先A・Bと，次のファイルに対応する．A1：settings_manifest.jsonおよびpartial_evaluation_profile.json，A2：round_impact_audit.csv，A3：partial_rerun_records.csv，A4：partial_new_rounds.csv，A5：mixed_path_records.csv．B1：reachable_rounds.csv，B2：manifest.json，B3：core/sanity_report.jsonおよびsanity_report.json（それぞれ主分析とB4）．')
 
